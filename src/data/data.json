@@ -5,7 +5,7 @@
     "stages": [
         {
             "title": "ПЕРВЫЙ ЭТАП",
-            "image": "images/stage1.png",
+            "image": "images/stages/stage1.png",
             "subtitle": "ПОДГОТОВКА КОЖИ К МАКИЯЖУ",
             "steps": [
                 "Очищение: гель/пенка для умывания, мицеллярная вода, тоник",
@@ -15,17 +15,17 @@
             ],
             "products": [
                 {
-                    "image": "images/product1.png",
+                    "image": "images/products/product1.png",
                     "name": "МИЦЕЛЛЯРНАЯ ВОДА BIODERMA SENSIBIO H2O",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, АПТЕКИ"
                 },
                 {
-                    "image": "images/product2.png",
+                    "image": "images/products/product2.png",
                     "name": "МИЦЕЛЛЯРНАЯ ВОДА ARGAN MICELLAR",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, РИВГОШ"
                 },
                 {
-                    "image": "images/product3.png",
+                    "image": "images/products/product3.png",
                     "name": "ESTEE LAUDER ОТШЕЛУШИВАЮЩИЙ ТОНИК",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -33,22 +33,22 @@
         },
         {
             "title": "ВТОРОЙ ЭТАП",
-            "image": "images/stage2.png",
+            "image": "images/stages/stage2.png",
             "subtitle": "КРЕМОВЫЕ ПРОДУКТЫ",
             "steps": ["Тон", "Консилер/корректор", "Кремовые румяна/скульптор"],
             "products": [
                 {
-                    "image": "images/product4.png",
+                    "image": "images/products/product4.png",
                     "name": "УСТОЙЧИВЫЙ ТОНАЛЬНЫЙ КРЕМ SPF10",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 },
                 {
-                    "image": "images/product5.png",
+                    "image": "images/products/product5.png",
                     "name": "LANCOME ТОНАЛЬНАЯ ОСНОВА ДЛЯ ЛИЦА",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 },
                 {
-                    "image": "images/product6.png",
+                    "image": "images/products/product6.png",
                     "name": "DIOR УХАЖИВАЮЩИЙ КОРРЕКТОР-КРЕМ DIOR",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -56,7 +56,7 @@
         },
         {
             "title": "ТРЕТИЙ ЭТАП",
-            "image": "images/stage3.png",
+            "image": "images/stages/stage3.png",
             "subtitle": "ЗАКРЕПЛЕНИЕ",
             "steps": [
                 "Закрепляем",
@@ -64,12 +64,12 @@
             ],
             "products": [
                 {
-                    "image": "images/product7.png",
+                    "image": "images/products/product7.png",
                     "name": "ФИКСИРУЮЩАЯ РАССЫПЧАТАЯ ПУДРА ДЛЯ ЛИЦА С НЕВЕСОМЫМ ПОЛУПРОЗРАЧНЫМ ПОКРЫТИЕМ LAURA MERCIER TRANSLUCENT LOOSE SETTING POWDER",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО"
                 },
                 {
-                    "image": "images/product8.png",
+                    "image": "images/products/product8.png",
                     "name": "SHISEIDO НЕВИДИМАЯ КОМПАКТНАЯ ПУДРА С ШЕЛКОВИСТОЙ ТЕКСТУРОЙ SYNCHRO SKIN",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -77,7 +77,7 @@
         },
         {
             "title": "ЧЕТВЁРТЫЙ ЭТАП",
-            "image": "images/stage4.png",
+            "image": "images/stages/stage4.png",
             "subtitle": "МАКИЯЖ БРОВЕЙ",
             "steps": [
                 "Прочёсываем, приподнимаем, укладываем по форме",
@@ -86,12 +86,12 @@
             ],
             "products": [
                 {
-                    "image": "images/product9.png",
+                    "image": "images/products/product9.png",
                     "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙSEXY EYEBROW PENCIL ICE BLONDE",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
                 },
                 {
-                    "image": "images/product10.png",
+                    "image": "images/products/product10.png",
                     "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙ SEXY EYEBROW PENCIL ICE BLONDE",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
                 }
@@ -99,7 +99,7 @@
         },
         {
             "title": "ПЯТЫЙ ЭТАП",
-            "image": "images/stage5.png",
+            "image": "images/stages/stage5.png",
             "subtitle": "МАКИЯЖ ГЛАЗ",
             "steps": [
                 "Прорабатываем межресничное пространство при необходимости",
@@ -111,12 +111,12 @@
             ],
             "products": [
                 {
-                    "image": "images/product11.png",
+                    "image": "images/products/product11.png",
                     "name": "СТОЙКИЙ КАРАНДАШ ДЛЯ ГЛАЗ OK BEAUTY COLOR SALUTE SLIDE & STAY",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО"
                 },
                 {
-                    "image": "images/product12.png",
+                    "image": "images/products/product12.png",
                     "name": "ESTEE LAUDER КАРАНДАШ ДЛЯ ГЛАЗ DOUBLE WEAR STAY-IN-PLACE EYE PENCIL",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -124,7 +124,7 @@
         },
         {
             "title": "ШЕСТОЙ ЭТАП",
-            "image": "images/stage6.png",
+            "image": "images/stages/stage6.png",
             "subtitle": "МАКИЯЖ ГУБ",
             "steps": [
                 "Удаляем остатки увлажняющего средства",
@@ -134,7 +134,7 @@
             ],
             "products": [
                 {
-                    "image": "images/product13.png",
+                    "image": "images/products/product13.png",
                     "name": "NYX PROFESSIONAL MAKEUP SLIM LIP PENCIL КАРАНДАШ ДЛЯ ГУБ",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -142,7 +142,7 @@
         },
         {
             "title": "СЕДЬМОЙ ЭТАП",
-            "image": "images/stage7.png",
+            "image": "images/stages/stage7.png",
             "subtitle": "ПОСЛЕДНИЕ ШТРИХИ",
             "steps": [
                 "Проходимся кистью с консилером под глазами/у уголков губ/крылья носа",
@@ -152,7 +152,7 @@
             ],
             "products": [
                 {
-                    "image": "images/product14.png",
+                    "image": "images/products/product14.png",
                     "name": "CLARINS ФИКСАТОР ДЛЯ МАКИЯЖА",
                     "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
                 }
@@ -167,13 +167,13 @@
                 "link": "https://annbeautystore.ru/",
                 "products": [
                     {
-                        "image": "images/brush1.png",
+                        "image": "images/brushes/brush1.png",
                         "purpose": "для румян",
                         "number": "",
                         "comment": ""
                     },
                     {
-                        "image": "images/brush2.png",
+                        "image": "images/brushes/brush2.png",
                         "purpose": "для скульптора",
                         "number": "",
                         "comment": ""
@@ -185,13 +185,13 @@
                 "link": "https://www.manlycosmetics.ru/",
                 "products": [
                     {
-                        "image": "images/brush3.png",
+                        "image": "images/brushes/brush3.png",
                         "purpose": "МНОГОФУНКЦИОНАЛЬНАЯ КИСТЬ ДЛЯ КРЕМОВЫХ И СУХИХ ТЕКСТУР",
                         "number": "123",
                         "comment": "НАНОСИМ ТОН, КРЕМОВЫЕ РУМЯНА, КРЕМОВЫЙ СКУЛЬПТОР"
                     },
                     {
-                        "image": "images/brush4.png",
+                        "image": "images/brushes/brush4.png",
                         "purpose": "Кисть для пудры Zodiac",
                         "number": "Z02",
                         "comment": ""

@@ -1,0 +1,212 @@
+{
+    "title": "КОСМЕТИЧКА",
+    "subtitle": "индивидуальный подбор продуктов",
+    "image": "images/title.png",
+    "stages": [
+        {
+            "title": "ПЕРВЫЙ ЭТАП",
+            "image": "images/stage1.png",
+            "subtitle": "ПОДГОТОВКА КОЖИ К МАКИЯЖУ",
+            "steps": [
+                "Очищение: гель/пенка для умывания, мицеллярная вода, тоник",
+                "Увлажнение: сыворотка, лёгкий увлажняющий крем",
+                "База по типу кожи (при необходимости)",
+                "Увлажнение губ: маска/бальзам"
+            ],
+            "products": [
+                {
+                    "image": "images/product1.png",
+                    "name": "МИЦЕЛЛЯРНАЯ ВОДА BIODERMA SENSIBIO H2O",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, АПТЕКИ"
+                },
+                {
+                    "image": "images/product2.png",
+                    "name": "МИЦЕЛЛЯРНАЯ ВОДА ARGAN MICELLAR",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, РИВГОШ"
+                },
+                {
+                    "image": "images/product3.png",
+                    "name": "ESTEE LAUDER ОТШЕЛУШИВАЮЩИЙ ТОНИК",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        },
+        {
+            "title": "ВТОРОЙ ЭТАП",
+            "image": "images/stage2.png",
+            "subtitle": "КРЕМОВЫЕ ПРОДУКТЫ",
+            "steps": ["Тон", "Консилер/корректор", "Кремовые румяна/скульптор"],
+            "products": [
+                {
+                    "image": "images/product4.png",
+                    "name": "УСТОЙЧИВЫЙ ТОНАЛЬНЫЙ КРЕМ SPF10",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                },
+                {
+                    "image": "images/product5.png",
+                    "name": "LANCOME ТОНАЛЬНАЯ ОСНОВА ДЛЯ ЛИЦА",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                },
+                {
+                    "image": "images/product6.png",
+                    "name": "DIOR УХАЖИВАЮЩИЙ КОРРЕКТОР-КРЕМ DIOR",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        },
+        {
+            "title": "ТРЕТИЙ ЭТАП",
+            "image": "images/stage3.png",
+            "subtitle": "ЗАКРЕПЛЕНИЕ",
+            "steps": [
+                "Закрепляем",
+                "дублируем кремовые продукты сухими: пудра, скульптор, румяна, хайлайтер"
+            ],
+            "products": [
+                {
+                    "image": "images/product7.png",
+                    "name": "ФИКСИРУЮЩАЯ РАССЫПЧАТАЯ ПУДРА ДЛЯ ЛИЦА С НЕВЕСОМЫМ ПОЛУПРОЗРАЧНЫМ ПОКРЫТИЕМ LAURA MERCIER TRANSLUCENT LOOSE SETTING POWDER",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО"
+                },
+                {
+                    "image": "images/product8.png",
+                    "name": "SHISEIDO НЕВИДИМАЯ КОМПАКТНАЯ ПУДРА С ШЕЛКОВИСТОЙ ТЕКСТУРОЙ SYNCHRO SKIN",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        },
+        {
+            "title": "ЧЕТВЁРТЫЙ ЭТАП",
+            "image": "images/stage4.png",
+            "subtitle": "МАКИЯЖ БРОВЕЙ",
+            "steps": [
+                "Прочёсываем, приподнимаем, укладываем по форме",
+                "Прорисовываем форму карандашом/помадкой/тенями",
+                "Укладываем, фиксируем гелем оттеночным или бесцветным"
+            ],
+            "products": [
+                {
+                    "image": "images/product9.png",
+                    "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙSEXY EYEBROW PENCIL ICE BLONDE",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
+                },
+                {
+                    "image": "images/product10.png",
+                    "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙ SEXY EYEBROW PENCIL ICE BLONDE",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
+                }
+            ]
+        },
+        {
+            "title": "ПЯТЫЙ ЭТАП",
+            "image": "images/stage5.png",
+            "subtitle": "МАКИЯЖ ГЛАЗ",
+            "steps": [
+                "Прорабатываем межресничное пространство при необходимости",
+                "Наносим кремовые тени на подвижное веко и мягко растушёвываем по контуру",
+                "Дублируем кремовые тени сухими и тушуем по контруру",
+                "Прорабатываем складку века тенями",
+                "Завиваем реснички керлером при необходимости",
+                "Прокрашиваем реснички тушью от корней"
+            ],
+            "products": [
+                {
+                    "image": "images/product11.png",
+                    "name": "СТОЙКИЙ КАРАНДАШ ДЛЯ ГЛАЗ OK BEAUTY COLOR SALUTE SLIDE & STAY",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО"
+                },
+                {
+                    "image": "images/product12.png",
+                    "name": "ESTEE LAUDER КАРАНДАШ ДЛЯ ГЛАЗ DOUBLE WEAR STAY-IN-PLACE EYE PENCIL",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        },
+        {
+            "title": "ШЕСТОЙ ЭТАП",
+            "image": "images/stage6.png",
+            "subtitle": "МАКИЯЖ ГУБ",
+            "steps": [
+                "Удаляем остатки увлажняющего средства",
+                "Проходимся кистью с тоном чтоб выровнить губы",
+                "Рисуем контур карандашом",
+                "Наносим помаду/блеск"
+            ],
+            "products": [
+                {
+                    "image": "images/product13.png",
+                    "name": "NYX PROFESSIONAL MAKEUP SLIM LIP PENCIL КАРАНДАШ ДЛЯ ГУБ",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        },
+        {
+            "title": "СЕДЬМОЙ ЭТАП",
+            "image": "images/stage7.png",
+            "subtitle": "ПОСЛЕДНИЕ ШТРИХИ",
+            "steps": [
+                "Проходимся кистью с консилером под глазами/у уголков губ/крылья носа",
+                "Припудриваем т-зону",
+                "Дублируем скульптор и румяна если необходимо усилить цвет",
+                "Сбразгиваем кожу фиксирующим спреем"
+            ],
+            "products": [
+                {
+                    "image": "images/product14.png",
+                    "name": "CLARINS ФИКСАТОР ДЛЯ МАКИЯЖА",
+                    "buy": "ЗОЛОТОЕ ЯБЛОКО, Л'ЭТУАЛЬ"
+                }
+            ]
+        }
+    ],
+    "brushes": {
+        "title": "КИСТИ",
+        "brands": [
+            {
+                "name": "Annbeauty",
+                "link": "https://annbeautystore.ru/",
+                "products": [
+                    {
+                        "image": "images/brush1.png",
+                        "purpose": "для румян",
+                        "number": "",
+                        "comment": ""
+                    },
+                    {
+                        "image": "images/brush2.png",
+                        "purpose": "для скульптора",
+                        "number": "",
+                        "comment": ""
+                    }
+                ]
+            },
+            {
+                "name": "ManlyPRO",
+                "link": "https://www.manlycosmetics.ru/",
+                "products": [
+                    {
+                        "image": "images/brush3.png",
+                        "purpose": "МНОГОФУНКЦИОНАЛЬНАЯ КИСТЬ ДЛЯ КРЕМОВЫХ И СУХИХ ТЕКСТУР",
+                        "number": "123",
+                        "comment": "НАНОСИМ ТОН, КРЕМОВЫЕ РУМЯНА, КРЕМОВЫЙ СКУЛЬПТОР"
+                    },
+                    {
+                        "image": "images/brush4.png",
+                        "purpose": "Кисть для пудры Zodiac",
+                        "number": "Z02",
+                        "comment": ""
+                    }
+                ]
+            }
+        ]
+    },
+    "conclusion": {
+        "title": "СПАСИБО, ЧТО ВЫБРАЛИ МЕНЯ!",
+        "contact": "если остались вопросы по косметике или необходим урок по какому-либо ещё макияжу, обращайтесь по телефону: 8-964-957-9167 буду рада помочь)",
+        "image": "images/conclusion.png",
+        "services": {
+            "title": "Мои услуги:",
+            "value": "Все виды макияжа/укладки/причёски/обучение/подарочные сертификаты на все услуги"
+        }
+    }
+}

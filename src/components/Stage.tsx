@@ -1,36 +1,47 @@
 const Stage = ({ title, image, subtitle, steps, products }: any) => (
-    <section className="p-4 bg-white my-4 shadow-md rounded-md">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <p className="text-lg text-gray-600">{subtitle}</p>
+    <article className="p-4 bg-gray-900 my-4">
+        <h3 className="text-2xl font-bold text-center sm:text-3xl text-slate-900 dark:text-white">
+            {title}
+        </h3>
+
+        <p className="text-lg mt-2 mb-6 text-center text-slate-700 dark:text-slate-400">
+            {subtitle}
+        </p>
+
         <img src={image} alt={title} className="w-full max-w-lg mx-auto my-4" />
-        <h3 className="font-semibold">Steps:</h3>
-        <ul className="list-disc list-inside">
+
+        <p className="text-lg my-2 text-center text-slate-700 dark:text-slate-400">
+            Шаги
+        </p>
+        <ul className="list-decimal list-outside ms-5">
             {steps.map((step: string, index: number) => (
-                <li key={index} className="text-gray-700">
+                <li key={index} className="text-slate-700 dark:text-slate-400">
                     {step}
                 </li>
             ))}
         </ul>
-        <h3 className="font-semibold mt-4">Recommended Products:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <ul className="list-none mx-auto my-6 flex flex-col sm:flex-row items-center gap-8">
             {products.map((product: any, index: number) => (
-                <div
+                <li
                     key={index}
-                    className="border p-2 rounded-md bg-gray-50 shadow-sm"
+                    className="sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 py-6 px-2 rounded-3xl shadow-xl"
                 >
                     <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-32 object-cover rounded-md"
+                        className="w-1/2 mb-6"
                     />
-                    <h4 className="font-semibold mt-2">{product.name}</h4>
-                    <p className="text-sm text-gray-600">
-                        Where to buy: {product.buy}
+                    <h4 className="text-center text-slate-900 dark:text-white">
+                        {product.name}
+                    </h4>
+                    <p className="text-sm text-center mt-2 text-slate-500 dark:text-slate-400">
+                        Купить: {product.buy}
                     </p>
-                </div>
+                </li>
             ))}
-        </div>
-    </section>
+        </ul>
+    </article>
 );
 
 export default Stage;

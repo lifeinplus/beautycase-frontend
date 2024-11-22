@@ -5,6 +5,7 @@ const Conclusion = ({ title, contact, image, services }: any) => (
         <p className="text-lg">{contact}</p>
         <h3 className="font-semibold mt-4">{services.title}</h3>
         <p>{services.value}</p>
+        <p>© 2024 Beauty Case</p>
     </footer>
 );
 

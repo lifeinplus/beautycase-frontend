@@ -1,6 +1,8 @@
 const Brushes = ({ title, brands }: any) => (
-    <section className="p-4 bg-gray-50 my-4 shadow-md rounded-md">
-        <h2 className="text-2xl font-bold">{title}</h2>
+    <section id="brushes" className="p-6 my-12 scroll-mt-20">
+        <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
+            {title}
+        </h2>
         {brands.map((brand: any, index: number) => (
             <div key={index} className="my-4">
                 <h3 className="text-lg font-semibold">

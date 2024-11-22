@@ -34,9 +34,9 @@
             ]
         },
         {
-            "title": "второй этап",
+            "title": "Второй этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163001/stage2_soznpm.png",
-            "subtitle": "КРЕМОВЫЕ ПРОДУКТЫ",
+            "subtitle": "Кремовые продукты",
             "steps": ["Тон", "Консилер/корректор", "Кремовые румяна/скульптор"],
             "products": [
                 {
@@ -57,9 +57,9 @@
             ]
         },
         {
-            "title": "третий этап",
+            "title": "Третий этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163006/stage3_o69smz.png",
-            "subtitle": "ЗАКРЕПЛЕНИЕ",
+            "subtitle": "Закрепление",
             "steps": [
                 "Закрепляем",
                 "дублируем кремовые продукты сухими: пудра, скульптор, румяна, хайлайтер"
@@ -78,9 +78,9 @@
             ]
         },
         {
-            "title": "четвёртый этап",
+            "title": "Четвёртый этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163002/stage4_oe9gua.png",
-            "subtitle": "МАКИЯЖ БРОВЕЙ",
+            "subtitle": "Макияж бровей",
             "steps": [
                 "Прочёсываем, приподнимаем, укладываем по форме",
                 "Прорисовываем форму карандашом/помадкой/тенями",
@@ -100,9 +100,9 @@
             ]
         },
         {
-            "title": "пятый этап",
+            "title": "Пятый этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163003/stage5_dm71kl.png",
-            "subtitle": "МАКИЯЖ ГЛАЗ",
+            "subtitle": "Макияж глаз",
             "steps": [
                 "Прорабатываем межресничное пространство при необходимости",
                 "Наносим кремовые тени на подвижное веко и мягко растушёвываем по контуру",
@@ -125,9 +125,9 @@
             ]
         },
         {
-            "title": "шестой этап",
+            "title": "Шестой этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163004/stage6_ce78et.png",
-            "subtitle": "МАКИЯЖ ГУБ",
+            "subtitle": "Макияж губ",
             "steps": [
                 "Удаляем остатки увлажняющего средства",
                 "Проходимся кистью с тоном чтоб выровнить губы",
@@ -143,9 +143,9 @@
             ]
         },
         {
-            "title": "седьмой этап",
+            "title": "Седьмой этап",
             "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163002/stage7_wdvmre.png",
-            "subtitle": "ПОСЛЕДНИЕ ШТРИХИ",
+            "subtitle": "Последние штрихи",
             "steps": [
                 "Проходимся кистью с консилером под глазами/у уголков губ/крылья носа",
                 "Припудриваем т-зону",
@@ -170,13 +170,13 @@
                 "products": [
                     {
                         "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163650/brush1_zxgfbi.png",
-                        "purpose": "для румян",
+                        "purpose": "Кисть для румян",
                         "number": "",
                         "comment": ""
                     },
                     {
                         "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163651/brush2_hlbl22.png",
-                        "purpose": "для скульптора",
+                        "purpose": "Кисть для скульптора",
                         "number": "",
                         "comment": ""
                     }
@@ -188,9 +188,9 @@
                 "products": [
                     {
                         "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163648/brush3_ijfe5z.png",
-                        "purpose": "МНОГОФУНКЦИОНАЛЬНАЯ КИСТЬ ДЛЯ КРЕМОВЫХ И СУХИХ ТЕКСТУР",
+                        "purpose": "Кисть для кремовых и сухих текстур",
                         "number": "123",
-                        "comment": "НАНОСИМ ТОН, КРЕМОВЫЕ РУМЯНА, КРЕМОВЫЙ СКУЛЬПТОР"
+                        "comment": "Наносим тон, кремовые румяна, кремовый скульптор"
                     },
                     {
                         "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163649/brush4_dmldpi.png",
@@ -201,14 +201,5 @@
                 ]
             }
         ]
-    },
-    "conclusion": {
-        "title": "СПАСИБО, ЧТО ВЫБРАЛИ МЕНЯ!",
-        "contact": "если остались вопросы по косметике или необходим урок по какому-либо ещё макияжу, обращайтесь по телефону: 8-964-957-9167 буду рада помочь)",
-        "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/conclusion_odxvci.png",
-        "services": {
-            "title": "Мои услуги:",
-            "value": "Все виды макияжа/укладки/причёски/обучение/подарочные сертификаты на все услуги"
-        }
     }
 }

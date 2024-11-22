@@ -27,7 +27,7 @@ const Hero = ({
                 {subtitle3}
             </p>
         </article>
-        <img src={image} alt={title} />
+        <img src={image} alt={title} className="rounded-md" />
     </section>
 );
 

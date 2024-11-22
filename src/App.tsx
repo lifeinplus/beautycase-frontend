@@ -1,5 +1,5 @@
 import Brushes from "./components/Brushes";
-import Conclusion from "./components/Conclusion";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Stages from "./components/Stages";
@@ -20,8 +20,8 @@ const App = () => (
             <Stages stages={data.stages} />
             <hr className="mx-auto bg-black dark:bg-white w-1/2" />
             <Brushes {...data.brushes} />
-            <Conclusion {...data.conclusion} />
         </main>
+        <Footer />
     </div>
 );
 

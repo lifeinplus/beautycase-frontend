@@ -1,47 +1,28 @@
-import classNames from "classnames";
-import { useState } from "react";
+import classNames from 'classnames'
+import { useState } from 'react'
 
 const Header = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+        setIsSidebarOpen(!isSidebarOpen)
+    }
 
     if (isSidebarOpen) {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden'
     } else {
-        document.body.style.overflow = "auto";
+        document.body.style.overflow = 'auto'
     }
 
     return (
-        <div className="sticky top-0 bg-teal-700">
-            <header
-                className={classNames(
-                    "flex",
-                    "justify-between",
-                    "items-center",
-                    "p-4",
-                    "bg-teal-700",
-                    "text-white",
-                    "max-w-4xl",
-                    "mx-auto",
-                    "z-10"
-                )}
-            >
-                <h1 className="text-xl font-bold">
-                    <a href="#hero">👄 Beauty Case</a>
+        <div className="sticky top-0 border-b border-gray-700 bg-black">
+            <header className="z-10 mx-auto flex max-w-4xl items-center justify-between bg-black px-5 py-3.5 text-white">
+                <h1 className="font-logo text-2xl font-bold">
+                    <a href="#hero">Beautycase</a>
                 </h1>
 
                 <button
-                    className={classNames(
-                        "sm:hidden",
-                        "p-1",
-                        "rounded-md",
-                        "bg-teal-800",
-                        "hover:bg-teal-600",
-                        "focus:outline-none"
-                    )}
+                    className="rounded-md hover:bg-gray-800 focus:outline-none sm:hidden"
                     onClick={toggleSidebar}
                     aria-label="Toggle menu"
                 >
@@ -61,7 +42,7 @@ const Header = () => {
                     </svg>
                 </button>
 
-                <nav className="hidden sm:flex space-x-6" aria-label="main">
+                <nav className="hidden space-x-6 sm:flex" aria-label="main">
                     <a href="#stages" className="hover:text-gray-300">
                         Этапы
                     </a>
@@ -73,27 +54,15 @@ const Header = () => {
 
             <aside
                 className={classNames(
-                    "fixed",
-                    "inset-y-0",
-                    "left-0",
-                    "w-64",
-                    "bg-gray-900",
-                    "text-white",
-                    "z-30",
-                    "transform",
-                    `${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`,
-                    "transition-transform",
-                    "duration-300",
-                    "sm:hidden"
+                    'fixed inset-y-0 left-0 z-30 w-64 transform bg-gray-900 text-white transition-transform duration-300 sm:hidden',
+                    `${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`
                 )}
             >
-                <div className="flex justify-between items-center p-4">
+                <div className="flex items-center justify-between p-4">
                     <span className="text-xl font-bold">Menu</span>
 
                     <button
-                        className={classNames(
-                            "p-2 rounded-md bg-gray-700 hover:bg-gray-600 focus:outline-none"
-                        )}
+                        className="rounded-md bg-gray-700 p-2 hover:bg-gray-600 focus:outline-none"
                         onClick={toggleSidebar}
                         aria-label="Close menu"
                     >
@@ -114,14 +83,7 @@ const Header = () => {
                     </button>
                 </div>
 
-                <nav
-                    className={classNames(
-                        "flex",
-                        "flex-col",
-                        "space-y-4",
-                        "p-4"
-                    )}
-                >
+                <nav className="flex flex-col space-y-4 p-4">
                     <a
                         href="#stages"
                         className="hover:text-gray-300"
@@ -141,12 +103,12 @@ const Header = () => {
 
             {isSidebarOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-20 sm:hidden"
+                    className="fixed inset-0 z-20 bg-black bg-opacity-50 sm:hidden"
                     onClick={toggleSidebar}
                 ></div>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default Header;
+export default Header

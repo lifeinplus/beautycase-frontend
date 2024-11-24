@@ -11,15 +11,11 @@ const App = () => (
         <main className="max-w-4xl mx-auto">
             <Hero
                 title={data.title}
-                subtitle1={data.subtitle1}
-                subtitle2={data.subtitle2}
-                subtitle3={data.subtitle3}
+                subtitle={data.subtitle}
                 image={data.image}
             />
-            <hr className="mx-auto bg-black dark:bg-white w-1/2" />
             <Stages stages={data.stages} />
-            <hr className="mx-auto bg-black dark:bg-white w-1/2" />
-            <Brushes {...data.brushes} />
+            <Brushes brushes={data.brushes} />
         </main>
         <Footer />
     </div>

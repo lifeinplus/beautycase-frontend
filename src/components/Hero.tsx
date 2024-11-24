@@ -1,46 +1,26 @@
-import classNames from "classnames";
-
 const Hero = ({
     title,
-    subtitle1,
-    subtitle2,
-    subtitle3,
+    subtitle,
     image,
 }: {
-    title: string;
-    subtitle1: string;
-    subtitle2: string;
-    subtitle3: string;
-    image: string;
+    title: string
+    subtitle: string
+    image: string
 }) => (
     <section
         id="hero"
-        className={classNames(
-            "flex",
-            "flex-col-reverse",
-            "justify-center",
-            "lg:flex-row",
-            "p-6",
-            "items-center",
-            "gap-8",
-            "mb-12",
-            "scroll-mt-20"
-        )}
+        className="flex scroll-mt-20 flex-col-reverse items-center justify-center gap-8 p-5 lg:flex-row"
     >
-        <article className="lg:w-1/2">
-            <h2 className="max-w-md text-4xl font-bold text-center lg:text-5sl lg:text-left text-slate-900 dark:text-white">
+        <article className="my-9 lg:w-1/2">
+            <h2 className="lg:text-5sl max-w-md text-center font-heading text-3xl font-bold text-slate-900 lg:text-left dark:text-white">
                 {title}
             </h2>
-            <p className="max-w-md text-2xl mt-4 text-center lg:text-left text-slate-700 dark:text-slate-400">
-                {subtitle1}{" "}
-                <span className="text-indigo-700 dark:text-indigo-300">
-                    {subtitle2}
-                </span>{" "}
-                {subtitle3}
-            </p>
+            <h3 className="mt-4 max-w-md text-center font-heading text-xl text-slate-700 lg:text-left dark:text-slate-400">
+                {subtitle}
+            </h3>
         </article>
         <img src={image} alt={title} className="rounded-md" />
     </section>
-);
+)
 
-export default Hero;
+export default Hero

@@ -1,6 +1,6 @@
 const Stage = ({ title, image, subtitle, steps, products }: any) => (
-    <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900">
-        <h3 className="text-center font-heading text-xl font-bold text-slate-900 sm:text-3xl dark:text-white">
+    <article className="my-4 bg-gray-100 p-4 sm:rounded dark:bg-gray-900">
+        <h3 className="text-center font-heading text-xl font-bold text-slate-900 sm:text-2xl dark:text-white">
             {title}
         </h3>
 
@@ -25,7 +25,7 @@ const Stage = ({ title, image, subtitle, steps, products }: any) => (
             ))}
         </ul>
 
-        <ul className="mx-auto my-6 flex list-none flex-col items-center gap-8 sm:flex-row">
+        <ul className="mx-auto mt-6 flex list-none flex-col items-center gap-8 sm:flex-row">
             {products.map((product: any, index: number) => (
                 <li
                     key={index}

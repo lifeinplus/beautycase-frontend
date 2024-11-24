@@ -1,21 +1,17 @@
 const Brand = ({ link, name, products }: any) => (
-    <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900">
-        <h3 className="text-center font-heading text-xl font-semibold">
-            {name}
-        </h3>
-
-        <h4 className="mb-6 mt-2 text-center font-heading text-lg text-slate-700 dark:text-slate-400">
+    <article className="my-4 bg-gray-100 p-4 sm:rounded dark:bg-gray-900">
+        <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
             <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-rose-400 decoration-2 hover:decoration-wavy"
+                className="underline decoration-rose-400 decoration-double decoration-2 hover:decoration-wavy"
             >
-                {link}
+                {name}
             </a>
-        </h4>
+        </h3>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
             {products.map((product: any, index: number) => (
                 <div key={index} className="justify-items-center p-2">
                     <img

@@ -1,17 +1,27 @@
 /** @type {import('tailwindcss').Config} */
-// const defaultTheme = require("tailwindcss/defaultTheme");
-import defaultTheme from "tailwindcss/defaultTheme";
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
             fontFamily: {
-                logo: ["Sofia", ...defaultTheme.fontFamily.sans],
-                heading: ["Montserrat", ...defaultTheme.fontFamily.sans],
-                sans: ["Roboto", ...defaultTheme.fontFamily.sans],
+                logo: ['Sofia', ...defaultTheme.fontFamily.sans],
+                heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
+                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+            },
+            margin: {
+                'navbar-bottom': '57px',
+                'navbar-left': '73px',
+                'navbar-left-open': '245px',
+            },
+            scrollMargin: {
+                header: '61px',
+            },
+            width: {
+                'navbar-left-open': '245px',
             },
         },
     },
     plugins: [],
-};
+}

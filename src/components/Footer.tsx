@@ -1,10 +1,10 @@
 const Footer = () => (
     <footer
         id="footer"
-        className="border-t border-gray-700 bg-black p-4 text-white"
+        className="mb-navbar-bottom sm:ms-navbar-left lg:ms-navbar-left-open border-t border-gray-800 bg-black text-white sm:mb-0"
     >
         <section className="mx-auto max-w-4xl p-4">
-            <h3 className="font-heading text-xl">Спасибо, что выбрали меня!</h3>
+            <h4 className="font-heading text-lg">Спасибо, что выбрали меня!</h4>
         </section>
 
         <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:flex-row sm:justify-between">

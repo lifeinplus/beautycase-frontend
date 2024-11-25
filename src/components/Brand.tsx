@@ -1,38 +1,36 @@
 const Brand = ({ link, name, products }: any) => (
-    <div className="my-4">
-        <h3 className="text-lg font-semibold text-center mt-12 mb-6">
+    <article className="my-4 bg-gray-100 p-4 sm:rounded dark:bg-gray-900">
+        <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
             <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-500"
+                className="underline decoration-rose-400 decoration-double decoration-2 hover:decoration-wavy"
             >
                 {name}
             </a>
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
             {products.map((product: any, index: number) => (
-                <div
-                    key={index}
-                    className="justify-items-center border border-solid border-slate-900 dark:border-gray-100 py-6 px-2 rounded-xl shadow-xl"
-                >
+                <div key={index} className="justify-items-center p-2">
                     <img
                         src={product.image}
                         alt={product.purpose}
-                        className="w-1/2 mb-6 rounded-md"
+                        className="mb-6 w-1/2 rounded"
                     />
-                    <h4 className="text-center text-slate-900 dark:text-white">
-                        {product.purpose}
-                    </h4>
+                    <h6 className="text-center font-heading text-sm text-slate-900 dark:text-white">
+                        {product.name}
+                    </h6>
                     {product.comment && (
-                        <p className="text-sm text-center mt-2 text-slate-500 dark:text-slate-400">
+                        <p className="mt-2 text-center text-sm text-slate-500 dark:text-gray-400">
                             {product.comment}
                         </p>
                     )}
                 </div>
             ))}
         </div>
-    </div>
-);
+    </article>
+)
 
-export default Brand;
+export default Brand

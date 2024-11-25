@@ -1,35 +1,36 @@
 const Footer = () => (
-    <footer id="footer" className="p-4 bg-teal-700 text-white text-xl">
-        <section className="max-w-4xl mx-auto p-4">
-            <h3 className="font-bold">Спасибо, что выбрали меня!</h3>
+    <footer
+        id="footer"
+        className="mb-navbar-bottom sm:ms-navbar-left lg:ms-navbar-left-open border-t border-gray-800 bg-black text-white sm:mb-0"
+    >
+        <section className="mx-auto max-w-4xl p-4">
+            <h4 className="font-heading text-lg">Спасибо, что выбрали меня!</h4>
         </section>
-        <section className="max-w-4xl mx-auto p-4 flex flex-col sm:flex-row sm:justify-between gap-4">
-            <p className="text-base">
-                Если остались вопросы по косметике или необходим урок
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                по какому-либо ещё макияжу, обращайтесь по телефону:
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
-                <a href="tel:+79649579167" className="hover:opacity-80">
-                    8-964-957-9167
-                </a>{" "}
-                <br className="sm:hidden" />
-                Буду рада помочь)
+
+        <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:flex-row sm:justify-between">
+            <p>
+                Если остались вопросы по косметике или необходим урок по
+                какому-либо ещё макияжу, обращайтесь по телефону:{' '}
+                <a
+                    href="tel:+381629446904"
+                    className="text-rose-400 hover:underline hover:decoration-wavy"
+                >
+                    +381 62 9446 904 (Сербия)
+                </a>
+                {' Буду рада помочь)'}
             </p>
-            <p className="text-base">
-                Мои услуги: все виды макияжа,
-                <br />
-                укладки, причёски, обучение, <br />
+            <p>
+                Мои услуги: все виды макияжа, укладки, причёски, обучение,
                 подарочные сертификаты
             </p>
         </section>
-        <section className="max-w-4xl mx-auto p-4">
+
+        <section className="mx-auto max-w-4xl p-4">
             <p>
-                v0.1.0 &copy; <span id="year">2024</span> Beauty Case
+                v0.2.0 &copy; <span id="year">2024</span> Beautycase
             </p>
         </section>
     </footer>
-);
+)
 
-export default Footer;
+export default Footer

@@ -1,7 +1,7 @@
 {
-    "name": "beauty-case",
+    "name": "beautycase",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.2.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -10,6 +10,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@heroicons/react": "^2.2.0",
         "classnames": "^2.5.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
@@ -25,6 +26,8 @@
         "eslint-plugin-react-refresh": "^0.4.14",
         "globals": "^15.11.0",
         "postcss": "^8.4.49",
+        "prettier": "^3.3.3",
+        "prettier-plugin-tailwindcss": "^0.6.9",
         "tailwindcss": "^3.4.15",
         "typescript": "~5.6.2",
         "typescript-eslint": "^8.11.0",

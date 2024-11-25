@@ -1,51 +1,51 @@
 const Stage = ({ title, image, subtitle, steps, products }: any) => (
-    <article className="p-4 my-4 bg-gray-100 dark:bg-gray-900">
-        <h3 className="text-2xl font-bold text-center sm:text-3xl text-slate-900 dark:text-white">
+    <article className="my-4 bg-gray-100 p-4 sm:rounded dark:bg-gray-900">
+        <h3 className="text-center font-heading text-xl font-bold text-slate-900 sm:text-2xl dark:text-white">
             {title}
         </h3>
 
-        <p className="text-lg mt-2 mb-6 text-center text-slate-700 dark:text-slate-400">
+        <h4 className="mb-6 mt-2 text-center font-heading text-lg text-slate-700 dark:text-slate-400">
             {subtitle}
-        </p>
+        </h4>
 
         <img
             src={image}
             alt={title}
-            className="w-full max-w-lg mx-auto my-4 rounded-md"
+            className="mx-auto my-4 w-full max-w-lg rounded-md"
         />
 
-        <p className="text-lg my-2 text-center sm:text-left text-slate-700 dark:text-slate-400">
+        <p className="my-2 font-bold text-slate-700 sm:text-left dark:text-white">
             Шаги
         </p>
-        <ul className="list-decimal list-outside ms-5">
+        <ul className="ms-5 list-outside list-decimal">
             {steps.map((step: string, index: number) => (
-                <li key={index} className="text-slate-700 dark:text-slate-400">
+                <li key={index} className="text-slate-700 dark:text-white">
                     {step}
                 </li>
             ))}
         </ul>
 
-        <ul className="list-none mx-auto my-6 flex flex-col sm:flex-row items-center gap-8">
+        <ul className="mx-auto mt-6 flex list-none flex-col items-center gap-8 sm:flex-row">
             {products.map((product: any, index: number) => (
                 <li
                     key={index}
-                    className="sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 py-6 px-2 rounded-xl shadow-xl"
+                    className="flex flex-col items-center p-2 sm:w-5/6"
                 >
                     <img
                         src={product.image}
                         alt={product.name}
-                        className="w-1/2 mb-6 rounded-md"
+                        className="mb-6 w-1/2 rounded"
                     />
-                    <h4 className="text-center text-slate-900 dark:text-white">
+                    <h6 className="text-center font-heading text-sm text-slate-900 dark:text-white">
                         {product.name}
-                    </h4>
-                    <p className="text-sm text-center mt-2 text-slate-500 dark:text-slate-400">
+                    </h6>
+                    <p className="mt-2 text-center text-sm text-slate-500 dark:text-gray-400">
                         Купить: {product.buy}
                     </p>
                 </li>
             ))}
         </ul>
     </article>
-);
+)
 
-export default Stage;
+export default Stage

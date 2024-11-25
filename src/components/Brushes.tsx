@@ -1,19 +1,14 @@
-import Brand from "./Brand";
+import Brand from './Brand'
 
-const Brushes = ({ title, brands }: any) => (
-    <section id="brushes" className="p-6 my-12 scroll-mt-20">
-        <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-            {title}
+const Brushes = ({ brushes }: { brushes: any[] }) => (
+    <section id="brushes" className="scroll-mt-header sm:scroll-mt-0">
+        <h2 className="mb-6 pt-10 text-center font-heading text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl dark:text-white">
+            Кисти
         </h2>
-        {brands.map((brand: any, index: number) => (
-            <Brand
-                key={index}
-                link={brand.link}
-                name={brand.name}
-                products={brand.products}
-            />
+        {brushes.map((brand: any, index: number) => (
+            <Brand key={index} {...brand} />
         ))}
     </section>
-);
+)
 
-export default Brushes;
+export default Brushes

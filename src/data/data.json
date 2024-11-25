@@ -1,8 +1,6 @@
 {
     "title": "Косметичка",
-    "subtitle1": "Индивидуальный",
-    "subtitle2": "подбор",
-    "subtitle3": "продуктов",
+    "subtitle": "Индивидуальный подбор продуктов",
     "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png",
     "stages": [
         {
@@ -90,12 +88,12 @@
                 {
                     "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163208/product9_nlcbmi.png",
                     "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙSEXY EYEBROW PENCIL ICE BLONDE",
-                    "buy": "Золотое яблоко, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
+                    "buy": "Золотое яблоко, офиц.сайт: https://romanovamakeup.com/"
                 },
                 {
                     "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163218/product10_flhcvb.png",
                     "name": "ROMANOVAMAKEUP КАРАНДАШ ДЛЯ БРОВЕЙ SEXY EYEBROW PENCIL ICE BLONDE",
-                    "buy": "Золотое яблоко, ОФИЦ.САЙТ: HTTPS://ROMANOVAMAKEUP.COM/"
+                    "buy": "Золотое яблоко, офиц.сайт: https://romanovamakeup.com/"
                 }
             ]
         },
@@ -161,45 +159,42 @@
             ]
         }
     ],
-    "brushes": {
-        "title": "Кисти",
-        "brands": [
-            {
-                "name": "Annbeauty",
-                "link": "https://annbeautystore.ru/",
-                "products": [
-                    {
-                        "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163650/brush1_zxgfbi.png",
-                        "purpose": "Кисть для румян",
-                        "number": "",
-                        "comment": ""
-                    },
-                    {
-                        "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163651/brush2_hlbl22.png",
-                        "purpose": "Кисть для скульптора",
-                        "number": "",
-                        "comment": ""
-                    }
-                ]
-            },
-            {
-                "name": "ManlyPRO",
-                "link": "https://www.manlycosmetics.ru/",
-                "products": [
-                    {
-                        "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163648/brush3_ijfe5z.png",
-                        "purpose": "Кисть для кремовых и сухих текстур",
-                        "number": "123",
-                        "comment": "Наносим тон, кремовые румяна, кремовый скульптор"
-                    },
-                    {
-                        "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163649/brush4_dmldpi.png",
-                        "purpose": "Кисть для пудры Zodiac",
-                        "number": "Z02",
-                        "comment": ""
-                    }
-                ]
-            }
-        ]
-    }
+    "brushes": [
+        {
+            "name": "Annbeauty",
+            "link": "https://annbeautystore.ru/",
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163650/brush1_zxgfbi.png",
+                    "name": "Кисть для румян",
+                    "number": "",
+                    "comment": ""
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163651/brush2_hlbl22.png",
+                    "name": "Кисть для скульптора",
+                    "number": "",
+                    "comment": ""
+                }
+            ]
+        },
+        {
+            "name": "ManlyPRO",
+            "link": "https://www.manlycosmetics.ru/",
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163648/brush3_ijfe5z.png",
+                    "name": "Кисть для кремовых и сухих текстур",
+                    "number": "123",
+                    "comment": "Наносим тон, кремовые румяна, кремовый скульптор"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163649/brush4_dmldpi.png",
+                    "name": "Кисть для пудры Zodiac",
+                    "number": "Z02",
+                    "comment": ""
+                }
+            ]
+        }
+    ]
 }

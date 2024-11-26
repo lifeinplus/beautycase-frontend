@@ -19,7 +19,7 @@ const Brand = ({ link, name, products }: any) => (
                         alt={product.purpose}
                         className="mb-6 w-1/2 rounded"
                     />
-                    <h6 className="text-center font-heading text-sm text-slate-900 dark:text-white">
+                    <h6 className="text-center font-heading text-sm">
                         {product.name}
                     </h6>
                     {product.comment && (

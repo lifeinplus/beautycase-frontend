@@ -1,6 +1,6 @@
 const Stage = ({ title, image, subtitle, steps, products }: any) => (
     <article className="my-4 bg-gray-100 p-4 sm:rounded dark:bg-gray-900">
-        <h3 className="text-center font-heading text-xl font-bold text-slate-900 sm:text-2xl dark:text-white">
+        <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
             {title}
         </h3>
 
@@ -14,14 +14,10 @@ const Stage = ({ title, image, subtitle, steps, products }: any) => (
             className="mx-auto my-4 w-full max-w-lg rounded-md"
         />
 
-        <p className="my-2 font-bold text-slate-700 sm:text-left dark:text-white">
-            Шаги
-        </p>
+        <p className="my-2 font-bold sm:text-left">Шаги</p>
         <ul className="ms-5 list-outside list-decimal">
             {steps.map((step: string, index: number) => (
-                <li key={index} className="text-slate-700 dark:text-white">
-                    {step}
-                </li>
+                <li key={index}>{step}</li>
             ))}
         </ul>
 
@@ -36,7 +32,7 @@ const Stage = ({ title, image, subtitle, steps, products }: any) => (
                         alt={product.name}
                         className="mb-6 w-1/2 rounded"
                     />
-                    <h6 className="text-center font-heading text-sm text-slate-900 dark:text-white">
+                    <h6 className="text-center font-heading text-sm">
                         {product.name}
                     </h6>
                     <p className="mt-2 text-center text-sm text-slate-500 dark:text-gray-400">

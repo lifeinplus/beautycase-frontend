@@ -1,7 +1,7 @@
 const Footer = () => (
     <footer
         id="footer"
-        className="mb-navbar-bottom sm:ms-navbar-left lg:ms-navbar-left-open border-t border-gray-800 bg-black text-white sm:mb-0"
+        className="mb-navbar-bottom border-t border-gray-300 sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open dark:border-gray-700"
     >
         <section className="mx-auto max-w-4xl p-4">
             <h4 className="font-heading text-lg">Спасибо, что выбрали меня!</h4>
@@ -13,7 +13,7 @@ const Footer = () => (
                 какому-либо ещё макияжу, обращайтесь по телефону:{' '}
                 <a
                     href="tel:+381629446904"
-                    className="text-rose-400 hover:underline hover:decoration-wavy"
+                    className="text-rose-500 hover:underline hover:decoration-wavy dark:text-rose-400"
                 >
                     +381 62 9446 904 (Сербия)
                 </a>

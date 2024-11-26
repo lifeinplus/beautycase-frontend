@@ -9,8 +9,7 @@ import data from './data/data.json'
 const App = () => (
     <div>
         <Header />
-
-        <main className="sm:ms-navbar-left lg:ms-navbar-left-open flex flex-col items-center justify-center">
+        <main className="flex flex-col items-center justify-center sm:ms-navbar-left lg:ms-navbar-left-open">
             <div className="w-full max-w-2xl">
                 <Hero
                     title={data.title}

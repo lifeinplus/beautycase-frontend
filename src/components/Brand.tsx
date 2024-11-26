@@ -11,15 +11,18 @@ const Brand = ({ link, name, products }: any) => (
             </a>
         </h3>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <ul className="mx-auto mt-6 flex list-none flex-col items-center gap-8 sm:flex-row">
             {products.map((product: any, index: number) => (
-                <div key={index} className="justify-items-center p-2">
+                <li
+                    key={index}
+                    className="flex flex-col items-center p-2 sm:w-5/6"
+                >
                     <img
                         src={product.image}
                         alt={product.purpose}
                         className="mb-6 w-1/2 rounded"
                     />
-                    <h6 className="text-center font-heading text-sm text-slate-900 dark:text-white">
+                    <h6 className="text-center font-heading text-sm">
                         {product.name}
                     </h6>
                     {product.comment && (
@@ -27,9 +30,9 @@ const Brand = ({ link, name, products }: any) => (
                             {product.comment}
                         </p>
                     )}
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     </article>
 )
 

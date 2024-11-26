@@ -4,8 +4,10 @@ import {
     ListBulletIcon,
 } from '@heroicons/react/24/outline'
 
+import { ThemeToggler } from '../features/theme'
+
 const AdaptiveNavBar = () => (
-    <aside className="lg:w-navbar-left-open fixed bottom-0 left-0 z-20 flex w-full border-t border-gray-700 bg-black text-white sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:border-gray-800 sm:px-3 sm:pb-5 sm:pt-2">
+    <aside className="fixed bottom-0 left-0 z-20 flex w-full border-t border-gray-300 bg-white sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open dark:border-gray-700 dark:bg-black">
         <div className="mt-3 hidden flex-col px-3 pb-10 pt-3 sm:flex">
             <h1 className="font-logo text-2xl font-bold">
                 <a href="/">
@@ -14,9 +16,10 @@ const AdaptiveNavBar = () => (
                 </a>
             </h1>
         </div>
-        <div className="flex w-full flex-row justify-evenly sm:flex-col">
+
+        <div className="flex w-full grow flex-row justify-evenly sm:flex-col sm:justify-start">
             <button
-                className="my-1 flex p-3 hover:text-rose-400 lg:gap-4"
+                className="my-1 flex p-2 hover:text-rose-500 sm:p-3 lg:gap-4 dark:hover:text-rose-400"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
                 <ShoppingBagIcon className="h-6 w-6" />
@@ -24,7 +27,7 @@ const AdaptiveNavBar = () => (
             </button>
 
             <button
-                className="my-1 flex p-3 hover:text-rose-400 lg:gap-4"
+                className="my-1 flex p-2 hover:text-rose-500 sm:p-3 lg:gap-4 dark:hover:text-rose-400"
                 onClick={() =>
                     document
                         .getElementById('stages')
@@ -36,7 +39,7 @@ const AdaptiveNavBar = () => (
             </button>
 
             <button
-                className="my-1 flex p-3 hover:text-rose-400 lg:gap-4"
+                className="my-1 flex p-2 hover:text-rose-500 sm:p-3 lg:gap-4 dark:hover:text-rose-400"
                 onClick={() =>
                     document
                         .getElementById('brushes')
@@ -46,6 +49,10 @@ const AdaptiveNavBar = () => (
                 <PaintBrushIcon className="h-6 w-6" />
                 <span className="hidden lg:inline">Кисти</span>
             </button>
+        </div>
+
+        <div className="hidden sm:inline">
+            <ThemeToggler />
         </div>
     </aside>
 )

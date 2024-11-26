@@ -3,6 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -11,7 +12,7 @@ export default {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
             margin: {
-                'navbar-bottom': '57px',
+                'navbar-bottom': '49px',
                 'navbar-left': '73px',
                 'navbar-left-open': '245px',
             },

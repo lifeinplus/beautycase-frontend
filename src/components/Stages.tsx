@@ -14,7 +14,8 @@ interface StagesProps {
 }
 
 const Stages = ({ stages }: StagesProps) => {
-    const { data: products, isLoading, isError } = useGetProductsQuery()
+    // const { data: products, isLoading, isError } = useGetProductsQuery()
+    const { data: products } = useGetProductsQuery()
 
     return (
         <section id="stages" className="scroll-mt-header sm:scroll-mt-0">

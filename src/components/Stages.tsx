@@ -14,7 +14,6 @@ interface StagesProps {
 }
 
 const Stages = ({ stages }: StagesProps) => {
-    // const { data: products, isLoading, isError } = useGetProductsQuery()
     const { data: products } = useGetProductsQuery()
 
     return (

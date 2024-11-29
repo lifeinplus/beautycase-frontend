@@ -85,47 +85,21 @@
                 "Проходимся кистью с консилером под глазами/у уголков губ/крылья носа",
                 "Припудриваем т-зону",
                 "Дублируем скульптор и румяна если необходимо усилить цвет",
-                "Сбразгиваем кожу фиксирующим спреем"
+                "Сбрызгиваем кожу фиксирующим спреем"
             ],
             "products": ["6747b79ec663274a3f3c21fc"]
         }
     ],
-    "brushes": [
+    "brands": [
         {
             "name": "Annbeauty",
             "link": "https://annbeautystore.ru/",
-            "products": [
-                {
-                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163650/brush1_zxgfbi.png",
-                    "name": "Кисть для румян",
-                    "number": "",
-                    "comment": ""
-                },
-                {
-                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163651/brush2_hlbl22.png",
-                    "name": "Кисть для скульптора",
-                    "number": "",
-                    "comment": ""
-                }
-            ]
+            "tools": ["674983f95139ed5ad61f0cee", "674983f95139ed5ad61f0cef"]
         },
         {
             "name": "ManlyPRO",
             "link": "https://www.manlycosmetics.ru/",
-            "products": [
-                {
-                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163648/brush3_ijfe5z.png",
-                    "name": "Кисть для кремовых и сухих текстур",
-                    "number": "123",
-                    "comment": "Наносим тон, кремовые румяна, кремовый скульптор"
-                },
-                {
-                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163649/brush4_dmldpi.png",
-                    "name": "Кисть для пудры Zodiac",
-                    "number": "Z02",
-                    "comment": ""
-                }
-            ]
+            "tools": ["674983f95139ed5ad61f0cf0", "674983f95139ed5ad61f0cf1"]
         }
     ]
 }

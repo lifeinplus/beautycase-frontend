@@ -1,5 +1,5 @@
 import AdaptiveNavBar from './components/AdaptiveNavBar'
-import Brushes from './components/Brushes'
+import Brands from './components/Brands'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -17,7 +17,7 @@ const App = () => (
                     image={data.image}
                 />
                 <Stages stages={data.stages} />
-                <Brushes brushes={data.brushes} />
+                <Brands brands={data.brands} />
             </div>
         </main>
         <AdaptiveNavBar />

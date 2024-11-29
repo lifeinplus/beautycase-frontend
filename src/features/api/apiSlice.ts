@@ -9,6 +9,14 @@ export interface Product {
     buy: string
 }
 
+export interface Tool {
+    _id: string
+    name: string
+    image: string
+    number?: string
+    comment?: string
+}
+
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({ baseUrl: config.apiBaseUrl }),
@@ -16,7 +24,10 @@ export const apiSlice = createApi({
         getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
         }),
+        getTools: builder.query<Tool[], void>({
+            query: () => '/tools/all',
+        }),
     }),
 })
 
-export const { useGetProductsQuery } = apiSlice
+export const { useGetProductsQuery, useGetToolsQuery } = apiSlice

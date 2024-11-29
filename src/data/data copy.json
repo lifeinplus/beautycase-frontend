@@ -14,9 +14,21 @@
                 "Увлажнение губ: маска/бальзам"
             ],
             "products": [
-                "6747b79ec663274a3f3c21ef",
-                "6747b79ec663274a3f3c21f0",
-                "6747b79ec663274a3f3c21f1"
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163205/product1_x0ivla.png",
+                    "name": "Мицеллярная вода Bioderma Sensibio H2O",
+                    "buy": "Золотое яблоко, Аптеки"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163212/product2_trnpzo.png",
+                    "name": "Мицеллярная вода Argan Micellar",
+                    "buy": "Золотое яблоко, РИВ ГОШ"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163216/product3_n5nyck.png",
+                    "name": "Отшелушивающий тоник ESTEE LAUDER",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
             ]
         },
         {
@@ -25,9 +37,21 @@
             "subtitle": "Кремовые продукты",
             "steps": ["Тон", "Консилер/корректор", "Кремовые румяна/скульптор"],
             "products": [
-                "6747b79ec663274a3f3c21f2",
-                "6747b79ec663274a3f3c21f3",
-                "6747b79ec663274a3f3c21f4"
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163214/product4_qyavdh.png",
+                    "name": "Устойчивый тональный крем SPF10",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163207/product5_t4urfg.png",
+                    "name": "Тональная основа для лица LANCOME",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163207/product6_pef4ov.png",
+                    "name": "Ухаживающий корректор-крем DIOR",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
             ]
         },
         {
@@ -38,7 +62,18 @@
                 "Закрепляем",
                 "дублируем кремовые продукты сухими: пудра, скульптор, румяна, хайлайтер"
             ],
-            "products": ["6747b79ec663274a3f3c21f5", "6747b79ec663274a3f3c21f6"]
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163213/product7_dvvvkw.png",
+                    "name": "Фиксирующая рассыпчатая пудра для лица с невесомым полупрозрачным покрытием Laura Mercier Translucent Loose Setting Powder",
+                    "buy": "Золотое яблоко"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163208/product8_vpfzai.png",
+                    "name": "Невидимая компактная пудра с шелковистой текстурой SHISEIDO Synchro Skin",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
+            ]
         },
         {
             "title": "Четвёртый этап",
@@ -49,7 +84,18 @@
                 "Прорисовываем форму карандашом/помадкой/тенями",
                 "Укладываем, фиксируем гелем оттеночным или бесцветным"
             ],
-            "products": ["6747b79ec663274a3f3c21f7", "6747b79ec663274a3f3c21f8"]
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163208/product9_nlcbmi.png",
+                    "name": "Карандаш для бровей Romanovamakeup Sexy Eyebrow Pencil ICE BLONDE",
+                    "buy": "Золотое яблоко, офиц.сайт: https://romanovamakeup.com/"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163218/product10_flhcvb.png",
+                    "name": "Карандаш для бровей Romanovamakeup Sexy Eyebrow Pencil ICE BLONDE",
+                    "buy": "Золотое яблоко, офиц.сайт: https://romanovamakeup.com/"
+                }
+            ]
         },
         {
             "title": "Пятый этап",
@@ -63,7 +109,18 @@
                 "Завиваем реснички керлером при необходимости",
                 "Прокрашиваем реснички тушью от корней"
             ],
-            "products": ["6747b79ec663274a3f3c21f9", "6747b79ec663274a3f3c21fa"]
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163217/product11_hsiist.png",
+                    "name": "Стойкий карандаш для глаз OK Beauty COLOR SALUTE SLIDE & STAY",
+                    "buy": "Золотое яблоко"
+                },
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163210/product12_buwmnc.png",
+                    "name": "Карандаш для глаз ESTEE LAUDER Double Wear Stay-In-Place Eye Pencil",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
+            ]
         },
         {
             "title": "Шестой этап",
@@ -75,7 +132,13 @@
                 "Рисуем контур карандашом",
                 "Наносим помаду/блеск"
             ],
-            "products": ["6747b79ec663274a3f3c21fb"]
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163209/product13_yr2uia.png",
+                    "name": "Карандаш для губ Nyx Professional Makeup Slim Lip Pencil",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
+            ]
         },
         {
             "title": "Седьмой этап",
@@ -87,7 +150,13 @@
                 "Дублируем скульптор и румяна если необходимо усилить цвет",
                 "Сбразгиваем кожу фиксирующим спреем"
             ],
-            "products": ["6747b79ec663274a3f3c21fc"]
+            "products": [
+                {
+                    "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163215/product14_akvhdz.png",
+                    "name": "Фиксатор для макияжа CLARINS",
+                    "buy": "Золотое яблоко, ЛЭТУАЛЬ"
+                }
+            ]
         }
     ],
     "brushes": [

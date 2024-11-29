@@ -1,7 +1,7 @@
 const Footer = () => (
     <footer
         id="footer"
-        className="mb-navbar-bottom border-t border-gray-300 sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open dark:border-gray-700"
+        className="mb-navbar-bottom border-t border-gray-300 dark:border-gray-700 sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open"
     >
         <section className="mx-auto max-w-4xl p-4">
             <h4 className="font-heading text-lg">Спасибо, что выбрали меня!</h4>
@@ -27,7 +27,7 @@ const Footer = () => (
 
         <section className="mx-auto max-w-4xl p-4">
             <p>
-                v0.3.0 &copy; <span id="year">2024</span> Beautycase
+                v1.0.0 &copy; <span id="year">2024</span> Beautycase
             </p>
         </section>
     </footer>

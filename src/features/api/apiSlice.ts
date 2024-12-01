@@ -46,6 +46,13 @@ export const apiSlice = createApi({
         getTools: builder.query<Tool[], void>({
             query: () => '/tools/all',
         }),
+        loginUser: builder.mutation<AuthResultLogin, AuthQueryLogin>({
+            query: (credentials) => ({
+                url: 'auth/login',
+                method: 'POST',
+                body: { ...credentials },
+            }),
+        }),
     }),
 })
 

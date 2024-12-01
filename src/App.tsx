@@ -1,25 +1,28 @@
-import {
-    AdaptiveNavBar,
-    Brands,
-    Footer,
-    Header,
-    Hero,
-    Stages,
-} from './components'
+import { useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-const App = () => (
-    <div>
-        <Header />
-        <main className="flex flex-col items-center justify-center sm:ms-navbar-left lg:ms-navbar-left-open">
-            <div className="w-full max-w-2xl">
-                <Hero />
-                <Stages />
-                <Brands />
-            </div>
-        </main>
-        <AdaptiveNavBar />
-        <Footer />
-    </div>
-)
+import { useAppSelector } from './app/hooks'
+import { MakeupBagPage } from './components'
+import { LoginPage } from './features/auth'
+import { selectDarkMode } from './features/theme'
+
+const App = () => {
+    const darkMode = useAppSelector(selectDarkMode)
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark')
+        }
+    }, [darkMode])
+
+    return (
+        <div>
+            <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/makeup-bag" element={<MakeupBagPage />} />
+            </Routes>
+        </div>
+    )
+}
 
 export default App

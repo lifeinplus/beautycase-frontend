@@ -2,6 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import config from '../../config'
 
+export interface Stage {
+    title: string
+    image: string
+    subtitle: string
+    steps: string[]
+    productIds: Product[]
+}
+
 export interface Product {
     _id: string
     name: string
@@ -32,11 +40,18 @@ export const apiSlice = createApi({
         getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
         }),
+        getStages: builder.query<Stage[], void>({
+            query: () => '/stages/all',
+        }),
         getTools: builder.query<Tool[], void>({
             query: () => '/tools/all',
         }),
     }),
 })
 
-export const { useGetBrandsQuery, useGetProductsQuery, useGetToolsQuery } =
-    apiSlice
+export const {
+    useGetBrandsQuery,
+    useGetProductsQuery,
+    useGetStagesQuery,
+    useGetToolsQuery,
+} = apiSlice

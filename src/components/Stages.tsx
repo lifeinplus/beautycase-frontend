@@ -1,20 +1,8 @@
-import { useGetProductsQuery } from '../features/api/apiSlice'
+import { useGetStagesQuery } from '../features/api/apiSlice'
 import Stage from './Stage'
 
-interface Stage {
-    title: string
-    image: string
-    subtitle: string
-    steps: string[]
-    products: string[]
-}
-
-interface StagesProps {
-    stages: Stage[]
-}
-
-const Stages = ({ stages }: StagesProps) => {
-    const { data: products } = useGetProductsQuery()
+const Stages = () => {
+    const { data: stages } = useGetStagesQuery()
 
     return (
         <section id="stages" className="scroll-mt-header sm:scroll-mt-0">
@@ -22,15 +10,16 @@ const Stages = ({ stages }: StagesProps) => {
                 Этапы
             </h2>
 
-            {stages.map((stage, index) => {
-                const filteredProducts = products?.filter((product) =>
-                    stage.products.some((item) => item === product._id)
-                )
-
-                return (
-                    <Stage key={index} {...stage} products={filteredProducts} />
-                )
-            })}
+            {stages?.map((stage, index) => (
+                <Stage
+                    key={index}
+                    title={stage.title}
+                    subtitle={stage.subtitle}
+                    image={stage.image}
+                    steps={stage.steps}
+                    products={stage.productIds}
+                />
+            ))}
         </section>
     )
 }

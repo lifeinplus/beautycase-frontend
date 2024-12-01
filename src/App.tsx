@@ -1,22 +1,19 @@
-import AdaptiveNavBar from './components/AdaptiveNavBar'
-import Brands from './components/Brands'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Stages from './components/Stages'
-import data from './data/data.json'
+import {
+    AdaptiveNavBar,
+    Brands,
+    Footer,
+    Header,
+    Hero,
+    Stages,
+} from './components'
 
 const App = () => (
     <div>
         <Header />
         <main className="flex flex-col items-center justify-center sm:ms-navbar-left lg:ms-navbar-left-open">
             <div className="w-full max-w-2xl">
-                <Hero
-                    title={data.title}
-                    subtitle={data.subtitle}
-                    image={data.image}
-                />
-                <Stages stages={data.stages} />
+                <Hero />
+                <Stages />
                 <Brands />
             </div>
         </main>

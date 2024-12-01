@@ -3,13 +3,13 @@ import { ProductsList } from '../features/products/ProductsList'
 
 interface StageProps {
     title: string
-    image: string
     subtitle: string
+    image: string
     steps: string[]
     products?: Product[]
 }
 
-const Stage = ({ title, image, subtitle, steps, products }: StageProps) => {
+const Stage = ({ title, subtitle, image, steps, products }: StageProps) => {
     return (
         <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded">
             <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">

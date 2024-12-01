@@ -89,17 +89,5 @@
             ],
             "products": ["6747b79ec663274a3f3c21fc"]
         }
-    ],
-    "brands": [
-        {
-            "name": "Annbeauty",
-            "link": "https://annbeautystore.ru/",
-            "tools": ["674983f95139ed5ad61f0cee", "674983f95139ed5ad61f0cef"]
-        },
-        {
-            "name": "ManlyPRO",
-            "link": "https://www.manlycosmetics.ru/",
-            "tools": ["674983f95139ed5ad61f0cf0", "674983f95139ed5ad61f0cf1"]
-        }
     ]
 }

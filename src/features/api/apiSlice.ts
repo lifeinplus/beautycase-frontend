@@ -9,8 +9,13 @@ export interface Product {
     buy: string
 }
 
+export interface Brand {
+    name: string
+    link: string
+    toolIds: Tool[]
+}
+
 export interface Tool {
-    _id: string
     name: string
     image: string
     number?: string
@@ -21,6 +26,9 @@ export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({ baseUrl: config.apiBaseUrl }),
     endpoints: (builder) => ({
+        getBrands: builder.query<Brand[], void>({
+            query: () => '/brands/all',
+        }),
         getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
         }),
@@ -30,4 +38,5 @@ export const apiSlice = createApi({
     }),
 })
 
-export const { useGetProductsQuery, useGetToolsQuery } = apiSlice
+export const { useGetBrandsQuery, useGetProductsQuery, useGetToolsQuery } =
+    apiSlice

@@ -163,7 +163,7 @@
         {
             "name": "Annbeauty",
             "link": "https://annbeautystore.ru/",
-            "products": [
+            "tools": [
                 {
                     "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163650/brush1_zxgfbi.png",
                     "name": "Кисть для румян",
@@ -181,7 +181,7 @@
         {
             "name": "ManlyPRO",
             "link": "https://www.manlycosmetics.ru/",
-            "products": [
+            "tools": [
                 {
                     "image": "https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732163648/brush3_ijfe5z.png",
                     "name": "Кисть для кремовых и сухих текстур",

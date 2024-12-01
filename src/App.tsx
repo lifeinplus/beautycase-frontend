@@ -17,7 +17,7 @@ const App = () => (
                     image={data.image}
                 />
                 <Stages stages={data.stages} />
-                <Brands brands={data.brands} />
+                <Brands />
             </div>
         </main>
         <AdaptiveNavBar />

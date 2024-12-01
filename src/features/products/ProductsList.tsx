@@ -1,13 +1,13 @@
 import { Product } from '../api/apiSlice'
 
-interface ProductsProps {
+interface ProductsListProps {
     products: Product[]
 }
 
-export const ProductsList = ({ products }: ProductsProps) => {
+export const ProductsList = ({ products }: ProductsListProps) => {
     return (
         <ul className="mx-auto mt-6 flex list-none flex-col items-center gap-8 sm:flex-row">
-            {products.map((product: any, index: number) => (
+            {products.map((product, index) => (
                 <li
                     key={index}
                     className="flex flex-col items-center p-2 sm:w-5/6"

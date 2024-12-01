@@ -16,6 +16,9 @@ export default {
                 'navbar-left': '73px',
                 'navbar-left-open': '245px',
             },
+            maxWidth: {
+                login: '350px',
+            },
             scrollMargin: {
                 header: '61px',
             },

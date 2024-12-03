@@ -1,5 +1,5 @@
 import { apiSlice } from '../api'
-import { AuthState } from '.'
+import { AuthState } from './authSlice'
 
 interface AuthQueryLogin {
     username: string

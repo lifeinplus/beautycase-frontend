@@ -5,6 +5,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { ThemeToggler } from '../features/theme'
+import AuthButton from '../features/auth/AuthButton'
 
 const AdaptiveNavBar = () => (
     <aside className="fixed bottom-0 left-0 z-20 flex w-full border-t border-gray-300 bg-white dark:border-gray-700 dark:bg-black sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open">
@@ -49,10 +50,12 @@ const AdaptiveNavBar = () => (
                 <PaintBrushIcon className="h-6 w-6" />
                 <span className="hidden lg:inline">Кисти</span>
             </button>
+
+            <ThemeToggler />
         </div>
 
         <div className="hidden sm:inline">
-            <ThemeToggler />
+            <AuthButton />
         </div>
     </aside>
 )

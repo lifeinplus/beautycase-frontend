@@ -7,3 +7,6 @@ import MakeupBagPage from './MakeupBagPage'
 import Stages from './Stages'
 
 export { AdaptiveNavBar, Brands, Footer, Header, Hero, MakeupBagPage, Stages }
+
+export * from './HomePage'
+export * from './Spinner'

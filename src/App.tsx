@@ -3,13 +3,12 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
-import { MakeupBagPage } from './components'
-import { LoginPage, selectUsername } from './features/auth'
+import { HomePage, MakeupBagPage } from './components'
+import { LoginPage, PersistLogin, RequireAuth } from './features/auth'
 import { selectDarkMode } from './features/theme'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
-    const username = useAppSelector(selectUsername)
 
     useEffect(() => {
         if (darkMode) {
@@ -35,12 +34,14 @@ const App = () => {
                 }}
             />
             <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route
-                    path="/"
-                    element={username ? <MakeupBagPage /> : <LoginPage />}
-                />
-                <Route path="/makeup-bag" element={<MakeupBagPage />} />
+                <Route element={<PersistLogin />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+
+                    <Route element={<RequireAuth />}>
+                        <Route path="/makeup-bag" element={<MakeupBagPage />} />
+                    </Route>
+                </Route>
             </Routes>
         </div>
     )

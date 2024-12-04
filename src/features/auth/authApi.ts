@@ -10,14 +10,20 @@ interface AuthResultLogin extends Pick<AuthState, 'accessToken' | 'userId'> {}
 
 const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        login: builder.mutation<AuthResultLogin, AuthQueryLogin>({
+        loginUser: builder.mutation<AuthResultLogin, AuthQueryLogin>({
             query: (credentials) => ({
                 url: 'auth/login',
                 method: 'POST',
                 body: credentials,
             }),
         }),
+        logoutUser: builder.mutation<void, void>({
+            query: () => ({
+                url: 'auth/logout',
+                method: 'POST',
+            }),
+        }),
     }),
 })
 
-export const { useLoginMutation } = authApiSlice
+export const { useLoginUserMutation, useLogoutUserMutation } = authApiSlice

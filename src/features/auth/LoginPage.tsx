@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { isDataMessageError, isFetchBaseQueryError } from '../../utils'
-import { useLoginMutation } from './authApi'
+import { useLoginUserMutation } from './authApi'
 import { setCredentials } from './authSlice'
 
 export const LoginPage = () => {
@@ -16,7 +16,7 @@ export const LoginPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const [login, { isLoading }] = useLoginMutation()
+    const [login, { isLoading }] = useLoginUserMutation()
 
     const from = location.state?.from?.pathname || '/makeup-bag'
 
@@ -47,7 +47,7 @@ export const LoginPage = () => {
 
     return (
         <>
-            <section className="sm:max-w-login mx-auto flex min-h-screen max-w-80 flex-1 flex-col justify-center py-2.5 sm:mx-auto sm:w-full">
+            <section className="mx-auto flex min-h-screen max-w-80 flex-1 flex-col justify-center py-2.5 sm:mx-auto sm:w-full sm:max-w-login">
                 <form
                     className="mb-2.5 py-2.5 dark:border-neutral-700 sm:rounded-sm sm:border sm:border-neutral-300"
                     onSubmit={handleSubmit}

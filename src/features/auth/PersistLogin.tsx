@@ -3,8 +3,9 @@ import { Outlet } from 'react-router-dom'
 
 import { useAppSelector } from '../../app/hooks'
 import { Spinner } from '../../components'
+import config from '../../config'
 import { useRefreshAuth } from '../../hooks'
-import { selectAccessToken } from '.'
+import { selectAccessToken } from './authSlice'
 
 export const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -16,15 +17,15 @@ export const PersistLogin = () => {
     useEffect(() => {
         let isMounted = true
 
-        const verifyRefreshAuth = async () => {
-            if (!effectRan.current) return
+        if (effectRan.current || config.prod) {
+            const verifyRefreshAuth = async () => {
+                await refreshAuth()
+                    .catch((error) => console.error(error))
+                    .finally(() => isMounted && setIsLoading(false))
+            }
 
-            await refreshAuth()
-                .catch((error) => console.error(error))
-                .finally(() => isMounted && setIsLoading(false))
+            !accessToken ? verifyRefreshAuth() : setIsLoading(false)
         }
-
-        !accessToken ? verifyRefreshAuth() : setIsLoading(false)
 
         return () => {
             effectRan.current = true
@@ -32,5 +33,5 @@ export const PersistLogin = () => {
         }
     }, [])
 
-    return <>{isLoading ? <Spinner /> : <Outlet />}</>
+    return isLoading ? <Spinner /> : <Outlet />
 }

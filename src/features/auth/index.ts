@@ -1,5 +1,6 @@
-export * from './authApi'
+export * from './authApiSlice'
 export * from './authSlice'
 export * from './LoginPage'
 export * from './PersistLogin'
+export * from './RegisterPage'
 export * from './RequireAuth'

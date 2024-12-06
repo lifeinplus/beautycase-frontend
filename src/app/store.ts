@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
+import config from '../config'
 import { apiSlice } from '../features/api/apiSlice'
 import authReducer from '../features/auth/authSlice'
 import themeReducer from '../features/theme/themeSlice'
@@ -14,7 +15,7 @@ export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware),
-    devTools: true,
+    devTools: !config.prod,
 })
 
 export type RootState = ReturnType<typeof store.getState>

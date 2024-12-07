@@ -8,6 +8,16 @@ interface AuthQueryLogin {
 
 interface AuthResultLogin extends Pick<AuthState, 'accessToken' | 'userId'> {}
 
+interface AuthResultRegister {
+    message: string
+}
+
+interface AuthQueryRegister {
+    username: string
+    password: string
+    confirmPassword: string
+}
+
 const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         loginUser: builder.mutation<AuthResultLogin, AuthQueryLogin>({
@@ -23,7 +33,18 @@ const authApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
             }),
         }),
+        registerUser: builder.mutation<AuthResultRegister, AuthQueryRegister>({
+            query: (credentials) => ({
+                url: 'auth/register',
+                method: 'POST',
+                body: credentials,
+            }),
+        }),
     }),
 })
 
-export const { useLoginUserMutation, useLogoutUserMutation } = authApiSlice
+export const {
+    useLoginUserMutation,
+    useLogoutUserMutation,
+    useRegisterUserMutation,
+} = authApiSlice

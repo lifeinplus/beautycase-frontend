@@ -18,6 +18,9 @@ export default {
             maxWidth: {
                 login: '350px',
             },
+            padding: {
+                13: '52px',
+            },
             scrollMargin: {
                 header: '61px',
             },

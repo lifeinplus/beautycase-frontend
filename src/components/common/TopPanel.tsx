@@ -6,7 +6,7 @@ interface TopPanelProps {
     onBack?: () => void
 }
 
-const TopPanel = ({ title, onBack }: TopPanelProps) => {
+export const TopPanel = ({ title, onBack }: TopPanelProps) => {
     const navigate = useNavigate()
 
     return (
@@ -22,5 +22,3 @@ const TopPanel = ({ title, onBack }: TopPanelProps) => {
         </nav>
     )
 }
-
-export default TopPanel

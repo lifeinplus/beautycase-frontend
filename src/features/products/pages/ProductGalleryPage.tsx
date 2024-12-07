@@ -1,9 +1,9 @@
+import { PlusIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
-import { useFetchProductsQuery } from '../productApiSlice'
-import TopPanel from '../../../components/common/TopPanel'
+import { BottomPanel, TopPanel } from '../../../components'
 import { ProductCard } from '../components/ProductCard'
-import { BottomPanel } from '../../../components/common/BottomPanel'
+import { useFetchProductsQuery } from '../productApiSlice'
 
 export const ProductGalleryPage = () => {
     const { data: products, isLoading } = useFetchProductsQuery()
@@ -21,7 +21,14 @@ export const ProductGalleryPage = () => {
                     ))}
                 </div>
             </main>
-            <BottomPanel />
+            <BottomPanel>
+                <button
+                    className="bottom-panel__button"
+                    onClick={() => navigate('/product_gallery/add')}
+                >
+                    <PlusIcon className="h-6 w-6" />
+                </button>
+            </BottomPanel>
         </div>
     )
 }

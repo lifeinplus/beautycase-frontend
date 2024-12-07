@@ -9,18 +9,28 @@ export interface Product {
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        fetchProducts: builder.query<Product[], void>({
-            query: () => '/products/all',
-        }),
-        fetchProductById: builder.query<Product, string>({
-            query: (id) => `/products/${id}`,
-        }),
         createProduct: builder.mutation<Product, Partial<Product>>({
             query: (data) => ({
-                url: '/products',
+                url: '/products/one',
                 method: 'POST',
                 body: data,
             }),
+            invalidatesTags: ['Products'],
+        }),
+        deleteProduct: builder.mutation<void, string>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Products'],
+        }),
+        fetchProducts: builder.query<Product[], void>({
+            query: () => '/products/all',
+            providesTags: ['Products'],
+        }),
+        fetchProductById: builder.query<Product, string>({
+            query: (id) => `/products/${id}`,
+            providesTags: ['Products'],
         }),
         updateProduct: builder.mutation<
             Product,
@@ -31,20 +41,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 method: 'PUT',
                 body: data,
             }),
-        }),
-        deleteProduct: builder.mutation<void, string>({
-            query: (id) => ({
-                url: `/products/${id}`,
-                method: 'DELETE',
-            }),
+            invalidatesTags: ['Products'],
         }),
     }),
 })
 
 export const {
+    useCreateProductMutation,
+    useDeleteProductMutation,
     useFetchProductsQuery,
     useFetchProductByIdQuery,
-    useCreateProductMutation,
     useUpdateProductMutation,
-    useDeleteProductMutation,
 } = productApiSlice

@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.bottom-panel {
+    @apply fixed bottom-0 left-0 z-10 flex w-full justify-evenly border-t border-gray-300 bg-white px-4 py-3 text-white shadow-md dark:border-gray-700 dark:bg-black sm:justify-end;
+}
+
+.bottom-panel__button {
+    @apply flex items-center text-white hover:text-gray-300;
+}
+
+.form__input {
+    @apply block w-full rounded-xl border border-neutral-700 bg-white px-4 py-2.5 placeholder-neutral-600 shadow-sm focus:border-white focus:outline-none focus:ring-1 dark:bg-black;
+}
+
 .square-image-container {
     @apply relative aspect-square w-full overflow-hidden;
 }
@@ -20,12 +32,4 @@
 
 .top-panel__title {
     @apply flex-grow text-center font-semibold;
-}
-
-.bottom-panel {
-    @apply fixed bottom-0 left-0 z-10 flex w-full justify-center border-t border-gray-300 bg-white px-4 py-3 text-white shadow-md dark:border-gray-700 dark:bg-black sm:justify-end;
-}
-
-.bottom-panel__button {
-    @apply flex items-center text-white hover:text-gray-300;
 }

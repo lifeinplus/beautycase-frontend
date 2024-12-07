@@ -18,7 +18,7 @@ export const LoginPage = () => {
 
     const [login, { isLoading }] = useLoginUserMutation()
 
-    const from = location.state?.from?.pathname || '/makeup-bag'
+    const from = location.state?.from?.pathname || '/makeup_bag'
 
     useEffect(() => {
         usernameRef.current?.focus()

@@ -7,7 +7,7 @@ export const HomePage = () => {
     const username = useAppSelector(selectUsername)
 
     return username ? (
-        <Navigate to="/makeup-bag" replace />
+        <Navigate to="/makeup_bag" replace />
     ) : (
         <Navigate to="/login" replace />
     )

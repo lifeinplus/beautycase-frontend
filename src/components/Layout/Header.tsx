@@ -1,6 +1,6 @@
-import AuthButton from '../features/auth/AuthButton'
+import AuthButton from '../../features/auth/AuthButton'
 
-const Header = () => {
+export const Header = () => {
     return (
         <div className="sticky top-0 border-b border-gray-300 dark:border-gray-700 sm:hidden">
             <header className="z-10 mx-auto flex max-w-4xl items-center justify-between bg-white px-5 py-3.5 dark:bg-black">
@@ -15,5 +15,3 @@ const Header = () => {
         </div>
     )
 }
-
-export default Header

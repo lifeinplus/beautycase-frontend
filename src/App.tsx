@@ -10,6 +10,10 @@ import {
     RegisterPage,
     RequireAuth,
 } from './features/auth'
+import { ProductGalleryPage } from './features/products'
+import { AddProductPage } from './features/products/pages/AddProductPage'
+import { EditProductPage } from './features/products/pages/EditProductPage'
+import { ProductPage } from './features/products/pages/ProductPage'
 import { selectDarkMode } from './features/theme'
 
 const App = () => {
@@ -40,7 +44,23 @@ const App = () => {
                     <Route path="/" element={<HomePage />} />
 
                     <Route element={<RequireAuth />}>
-                        <Route path="/makeup-bag" element={<MakeupBagPage />} />
+                        <Route path="/makeup_bag" element={<MakeupBagPage />} />
+                        <Route
+                            path="/product_gallery"
+                            element={<ProductGalleryPage />}
+                        />
+                        <Route
+                            path="/product_gallery/:id"
+                            element={<ProductPage />}
+                        />
+                        <Route
+                            path="/product_gallery/add"
+                            element={<AddProductPage />}
+                        />
+                        <Route
+                            path="/product_gallery/edit/:id"
+                            element={<EditProductPage />}
+                        />
                     </Route>
                 </Route>
             </Routes>

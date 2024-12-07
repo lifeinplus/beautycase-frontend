@@ -1,4 +1,4 @@
-const Footer = () => (
+export const Footer = () => (
     <footer
         id="footer"
         className="mb-navbar-bottom border-t border-gray-300 dark:border-gray-700 sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open"
@@ -32,5 +32,3 @@ const Footer = () => (
         </section>
     </footer>
 )
-
-export default Footer

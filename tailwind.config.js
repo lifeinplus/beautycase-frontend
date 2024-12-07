@@ -9,7 +9,6 @@ export default {
             fontFamily: {
                 logo: ['Sofia', ...defaultTheme.fontFamily.sans],
                 heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
-                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
             margin: {
                 'navbar-bottom': '49px',

@@ -6,7 +6,7 @@ import {
 
 import config from '../../config'
 import { type AuthState, logout, setCredentials } from '../auth/authSlice'
-import { type Product } from '../products'
+import type { Product } from '../products/types'
 
 export interface Stage {
     title: string
@@ -61,7 +61,7 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['Products'],
+    tagTypes: ['Product'],
     endpoints: (builder) => ({
         getBrands: builder.query<Brand[], void>({
             query: () => '/brands/all',

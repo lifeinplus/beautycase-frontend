@@ -1,8 +1,8 @@
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { useAppDispatch } from '../../app/hooks'
 import { isDataMessageError, isFetchBaseQueryError } from '../../utils'
 import { useLoginUserMutation } from './authApiSlice'
 import { setCredentials } from './authSlice'
@@ -11,11 +11,11 @@ export const LoginPage = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const dispatch = useDispatch()
     const usernameRef = useRef<HTMLInputElement>(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const dispatch = useAppDispatch()
     const [login, { isLoading }] = useLoginUserMutation()
 
     const from = location.state?.from?.pathname || '/makeup_bag'

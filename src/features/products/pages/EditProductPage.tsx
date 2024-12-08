@@ -2,19 +2,17 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import ProductForm from '../components/ProductForm'
 import {
-    Product,
     useFetchProductByIdQuery,
     useUpdateProductMutation,
 } from '../productApiSlice'
+import type { Product } from '../types'
 
 export const EditProductPage = () => {
-    const { id } = useParams<{ id: string }>()
+    const { id } = useParams()
     const navigate = useNavigate()
-    const [updateProduct] = useUpdateProductMutation()
 
-    const { data: initialProduct, isLoading } = useFetchProductByIdQuery(
-        id || ''
-    )
+    const [updateProduct] = useUpdateProductMutation()
+    const { data: initialProduct, isLoading } = useFetchProductByIdQuery(id!)
 
     if (isLoading) return <p>Loading...</p>
 
@@ -27,8 +25,11 @@ export const EditProductPage = () => {
     }
 
     const handleEditProduct = async (product: Product) => {
-        await updateProduct({ id: initialProduct._id || '', ...product }).unwrap
-        navigate(-1)
+        await updateProduct({
+            id: id!,
+            ...product,
+        }).unwrap()
+        navigate(`/product_gallery/${id}`)
     }
 
     return (

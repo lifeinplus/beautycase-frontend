@@ -6,10 +6,11 @@ import { ProductCard } from '../components/ProductCard'
 import { useFetchProductsQuery } from '../productApiSlice'
 
 export const ProductGalleryPage = () => {
-    const { data: products, isLoading } = useFetchProductsQuery()
     const navigate = useNavigate()
+    const { data: products, isLoading, error } = useFetchProductsQuery()
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading products</div>
 
     return (
         <div className="py-16">

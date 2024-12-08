@@ -1,2 +1,5 @@
-export * from './productApiSlice'
+export * from './pages/AddProductPage'
+export * from './pages/EditProductPage'
 export * from './pages/ProductGalleryPage'
+export * from './pages/ProductPage'
+export * from './productApiSlice'

@@ -3,17 +3,20 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
-import { HomePage, MakeupBagPage } from './components'
+import { MakeupBagPage } from './components'
 import {
     LoginPage,
     PersistLogin,
     RegisterPage,
     RequireAuth,
 } from './features/auth'
-import { ProductGalleryPage } from './features/products'
-import { AddProductPage } from './features/products/pages/AddProductPage'
-import { EditProductPage } from './features/products/pages/EditProductPage'
-import { ProductPage } from './features/products/pages/ProductPage'
+import { HomePage } from './features/home'
+import {
+    AddProductPage,
+    EditProductPage,
+    ProductGalleryPage,
+    ProductPage,
+} from './features/products'
 import { selectDarkMode } from './features/theme'
 
 const App = () => {
@@ -37,12 +40,11 @@ const App = () => {
                 }}
             />
             <Routes>
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
 
                 <Route element={<PersistLogin />}>
-                    <Route path="/" element={<HomePage />} />
-
                     <Route element={<RequireAuth />}>
                         <Route path="/makeup_bag" element={<MakeupBagPage />} />
                         <Route

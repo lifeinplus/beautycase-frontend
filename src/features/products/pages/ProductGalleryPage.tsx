@@ -13,7 +13,7 @@ export const ProductGalleryPage = () => {
 
     return (
         <div className="py-16">
-            <TopPanel title="Галерея продуктов" onBack={() => navigate(-1)} />
+            <TopPanel title="Галерея продуктов" onBack={() => navigate('/')} />
             <main>
                 <div className="grid grid-cols-3 gap-1">
                     {products?.map((product) => (

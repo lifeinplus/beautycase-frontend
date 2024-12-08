@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { Product } from '../productApiSlice'
+import { Product } from '../types'
 
 interface ProductCardProps {
     product: Product

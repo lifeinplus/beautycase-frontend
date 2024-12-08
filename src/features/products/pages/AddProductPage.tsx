@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
 import ProductForm from '../components/ProductForm'
-import { useCreateProductMutation, type Product } from '../productApiSlice'
+import { useCreateProductMutation } from '../productApiSlice'
+import { Product } from '../types'
 
 export const AddProductPage = () => {
     const navigate = useNavigate()

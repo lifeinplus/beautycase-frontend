@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { BottomPanel, TopPanel } from '../../../components'
-import { Product } from '../productApiSlice'
+import type { Product } from '../types'
 
 interface ProductFormProps {
     initialData?: Product

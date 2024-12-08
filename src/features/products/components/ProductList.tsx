@@ -1,4 +1,4 @@
-import { Product } from '../productApiSlice'
+import { Product } from '../types'
 
 interface ProductsListProps {
     products: Product[]

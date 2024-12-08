@@ -10,6 +10,9 @@ export default {
                 logo: ['Sofia', ...defaultTheme.fontFamily.sans],
                 heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
+            lineHeight: {
+                4.5: '18px',
+            },
             margin: {
                 'navbar-bottom': '49px',
                 'navbar-left': '73px',
@@ -26,6 +29,7 @@ export default {
             },
             width: {
                 'navbar-left-open': '245px',
+                58: '14.5rem',
             },
         },
     },

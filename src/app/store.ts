@@ -1,15 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineSlices, configureStore } from '@reduxjs/toolkit'
 
 import config from '../config'
-import { apiSlice } from '../features/api/apiSlice'
-import authReducer from '../features/auth/authSlice'
-import themeReducer from '../features/theme/themeSlice'
+import { apiSlice } from '../features/api'
+import { authSlice } from '../features/auth'
+import { themeSlice } from '../features/theme'
 
-const rootReducer = combineReducers({
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    auth: authReducer,
-    theme: themeReducer,
-})
+const rootReducer = combineSlices(apiSlice, authSlice, themeSlice)
 
 export const store = configureStore({
     reducer: rootReducer,

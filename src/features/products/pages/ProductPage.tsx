@@ -1,15 +1,28 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { BottomPanel, TopPanel } from '../../../components'
-import { useFetchProductByIdQuery } from '../productApiSlice'
+import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
+import { Modal } from '../../modals'
+import {
+    useDeleteProductMutation,
+    useFetchProductByIdQuery,
+} from '../productApiSlice'
 
 export const ProductPage = () => {
-    const { id } = useParams<{ id: string }>()
+    const { id } = useParams()
     const navigate = useNavigate()
-    const { data: product, isLoading } = useFetchProductByIdQuery(id || '')
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
-    if (isLoading) return <p>Loading...</p>
+    const {
+        data: product,
+        isLoading,
+        error,
+    } = useFetchProductByIdQuery(id || '')
+
+    const [deleteProduct] = useDeleteProductMutation()
 
     if (!product) {
         return (
@@ -19,18 +32,37 @@ export const ProductPage = () => {
         )
     }
 
-    const handleDelete = () => {
-        if (window.confirm('Are you sure you want to delete this product?')) {
-            console.log(`Deleting product: ${product._id}`)
+    const handleDelete = async () => {
+        if (!id) return
+
+        try {
+            await deleteProduct(id).unwrap()
             navigate('/product_gallery')
+            setIsModalOpen(false)
+        } catch (error) {
+            if (isDataMessageError(error)) {
+                toast.error(error.data.message)
+            } else if (isFetchBaseQueryError(error)) {
+                const errMsg =
+                    'error' in error ? error.error : JSON.stringify(error.data)
+                toast.error(errMsg)
+            } else {
+                console.error(error)
+            }
         }
     }
 
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading product</div>
+
     return (
         <div className="relative">
-            <TopPanel title="Продукт" onBack={() => navigate(-1)} />
+            <TopPanel
+                title="Продукт"
+                onBack={() => navigate('/product_gallery')}
+            />
 
-            <main className="pt-13 flex-grow pb-16">
+            <main className="flex-grow pb-16 pt-13">
                 <h1 className="mb-2 px-3 text-sm font-bold">{product.name}</h1>
                 <img
                     src={product.image}
@@ -43,16 +75,25 @@ export const ProductPage = () => {
             <BottomPanel>
                 <button
                     className="bottom-panel__button"
-                    onClick={() =>
-                        navigate(`/product_gallery/edit/${product._id}`)
-                    }
+                    onClick={() => navigate(`/product_gallery/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                 </button>
-                <button className="bottom-panel__button" onClick={handleDelete}>
+                <button
+                    className="bottom-panel__button"
+                    onClick={() => setIsModalOpen(true)}
+                >
                     <TrashIcon className="h-6 w-6" />
                 </button>
             </BottomPanel>
+
+            <Modal
+                isOpen={isModalOpen}
+                title="Удалить?"
+                description="Вы действительно хотите удалить этот продукт?"
+                onConfirm={handleDelete}
+                onCancel={() => setIsModalOpen(false)}
+            />
         </div>
     )
 }

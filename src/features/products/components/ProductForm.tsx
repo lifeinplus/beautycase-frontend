@@ -38,7 +38,7 @@ const ProductForm = ({
                 className="flex-grow space-y-4 px-3 pb-16 pt-16"
             >
                 <label className="block">
-                    <span className="block py-4 font-medium">Название</span>
+                    <span className="form__label">Название</span>
                     <input
                         name="name"
                         className="form__input"
@@ -51,9 +51,7 @@ const ProductForm = ({
                 </label>
 
                 <label className="block">
-                    <span className="block py-4 font-medium">
-                        URL изображения
-                    </span>
+                    <span className="form__label">URL изображения</span>
                     <input
                         className="form__input"
                         name="image"
@@ -66,7 +64,7 @@ const ProductForm = ({
                 </label>
 
                 <label className="block">
-                    <span className="block py-4 font-medium">Где купить</span>
+                    <span className="form__label">Где купить</span>
                     <input
                         className="form__input"
                         name="buy"
@@ -83,7 +81,7 @@ const ProductForm = ({
                 <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="bottom-panel__button"
+                    className="panel-bottom__button"
                 >
                     <CheckIcon className="h-6 w-6" />
                 </button>

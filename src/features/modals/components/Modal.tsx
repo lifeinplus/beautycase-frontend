@@ -31,12 +31,12 @@ export const Modal = ({
             onClick={handleClickOutside}
         >
             <div
-                className="w-58 flex flex-col rounded-xl bg-neutral-800 shadow-lg"
+                className="flex w-58 flex-col rounded-xl bg-white shadow-lg dark:bg-neutral-800"
                 ref={modalRef}
             >
                 <div className="mx-8 mb-4 mt-8 text-center">
                     <h2 className="text-xl leading-none">{title}</h2>
-                    <p className="leading-4.5 pt-2.5 text-sm text-neutral-400">
+                    <p className="pt-2.5 text-sm leading-4.5 text-neutral-500 dark:text-neutral-400">
                         {description}
                     </p>
                 </div>

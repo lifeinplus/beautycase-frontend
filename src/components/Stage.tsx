@@ -22,7 +22,7 @@ export const Stage = ({
                 {title}
             </h3>
 
-            <h4 className="mb-6 mt-2 text-center font-heading text-lg text-slate-700 dark:text-slate-400">
+            <h4 className="text-heading mb-6 mt-2 text-center font-heading text-lg">
                 {subtitle}
             </h4>
 

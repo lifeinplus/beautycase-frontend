@@ -1,4 +1,5 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -63,7 +64,11 @@ export const ProductPage = () => {
             />
 
             <main className="flex-grow pb-16 pt-13">
-                <h1 className="mb-2 px-3 text-sm font-bold">{product.name}</h1>
+                <div className="border-b-0.5 border-neutral-200 dark:border-neutral-800">
+                    <h1 className="mb-2 px-3 text-sm font-bold">
+                        {product.name}
+                    </h1>
+                </div>
                 <img
                     src={product.image}
                     alt={product.name}
@@ -74,13 +79,13 @@ export const ProductPage = () => {
 
             <BottomPanel>
                 <button
-                    className="bottom-panel__button"
+                    className="panel-bottom__button"
                     onClick={() => navigate(`/product_gallery/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                 </button>
                 <button
-                    className="bottom-panel__button"
+                    className="panel-bottom__button"
                     onClick={() => setIsModalOpen(true)}
                 >
                     <TrashIcon className="h-6 w-6" />

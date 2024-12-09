@@ -5,5 +5,5 @@ interface BottomPanelProps {
 }
 
 export const BottomPanel = ({ children }: BottomPanelProps) => {
-    return <nav className="bottom-panel">{children}</nav>
+    return <nav className="panel-bottom">{children}</nav>
 }

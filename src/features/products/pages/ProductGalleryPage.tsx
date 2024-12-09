@@ -24,7 +24,7 @@ export const ProductGalleryPage = () => {
             </main>
             <BottomPanel>
                 <button
-                    className="bottom-panel__button"
+                    className="panel-bottom__button"
                     onClick={() => navigate('/product_gallery/add')}
                 >
                     <PlusIcon className="h-6 w-6" />

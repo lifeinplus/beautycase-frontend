@@ -6,6 +6,10 @@ export default {
     darkMode: 'class',
     theme: {
         extend: {
+            borderWidth: {
+                0.5: '0.5px',
+                1.5: '1.5px',
+            },
             fontFamily: {
                 logo: ['Sofia', ...defaultTheme.fontFamily.sans],
                 heading: ['Montserrat', ...defaultTheme.fontFamily.sans],

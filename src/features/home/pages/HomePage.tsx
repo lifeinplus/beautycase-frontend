@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export const HomePage = () => {
     return (
-        <div className="flex h-screen flex-col items-center justify-center text-white">
+        <div className="flex h-screen flex-col items-center justify-center">
             <div className="max-w-80">
                 <div className="text-center">
                     <h1 className="mb-4 font-heading text-4xl font-bold sm:text-6xl">
@@ -11,7 +11,7 @@ export const HomePage = () => {
                     <h2 className="mb-10 mt-4 font-logo text-5xl font-bold sm:text-6xl">
                         Beautycase
                     </h2>
-                    <p className="mb-8 text-lg text-slate-400 sm:text-xl">
+                    <p className="text-heading mb-8 font-heading text-lg sm:text-xl">
                         Все ваши инструменты и продукты для макияжа в одном
                         месте.
                     </p>

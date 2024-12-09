@@ -6,16 +6,12 @@
     @apply flex py-2.5 ps-3 hover:text-rose-500 dark:hover:text-rose-400 sm:p-3 lg:gap-4;
 }
 
-.bottom-panel {
-    @apply fixed bottom-0 left-0 z-10 flex w-full justify-evenly border-t border-gray-300 bg-white px-4 py-3 text-white shadow-md dark:border-gray-700 dark:bg-black sm:justify-end;
-}
-
-.bottom-panel__button {
-    @apply flex items-center text-white hover:text-gray-300;
-}
-
 .form__input {
-    @apply block w-full rounded-xl border border-neutral-700 bg-white px-4 py-2.5 placeholder-neutral-600 shadow-sm focus:border-white focus:outline-none focus:ring-1 dark:bg-black;
+    @apply focus:border-1.5 block w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 placeholder-neutral-500 focus:border-black focus:outline-none dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white;
+}
+
+.form__label {
+    @apply block py-4 font-bold;
 }
 
 .home__button {
@@ -26,12 +22,32 @@
     @apply font-semibold text-rose-500 focus-visible:outline-rose-700;
 }
 
-.modal__button--secondary {
-    @apply min-h-12 w-full rounded-b-xl border-t border-neutral-700 bg-transparent px-2 py-1 text-sm text-white;
+.modal__button--danger {
+    @apply min-h-12 w-full rounded border-t border-neutral-300 bg-transparent px-2 py-1 text-sm font-semibold text-rose-500 dark:border-neutral-700;
 }
 
-.modal__button--danger {
-    @apply min-h-12 w-full rounded border-t border-neutral-700 bg-transparent px-2 py-1 text-sm font-semibold text-rose-500;
+.modal__button--secondary {
+    @apply min-h-12 w-full rounded-b-xl border-t border-neutral-300 bg-transparent px-2 py-1 text-sm text-black dark:border-neutral-700 dark:text-white;
+}
+
+.panel-bottom {
+    @apply fixed bottom-0 left-0 z-10 flex w-full justify-evenly border-t border-neutral-300 bg-white px-4 py-3 text-white dark:border-neutral-700 dark:bg-black sm:justify-end;
+}
+
+.panel-bottom__button {
+    @apply flex items-center text-black dark:text-white;
+}
+
+.panel-top {
+    @apply fixed left-0 top-0 z-10 flex w-full items-center justify-between border-b border-neutral-300 bg-white px-4 py-2.5 dark:border-neutral-700 dark:bg-black;
+}
+
+.panel-top__button {
+    @apply me-2 flex items-center hover:text-gray-300;
+}
+
+.panel-top__title {
+    @apply flex-grow text-center font-semibold;
 }
 
 .square-image-container {
@@ -42,14 +58,6 @@
     @apply h-full w-full object-cover;
 }
 
-.top-panel {
-    @apply fixed left-0 top-0 z-10 flex w-full items-center justify-between border-b border-gray-300 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-black;
-}
-
-.top-panel__button {
-    @apply me-2 flex items-center text-white hover:text-gray-300;
-}
-
-.top-panel__title {
-    @apply flex-grow text-center font-semibold;
+.text-heading {
+    @apply text-slate-700 dark:text-slate-400;
 }

@@ -10,13 +10,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     return (
         <div className="square-image-container">
             <Link
-                className="relative overflow-hidden rounded shadow-lg"
+                className="relative overflow-hidden"
                 to={`/product_gallery/${product._id}`}
             >
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="square-image"
+                    className="square-image sm:rounded"
                 />
             </Link>
         </div>

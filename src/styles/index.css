@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.auth__button {
+    @apply flex py-2.5 ps-3 hover:text-rose-500 dark:hover:text-rose-400 sm:p-3 lg:gap-4;
+}
+
 .bottom-panel {
     @apply fixed bottom-0 left-0 z-10 flex w-full justify-evenly border-t border-gray-300 bg-white px-4 py-3 text-white shadow-md dark:border-gray-700 dark:bg-black sm:justify-end;
 }

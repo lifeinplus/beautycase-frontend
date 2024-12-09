@@ -1,5 +1,5 @@
-import { Product } from '../features/api/apiSlice'
-import { ProductsList } from '../features/products/ProductsList'
+import { Product } from '../features/products'
+import { ProductsList } from '../features/products/components/ProductList'
 
 interface StageProps {
     title: string

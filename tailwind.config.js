@@ -9,7 +9,9 @@ export default {
             fontFamily: {
                 logo: ['Sofia', ...defaultTheme.fontFamily.sans],
                 heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
-                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+            },
+            lineHeight: {
+                4.5: '18px',
             },
             margin: {
                 'navbar-bottom': '49px',
@@ -19,11 +21,15 @@ export default {
             maxWidth: {
                 login: '350px',
             },
+            padding: {
+                13: '52px',
+            },
             scrollMargin: {
                 header: '61px',
             },
             width: {
                 'navbar-left-open': '245px',
+                58: '14.5rem',
             },
         },
     },

@@ -1,6 +1,6 @@
-import { AdaptiveNavBar, Brands, Footer, Header, Hero, Stages } from '.'
+import { AdaptiveNavBar, Brands, Footer, Header, Hero, Stages } from '..'
 
-const MakeupBagPage = () => {
+export const MakeupBagPage = () => {
     return (
         <>
             <Header />
@@ -16,5 +16,3 @@ const MakeupBagPage = () => {
         </>
     )
 }
-
-export default MakeupBagPage

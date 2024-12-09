@@ -2,19 +2,17 @@ import {
     ArrowLeftStartOnRectangleIcon,
     ArrowRightEndOnRectangleIcon,
 } from '@heroicons/react/24/outline'
-import { useDispatch } from 'react-redux'
-import { logout, selectUsername } from './authSlice'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../app/hooks'
+import { logout, selectUsername } from './authSlice'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useLogoutUserMutation } from '.'
 
 const AuthButton = () => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const dispatch = useAppDispatch()
     const username = useAppSelector(selectUsername)
-
     const [logoutUser] = useLogoutUserMutation()
 
     const handleLogout = async () => {

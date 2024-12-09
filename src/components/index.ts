@@ -1,12 +1,13 @@
-import AdaptiveNavBar from './AdaptiveNavBar'
 import Brands from './Brands'
-import Footer from './Footer'
-import Header from './Header'
 import Hero from './Hero'
-import MakeupBagPage from './MakeupBagPage'
 import Stages from './Stages'
 
-export { AdaptiveNavBar, Brands, Footer, Header, Hero, MakeupBagPage, Stages }
+export { Brands, Hero, Stages }
 
-export * from './HomePage'
+export * from './common/BottomPanel'
+export * from './common/TopPanel'
+export * from './layout/AdaptiveNavBar'
+export * from './layout/Footer'
+export * from './layout/Header'
+export * from './pages/MakeupBagPage'
 export * from './Spinner'

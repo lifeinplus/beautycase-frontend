@@ -1,7 +1,7 @@
 import { useGetBrandsQuery } from '../features/api/apiSlice'
-import Brand from './Brand'
+import { Brand } from './Brand'
 
-const Brands = () => {
+export const Brands = () => {
     const { data: brands } = useGetBrandsQuery()
 
     return (
@@ -20,5 +20,3 @@ const Brands = () => {
         </section>
     )
 }
-
-export default Brands

@@ -1,7 +1,7 @@
 import { useGetStagesQuery } from '../features/api/apiSlice'
-import Stage from './Stage'
+import { Stage } from './Stage'
 
-const Stages = () => {
+export const Stages = () => {
     const { data: stages } = useGetStagesQuery()
 
     return (
@@ -23,5 +23,3 @@ const Stages = () => {
         </section>
     )
 }
-
-export default Stages

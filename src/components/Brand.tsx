@@ -7,7 +7,7 @@ interface BrandProps {
     tools?: Tool[]
 }
 
-const Brand = ({ name, link, tools }: BrandProps) => (
+export const Brand = ({ name, link, tools }: BrandProps) => (
     <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded">
         <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
             <a
@@ -22,5 +22,3 @@ const Brand = ({ name, link, tools }: BrandProps) => (
         {tools && <ToolsList tools={tools} />}
     </article>
 )
-
-export default Brand

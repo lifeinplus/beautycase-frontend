@@ -9,7 +9,13 @@ interface StageProps {
     products?: Product[]
 }
 
-const Stage = ({ title, subtitle, image, steps, products }: StageProps) => {
+export const Stage = ({
+    title,
+    subtitle,
+    image,
+    steps,
+    products,
+}: StageProps) => {
     return (
         <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded">
             <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
@@ -37,5 +43,3 @@ const Stage = ({ title, subtitle, image, steps, products }: StageProps) => {
         </article>
     )
 }
-
-export default Stage

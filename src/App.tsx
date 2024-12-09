@@ -12,10 +12,10 @@ import {
 } from './features/auth'
 import { HomePage } from './features/home'
 import {
-    AddProductPage,
-    EditProductPage,
+    ProductAddPage,
+    ProductEditPage,
     ProductGalleryPage,
-    ProductPage,
+    ProductDetailsPage,
 } from './features/products'
 import { selectDarkMode } from './features/theme'
 
@@ -53,15 +53,15 @@ const App = () => {
                         />
                         <Route
                             path="/product_gallery/:id"
-                            element={<ProductPage />}
+                            element={<ProductDetailsPage />}
                         />
                         <Route
                             path="/product_gallery/add"
-                            element={<AddProductPage />}
+                            element={<ProductAddPage />}
                         />
                         <Route
                             path="/product_gallery/edit/:id"
-                            element={<EditProductPage />}
+                            element={<ProductEditPage />}
                         />
                     </Route>
                 </Route>

@@ -1,4 +1,3 @@
-export * from './common/BottomPanel'
 export * from './common/TopPanel'
 export * from './pages/MakeupBagPage'
 export * from './AdaptiveNavBar'

@@ -1,7 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
-import { BottomPanel, TopPanel } from '../../../components'
+import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { ProductCard } from '../components/ProductCard'
 import { useFetchProductsQuery } from '../productApiSlice'
 
@@ -13,23 +13,31 @@ export const ProductGalleryPage = () => {
     if (error) return <div>Error loading products</div>
 
     return (
-        <div className="py-16">
+        <article className="page-container">
             <TopPanel title="Галерея продуктов" onBack={() => navigate('/')} />
-            <main>
-                <div className="grid grid-cols-3 gap-1">
+
+            <main className="page-content">
+                <section className="product-gallery__title">
+                    <h1 className="product-gallery__title__text">
+                        Галерея продуктов
+                    </h1>
+                </section>
+                <section className="product-gallery__container">
                     {products?.map((product) => (
                         <ProductCard key={product._id} product={product} />
                     ))}
-                </div>
+                </section>
             </main>
-            <BottomPanel>
+
+            <AdaptiveNavBar>
                 <button
-                    className="panel-bottom__button"
+                    className="adaptive-nav-bar__button"
                     onClick={() => navigate('/product_gallery/add')}
                 >
                     <PlusIcon className="h-6 w-6" />
+                    <span className="hidden lg:inline">Добавить</span>
                 </button>
-            </BottomPanel>
-        </div>
+            </AdaptiveNavBar>
+        </article>
     )
 }

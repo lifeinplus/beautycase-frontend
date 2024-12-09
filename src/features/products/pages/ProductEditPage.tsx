@@ -7,7 +7,7 @@ import {
 } from '../productApiSlice'
 import type { Product } from '../types'
 
-export const EditProductPage = () => {
+export const ProductEditPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 

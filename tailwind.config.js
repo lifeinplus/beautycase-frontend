@@ -6,6 +6,10 @@ export default {
     darkMode: 'class',
     theme: {
         extend: {
+            aspectRatio: {
+                '4/5': '4 / 5',
+                '5/4': '5 / 4',
+            },
             borderWidth: {
                 0.5: '0.5px',
                 1.5: '1.5px',
@@ -24,6 +28,8 @@ export default {
             },
             maxWidth: {
                 login: '350px',
+                product: '470px',
+                'product-xl': '700px',
             },
             padding: {
                 13: '52px',

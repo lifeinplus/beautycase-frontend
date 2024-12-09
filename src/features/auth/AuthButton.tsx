@@ -30,12 +30,18 @@ const AuthButton = () => {
     }
 
     return username ? (
-        <button className="auth__button" onClick={handleLogout}>
+        <button
+            className="adaptive-nav-bar__button-common"
+            onClick={handleLogout}
+        >
             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
             <span className="hidden lg:inline">Выйти</span>
         </button>
     ) : (
-        <button className="auth__button" onClick={handleLogin}>
+        <button
+            className="adaptive-nav-bar__button-common"
+            onClick={handleLogin}
+        >
             <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
             <span className="hidden lg:inline">Войти</span>
         </button>

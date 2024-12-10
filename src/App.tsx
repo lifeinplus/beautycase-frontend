@@ -3,7 +3,6 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
-import { MakeupBagPage } from './components'
 import {
     LoginPage,
     PersistLogin,
@@ -11,6 +10,7 @@ import {
     RequireAuth,
 } from './features/auth'
 import { HomePage } from './features/home'
+import { MakeupBagPage } from './features/makeupBag'
 import {
     ProductAddPage,
     ProductEditPage,

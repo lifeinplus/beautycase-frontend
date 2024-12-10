@@ -4,19 +4,28 @@ import {
     ListBulletIcon,
 } from '@heroicons/react/24/outline'
 
-import { AdaptiveNavBar, Brands, Footer, Header, Hero, Stages } from '..'
+import { AdaptiveNavBar, Footer, Header, Hero } from '../../../components'
+import { Brands } from '../../brands'
+import { Stages } from '../../stages'
+import { useGetMakeupBagQuery } from '../makeupBagApiSlice'
 
 export const MakeupBagPage = () => {
+    const { data } = useGetMakeupBagQuery()
+
     return (
         <>
             <Header />
+
             <main className="flex flex-col items-center justify-center sm:ms-navbar-left lg:ms-navbar-left-open">
                 <div className="w-full max-w-2xl">
                     <Hero />
-                    <Stages />
-                    <Brands />
+                    <Stages stages={data?.stages} />
+                    <Brands brands={data?.brands} />
                 </div>
             </main>
+
+            <Footer />
+
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button"
@@ -52,7 +61,6 @@ export const MakeupBagPage = () => {
                     <span className="hidden lg:inline">Кисти</span>
                 </button>
             </AdaptiveNavBar>
-            <Footer />
         </>
     )
 }

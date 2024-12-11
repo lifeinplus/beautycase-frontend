@@ -1,0 +1,11 @@
+.form {
+    @apply space-y-4 px-3;
+}
+
+.form__label {
+    @apply block py-4 font-bold;
+}
+
+.form__input {
+    @apply block w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 placeholder-neutral-500 focus:border-1.5 focus:border-black focus:outline-none dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white;
+}

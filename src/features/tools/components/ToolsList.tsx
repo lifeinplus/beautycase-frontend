@@ -1,4 +1,4 @@
-import { Tool } from '../api/apiSlice'
+import { Tool } from '../types'
 
 interface ToolsListProps {
     tools: Tool[]

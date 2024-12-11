@@ -1,5 +1,4 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -7,28 +6,21 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
 import { Modal } from '../../modals'
-import {
-    useDeleteProductMutation,
-    useFetchProductByIdQuery,
-} from '../productApiSlice'
+import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
 
-export const ProductDetailsPage = () => {
+export const ToolDetailsPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const {
-        data: product,
-        isLoading,
-        error,
-    } = useFetchProductByIdQuery(id || '')
+    const { data: tool, isLoading, error } = useGetToolByIdQuery(id || '')
 
-    const [deleteProduct] = useDeleteProductMutation()
+    const [deleteTool] = useDeleteToolMutation()
 
-    if (!product) {
+    if (!tool) {
         return (
             <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Product not found</p>
+                <p className="text-gray-500">Tool not found</p>
             </div>
         )
     }
@@ -37,8 +29,8 @@ export const ProductDetailsPage = () => {
         if (!id) return
 
         try {
-            await deleteProduct(id).unwrap()
-            navigate('/product_gallery')
+            await deleteTool(id).unwrap()
+            navigate('/tools_gallery')
             setIsModalOpen(false)
         } catch (error) {
             if (isDataMessageError(error)) {
@@ -54,35 +46,36 @@ export const ProductDetailsPage = () => {
     }
 
     if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading product</div>
+    if (error) return <div>Error loading tool</div>
 
     return (
         <article className="page-container">
             <TopPanel
-                title="Продукт"
-                onBack={() => navigate('/product_gallery')}
+                title="Инструмент"
+                onBack={() => navigate('/tools_gallery')}
             />
 
             <main className="page-content">
                 <article className="page-content__container">
                     <section className="page-content__title">
                         <h1 className="page-content__title__text">
-                            {product.name}
+                            {tool.name}
                         </h1>
                     </section>
 
                     <section className="page-content__image">
                         <div className="makeup-item__image-container--rectangle">
                             <img
-                                src={product.image}
-                                alt={product.name}
+                                src={tool.image}
+                                alt={tool.name}
                                 className="makeup-item__image"
                             />
                         </div>
                     </section>
 
                     <section className="page-content__description">
-                        <p>Купить: {product.buy}</p>
+                        <p>{tool.number}</p>
+                        <p>{tool.comment}</p>
                     </section>
                 </article>
             </main>
@@ -90,7 +83,7 @@ export const ProductDetailsPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button--action"
-                    onClick={() => navigate(`/product_gallery/edit/${id}`)}
+                    onClick={() => navigate(`/tools_gallery/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Редактировать</span>
@@ -107,7 +100,7 @@ export const ProductDetailsPage = () => {
             <Modal
                 isOpen={isModalOpen}
                 title="Удалить?"
-                description="Вы действительно хотите удалить этот продукт?"
+                description="Вы действительно хотите удалить этот инструмент?"
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalOpen(false)}
             />

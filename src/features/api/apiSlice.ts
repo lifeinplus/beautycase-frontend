@@ -7,13 +7,6 @@ import {
 import config from '../../config'
 import { type AuthState, logout, setCredentials } from '../auth/authSlice'
 
-export interface Tool {
-    name: string
-    image: string
-    number?: string
-    comment?: string
-}
-
 const baseQuery = fetchBaseQuery({
     baseUrl: config.apiBaseUrl,
     credentials: 'include',
@@ -46,12 +39,6 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
 export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['Product'],
-    endpoints: (builder) => ({
-        getTools: builder.query<Tool[], void>({
-            query: () => '/tools/all',
-        }),
-    }),
+    tagTypes: ['Product', 'Tool'],
+    endpoints: () => ({}),
 })
-
-export const { useGetToolsQuery } = apiSlice

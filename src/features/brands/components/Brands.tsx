@@ -1,4 +1,4 @@
-import { ToolsList } from '../../tools/ToolsList'
+import { ToolsList } from '../../tools'
 import { Brand } from '../brandsApiSlice'
 
 interface BrandsProps {

@@ -28,8 +28,8 @@ export default {
             },
             maxWidth: {
                 login: '350px',
-                product: '470px',
-                'product-xl': '700px',
+                'makeup-item-md': '470px',
+                'makeup-item-xl': '700px',
             },
             padding: {
                 13: '52px',

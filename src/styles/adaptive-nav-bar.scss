@@ -1,0 +1,17 @@
+.adaptive-nav-bar {
+    @apply fixed bottom-0 left-0 z-20 flex w-full border-t border-gray-300 bg-white;
+    @apply dark:border-gray-700 dark:bg-black;
+    @apply sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open;
+
+    &__button--action {
+        @apply flex p-3;
+        @apply hover:text-rose-500 dark:hover:text-rose-400;
+        @apply sm:my-2 sm:p-3 lg:gap-4;
+    }
+
+    &__button--common {
+        @apply flex py-2.5 ps-3;
+        @apply hover:text-rose-500 dark:hover:text-rose-400;
+        @apply sm:my-2 sm:p-3 lg:gap-4;
+    }
+}

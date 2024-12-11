@@ -1,0 +1,11 @@
+.page-gallery__title {
+    @apply hidden sm:mx-auto sm:mb-9 sm:block sm:w-11/12;
+}
+
+.page-gallery__title__text {
+    @apply text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
+}
+
+.page-gallery__container {
+    @apply mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7;
+}

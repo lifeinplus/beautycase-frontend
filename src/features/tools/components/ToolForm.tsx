@@ -3,20 +3,20 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import type { Product } from '../types'
+import type { Tool } from '../types'
 
-interface ProductFormProps {
-    initialData?: Product
-    onSubmit: (product: Product) => void
+interface ToolFormProps {
+    initialData?: Tool
+    onSubmit: (tool: Tool) => void
     title: string
 }
 
-const ProductForm = ({
-    initialData = { name: '', image: '', buy: '' },
+const ToolForm = ({
+    initialData = { name: '', image: '', number: '', comment: '' },
     onSubmit,
     title,
-}: ProductFormProps) => {
-    const [formData, setFormData] = useState<Product>(initialData)
+}: ToolFormProps) => {
+    const [formData, setFormData] = useState<Tool>(initialData)
     const navigate = useNavigate()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,15 +67,28 @@ const ProductForm = ({
                         </label>
 
                         <label className="block">
-                            <span className="form__label">Где купить</span>
+                            <span className="form__label">Номер</span>
                             <input
                                 className="form__input"
-                                name="buy"
+                                name="number"
                                 onChange={handleChange}
-                                placeholder="Где купить"
+                                placeholder="Номер"
                                 required
                                 type="text"
-                                value={formData.buy}
+                                value={formData.number}
+                            />
+                        </label>
+
+                        <label className="block">
+                            <span className="form__label">Комментарий</span>
+                            <input
+                                className="form__input"
+                                name="comment"
+                                onChange={handleChange}
+                                placeholder="Комментарий"
+                                required
+                                type="text"
+                                value={formData.comment}
                             />
                         </label>
                     </form>
@@ -95,4 +108,4 @@ const ProductForm = ({
     )
 }
 
-export default ProductForm
+export default ToolForm

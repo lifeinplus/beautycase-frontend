@@ -20,7 +20,7 @@ export const HomePage = () => {
                     <Link to="/product_gallery" className="home__button">
                         Продукты
                     </Link>
-                    <Link to="/tool_gallery" className="home__button">
+                    <Link to="/tools_gallery" className="home__button">
                         Инструменты
                     </Link>
                 </div>

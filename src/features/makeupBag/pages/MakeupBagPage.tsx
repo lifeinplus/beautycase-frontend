@@ -28,7 +28,7 @@ export const MakeupBagPage = () => {
 
             <AdaptiveNavBar>
                 <button
-                    className="adaptive-nav-bar__button"
+                    className="adaptive-nav-bar__button--action"
                     onClick={() =>
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                     }
@@ -38,7 +38,7 @@ export const MakeupBagPage = () => {
                 </button>
 
                 <button
-                    className="adaptive-nav-bar__button"
+                    className="adaptive-nav-bar__button--action"
                     onClick={() =>
                         document
                             .getElementById('stages')
@@ -50,7 +50,7 @@ export const MakeupBagPage = () => {
                 </button>
 
                 <button
-                    className="adaptive-nav-bar__button"
+                    className="adaptive-nav-bar__button--action"
                     onClick={() =>
                         document
                             .getElementById('brands')

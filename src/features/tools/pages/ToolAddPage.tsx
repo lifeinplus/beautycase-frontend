@@ -10,7 +10,7 @@ export const ToolAddPage = () => {
 
     const handleAddTool = async (tool: Tool) => {
         await createTool(tool).unwrap()
-        navigate('/tools_gallery')
+        navigate('/tools')
     }
 
     return <ToolForm onSubmit={handleAddTool} title={'Добавить инструмент'} />

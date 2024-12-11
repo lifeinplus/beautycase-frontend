@@ -26,7 +26,7 @@ export const ToolEditPage = () => {
             id: id!,
             ...tool,
         }).unwrap()
-        navigate(`/tools_gallery/${id}`)
+        navigate(`/tools/${id}`)
     }
 
     return (

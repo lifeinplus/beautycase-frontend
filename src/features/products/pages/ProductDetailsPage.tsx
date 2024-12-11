@@ -38,7 +38,7 @@ export const ProductDetailsPage = () => {
 
         try {
             await deleteProduct(id).unwrap()
-            navigate('/product_gallery')
+            navigate('/products')
             setIsModalOpen(false)
         } catch (error) {
             if (isDataMessageError(error)) {
@@ -58,10 +58,7 @@ export const ProductDetailsPage = () => {
 
     return (
         <article className="page-container">
-            <TopPanel
-                title="Продукт"
-                onBack={() => navigate('/product_gallery')}
-            />
+            <TopPanel title="Продукт" onBack={() => navigate('/products')} />
 
             <main className="page-content">
                 <article className="page-content__container">
@@ -90,7 +87,7 @@ export const ProductDetailsPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button--action"
-                    onClick={() => navigate(`/product_gallery/edit/${id}`)}
+                    onClick={() => navigate(`/products/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Редактировать</span>

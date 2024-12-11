@@ -11,7 +11,7 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
         <div className="makeup-item__image-container--square">
             <Link
                 className="relative overflow-hidden"
-                to={`/tools_gallery/${tool._id}`}
+                to={`/tools/${tool._id}`}
             >
                 <img
                     src={tool.image}

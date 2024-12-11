@@ -11,7 +11,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div className="makeup-item__image-container--square">
             <Link
                 className="relative overflow-hidden"
-                to={`/product_gallery/${product._id}`}
+                to={`/products/${product._id}`}
             >
                 <img
                     src={product.image}

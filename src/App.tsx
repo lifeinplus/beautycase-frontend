@@ -54,24 +54,20 @@ const App = () => {
                     <Route element={<RequireAuth />}>
                         <Route path="/makeup_bag" element={<MakeupBagPage />} />
 
-                        <Route
-                            path="/product_gallery"
-                            element={<ProductGalleryPage />}
-                        />
-                        <Route
-                            path="/product_gallery/:id"
-                            element={<ProductDetailsPage />}
-                        />
-                        <Route
-                            path="/product_gallery/add"
-                            element={<ProductAddPage />}
-                        />
-                        <Route
-                            path="/product_gallery/edit/:id"
-                            element={<ProductEditPage />}
-                        />
+                        <Route path="/products">
+                            <Route index element={<ProductGalleryPage />} />
+                            <Route
+                                path=":id"
+                                element={<ProductDetailsPage />}
+                            />
+                            <Route path="add" element={<ProductAddPage />} />
+                            <Route
+                                path="edit/:id"
+                                element={<ProductEditPage />}
+                            />
+                        </Route>
 
-                        <Route path="/tools_gallery">
+                        <Route path="/tools">
                             <Route index element={<ToolsGalleryPage />} />
                             <Route path=":id" element={<ToolDetailsPage />} />
                             <Route path="add" element={<ToolAddPage />} />

@@ -35,7 +35,7 @@ export const ToolsGalleryPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button--action"
-                    onClick={() => navigate('/tools_gallery/add')}
+                    onClick={() => navigate('/tools/add')}
                 >
                     <PlusIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Добавить</span>

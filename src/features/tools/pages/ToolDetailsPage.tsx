@@ -30,7 +30,7 @@ export const ToolDetailsPage = () => {
 
         try {
             await deleteTool(id).unwrap()
-            navigate('/tools_gallery')
+            navigate('/tools')
             setIsModalOpen(false)
         } catch (error) {
             if (isDataMessageError(error)) {
@@ -50,10 +50,7 @@ export const ToolDetailsPage = () => {
 
     return (
         <article className="page-container">
-            <TopPanel
-                title="Инструмент"
-                onBack={() => navigate('/tools_gallery')}
-            />
+            <TopPanel title="Инструмент" onBack={() => navigate('/tools')} />
 
             <main className="page-content">
                 <article className="page-content__container">
@@ -83,7 +80,7 @@ export const ToolDetailsPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button--action"
-                    onClick={() => navigate(`/tools_gallery/edit/${id}`)}
+                    onClick={() => navigate(`/tools/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Редактировать</span>

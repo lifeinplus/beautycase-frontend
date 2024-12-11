@@ -29,7 +29,7 @@ export const ProductEditPage = () => {
             id: id!,
             ...product,
         }).unwrap()
-        navigate(`/product_gallery/${id}`)
+        navigate(`/products/${id}`)
     }
 
     return (

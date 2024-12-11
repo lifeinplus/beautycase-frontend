@@ -17,10 +17,10 @@ export const HomePage = () => {
                     <Link to="/makeup_bag" className="home__button">
                         Косметичка
                     </Link>
-                    <Link to="/product_gallery" className="home__button">
+                    <Link to="/products" className="home__button">
                         Продукты
                     </Link>
-                    <Link to="/tools_gallery" className="home__button">
+                    <Link to="/tools" className="home__button">
                         Инструменты
                     </Link>
                 </div>

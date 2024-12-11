@@ -32,7 +32,7 @@ export const ProductGalleryPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="adaptive-nav-bar__button--action"
-                    onClick={() => navigate('/product_gallery/add')}
+                    onClick={() => navigate('/products/add')}
                 >
                     <PlusIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Добавить</span>

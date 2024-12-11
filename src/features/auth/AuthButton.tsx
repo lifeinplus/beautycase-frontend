@@ -29,26 +29,22 @@ const AuthButton = () => {
         navigate('/login')
     }
 
-    return (
-        <div>
-            {username ? (
-                <button
-                    className="my-1 flex p-2 hover:text-rose-500 dark:hover:text-rose-400 sm:p-3 lg:gap-4"
-                    onClick={handleLogout}
-                >
-                    <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Выйти</span>
-                </button>
-            ) : (
-                <button
-                    className="my-1 flex p-2 hover:text-rose-500 dark:hover:text-rose-400 sm:p-3 lg:gap-4"
-                    onClick={handleLogin}
-                >
-                    <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Войти</span>
-                </button>
-            )}
-        </div>
+    return username ? (
+        <button
+            className="adaptive-nav-bar__button-common"
+            onClick={handleLogout}
+        >
+            <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
+            <span className="hidden lg:inline">Выйти</span>
+        </button>
+    ) : (
+        <button
+            className="adaptive-nav-bar__button-common"
+            onClick={handleLogin}
+        >
+            <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
+            <span className="hidden lg:inline">Войти</span>
+        </button>
     )
 }
 

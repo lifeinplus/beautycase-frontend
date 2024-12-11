@@ -1,9 +1,10 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid'
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { BottomPanel, TopPanel } from '../../../components'
+import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
 import { Modal } from '../../modals'
 import {
@@ -11,7 +12,7 @@ import {
     useFetchProductByIdQuery,
 } from '../productApiSlice'
 
-export const ProductPage = () => {
+export const ProductDetailsPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -56,36 +57,52 @@ export const ProductPage = () => {
     if (error) return <div>Error loading product</div>
 
     return (
-        <div className="relative">
+        <article className="page-container">
             <TopPanel
                 title="Продукт"
                 onBack={() => navigate('/product_gallery')}
             />
 
-            <main className="flex-grow pb-16 pt-13">
-                <h1 className="mb-2 px-3 text-sm font-bold">{product.name}</h1>
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    className="mb-4 h-auto w-full"
-                />
-                <p className="px-4 text-sm">Купить: {product.buy}</p>
+            <main className="page-content">
+                <article className="max-w-product mx-auto">
+                    <section className="page-content__title">
+                        <h1 className="page-content__title__text">
+                            {product.name}
+                        </h1>
+                    </section>
+
+                    <section className="product-details__image">
+                        <div className="image-container--rectangle">
+                            <img
+                                src={product.image}
+                                alt={product.name}
+                                className="product-image"
+                            />
+                        </div>
+                    </section>
+
+                    <section className="product-details__description">
+                        <p>Купить: {product.buy}</p>
+                    </section>
+                </article>
             </main>
 
-            <BottomPanel>
+            <AdaptiveNavBar>
                 <button
-                    className="bottom-panel__button"
+                    className="adaptive-nav-bar__button"
                     onClick={() => navigate(`/product_gallery/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
+                    <span className="hidden lg:inline">Редактировать</span>
                 </button>
                 <button
-                    className="bottom-panel__button"
+                    className="adaptive-nav-bar__button"
                     onClick={() => setIsModalOpen(true)}
                 >
                     <TrashIcon className="h-6 w-6" />
+                    <span className="hidden lg:inline">Удалить</span>
                 </button>
-            </BottomPanel>
+            </AdaptiveNavBar>
 
             <Modal
                 isOpen={isModalOpen}
@@ -94,6 +111,6 @@ export const ProductPage = () => {
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalOpen(false)}
             />
-        </div>
+        </article>
     )
 }

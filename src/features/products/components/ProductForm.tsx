@@ -2,7 +2,7 @@ import { CheckIcon } from '@heroicons/react/24/solid'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { BottomPanel, TopPanel } from '../../../components'
+import { AdaptiveNavBar, TopPanel } from '../../../components'
 import type { Product } from '../types'
 
 interface ProductFormProps {
@@ -30,65 +30,70 @@ const ProductForm = ({
     }
 
     return (
-        <div className="relative flex min-h-screen flex-col">
+        <article className="page-container">
             <TopPanel title={title} onBack={() => navigate(-1)} />
 
-            <form
-                onSubmit={handleSubmit}
-                className="flex-grow space-y-4 px-3 pb-16 pt-16"
-            >
-                <label className="block">
-                    <span className="block py-4 font-medium">Название</span>
-                    <input
-                        name="name"
-                        className="form__input"
-                        onChange={handleChange}
-                        placeholder="Название"
-                        required
-                        type="text"
-                        value={formData.name}
-                    />
-                </label>
+            <main className="page-content">
+                <article className="max-w-product xl:max-w-product-xl mx-auto">
+                    <section className="page-content__title hidden sm:block">
+                        <h1 className="page-content__title__text">{title}</h1>
+                    </section>
 
-                <label className="block">
-                    <span className="block py-4 font-medium">
-                        URL изображения
-                    </span>
-                    <input
-                        className="form__input"
-                        name="image"
-                        onChange={handleChange}
-                        placeholder="URL изображения"
-                        required
-                        type="text"
-                        value={formData.image}
-                    />
-                </label>
+                    <form onSubmit={handleSubmit} className="form">
+                        <label className="block">
+                            <span className="form__label">Название</span>
+                            <input
+                                name="name"
+                                className="form__input"
+                                onChange={handleChange}
+                                placeholder="Название"
+                                required
+                                type="text"
+                                value={formData.name}
+                            />
+                        </label>
 
-                <label className="block">
-                    <span className="block py-4 font-medium">Где купить</span>
-                    <input
-                        className="form__input"
-                        name="buy"
-                        onChange={handleChange}
-                        placeholder="Где купить"
-                        required
-                        type="text"
-                        value={formData.buy}
-                    />
-                </label>
-            </form>
+                        <label className="block">
+                            <span className="form__label">URL изображения</span>
+                            <input
+                                className="form__input"
+                                name="image"
+                                onChange={handleChange}
+                                placeholder="URL изображения"
+                                required
+                                type="text"
+                                value={formData.image}
+                            />
+                        </label>
 
-            <BottomPanel>
+                        <label className="block">
+                            <span className="form__label">Где купить</span>
+                            <input
+                                className="form__input"
+                                name="buy"
+                                onChange={handleChange}
+                                placeholder="Где купить"
+                                required
+                                type="text"
+                                value={formData.buy}
+                            />
+                        </label>
+                    </form>
+                </article>
+            </main>
+
+            <AdaptiveNavBar>
                 <button
-                    type="submit"
+                    className="adaptive-nav-bar__button"
                     onClick={handleSubmit}
-                    className="bottom-panel__button"
                 >
-                    <CheckIcon className="h-6 w-6" />
+                    <CheckIcon className="adaptive-nav-bar__button__icon" />
+                    <span className="adaptive-nav-bar__button__text">
+                        Сохранить
+                    </span>
                 </button>
-            </BottomPanel>
-        </div>
+            </AdaptiveNavBar>
+        </article>
     )
 }
 

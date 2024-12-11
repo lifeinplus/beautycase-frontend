@@ -14,20 +14,23 @@ export function ThemeToggler() {
         localStorage.setItem('darkMode', String(newTheme))
     }
 
-    return (
+    return darkMode ? (
         <button
-            className="flex items-center gap-2 rounded-md hover:text-rose-500 dark:hover:text-rose-400 sm:my-1 sm:p-3 lg:gap-4"
-            onClick={handleThemeToggle}
             aria-label="Toggle Theme"
+            className="adaptive-nav-bar__button-common"
+            onClick={handleThemeToggle}
         >
-            {darkMode ? (
-                <MoonIcon className="h-6 w-6" />
-            ) : (
-                <SunIcon className="h-6 w-6" />
-            )}
-            <span className="hidden lg:inline">
-                {darkMode ? 'Тёмный режим' : 'Светлый режим'}
-            </span>
+            <MoonIcon className="h-6 w-6" />
+            <span className="hidden lg:inline">Тёмный режим</span>
+        </button>
+    ) : (
+        <button
+            aria-label="Toggle Theme"
+            className="adaptive-nav-bar__button-common"
+            onClick={handleThemeToggle}
+        >
+            <SunIcon className="h-6 w-6" />
+            <span className="hidden lg:inline">Светлый режим</span>
         </button>
     )
 }

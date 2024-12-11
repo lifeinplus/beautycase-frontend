@@ -4,7 +4,7 @@ import ProductForm from '../components/ProductForm'
 import { useCreateProductMutation } from '../productApiSlice'
 import { Product } from '../types'
 
-export const AddProductPage = () => {
+export const ProductAddPage = () => {
     const navigate = useNavigate()
     const [createProduct] = useCreateProductMutation()
 

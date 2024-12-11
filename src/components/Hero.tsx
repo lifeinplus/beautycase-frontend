@@ -4,7 +4,7 @@ export const Hero = () => (
             <h2 className="mx-auto text-center font-heading text-3xl font-bold md:text-4xl lg:text-5xl">
                 Косметичка
             </h2>
-            <h3 className="mx-auto mt-3 text-center font-heading text-xl text-slate-700 dark:text-slate-400 sm:text-2xl">
+            <h3 className="text-heading mx-auto mt-3 text-center font-heading text-xl sm:text-2xl">
                 Индивидуальный подбор продуктов
             </h3>
         </article>

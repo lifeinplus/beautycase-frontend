@@ -26,21 +26,13 @@ export const Modal = ({
     if (!isOpen) return null
 
     return (
-        <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-            onClick={handleClickOutside}
-        >
-            <div
-                className="w-58 flex flex-col rounded-xl bg-neutral-800 shadow-lg"
-                ref={modalRef}
-            >
-                <div className="mx-8 mb-4 mt-8 text-center">
-                    <h2 className="text-xl leading-none">{title}</h2>
-                    <p className="leading-4.5 pt-2.5 text-sm text-neutral-400">
-                        {description}
-                    </p>
+        <div className="modal" onClick={handleClickOutside}>
+            <div className="modal__container" ref={modalRef}>
+                <div className="modal__content">
+                    <h2 className="modal__content__title">{title}</h2>
+                    <p className="modal__content__text">{description}</p>
                 </div>
-                <div className="mt-3 w-full">
+                <div className="modal__button-group">
                     <button
                         onClick={onConfirm}
                         className="modal__button--danger"

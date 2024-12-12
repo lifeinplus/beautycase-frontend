@@ -1,8 +1,4 @@
-import {
-    PaintBrushIcon,
-    ShoppingBagIcon,
-    ListBulletIcon,
-} from '@heroicons/react/24/outline'
+import { PaintBrushIcon, ListBulletIcon } from '@heroicons/react/24/outline'
 
 import { AdaptiveNavBar, Footer, Header, Hero } from '../../../components'
 import { Brands } from '../../brands'

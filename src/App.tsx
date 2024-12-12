@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
+import { ScrollToTop } from './components'
 import {
     LoginPage,
     PersistLogin,
@@ -45,6 +46,7 @@ const App = () => {
                     },
                 }}
             />
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />

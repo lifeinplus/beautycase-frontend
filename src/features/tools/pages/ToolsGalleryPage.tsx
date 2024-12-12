@@ -34,7 +34,7 @@ export const ToolsGalleryPage = () => {
 
             <AdaptiveNavBar>
                 <button
-                    className="adaptive-nav-bar__button--action"
+                    className="nav-btn"
                     onClick={() => navigate('/tools/add')}
                 >
                     <PlusIcon className="h-6 w-6" />

@@ -1,4 +1,4 @@
-import { CheckIcon } from '@heroicons/react/24/solid'
+import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,7 +34,7 @@ const ToolForm = ({
             <TopPanel title={title} onBack={() => navigate(-1)} />
 
             <main className="page-content">
-                <article className="max-w-makeup-item-md xl:max-w-makeup-item-xl mx-auto">
+                <article className="mx-auto max-w-makeup-item-md xl:max-w-makeup-item-xl">
                     <section className="page-content__title hidden sm:block">
                         <h1 className="page-content__title__text">{title}</h1>
                     </section>
@@ -97,9 +97,13 @@ const ToolForm = ({
 
             <AdaptiveNavBar>
                 <button
-                    className="adaptive-nav-bar__button--action"
-                    onClick={handleSubmit}
+                    className="nav-btn nav-btn-back"
+                    onClick={() => navigate(-1)}
                 >
+                    <ArrowLeftIcon className="h-6 w-6" />
+                    <span className="hidden lg:inline">Назад</span>
+                </button>
+                <button className="nav-btn" onClick={handleSubmit}>
                     <CheckIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Сохранить</span>
                 </button>

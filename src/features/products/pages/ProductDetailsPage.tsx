@@ -86,14 +86,14 @@ export const ProductDetailsPage = () => {
 
             <AdaptiveNavBar>
                 <button
-                    className="adaptive-nav-bar__button--action"
+                    className="nav-btn"
                     onClick={() => navigate(`/products/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Редактировать</span>
                 </button>
                 <button
-                    className="adaptive-nav-bar__button--action"
+                    className="nav-btn"
                     onClick={() => setIsModalOpen(true)}
                 >
                     <TrashIcon className="h-6 w-6" />

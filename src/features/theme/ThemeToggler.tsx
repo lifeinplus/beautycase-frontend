@@ -17,7 +17,7 @@ export function ThemeToggler() {
     return darkMode ? (
         <button
             aria-label="Toggle Theme"
-            className="adaptive-nav-bar__button--common"
+            className="nav-btn nav-btn-common"
             onClick={handleThemeToggle}
         >
             <MoonIcon className="h-6 w-6" />
@@ -26,7 +26,7 @@ export function ThemeToggler() {
     ) : (
         <button
             aria-label="Toggle Theme"
-            className="adaptive-nav-bar__button--common"
+            className="nav-btn nav-btn-common"
             onClick={handleThemeToggle}
         >
             <SunIcon className="h-6 w-6" />

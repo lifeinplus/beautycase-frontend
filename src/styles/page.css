@@ -1,0 +1,27 @@
+.page-container {
+    @apply pb-12 pt-11 sm:py-6;
+}
+
+.page-content {
+    @apply sm:ms-navbar-left lg:ms-navbar-left-open;
+}
+
+.page-content__container {
+    @apply max-w-makeup-item-md mx-auto;
+}
+
+.page-content__title {
+    @apply my-2 border-b-0.5 border-neutral-200 px-3 dark:border-neutral-800 sm:mx-auto sm:mb-9 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0;
+}
+
+.page-content__title__text {
+    @apply text-sm font-bold sm:text-center sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+.page-content__image {
+    @apply mb-3;
+}
+
+.page-content__description {
+    @apply px-4 text-sm;
+}

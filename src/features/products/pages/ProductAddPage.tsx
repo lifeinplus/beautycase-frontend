@@ -10,7 +10,7 @@ export const ProductAddPage = () => {
 
     const handleAddProduct = async (product: Product) => {
         await createProduct(product).unwrap()
-        navigate('/product_gallery')
+        navigate('/products')
     }
 
     return (

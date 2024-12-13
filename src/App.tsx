@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
+import { ScrollToTop } from './components'
 import {
     LoginPage,
     PersistLogin,
@@ -18,6 +19,12 @@ import {
     ProductDetailsPage,
 } from './features/products'
 import { selectDarkMode } from './features/theme'
+import {
+    ToolAddPage,
+    ToolDetailsPage,
+    ToolEditPage,
+    ToolsGalleryPage,
+} from './features/tools'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -39,6 +46,7 @@ const App = () => {
                     },
                 }}
             />
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
@@ -47,22 +55,26 @@ const App = () => {
                 <Route element={<PersistLogin />}>
                     <Route element={<RequireAuth />}>
                         <Route path="/makeup_bag" element={<MakeupBagPage />} />
-                        <Route
-                            path="/product_gallery"
-                            element={<ProductGalleryPage />}
-                        />
-                        <Route
-                            path="/product_gallery/:id"
-                            element={<ProductDetailsPage />}
-                        />
-                        <Route
-                            path="/product_gallery/add"
-                            element={<ProductAddPage />}
-                        />
-                        <Route
-                            path="/product_gallery/edit/:id"
-                            element={<ProductEditPage />}
-                        />
+
+                        <Route path="/products">
+                            <Route index element={<ProductGalleryPage />} />
+                            <Route
+                                path=":id"
+                                element={<ProductDetailsPage />}
+                            />
+                            <Route path="add" element={<ProductAddPage />} />
+                            <Route
+                                path="edit/:id"
+                                element={<ProductEditPage />}
+                            />
+                        </Route>
+
+                        <Route path="/tools">
+                            <Route index element={<ToolsGalleryPage />} />
+                            <Route path=":id" element={<ToolDetailsPage />} />
+                            <Route path="add" element={<ToolAddPage />} />
+                            <Route path="edit/:id" element={<ToolEditPage />} />
+                        </Route>
                     </Route>
                 </Route>
             </Routes>

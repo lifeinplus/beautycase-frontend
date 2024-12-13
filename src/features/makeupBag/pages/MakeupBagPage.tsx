@@ -1,8 +1,4 @@
-import {
-    PaintBrushIcon,
-    ShoppingBagIcon,
-    ListBulletIcon,
-} from '@heroicons/react/24/outline'
+import { PaintBrushIcon, ListBulletIcon } from '@heroicons/react/24/outline'
 
 import { AdaptiveNavBar, Footer, Header, Hero } from '../../../components'
 import { Brands } from '../../brands'
@@ -28,17 +24,7 @@ export const MakeupBagPage = () => {
 
             <AdaptiveNavBar>
                 <button
-                    className="adaptive-nav-bar__button"
-                    onClick={() =>
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                    }
-                >
-                    <ShoppingBagIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Косметичка</span>
-                </button>
-
-                <button
-                    className="adaptive-nav-bar__button"
+                    className="nav-btn"
                     onClick={() =>
                         document
                             .getElementById('stages')
@@ -50,7 +36,7 @@ export const MakeupBagPage = () => {
                 </button>
 
                 <button
-                    className="adaptive-nav-bar__button"
+                    className="nav-btn"
                     onClick={() =>
                         document
                             .getElementById('brands')

@@ -1,0 +1,11 @@
+.panel-top {
+    @apply fixed left-0 top-0 z-10 flex w-full items-center justify-between border-b border-neutral-300 bg-white px-4 py-2.5 dark:border-neutral-700 dark:bg-black sm:hidden;
+}
+
+.panel-top__button {
+    @apply me-2 flex items-center hover:text-gray-300;
+}
+
+.panel-top__title {
+    @apply flex-grow text-center font-semibold;
+}

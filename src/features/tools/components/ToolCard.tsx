@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom'
 
-import { Product } from '../types'
+import { Tool } from '../types'
 
-interface ProductCardProps {
-    product: Product
+interface ToolCardProps {
+    tool: Tool
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ToolCard = ({ tool }: ToolCardProps) => {
     return (
         <div className="makeup-item__image-container--square">
             <Link
                 className="relative overflow-hidden"
-                to={`/products/${product._id}`}
+                to={`/tools/${tool._id}`}
             >
                 <img
-                    src={product.image}
-                    alt={product.name}
+                    src={tool.image}
+                    alt={tool.name}
                     className="makeup-item__image sm:rounded"
                 />
             </Link>

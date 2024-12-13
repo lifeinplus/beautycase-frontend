@@ -1,4 +1,5 @@
-import { apiSlice, type Tool } from '../api'
+import { apiSlice } from '../api'
+import type { Tool } from '../tools'
 
 export interface Brand {
     name: string

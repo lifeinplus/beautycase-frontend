@@ -1,16 +1,16 @@
 import { DynamicForm, type FieldConfig } from '../../../components'
-import type { Product } from '../types'
+import type { Tool } from '../types'
 
-const ProductForm = ({
-    initialData = { name: '', image: '', buy: '' },
+const ToolForm = ({
+    initialData = { name: '', image: '', number: '', comment: '' },
     onSubmit,
     title,
 }: {
-    initialData?: Product
-    onSubmit: (data: Product) => void
+    initialData?: Tool
+    onSubmit: (data: Tool) => void
     title: string
 }) => {
-    const fields: FieldConfig<Product>[] = [
+    const fields: FieldConfig<Tool>[] = [
         {
             name: 'name',
             label: 'Название',
@@ -22,9 +22,12 @@ const ProductForm = ({
             required: true,
         },
         {
-            name: 'buy',
-            label: 'Где купить',
-            required: true,
+            name: 'number',
+            label: 'Номер',
+        },
+        {
+            name: 'comment',
+            label: 'Комментарий',
         },
     ]
 
@@ -38,4 +41,4 @@ const ProductForm = ({
     )
 }
 
-export default ProductForm
+export default ToolForm

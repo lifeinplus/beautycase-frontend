@@ -38,13 +38,15 @@ export const DynamicForm = <T extends Record<string, any>>({
     }
 
     return (
-        <article className="page-container">
+        <article className="page">
             <TopPanel title={title} onBack={() => navigate(-1)} />
 
             <main className="page-content">
                 <article className="mx-auto max-w-makeup-item-md xl:max-w-makeup-item-xl">
                     <section className="page-content__title hidden sm:block">
-                        <h1 className="page-content__title__text">{title}</h1>
+                        <h1 className="page-content__title__headline">
+                            {title}
+                        </h1>
                     </section>
 
                     <form onSubmit={handleSubmit} className="form">

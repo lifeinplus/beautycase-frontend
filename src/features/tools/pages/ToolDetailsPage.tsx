@@ -49,13 +49,13 @@ export const ToolDetailsPage = () => {
     if (error) return <div>Error loading tool</div>
 
     return (
-        <article className="page-container">
+        <article className="page">
             <TopPanel title="Инструмент" onBack={() => navigate('/tools')} />
 
             <main className="page-content">
                 <article className="page-content__container">
                     <section className="page-content__title">
-                        <h1 className="page-content__title__text">
+                        <h1 className="page-content__title__headline">
                             {tool.name}
                         </h1>
                     </section>

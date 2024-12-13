@@ -9,3 +9,11 @@
 .page-gallery__container {
     @apply mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7;
 }
+
+.page-gallery__title__text--video {
+    @apply text-center font-heading text-sm font-bold md:text-3xl lg:text-4xl;
+}
+
+.page-gallery__container--video {
+    @apply mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 md:grid-cols-2;
+}

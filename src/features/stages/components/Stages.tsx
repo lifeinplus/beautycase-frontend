@@ -17,13 +17,9 @@ export const Stages = ({ stages }: StagesProps) => {
                     key={index}
                     className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded"
                 >
-                    <h3 className="text-center font-heading text-xl font-bold sm:text-2xl">
-                        {stage.title}
-                    </h3>
+                    <h3 className="stage-headline">{stage.title}</h3>
 
-                    <h4 className="text-heading mb-6 mt-2 text-center font-heading text-lg">
-                        {stage.subtitle}
-                    </h4>
+                    <h4 className="stage-byline">{stage.subtitle}</h4>
 
                     <img
                         src={stage.image}

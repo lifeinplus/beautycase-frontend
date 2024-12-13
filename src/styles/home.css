@@ -11,7 +11,8 @@
 }
 
 .home__motto {
-    @apply text-heading mb-8 font-heading text-base sm:text-xl lg:text-2xl;
+    @apply mb-8 font-heading text-base sm:text-xl lg:text-2xl;
+    @apply text-slate-700 dark:text-slate-400;
 }
 
 .home__button {

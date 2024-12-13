@@ -1,5 +1,4 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -8,27 +7,23 @@ import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
 import { Modal } from '../../modals'
 import {
-    useDeleteProductMutation,
-    useFetchProductByIdQuery,
-} from '../productApiSlice'
+    useDeleteLessonMutation,
+    useGetLessonByIdQuery,
+} from '../lessonsApiSlice'
 
-export const ProductDetailsPage = () => {
+export const LessonDetailsPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const {
-        data: product,
-        isLoading,
-        error,
-    } = useFetchProductByIdQuery(id || '')
+    const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id || '')
 
-    const [deleteProduct] = useDeleteProductMutation()
+    const [deleteLesson] = useDeleteLessonMutation()
 
-    if (!product) {
+    if (!lesson) {
         return (
             <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Product not found</p>
+                <p className="text-gray-500">Lesson not found</p>
             </div>
         )
     }
@@ -37,8 +32,8 @@ export const ProductDetailsPage = () => {
         if (!id) return
 
         try {
-            await deleteProduct(id).unwrap()
-            navigate('/products')
+            await deleteLesson(id).unwrap()
+            navigate('/lessons')
             setIsModalOpen(false)
         } catch (error) {
             if (isDataMessageError(error)) {
@@ -54,40 +49,50 @@ export const ProductDetailsPage = () => {
     }
 
     if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading product</div>
+    if (error) return <div>Error loading lesson</div>
+
+    const getYouTubeEmbedUrl = (videoUrl: string) => {
+        const videoId = new URL(videoUrl).searchParams.get('v')
+        return `https://www.youtube.com/embed/${videoId}`
+    }
 
     return (
         <article className="page">
-            <TopPanel title="Продукт" onBack={() => navigate('/products')} />
+            <TopPanel title="Урок" onBack={() => navigate('/lessons')} />
 
             <main className="page-content">
                 <article className="page-content__container">
                     <section className="page-content__title">
                         <h1 className="page-content__title__headline">
-                            {product.name}
+                            {lesson.title}
                         </h1>
+                        <p className="page-content__title__byline">
+                            {lesson.shortDescription}
+                        </p>
                     </section>
 
-                    <section className="page-content__image">
-                        <div className="makeup-item__image-container--rectangle">
-                            <img
-                                src={product.image}
-                                alt={product.name}
-                                className="makeup-item__image"
-                            />
-                        </div>
-                    </section>
+                    <div className="lesson-video-container mb-6">
+                        <iframe
+                            width="100%"
+                            height="315"
+                            src={getYouTubeEmbedUrl(lesson.videoUrl)}
+                            title={lesson.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
 
-                    <section className="page-content__description">
-                        <p>Купить: {product.buy}</p>
-                    </section>
+                    <div className="page-content__description">
+                        <p className="text-sm">{lesson.fullDescription}</p>
+                    </div>
                 </article>
             </main>
 
             <AdaptiveNavBar>
                 <button
                     className="nav-btn"
-                    onClick={() => navigate(`/products/edit/${id}`)}
+                    onClick={() => navigate(`/lessons/edit/${id}`)}
                 >
                     <PencilSquareIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Редактировать</span>
@@ -104,7 +109,7 @@ export const ProductDetailsPage = () => {
             <Modal
                 isOpen={isModalOpen}
                 title="Удалить?"
-                description="Вы действительно хотите удалить этот продукт?"
+                description="Вы действительно хотите удалить этот инструмент?"
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalOpen(false)}
             />

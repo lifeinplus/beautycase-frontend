@@ -11,6 +11,12 @@ import {
     RequireAuth,
 } from './features/auth'
 import { HomePage } from './features/home'
+import {
+    LessonAddPage,
+    LessonDetailsPage,
+    LessonEditPage,
+    LessonsGalleryPage,
+} from './features/lessons'
 import { MakeupBagPage } from './features/makeupBag'
 import {
     ProductAddPage,
@@ -54,6 +60,16 @@ const App = () => {
 
                 <Route element={<PersistLogin />}>
                     <Route element={<RequireAuth />}>
+                        <Route path="/lessons">
+                            <Route index element={<LessonsGalleryPage />} />
+                            <Route path=":id" element={<LessonDetailsPage />} />
+                            <Route path="add" element={<LessonAddPage />} />
+                            <Route
+                                path="edit/:id"
+                                element={<LessonEditPage />}
+                            />
+                        </Route>
+
                         <Route path="/makeup_bag" element={<MakeupBagPage />} />
 
                         <Route path="/products">

@@ -2,17 +2,17 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { ToolCard } from '../components/ToolCard'
-import { useGetToolsQuery } from '../toolsApiSlice'
+import { LessonCard } from '../components/LessonCard'
+import { useGetLessonsQuery } from '../lessonsApiSlice'
 
-export const ToolsGalleryPage = () => {
+export const LessonsGalleryPage = () => {
     const navigate = useNavigate()
-    const { data: tools, isLoading, error } = useGetToolsQuery()
+    const { data: lessons, isLoading, error } = useGetLessonsQuery()
 
     if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading tools</div>
+    if (error) return <div>Error loading lessons</div>
 
-    const title = 'Инструменты'
+    const title = 'Уроки'
 
     return (
         <article className="page">
@@ -22,9 +22,9 @@ export const ToolsGalleryPage = () => {
                 <section className="page-gallery__title">
                     <h1 className="page-gallery__title__text">{title}</h1>
                 </section>
-                <section className="page-gallery__container">
-                    {tools?.map((tool) => (
-                        <ToolCard key={tool._id} tool={tool} />
+                <section className="page-gallery__container--video">
+                    {lessons?.map((lesson) => (
+                        <LessonCard key={lesson._id} lesson={lesson} />
                     ))}
                 </section>
             </main>
@@ -32,7 +32,7 @@ export const ToolsGalleryPage = () => {
             <AdaptiveNavBar>
                 <button
                     className="nav-btn"
-                    onClick={() => navigate('/tools/add')}
+                    onClick={() => navigate('/lessons/add')}
                 >
                     <PlusIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Добавить</span>

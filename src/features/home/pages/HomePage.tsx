@@ -23,6 +23,9 @@ export const HomePage = () => {
                     <Link to="/tools" className="home__button">
                         Инструменты
                     </Link>
+                    <Link to="/lessons" className="home__button">
+                        Уроки
+                    </Link>
                 </div>
 
                 <div className="mt-10 sm:mb-5">

@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar } from './AdaptiveNavBar'
 import { TopPanel } from './TopPanel'
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 export interface FieldConfig<T> {
     name: keyof T
     label: string
+    text?: string
+    type: 'text' | 'button'
     required?: boolean
+    onClick?: () => void
 }
 
 interface DynamicFormProps<T> {
@@ -50,22 +54,50 @@ export const DynamicForm = <T extends Record<string, any>>({
                     </section>
 
                     <form onSubmit={handleSubmit} className="form">
-                        {fields.map((field) => (
-                            <label key={field.name as string} className="block">
-                                <span className="form__label">
-                                    {field.label}
-                                </span>
-                                <input
-                                    name={field.name as string}
-                                    className="form__input"
-                                    placeholder={field.label}
-                                    type="text"
-                                    required={field.required}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        ))}
+                        {fields.map((field, index) => {
+                            if (field.type === 'button') {
+                                return (
+                                    <div key={field.name as string}>
+                                        <label
+                                            key={field.name as string}
+                                            className="block"
+                                        >
+                                            <span className="form__label">
+                                                {field.label}
+                                            </span>
+                                        </label>
+                                        <button
+                                            key={index}
+                                            type="button"
+                                            onClick={field.onClick}
+                                            className="form__button--select"
+                                        >
+                                            <span>{field.text}</span>
+                                            <ChevronRightIcon className="h-6 w-6" />
+                                        </button>
+                                    </div>
+                                )
+                            }
+                            return (
+                                <label
+                                    key={field.name as string}
+                                    className="block"
+                                >
+                                    <span className="form__label">
+                                        {field.label}
+                                    </span>
+                                    <input
+                                        name={field.name as string}
+                                        className="form__input"
+                                        placeholder={field.label}
+                                        type={field.type}
+                                        required={field.required}
+                                        value={formData[field.name] || ''}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            )
+                        })}
                     </form>
                 </article>
             </main>

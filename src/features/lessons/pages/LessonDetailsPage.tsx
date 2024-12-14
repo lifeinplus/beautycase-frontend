@@ -1,11 +1,13 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
 import { Modal } from '../../modals'
+import { clearSelectedProductIds, setSelectedProductIds } from '../../products'
 import {
     useDeleteLessonMutation,
     useGetLessonByIdQuery,
@@ -16,7 +18,18 @@ export const LessonDetailsPage = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const dispatch = useAppDispatch()
     const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id || '')
+
+    useEffect(() => {
+        if (lesson?.productIds?.length) {
+            dispatch(
+                setSelectedProductIds(lesson?.productIds?.map((p) => p._id!))
+            )
+        } else {
+            dispatch(clearSelectedProductIds())
+        }
+    }, [lesson])
 
     const [deleteLesson] = useDeleteLessonMutation()
 
@@ -85,6 +98,21 @@ export const LessonDetailsPage = () => {
 
                     <div className="page-content__description">
                         <p className="text-sm">{lesson.fullDescription}</p>
+                    </div>
+
+                    <div className="page-gallery__container">
+                        {lesson.productIds?.map((product) => (
+                            <div
+                                key={product._id}
+                                className="makeup-item__image-container--square relative overflow-hidden"
+                            >
+                                <img
+                                    src={product.image}
+                                    alt={product.name}
+                                    className="makeup-item__image sm:rounded"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </article>
             </main>

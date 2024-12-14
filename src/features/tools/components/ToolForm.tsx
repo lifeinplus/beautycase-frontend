@@ -14,20 +14,24 @@ const ToolForm = ({
         {
             name: 'name',
             label: 'Название',
+            type: 'text',
             required: true,
         },
         {
             name: 'image',
             label: 'URL изображения',
+            type: 'text',
             required: true,
         },
         {
             name: 'number',
             label: 'Номер',
+            type: 'text',
         },
         {
             name: 'comment',
             label: 'Комментарий',
+            type: 'text',
         },
     ]
 

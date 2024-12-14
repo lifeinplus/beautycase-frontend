@@ -7,5 +7,11 @@
 }
 
 .form__input {
-    @apply block w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 placeholder-neutral-500 focus:border-1.5 focus:border-black focus:outline-none dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white;
+    @apply block w-full rounded-xl border px-4 py-2.5 focus:border-1.5 focus:outline-none;
+    @apply border-neutral-200 bg-white placeholder-neutral-500 focus:border-black dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white;
+}
+
+.form__button--select {
+    @apply flex w-full items-center justify-between rounded-xl border px-4 py-2.5 focus:border-1.5 focus:outline-none;
+    @apply border-neutral-200 bg-white text-neutral-600 hover:bg-gray-600 focus:border-black dark:border-neutral-700 dark:bg-black dark:focus:border-white;
 }

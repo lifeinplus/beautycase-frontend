@@ -35,6 +35,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                 shortDescription,
                 title,
                 videoUrl,
+                selectedProductIds,
             }) => ({
                 url: `/lessons/${id}`,
                 method: 'PUT',
@@ -43,6 +44,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                     shortDescription,
                     title,
                     videoUrl,
+                    selectedProductIds,
                 },
             }),
             invalidatesTags: (_result, _error, lesson) => [

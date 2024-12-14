@@ -14,16 +14,19 @@ const ProductForm = ({
         {
             name: 'name',
             label: 'Название',
+            type: 'text',
             required: true,
         },
         {
             name: 'image',
             label: 'URL изображения',
+            type: 'text',
             required: true,
         },
         {
             name: 'buy',
             label: 'Где купить',
+            type: 'text',
             required: true,
         },
     ]

@@ -23,6 +23,7 @@ import {
     ProductEditPage,
     ProductGalleryPage,
     ProductDetailsPage,
+    ProductSelectionPage,
 } from './features/products'
 import { selectDarkMode } from './features/theme'
 import {
@@ -67,6 +68,10 @@ const App = () => {
                             <Route
                                 path="edit/:id"
                                 element={<LessonEditPage />}
+                            />
+                            <Route
+                                path="/lessons/edit/:lessonId/products"
+                                element={<ProductSelectionPage />}
                             />
                         </Route>
 

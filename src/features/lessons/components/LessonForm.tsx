@@ -5,7 +5,6 @@ const LessonForm = ({
     initialData = {
         title: '',
         shortDescription: '',
-        thumbnailUrl: '',
         videoUrl: '',
         fullDescription: '',
     },
@@ -26,10 +25,6 @@ const LessonForm = ({
             name: 'shortDescription',
             label: 'Краткое описание',
             required: true,
-        },
-        {
-            name: 'thumbnailUrl',
-            label: 'URL миниатюры',
         },
         {
             name: 'videoUrl',

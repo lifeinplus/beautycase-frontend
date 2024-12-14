@@ -34,7 +34,6 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                 fullDescription,
                 shortDescription,
                 title,
-                thumbnailUrl,
                 videoUrl,
             }) => ({
                 url: `/lessons/${id}`,
@@ -43,7 +42,6 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                     fullDescription,
                     shortDescription,
                     title,
-                    thumbnailUrl,
                     videoUrl,
                 },
             }),

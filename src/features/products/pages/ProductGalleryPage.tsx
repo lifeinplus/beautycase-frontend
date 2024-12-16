@@ -12,15 +12,15 @@ export const ProductGalleryPage = () => {
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error loading products</div>
 
+    const title = 'Продукты'
+
     return (
-        <article className="page-container">
-            <TopPanel title="Галерея продуктов" onBack={() => navigate('/')} />
+        <article className="page">
+            <TopPanel title={title} onBack={() => navigate('/')} />
 
             <main className="page-content">
                 <section className="page-gallery__title">
-                    <h1 className="page-gallery__title__text">
-                        Галерея продуктов
-                    </h1>
+                    <h1 className="page-gallery__title__text">{title}</h1>
                 </section>
                 <section className="page-gallery__container">
                     {products?.map((product) => (

@@ -1,16 +1,16 @@
 @import './adaptive-nav-bar.css';
 @import './form.css';
 @import './home.css';
+@import './hero.css';
+@import './lesson';
+@import './lesson-card';
 @import './makeup-item.css';
 @import './modal.css';
 @import './page-gallery.css';
 @import './page.css';
 @import './panel-top.css';
+@import './stage.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.text-heading {
-    @apply text-slate-700 dark:text-slate-400;
-}

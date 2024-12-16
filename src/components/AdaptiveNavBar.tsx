@@ -1,4 +1,5 @@
 import {
+    FilmIcon,
     PaintBrushIcon,
     RectangleGroupIcon,
     ShoppingBagIcon,
@@ -34,6 +35,11 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
             path: '/tools',
             label: 'Инструменты',
             icon: <PaintBrushIcon className="h-6 w-6" />,
+        },
+        {
+            path: '/lessons',
+            label: 'Уроки',
+            icon: <FilmIcon className="h-6 w-6" />,
         },
     ]
 

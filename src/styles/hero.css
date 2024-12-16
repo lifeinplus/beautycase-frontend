@@ -1,0 +1,8 @@
+.hero-headline {
+    @apply mx-auto text-center font-heading text-3xl font-bold md:text-4xl lg:text-5xl;
+}
+
+.hero-byline {
+    @apply mx-auto mt-3 text-center font-heading text-xl sm:text-2xl;
+    @apply text-slate-700 dark:text-slate-400;
+}

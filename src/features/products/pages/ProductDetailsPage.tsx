@@ -57,13 +57,13 @@ export const ProductDetailsPage = () => {
     if (error) return <div>Error loading product</div>
 
     return (
-        <article className="page-container">
+        <article className="page">
             <TopPanel title="Продукт" onBack={() => navigate('/products')} />
 
             <main className="page-content">
                 <article className="page-content__container">
                     <section className="page-content__title">
-                        <h1 className="page-content__title__text">
+                        <h1 className="page-content__title__headline">
                             {product.name}
                         </h1>
                     </section>

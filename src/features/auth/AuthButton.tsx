@@ -2,11 +2,13 @@ import {
     ArrowLeftStartOnRectangleIcon,
     ArrowRightEndOnRectangleIcon,
 } from '@heroicons/react/24/outline'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
-import { logout, selectUsername } from './authSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { useLogoutUserMutation } from '.'
+import { getErrorMessage } from '../../utils'
+import { useLogoutUserMutation } from './authApiSlice'
+import { logout, selectUsername } from './authSlice'
 
 const AuthButton = () => {
     const navigate = useNavigate()
@@ -22,6 +24,7 @@ const AuthButton = () => {
             navigate('/login')
         } catch (error) {
             console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
 

@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../app/hooks'
-import { isDataMessageError, isFetchBaseQueryError } from '../../utils'
+import { getErrorMessage } from '../../utils'
 import { useLoginUserMutation } from './authApiSlice'
 import { setCredentials } from './authSlice'
 
@@ -32,16 +32,8 @@ export const LoginPage = () => {
             dispatch(setCredentials(response))
             navigate(from, { replace: true })
         } catch (error) {
-            if (isDataMessageError(error)) {
-                const { details, message } = error.data
-                toast.error(details ? details?.join(', ') : message)
-            } else if (isFetchBaseQueryError(error)) {
-                const errMsg =
-                    'error' in error ? error.error : JSON.stringify(error.data)
-                toast.error(errMsg)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
 

@@ -10,7 +10,7 @@ interface DataMessageError {
     status: number
 }
 
-export function isDataMessageError(error: unknown): error is DataMessageError {
+function isDataMessageError(error: unknown): error is DataMessageError {
     return (
         typeof error === 'object' &&
         error !== null &&
@@ -19,9 +19,7 @@ export function isDataMessageError(error: unknown): error is DataMessageError {
     )
 }
 
-export function isFetchBaseQueryError(
-    error: unknown
-): error is FetchBaseQueryError {
+function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
     return typeof error === 'object' && error !== null && 'status' in error
 }
 

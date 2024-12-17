@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
+import { getErrorMessage } from '../../../utils'
 import { Modal } from '../../modals'
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
 
@@ -33,15 +33,8 @@ export const ToolDetailsPage = () => {
             navigate('/tools')
             setIsModalOpen(false)
         } catch (error) {
-            if (isDataMessageError(error)) {
-                toast.error(error.data.message)
-            } else if (isFetchBaseQueryError(error)) {
-                const errMsg =
-                    'error' in error ? error.error : JSON.stringify(error.data)
-                toast.error(errMsg)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
 

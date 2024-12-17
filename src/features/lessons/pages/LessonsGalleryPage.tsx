@@ -2,15 +2,13 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { getErrorMessage } from '../../../utils'
 import { LessonCard } from '../components/LessonCard'
 import { useGetLessonsQuery } from '../lessonsApiSlice'
 
 export const LessonsGalleryPage = () => {
     const navigate = useNavigate()
     const { data: lessons, isLoading, error } = useGetLessonsQuery()
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading lessons</div>
 
     const title = 'Уроки'
 
@@ -22,11 +20,17 @@ export const LessonsGalleryPage = () => {
                 <section className="page-gallery__title">
                     <h1 className="page-gallery__title__text">{title}</h1>
                 </section>
-                <section className="page-gallery__container--video">
-                    {lessons?.map((lesson) => (
-                        <LessonCard key={lesson._id} lesson={lesson} />
-                    ))}
-                </section>
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : error ? (
+                    <div>{getErrorMessage(error)}</div>
+                ) : (
+                    <section className="page-gallery__container--video">
+                        {lessons?.map((lesson) => (
+                            <LessonCard key={lesson._id} lesson={lesson} />
+                        ))}
+                    </section>
+                )}
             </main>
 
             <AdaptiveNavBar>

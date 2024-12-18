@@ -6,7 +6,7 @@ import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import LessonForm from '../components/LessonForm'
 import { useAddLessonMutation } from '../lessonsApiSlice'
-import { Lesson } from '../types'
+import type { Lesson } from '../types'
 
 export const LessonAddPage = () => {
     const navigate = useNavigate()

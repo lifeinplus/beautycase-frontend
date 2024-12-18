@@ -2,12 +2,11 @@ import { DynamicForm, type FieldConfig } from '../../form'
 import type { Product } from '../types'
 
 interface ProductFormProps {
-    initialData?: Product
     onSubmit: (data: Product) => void
     title: string
 }
 
-const ProductForm = ({ onSubmit, title }: ProductFormProps) => {
+const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const fields: FieldConfig<Product>[] = [
         {
             name: 'name',

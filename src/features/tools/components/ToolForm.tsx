@@ -1,15 +1,12 @@
 import { DynamicForm, type FieldConfig } from '../../form'
 import type { Tool } from '../types'
 
-const ToolForm = ({
-    initialData = { name: '', image: '', number: '', comment: '' },
-    onSubmit,
-    title,
-}: {
-    initialData?: Tool
+interface ToolFormProps {
     onSubmit: (data: Tool) => void
     title: string
-}) => {
+}
+
+const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
     const fields: FieldConfig<Tool>[] = [
         {
             name: 'name',
@@ -35,14 +32,7 @@ const ToolForm = ({
         },
     ]
 
-    return (
-        <DynamicForm
-            initialData={initialData}
-            fields={fields}
-            onSubmit={onSubmit}
-            title={title}
-        />
-    )
+    return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />
 }
 
 export default ToolForm

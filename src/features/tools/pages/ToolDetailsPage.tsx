@@ -1,10 +1,12 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
 
@@ -13,9 +15,17 @@ export const ToolDetailsPage = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const dispatch = useAppDispatch()
     const { data: tool, isLoading, error } = useGetToolByIdQuery(id || '')
 
     const [deleteTool] = useDeleteToolMutation()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [])
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading tool</div>
 
     if (!tool) {
         return (
@@ -37,9 +47,6 @@ export const ToolDetailsPage = () => {
             toast.error(getErrorMessage(error))
         }
     }
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading tool</div>
 
     return (
         <article className="page">

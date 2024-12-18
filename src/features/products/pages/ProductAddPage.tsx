@@ -6,7 +6,7 @@ import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import ProductForm from '../components/ProductForm'
 import { useCreateProductMutation } from '../productApiSlice'
-import { Product } from '../types'
+import type { Product } from '../types'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()

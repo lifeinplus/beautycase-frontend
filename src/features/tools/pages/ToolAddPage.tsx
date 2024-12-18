@@ -1,17 +1,29 @@
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import ToolForm from '../components/ToolForm'
 import { useAddToolMutation } from '../toolsApiSlice'
-import { Tool } from '../types'
+import type { Tool } from '../types'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()
-    const [createTool] = useAddToolMutation()
+
+    const dispatch = useAppDispatch()
+    const [addTool] = useAddToolMutation()
 
     const handleAddTool = async (tool: Tool) => {
-        await createTool(tool).unwrap()
-        navigate('/tools')
+        try {
+            await addTool(tool).unwrap()
+            dispatch(clearFormData())
+            navigate('/tools')
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
-    return <ToolForm onSubmit={handleAddTool} title={'Добавить инструмент'} />
+    return <ToolForm title={'Добавить инструмент'} onSubmit={handleAddTool} />
 }

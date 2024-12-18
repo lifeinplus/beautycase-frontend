@@ -17,6 +17,10 @@ interface FormProps {
 export const Form = ({ children, formData, onSubmit, title }: FormProps) => {
     const navigate = useNavigate()
 
+    const handleBack = () => {
+        navigate(-1)
+    }
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         onSubmit(formData)
@@ -24,7 +28,7 @@ export const Form = ({ children, formData, onSubmit, title }: FormProps) => {
 
     return (
         <article className="page">
-            <TopPanel title={title} onBack={() => navigate(-1)} />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="mx-auto max-w-makeup-item-md xl:max-w-makeup-item-xl">
@@ -41,10 +45,7 @@ export const Form = ({ children, formData, onSubmit, title }: FormProps) => {
             </main>
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn nav-btn-back"
-                    onClick={() => navigate(-1)}
-                >
+                <button className="nav-btn nav-btn-back" onClick={handleBack}>
                     <ArrowLeftIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Назад</span>
                 </button>

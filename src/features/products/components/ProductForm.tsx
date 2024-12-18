@@ -1,4 +1,4 @@
-import { DynamicForm, type FieldConfig } from '../../../components'
+import { DynamicForm, type FieldConfig } from '../../form'
 import type { Product } from '../types'
 
 const ProductForm = ({

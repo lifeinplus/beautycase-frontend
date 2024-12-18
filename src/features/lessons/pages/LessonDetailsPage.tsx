@@ -6,8 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
-import { clearSelectedProductIds, setSelectedProductIds } from '../../products'
 import {
     useDeleteLessonMutation,
     useGetLessonByIdQuery,
@@ -19,19 +19,15 @@ export const LessonDetailsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const dispatch = useAppDispatch()
-    const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id || '')
+    const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id!)
+    const [deleteLesson] = useDeleteLessonMutation()
 
     useEffect(() => {
-        if (lesson?.productIds?.length) {
-            dispatch(
-                setSelectedProductIds(lesson?.productIds?.map((p) => p._id!))
-            )
-        } else {
-            dispatch(clearSelectedProductIds())
-        }
-    }, [lesson])
+        dispatch(clearFormData())
+    }, [])
 
-    const [deleteLesson] = useDeleteLessonMutation()
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading lesson</div>
 
     if (!lesson) {
         return (
@@ -53,9 +49,6 @@ export const LessonDetailsPage = () => {
             toast.error(getErrorMessage(error))
         }
     }
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading lesson</div>
 
     const getYouTubeEmbedUrl = (videoUrl: string) => {
         const videoId = new URL(videoUrl).searchParams.get('v')

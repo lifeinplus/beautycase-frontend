@@ -4,20 +4,19 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { selectFormData, setFormData } from '../../form'
 import { useFetchProductsQuery } from '../productApiSlice'
-import {
-    selectSelectedProductIds,
-    setSelectedProductIds,
-} from '../productSlice'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const selectedProductIds = useAppSelector(selectSelectedProductIds)
+    const formData = useAppSelector(selectFormData)
     const { data: products, isLoading, error } = useFetchProductsQuery()
 
-    const [selectedIds, setSelectedIds] = useState<string[]>(selectedProductIds)
+    const [selectedIds, setSelectedIds] = useState<string[]>(
+        formData.selectedProductIds || []
+    )
 
     if (isLoading) return <div>Loading...</div>
     if (error) return <div>Error loading products</div>
@@ -25,7 +24,7 @@ export const ProductSelectionPage = () => {
     const title = 'Выбрать продукты'
 
     const toggleSelectedIds = (selectedId: string) => {
-        if (selectedIds.some((id) => id === selectedId)) {
+        if (selectedIds?.some((id) => id === selectedId)) {
             setSelectedIds(selectedIds.filter((id) => id !== selectedId))
         } else {
             setSelectedIds([...selectedIds, selectedId])
@@ -35,8 +34,9 @@ export const ProductSelectionPage = () => {
     const handleBack = () => {
         navigate(-1)
     }
+
     const handleSave = () => {
-        dispatch(setSelectedProductIds(selectedIds))
+        dispatch(setFormData({ ...formData, selectedProductIds: selectedIds }))
         navigate(-1)
     }
 
@@ -54,7 +54,7 @@ export const ProductSelectionPage = () => {
                             key={product._id}
                             onClick={() => toggleSelectedIds(product._id!)}
                             className={`makeup-item__image-container--square ${
-                                selectedIds.some((id) => id === product._id)
+                                selectedIds?.some((id) => id === product._id)
                                     ? 'border border-blue-500'
                                     : ''
                             }`}

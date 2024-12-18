@@ -1,7 +1,10 @@
+import { useEffect } from 'react'
+import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../../app/hooks'
-import { clearSelectedProductIds } from '../../products'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import LessonForm from '../components/LessonForm'
 import {
     useEditLessonMutation,
@@ -14,12 +17,28 @@ export const LessonEditPage = () => {
     const { id } = useParams()
 
     const dispatch = useAppDispatch()
+    const isDirty = useAppSelector(selectIsDirty)
+
     const [editLesson] = useEditLessonMutation()
-    const { data: initialLesson, isLoading } = useGetLessonByIdQuery(id!)
+    const { data: lesson, isLoading } = useGetLessonByIdQuery(id!)
+
+    useEffect(() => {
+        if (lesson && !isDirty) {
+            dispatch(
+                setFormData({
+                    title: lesson?.title,
+                    shortDescription: lesson?.shortDescription,
+                    videoUrl: lesson?.videoUrl,
+                    fullDescription: lesson?.fullDescription,
+                    selectedProductIds: lesson?.productIds?.map((p) => p._id!),
+                })
+            )
+        }
+    }, [lesson, dispatch, isDirty])
 
     if (isLoading) return <p>Loading...</p>
 
-    if (!initialLesson) {
+    if (!lesson) {
         return (
             <div className="flex min-h-screen items-center justify-center">
                 <p className="text-gray-500">Lesson not found</p>
@@ -28,19 +47,21 @@ export const LessonEditPage = () => {
     }
 
     const handleEditLesson = async (lesson: Lesson) => {
-        await editLesson({
-            id: id!,
-            ...lesson,
-        }).unwrap()
-        dispatch(clearSelectedProductIds())
-        navigate(`/lessons/${id}`)
+        try {
+            await editLesson({
+                id: id!,
+                ...lesson,
+            }).unwrap()
+
+            dispatch(clearFormData())
+            navigate(`/lessons/${id}`)
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
     return (
-        <LessonForm
-            initialData={initialLesson}
-            onSubmit={handleEditLesson}
-            title={'Редактировать урок'}
-        />
+        <LessonForm title={'Редактировать урок'} onSubmit={handleEditLesson} />
     )
 }

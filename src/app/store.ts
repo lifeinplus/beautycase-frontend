@@ -3,10 +3,10 @@ import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import config from '../config'
 import { apiSlice } from '../features/api'
 import { authSlice } from '../features/auth'
-import { productSlice } from '../features/products'
+import { formSlice } from '../features/form'
 import { themeSlice } from '../features/theme'
 
-const rootReducer = combineSlices(apiSlice, authSlice, productSlice, themeSlice)
+const rootReducer = combineSlices(apiSlice, authSlice, formSlice, themeSlice)
 
 export const store = configureStore({
     reducer: rootReducer,

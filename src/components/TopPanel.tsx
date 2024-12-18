@@ -9,11 +9,15 @@ interface TopPanelProps {
 export const TopPanel = ({ title, onBack }: TopPanelProps) => {
     const navigate = useNavigate()
 
+    const handleBack = () => {
+        navigate(-1)
+    }
+
     return (
         <nav className="panel-top">
             <button
                 className="panel-top__button"
-                onClick={onBack || (() => navigate(-1))}
+                onClick={onBack || handleBack}
             >
                 <ChevronLeftIcon className="h-6 w-6" />
             </button>

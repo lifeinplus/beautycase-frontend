@@ -1,28 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
-import { DynamicForm, type FieldConfig } from '../../../components'
-import { selectSelectedProductIds } from '../../products'
+import { DynamicForm, type FieldConfig } from '../../form'
 import type { Lesson } from '../types'
 
-const LessonForm = ({
-    initialData = {
-        title: '',
-        shortDescription: '',
-        videoUrl: '',
-        fullDescription: '',
-        productIds: [],
-    },
-    onSubmit,
-    title,
-}: {
-    initialData?: Lesson
+interface LessonFormProps {
     onSubmit: (data: Lesson) => void
     title: string
-}) => {
+}
+
+const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const navigate = useNavigate()
     const { id } = useParams()
-    const selectedProductIds = useAppSelector(selectSelectedProductIds)
 
     const fields: FieldConfig<Lesson>[] = [
         {
@@ -51,25 +39,12 @@ const LessonForm = ({
         {
             name: 'selectedProductIds',
             label: 'Продукты',
-            text: selectedProductIds.length
-                ? `Выбрано: ${selectedProductIds.length}`
-                : 'Выбрать продукты',
             type: 'button',
             onClick: () => navigate(`/lessons/edit/${id}/products`),
         },
     ]
 
-    return (
-        <DynamicForm
-            initialData={{
-                ...initialData,
-                selectedProductIds,
-            }}
-            fields={fields}
-            onSubmit={onSubmit}
-            title={title}
-        />
-    )
+    return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />
 }
 
 export default LessonForm

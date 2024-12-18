@@ -1,18 +1,29 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { LessonCard } from '../components/LessonCard'
 import { useGetLessonsQuery } from '../lessonsApiSlice'
 
 export const LessonsGalleryPage = () => {
     const navigate = useNavigate()
+
+    const dispatch = useAppDispatch()
     const { data: lessons, isLoading, error } = useGetLessonsQuery()
 
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading lessons</div>
-
     const title = 'Уроки'
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [])
+
+    const handleAdd = () => {
+        navigate('/lessons/add')
+    }
 
     return (
         <article className="page">
@@ -22,18 +33,21 @@ export const LessonsGalleryPage = () => {
                 <section className="page-gallery__title">
                     <h1 className="page-gallery__title__text">{title}</h1>
                 </section>
-                <section className="page-gallery__container--video">
-                    {lessons?.map((lesson) => (
-                        <LessonCard key={lesson._id} lesson={lesson} />
-                    ))}
-                </section>
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : error ? (
+                    <div>{getErrorMessage(error)}</div>
+                ) : (
+                    <section className="page-gallery__container--video">
+                        {lessons?.map((lesson) => (
+                            <LessonCard key={lesson._id} lesson={lesson} />
+                        ))}
+                    </section>
+                )}
             </main>
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn"
-                    onClick={() => navigate('/lessons/add')}
-                >
+                <button className="nav-btn" onClick={handleAdd}>
                     <PlusIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Добавить</span>
                 </button>

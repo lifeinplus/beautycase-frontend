@@ -4,10 +4,22 @@ import type { QueryResult, Lesson } from './types'
 export const lessonsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addLesson: builder.mutation<Lesson, Partial<Lesson>>({
-            query: (data) => ({
+            query: ({
+                title,
+                shortDescription,
+                videoUrl,
+                fullDescription,
+                selectedProductIds,
+            }) => ({
                 url: '/lessons/one',
                 method: 'POST',
-                body: data,
+                body: {
+                    title,
+                    shortDescription,
+                    videoUrl,
+                    fullDescription,
+                    selectedProductIds,
+                },
             }),
             invalidatesTags: ['Lesson'],
         }),

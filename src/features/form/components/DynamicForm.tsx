@@ -1,39 +1,44 @@
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AdaptiveNavBar } from './AdaptiveNavBar'
-import { TopPanel } from './TopPanel'
-import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { AdaptiveNavBar } from '../../../components/AdaptiveNavBar'
+import { TopPanel } from '../../../components/TopPanel'
+import { selectFormData, setFormData } from '../formSlice'
 
 export interface FieldConfig<T> {
     name: keyof T
     label: string
-    text?: string
     type: 'text' | 'button'
     required?: boolean
     onClick?: () => void
 }
 
 interface DynamicFormProps<T> {
-    initialData: T
+    title: string
     fields: FieldConfig<T>[]
     onSubmit: (data: T) => void
-    title: string
 }
 
 export const DynamicForm = <T extends Record<string, any>>({
-    initialData,
+    title,
     fields,
     onSubmit,
-    title,
 }: DynamicFormProps<T>) => {
-    const [formData, setFormData] = useState<T>(initialData)
     const navigate = useNavigate()
+
+    const dispatch = useAppDispatch()
+    const formData = useAppSelector(selectFormData)
+
+    const handleBack = () => {
+        navigate(-1)
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        setFormData((prev) => ({ ...prev, [name]: value }))
+        dispatch(setFormData({ ...formData, [name]: value }))
     }
 
     const handleSubmit = (e: FormEvent) => {
@@ -43,7 +48,7 @@ export const DynamicForm = <T extends Record<string, any>>({
 
     return (
         <article className="page">
-            <TopPanel title={title} onBack={() => navigate(-1)} />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="mx-auto max-w-makeup-item-md xl:max-w-makeup-item-xl">
@@ -55,44 +60,49 @@ export const DynamicForm = <T extends Record<string, any>>({
 
                     <form onSubmit={handleSubmit} className="form">
                         {fields.map((field, index) => {
-                            if (field.type === 'button') {
+                            const { label, name, type, onClick, required } =
+                                field
+
+                            const value = formData[name] || ''
+
+                            if (type === 'button') {
+                                const text = value?.length
+                                    ? `Выбрано: ${value?.length}`
+                                    : 'Выбрать продукты'
+
                                 return (
-                                    <div key={field.name as string}>
+                                    <div key={name as string}>
                                         <label
-                                            key={field.name as string}
+                                            key={name as string}
                                             className="block"
                                         >
                                             <span className="form__label">
-                                                {field.label}
+                                                {label}
                                             </span>
                                         </label>
                                         <button
                                             key={index}
                                             type="button"
-                                            onClick={field.onClick}
+                                            onClick={onClick}
                                             className="form__button--select"
                                         >
-                                            <span>{field.text}</span>
+                                            <span>{text}</span>
                                             <ChevronRightIcon className="h-6 w-6" />
                                         </button>
                                     </div>
                                 )
                             }
+
                             return (
-                                <label
-                                    key={field.name as string}
-                                    className="block"
-                                >
-                                    <span className="form__label">
-                                        {field.label}
-                                    </span>
+                                <label key={name as string} className="block">
+                                    <span className="form__label">{label}</span>
                                     <input
-                                        name={field.name as string}
+                                        name={name as string}
                                         className="form__input"
-                                        placeholder={field.label}
-                                        type={field.type}
-                                        required={field.required}
-                                        value={formData[field.name] || ''}
+                                        placeholder={label}
+                                        type={type}
+                                        required={required}
+                                        value={value}
                                         onChange={handleChange}
                                     />
                                 </label>
@@ -103,10 +113,7 @@ export const DynamicForm = <T extends Record<string, any>>({
             </main>
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn nav-btn-back"
-                    onClick={() => navigate(-1)}
-                >
+                <button className="nav-btn nav-btn-back" onClick={handleBack}>
                     <ArrowLeftIcon className="h-6 w-6" />
                     <span className="hidden lg:inline">Назад</span>
                 </button>

@@ -1,5 +1,4 @@
 export * from './AdaptiveNavBar'
-export * from './DynamicForm'
 export * from './Footer'
 export * from './Form'
 export * from './FormField'

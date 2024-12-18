@@ -5,9 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
-import { clearSelectedProductIds, setSelectedProductIds } from '../../products'
 import {
     useDeleteLessonMutation,
     useGetLessonByIdQuery,
@@ -19,19 +19,15 @@ export const LessonDetailsPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const dispatch = useAppDispatch()
-    const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id || '')
+    const { data: lesson, isLoading, error } = useGetLessonByIdQuery(id!)
+    const [deleteLesson] = useDeleteLessonMutation()
 
     useEffect(() => {
-        if (lesson?.productIds?.length) {
-            dispatch(
-                setSelectedProductIds(lesson?.productIds?.map((p) => p._id!))
-            )
-        } else {
-            dispatch(clearSelectedProductIds())
-        }
-    }, [lesson])
+        dispatch(clearFormData())
+    }, [])
 
-    const [deleteLesson] = useDeleteLessonMutation()
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading lesson</div>
 
     if (!lesson) {
         return (
@@ -49,20 +45,10 @@ export const LessonDetailsPage = () => {
             navigate('/lessons')
             setIsModalOpen(false)
         } catch (error) {
-            if (isDataMessageError(error)) {
-                toast.error(error.data.message)
-            } else if (isFetchBaseQueryError(error)) {
-                const errMsg =
-                    'error' in error ? error.error : JSON.stringify(error.data)
-                toast.error(errMsg)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading lesson</div>
 
     const getYouTubeEmbedUrl = (videoUrl: string) => {
         const videoId = new URL(videoUrl).searchParams.get('v')
@@ -104,12 +90,12 @@ export const LessonDetailsPage = () => {
                         {lesson.productIds?.map((product) => (
                             <div
                                 key={product._id}
-                                className="makeup-item__image-container--square relative overflow-hidden"
+                                className="img-container img-container-square"
                             >
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="makeup-item__image sm:rounded"
+                                    className="img img-sm-rounded"
                                 />
                             </div>
                         ))}

@@ -1,10 +1,12 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { isDataMessageError, isFetchBaseQueryError } from '../../../utils'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
 
@@ -13,9 +15,17 @@ export const ToolDetailsPage = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const dispatch = useAppDispatch()
     const { data: tool, isLoading, error } = useGetToolByIdQuery(id || '')
 
     const [deleteTool] = useDeleteToolMutation()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [])
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading tool</div>
 
     if (!tool) {
         return (
@@ -33,20 +43,10 @@ export const ToolDetailsPage = () => {
             navigate('/tools')
             setIsModalOpen(false)
         } catch (error) {
-            if (isDataMessageError(error)) {
-                toast.error(error.data.message)
-            } else if (isFetchBaseQueryError(error)) {
-                const errMsg =
-                    'error' in error ? error.error : JSON.stringify(error.data)
-                toast.error(errMsg)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading tool</div>
 
     return (
         <article className="page">
@@ -61,11 +61,11 @@ export const ToolDetailsPage = () => {
                     </section>
 
                     <section className="page-content__image">
-                        <div className="makeup-item__image-container--rectangle">
+                        <div className="img-container">
                             <img
                                 src={tool.image}
                                 alt={tool.name}
-                                className="makeup-item__image"
+                                className="img"
                             />
                         </div>
                     </section>

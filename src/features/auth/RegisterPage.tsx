@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { isDataMessageError, isFetchBaseQueryError } from '../../utils'
+import { getErrorMessage } from '../../utils'
 import { useRegisterUserMutation } from './authApiSlice'
 
 export const RegisterPage = () => {
@@ -29,16 +29,8 @@ export const RegisterPage = () => {
             toast.success(response.message)
             navigate('/login')
         } catch (error) {
-            if (isDataMessageError(error)) {
-                const { details, message } = error.data
-                toast.error(details ? details?.join(', ') : message)
-            } else if (isFetchBaseQueryError(error)) {
-                const errMsg =
-                    'error' in error ? error.error : JSON.stringify(error.data)
-                toast.error(errMsg)
-            } else {
-                console.error(error)
-            }
+            console.error(error)
+            toast.error(getErrorMessage(error))
         }
     }
 

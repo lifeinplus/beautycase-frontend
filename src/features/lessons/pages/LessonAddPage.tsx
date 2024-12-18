@@ -25,5 +25,5 @@ export const LessonAddPage = () => {
         }
     }
 
-    return <LessonForm onSubmit={handleAddLesson} title={'Добавить урок'} />
+    return <LessonForm title={'Добавить урок'} onSubmit={handleAddLesson} />
 }

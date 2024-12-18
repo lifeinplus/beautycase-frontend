@@ -1,11 +1,12 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
 import { getErrorMessage } from '../../../utils'
+import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
 import {
     useDeleteProductMutation,
@@ -17,13 +18,16 @@ export const ProductDetailsPage = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const {
-        data: product,
-        isLoading,
-        error,
-    } = useFetchProductByIdQuery(id || '')
-
+    const dispatch = useAppDispatch()
+    const { data: product, isLoading, error } = useFetchProductByIdQuery(id!)
     const [deleteProduct] = useDeleteProductMutation()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [])
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error loading product</div>
 
     if (!product) {
         return (
@@ -45,9 +49,6 @@ export const ProductDetailsPage = () => {
             toast.error(getErrorMessage(error))
         }
     }
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading product</div>
 
     return (
         <article className="page">

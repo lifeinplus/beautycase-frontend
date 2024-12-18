@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
     return (
-        <div className="makeup-item__image-container--square">
+        <div className="img-container img-container-square">
             <Link
                 className="relative overflow-hidden"
                 to={`/products/${product._id}`}
@@ -16,7 +16,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="makeup-item__image sm:rounded"
+                    className="img img-sm-rounded"
                 />
             </Link>
         </div>

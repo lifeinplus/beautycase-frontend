@@ -63,11 +63,11 @@ export const ProductDetailsPage = () => {
                     </section>
 
                     <section className="page-content__image">
-                        <div className="makeup-item__image-container--rectangle">
+                        <div className="img-container img-container-rectangle">
                             <img
                                 src={product.image}
                                 alt={product.name}
-                                className="makeup-item__image"
+                                className="img"
                             />
                         </div>
                     </section>

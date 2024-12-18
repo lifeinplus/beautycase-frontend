@@ -90,12 +90,12 @@ export const LessonDetailsPage = () => {
                         {lesson.productIds?.map((product) => (
                             <div
                                 key={product._id}
-                                className="makeup-item__image-container--square relative overflow-hidden"
+                                className="img-container img-container-square"
                             >
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="makeup-item__image sm:rounded"
+                                    className="img img-sm-rounded"
                                 />
                             </div>
                         ))}

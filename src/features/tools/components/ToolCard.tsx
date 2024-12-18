@@ -8,7 +8,7 @@ interface ToolCardProps {
 
 export const ToolCard = ({ tool }: ToolCardProps) => {
     return (
-        <div className="makeup-item__image-container--square">
+        <div className="img-container img-container-square">
             <Link
                 className="relative overflow-hidden"
                 to={`/tools/${tool._id}`}
@@ -16,7 +16,7 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
                 <img
                     src={tool.image}
                     alt={tool.name}
-                    className="makeup-item__image sm:rounded"
+                    className="img img-sm-rounded"
                 />
             </Link>
         </div>

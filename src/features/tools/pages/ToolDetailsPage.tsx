@@ -61,11 +61,11 @@ export const ToolDetailsPage = () => {
                     </section>
 
                     <section className="page-content__image">
-                        <div className="makeup-item__image-container--rectangle">
+                        <div className="img-container">
                             <img
                                 src={tool.image}
                                 alt={tool.name}
-                                className="makeup-item__image"
+                                className="img"
                             />
                         </div>
                     </section>

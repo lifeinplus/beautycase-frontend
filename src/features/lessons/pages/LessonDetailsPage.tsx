@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { getErrorMessage } from '../../../utils'
+import { getErrorMessage, getYouTubeEmbedUrl } from '../../../utils'
 import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
 import {
@@ -48,11 +48,6 @@ export const LessonDetailsPage = () => {
             console.error(error)
             toast.error(getErrorMessage(error))
         }
-    }
-
-    const getYouTubeEmbedUrl = (videoUrl: string) => {
-        const videoId = new URL(videoUrl).searchParams.get('v')
-        return `https://www.youtube.com/embed/${videoId}`
     }
 
     return (

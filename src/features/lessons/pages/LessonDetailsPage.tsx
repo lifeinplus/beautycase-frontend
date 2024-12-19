@@ -37,6 +37,14 @@ export const LessonDetailsPage = () => {
         )
     }
 
+    let embedUrl
+
+    try {
+        embedUrl = getYouTubeEmbedUrl(lesson.videoUrl)
+    } catch (error) {
+        console.error(error)
+    }
+
     const handleDelete = async () => {
         if (!id) return
 
@@ -65,16 +73,24 @@ export const LessonDetailsPage = () => {
                         </p>
                     </section>
 
-                    <div className="lesson-video-container mb-6">
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={getYouTubeEmbedUrl(lesson.videoUrl)}
-                            title={lesson.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
+                    <div className="lesson-video-container">
+                        {embedUrl ? (
+                            <iframe
+                                width="100%"
+                                height="315"
+                                src={embedUrl}
+                                title={lesson.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                            ></iframe>
+                        ) : (
+                            <img
+                                alt={`${lesson.title} Thumbnail`}
+                                className="lesson-card-thumbnail-image"
+                                src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
+                            />
+                        )}
                     </div>
 
                     <div className="page-content__description">

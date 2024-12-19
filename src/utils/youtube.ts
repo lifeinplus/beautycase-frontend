@@ -5,12 +5,23 @@ function getVideoId(videoUrl: string) {
     return videoId || pathName
 }
 
-export const getYouTubeEmbedUrl = (videoUrl: string) => {
+function getValidYouTubeId(videoUrl: string) {
     const videoId = getVideoId(videoUrl)
+    const pattern = /^[a-zA-Z0-9_-]{11}$/
+
+    if (!videoId || !pattern.test(videoId)) {
+        throw new Error('Invalid YouTube video ID')
+    }
+
+    return videoId
+}
+
+export const getYouTubeEmbedUrl = (videoUrl: string) => {
+    const videoId = getValidYouTubeId(videoUrl)
     return `https://www.youtube.com/embed/${videoId}`
 }
 
 export const getYouTubeThumbnail = (videoUrl: string) => {
-    const videoId = getVideoId(videoUrl)
+    const videoId = getValidYouTubeId(videoUrl)
     return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
 }

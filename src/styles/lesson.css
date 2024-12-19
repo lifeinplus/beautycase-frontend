@@ -1,5 +1,5 @@
 .lesson-video-container {
-    @apply relative aspect-video max-w-full overflow-hidden;
+    @apply relative mb-6 aspect-video max-w-full overflow-hidden;
 }
 
 .lesson-video-container iframe {

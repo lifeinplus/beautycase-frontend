@@ -37,13 +37,7 @@ export const LessonDetailsPage = () => {
         )
     }
 
-    let embedUrl
-
-    try {
-        embedUrl = getYouTubeEmbedUrl(lesson.videoUrl)
-    } catch (error) {
-        console.error(error)
-    }
+    const embedUrl = getYouTubeEmbedUrl(lesson.videoUrl)
 
     const handleDelete = async () => {
         if (!id) return

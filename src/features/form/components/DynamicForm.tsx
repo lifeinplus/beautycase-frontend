@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar } from '../../../components/AdaptiveNavBar'
 import { TopPanel } from '../../../components/TopPanel'
+import { getYouTubeThumbnail } from '../../../utils'
 import { selectFormData, setFormData } from '../formSlice'
 
 export interface FieldConfig<T> {
@@ -76,7 +77,7 @@ export const DynamicForm = <T extends Record<string, any>>({
                                             key={name as string}
                                             className="block"
                                         >
-                                            <span className="form__label">
+                                            <span className="form-label">
                                                 {label}
                                             </span>
                                         </label>
@@ -84,7 +85,7 @@ export const DynamicForm = <T extends Record<string, any>>({
                                             key={index}
                                             type="button"
                                             onClick={onClick}
-                                            className="form__button--select"
+                                            className="form-button-select"
                                         >
                                             <span>{text}</span>
                                             <ChevronRightIcon className="h-6 w-6" />
@@ -95,16 +96,25 @@ export const DynamicForm = <T extends Record<string, any>>({
 
                             return (
                                 <label key={name as string} className="block">
-                                    <span className="form__label">{label}</span>
+                                    <span className="form-label">{label}</span>
                                     <input
                                         name={name as string}
-                                        className="form__input"
+                                        className="form-input peer"
                                         placeholder={label}
                                         type={type}
                                         required={required}
                                         value={value}
                                         onChange={handleChange}
                                     />
+                                    {name === 'videoUrl' && value && (
+                                        <div className="form-thumbnail-container">
+                                            <img
+                                                src={getYouTubeThumbnail(value)}
+                                                alt="Video Thumbnail"
+                                                className="form-thumbnail-image"
+                                            />
+                                        </div>
+                                    )}
                                 </label>
                             )
                         })}

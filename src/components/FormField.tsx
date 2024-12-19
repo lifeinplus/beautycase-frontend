@@ -10,10 +10,10 @@ interface FormInputProps {
 export const FormField = ({ label, name, onChange, value }: FormInputProps) => {
     return (
         <label className="block">
-            <span className="form__label">{label}</span>
+            <span className="form-label">{label}</span>
             <input
                 name={name}
-                className="form__input"
+                className="form-input"
                 onChange={onChange}
                 placeholder={label}
                 required

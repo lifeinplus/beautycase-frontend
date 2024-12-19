@@ -27,7 +27,7 @@ const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         },
         {
             name: 'videoUrl',
-            label: 'URL видео',
+            label: 'Ссылка на видео',
             type: 'text',
             required: true,
         },

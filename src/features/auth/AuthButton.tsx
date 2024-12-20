@@ -10,7 +10,7 @@ import { getErrorMessage } from '../../utils'
 import { useLogoutUserMutation } from './authApiSlice'
 import { logout, selectUsername } from './authSlice'
 
-const AuthButton = () => {
+export const AuthButton = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
@@ -44,5 +44,3 @@ const AuthButton = () => {
         </button>
     )
 }
-
-export default AuthButton

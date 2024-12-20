@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
@@ -78,20 +78,16 @@ export const ToolDetailsPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn"
+                <NavigationButton
+                    icon={<PencilSquareIcon className="h-6 w-6" />}
+                    text="Редактировать"
                     onClick={() => navigate(`/tools/edit/${id}`)}
-                >
-                    <PencilSquareIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Редактировать</span>
-                </button>
-                <button
-                    className="nav-btn"
+                />
+                <NavigationButton
+                    icon={<TrashIcon className="h-6 w-6" />}
+                    text="Удалить"
                     onClick={() => setIsModalOpen(true)}
-                >
-                    <TrashIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Удалить</span>
-                </button>
+                />
             </AdaptiveNavBar>
 
             <Modal

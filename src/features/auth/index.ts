@@ -1,4 +1,5 @@
 export * from './authApiSlice'
+export * from './AuthButton'
 export * from './authSlice'
 export * from './LoginPage'
 export * from './PersistLogin'

@@ -4,8 +4,7 @@ import { ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/AdaptiveNavBar'
-import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getYouTubeThumbnail } from '../../../utils'
 import { selectFormData, setFormData } from '../formSlice'
 import type { FieldConfig } from '../types'
@@ -139,14 +138,17 @@ export const DynamicForm = <T extends Record<string, any>>({
             </main>
 
             <AdaptiveNavBar>
-                <button className="nav-btn nav-btn-back" onClick={handleBack}>
-                    <ArrowLeftIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Назад</span>
-                </button>
-                <button className="nav-btn" onClick={handleSubmit}>
-                    <CheckIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Сохранить</span>
-                </button>
+                <NavigationButton
+                    icon={<ArrowLeftIcon className="h-6 w-6" />}
+                    text="Назад"
+                    onClick={handleBack}
+                    className="nav-btn-back"
+                />
+                <NavigationButton
+                    icon={<CheckIcon className="h-6 w-6" />}
+                    text="Сохранить"
+                    onClick={handleSubmit}
+                />
             </AdaptiveNavBar>
         </article>
     )

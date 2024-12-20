@@ -3,7 +3,12 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Header,
+    NavigationButton,
+    PageTitle,
+} from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { ToolCard } from '../components/ToolCard'
@@ -12,10 +17,11 @@ import { useGetToolsQuery } from '../toolsApiSlice'
 export const ToolsGalleryPage = () => {
     const navigate = useNavigate()
 
+    const headline = 'Инструменты'
+    const byline = 'Кисти и спонжи'
+
     const dispatch = useAppDispatch()
     const { data: tools, isLoading, error } = useGetToolsQuery()
-
-    const title = 'Инструменты'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -26,13 +32,12 @@ export const ToolsGalleryPage = () => {
     }
 
     return (
-        <article className="page">
-            <TopPanel title={title} onBack={() => navigate('/')} />
+        <section>
+            <Header />
 
             <main className="page-content">
-                <section className="page-gallery__title">
-                    <h1 className="page-gallery__title__text">{title}</h1>
-                </section>
+                <PageTitle headline={headline} byline={byline} />
+
                 {isLoading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -53,6 +58,6 @@ export const ToolsGalleryPage = () => {
                     onClick={handleAdd}
                 />
             </AdaptiveNavBar>
-        </article>
+        </section>
     )
 }

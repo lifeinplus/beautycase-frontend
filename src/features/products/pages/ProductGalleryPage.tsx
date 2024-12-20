@@ -3,7 +3,12 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Header,
+    NavigationButton,
+    PageTitle,
+} from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { ProductCard } from '../components/ProductCard'
@@ -12,10 +17,11 @@ import { useFetchProductsQuery } from '../productApiSlice'
 export const ProductGalleryPage = () => {
     const navigate = useNavigate()
 
+    const headline = 'Продукты'
+    const byline = 'Мицеллярная вода, тоники, тональные основы и крема'
+
     const dispatch = useAppDispatch()
     const { data: products, isLoading, error } = useFetchProductsQuery()
-
-    const title = 'Продукты'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -26,23 +32,22 @@ export const ProductGalleryPage = () => {
     }
 
     return (
-        <article className="page">
-            <TopPanel title={title} onBack={() => navigate('/')} />
+        <section>
+            <Header />
 
             <main className="page-content">
-                <section className="page-gallery__title">
-                    <h1 className="page-gallery__title__text">{title}</h1>
-                </section>
+                <PageTitle headline={headline} byline={byline} />
+
                 {isLoading ? (
                     <div>Loading...</div>
                 ) : error ? (
                     <div>{getErrorMessage(error)}</div>
                 ) : (
-                    <section className="page-gallery__container">
+                    <article className="page-gallery__container">
                         {products?.map((product) => (
                             <ProductCard key={product._id} product={product} />
                         ))}
-                    </section>
+                    </article>
                 )}
             </main>
 
@@ -53,6 +58,6 @@ export const ProductGalleryPage = () => {
                     onClick={handleAdd}
                 />
             </AdaptiveNavBar>
-        </article>
+        </section>
     )
 }

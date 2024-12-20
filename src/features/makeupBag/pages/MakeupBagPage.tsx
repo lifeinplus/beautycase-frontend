@@ -4,15 +4,16 @@ import {
     AdaptiveNavBar,
     Footer,
     Header,
-    Hero,
     NavigationButton,
 } from '../../../components'
+import { getErrorMessage } from '../../../utils'
 import { Brands } from '../../brands'
 import { Stages } from '../../stages'
+import { Hero } from '../components/Hero'
 import { useGetMakeupBagQuery } from '../makeupBagApiSlice'
 
 export const MakeupBagPage = () => {
-    const { data } = useGetMakeupBagQuery()
+    const { data, isLoading, error } = useGetMakeupBagQuery()
 
     const handleStages = () =>
         document
@@ -25,15 +26,24 @@ export const MakeupBagPage = () => {
             ?.scrollIntoView({ behavior: 'smooth' })
 
     return (
-        <>
+        <article>
             <Header />
 
-            <main className="flex flex-col items-center justify-center sm:ms-navbar-left lg:ms-navbar-left-open">
-                <div className="w-full max-w-2xl">
+            <main className="page-content flex flex-col items-center justify-center">
+                <section className="w-full max-w-2xl">
                     <Hero />
-                    <Stages stages={data?.stages} />
-                    <Brands brands={data?.brands} />
-                </div>
+
+                    {isLoading ? (
+                        <div>Loading...</div>
+                    ) : error ? (
+                        <div>{getErrorMessage(error)}</div>
+                    ) : (
+                        <>
+                            <Stages stages={data?.stages} />
+                            <Brands brands={data?.brands} />
+                        </>
+                    )}
+                </section>
             </main>
 
             <Footer />
@@ -50,6 +60,6 @@ export const MakeupBagPage = () => {
                     onClick={handleBrushes}
                 />
             </AdaptiveNavBar>
-        </>
+        </article>
     )
 }

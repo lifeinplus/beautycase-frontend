@@ -14,33 +14,36 @@ const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
     const fields: FieldConfig<Lesson>[] = [
         {
-            name: 'title',
             label: 'Заголовок',
-            type: 'text',
+            name: 'title',
             required: true,
+            rows: 2,
+            type: 'textarea',
         },
         {
-            name: 'shortDescription',
             label: 'Краткое описание',
-            type: 'text',
+            name: 'shortDescription',
             required: true,
+            rows: 2,
+            type: 'textarea',
         },
         {
-            name: 'videoUrl',
             label: 'Ссылка на видео',
-            type: 'text',
+            name: 'videoUrl',
             required: true,
-        },
-        {
-            name: 'fullDescription',
-            label: 'Полное описание',
             type: 'text',
         },
         {
-            name: 'selectedProductIds',
+            label: 'Полное описание',
+            name: 'fullDescription',
+            rows: 4,
+            type: 'textarea',
+        },
+        {
             label: 'Продукты',
-            type: 'button',
+            name: 'selectedProductIds',
             onClick: () => navigate(`/lessons/edit/${id}/products`),
+            type: 'button',
         },
     ]
 

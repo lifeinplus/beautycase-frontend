@@ -8,19 +8,86 @@ import { AdaptiveNavBar } from '../../../components/AdaptiveNavBar'
 import { TopPanel } from '../../../components/TopPanel'
 import { getYouTubeThumbnail } from '../../../utils'
 import { selectFormData, setFormData } from '../formSlice'
-
-export interface FieldConfig<T> {
-    name: keyof T
-    label: string
-    type: 'text' | 'button'
-    required?: boolean
-    onClick?: () => void
-}
+import type { FieldConfig } from '../types'
 
 interface DynamicFormProps<T> {
     title: string
     fields: FieldConfig<T>[]
     onSubmit: (data: T) => void
+}
+
+const generateButtonText = (value: string[]) =>
+    value?.length ? `Выбрано: ${value.length}` : 'Выбрать продукты'
+
+const renderYouTubeThumbnail = (url: string) => (
+    <div className="form-thumbnail-container">
+        <img
+            src={getYouTubeThumbnail(url)}
+            alt="Video Thumbnail"
+            className="form-thumbnail-image"
+        />
+    </div>
+)
+
+const renderField = <T extends Record<string, any>>(
+    field: FieldConfig<T>,
+    value: any,
+    handleChange: (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void
+) => {
+    const { label, name, onClick, required, rows, type } = field
+
+    if (type === 'textarea') {
+        return (
+            <label key={name as string} className="block">
+                <span className="form-label">{label}</span>
+                <textarea
+                    className="form-input"
+                    name={name as string}
+                    onChange={handleChange}
+                    placeholder={label}
+                    required={required}
+                    rows={rows}
+                    value={value}
+                />
+            </label>
+        )
+    }
+
+    if (type === 'button') {
+        return (
+            <div key={name as string}>
+                <label className="block">
+                    <span className="form-label">{label}</span>
+                </label>
+                <button
+                    type="button"
+                    onClick={onClick}
+                    className="form-button-select"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-6 w-6" />
+                </button>
+            </div>
+        )
+    }
+
+    return (
+        <label key={name as string} className="block">
+            <span className="form-label">{label}</span>
+            <input
+                className="form-input peer"
+                name={name as string}
+                onChange={handleChange}
+                placeholder={label}
+                required={required}
+                type={type}
+                value={value}
+            />
+            {name === 'videoUrl' && value && renderYouTubeThumbnail(value)}
+        </label>
+    )
 }
 
 export const DynamicForm = <T extends Record<string, any>>({
@@ -31,15 +98,17 @@ export const DynamicForm = <T extends Record<string, any>>({
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const formData = useAppSelector(selectFormData)
+    const formData = useAppSelector(selectFormData) as T
 
     const handleBack = () => {
         navigate(-1)
     }
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
         const { name, value } = e.target
-        dispatch(setFormData({ ...formData, [name]: value }))
+        dispatch(setFormData({ [name]: value }))
     }
 
     const handleSubmit = (e: FormEvent) => {
@@ -60,63 +129,10 @@ export const DynamicForm = <T extends Record<string, any>>({
                     </section>
 
                     <form onSubmit={handleSubmit} className="form">
-                        {fields.map((field, index) => {
-                            const { label, name, type, onClick, required } =
-                                field
-
+                        {fields.map((field) => {
+                            const { name } = field
                             const value = formData[name] || ''
-
-                            if (type === 'button') {
-                                const text = value?.length
-                                    ? `Выбрано: ${value?.length}`
-                                    : 'Выбрать продукты'
-
-                                return (
-                                    <div key={name as string}>
-                                        <label
-                                            key={name as string}
-                                            className="block"
-                                        >
-                                            <span className="form-label">
-                                                {label}
-                                            </span>
-                                        </label>
-                                        <button
-                                            key={index}
-                                            type="button"
-                                            onClick={onClick}
-                                            className="form-button-select"
-                                        >
-                                            <span>{text}</span>
-                                            <ChevronRightIcon className="h-6 w-6" />
-                                        </button>
-                                    </div>
-                                )
-                            }
-
-                            return (
-                                <label key={name as string} className="block">
-                                    <span className="form-label">{label}</span>
-                                    <input
-                                        name={name as string}
-                                        className="form-input peer"
-                                        placeholder={label}
-                                        type={type}
-                                        required={required}
-                                        value={value}
-                                        onChange={handleChange}
-                                    />
-                                    {name === 'videoUrl' && value && (
-                                        <div className="form-thumbnail-container">
-                                            <img
-                                                src={getYouTubeThumbnail(value)}
-                                                alt="Video Thumbnail"
-                                                className="form-thumbnail-image"
-                                            />
-                                        </div>
-                                    )}
-                                </label>
-                            )
+                            return renderField(field, value, handleChange)
                         })}
                     </form>
                 </article>

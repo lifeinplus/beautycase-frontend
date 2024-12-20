@@ -13,7 +13,7 @@ export const formSlice = createSlice({
     reducers: {
         clearFormData: () => initialState,
         setFormData: <T>(state: FormState<T>, action: PayloadAction<T>) => {
-            state.data = action.payload
+            state.data = { ...state.data, ...action.payload }
             state.isDirty = true
         },
     },

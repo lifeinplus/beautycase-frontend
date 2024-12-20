@@ -16,7 +16,7 @@ const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         },
         {
             name: 'image',
-            label: 'URL изображения',
+            label: 'Ссылка на изображение',
             type: 'text',
             required: true,
         },

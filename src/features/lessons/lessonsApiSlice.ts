@@ -1,9 +1,9 @@
 import { apiSlice } from '../api/apiSlice'
-import type { QueryResult, Lesson } from './types'
+import type { Lesson, MutationResult, QueryResult } from './types'
 
 export const lessonsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addLesson: builder.mutation<Lesson, Partial<Lesson>>({
+        addLesson: builder.mutation<MutationResult, Partial<Lesson>>({
             query: ({
                 title,
                 shortDescription,

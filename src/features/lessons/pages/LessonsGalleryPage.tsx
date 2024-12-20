@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { LessonCard } from '../components/LessonCard'
@@ -47,10 +47,11 @@ export const LessonsGalleryPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                <button className="nav-btn" onClick={handleAdd}>
-                    <PlusIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Добавить</span>
-                </button>
+                <NavigationButton
+                    icon={<PlusIcon className="h-6 w-6" />}
+                    text="Добавить"
+                    onClick={handleAdd}
+                />
             </AdaptiveNavBar>
         </article>
     )

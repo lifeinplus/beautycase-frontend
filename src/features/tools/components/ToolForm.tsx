@@ -16,7 +16,7 @@ const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         },
         {
             name: 'image',
-            label: 'URL изображения',
+            label: 'Ссылка на изображение',
             type: 'text',
             required: true,
         },

@@ -4,8 +4,8 @@ import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, TopPanel } from '../../../components'
-import { getErrorMessage } from '../../../utils'
+import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import { getErrorMessage, getYouTubeEmbedUrl } from '../../../utils'
 import { clearFormData } from '../../form'
 import { Modal } from '../../modals'
 import {
@@ -37,6 +37,8 @@ export const LessonDetailsPage = () => {
         )
     }
 
+    const embedUrl = getYouTubeEmbedUrl(lesson.videoUrl)
+
     const handleDelete = async () => {
         if (!id) return
 
@@ -48,11 +50,6 @@ export const LessonDetailsPage = () => {
             console.error(error)
             toast.error(getErrorMessage(error))
         }
-    }
-
-    const getYouTubeEmbedUrl = (videoUrl: string) => {
-        const videoId = new URL(videoUrl).searchParams.get('v')
-        return `https://www.youtube.com/embed/${videoId}`
     }
 
     return (
@@ -70,16 +67,24 @@ export const LessonDetailsPage = () => {
                         </p>
                     </section>
 
-                    <div className="lesson-video-container mb-6">
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={getYouTubeEmbedUrl(lesson.videoUrl)}
-                            title={lesson.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
+                    <div className="lesson-video-container">
+                        {embedUrl ? (
+                            <iframe
+                                width="100%"
+                                height="315"
+                                src={embedUrl}
+                                title={lesson.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                            ></iframe>
+                        ) : (
+                            <img
+                                alt={`${lesson.title} Thumbnail`}
+                                className="lesson-card-thumbnail-image"
+                                src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
+                            />
+                        )}
                     </div>
 
                     <div className="page-content__description">
@@ -104,20 +109,16 @@ export const LessonDetailsPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn"
+                <NavigationButton
+                    icon={<PencilSquareIcon className="h-6 w-6" />}
+                    text="Редактировать"
                     onClick={() => navigate(`/lessons/edit/${id}`)}
-                >
-                    <PencilSquareIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Редактировать</span>
-                </button>
-                <button
-                    className="nav-btn"
+                />
+                <NavigationButton
+                    icon={<TrashIcon className="h-6 w-6" />}
+                    text="Удалить"
                     onClick={() => setIsModalOpen(true)}
-                >
-                    <TrashIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Удалить</span>
-                </button>
+                />
             </AdaptiveNavBar>
 
             <Modal

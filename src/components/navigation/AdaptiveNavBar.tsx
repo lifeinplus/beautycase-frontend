@@ -7,8 +7,8 @@ import {
 import { ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import AuthButton from '../features/auth/AuthButton'
-import { ThemeToggler } from '../features/theme'
+import { AuthButton } from '../../features/auth'
+import { ThemeToggler } from '../../features/theme'
 
 interface AdaptiveNavBarProps {
     children: ReactNode

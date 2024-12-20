@@ -1,17 +1,28 @@
 .form {
-    @apply space-y-4 px-3;
+    @apply space-y-4 px-3 pb-6;
 }
 
-.form__label {
+.form-label {
     @apply block py-4 font-bold;
 }
 
-.form__input {
-    @apply block w-full rounded-xl border px-4 py-2.5 focus:border-1.5 focus:outline-none;
-    @apply border-neutral-200 bg-white placeholder-neutral-500 focus:border-black dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white;
+.form-input {
+    @apply block w-full rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply bg-white placeholder-neutral-500 dark:bg-black dark:placeholder-neutral-600;
+    @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }
 
-.form__button--select {
-    @apply flex w-full items-center justify-between rounded-xl border px-4 py-2.5 focus:border-1.5 focus:outline-none;
-    @apply border-neutral-200 bg-white text-neutral-600 hover:bg-gray-600 focus:border-black dark:border-neutral-700 dark:bg-black dark:focus:border-white;
+.form-thumbnail-container {
+    @apply relative mx-auto mt-5 aspect-video w-full overflow-hidden rounded-2xl p-1;
+    @apply border border-neutral-200 peer-focus:border-1.5 peer-focus:border-black dark:border-neutral-700 dark:peer-focus:border-white;
+}
+
+.form-thumbnail-image {
+    @apply h-full w-full rounded-xl object-cover;
+}
+
+.form-button-select {
+    @apply flex w-full items-center justify-between rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply bg-white dark:bg-black;
+    @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }

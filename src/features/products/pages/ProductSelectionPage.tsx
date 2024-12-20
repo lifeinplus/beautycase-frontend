@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, TopPanel } from '../../../components'
+import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
 import { useFetchProductsQuery } from '../productApiSlice'
 
@@ -98,14 +98,17 @@ export const ProductSelectionPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                <button className="nav-btn nav-btn-back" onClick={handleBack}>
-                    <ArrowLeftIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Назад</span>
-                </button>
-                <button className="nav-btn" onClick={handleSave}>
-                    <CheckIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Сохранить</span>
-                </button>
+                <NavigationButton
+                    icon={<ArrowLeftIcon className="h-6 w-6" />}
+                    text="Назад"
+                    onClick={handleBack}
+                    className="nav-btn-back"
+                />
+                <NavigationButton
+                    icon={<CheckIcon className="h-6 w-6" />}
+                    text="Сохранить"
+                    onClick={handleSave}
+                />
             </AdaptiveNavBar>
         </article>
     )

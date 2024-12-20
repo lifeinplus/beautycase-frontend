@@ -16,9 +16,9 @@ export const ToolAddPage = () => {
 
     const handleAddTool = async (tool: Tool) => {
         try {
-            await addTool(tool).unwrap()
+            const response = await addTool(tool).unwrap()
             dispatch(clearFormData())
-            navigate('/tools')
+            navigate(`/tools/${response.id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

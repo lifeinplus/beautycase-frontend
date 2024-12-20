@@ -1,12 +1,28 @@
 import { PaintBrushIcon, ListBulletIcon } from '@heroicons/react/24/outline'
 
-import { AdaptiveNavBar, Footer, Header, Hero } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Footer,
+    Header,
+    Hero,
+    NavigationButton,
+} from '../../../components'
 import { Brands } from '../../brands'
 import { Stages } from '../../stages'
 import { useGetMakeupBagQuery } from '../makeupBagApiSlice'
 
 export const MakeupBagPage = () => {
     const { data } = useGetMakeupBagQuery()
+
+    const handleStages = () =>
+        document
+            .getElementById('stages')
+            ?.scrollIntoView({ behavior: 'smooth' })
+
+    const handleBrushes = () =>
+        document
+            .getElementById('brands')
+            ?.scrollIntoView({ behavior: 'smooth' })
 
     return (
         <>
@@ -23,29 +39,16 @@ export const MakeupBagPage = () => {
             <Footer />
 
             <AdaptiveNavBar>
-                <button
-                    className="nav-btn"
-                    onClick={() =>
-                        document
-                            .getElementById('stages')
-                            ?.scrollIntoView({ behavior: 'smooth' })
-                    }
-                >
-                    <ListBulletIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Этапы</span>
-                </button>
-
-                <button
-                    className="nav-btn"
-                    onClick={() =>
-                        document
-                            .getElementById('brands')
-                            ?.scrollIntoView({ behavior: 'smooth' })
-                    }
-                >
-                    <PaintBrushIcon className="h-6 w-6" />
-                    <span className="hidden lg:inline">Кисти</span>
-                </button>
+                <NavigationButton
+                    icon={<ListBulletIcon className="h-6 w-6" />}
+                    text="Этапы"
+                    onClick={handleStages}
+                />
+                <NavigationButton
+                    icon={<PaintBrushIcon className="h-6 w-6" />}
+                    text="Кисти"
+                    onClick={handleBrushes}
+                />
             </AdaptiveNavBar>
         </>
     )

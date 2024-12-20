@@ -1,5 +1,5 @@
 .form {
-    @apply space-y-4 px-3;
+    @apply space-y-4 px-3 pb-6;
 }
 
 .form-label {

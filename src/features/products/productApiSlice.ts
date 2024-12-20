@@ -1,9 +1,9 @@
 import { apiSlice } from '../api/apiSlice'
-import type { Product, QueryResult } from './types'
+import type { MutationResult, Product, QueryResult } from './types'
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createProduct: builder.mutation<Product, Partial<Product>>({
+        createProduct: builder.mutation<MutationResult, Partial<Product>>({
             query: (data) => ({
                 url: '/products/one',
                 method: 'POST',

@@ -16,9 +16,9 @@ export const ProductAddPage = () => {
 
     const handleAddProduct = async (product: Product) => {
         try {
-            await createProduct(product).unwrap()
+            const response = await createProduct(product).unwrap()
             dispatch(clearFormData())
-            navigate('/products')
+            navigate(`/products/${response.id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

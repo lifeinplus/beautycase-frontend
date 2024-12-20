@@ -16,9 +16,9 @@ export const LessonAddPage = () => {
 
     const handleAddLesson = async (lesson: Lesson) => {
         try {
-            await createLesson(lesson).unwrap()
+            const response = await createLesson(lesson).unwrap()
             dispatch(clearFormData())
-            navigate('/lessons')
+            navigate(`/lessons/${response.id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

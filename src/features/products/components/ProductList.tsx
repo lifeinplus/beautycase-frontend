@@ -1,34 +1,15 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { Product } from '../types'
+import { useScrollToElement } from '../../../hooks'
+import type { Product } from '../types'
 
 interface ProductsListProps {
     products: Product[]
 }
 
 export const ProductsList = ({ products }: ProductsListProps) => {
-    const { pathname, state } = useLocation()
+    const { pathname, state, scroll } = useScrollToElement()
     const navigate = useNavigate()
-
-    const [scrolled, isScrolled] = useState(false)
-
-    const scroll = useCallback((node: HTMLLIElement | null) => {
-        if (!node) return
-
-        const { top, height } = node.getBoundingClientRect()
-
-        window.scrollTo({
-            top: top - height / 2,
-            behavior: 'instant',
-        })
-
-        isScrolled(true)
-    }, [])
-
-    useEffect(() => {
-        navigate(pathname, { replace: true })
-    }, [scrolled])
 
     const handleClick = (id?: string) => {
         navigate(`/products/${id}`, {

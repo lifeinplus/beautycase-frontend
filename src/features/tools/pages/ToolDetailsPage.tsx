@@ -1,7 +1,11 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+import {
+    ArrowLeftIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
@@ -11,8 +15,10 @@ import { Modal } from '../../modals'
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
 
 export const ToolDetailsPage = () => {
+    const { state } = useLocation()
     const { id } = useParams()
     const navigate = useNavigate()
+
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const dispatch = useAppDispatch()
@@ -35,6 +41,18 @@ export const ToolDetailsPage = () => {
         )
     }
 
+    const handleBack = () => {
+        if (state?.fromPathname) {
+            navigate(state?.fromPathname, {
+                replace: true,
+                state: { scrollId: id },
+            })
+            return
+        }
+
+        navigate('/tools')
+    }
+
     const handleDelete = async () => {
         if (!id) return
 
@@ -50,7 +68,7 @@ export const ToolDetailsPage = () => {
 
     return (
         <article className="page">
-            <TopPanel title="Инструмент" onBack={() => navigate('/tools')} />
+            <TopPanel title="Инструмент" onBack={handleBack} />
 
             <main className="page-content">
                 <article className="page-content__container">
@@ -78,6 +96,12 @@ export const ToolDetailsPage = () => {
             </main>
 
             <AdaptiveNavBar>
+                <NavigationButton
+                    icon={<ArrowLeftIcon className="h-6 w-6" />}
+                    text="Назад"
+                    onClick={handleBack}
+                    className="nav-btn-back"
+                />
                 <NavigationButton
                     icon={<PencilSquareIcon className="h-6 w-6" />}
                     text="Редактировать"

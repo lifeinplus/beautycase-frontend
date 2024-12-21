@@ -3,7 +3,12 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Header,
+    NavigationButton,
+    PageTitle,
+} from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { LessonCard } from '../components/LessonCard'
@@ -12,10 +17,10 @@ import { useGetLessonsQuery } from '../lessonsApiSlice'
 export const LessonsGalleryPage = () => {
     const navigate = useNavigate()
 
+    const headline = 'Уроки'
+
     const dispatch = useAppDispatch()
     const { data: lessons, isLoading, error } = useGetLessonsQuery()
-
-    const title = 'Уроки'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -26,13 +31,12 @@ export const LessonsGalleryPage = () => {
     }
 
     return (
-        <article className="page">
-            <TopPanel title={title} onBack={() => navigate('/')} />
+        <section>
+            <Header />
 
             <main className="page-content">
-                <section className="page-gallery__title">
-                    <h1 className="page-gallery__title__text">{title}</h1>
-                </section>
+                <PageTitle headline={headline} />
+
                 {isLoading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -53,6 +57,6 @@ export const LessonsGalleryPage = () => {
                     onClick={handleAdd}
                 />
             </AdaptiveNavBar>
-        </article>
+        </section>
     )
 }

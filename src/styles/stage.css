@@ -1,8 +1,8 @@
 .stage-headline {
-    @apply text-center font-heading text-xl font-bold sm:text-2xl;
+    @apply text-center font-heading text-lg font-bold sm:text-xl md:text-2xl lg:text-3xl;
 }
 
 .stage-byline {
-    @apply mb-6 mt-2 text-center font-heading text-lg;
+    @apply mb-6 mt-2 text-center font-heading text-base sm:text-lg md:text-xl lg:text-2xl;
     @apply text-slate-700 dark:text-slate-400;
 }

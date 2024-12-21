@@ -1,7 +1,11 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+import {
+    ArrowLeftIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
@@ -14,8 +18,10 @@ import {
 } from '../lessonsApiSlice'
 
 export const LessonDetailsPage = () => {
-    const { id } = useParams()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
+    const { id } = useParams()
+
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const dispatch = useAppDispatch()
@@ -39,6 +45,10 @@ export const LessonDetailsPage = () => {
 
     const embedUrl = getYouTubeEmbedUrl(lesson.videoUrl)
 
+    const handleBack = () => {
+        navigate('/lessons')
+    }
+
     const handleDelete = async () => {
         if (!id) return
 
@@ -52,9 +62,15 @@ export const LessonDetailsPage = () => {
         }
     }
 
+    const handleProduct = (id?: string) => {
+        navigate(`/products/${id}`, {
+            state: { fromPathname: pathname },
+        })
+    }
+
     return (
         <article className="page">
-            <TopPanel title="Урок" onBack={() => navigate('/lessons')} />
+            <TopPanel title="Урок" onBack={handleBack} />
 
             <main className="page-content">
                 <article className="page-content__container">
@@ -96,11 +112,12 @@ export const LessonDetailsPage = () => {
                             <div
                                 key={product._id}
                                 className="img-container img-container-square"
+                                onClick={() => handleProduct(product._id)}
                             >
                                 <img
-                                    src={product.image}
                                     alt={product.name}
                                     className="img img-sm-rounded"
+                                    src={product.image}
                                 />
                             </div>
                         ))}
@@ -109,6 +126,12 @@ export const LessonDetailsPage = () => {
             </main>
 
             <AdaptiveNavBar>
+                <NavigationButton
+                    icon={<ArrowLeftIcon className="h-6 w-6" />}
+                    text="Назад"
+                    onClick={handleBack}
+                    className="nav-btn-back"
+                />
                 <NavigationButton
                     icon={<PencilSquareIcon className="h-6 w-6" />}
                     text="Редактировать"

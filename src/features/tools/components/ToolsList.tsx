@@ -13,7 +13,7 @@ export const ToolsList = ({ tools }: ToolsListProps) => {
 
     const handleClick = (id?: string) => {
         navigate(`/tools/${id}`, {
-            state: { fromPathname: pathname, fromMakeupBag: true },
+            state: { fromPathname: pathname },
         })
     }
 

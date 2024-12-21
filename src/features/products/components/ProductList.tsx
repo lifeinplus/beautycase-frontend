@@ -13,7 +13,7 @@ export const ProductsList = ({ products }: ProductsListProps) => {
 
     const handleClick = (id?: string) => {
         navigate(`/products/${id}`, {
-            state: { fromPathname: pathname, fromMakeupBag: true },
+            state: { fromPathname: pathname },
         })
     }
 

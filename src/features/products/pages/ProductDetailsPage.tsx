@@ -44,7 +44,7 @@ export const ProductDetailsPage = () => {
     }
 
     const handleBack = () => {
-        if (state?.fromMakeupBag) {
+        if (state?.fromPathname) {
             navigate(state?.fromPathname, {
                 replace: true,
                 state: { scrollId: id },

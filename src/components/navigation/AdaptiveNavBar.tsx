@@ -1,6 +1,6 @@
 import {
     FilmIcon,
-    PaintBrushIcon,
+    HandRaisedIcon,
     RectangleGroupIcon,
     ShoppingBagIcon,
 } from '@heroicons/react/24/outline'
@@ -34,7 +34,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         {
             path: '/tools',
             label: 'Инструменты',
-            icon: <PaintBrushIcon className="h-6 w-6" />,
+            icon: <HandRaisedIcon className="h-6 w-6" />,
         },
         {
             path: '/lessons',

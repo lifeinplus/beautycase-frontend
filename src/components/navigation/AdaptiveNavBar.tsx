@@ -11,7 +11,7 @@ import { AuthButton } from '../../features/auth'
 import { ThemeToggler } from '../../features/theme'
 
 interface AdaptiveNavBarProps {
-    children: ReactNode
+    children?: ReactNode
 }
 
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {

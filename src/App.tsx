@@ -25,6 +25,7 @@ import {
     ProductDetailsPage,
     ProductSelectionPage,
 } from './features/products'
+import { QuestionnairePage } from './features/questionnaire'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -57,6 +58,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/questionnaire" element={<QuestionnairePage />} />
                 <Route path="/register" element={<RegisterPage />} />
 
                 <Route element={<PersistLogin />}>

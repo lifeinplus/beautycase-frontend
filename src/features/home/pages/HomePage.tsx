@@ -14,6 +14,9 @@ export const HomePage = () => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-4">
+                    <Link to="/questionnaire" className="home__button">
+                        Анкета
+                    </Link>
                     <Link to="/makeup_bag" className="home__button">
                         Косметичка
                     </Link>

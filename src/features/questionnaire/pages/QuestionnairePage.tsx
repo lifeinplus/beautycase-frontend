@@ -2,52 +2,69 @@ import { Path, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import { AdaptiveNavBar, Header } from '../../../components'
+import { AdaptiveNavBar, Header, NavigationButton } from '../../../components'
 import {
-    CheckboxItem,
-    InputItem,
-    RadioButtonItem,
-    TextareaItem,
+    CheckboxSection,
+    InputSection,
+    RadioButtonSection,
+    TextareaSection,
 } from '../../form'
 import { Hero } from '../components/Hero'
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 
-interface FormData {
+export interface Option {
+    id: string
+    label: string
+    name: Path<FormData>
+}
+
+interface ProcedureData {
+    lashExtensions?: boolean
+    browCorrection?: boolean
+    lashLamination?: boolean
+    none?: boolean
+}
+
+interface DesiredSkillData {
+    delicate?: boolean
+    evening?: boolean
+    bright?: boolean
+    office?: boolean
+}
+
+interface ProblemData {
+    eyeshadowCrease?: boolean
+    mascaraSmudge?: boolean
+    foundationPores?: boolean
+    foundationStay?: boolean
+    sculpting?: boolean
+    eyeshadowMatch?: boolean
+}
+
+export interface FormData {
     name: string
     instagram: string
     city?: string
     age?: number
     makeupBag: string
-    procedures: {
-        lashExtensions?: boolean
-        browCorrection?: boolean
-        lashLamination?: boolean
-        none?: boolean
-    }
+    procedures: ProcedureData
     skinType?: string
     allergies?: string
     peeling?: boolean
     pores?: boolean
     oilyShine?: boolean
     currentSkills?: string
-    desiredSkills?: string
+    desiredSkills: DesiredSkillData
     makeupTime?: string
     budget?: string
     brushes?: boolean
-    problems: {
-        eyeshadowCrease?: boolean
-        mascaraSmudge?: boolean
-        foundationPores?: boolean
-        foundationStay?: boolean
-        sculpting?: boolean
-        eyeshadowMatch?: boolean
-        other?: string
-    }
+    problems: ProblemData
     referral?: string
 }
 
 const schema = yup.object({
-    name: yup.string().required('Имя обязательно для заполнения'),
-    instagram: yup.string().required('Укажите ник в Инстаграм'),
+    name: yup.string().required('Укажите ваше имя'),
+    instagram: yup.string().required('Укажите псевдоним в Instagram'),
     city: yup.string(),
     age: yup.number(),
     makeupBag: yup.string().required('Укажите, что сейчас есть в косметичке'),
@@ -63,7 +80,12 @@ const schema = yup.object({
     pores: yup.boolean(),
     oilyShine: yup.boolean(),
     currentSkills: yup.string(),
-    desiredSkills: yup.string(),
+    desiredSkills: yup.object({
+        delicate: yup.boolean(),
+        evening: yup.boolean(),
+        bright: yup.boolean(),
+        office: yup.boolean(),
+    }),
     makeupTime: yup.string(),
     budget: yup.string(),
     brushes: yup.boolean(),
@@ -88,107 +110,190 @@ export const QuestionnairePage = () => {
         resolver: yupResolver(schema),
     })
 
-    const procedures: { id: string; label: string; name: Path<FormData> }[] = [
-        {
-            id: 'procedure-lash-extensions',
-            label: 'Наращивание ресниц',
-            name: 'procedures.lashExtensions',
-        },
-        {
-            id: 'procedure-brow-correction',
-            label: 'Коррекция и покраска бровей',
-            name: 'procedures.browCorrection',
-        },
-        {
-            id: 'procedure-lash-lamination',
-            label: 'Ламинирование, покраска ресниц',
-            name: 'procedures.lashLamination',
-        },
-        {
-            id: 'procedure-none',
-            label: 'Не делаю',
-            name: 'procedures.none',
-        },
-    ]
-
-    const skinTypes = [
-        { id: 'skin-type-normal', label: 'Нормальная' },
-        { id: 'skin-type-dry', label: 'Сухая' },
-        { id: 'skin-type-combination', label: 'Комбинированная' },
-        { id: 'skin-type-oily', label: 'Жирная' },
-    ]
-
-    const peeling = [
-        { id: 'peeling-yes', label: 'Да' },
-        { id: 'peeling-no', label: 'Нет' },
-    ]
-
-    const pores = [
-        { id: 'pores-yes', label: 'Да' },
-        { id: 'pores-no', label: 'Нет' },
-    ]
-
-    const oilyShine = [
-        { id: 'oily-shine-yes', label: 'Да' },
-        { id: 'oily-shine-no', label: 'Нет' },
-    ]
-
-    const makeupTime = [
-        { id: 'makeup-time-up-to-15-min', label: 'До 15 минут' },
-        { id: 'makeup-time-15-25-min', label: '15-25 минут' },
-        { id: 'makeup-time-30-60-min', label: '30-60 минут' },
-    ]
-
-    const budget = [
-        { id: 'budget-up-to-30-eur', label: 'До 30 евро' },
-        { id: 'budget-30-50-eur', label: '30-50 евро' },
-        { id: 'budget-50-100-eur', label: '50-100 евро' },
-        { id: 'budget-more-than-100-eur', label: 'Более 100 евро' },
-    ]
-
-    const brushes = [
-        { id: 'brushes-yes', label: 'Да' },
-        { id: 'brushes-no', label: 'Нет' },
-    ]
-
-    const problems: { id: string; label: string; name: Path<FormData> }[] = [
-        {
-            id: 'problem-eyeshadow-crease',
-            label: 'Скатываются тени',
-            name: 'problems.eyeshadowCrease',
-        },
-        {
-            id: 'problem-mascara-smudge',
-            label: 'Отпечатывается тушь',
-            name: 'problems.mascaraSmudge',
-        },
-        {
-            id: 'problem-foundation-pores',
-            label: 'Тон проваливается в поры',
-            name: 'problems.foundationPores',
-        },
-        {
-            id: 'problem-foundation-stay',
-            label: 'Тон плохо держится',
-            name: 'problems.foundationStay',
-        },
-        {
-            id: 'problem-sculpting',
-            label: 'Не умею делать скульптурирование',
-            name: 'problems.sculpting',
-        },
-        {
-            id: 'problem-eyeshadow-match',
-            label: 'Не знаю, какие тени подходят под мой цвет глаз',
-            name: 'problems.eyeshadowMatch',
-        },
-    ]
-
-    const referral = [
-        { id: 'referral-instagram', label: 'Instagram' },
-        { id: 'referral-youtube', label: 'YouTube' },
-        { id: 'referral-other', label: 'Другое' },
-    ]
+    const options: {
+        procedures: Option[]
+        skinTypes: Option[]
+        peeling: Option[]
+        pores: Option[]
+        oilyShine: Option[]
+        desiredSkills: Option[]
+        makeupTime: Option[]
+        budget: Option[]
+        brushes: Option[]
+        problems: Option[]
+        referral: Option[]
+    } = {
+        procedures: [
+            {
+                id: 'procedure-lash-extensions',
+                label: 'Наращивание ресниц',
+                name: 'procedures.lashExtensions',
+            },
+            {
+                id: 'procedure-brow-correction',
+                label: 'Коррекция и покраска бровей',
+                name: 'procedures.browCorrection',
+            },
+            {
+                id: 'procedure-lash-lamination',
+                label: 'Ламинирование, покраска ресниц',
+                name: 'procedures.lashLamination',
+            },
+            {
+                id: 'procedure-none',
+                label: 'Не делаю',
+                name: 'procedures.none',
+            },
+        ],
+        skinTypes: [
+            {
+                id: 'skin-type-normal',
+                label: 'Нормальная',
+                name: 'skinType',
+            },
+            {
+                id: 'skin-type-dry',
+                label: 'Сухая',
+                name: 'skinType',
+            },
+            {
+                id: 'skin-type-combination',
+                label: 'Комбинированная',
+                name: 'skinType',
+            },
+            {
+                id: 'skin-type-oily',
+                label: 'Жирная',
+                name: 'skinType',
+            },
+        ],
+        peeling: [
+            { id: 'peeling-yes', label: 'Да', name: 'peeling' },
+            { id: 'peeling-no', label: 'Нет', name: 'peeling' },
+        ],
+        pores: [
+            { id: 'pores-yes', label: 'Да', name: 'pores' },
+            { id: 'pores-no', label: 'Нет', name: 'pores' },
+        ],
+        oilyShine: [
+            { id: 'oily-shine-yes', label: 'Да', name: 'oilyShine' },
+            { id: 'oily-shine-no', label: 'Нет', name: 'oilyShine' },
+        ],
+        desiredSkills: [
+            {
+                id: 'desired-skill-delicate',
+                label: 'Нежный',
+                name: 'desiredSkills.delicate',
+            },
+            {
+                id: 'desired-skill-evening',
+                label: 'Вечерний',
+                name: 'desiredSkills.evening',
+            },
+            {
+                id: 'desired-skill-bright',
+                label: 'Яркий',
+                name: 'desiredSkills.bright',
+            },
+            {
+                id: 'desired-skill-office',
+                label: 'Офисный вариант',
+                name: 'desiredSkills.office',
+            },
+        ],
+        makeupTime: [
+            {
+                id: 'makeup-time-up-to-15-min',
+                label: 'До 15 минут',
+                name: 'makeupTime',
+            },
+            {
+                id: 'makeup-time-15-25-min',
+                label: '15-25 минут',
+                name: 'makeupTime',
+            },
+            {
+                id: 'makeup-time-30-60-min',
+                label: '30-60 минут',
+                name: 'makeupTime',
+            },
+        ],
+        budget: [
+            {
+                id: 'budget-up-to-30-eur',
+                label: 'До 30 евро',
+                name: 'budget',
+            },
+            {
+                id: 'budget-30-50-eur',
+                label: '30-50 евро',
+                name: 'budget',
+            },
+            {
+                id: 'budget-50-100-eur',
+                label: '50-100 евро',
+                name: 'budget',
+            },
+            {
+                id: 'budget-more-than-100-eur',
+                label: 'Более 100 евро',
+                name: 'budget',
+            },
+        ],
+        brushes: [
+            { id: 'brushes-yes', label: 'Да', name: 'brushes' },
+            { id: 'brushes-no', label: 'Нет', name: 'brushes' },
+        ],
+        problems: [
+            {
+                id: 'problem-eyeshadow-crease',
+                label: 'Скатываются тени',
+                name: 'problems.eyeshadowCrease',
+            },
+            {
+                id: 'problem-mascara-smudge',
+                label: 'Отпечатывается тушь',
+                name: 'problems.mascaraSmudge',
+            },
+            {
+                id: 'problem-foundation-pores',
+                label: 'Тон проваливается в поры',
+                name: 'problems.foundationPores',
+            },
+            {
+                id: 'problem-foundation-stay',
+                label: 'Тон плохо держится',
+                name: 'problems.foundationStay',
+            },
+            {
+                id: 'problem-sculpting',
+                label: 'Не умею делать скульптурирование',
+                name: 'problems.sculpting',
+            },
+            {
+                id: 'problem-eyeshadow-match',
+                label: 'Не знаю, какие тени подходят под мой цвет глаз',
+                name: 'problems.eyeshadowMatch',
+            },
+        ],
+        referral: [
+            {
+                id: 'referral-instagram',
+                label: 'Instagram',
+                name: 'referral',
+            },
+            {
+                id: 'referral-youtube',
+                label: 'YouTube',
+                name: 'referral',
+            },
+            {
+                id: 'referral-other',
+                label: 'Другое',
+                name: 'referral',
+            },
+        ],
+    }
 
     const onSubmit = (data: any) => {
         console.log('Form Data:', data)
@@ -211,7 +316,7 @@ export const QuestionnairePage = () => {
                                 * Обязательно для заполнения
                             </p>
 
-                            <InputItem
+                            <InputSection
                                 error={errors.name}
                                 label="Имя"
                                 register={register('name')}
@@ -219,27 +324,27 @@ export const QuestionnairePage = () => {
                                 type="text"
                             />
 
-                            <InputItem
+                            <InputSection
                                 error={errors.instagram}
-                                label="Ник в Инстаграм"
+                                label="Псевдоним в Instagram"
                                 register={register('instagram')}
                                 required={true}
                                 type="text"
                             />
 
-                            <InputItem
+                            <InputSection
                                 label="Город проживания"
                                 register={register('city')}
                                 type="text"
                             />
 
-                            <InputItem
+                            <InputSection
                                 label="Возраст"
                                 register={register('age')}
                                 type="number"
                             />
 
-                            <InputItem
+                            <InputSection
                                 error={errors.makeupBag}
                                 label="Что сейчас уже есть в косметичке?"
                                 register={register('makeupBag')}
@@ -247,250 +352,94 @@ export const QuestionnairePage = () => {
                                 type="text"
                             />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Делаете ли какие-то из этих процедур на
-                                        постоянной основе?
-                                    </span>
-                                </label>
+                            <CheckboxSection
+                                label="Делаете ли какие-то из этих процедур на постоянной основе?"
+                                options={options.procedures}
+                                register={register}
+                            />
 
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {procedures.map((item) => (
-                                            <CheckboxItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register(item.name)}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
+                            <RadioButtonSection
+                                label="Тип кожи"
+                                options={options.skinTypes}
+                                register={register}
+                            />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">Тип кожи</span>
-                                </label>
-
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {skinTypes.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('skinType')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <TextareaItem
+                            <TextareaSection
                                 label="Есть ли аллергия? На что (если есть)?"
                                 register={register('allergies')}
                             />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Бывают ли шелушения?
-                                    </span>
-                                </label>
+                            <RadioButtonSection
+                                label="Бывают ли шелушения?"
+                                options={options.peeling}
+                                register={register}
+                            />
 
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {peeling.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('peeling')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
+                            <RadioButtonSection
+                                label="Заметны ли поры?"
+                                options={options.pores}
+                                register={register}
+                            />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Заметны ли поры?
-                                    </span>
-                                </label>
+                            <RadioButtonSection
+                                label="Появляется ли жирный блеск в течение дня?"
+                                options={options.oilyShine}
+                                register={register}
+                            />
 
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {pores.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('pores')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Появляется ли жирный блеск в течение
-                                        дня?
-                                    </span>
-                                </label>
-
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {oilyShine.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('oilyShine')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <TextareaItem
-                                label="Что уже умеете? Какие виды макияжа
+                            <TextareaSection
+                                label="Что уже умеете?  
                                         делаете сейчас?"
                                 register={register('currentSkills')}
                             />
 
-                            <TextareaItem
-                                label="Какие виды макияжа хотите научиться делать в будущем (нежные/вечерние/яркие/офисный вариант/свой вариант)?"
-                                register={register('desiredSkills')}
+                            <CheckboxSection
+                                label="Какие виды макияжа хотите научиться делать в будущем?"
+                                options={options.desiredSkills}
+                                register={register}
                             />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Сколько времени чаще всего выделяете на
-                                        макияж?
-                                    </span>
-                                </label>
+                            <RadioButtonSection
+                                label="Сколько времени чаще всего выделяете на макияж?"
+                                options={options.makeupTime}
+                                register={register}
+                            />
 
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {makeupTime.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register(
-                                                    'makeupTime'
-                                                )}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
+                            <RadioButtonSection
+                                label="Какой бюджет закладываете на косметичку?"
+                                options={options.budget}
+                                register={register}
+                            />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Какой бюджет закладываете на косметичку?
-                                    </span>
-                                </label>
+                            <RadioButtonSection
+                                label="Нужен ли подбор кистей?"
+                                options={options.brushes}
+                                register={register}
+                            />
 
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {budget.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('budget')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
+                            <CheckboxSection
+                                label="С какими проблемами сталкивались при выполнении макияжа?"
+                                options={options.problems}
+                                register={register}
+                            />
 
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Нужен ли подбор кистей?
-                                    </span>
-                                </label>
-
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {brushes.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('brushes')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        С какими проблемами сталкивались при
-                                        выполнении макияжа?
-                                    </span>
-                                </label>
-
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {problems.map((item) => (
-                                            <CheckboxItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register(item.name)}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block">
-                                    <span className="form-label">
-                                        Откуда узнали про меня?
-                                    </span>
-                                </label>
-
-                                <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-                                    <nav className="flex min-w-[240px] flex-col gap-1 p-2">
-                                        {referral.map((item) => (
-                                            <RadioButtonItem
-                                                key={item.id}
-                                                id={item.id}
-                                                label={item.label}
-                                                register={register('referral')}
-                                            />
-                                        ))}
-                                    </nav>
-                                </div>
-                            </div>
+                            <RadioButtonSection
+                                label="Откуда узнали про меня?"
+                                options={options.referral}
+                                register={register}
+                            />
                         </article>
-
-                        <section>
-                            <button
-                                type="submit"
-                                className="rounded-md bg-blue-500 px-4 py-2 text-white"
-                            >
-                                Отправить
-                            </button>
-                        </section>
                     </form>
                 </section>
             </main>
 
-            <AdaptiveNavBar />
+            <AdaptiveNavBar>
+                <NavigationButton
+                    icon={<PaperAirplaneIcon className="h-6 w-6" />}
+                    text="Отправить"
+                    onClick={handleSubmit(onSubmit)}
+                />
+            </AdaptiveNavBar>
         </article>
     )
 }

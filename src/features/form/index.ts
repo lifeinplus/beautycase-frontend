@@ -1,8 +1,11 @@
 export * from './components/CheckboxItem'
+export * from './components/CheckboxSection'
 export * from './components/DynamicForm'
-export * from './components/InputItem'
+export * from './components/InputSection'
+export * from './components/Label'
 export * from './components/RadioButtonItem'
-export * from './components/TextareaItem'
+export * from './components/RadioButtonSection'
+export * from './components/TextareaSection'
 
 export * from './formSlice'
 export * from './types'

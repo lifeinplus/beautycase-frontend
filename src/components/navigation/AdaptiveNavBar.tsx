@@ -1,7 +1,8 @@
 import {
+    ClipboardIcon,
     FilmIcon,
-    HandRaisedIcon,
     RectangleGroupIcon,
+    ScissorsIcon,
     ShoppingBagIcon,
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
@@ -22,6 +23,11 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
 
     const navItems = [
         {
+            path: '/questionnaire',
+            label: 'Анкета',
+            icon: <ClipboardIcon className="h-6 w-6" />,
+        },
+        {
             path: '/makeup_bag',
             label: 'Косметичка',
             icon: <ShoppingBagIcon className="h-6 w-6" />,
@@ -34,7 +40,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         {
             path: '/tools',
             label: 'Инструменты',
-            icon: <HandRaisedIcon className="h-6 w-6" />,
+            icon: <ScissorsIcon className="h-6 w-6" />,
         },
         {
             path: '/lessons',

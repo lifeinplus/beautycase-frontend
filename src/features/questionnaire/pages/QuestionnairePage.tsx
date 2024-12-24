@@ -50,7 +50,7 @@ export interface FormData {
     procedures: ProcedureData
     skinType?: string
     allergies?: string
-    peeling?: boolean
+    peeling?: string
     pores?: boolean
     oilyShine?: boolean
     currentSkills?: string
@@ -76,7 +76,7 @@ const schema = yup.object({
     }),
     skinType: yup.string(),
     allergies: yup.string(),
-    peeling: yup.boolean(),
+    peeling: yup.string(),
     pores: yup.boolean(),
     oilyShine: yup.boolean(),
     currentSkills: yup.string(),

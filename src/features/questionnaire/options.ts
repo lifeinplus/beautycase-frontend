@@ -6,6 +6,7 @@ export interface QuestionnaireOption {
     id: string
     label: string
     name: Path<Questionnaire>
+    value?: string
 }
 
 interface Options {
@@ -68,8 +69,18 @@ export const options: Options = {
         },
     ],
     peeling: [
-        { id: 'peeling-yes', label: 'Да', name: 'peeling' },
-        { id: 'peeling-no', label: 'Нет', name: 'peeling' },
+        {
+            id: 'peeling-yes',
+            label: 'Да',
+            name: 'peeling',
+            value: 'yes',
+        },
+        {
+            id: 'peeling-no',
+            label: 'Нет',
+            name: 'peeling',
+            value: 'no',
+        },
     ],
     pores: [
         { id: 'pores-yes', label: 'Да', name: 'pores' },

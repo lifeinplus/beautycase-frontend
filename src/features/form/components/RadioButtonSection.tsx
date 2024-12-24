@@ -32,6 +32,7 @@ export const RadioButtonSection = ({
                         id={o.id}
                         label={o.label}
                         register={register(o.name)}
+                        value={o.value}
                     />
                 ))}
             </nav>

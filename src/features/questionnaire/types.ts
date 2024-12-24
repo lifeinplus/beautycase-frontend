@@ -27,17 +27,17 @@ export interface Questionnaire {
     city?: string
     age?: number
     makeupBag: string
-    procedures: ProcedureData
+    procedures?: ProcedureData
     skinType?: string
     allergies?: string
     peeling?: string
-    pores?: boolean
-    oilyShine?: boolean
+    pores?: string
+    oilyShine?: string
     currentSkills?: string
-    desiredSkills: DesiredSkillData
+    desiredSkills?: DesiredSkillData
     makeupTime?: string
     budget?: string
-    brushes?: boolean
-    problems: ProblemData
+    brushes?: string
+    problems?: ProblemData
     referral?: string
 }

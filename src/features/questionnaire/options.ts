@@ -83,12 +83,32 @@ export const options: Options = {
         },
     ],
     pores: [
-        { id: 'pores-yes', label: 'Да', name: 'pores' },
-        { id: 'pores-no', label: 'Нет', name: 'pores' },
+        {
+            id: 'pores-yes',
+            label: 'Да',
+            name: 'pores',
+            value: 'yes',
+        },
+        {
+            id: 'pores-no',
+            label: 'Нет',
+            name: 'pores',
+            value: 'no',
+        },
     ],
     oilyShine: [
-        { id: 'oily-shine-yes', label: 'Да', name: 'oilyShine' },
-        { id: 'oily-shine-no', label: 'Нет', name: 'oilyShine' },
+        {
+            id: 'oily-shine-yes',
+            label: 'Да',
+            name: 'oilyShine',
+            value: 'yes',
+        },
+        {
+            id: 'oily-shine-no',
+            label: 'Нет',
+            name: 'oilyShine',
+            value: 'no',
+        },
     ],
     desiredSkills: [
         {
@@ -117,16 +137,19 @@ export const options: Options = {
             id: 'makeup-time-up-to-15-min',
             label: 'До 15 минут',
             name: 'makeupTime',
+            value: '15',
         },
         {
-            id: 'makeup-time-15-25-min',
-            label: '15-25 минут',
+            id: 'makeup-time-15-30-min',
+            label: '15-30 минут',
             name: 'makeupTime',
+            value: '15-30',
         },
         {
             id: 'makeup-time-30-60-min',
             label: '30-60 минут',
             name: 'makeupTime',
+            value: '30-60',
         },
     ],
     budget: [
@@ -134,26 +157,40 @@ export const options: Options = {
             id: 'budget-up-to-30-eur',
             label: 'До 30 евро',
             name: 'budget',
+            value: '30',
         },
         {
             id: 'budget-30-50-eur',
             label: '30-50 евро',
             name: 'budget',
+            value: '30-50',
         },
         {
             id: 'budget-50-100-eur',
             label: '50-100 евро',
             name: 'budget',
+            value: '50-100',
         },
         {
             id: 'budget-more-than-100-eur',
             label: 'Более 100 евро',
             name: 'budget',
+            value: '100',
         },
     ],
     brushes: [
-        { id: 'brushes-yes', label: 'Да', name: 'brushes' },
-        { id: 'brushes-no', label: 'Нет', name: 'brushes' },
+        {
+            id: 'brushes-yes',
+            label: 'Да',
+            name: 'brushes',
+            value: 'yes',
+        },
+        {
+            id: 'brushes-no',
+            label: 'Нет',
+            name: 'brushes',
+            value: 'no',
+        },
     ],
     problems: [
         {
@@ -192,16 +229,19 @@ export const options: Options = {
             id: 'referral-instagram',
             label: 'Instagram',
             name: 'referral',
+            value: 'instagram',
         },
         {
             id: 'referral-youtube',
             label: 'YouTube',
             name: 'referral',
+            value: 'youtube',
         },
         {
             id: 'referral-other',
             label: 'Другое',
             name: 'referral',
+            value: 'other',
         },
     ],
 }

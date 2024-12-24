@@ -1,5 +1,6 @@
-import { Path, useForm } from 'react-hook-form'
+import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Path, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { AdaptiveNavBar, Header, NavigationButton } from '../../../components'
@@ -10,7 +11,6 @@ import {
     TextareaSection,
 } from '../../form'
 import { Hero } from '../components/Hero'
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 
 export interface Option {
     id: string
@@ -370,26 +370,28 @@ export const QuestionnairePage = () => {
                             />
 
                             <RadioButtonSection
+                                horizontal={true}
                                 label="Бывают ли шелушения?"
                                 options={options.peeling}
                                 register={register}
                             />
 
                             <RadioButtonSection
+                                horizontal={true}
                                 label="Заметны ли поры?"
                                 options={options.pores}
                                 register={register}
                             />
 
                             <RadioButtonSection
+                                horizontal={true}
                                 label="Появляется ли жирный блеск в течение дня?"
                                 options={options.oilyShine}
                                 register={register}
                             />
 
                             <TextareaSection
-                                label="Что уже умеете?  
-                                        делаете сейчас?"
+                                label="Что уже умеете? Какие виды макияжа делаете сейчас?"
                                 register={register('currentSkills')}
                             />
 
@@ -412,6 +414,7 @@ export const QuestionnairePage = () => {
                             />
 
                             <RadioButtonSection
+                                horizontal={true}
                                 label="Нужен ли подбор кистей?"
                                 options={options.brushes}
                                 register={register}

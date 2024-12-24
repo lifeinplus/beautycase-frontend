@@ -5,12 +5,14 @@ import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 
 interface RadioButtonSectionProps {
+    horizontal?: boolean
     label: string
     options: Option[]
     register: UseFormRegister<FormData>
 }
 
 export const RadioButtonSection = ({
+    horizontal = false,
     label,
     options,
     register,
@@ -18,7 +20,9 @@ export const RadioButtonSection = ({
     <div>
         <Label text={label} />
         <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
-            <nav className="flex min-w-[240px] flex-col gap-1 p-2">
+            <nav
+                className={`flex min-w-[240px] gap-1 p-2 ${horizontal ? '' : 'flex-col'}`}
+            >
                 {options.map((o) => (
                     <RadioButtonItem
                         key={o.id}

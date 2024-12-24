@@ -10,7 +10,11 @@ interface TextareaSectionProps {
 export const TextareaSection = ({ label, register }: TextareaSectionProps) => (
     <div>
         <Label text={label}>
-            <textarea className={`form-input`} {...register} />
+            <textarea
+                className={`form-input`}
+                placeholder={label}
+                {...register}
+            />
         </Label>
     </div>
 )

@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 const transformEmpty = (value: any, originalValue: any) => {
-    originalValue === '' || originalValue === null ? undefined : value
+    return originalValue === '' || originalValue === null ? undefined : value
 }
 
 export const schema = yup.object({
@@ -19,8 +19,8 @@ export const schema = yup.object({
     skinType: yup.string().transform(transformEmpty),
     allergies: yup.string(),
     peeling: yup.string().transform(transformEmpty),
-    pores: yup.boolean(),
-    oilyShine: yup.boolean(),
+    pores: yup.boolean().transform(transformEmpty),
+    oilyShine: yup.boolean().transform(transformEmpty),
     currentSkills: yup.string(),
     desiredSkills: yup.object({
         delicate: yup.boolean(),
@@ -28,9 +28,9 @@ export const schema = yup.object({
         bright: yup.boolean(),
         office: yup.boolean(),
     }),
-    makeupTime: yup.string(),
-    budget: yup.string(),
-    brushes: yup.boolean(),
+    makeupTime: yup.string().transform(transformEmpty),
+    budget: yup.string().transform(transformEmpty),
+    brushes: yup.boolean().transform(transformEmpty),
     problems: yup.object({
         eyeshadowCrease: yup.boolean(),
         mascaraSmudge: yup.boolean(),
@@ -40,5 +40,5 @@ export const schema = yup.object({
         eyeshadowMatch: yup.boolean(),
         other: yup.string(),
     }),
-    referral: yup.string(),
+    referral: yup.string().transform(transformEmpty),
 })

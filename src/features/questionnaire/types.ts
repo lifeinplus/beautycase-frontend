@@ -1,0 +1,43 @@
+interface DesiredSkillData {
+    bright?: boolean
+    delicate?: boolean
+    evening?: boolean
+    office?: boolean
+}
+
+interface ProblemData {
+    eyeshadowCrease?: boolean
+    eyeshadowMatch?: boolean
+    foundationPores?: boolean
+    foundationStay?: boolean
+    mascaraSmudge?: boolean
+    sculpting?: boolean
+}
+
+interface ProcedureData {
+    browCorrection?: boolean
+    lashExtensions?: boolean
+    lashLamination?: boolean
+    none?: boolean
+}
+
+export interface Questionnaire {
+    age?: number
+    allergies?: string
+    budget?: string
+    brushes?: string
+    city?: string
+    currentSkills?: string
+    desiredSkills?: DesiredSkillData
+    instagram: string
+    makeupBag: string
+    makeupTime?: string
+    name: string
+    oilyShine?: string
+    peeling?: string
+    pores?: string
+    problems?: ProblemData
+    procedures?: ProcedureData
+    referral?: string
+    skinType?: string
+}

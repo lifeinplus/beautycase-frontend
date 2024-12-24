@@ -1,13 +1,16 @@
 import { UseFormRegister } from 'react-hook-form'
 
-import { FormData, Option } from '../../questionnaire'
+import {
+    type Questionnaire,
+    type QuestionnaireOption,
+} from '../../questionnaire'
 import { CheckboxItem } from './CheckboxItem'
 import { Label } from './Label'
 
 interface CheckboxSectionProps {
     label: string
-    options: Option[]
-    register: UseFormRegister<FormData>
+    options: QuestionnaireOption[]
+    register: UseFormRegister<Questionnaire>
 }
 
 export const CheckboxSection = ({

@@ -4,12 +4,14 @@ interface RadioButtonItemProps {
     id: string
     label: string
     register: UseFormRegisterReturn
+    value?: string
 }
 
 export const RadioButtonItem = ({
     id,
     label,
     register,
+    value,
 }: RadioButtonItemProps) => (
     <div
         role="button"
@@ -27,8 +29,9 @@ export const RadioButtonItem = ({
                     <input
                         id={id}
                         className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 transition-all checked:border-slate-400 dark:border-slate-700 dark:checked:border-slate-600"
-                        type="radio"
                         {...register}
+                        type="radio"
+                        value={value}
                     />
                     <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-slate-800 opacity-0 transition-opacity duration-200 peer-checked:opacity-100 dark:bg-slate-200"></span>
                 </label>

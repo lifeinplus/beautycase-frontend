@@ -56,12 +56,15 @@ const App = () => {
             />
             <ScrollToTop />
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/questionnaire" element={<QuestionnairePage />} />
-                <Route path="/register" element={<RegisterPage />} />
-
                 <Route element={<PersistLogin />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route
+                        path="/questionnaire"
+                        element={<QuestionnairePage />}
+                    />
+                    <Route path="/register" element={<RegisterPage />} />
+
                     <Route element={<RequireAuth />}>
                         <Route path="/lessons">
                             <Route index element={<LessonsGalleryPage />} />

@@ -1,14 +1,17 @@
 import { type UseFormRegister } from 'react-hook-form'
 
-import { type FormData, type Option } from '../../questionnaire'
+import {
+    type Questionnaire,
+    type QuestionnaireOption,
+} from '../../questionnaire'
 import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 
 interface RadioButtonSectionProps {
     horizontal?: boolean
     label: string
-    options: Option[]
-    register: UseFormRegister<FormData>
+    options: QuestionnaireOption[]
+    register: UseFormRegister<Questionnaire>
 }
 
 export const RadioButtonSection = ({

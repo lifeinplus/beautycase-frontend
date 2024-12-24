@@ -1,5 +1,6 @@
+import type { MutationResult } from '../../types'
 import { apiSlice } from '../api/apiSlice'
-import type { Lesson, MutationResult, QueryResult } from './types'
+import type { Lesson, QueryResult } from './types'
 
 export const lessonsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

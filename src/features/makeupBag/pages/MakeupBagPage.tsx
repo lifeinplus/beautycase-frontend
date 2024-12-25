@@ -4,12 +4,12 @@ import {
     AdaptiveNavBar,
     Footer,
     Header,
+    Hero,
     NavigationButton,
 } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { Brands } from '../../brands'
 import { Stages } from '../../stages'
-import { Hero } from '../components/Hero'
 import { useGetMakeupBagQuery } from '../makeupBagApiSlice'
 
 export const MakeupBagPage = () => {
@@ -31,7 +31,11 @@ export const MakeupBagPage = () => {
 
             <main className="page-content flex flex-col items-center justify-center">
                 <section className="w-full max-w-2xl">
-                    <Hero />
+                    <Hero
+                        headline="Косметичка"
+                        byline="Индивидуальный подбор продуктов"
+                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
+                    />
 
                     {isLoading ? (
                         <div>Loading...</div>

@@ -2,8 +2,14 @@ import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
-import { AdaptiveNavBar, Header, NavigationButton } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Header,
+    Hero,
+    NavigationButton,
+} from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
@@ -11,15 +17,17 @@ import {
     RadioButtonSection,
     TextareaSection,
 } from '../../form'
-import { Hero } from '../components/Hero'
 import { options } from '../options'
 import type { Questionnaire } from '../types'
 import { schema } from '../validations'
 import { useAddQuestionnaireMutation } from '../questionnaireApiSlice'
 
 export const QuestionnairePage = () => {
+    const navigate = useNavigate()
+
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm<Questionnaire>({
@@ -32,6 +40,8 @@ export const QuestionnairePage = () => {
         try {
             const response = await addQuestionnaire(data).unwrap()
             console.log(response)
+            reset()
+            navigate('/confirmation')
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))
@@ -44,7 +54,12 @@ export const QuestionnairePage = () => {
 
             <main className="page-content flex flex-col items-center justify-center">
                 <section className="w-full max-w-2xl">
-                    <Hero />
+                    <Hero
+                        headline="Анкета"
+                        byline="Индивидуальный подбор косметички"
+                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1734995126/Questionnaire_cqv0mc.jpg"
+                        content="Привет! Спасибо за выбор моей услуги. Для того, чтобы я могла максимально точно подобрать то, что нужно именно вам, прошу ответить на некоторые вопросы."
+                    />
 
                     <form
                         onSubmit={handleSubmit(onSubmit)}

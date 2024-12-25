@@ -3,6 +3,7 @@ export * from './navigation/NavigationButton'
 
 export * from './Footer'
 export * from './Header'
+export * from './Hero'
 export * from './PageTitle'
 export * from './ScrollToTop'
 export * from './Spinner'

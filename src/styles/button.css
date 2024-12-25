@@ -1,0 +1,10 @@
+.button {
+    @apply flex w-full justify-center rounded-lg py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2;
+    @apply bg-rose-500 text-white hover:bg-rose-600 focus-visible:outline-rose-700;
+    @apply sm:w-36;
+}
+
+.button-section {
+    @apply border-t px-3 py-4 sm:flex sm:justify-end sm:border-0 sm:pt-0;
+    @apply border-gray-300 dark:border-gray-700;
+}

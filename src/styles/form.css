@@ -2,6 +2,10 @@
     @apply space-y-4 px-3 pb-6;
 }
 
+.form-questionnaire {
+    @apply space-y-6;
+}
+
 .form-label {
     @apply block py-4 font-bold;
 }

@@ -13,6 +13,6 @@ export const Hero = ({ headline, byline, imgUrl, content }: HeroProps) => (
 
         {imgUrl && <img alt={headline} className="sm:rounded" src={imgUrl} />}
 
-        {content && <p className="mb-2 me-3 ms-4 mt-6">{content}</p>}
+        {content && <p className="mb-2 me-3 ms-3 mt-6">{content}</p>}
     </section>
 )

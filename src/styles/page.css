@@ -3,7 +3,13 @@
 }
 
 .page-content {
-    @apply pb-12 pt-6 sm:ms-navbar-left sm:pb-6 lg:ms-navbar-left-open;
+    @apply pb-12 pt-6;
+    @apply sm:ms-navbar-left sm:pb-6 lg:ms-navbar-left-open;
+}
+
+.page-content-questionnaire {
+    @apply flex flex-col items-center justify-center pt-6;
+    @apply sm:ms-navbar-left sm:pb-6 lg:ms-navbar-left-open;
 }
 
 .page-title {

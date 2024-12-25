@@ -1,15 +1,9 @@
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
-import {
-    AdaptiveNavBar,
-    Header,
-    Hero,
-    NavigationButton,
-} from '../../../components'
+import { AdaptiveNavBar, Header, Hero } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
@@ -52,8 +46,8 @@ export const QuestionnairePage = () => {
         <article>
             <Header />
 
-            <main className="page-content flex flex-col items-center justify-center">
-                <section className="w-full max-w-2xl">
+            <main className="page-content-questionnaire">
+                <section className="w-full max-w-2xl space-y-6">
                     <Hero
                         headline="Анкета"
                         byline="Индивидуальный подбор косметички"
@@ -63,10 +57,10 @@ export const QuestionnairePage = () => {
 
                     <form
                         onSubmit={handleSubmit(onSubmit)}
-                        className="space-y-6"
+                        className="form-questionnaire"
                     >
-                        <article className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded">
-                            <p className="mb-2 text-sm text-rose-500 dark:text-rose-400">
+                        <article className="px-3">
+                            <p className="text-sm text-rose-500 dark:text-rose-400">
                                 * Обязательно для заполнения
                             </p>
 
@@ -186,17 +180,17 @@ export const QuestionnairePage = () => {
                                 register={register}
                             />
                         </article>
+
+                        <section className="button-section">
+                            <button type="submit" className="button">
+                                Отправить
+                            </button>
+                        </section>
                     </form>
                 </section>
             </main>
 
-            <AdaptiveNavBar>
-                <NavigationButton
-                    icon={<PaperAirplaneIcon className="h-6 w-6" />}
-                    text="Отправить"
-                    onClick={handleSubmit(onSubmit)}
-                />
-            </AdaptiveNavBar>
+            <AdaptiveNavBar />
         </article>
     )
 }

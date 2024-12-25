@@ -1,7 +1,8 @@
 import {
+    ClipboardIcon,
     FilmIcon,
-    HandRaisedIcon,
     RectangleGroupIcon,
+    ScissorsIcon,
     ShoppingBagIcon,
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
@@ -11,7 +12,7 @@ import { AuthButton } from '../../features/auth'
 import { ThemeToggler } from '../../features/theme'
 
 interface AdaptiveNavBarProps {
-    children: ReactNode
+    children?: ReactNode
 }
 
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
@@ -21,6 +22,11 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const isActive = (path: string) => location.pathname === path
 
     const navItems = [
+        {
+            path: '/questionnaire',
+            label: 'Анкета',
+            icon: <ClipboardIcon className="h-6 w-6" />,
+        },
         {
             path: '/makeup_bag',
             label: 'Косметичка',
@@ -34,7 +40,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         {
             path: '/tools',
             label: 'Инструменты',
-            icon: <HandRaisedIcon className="h-6 w-6" />,
+            icon: <ScissorsIcon className="h-6 w-6" />,
         },
         {
             path: '/lessons',

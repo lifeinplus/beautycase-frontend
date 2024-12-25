@@ -8,6 +8,7 @@ import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getYouTubeThumbnail } from '../../../utils'
 import { selectFormData, setFormData } from '../formSlice'
 import type { FieldConfig } from '../types'
+import { Label } from './Label'
 
 interface DynamicFormProps<T> {
     title: string
@@ -39,8 +40,7 @@ const renderField = <T extends Record<string, any>>(
 
     if (type === 'textarea') {
         return (
-            <label key={name as string} className="block">
-                <span className="form-label">{label}</span>
+            <Label key={name as string} text={label}>
                 <textarea
                     className="form-input"
                     name={name as string}
@@ -50,16 +50,14 @@ const renderField = <T extends Record<string, any>>(
                     rows={rows}
                     value={value}
                 />
-            </label>
+            </Label>
         )
     }
 
     if (type === 'button') {
         return (
             <div key={name as string}>
-                <label className="block">
-                    <span className="form-label">{label}</span>
-                </label>
+                <Label text={label} />
                 <button
                     type="button"
                     onClick={onClick}
@@ -73,8 +71,7 @@ const renderField = <T extends Record<string, any>>(
     }
 
     return (
-        <label key={name as string} className="block">
-            <span className="form-label">{label}</span>
+        <Label key={name as string} text={label}>
             <input
                 className="form-input peer"
                 name={name as string}
@@ -85,7 +82,7 @@ const renderField = <T extends Record<string, any>>(
                 value={value}
             />
             {name === 'videoUrl' && value && renderYouTubeThumbnail(value)}
-        </label>
+        </Label>
     )
 }
 

@@ -73,10 +73,8 @@ export const QuestionnairePage = () => {
                             />
 
                             <InputSection
-                                error={errors.instagram}
                                 label="Псевдоним в Instagram"
                                 register={register('instagram')}
-                                required={true}
                                 type="text"
                             />
 

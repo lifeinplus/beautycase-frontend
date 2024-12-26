@@ -40,25 +40,19 @@ export const options: Options = {
     ],
     budget: [
         {
-            id: 'budget-up-to-30-eur',
-            label: 'До 30 евро',
+            id: 'budget-up-to-50',
+            label: 'До 50 евро',
             name: 'budget',
-            value: '30',
+            value: '50',
         },
         {
-            id: 'budget-30-50-eur',
-            label: '30-50 евро',
-            name: 'budget',
-            value: '30-50',
-        },
-        {
-            id: 'budget-50-100-eur',
+            id: 'budget-50-100',
             label: '50-100 евро',
             name: 'budget',
             value: '50-100',
         },
         {
-            id: 'budget-more-than-100-eur',
+            id: 'budget-more-than-100',
             label: 'Более 100 евро',
             name: 'budget',
             value: '100',
@@ -84,6 +78,11 @@ export const options: Options = {
             id: 'desired-skill-office',
             label: 'Офисный вариант',
             name: 'desiredSkills.office',
+        },
+        {
+            id: 'desired-skill-filming',
+            label: 'Для фото/видео съёмок',
+            name: 'desiredSkills.filming',
         },
     ],
     makeupTime: [
@@ -214,6 +213,18 @@ export const options: Options = {
             label: 'YouTube',
             name: 'referral',
             value: 'youtube',
+        },
+        {
+            id: 'referral-personal',
+            label: 'Личное знакомство',
+            name: 'referral',
+            value: 'personal',
+        },
+        {
+            id: 'referral-recommendation',
+            label: 'По рекомендации',
+            name: 'referral',
+            value: 'recommendation',
         },
         {
             id: 'referral-other',

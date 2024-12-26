@@ -3,6 +3,7 @@ interface DesiredSkillData {
     delicate?: boolean
     evening?: boolean
     office?: boolean
+    filming?: boolean
 }
 
 interface ProblemData {
@@ -29,7 +30,7 @@ export interface Questionnaire {
     city?: string
     currentSkills?: string
     desiredSkills?: DesiredSkillData
-    instagram: string
+    instagram?: string
     makeupBag: string
     makeupTime?: string
     name: string

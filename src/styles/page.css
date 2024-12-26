@@ -13,7 +13,7 @@
 }
 
 .page-title {
-    @apply mx-auto mb-9 w-11/12;
+    @apply mx-auto w-11/12;
 }
 
 .page-headline {

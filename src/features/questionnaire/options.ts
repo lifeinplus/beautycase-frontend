@@ -9,6 +9,11 @@ export interface QuestionnaireOption {
     value?: string
 }
 
+export interface QuestionnaireResultOption {
+    label: string
+    value: string
+}
+
 interface Options {
     budget: QuestionnaireOption[]
     brushes: QuestionnaireOption[]

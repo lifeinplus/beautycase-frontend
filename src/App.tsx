@@ -25,7 +25,11 @@ import {
     ProductDetailsPage,
     ProductSelectionPage,
 } from './features/products'
-import { ConfirmationPage, QuestionnairePage } from './features/questionnaire'
+import {
+    ConfirmationPage,
+    QuestionnairePage,
+    QuestionnaireResultPage,
+} from './features/questionnaire'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -66,6 +70,10 @@ const App = () => {
                     <Route
                         path="/questionnaire"
                         element={<QuestionnairePage />}
+                    />
+                    <Route
+                        path="/questionnaire/:id"
+                        element={<QuestionnaireResultPage />}
                     />
                     <Route path="/register" element={<RegisterPage />} />
 

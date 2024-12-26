@@ -1,5 +1,6 @@
 export * from './pages/ConfirmationPage'
 export * from './pages/QuestionnairePage'
+export * from './pages/QuestionnaireResultPage'
 
 export * from './options'
 export * from './questionnaireApiSlice'

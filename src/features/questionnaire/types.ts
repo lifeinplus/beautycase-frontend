@@ -23,6 +23,7 @@ interface ProcedureData {
 }
 
 export interface Questionnaire {
+    _id?: string
     age?: number
     allergies?: string
     budget?: string

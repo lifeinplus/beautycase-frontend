@@ -9,12 +9,16 @@ export const questionnaireApiSlice = apiSlice.injectEndpoints({
             Partial<Questionnaire>
         >({
             query: (data) => ({
-                url: '/questionnaire/one',
+                url: '/questionnaires/one',
                 method: 'POST',
                 body: data,
             }),
         }),
+        getQuestionnaireById: builder.query<Questionnaire, string>({
+            query: (id) => `/questionnaires/${id}`,
+        }),
     }),
 })
 
-export const { useAddQuestionnaireMutation } = questionnaireApiSlice
+export const { useAddQuestionnaireMutation, useGetQuestionnaireByIdQuery } =
+    questionnaireApiSlice

@@ -17,8 +17,14 @@ export const questionnaireApiSlice = apiSlice.injectEndpoints({
         getQuestionnaireById: builder.query<Questionnaire, string>({
             query: (id) => `/questionnaires/${id}`,
         }),
+        getQuestionnaires: builder.query<Questionnaire[], void>({
+            query: () => '/questionnaires/all',
+        }),
     }),
 })
 
-export const { useAddQuestionnaireMutation, useGetQuestionnaireByIdQuery } =
-    questionnaireApiSlice
+export const {
+    useAddQuestionnaireMutation,
+    useGetQuestionnaireByIdQuery,
+    useGetQuestionnairesQuery,
+} = questionnaireApiSlice

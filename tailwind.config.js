@@ -10,6 +10,9 @@ export default {
                 '4/5': '4 / 5',
                 '5/4': '5 / 4',
             },
+            borderRadius: {
+                '2.5xl': '1.25rem',
+            },
             borderWidth: {
                 0.5: '0.5px',
                 1.5: '1.5px',

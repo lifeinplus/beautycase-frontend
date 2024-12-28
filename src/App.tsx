@@ -27,6 +27,7 @@ import {
 } from './features/products'
 import {
     ConfirmationPage,
+    QuestionnaireList,
     QuestionnairePage,
     QuestionnaireResultPage,
 } from './features/questionnaire'
@@ -74,6 +75,10 @@ const App = () => {
                     <Route
                         path="/questionnaire/:id"
                         element={<QuestionnaireResultPage />}
+                    />
+                    <Route
+                        path="/questionnaires"
+                        element={<QuestionnaireList />}
                     />
                     <Route path="/register" element={<RegisterPage />} />
 

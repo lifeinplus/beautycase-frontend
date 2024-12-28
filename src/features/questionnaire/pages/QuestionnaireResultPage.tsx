@@ -73,7 +73,7 @@ export const QuestionnaireResultPage = () => {
                 <section className="w-full max-w-2xl space-y-6">
                     <Hero headline="Результаты анкеты" />
 
-                    <div className="rounded border-gray-200 pb-8 dark:border-neutral-800 sm:border sm:pb-4">
+                    <div className="rounded-2.5xl border-gray-200 pb-8 dark:border-neutral-800 sm:border sm:pb-4">
                         <dl className="grid grid-cols-1 gap-4">
                             {fields.map((f) => (
                                 <div

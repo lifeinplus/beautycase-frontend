@@ -1,4 +1,5 @@
 export * from './pages/ConfirmationPage'
+export * from './pages/QuestionnaireList'
 export * from './pages/QuestionnairePage'
 export * from './pages/QuestionnaireResultPage'
 

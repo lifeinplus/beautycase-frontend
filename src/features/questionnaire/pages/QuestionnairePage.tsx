@@ -15,6 +15,7 @@ import { options } from '../options'
 import type { Questionnaire } from '../types'
 import { schema } from '../validations'
 import { useAddQuestionnaireMutation } from '../questionnaireApiSlice'
+import { questions } from '../utils'
 
 export const QuestionnairePage = () => {
     const navigate = useNavigate()
@@ -32,8 +33,7 @@ export const QuestionnairePage = () => {
 
     const onSubmit = async (data: any) => {
         try {
-            const response = await addQuestionnaire(data).unwrap()
-            console.log(response)
+            await addQuestionnaire(data).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {
@@ -66,114 +66,133 @@ export const QuestionnairePage = () => {
 
                             <InputSection
                                 error={errors.name}
-                                label="Имя"
+                                label={questions.name.label}
                                 register={register('name')}
                                 required={true}
                                 type="text"
                             />
 
                             <InputSection
-                                label="Псевдоним в Instagram"
+                                description={questions.instagram.description}
+                                label={questions.instagram.label}
                                 register={register('instagram')}
                                 type="text"
                             />
 
                             <InputSection
-                                label="Город проживания"
+                                description={questions.city.description}
+                                label={questions.city.label}
                                 register={register('city')}
                                 type="text"
                             />
 
                             <InputSection
-                                label="Возраст"
+                                label={questions.age.label}
                                 register={register('age')}
                                 type="number"
                             />
 
                             <InputSection
+                                description={questions.makeupBag.description}
                                 error={errors.makeupBag}
-                                label="Что сейчас уже есть в косметичке?"
+                                label={questions.makeupBag.label}
                                 register={register('makeupBag')}
                                 required={true}
                                 type="text"
                             />
 
                             <CheckboxSection
-                                label="Делаете ли какие-то из этих процедур на постоянной основе?"
+                                description={questions.procedures.description}
+                                label={questions.procedures.label}
                                 options={options.procedures}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                label="Тип кожи"
+                                label={questions.skinType.label}
                                 options={options.skinTypes}
                                 register={register}
                             />
 
                             <TextareaSection
-                                label="Есть ли аллергия? На что (если есть)?"
+                                description={questions.allergies.description}
+                                label={questions.allergies.label}
                                 register={register('allergies')}
                             />
 
                             <RadioButtonSection
+                                description={questions.peeling.description}
                                 horizontal={true}
-                                label="Бывают ли шелушения?"
+                                label={questions.peeling.label}
                                 options={options.peeling}
                                 register={register}
                             />
 
                             <RadioButtonSection
+                                description={questions.pores.description}
                                 horizontal={true}
-                                label="Заметны ли поры?"
+                                label={questions.pores.label}
                                 options={options.pores}
                                 register={register}
                             />
 
                             <RadioButtonSection
+                                description={questions.oilyShine.description}
                                 horizontal={true}
-                                label="Появляется ли жирный блеск в течение дня?"
+                                label={questions.oilyShine.label}
                                 options={options.oilyShine}
                                 register={register}
                             />
 
                             <TextareaSection
-                                label="Что уже умеете? Какие виды макияжа делаете сейчас?"
+                                description={
+                                    questions.currentSkills.description
+                                }
+                                label={questions.currentSkills.label}
                                 register={register('currentSkills')}
                             />
 
                             <CheckboxSection
-                                label="Какие виды макияжа хотите научиться делать в будущем?"
+                                description={
+                                    questions.desiredSkills.description
+                                }
+                                label={questions.desiredSkills.label}
                                 options={options.desiredSkills}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                label="Сколько времени чаще всего выделяете на макияж?"
+                                description={questions.makeupTime.description}
+                                label={questions.makeupTime.label}
                                 options={options.makeupTime}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                label="Какой бюджет закладываете на косметичку?"
+                                description={questions.budget.description}
+                                label={questions.budget.label}
                                 options={options.budget}
                                 register={register}
                             />
 
                             <RadioButtonSection
+                                description={questions.brushes.description}
                                 horizontal={true}
-                                label="Нужен ли подбор кистей?"
+                                label={questions.brushes.label}
                                 options={options.brushes}
                                 register={register}
                             />
 
                             <CheckboxSection
-                                label="С какими проблемами сталкивались при выполнении макияжа?"
+                                description={questions.problems.description}
+                                label={questions.problems.label}
                                 options={options.problems}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                label="Откуда узнали про меня?"
+                                description={questions.referral.description}
+                                label={questions.referral.label}
                                 options={options.referral}
                                 register={register}
                             />

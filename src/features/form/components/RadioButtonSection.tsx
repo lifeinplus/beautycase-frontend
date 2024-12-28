@@ -8,6 +8,7 @@ import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 
 interface RadioButtonSectionProps {
+    description?: string
     horizontal?: boolean
     label: string
     options: QuestionnaireOption[]
@@ -15,6 +16,7 @@ interface RadioButtonSectionProps {
 }
 
 export const RadioButtonSection = ({
+    description,
     horizontal = false,
     label,
     options,
@@ -22,6 +24,7 @@ export const RadioButtonSection = ({
 }: RadioButtonSectionProps) => (
     <div>
         <Label text={label} />
+
         <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
             <nav
                 className={`flex min-w-[240px] gap-1 p-2 ${horizontal ? 'flex-row' : 'flex-col'}`}
@@ -37,5 +40,11 @@ export const RadioButtonSection = ({
                 ))}
             </nav>
         </div>
+
+        {description && (
+            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                {description}
+            </p>
+        )}
     </div>
 )

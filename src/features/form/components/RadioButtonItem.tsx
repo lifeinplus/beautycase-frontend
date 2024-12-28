@@ -15,7 +15,7 @@ export const RadioButtonItem = ({
 }: RadioButtonItemProps) => (
     <div
         role="button"
-        className="flex w-full items-center rounded-lg p-0 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 dark:hover:bg-slate-900 dark:focus:bg-slate-900 dark:active:bg-slate-900"
+        className="flex w-full items-center rounded-lg p-0 transition-all hover:bg-neutral-100 focus:bg-neutral-100 active:bg-neutral-100 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900 dark:active:bg-neutral-900"
     >
         <label
             htmlFor={id}
@@ -28,15 +28,15 @@ export const RadioButtonItem = ({
                 >
                     <input
                         id={id}
-                        className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 transition-all checked:border-slate-400 dark:border-slate-700 dark:checked:border-slate-600"
+                        className="peer h-6 w-6 cursor-pointer appearance-none rounded-full border-1.5 border-black transition-all dark:border-white"
                         {...register}
                         type="radio"
                         value={value}
                     />
-                    <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-slate-800 opacity-0 transition-opacity duration-200 peer-checked:opacity-100 dark:bg-slate-200"></span>
+                    <span className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-neutral-800 opacity-0 transition-opacity duration-200 peer-checked:opacity-100 dark:bg-white"></span>
                 </label>
                 <label
-                    className="ml-2 cursor-pointer text-sm text-slate-600 dark:text-slate-400"
+                    className="ms-3 cursor-pointer text-sm text-black dark:text-white"
                     htmlFor={id}
                 >
                     {label}

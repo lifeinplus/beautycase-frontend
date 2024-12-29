@@ -117,21 +117,23 @@ export const DynamicForm = <T extends Record<string, any>>({
             <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
-                <article className="mx-auto max-w-makeup-item-md xl:max-w-makeup-item-xl">
-                    <section className="page-content__title hidden sm:block">
-                        <h1 className="page-content__title__headline">
-                            {title}
-                        </h1>
-                    </section>
+                <section className="w-full max-w-2xl space-y-6">
+                    <article className="page-content__container page-content__container-xl">
+                        <section className="page-content__title hidden sm:block">
+                            <h1 className="page-content__title__headline">
+                                {title}
+                            </h1>
+                        </section>
 
-                    <form onSubmit={handleSubmit} className="form">
-                        {fields.map((field) => {
-                            const { name } = field
-                            const value = formData[name] || ''
-                            return renderField(field, value, handleChange)
-                        })}
-                    </form>
-                </article>
+                        <form onSubmit={handleSubmit} className="form">
+                            {fields.map((field) => {
+                                const { name } = field
+                                const value = formData[name] || ''
+                                return renderField(field, value, handleChange)
+                            })}
+                        </form>
+                    </article>
+                </section>
             </main>
 
             <AdaptiveNavBar>

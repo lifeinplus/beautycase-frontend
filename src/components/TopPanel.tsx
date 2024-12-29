@@ -15,14 +15,16 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
 
     return (
         <nav className="panel-top">
-            <button
-                className="panel-top__button"
-                onClick={onBack || handleBack}
-            >
-                <ChevronLeftIcon className="h-6 w-6" />
-            </button>
-            <h1 className="panel-top__title">{title}</h1>
-            <div className="w-8"></div>
+            <div className="flex items-center justify-between px-4 py-2.5">
+                <button
+                    className="panel-top__button"
+                    onClick={onBack || handleBack}
+                >
+                    <ChevronLeftIcon className="h-6 w-6" />
+                </button>
+                <h1 className="panel-top__title">{title}</h1>
+                <div className="w-8"></div>
+            </div>
         </nav>
     )
 }

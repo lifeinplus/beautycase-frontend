@@ -23,11 +23,12 @@ export const schema = yup.object({
             delicate: yup.boolean(),
             evening: yup.boolean(),
             office: yup.boolean(),
+            filming: yup.boolean(),
         })
         .transform(transformAllFalse)
         .optional()
         .default(undefined),
-    instagram: yup.string().required('Укажите псевдоним в Instagram'),
+    instagram: yup.string().transform(transformEmpty),
     makeupBag: yup.string().required('Укажите, что сейчас есть в косметичке'),
     makeupTime: yup.string().transform(transformEmpty),
     name: yup.string().required('Укажите ваше имя'),

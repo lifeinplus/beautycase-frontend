@@ -2,8 +2,8 @@ import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { getErrorMessage } from '../../utils'
-import { useRegisterUserMutation } from './authApiSlice'
+import { getErrorMessage } from '../../../utils'
+import { useRegisterUserMutation } from '../authApiSlice'
 
 export const RegisterPage = () => {
     const navigate = useNavigate()

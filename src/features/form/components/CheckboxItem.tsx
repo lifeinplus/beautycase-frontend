@@ -9,7 +9,7 @@ interface CheckboxItemProps {
 export const CheckboxItem = ({ id, label, register }: CheckboxItemProps) => (
     <div
         role="button"
-        className="flex w-full items-center rounded-lg p-0 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 dark:hover:bg-slate-900 dark:focus:bg-slate-900 dark:active:bg-slate-900"
+        className="flex w-full items-center rounded-lg p-0 transition-all hover:bg-neutral-100 focus:bg-neutral-100 active:bg-neutral-100 dark:hover:bg-neutral-900 dark:focus:bg-neutral-900 dark:active:bg-neutral-900"
     >
         <label
             className="flex w-full cursor-pointer items-center px-3 py-2"
@@ -23,13 +23,13 @@ export const CheckboxItem = ({ id, label, register }: CheckboxItemProps) => (
                     <input
                         id={id}
                         type="checkbox"
-                        className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-slate-300 shadow transition-all checked:border-slate-800 checked:bg-slate-800 hover:shadow-md dark:border-slate-700 dark:checked:border-slate-200 dark:checked:bg-slate-200"
+                        className="peer h-6 w-6 cursor-pointer appearance-none rounded border border-black shadow transition-all checked:border-neutral-800 checked:bg-neutral-800 hover:shadow-md dark:border-white dark:checked:border-neutral-200 dark:checked:bg-neutral-200"
                         {...register}
                     />
                     <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-white opacity-0 peer-checked:opacity-100 dark:text-black">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-3.5 w-3.5"
+                            className="h-4 w-4"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                             stroke="currentColor"
@@ -44,7 +44,7 @@ export const CheckboxItem = ({ id, label, register }: CheckboxItemProps) => (
                     </span>
                 </label>
                 <label
-                    className="ml-2 cursor-pointer text-sm text-slate-600 dark:text-slate-400"
+                    className="ms-3 cursor-pointer text-sm text-black dark:text-white"
                     htmlFor={id}
                 >
                     {label}

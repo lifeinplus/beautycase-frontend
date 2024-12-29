@@ -73,56 +73,61 @@ export const LessonDetailsPage = () => {
             <TopPanel title="Урок" onBack={handleBack} />
 
             <main className="page-content">
-                <article className="page-content__container">
-                    <section className="page-content__title">
-                        <h1 className="page-content__title__headline">
-                            {lesson.title}
-                        </h1>
-                        <p className="page-content__title__byline">
-                            {lesson.shortDescription}
-                        </p>
-                    </section>
+                <section className="w-full max-w-2xl space-y-6">
+                    <article className="page-content__container">
+                        <section className="page-content__title">
+                            <h1 className="page-content__title__headline">
+                                {lesson.title}
+                            </h1>
+                            <p className="page-content__title__byline">
+                                {lesson.shortDescription}
+                            </p>
+                        </section>
 
-                    <div className="lesson-video-container">
-                        {embedUrl ? (
-                            <iframe
-                                width="100%"
-                                height="315"
-                                src={embedUrl}
-                                title={lesson.title}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                allowFullScreen
-                            ></iframe>
-                        ) : (
-                            <img
-                                alt={`${lesson.title} Thumbnail`}
-                                className="lesson-card-thumbnail-image"
-                                src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
-                            />
-                        )}
-                    </div>
-
-                    <div className="page-content__description">
-                        <p className="text-sm">{lesson.fullDescription}</p>
-                    </div>
-
-                    <div className="page-gallery__container">
-                        {lesson.productIds?.map((product) => (
-                            <div
-                                key={product._id}
-                                className="img-container img-container-square"
-                                onClick={() => handleProduct(product._id)}
-                            >
+                        <div className="lesson-video-container">
+                            {embedUrl ? (
+                                <iframe
+                                    width="100%"
+                                    height="315"
+                                    src={embedUrl}
+                                    title={lesson.title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                ></iframe>
+                            ) : (
                                 <img
-                                    alt={product.name}
-                                    className="img img-sm-rounded"
-                                    src={product.image}
+                                    alt={`${lesson.title} Thumbnail`}
+                                    className="lesson-card-thumbnail-image"
+                                    src={
+                                        import.meta.env
+                                            .VITE_DEFAULT_THUMBNAIL_URL
+                                    }
                                 />
-                            </div>
-                        ))}
-                    </div>
-                </article>
+                            )}
+                        </div>
+
+                        <div className="page-content__description">
+                            <p className="text-sm">{lesson.fullDescription}</p>
+                        </div>
+
+                        <div className="page-gallery__container">
+                            {lesson.productIds?.map((product) => (
+                                <div
+                                    key={product._id}
+                                    className="img-container img-container-square"
+                                    onClick={() => handleProduct(product._id)}
+                                >
+                                    <img
+                                        alt={product.name}
+                                        className="img img-sm-rounded"
+                                        src={product.image}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </article>
+                </section>
             </main>
 
             <AdaptiveNavBar>

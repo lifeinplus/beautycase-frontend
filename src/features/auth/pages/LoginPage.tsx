@@ -2,10 +2,10 @@ import { FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '../../app/hooks'
-import { getErrorMessage } from '../../utils'
-import { useLoginUserMutation } from './authApiSlice'
-import { setCredentials } from './authSlice'
+import { useAppDispatch } from '../../../app/hooks'
+import { getErrorMessage } from '../../../utils'
+import { useLoginUserMutation } from '../authApiSlice'
+import { setCredentials } from '../authSlice'
 
 export const LoginPage = () => {
     const location = useLocation()
@@ -18,7 +18,7 @@ export const LoginPage = () => {
     const dispatch = useAppDispatch()
     const [login, { isLoading }] = useLoginUserMutation()
 
-    const from = location.state?.from?.pathname || '/makeup_bag'
+    const from = location.state?.from?.pathname || '/'
 
     useEffect(() => {
         usernameRef.current?.focus()

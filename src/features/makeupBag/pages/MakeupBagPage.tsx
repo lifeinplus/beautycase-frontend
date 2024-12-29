@@ -29,24 +29,26 @@ export const MakeupBagPage = () => {
         <article>
             <Header />
 
-            <main className="page-content flex flex-col items-center justify-center">
+            <main className="page-content">
                 <section className="w-full max-w-2xl">
-                    <Hero
-                        headline="Косметичка"
-                        byline="Индивидуальный подбор продуктов"
-                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
-                    />
+                    <article className="page-content__container page-content__container-sm">
+                        <Hero
+                            headline="Косметичка"
+                            byline="Индивидуальный подбор продуктов"
+                            imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
+                        />
 
-                    {isLoading ? (
-                        <div>Loading...</div>
-                    ) : error ? (
-                        <div>{getErrorMessage(error)}</div>
-                    ) : (
-                        <>
-                            <Stages stages={data?.stages} />
-                            <Brands brands={data?.brands} />
-                        </>
-                    )}
+                        {isLoading ? (
+                            <div>Loading...</div>
+                        ) : error ? (
+                            <div>{getErrorMessage(error)}</div>
+                        ) : (
+                            <>
+                                <Stages stages={data?.stages} />
+                                <Brands brands={data?.brands} />
+                            </>
+                        )}
+                    </article>
                 </section>
             </main>
 

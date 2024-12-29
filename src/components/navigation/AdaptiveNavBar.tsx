@@ -1,4 +1,5 @@
 import {
+    ClipboardDocumentListIcon,
     ClipboardIcon,
     FilmIcon,
     RectangleGroupIcon,
@@ -26,6 +27,11 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
             path: '/questionnaire',
             label: 'Анкета',
             icon: <ClipboardIcon className="h-6 w-6" />,
+        },
+        {
+            path: '/questionnaires',
+            label: 'Анкеты',
+            icon: <ClipboardDocumentListIcon className="h-6 w-6" />,
         },
         {
             path: '/makeup_bag',

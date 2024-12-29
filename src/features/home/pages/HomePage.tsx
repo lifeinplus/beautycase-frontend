@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 
+import { useAppSelector } from '../../../app/hooks'
+import { selectUsername, useAuthLogout } from '../../auth'
+
 export const HomePage = () => {
+    const username = useAppSelector(selectUsername)
+    const handleLogout = useAuthLogout()
+
     return (
         <div className="home">
             <div className="max-w-xs sm:max-w-sm lg:max-w-lg">
@@ -16,6 +22,9 @@ export const HomePage = () => {
                 <div className="flex flex-wrap justify-center gap-4">
                     <Link to="/questionnaire" className="home__button">
                         Анкета
+                    </Link>
+                    <Link to="/questionnaires" className="home__button">
+                        Анкеты
                     </Link>
                     <Link to="/makeup_bag" className="home__button">
                         Косметичка
@@ -33,13 +42,28 @@ export const HomePage = () => {
 
                 <div className="mt-10 sm:mb-5">
                     <p className="home__auth">
-                        <Link className="home__link" to="/login">
-                            Войти
-                        </Link>{' '}
-                        или{' '}
-                        <Link className="home__link" to="/register">
-                            зарегистрироваться
-                        </Link>
+                        {username ? (
+                            <>
+                                Выполнен вход: {username} (
+                                <button
+                                    className="home__link"
+                                    onClick={handleLogout}
+                                >
+                                    Выйти
+                                </button>
+                                )
+                            </>
+                        ) : (
+                            <>
+                                <Link className="home__link" to="/login">
+                                    Войти
+                                </Link>{' '}
+                                или{' '}
+                                <Link className="home__link" to="/register">
+                                    зарегистрироваться
+                                </Link>
+                            </>
+                        )}
                     </p>
                 </div>
             </div>

@@ -3,6 +3,7 @@ interface DesiredSkillData {
     delicate?: boolean
     evening?: boolean
     office?: boolean
+    filming?: boolean
 }
 
 interface ProblemData {
@@ -22,6 +23,8 @@ interface ProcedureData {
 }
 
 export interface Questionnaire {
+    _id?: string
+    createdAt?: string
     age?: number
     allergies?: string
     budget?: string
@@ -29,7 +32,7 @@ export interface Questionnaire {
     city?: string
     currentSkills?: string
     desiredSkills?: DesiredSkillData
-    instagram: string
+    instagram?: string
     makeupBag: string
     makeupTime?: string
     name: string

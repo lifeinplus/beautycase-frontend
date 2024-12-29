@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
     Header,
+    Hero,
     NavigationButton,
-    PageTitle,
 } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
@@ -32,23 +32,30 @@ export const ProductGalleryPage = () => {
     }
 
     return (
-        <section>
+        <article className="page">
             <Header />
 
             <main className="page-content">
-                <PageTitle headline={headline} byline={byline} />
+                <section className="w-full max-w-2xl space-y-6">
+                    <article className="page-content__container page-content__container-xl">
+                        <Hero headline={headline} byline={byline} />
 
-                {isLoading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>{getErrorMessage(error)}</div>
-                ) : (
-                    <article className="page-gallery__container">
-                        {products?.map((product) => (
-                            <ProductCard key={product._id} product={product} />
-                        ))}
+                        {isLoading ? (
+                            <div>Loading...</div>
+                        ) : error ? (
+                            <div>{getErrorMessage(error)}</div>
+                        ) : (
+                            <article className="page-gallery__container">
+                                {products?.map((product) => (
+                                    <ProductCard
+                                        key={product._id}
+                                        product={product}
+                                    />
+                                ))}
+                            </article>
+                        )}
                     </article>
-                )}
+                </section>
             </main>
 
             <AdaptiveNavBar>
@@ -58,6 +65,6 @@ export const ProductGalleryPage = () => {
                     onClick={handleAdd}
                 />
             </AdaptiveNavBar>
-        </section>
+        </article>
     )
 }

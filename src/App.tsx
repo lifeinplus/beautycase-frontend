@@ -9,6 +9,8 @@ import {
     PersistLogin,
     RegisterPage,
     RequireAuth,
+    RequireRole,
+    UnauthorizedPage,
 } from './features/auth'
 import { HomePage } from './features/home'
 import {
@@ -59,66 +61,116 @@ const App = () => {
                     },
                 }}
             />
+
             <ScrollToTop />
+
             <Routes>
                 <Route element={<PersistLogin />}>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
 
                     <Route
                         path="/confirmation"
                         element={<ConfirmationPage />}
                     />
+
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+
                     <Route
-                        path="/questionnaire"
-                        element={<QuestionnairePage />}
+                        path="/unauthorized"
+                        element={<UnauthorizedPage />}
                     />
 
                     <Route element={<RequireAuth />}>
-                        <Route
-                            path="/questionnaires/:id"
-                            element={<QuestionnaireResultPage />}
-                        />
-                        <Route
-                            path="/questionnaires"
-                            element={<QuestionnaireList />}
-                        />
-
                         <Route path="/lessons">
                             <Route index element={<LessonsGalleryPage />} />
+
                             <Route path=":id" element={<LessonDetailsPage />} />
-                            <Route path="add" element={<LessonAddPage />} />
+
                             <Route
-                                path="edit/:id"
-                                element={<LessonEditPage />}
-                            />
-                            <Route
-                                path="/lessons/edit/:lessonId/products"
-                                element={<ProductSelectionPage />}
-                            />
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route path="add" element={<LessonAddPage />} />
+                                <Route
+                                    path="edit/:id"
+                                    element={<LessonEditPage />}
+                                />
+                                <Route
+                                    path="/lessons/edit/:lessonId/products"
+                                    element={<ProductSelectionPage />}
+                                />
+                            </Route>
                         </Route>
 
                         <Route path="/makeup_bag" element={<MakeupBagPage />} />
 
                         <Route path="/products">
-                            <Route index element={<ProductGalleryPage />} />
                             <Route
                                 path=":id"
                                 element={<ProductDetailsPage />}
                             />
-                            <Route path="add" element={<ProductAddPage />} />
+
                             <Route
-                                path="edit/:id"
-                                element={<ProductEditPage />}
-                            />
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route index element={<ProductGalleryPage />} />
+                                <Route
+                                    path="add"
+                                    element={<ProductAddPage />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ProductEditPage />}
+                                />
+                            </Route>
+                        </Route>
+
+                        <Route
+                            path="/questionnaire"
+                            element={<QuestionnairePage />}
+                        />
+
+                        <Route path="/questionnaires">
+                            <Route
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route index element={<QuestionnaireList />} />
+                                <Route
+                                    path=":id"
+                                    element={<QuestionnaireResultPage />}
+                                />
+                            </Route>
                         </Route>
 
                         <Route path="/tools">
-                            <Route index element={<ToolsGalleryPage />} />
                             <Route path=":id" element={<ToolDetailsPage />} />
-                            <Route path="add" element={<ToolAddPage />} />
-                            <Route path="edit/:id" element={<ToolEditPage />} />
+
+                            <Route
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route index element={<ToolsGalleryPage />} />
+                                <Route path="add" element={<ToolAddPage />} />
+                                <Route
+                                    path="edit/:id"
+                                    element={<ToolEditPage />}
+                                />
+                            </Route>
                         </Route>
                     </Route>
                 </Route>

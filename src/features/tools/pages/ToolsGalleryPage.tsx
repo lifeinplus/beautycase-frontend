@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
     Header,
+    Hero,
     NavigationButton,
-    PageTitle,
 } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
@@ -32,23 +32,27 @@ export const ToolsGalleryPage = () => {
     }
 
     return (
-        <section>
+        <article className="page">
             <Header />
 
             <main className="page-content">
-                <PageTitle headline={headline} byline={byline} />
+                <section className="w-full max-w-2xl space-y-6">
+                    <article className="page-content__container page-content__container-xl">
+                        <Hero headline={headline} byline={byline} />
 
-                {isLoading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>{getErrorMessage(error)}</div>
-                ) : (
-                    <section className="page-gallery__container">
-                        {tools?.map((tool) => (
-                            <ToolCard key={tool._id} tool={tool} />
-                        ))}
-                    </section>
-                )}
+                        {isLoading ? (
+                            <div>Loading...</div>
+                        ) : error ? (
+                            <div>{getErrorMessage(error)}</div>
+                        ) : (
+                            <section className="page-gallery__container">
+                                {tools?.map((tool) => (
+                                    <ToolCard key={tool._id} tool={tool} />
+                                ))}
+                            </section>
+                        )}
+                    </article>
+                </section>
             </main>
 
             <AdaptiveNavBar>
@@ -58,6 +62,6 @@ export const ToolsGalleryPage = () => {
                     onClick={handleAdd}
                 />
             </AdaptiveNavBar>
-        </section>
+        </article>
     )
 }

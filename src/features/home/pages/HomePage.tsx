@@ -23,6 +23,9 @@ export const HomePage = () => {
                     <Link to="/questionnaire" className="home__button">
                         Анкета
                     </Link>
+                    <Link to="/questionnaires" className="home__button">
+                        Анкеты
+                    </Link>
                     <Link to="/makeup_bag" className="home__button">
                         Косметичка
                     </Link>

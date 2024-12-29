@@ -5,12 +5,14 @@ export const ConfirmationPage = () => {
         <article>
             <Header />
 
-            <main className="page-content flex flex-col items-center justify-center">
+            <main className="page-content">
                 <section className="w-full max-w-2xl">
-                    <Hero
-                        headline="Спасибо!"
-                        byline="Ваша анкета успешно отправлена"
-                    />
+                    <article className="page-content__container">
+                        <Hero
+                            headline="Спасибо!"
+                            byline="Ваша анкета успешно отправлена"
+                        />
+                    </article>
                 </section>
             </main>
 

@@ -71,28 +71,30 @@ export const ToolDetailsPage = () => {
             <TopPanel title="Инструмент" onBack={handleBack} />
 
             <main className="page-content">
-                <article className="page-content__container">
-                    <section className="page-content__title">
-                        <h1 className="page-content__title__headline">
-                            {tool.name}
-                        </h1>
-                    </section>
+                <section className="w-full max-w-2xl space-y-6">
+                    <article className="page-content__container">
+                        <section className="page-content__title">
+                            <h1 className="page-content__title__headline">
+                                {tool.name}
+                            </h1>
+                        </section>
 
-                    <section className="page-content__image">
-                        <div className="img-container">
-                            <img
-                                src={tool.image}
-                                alt={tool.name}
-                                className="img"
-                            />
-                        </div>
-                    </section>
+                        <section className="page-content__image">
+                            <div className="img-container">
+                                <img
+                                    src={tool.image}
+                                    alt={tool.name}
+                                    className="img"
+                                />
+                            </div>
+                        </section>
 
-                    <section className="page-content__description">
-                        <p>{tool.number}</p>
-                        <p>{tool.comment}</p>
-                    </section>
-                </article>
+                        <section className="page-content__description">
+                            <p>{tool.number}</p>
+                            <p>{tool.comment}</p>
+                        </section>
+                    </article>
+                </section>
             </main>
 
             <AdaptiveNavBar>

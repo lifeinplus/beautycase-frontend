@@ -1,12 +1,13 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { AdaptiveNavBar, Header, Hero } from '../../../components'
+import { AdaptiveNavBar, Hero, TopPanel } from '../../../components'
 import { type QuestionnaireResultOption } from '../options'
 import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
 import { Questionnaire } from '../types'
 import { questions } from '../utils'
 
 export const QuestionnaireResultPage = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
 
     const {
@@ -62,39 +63,47 @@ export const QuestionnaireResultPage = () => {
     }
 
     if (isLoading || error || !questionnaire) {
-        return <div>no data</div>
+        return <div>Error loading questionnaire</div>
+    }
+
+    const handleBack = () => {
+        navigate('/questionnaires')
     }
 
     return (
         <article>
-            <Header />
+            <TopPanel title="Результаты анкеты" onBack={handleBack} />
 
-            <main className="page-content-questionnaire">
-                <section className="w-full max-w-2xl space-y-6">
-                    <Hero headline="Результаты анкеты" />
+            <main className="page-content">
+                <section className="w-full max-w-2xl sm:space-y-6">
+                    <article className="page-content__container page-content__container-xl">
+                        <div className="hidden sm:block">
+                            <Hero headline="Результаты анкеты" />
+                        </div>
 
-                    <div className="rounded-2.5xl border-gray-200 pb-8 dark:border-neutral-800 sm:border sm:pb-4">
-                        <dl className="grid grid-cols-1 gap-4">
-                            {fields.map((f) => (
-                                <div
-                                    key={f}
-                                    className="border-t border-gray-200 px-3 pt-4 dark:border-neutral-800 sm:first:border-t-0 sm:dark:border-neutral-800"
-                                >
-                                    <dt className="text-xs font-medium dark:text-neutral-400">
-                                        {questions[f]?.label}
-                                    </dt>
-                                    <dd className="mt-1">
-                                        {renderValue(
-                                            questionnaire[
-                                                f as keyof Questionnaire
-                                            ],
-                                            questions[f]?.options
-                                        )}
-                                    </dd>
-                                </div>
-                            ))}
-                        </dl>
-                    </div>
+                        <div className="sm:rounded-2.5xl pb-4 sm:border sm:border-gray-200 sm:pb-0 sm:dark:border-neutral-800">
+                            <dl className="grid grid-cols-1">
+                                {fields.map((f) => (
+                                    <div
+                                        key={f}
+                                        className="border-b border-gray-200 px-3 py-3 last:border-b-0 dark:border-neutral-800 sm:first:border-t-0 sm:dark:border-neutral-800"
+                                    >
+                                        <dt className="text-xs font-medium dark:text-neutral-400">
+                                            {questions[f]?.label}
+                                        </dt>
+                                        <dd className="mt-1">
+                                            {renderValue(
+                                                questionnaire[
+                                                    f as keyof Questionnaire
+                                                ],
+                                                questions[f]?.options
+                                            )}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </article>
                 </section>
             </main>
 

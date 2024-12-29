@@ -23,21 +23,26 @@ export const HomePage = () => {
                     <Link to="/questionnaire" className="home__button">
                         Анкета
                     </Link>
-                    <Link to="/questionnaires" className="home__button">
-                        Анкеты
-                    </Link>
-                    <Link to="/makeup_bag" className="home__button">
-                        Косметичка
-                    </Link>
-                    <Link to="/products" className="home__button">
-                        Продукты
-                    </Link>
-                    <Link to="/tools" className="home__button">
-                        Инструменты
-                    </Link>
-                    <Link to="/lessons" className="home__button">
-                        Уроки
-                    </Link>
+
+                    {username && (
+                        <>
+                            <Link to="/questionnaires" className="home__button">
+                                Анкеты
+                            </Link>
+                            <Link to="/makeup_bag" className="home__button">
+                                Косметичка
+                            </Link>
+                            <Link to="/products" className="home__button">
+                                Продукты
+                            </Link>
+                            <Link to="/tools" className="home__button">
+                                Инструменты
+                            </Link>
+                            <Link to="/lessons" className="home__button">
+                                Уроки
+                            </Link>
+                        </>
+                    )}
                 </div>
 
                 <div className="mt-10 sm:mb-5">

@@ -3,7 +3,7 @@ import { type UseFormRegister } from 'react-hook-form'
 import {
     type Questionnaire,
     type QuestionnaireOption,
-} from '../../questionnaire'
+} from '../../questionnaires'
 import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 

@@ -30,7 +30,7 @@ import {
     QuestionnaireList,
     QuestionnairePage,
     QuestionnaireResultPage,
-} from './features/questionnaire'
+} from './features/questionnaires'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -63,26 +63,28 @@ const App = () => {
             <Routes>
                 <Route element={<PersistLogin />}>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+
                     <Route
                         path="/confirmation"
                         element={<ConfirmationPage />}
                     />
-                    <Route path="/login" element={<LoginPage />} />
                     <Route
                         path="/questionnaire"
                         element={<QuestionnairePage />}
                     />
-                    <Route
-                        path="/questionnaire/:id"
-                        element={<QuestionnaireResultPage />}
-                    />
-                    <Route
-                        path="/questionnaires"
-                        element={<QuestionnaireList />}
-                    />
-                    <Route path="/register" element={<RegisterPage />} />
 
                     <Route element={<RequireAuth />}>
+                        <Route
+                            path="/questionnaires/:id"
+                            element={<QuestionnaireResultPage />}
+                        />
+                        <Route
+                            path="/questionnaires"
+                            element={<QuestionnaireList />}
+                        />
+
                         <Route path="/lessons">
                             <Route index element={<LessonsGalleryPage />} />
                             <Route path=":id" element={<LessonDetailsPage />} />

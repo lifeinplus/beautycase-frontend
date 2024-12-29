@@ -29,7 +29,7 @@ export const QuestionnaireList = () => {
                             </p>
                         ) : (
                             <>
-                                <div className="rounded-2.5xl relative hidden h-full w-full flex-col overflow-scroll border border-neutral-200 bg-white bg-clip-border text-neutral-700 dark:border-neutral-800 dark:bg-black dark:text-neutral-300 sm:flex">
+                                <div className="relative hidden h-full w-full flex-col overflow-scroll rounded-2.5xl border border-neutral-200 bg-white bg-clip-border text-neutral-700 dark:border-neutral-800 dark:bg-black dark:text-neutral-300 sm:flex">
                                     <table className="w-full min-w-max table-auto text-left">
                                         <thead>
                                             <tr>
@@ -108,7 +108,7 @@ export const QuestionnaireList = () => {
                                                         <td className="border-b border-neutral-200 p-4 dark:border-neutral-800">
                                                             <Link
                                                                 className="flex justify-center font-semibold text-neutral-800 dark:text-neutral-200"
-                                                                to={`/questionnaire/${item._id}`}
+                                                                to={`/questionnaires/${item._id}`}
                                                             >
                                                                 <EyeIcon className="h-6 w-6" />
                                                             </Link>
@@ -125,7 +125,7 @@ export const QuestionnaireList = () => {
                                         <Link
                                             key={index}
                                             className="flex flex-row items-center justify-between pe-5 ps-4"
-                                            to={`/questionnaire/${item._id}`}
+                                            to={`/questionnaires/${item._id}`}
                                         >
                                             <div>
                                                 <p className="text-black dark:text-white">

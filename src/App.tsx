@@ -77,6 +77,11 @@ const App = () => {
                     <Route path="/register" element={<RegisterPage />} />
 
                     <Route
+                        path="/questionnaire"
+                        element={<QuestionnairePage />}
+                    />
+
+                    <Route
                         path="/unauthorized"
                         element={<UnauthorizedPage />}
                     />
@@ -132,11 +137,6 @@ const App = () => {
                                 />
                             </Route>
                         </Route>
-
-                        <Route
-                            path="/questionnaire"
-                            element={<QuestionnairePage />}
-                        />
 
                         <Route path="/questionnaires">
                             <Route

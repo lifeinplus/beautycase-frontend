@@ -8,10 +8,14 @@ import toast from 'react-hot-toast'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Modal,
+    NavigationButton,
+    TopPanel,
+} from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
-import { Modal } from '../../modals'
 import {
     useDeleteProductMutation,
     useFetchProductByIdQuery,

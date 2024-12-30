@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
+import { canAccess, menuItems } from '../../../utils'
 import { selectUsername, useAuthLogout } from '../../auth'
+import { HomeButton } from '../components/HomeButton'
 
 export const HomePage = () => {
     const username = useAppSelector(selectUsername)
@@ -20,29 +22,15 @@ export const HomePage = () => {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-4">
-                    <Link to="/questionnaire" className="home__button">
-                        Анкета
-                    </Link>
-
-                    {username && (
-                        <>
-                            <Link to="/questionnaires" className="home__button">
-                                Анкеты
-                            </Link>
-                            <Link to="/makeup_bag" className="home__button">
-                                Косметичка
-                            </Link>
-                            <Link to="/products" className="home__button">
-                                Продукты
-                            </Link>
-                            <Link to="/tools" className="home__button">
-                                Инструменты
-                            </Link>
-                            <Link to="/lessons" className="home__button">
-                                Уроки
-                            </Link>
-                        </>
-                    )}
+                    {menuItems
+                        .filter((item) => canAccess(item))
+                        .map((item, index) => (
+                            <HomeButton
+                                key={index}
+                                to={item.path}
+                                label={item.label}
+                            />
+                        ))}
                 </div>
 
                 <div className="mt-10 sm:mb-5">

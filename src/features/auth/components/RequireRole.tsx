@@ -10,7 +10,6 @@ interface RequireRoleProps {
 export const RequireRole = ({ allowedRoles }: RequireRoleProps) => {
     const location = useLocation()
     const role = useAppSelector(selectRole)
-    console.log(allowedRoles, role)
 
     return role && allowedRoles.includes(role) ? (
         <Outlet />

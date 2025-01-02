@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { selectIsDirty, setFormData } from '../../form'
 import ProductForm from '../components/ProductForm'
 import {
-    useFetchProductByIdQuery,
-    useUpdateProductMutation,
+    useGetProductByIdQuery,
+    useEditProductMutation,
 } from '../productApiSlice'
 import type { Product } from '../types'
 
@@ -17,8 +17,8 @@ export const ProductEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [updateProduct] = useUpdateProductMutation()
-    const { data, isLoading } = useFetchProductByIdQuery(id!)
+    const [editProduct] = useEditProductMutation()
+    const { data, isLoading } = useGetProductByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -43,7 +43,7 @@ export const ProductEditPage = () => {
     }
 
     const handleEditProduct = async (product: Product) => {
-        await updateProduct({
+        await editProduct({
             id: id!,
             ...product,
         }).unwrap()

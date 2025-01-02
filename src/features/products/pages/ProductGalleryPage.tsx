@@ -12,7 +12,7 @@ import {
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import { ProductCard } from '../components/ProductCard'
-import { useFetchProductsQuery } from '../productApiSlice'
+import { useGetProductsQuery } from '../productApiSlice'
 
 export const ProductGalleryPage = () => {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export const ProductGalleryPage = () => {
     const byline = 'Мицеллярная вода, тоники, тональные основы и крема'
 
     const dispatch = useAppDispatch()
-    const { data: products, isLoading, error } = useFetchProductsQuery()
+    const { data: products, isLoading, error } = useGetProductsQuery()
 
     useEffect(() => {
         dispatch(clearFormData())

@@ -9,7 +9,8 @@ import {
 import { ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { AuthButton } from '../../features/auth'
+import { useAppSelector } from '../../app/hooks'
+import { AuthButton, selectRole, selectUsername } from '../../features/auth'
 import { ThemeToggler } from '../../features/theme'
 import { canAccess, menuItems } from '../../utils'
 import { NavigationButton } from './NavigationButton'
@@ -21,6 +22,9 @@ interface AdaptiveNavBarProps {
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
+
+    const role = useAppSelector(selectRole)
+    const username = useAppSelector(selectUsername)
 
     const isActive = (path: string) => location.pathname === path
 
@@ -62,7 +66,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
 
             <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
                 {navItems
-                    .filter((item) => canAccess(item))
+                    .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
                         <NavigationButton
                             key={index}

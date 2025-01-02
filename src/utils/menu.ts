@@ -1,5 +1,7 @@
-import { useAppSelector } from '../app/hooks'
-import { selectRole, selectUsername } from '../features/auth'
+interface AccessibleItem {
+    auth?: boolean
+    roles?: string[]
+}
 
 interface MenuItem {
     auth?: boolean
@@ -8,15 +10,16 @@ interface MenuItem {
     roles?: string[]
 }
 
-export const canAccess = (item: MenuItem) => {
-    const role = useAppSelector(selectRole)
-    const username = useAppSelector(selectUsername)
-
+export const canAccess = (
+    item: AccessibleItem,
+    username?: string,
+    role?: string
+): boolean => {
     if (!item.auth) return true
     if (!username) return false
     if (!item.roles) return true
 
-    return role && item.roles.includes(role)
+    return !!role && item.roles.includes(role)
 }
 
 export const menuItems: MenuItem[] = [

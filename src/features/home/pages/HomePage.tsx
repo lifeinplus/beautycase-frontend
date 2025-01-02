@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
 import { canAccess, menuItems } from '../../../utils'
-import { selectUsername, useAuthLogout } from '../../auth'
+import { selectRole, selectUsername, useAuthLogout } from '../../auth'
 import { HomeButton } from '../components/HomeButton'
 
 export const HomePage = () => {
-    const username = useAppSelector(selectUsername)
     const handleLogout = useAuthLogout()
+
+    const role = useAppSelector(selectRole)
+    const username = useAppSelector(selectUsername)
 
     return (
         <div className="home">
@@ -23,7 +25,7 @@ export const HomePage = () => {
 
                 <div className="flex flex-wrap justify-center gap-4">
                     {menuItems
-                        .filter((item) => canAccess(item))
+                        .filter((item) => canAccess(item, username, role))
                         .map((item, index) => (
                             <HomeButton
                                 key={index}

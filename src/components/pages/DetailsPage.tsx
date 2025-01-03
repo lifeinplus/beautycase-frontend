@@ -3,8 +3,7 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/react/24/outline'
-
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
@@ -15,9 +14,9 @@ import {
     NavigationButton,
     TopPanel,
 } from '../../components'
-import { canAccess, getErrorMessage } from '../../utils'
-import { clearFormData } from '../../features/form'
 import { selectRole, selectUsername } from '../../features/auth'
+import { clearFormData } from '../../features/form'
+import { canAccess, getErrorMessage } from '../../utils'
 
 const ACTIONS = {
     back: {
@@ -49,26 +48,26 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
 
-const LoadingOrError = ({ message }: { message: string }) => (
-    <div className="flex min-h-screen items-center justify-center">
-        <p className="text-gray-500">{message}</p>
-    </div>
-)
-
 interface DetailsPageProps {
-    title: string
-    fetchQuery: (id: string) => any
-    deleteMutation: () => any
-    contentRenderer: (data: any) => React.ReactNode
+    topPanelTitle: string
     redirectPath: string
+    title: string
+    subtitle?: string
+    description?: string
+    deleteMutation: () => any
+    mediaContent?: ReactNode
+    additionalContent?: ReactNode
 }
 
 export const DetailsPage = ({
-    title,
-    fetchQuery,
-    deleteMutation,
-    contentRenderer,
+    topPanelTitle,
     redirectPath,
+    title,
+    subtitle,
+    description,
+    deleteMutation,
+    mediaContent,
+    additionalContent,
 }: DetailsPageProps) => {
     const { state } = useLocation()
     const { id } = useParams<{ id: string }>()
@@ -80,7 +79,6 @@ export const DetailsPage = ({
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const { data, isLoading, error } = fetchQuery(id!)
     const [deleteItem] = deleteMutation()
 
     useEffect(() => {
@@ -121,23 +119,31 @@ export const DetailsPage = ({
         onClick: actionHandlers[id],
     }))
 
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error)
-        return (
-            <LoadingOrError
-                message={`Ошибка загрузки ${title.toLowerCase()}`}
-            />
-        )
-    if (!data) return <LoadingOrError message={`${title} не найден`} />
-
     return (
         <article className="page">
-            <TopPanel title={title} onBack={actionHandlers.back} />
+            <TopPanel title={topPanelTitle} onBack={actionHandlers.back} />
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
                     <article className="page-content__container">
-                        {contentRenderer(data)}
+                        <section className="page-content__title">
+                            <h1 className="page-content__title__headline">
+                                {title}
+                            </h1>
+                            <p className="page-content__title__byline">
+                                {subtitle}
+                            </p>
+                        </section>
+
+                        {mediaContent}
+
+                        {description && (
+                            <section className="page-content__description">
+                                <p>{description}</p>
+                            </section>
+                        )}
+
+                        {additionalContent}
                     </article>
                 </section>
             </main>

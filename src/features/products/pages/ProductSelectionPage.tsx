@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { useFetchProductsQuery } from '../productApiSlice'
+import { useGetProductsQuery } from '../productApiSlice'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: products, isLoading, error } = useFetchProductsQuery()
+    const { data: products, isLoading, error } = useGetProductsQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.selectedProductIds || []

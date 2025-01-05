@@ -4,7 +4,7 @@ import type { Product, QueryResult } from './types'
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createProduct: builder.mutation<MutationResult, Partial<Product>>({
+        addProduct: builder.mutation<MutationResult, Partial<Product>>({
             query: (data) => ({
                 url: '/products/one',
                 method: 'POST',
@@ -12,7 +12,11 @@ export const productApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Product'],
         }),
-        fetchProducts: builder.query<Product[], void>({
+        getProductById: builder.query<Product, string>({
+            query: (id) => `/products/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
+        }),
+        getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
             providesTags: (result) =>
                 result
@@ -25,11 +29,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
                       ]
                     : [{ type: 'Product', id: 'LIST' }],
         }),
-        fetchProductById: builder.query<Product, string>({
-            query: (id) => `/products/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
-        }),
-        updateProduct: builder.mutation<
+        editProduct: builder.mutation<
             Product,
             { id: string } & Partial<Product>
         >({
@@ -54,9 +54,9 @@ export const productApiSlice = apiSlice.injectEndpoints({
 })
 
 export const {
-    useCreateProductMutation,
+    useAddProductMutation,
+    useEditProductMutation,
+    useGetProductByIdQuery,
+    useGetProductsQuery,
     useDeleteProductMutation,
-    useFetchProductsQuery,
-    useFetchProductByIdQuery,
-    useUpdateProductMutation,
 } = productApiSlice

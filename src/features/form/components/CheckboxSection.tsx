@@ -3,7 +3,7 @@ import { UseFormRegister } from 'react-hook-form'
 import {
     type Questionnaire,
     type QuestionnaireOption,
-} from '../../questionnaire'
+} from '../../questionnaires'
 import { CheckboxItem } from './CheckboxItem'
 import { Label } from './Label'
 

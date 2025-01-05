@@ -5,18 +5,18 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import ProductForm from '../components/ProductForm'
-import { useCreateProductMutation } from '../productApiSlice'
+import { useAddProductMutation } from '../productApiSlice'
 import type { Product } from '../types'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [createProduct] = useCreateProductMutation()
+    const [addProduct] = useAddProductMutation()
 
     const handleAddProduct = async (product: Product) => {
         try {
-            const response = await createProduct(product).unwrap()
+            const response = await addProduct(product).unwrap()
             dispatch(clearFormData())
             navigate(`/products/${response.id}`)
         } catch (error) {

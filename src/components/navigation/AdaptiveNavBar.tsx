@@ -9,8 +9,11 @@ import {
 import { ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { AuthButton } from '../../features/auth'
+import { useAppSelector } from '../../app/hooks'
+import { AuthButton, selectRole, selectUsername } from '../../features/auth'
 import { ThemeToggler } from '../../features/theme'
+import { canAccess, menuItems } from '../../utils'
+import { NavigationButton } from './NavigationButton'
 
 interface AdaptiveNavBarProps {
     children?: ReactNode
@@ -20,40 +23,27 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
 
+    const role = useAppSelector(selectRole)
+    const username = useAppSelector(selectUsername)
+
     const isActive = (path: string) => location.pathname === path
 
-    const navItems = [
-        {
-            path: '/questionnaire',
-            label: 'Анкета',
-            icon: <ClipboardIcon className="h-6 w-6" />,
-        },
-        {
-            path: '/questionnaires',
-            label: 'Анкеты',
-            icon: <ClipboardDocumentListIcon className="h-6 w-6" />,
-        },
-        {
-            path: '/makeup_bag',
-            label: 'Косметичка',
-            icon: <ShoppingBagIcon className="h-6 w-6" />,
-        },
-        {
-            path: '/products',
-            label: 'Продукты',
-            icon: <RectangleGroupIcon className="h-6 w-6" />,
-        },
-        {
-            path: '/tools',
-            label: 'Инструменты',
-            icon: <ScissorsIcon className="h-6 w-6" />,
-        },
-        {
-            path: '/lessons',
-            label: 'Уроки',
-            icon: <FilmIcon className="h-6 w-6" />,
-        },
-    ]
+    const icons: { [key: string]: ReactNode } = {
+        '/questionnaire': <ClipboardIcon className="h-6 w-6" />,
+        '/questionnaires': <ClipboardDocumentListIcon className="h-6 w-6" />,
+        '/makeup_bag': <ShoppingBagIcon className="h-6 w-6" />,
+        '/products': <RectangleGroupIcon className="h-6 w-6" />,
+        '/tools': <ScissorsIcon className="h-6 w-6" />,
+        '/lessons': <FilmIcon className="h-6 w-6" />,
+    }
+
+    const navItems = menuItems.map(({ label, path, auth, roles }) => ({
+        auth,
+        label,
+        icon: icons[path],
+        path,
+        roles,
+    }))
 
     const handleClick = (path: string) => {
         if (location.pathname === path) {
@@ -75,18 +65,19 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
             </div>
 
             <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
-                {navItems.map((item, index) => (
-                    <button
-                        key={index}
-                        className={`nav-btn ${
-                            isActive(item.path) ? 'nav-btn-active' : ''
-                        }`}
-                        onClick={() => handleClick(item.path)}
-                    >
-                        {item.icon}
-                        <span className="hidden lg:inline">{item.label}</span>
-                    </button>
-                ))}
+                {navItems
+                    .filter((item) => canAccess(item, username, role))
+                    .map((item, index) => (
+                        <NavigationButton
+                            key={index}
+                            className={
+                                isActive(item.path) ? 'nav-btn-active' : ''
+                            }
+                            icon={item.icon}
+                            onClick={() => handleClick(item.path)}
+                            text={item.label}
+                        />
+                    ))}
             </div>
 
             <div className="flex w-full grow flex-row justify-evenly sm:mt-16 sm:flex-col sm:justify-start">

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface AuthState {
     accessToken?: string
+    role?: string
     userId?: string
     username?: string
 }
@@ -17,6 +18,7 @@ export const authSlice = createSlice({
     },
     selectors: {
         selectAccessToken: (state) => state.accessToken,
+        selectRole: (state) => state.role,
         selectUserId: (state) => state.userId,
         selectUsername: (state) => state.username,
     },
@@ -24,5 +26,5 @@ export const authSlice = createSlice({
 
 export const { logout, setCredentials } = authSlice.actions
 
-export const { selectAccessToken, selectUserId, selectUsername } =
+export const { selectAccessToken, selectRole, selectUserId, selectUsername } =
     authSlice.selectors

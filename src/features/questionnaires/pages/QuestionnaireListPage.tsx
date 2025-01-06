@@ -2,10 +2,15 @@ import { ChevronRightIcon, EyeIcon } from '@heroicons/react/24/outline'
 import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
-import { AdaptiveNavBar, Header, Hero } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Header,
+    Hero,
+    LoadingOrError,
+} from '../../../components'
 import { useGetQuestionnairesQuery } from '../questionnaireApiSlice'
 
-export const QuestionnaireList = () => {
+export const QuestionnaireListPage = () => {
     const {
         data: questionnaires,
         isLoading,
@@ -22,11 +27,11 @@ export const QuestionnaireList = () => {
                         <Hero headline="Анкеты" />
 
                         {isLoading ? (
-                            <p>Loading...</p>
+                            <LoadingOrError message="Загрузка..." />
                         ) : error ? (
-                            <p className="text-red-500">
-                                Failed to load questionnaires.
-                            </p>
+                            <LoadingOrError message="Ошибка загрузки" />
+                        ) : !questionnaires?.length ? (
+                            <LoadingOrError message="Анкеты не найдены" />
                         ) : (
                             <>
                                 <div className="relative hidden h-full w-full flex-col overflow-scroll rounded-2.5xl border border-neutral-200 bg-white bg-clip-border text-neutral-700 dark:border-neutral-800 dark:bg-black dark:text-neutral-300 sm:flex">
@@ -124,29 +129,30 @@ export const QuestionnaireList = () => {
                                     {questionnaires?.map((item, index) => (
                                         <Link
                                             key={index}
-                                            className="flex flex-row items-center justify-between pe-5 ps-4"
+                                            className="flex items-center justify-between pe-5 ps-4"
                                             to={`/questionnaires/${item._id}`}
                                         >
                                             <div>
                                                 <p className="text-black dark:text-white">
-                                                    {`
-                                                    ${item.name}, ${item.age}
-                                                    `}
+                                                    {item.name}
                                                 </p>
                                                 <p className="text-xs text-neutral-600 dark:text-neutral-400">
                                                     {item.city}
                                                 </p>
                                             </div>
-                                            <div className="text-center">
-                                                <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                                                    {format(
-                                                        item.createdAt || '',
-                                                        'yyyy.MM.dd HH:mm'
-                                                    )}
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                                            <div className="flex gap-5">
+                                                <div className="text-center">
+                                                    <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                                                        {format(
+                                                            item.createdAt ||
+                                                                '',
+                                                            'yyyy.MM.dd HH:mm'
+                                                        )}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                                                </div>
                                             </div>
                                         </Link>
                                     ))}

@@ -11,6 +11,7 @@
 @import './page.css';
 @import './panel-top.css';
 @import './stage.css';
+@import './table.css';
 
 @tailwind base;
 @tailwind components;

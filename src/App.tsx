@@ -34,7 +34,7 @@ import {
 } from './features/products'
 import {
     ConfirmationPage,
-    QuestionnaireList,
+    QuestionnaireListPage,
     QuestionnairePage,
     QuestionnaireResultPage,
 } from './features/questionnaires'
@@ -171,7 +171,10 @@ const App = () => {
                                     />
                                 }
                             >
-                                <Route index element={<QuestionnaireList />} />
+                                <Route
+                                    index
+                                    element={<QuestionnaireListPage />}
+                                />
                                 <Route
                                     path=":id"
                                     element={<QuestionnaireResultPage />}

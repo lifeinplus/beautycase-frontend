@@ -1,18 +1,21 @@
-import { ChevronRightIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { format } from 'date-fns'
-import { Link, useNavigate } from 'react-router-dom'
+import { PlusIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
+    DataWrapper,
     Header,
     Hero,
-    LoadingOrError,
     NavigationButton,
 } from '../../../components'
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
-import { useGetMakeupBagsQuery } from '../makeupBagsApiSlice'
+import {
+    MakeupBagMobileView,
+    MakeupBagTable,
+    useGetMakeupBagsQuery,
+} from '../../makeupBags'
 
 const ACTIONS = {
     add: {
@@ -63,42 +66,17 @@ export const MakeupBagListPage = () => {
                     <article className="page-content__container page-content__container-sm">
                         <Hero headline="Косметички" />
 
-                        {isLoading ? (
-                            <LoadingOrError message="Загрузка..." />
-                        ) : error ? (
-                            <LoadingOrError message="Ошибка загрузки" />
-                        ) : !makeupBags?.length ? (
-                            <LoadingOrError message="Косметички не найдены" />
-                        ) : (
-                            <div className="space-y-5 sm:hidden">
-                                {makeupBags?.map((item, index) => (
-                                    <Link
-                                        key={index}
-                                        className="flex flex-row items-center justify-between pe-5 ps-4"
-                                        to={`/makeup_bags/${item._id}`}
-                                    >
-                                        <div>
-                                            <p className="text-black dark:text-white">
-                                                {`
-                                                    ${item.clientId.username}
-                                                    `}
-                                            </p>
-                                        </div>
-                                        <div className="text-center">
-                                            <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                                                {format(
-                                                    item.createdAt || '',
-                                                    'yyyy.MM.dd HH:mm'
-                                                )}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
+                        <DataWrapper
+                            isLoading={isLoading}
+                            error={error}
+                            data={makeupBags}
+                            emptyMessage="Косметички не найдены"
+                        >
+                            <>
+                                <MakeupBagTable makeupBags={makeupBags} />
+                                <MakeupBagMobileView makeupBags={makeupBags} />
+                            </>
+                        </DataWrapper>
                     </article>
                 </section>
             </main>

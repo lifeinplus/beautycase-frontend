@@ -19,7 +19,12 @@ import {
     LessonEditPage,
     LessonsGalleryPage,
 } from './features/lessons'
-import { MakeupBagPage } from './features/makeupBag'
+import {
+    MakeupBagAddPage,
+    MakeupBagEditPage,
+    MakeupBagListPage,
+    MakeupBagPage,
+} from './features/makeupBags'
 import {
     ProductAddPage,
     ProductEditPage,
@@ -111,7 +116,27 @@ const App = () => {
                             </Route>
                         </Route>
 
-                        <Route path="/makeup_bag" element={<MakeupBagPage />} />
+                        <Route path="/makeup_bags">
+                            <Route path=":id" element={<MakeupBagPage />} />
+
+                            <Route
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route index element={<MakeupBagListPage />} />
+                                <Route
+                                    path="add"
+                                    element={<MakeupBagAddPage />}
+                                />
+                                <Route
+                                    path="edit/:id"
+                                    element={<MakeupBagEditPage />}
+                                />
+                            </Route>
+                        </Route>
 
                         <Route path="/products">
                             <Route

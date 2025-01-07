@@ -1,6 +1,5 @@
 export * from './components/MakeupBagForm'
 export * from './components/MakeupBagMobileView'
-export * from './components/MakeupBagRow'
 export * from './components/MakeupBagTable'
 
 export * from './pages/MakeupBagAddPage'

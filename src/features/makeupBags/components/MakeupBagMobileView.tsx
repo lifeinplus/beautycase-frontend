@@ -1,4 +1,4 @@
-import { GenericMobileView } from '../../../components'
+import { MobileView } from '../../../components'
 import { formatDate } from '../../../utils'
 import type { MakeupBag } from '../types'
 
@@ -9,7 +9,7 @@ interface MakeupBagMobileViewProps {
 export const MakeupBagMobileView = ({
     makeupBags,
 }: MakeupBagMobileViewProps) => (
-    <GenericMobileView
+    <MobileView
         items={makeupBags}
         getTitle={(item) => item.clientId.username}
         getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}

@@ -1,4 +1,4 @@
-import { GenericMobileView } from '../../../components'
+import { MobileView } from '../../../components'
 import { formatDate } from '../../../utils'
 import type { Stage } from '../types'
 
@@ -7,7 +7,7 @@ interface StageMobileViewProps {
 }
 
 export const StageMobileView = ({ stages }: StageMobileViewProps) => (
-    <GenericMobileView
+    <MobileView
         items={stages}
         getTitle={(item) => item.title}
         getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}

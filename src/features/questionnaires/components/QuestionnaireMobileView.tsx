@@ -1,4 +1,4 @@
-import { GenericMobileView } from '../../../components'
+import { MobileView } from '../../../components'
 import { formatDate } from '../../../utils'
 import type { Questionnaire } from '../types'
 
@@ -9,7 +9,7 @@ interface QuestionnaireMobileViewProps {
 export const QuestionnaireMobileView = ({
     questionnaires,
 }: QuestionnaireMobileViewProps) => (
-    <GenericMobileView
+    <MobileView
         items={questionnaires}
         getTitle={(item) => item.name}
         getSubtitle={(item) => item.city || '—'}

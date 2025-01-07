@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
-interface GenericMobileViewProps<T> {
+interface MobileViewProps<T> {
     items?: T[]
     getTitle: (item: T) => string
     getSubtitle?: (item: T) => string
@@ -9,13 +9,13 @@ interface GenericMobileViewProps<T> {
     getLink: (item: T) => string
 }
 
-export const GenericMobileView = <T,>({
+export const MobileView = <T,>({
     items,
     getTitle,
     getSubtitle,
     getDate,
     getLink,
-}: GenericMobileViewProps<T>) => (
+}: MobileViewProps<T>) => (
     <div className="space-y-5 sm:hidden">
         {items?.map((item) => (
             <Link

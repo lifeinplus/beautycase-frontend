@@ -1,5 +1,4 @@
 export * from './components/StageMobileView'
-export * from './components/StageRow'
 export * from './components/StageTable'
 export * from './components/Stages'
 

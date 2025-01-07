@@ -1,5 +1,3 @@
-import { useNavigate, useParams } from 'react-router-dom'
-
 import { DynamicForm, type FieldConfig } from '../../form'
 import { useGetUsersQuery } from '../../users'
 import { MakeupBag } from '../types'
@@ -10,10 +8,7 @@ interface MakeupBagFormProps {
 }
 
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
-    const navigate = useNavigate()
-    const { id } = useParams()
-
-    const { data: users, isLoading, isError } = useGetUsersQuery()
+    const { data: users } = useGetUsersQuery()
 
     const fields: FieldConfig<MakeupBag>[] = [
         {

@@ -22,6 +22,10 @@
     @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }
 
+.form-select-icon {
+    @apply pointer-events-none relative right-3 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden;
+}
+
 .form-thumbnail-container {
     @apply relative mx-auto mt-5 aspect-video w-full overflow-hidden rounded-2xl p-1;
     @apply border border-neutral-200 peer-focus:border-1.5 peer-focus:border-black dark:border-neutral-700 dark:peer-focus:border-white;

@@ -76,11 +76,12 @@ const renderField = <T extends Record<string, any>>(
         return (
             <Label key={name as string} text={label}>
                 <div className="grid">
-                    <ChevronDownIcon className="pointer-events-none relative right-3 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
+                    <ChevronDownIcon className="form-select-icon" />
                     <select
                         className="form-select"
                         name={name as string}
                         onChange={handleChange}
+                        value={value}
                     >
                         {options?.map((o) => (
                             <option key={o.value} value={o.value}>

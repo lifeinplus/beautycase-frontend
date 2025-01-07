@@ -1,7 +1,8 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
     DataWrapper,
@@ -11,6 +12,7 @@ import {
 } from '../../../components'
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
+import { clearFormData } from '../../form'
 import {
     MakeupBagMobileView,
     MakeupBagTable,
@@ -39,10 +41,15 @@ const ACTION_ITEMS: ActionItem[] = [
 export const MakeupBagListPage = () => {
     const navigate = useNavigate()
 
+    const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
     const { data: makeupBags, isLoading, error } = useGetMakeupBagsQuery()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const actionHandlers = {
         add: () => navigate('add'),

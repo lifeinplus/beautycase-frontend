@@ -11,6 +11,16 @@ const makeupBagsApiSlice = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        editMakeupBag: builder.mutation<
+            MakeupBag,
+            { id: string } & Partial<MakeupBag>
+        >({
+            query: ({ id, clientId }) => ({
+                url: `/makeup-bags/${id}`,
+                method: 'PUT',
+                body: { clientId },
+            }),
+        }),
         getMakeupBagById: builder.query<MakeupBag, string>({
             query: (id) => `/makeup-bags/${id}`,
         }),
@@ -22,6 +32,7 @@ const makeupBagsApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useAddMakeupBagMutation,
+    useEditMakeupBagMutation,
     useGetMakeupBagByIdQuery,
     useGetMakeupBagsQuery,
 } = makeupBagsApiSlice

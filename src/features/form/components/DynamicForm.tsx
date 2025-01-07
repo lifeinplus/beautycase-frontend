@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -33,10 +33,12 @@ const renderField = <T extends Record<string, any>>(
     field: FieldConfig<T>,
     value: any,
     handleChange: (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: ChangeEvent<
+            HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >
     ) => void
 ) => {
-    const { label, name, onClick, required, rows, type } = field
+    const { label, name, onClick, options, required, rows, type } = field
 
     if (type === 'textarea') {
         return (
@@ -59,14 +61,36 @@ const renderField = <T extends Record<string, any>>(
             <div key={name as string}>
                 <Label text={label} />
                 <button
-                    type="button"
-                    onClick={onClick}
                     className="form-button-select"
+                    onClick={onClick}
+                    type="button"
                 >
                     <span>{generateButtonText(value)}</span>
                     <ChevronRightIcon className="h-6 w-6" />
                 </button>
             </div>
+        )
+    }
+
+    if (type === 'select') {
+        return (
+            <Label key={name as string} text={label}>
+                <div className="grid">
+                    <ChevronDownIcon className="form-select-icon" />
+                    <select
+                        className="form-select"
+                        name={name as string}
+                        onChange={handleChange}
+                        value={value}
+                    >
+                        {options?.map((o) => (
+                            <option key={o.value} value={o.value}>
+                                {o.text}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </Label>
         )
     }
 
@@ -101,7 +125,9 @@ export const DynamicForm = <T extends Record<string, any>>({
     }
 
     const handleChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: ChangeEvent<
+            HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >
     ) => {
         const { name, value } = e.target
         dispatch(setFormData({ [name]: value }))

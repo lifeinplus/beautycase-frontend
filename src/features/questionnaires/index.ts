@@ -1,5 +1,8 @@
+export * from './components/QuestionnaireMobileView'
+export * from './components/QuestionnaireTable'
+
 export * from './pages/ConfirmationPage'
-export * from './pages/QuestionnaireList'
+export * from './pages/QuestionnaireListPage'
 export * from './pages/QuestionnairePage'
 export * from './pages/QuestionnaireResultPage'
 

@@ -1,4 +1,5 @@
 import { PaintBrushIcon, ListBulletIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router-dom'
 
 import {
     AdaptiveNavBar,
@@ -10,10 +11,12 @@ import {
 import { getErrorMessage } from '../../../utils'
 import { Brands } from '../../brands'
 import { Stages } from '../../stages'
-import { useGetMakeupBagQuery } from '../makeupBagApiSlice'
+import { useGetMakeupBagByIdQuery } from '../makeupBagsApiSlice'
 
 export const MakeupBagPage = () => {
-    const { data, isLoading, error } = useGetMakeupBagQuery()
+    const { id } = useParams()
+
+    const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
     const handleStages = () =>
         document

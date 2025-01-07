@@ -35,8 +35,9 @@ export const menuItems: MenuItem[] = [
     },
     {
         auth: true,
-        label: 'Косметичка',
-        path: '/makeup_bag',
+        label: 'Косметички',
+        path: '/makeup_bags',
+        roles: ['admin', 'mua'],
     },
     {
         auth: true,
@@ -54,5 +55,11 @@ export const menuItems: MenuItem[] = [
         auth: true,
         label: 'Уроки',
         path: '/lessons',
+    },
+    {
+        auth: true,
+        label: 'Этапы',
+        path: '/stages',
+        roles: ['admin', 'mua'],
     },
 ]

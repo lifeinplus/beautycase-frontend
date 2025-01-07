@@ -38,6 +38,12 @@ import {
     QuestionnairePage,
     QuestionnaireResultPage,
 } from './features/questionnaires'
+import {
+    StageAddPage,
+    StageDetailsPage,
+    StageEditPage,
+    StageListPage,
+} from './features/stages'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -178,6 +184,30 @@ const App = () => {
                                 <Route
                                     path=":id"
                                     element={<QuestionnaireResultPage />}
+                                />
+                            </Route>
+                        </Route>
+
+                        <Route path="/stages">
+                            <Route
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route index element={<StageListPage />} />
+
+                                <Route
+                                    path=":id"
+                                    element={<StageDetailsPage />}
+                                />
+
+                                <Route path="add" element={<StageAddPage />} />
+
+                                <Route
+                                    path="edit/:id"
+                                    element={<StageEditPage />}
                                 />
                             </Route>
                         </Route>

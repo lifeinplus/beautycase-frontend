@@ -2,6 +2,7 @@ import {
     ClipboardDocumentListIcon,
     ClipboardIcon,
     FilmIcon,
+    QueueListIcon,
     RectangleGroupIcon,
     ScissorsIcon,
     ShoppingBagIcon,
@@ -35,6 +36,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         '/products': <RectangleGroupIcon className="h-6 w-6" />,
         '/tools': <ScissorsIcon className="h-6 w-6" />,
         '/lessons': <FilmIcon className="h-6 w-6" />,
+        '/stages': <QueueListIcon className="h-6 w-6" />,
     }
 
     const navItems = menuItems.map(({ label, path, auth, roles }) => ({

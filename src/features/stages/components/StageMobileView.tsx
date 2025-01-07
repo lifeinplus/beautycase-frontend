@@ -2,26 +2,22 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 import { formatDate } from '../../../utils'
-import { MakeupBag } from '../types'
+import { Stage } from '../types'
 
-interface MakeupBagMobileViewProps {
-    makeupBags?: MakeupBag[]
+interface StageMobileViewProps {
+    stages?: Stage[]
 }
 
-export const MakeupBagMobileView = ({
-    makeupBags,
-}: MakeupBagMobileViewProps) => (
+export const StageMobileView = ({ stages }: StageMobileViewProps) => (
     <div className="space-y-5 sm:hidden">
-        {makeupBags?.map((item) => (
+        {stages?.map((item) => (
             <Link
                 key={item._id}
                 className="flex items-center justify-between pe-5 ps-4"
                 to={`/makeup_bags/${item._id}`}
             >
                 <div>
-                    <p className="text-black dark:text-white">
-                        {item.clientId.username}
-                    </p>
+                    <p className="text-black dark:text-white">{item.title}</p>
                 </div>
                 <div className="flex gap-5">
                     <div className="text-center">

@@ -1,5 +1,4 @@
 import { ChevronRightIcon, EyeIcon } from '@heroicons/react/24/outline'
-import { format } from 'date-fns'
 import { Link } from 'react-router-dom'
 
 import {
@@ -8,6 +7,7 @@ import {
     Hero,
     LoadingOrError,
 } from '../../../components'
+import { formatDate } from '../../../utils'
 import { useGetQuestionnairesQuery } from '../questionnaireApiSlice'
 
 export const QuestionnaireListPage = () => {
@@ -79,18 +79,16 @@ export const QuestionnaireListPage = () => {
                                                     >
                                                         <td className="border-b border-neutral-200 p-4 dark:border-neutral-800">
                                                             <p className="text-center text-neutral-800 dark:text-neutral-200">
-                                                                {format(
-                                                                    item.createdAt ||
-                                                                        '',
+                                                                {formatDate(
+                                                                    item.createdAt,
                                                                     'yyyy.MM.dd'
                                                                 )}
                                                             </p>
                                                         </td>
                                                         <td className="border-b border-neutral-200 p-4 dark:border-neutral-800">
                                                             <p className="text-center text-neutral-800 dark:text-neutral-200">
-                                                                {format(
-                                                                    item.createdAt ||
-                                                                        '',
+                                                                {formatDate(
+                                                                    item.createdAt,
                                                                     'HH:mm'
                                                                 )}
                                                             </p>
@@ -143,9 +141,8 @@ export const QuestionnaireListPage = () => {
                                             <div className="flex gap-5">
                                                 <div className="text-center">
                                                     <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                                                        {format(
-                                                            item.createdAt ||
-                                                                '',
+                                                        {formatDate(
+                                                            item.createdAt,
                                                             'yyyy.MM.dd HH:mm'
                                                         )}
                                                     </p>

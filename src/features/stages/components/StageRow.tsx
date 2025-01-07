@@ -3,19 +3,19 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { formatDate } from '../../../utils'
-import { MakeupBag } from '../types'
+import { Stage } from '../types'
 
-interface MakeupBagRowProps {
-    item: MakeupBag
+interface StageRowProps {
+    item: Stage
 }
 
-export const MakeupBagRow = ({ item }: MakeupBagRowProps) => {
+export const StageRow = ({ item }: StageRowProps) => {
     const cellClasses = ['text-center', 'text-center', 'text-left']
 
     const cellData = [
         formatDate(item.createdAt, 'yyyy.MM.dd'),
         formatDate(item.createdAt, 'HH:mm'),
-        item.clientId.username,
+        item.title,
     ]
 
     return (
@@ -27,13 +27,10 @@ export const MakeupBagRow = ({ item }: MakeupBagRowProps) => {
             ))}
 
             <td className={classNames('td', 'td-actions')}>
-                <Link className="td-action" to={`/makeup_bags/${item._id}`}>
+                <Link className="td-action" to={`/stages/${item._id}`}>
                     <EyeIcon className="h-6 w-6" />
                 </Link>
-                <Link
-                    className="td-action"
-                    to={`/makeup_bags/edit/${item._id}`}
-                >
+                <Link className="td-action" to={`/stages/edit/${item._id}`}>
                     <PencilSquareIcon className="h-6 w-6" />
                 </Link>
             </td>

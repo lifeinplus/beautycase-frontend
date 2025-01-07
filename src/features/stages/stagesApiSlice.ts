@@ -1,13 +1,5 @@
 import { apiSlice } from '../api'
-import { type Product } from '../products'
-
-export interface Stage {
-    title: string
-    image: string
-    subtitle: string
-    steps: string[]
-    productIds: Product[]
-}
+import type { Stage } from './types'
 
 const stagesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

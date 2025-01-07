@@ -56,4 +56,10 @@ export const menuItems: MenuItem[] = [
         label: 'Уроки',
         path: '/lessons',
     },
+    {
+        auth: true,
+        label: 'Этапы',
+        path: '/stages',
+        roles: ['admin', 'mua'],
+    },
 ]

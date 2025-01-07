@@ -1,20 +1,20 @@
 import classNames from 'classnames'
 
-import { MakeupBag } from '../types'
-import { MakeupBagRow } from './MakeupBagRow'
+import { Stage } from '../types'
+import { StageRow } from './StageRow'
 
-interface MakeupBagTableProps {
-    makeupBags?: MakeupBag[]
+interface StageTableProps {
+    stages?: Stage[]
 }
 
 const tableHeaders = [
     { label: 'Дата', className: 'text-center' },
     { label: 'Время', className: 'text-center' },
-    { label: 'Имя клиента', className: 'text-left' },
+    { label: 'Название этапа', className: 'text-left' },
     { label: 'Действия', className: 'text-center' },
 ]
 
-export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => (
+export const StageTable = ({ stages }: StageTableProps) => (
     <div className="table-container">
         <table className="table">
             <thead>
@@ -27,9 +27,7 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => (
                 </tr>
             </thead>
             <tbody>
-                {makeupBags?.map((item) => (
-                    <MakeupBagRow key={item._id} item={item} />
-                ))}
+                {stages?.map((item) => <StageRow key={item._id} item={item} />)}
             </tbody>
         </table>
     </div>

@@ -13,11 +13,7 @@ import {
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
-import {
-    MakeupBagMobileView,
-    MakeupBagTable,
-    useGetMakeupBagsQuery,
-} from '../../makeupBags'
+import { StageMobileView, StageTable, useGetStagesQuery } from '../../stages'
 
 const ACTIONS = {
     add: {
@@ -38,14 +34,14 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'add', auth: true, roles: ['admin', 'mua'] },
 ]
 
-export const MakeupBagListPage = () => {
+export const StageListPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data: makeupBags, isLoading, error } = useGetMakeupBagsQuery()
+    const { data: stages, isLoading, error } = useGetStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -71,17 +67,17 @@ export const MakeupBagListPage = () => {
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
                     <article className="page-content__container page-content__container-sm">
-                        <Hero headline="Косметички" />
+                        <Hero headline="Этапы" />
 
                         <DataWrapper
                             isLoading={isLoading}
                             error={error}
-                            data={makeupBags}
-                            emptyMessage="Косметички не найдены"
+                            data={stages}
+                            emptyMessage="Этапы не найдены"
                         >
                             <>
-                                <MakeupBagMobileView makeupBags={makeupBags} />
-                                <MakeupBagTable makeupBags={makeupBags} />
+                                <StageMobileView stages={stages} />
+                                <StageTable stages={stages} />
                             </>
                         </DataWrapper>
                     </article>

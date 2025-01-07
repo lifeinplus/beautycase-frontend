@@ -1,5 +1,5 @@
 import { ProductsList } from '../../products'
-import { Stage } from '../stagesApiSlice'
+import { Stage } from '../types'
 
 interface StagesProps {
     stages?: Stage[]

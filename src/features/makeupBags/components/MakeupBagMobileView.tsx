@@ -1,8 +1,6 @@
-import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
-
+import { GenericMobileView } from '../../../components'
 import { formatDate } from '../../../utils'
-import { MakeupBag } from '../types'
+import type { MakeupBag } from '../types'
 
 interface MakeupBagMobileViewProps {
     makeupBags?: MakeupBag[]
@@ -11,29 +9,10 @@ interface MakeupBagMobileViewProps {
 export const MakeupBagMobileView = ({
     makeupBags,
 }: MakeupBagMobileViewProps) => (
-    <div className="space-y-5 sm:hidden">
-        {makeupBags?.map((item) => (
-            <Link
-                key={item._id}
-                className="flex items-center justify-between pe-5 ps-4"
-                to={`/makeup_bags/${item._id}`}
-            >
-                <div>
-                    <p className="text-black dark:text-white">
-                        {item.clientId.username}
-                    </p>
-                </div>
-                <div className="flex gap-5">
-                    <div className="text-center">
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                            {formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
-                        </p>
-                    </div>
-                    <div>
-                        <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                    </div>
-                </div>
-            </Link>
-        ))}
-    </div>
+    <GenericMobileView
+        items={makeupBags}
+        getTitle={(item) => item.clientId.username}
+        getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
+        getLink={(item) => `/makeup_bags/${item._id}`}
+    />
 )

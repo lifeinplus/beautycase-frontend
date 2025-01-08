@@ -17,11 +17,3 @@
 .td {
     @apply border-b border-neutral-200 p-4 dark:border-neutral-800;
 }
-
-.td-actions {
-    @apply flex justify-center gap-2;
-}
-
-.td-action {
-    @apply text-neutral-800 dark:text-neutral-200;
-}

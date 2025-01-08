@@ -55,8 +55,8 @@ export const productApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useAddProductMutation,
+    useDeleteProductMutation,
     useEditProductMutation,
     useGetProductByIdQuery,
     useGetProductsQuery,
-    useDeleteProductMutation,
 } = productApiSlice

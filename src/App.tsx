@@ -43,6 +43,7 @@ import {
     StageDetailsPage,
     StageEditPage,
     StageListPage,
+    StageSelectionPage,
 } from './features/stages'
 import { selectDarkMode } from './features/theme'
 import {
@@ -208,6 +209,11 @@ const App = () => {
                                 <Route
                                     path="edit/:id"
                                     element={<StageEditPage />}
+                                />
+
+                                <Route
+                                    path="selection"
+                                    element={<StageSelectionPage />}
                                 />
                             </Route>
                         </Route>

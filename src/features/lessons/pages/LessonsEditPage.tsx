@@ -3,7 +3,6 @@ import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { LoadingOrError } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import {
@@ -21,7 +20,7 @@ export const LessonEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editLesson] = useEditLessonMutation()
-    const { data, isLoading, error } = useGetLessonByIdQuery(id!)
+    const { data } = useGetLessonByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -36,10 +35,6 @@ export const LessonEditPage = () => {
             )
         }
     }, [data, dispatch, isDirty])
-
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Урок не найден" />
 
     const handleEditLesson = async (lesson: Lesson) => {
         try {

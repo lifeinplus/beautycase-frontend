@@ -5,14 +5,12 @@ interface TableRowProps {
     cellClasses?: string[]
     cellData: (string | number)[]
     redirectPath: string
-    actions?: JSX.Element
 }
 
 export const TableRow = ({
     cellClasses = [],
     cellData,
     redirectPath,
-    actions,
 }: TableRowProps) => {
     const navigate = useNavigate()
 
@@ -23,9 +21,6 @@ export const TableRow = ({
                     {data}
                 </td>
             ))}
-            {actions && (
-                <td className={classNames('td', 'td-actions')}>{actions}</td>
-            )}
         </tr>
     )
 }

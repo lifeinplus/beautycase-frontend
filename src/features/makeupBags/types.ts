@@ -6,5 +6,6 @@ export interface MakeupBag {
     createdAt?: string
     clientId: { username: string }
     brands: Brand[]
-    stages: Stage[]
+    stageIds: Stage[]
+    selectedStageIds: string[]
 }

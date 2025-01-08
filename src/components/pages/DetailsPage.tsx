@@ -72,8 +72,8 @@ export const DetailsPage = ({
     additionalContent,
 }: DetailsPageProps) => {
     const { state } = useLocation()
-    const { id } = useParams<{ id: string }>()
     const navigate = useNavigate()
+    const { id } = useParams<{ id: string }>()
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)

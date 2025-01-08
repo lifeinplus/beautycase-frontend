@@ -7,6 +7,7 @@ export * from './pages/StageAddPage'
 export * from './pages/StageDetailsPage'
 export * from './pages/StageEditPage'
 export * from './pages/StageListPage'
+export * from './pages/StageSelectionPage'
 
 export * from './stagesApiSlice'
 export * from './types'

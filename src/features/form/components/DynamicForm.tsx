@@ -17,7 +17,7 @@ interface DynamicFormProps<T> {
 }
 
 const generateButtonText = (value: string[]) =>
-    value?.length ? `Выбрано: ${value.length}` : 'Выбрать продукты'
+    value?.length ? `Выбрано: ${value.length}` : 'Выбрать'
 
 const renderYouTubeThumbnail = (url: string) => (
     <div className="form-thumbnail-container">
@@ -89,6 +89,22 @@ const renderField = <T extends Record<string, any>>(
                 <button
                     className="form-button-select"
                     onClick={() => navigate(`/products/selection`)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-6 w-6" />
+                </button>
+            </div>
+        )
+    }
+
+    if (type === 'button-stages') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => navigate(`/stages/selection`)}
                     type="button"
                 >
                     <span>{generateButtonText(value)}</span>

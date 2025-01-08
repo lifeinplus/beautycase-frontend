@@ -4,5 +4,11 @@ export interface FieldConfig<T> {
     options?: { text: string; value: string }[]
     required?: boolean
     rows?: number
-    type: 'button-products' | 'select' | 'text' | 'textarea' | 'textarea-steps'
+    type:
+        | 'button-products'
+        | 'button-stages'
+        | 'select'
+        | 'text'
+        | 'textarea'
+        | 'textarea-steps'
 }

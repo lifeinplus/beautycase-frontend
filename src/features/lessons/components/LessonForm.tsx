@@ -1,5 +1,3 @@
-import { useNavigate, useParams } from 'react-router-dom'
-
 import { DynamicForm, type FieldConfig } from '../../form'
 import type { Lesson } from '../types'
 
@@ -8,10 +6,7 @@ interface LessonFormProps {
     title: string
 }
 
-const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
-    const navigate = useNavigate()
-    const { id } = useParams()
-
+export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const fields: FieldConfig<Lesson>[] = [
         {
             label: 'Заголовок',
@@ -42,12 +37,9 @@ const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         {
             label: 'Продукты',
             name: 'selectedProductIds',
-            onClick: () => navigate(`/lessons/edit/${id}/products`),
-            type: 'button',
+            type: 'button-products',
         },
     ]
 
     return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />
 }
-
-export default LessonForm

@@ -38,7 +38,10 @@ const renderField = <T extends Record<string, any>>(
         >
     ) => void
 ) => {
-    const { label, name, onClick, options, required, rows, type } = field
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    const { label, name, options, required, rows, type } = field
 
     if (type === 'textarea') {
         return (
@@ -56,13 +59,36 @@ const renderField = <T extends Record<string, any>>(
         )
     }
 
-    if (type === 'button') {
+    if (type === 'textarea-steps') {
+        const joined = value ? value.join('\n\n') : ''
+
+        const handleTextareaSteps = (e: ChangeEvent<HTMLTextAreaElement>) => {
+            const value = e.target.value.split('\n\n')
+            dispatch(setFormData({ [name]: value }))
+        }
+
+        return (
+            <Label key={name as string} text={label}>
+                <textarea
+                    className="form-input"
+                    name={name as string}
+                    onChange={handleTextareaSteps}
+                    placeholder={label}
+                    required={required}
+                    rows={rows}
+                    value={joined}
+                />
+            </Label>
+        )
+    }
+
+    if (type === 'button-products') {
         return (
             <div key={name as string}>
                 <Label text={label} />
                 <button
                     className="form-button-select"
-                    onClick={onClick}
+                    onClick={() => navigate(`/products/selection`)}
                     type="button"
                 >
                     <span>{generateButtonText(value)}</span>

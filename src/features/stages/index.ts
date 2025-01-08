@@ -1,6 +1,7 @@
+export * from './components/StageForm'
 export * from './components/StageMobileView'
-export * from './components/StageTable'
 export * from './components/Stages'
+export * from './components/StageTable'
 
 export * from './pages/StageAddPage'
 export * from './pages/StageDetailsPage'

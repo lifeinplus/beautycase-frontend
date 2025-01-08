@@ -1,4 +1,4 @@
-import { EyeIcon, PencilSquareIcon } from '@heroicons/react/24/outline'
+import { PencilSquareIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
 import { Table, TableRow } from '../../../components'
@@ -33,21 +33,14 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                         formatDate(item.createdAt, 'HH:mm'),
                         item.clientId.username,
                     ]}
+                    redirectPath={`/makeup_bags/${item._id}`}
                     actions={
-                        <>
-                            <Link
-                                className="td-action"
-                                to={`/makeup_bags/${item._id}`}
-                            >
-                                <EyeIcon className="h-6 w-6" />
-                            </Link>
-                            <Link
-                                className="td-action"
-                                to={`/makeup_bags/edit/${item._id}`}
-                            >
-                                <PencilSquareIcon className="h-6 w-6" />
-                            </Link>
-                        </>
+                        <Link
+                            className="td-action"
+                            to={`/makeup_bags/edit/${item._id}`}
+                        >
+                            <PencilSquareIcon className="h-6 w-6" />
+                        </Link>
                     }
                 />
             )}

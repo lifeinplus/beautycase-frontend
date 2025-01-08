@@ -3,14 +3,15 @@ import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { LoadingOrError } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
-import LessonForm from '../components/LessonForm'
 import {
+    type Lesson,
+    LessonForm,
     useEditLessonMutation,
     useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
-import type { Lesson } from '../types'
+} from '../../lessons'
 
 export const LessonEditPage = () => {
     const navigate = useNavigate()
@@ -20,31 +21,25 @@ export const LessonEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editLesson] = useEditLessonMutation()
-    const { data: lesson, isLoading } = useGetLessonByIdQuery(id!)
+    const { data, isLoading, error } = useGetLessonByIdQuery(id!)
 
     useEffect(() => {
-        if (lesson && !isDirty) {
+        if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    title: lesson?.title,
-                    shortDescription: lesson?.shortDescription,
-                    videoUrl: lesson?.videoUrl,
-                    fullDescription: lesson?.fullDescription,
-                    selectedProductIds: lesson?.productIds?.map((p) => p._id!),
+                    title: data.title,
+                    shortDescription: data.shortDescription,
+                    videoUrl: data.videoUrl,
+                    fullDescription: data.fullDescription,
+                    selectedProductIds: data.productIds?.map((p) => p._id!),
                 })
             )
         }
-    }, [lesson, dispatch, isDirty])
+    }, [data, dispatch, isDirty])
 
-    if (isLoading) return <p>Loading...</p>
-
-    if (!lesson) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Lesson not found</p>
-            </div>
-        )
-    }
+    if (isLoading) return <LoadingOrError message="Загрузка..." />
+    if (error) return <LoadingOrError message="Ошибка загрузки" />
+    if (!data) return <LoadingOrError message="Урок не найден" />
 
     const handleEditLesson = async (lesson: Lesson) => {
         try {

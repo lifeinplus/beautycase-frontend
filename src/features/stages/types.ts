@@ -8,4 +8,5 @@ export interface Stage {
     image: string
     steps: string[]
     productIds: Product[]
+    selectedProductIds?: string[]
 }

@@ -4,7 +4,3 @@ export interface Product {
     image: string
     buy: string
 }
-
-export interface QueryResult {
-    message: string
-}

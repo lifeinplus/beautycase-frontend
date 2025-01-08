@@ -1,6 +1,6 @@
-import type { MutationResult } from '../../types'
+import type { MutationResult, QueryResult } from '../../types'
 import { apiSlice } from '../api/apiSlice'
-import type { Lesson, QueryResult } from './types'
+import type { Lesson } from './types'
 
 export const lessonsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -24,22 +24,12 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Lesson'],
         }),
-        getLessonById: builder.query<Lesson, string>({
-            query: (id) => `/lessons/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Lesson', id }],
-        }),
-        getLessons: builder.query<Lesson[], void>({
-            query: () => '/lessons/all',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ _id }) => ({
-                              type: 'Lesson' as const,
-                              id: _id,
-                          })),
-                          { type: 'Lesson', id: 'LIST' },
-                      ]
-                    : [{ type: 'Lesson', id: 'LIST' }],
+        deleteLesson: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/lessons/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Lesson', id: 'LIST' }],
         }),
         editLesson: builder.mutation<Lesson, { id: string } & Partial<Lesson>>({
             query: ({
@@ -65,12 +55,22 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Lesson', id: 'LIST' },
             ],
         }),
-        deleteLesson: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/lessons/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Lesson', id: 'LIST' }],
+        getLessonById: builder.query<Lesson, string>({
+            query: (id) => `/lessons/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Lesson', id }],
+        }),
+        getLessons: builder.query<Lesson[], void>({
+            query: () => '/lessons/all',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Lesson' as const,
+                              id: _id,
+                          })),
+                          { type: 'Lesson', id: 'LIST' },
+                      ]
+                    : [{ type: 'Lesson', id: 'LIST' }],
         }),
     }),
 })

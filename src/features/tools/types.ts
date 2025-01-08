@@ -5,7 +5,3 @@ export interface Tool {
     number?: string
     comment?: string
 }
-
-export interface QueryResult {
-    message: string
-}

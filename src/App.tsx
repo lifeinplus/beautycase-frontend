@@ -115,10 +115,6 @@ const App = () => {
                                     path="edit/:id"
                                     element={<LessonEditPage />}
                                 />
-                                <Route
-                                    path="/lessons/edit/:lessonId/products"
-                                    element={<ProductSelectionPage />}
-                                />
                             </Route>
                         </Route>
 
@@ -165,6 +161,10 @@ const App = () => {
                                 <Route
                                     path="edit/:id"
                                     element={<ProductEditPage />}
+                                />
+                                <Route
+                                    path="selection"
+                                    element={<ProductSelectionPage />}
                                 />
                             </Route>
                         </Route>

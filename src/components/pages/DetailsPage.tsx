@@ -56,6 +56,7 @@ interface DetailsPageProps {
     description?: string
     deleteMutation: () => any
     mediaContent?: ReactNode
+    descriptionContent?: ReactNode
     additionalContent?: ReactNode
 }
 
@@ -67,6 +68,7 @@ export const DetailsPage = ({
     description,
     deleteMutation,
     mediaContent,
+    descriptionContent,
     additionalContent,
 }: DetailsPageProps) => {
     const { state } = useLocation()
@@ -137,11 +139,13 @@ export const DetailsPage = ({
 
                         {mediaContent}
 
-                        {description && (
-                            <section className="page-content__description">
-                                <p>{description}</p>
-                            </section>
-                        )}
+                        {descriptionContent
+                            ? descriptionContent
+                            : description && (
+                                  <section className="page-content__description">
+                                      <p>{description}</p>
+                                  </section>
+                              )}
 
                         {additionalContent}
                     </article>

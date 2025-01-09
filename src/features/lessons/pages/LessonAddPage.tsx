@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
-import LessonForm from '../components/LessonForm'
-import { useAddLessonMutation } from '../lessonsApiSlice'
-import type { Lesson } from '../types'
+import { type Lesson, LessonForm, useAddLessonMutation } from '../../lessons'
 
 export const LessonAddPage = () => {
     const navigate = useNavigate()

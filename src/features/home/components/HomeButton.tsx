@@ -7,7 +7,7 @@ interface HomeButtonProps {
 
 export const HomeButton = ({ to, label }: HomeButtonProps) => {
     return (
-        <Link to={to} className="home__button">
+        <Link to={to} className="home-button">
             {label}
         </Link>
     )

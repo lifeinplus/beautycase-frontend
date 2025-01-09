@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
-import ToolForm from '../components/ToolForm'
-import { useAddToolMutation } from '../toolsApiSlice'
-import type { Tool } from '../types'
+import { type Tool, ToolForm, useAddToolMutation } from '../../tools'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()

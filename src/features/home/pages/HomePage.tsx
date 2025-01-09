@@ -13,11 +13,11 @@ export const HomePage = () => {
 
     return (
         <div className="home">
-            <div className="max-w-xs sm:max-w-sm lg:max-w-lg">
+            <div className="home-container">
                 <div className="text-center">
-                    <h1 className="home__title">Добро пожаловать в</h1>
-                    <h2 className="home__logo">Beautycase</h2>
-                    <p className="home__motto">
+                    <h1 className="home-title">Добро пожаловать в</h1>
+                    <h2 className="home-logo">Beautycase</h2>
+                    <p className="home-motto">
                         Все ваши инструменты и продукты для макияжа в одном
                         месте.
                     </p>
@@ -36,12 +36,12 @@ export const HomePage = () => {
                 </div>
 
                 <div className="mt-10 sm:mb-5">
-                    <p className="home__auth">
+                    <p className="home-auth">
                         {username ? (
                             <>
                                 Выполнен вход: {username} (
                                 <button
-                                    className="home__link"
+                                    className="home-link"
                                     onClick={handleLogout}
                                 >
                                     Выйти
@@ -50,11 +50,11 @@ export const HomePage = () => {
                             </>
                         ) : (
                             <>
-                                <Link className="home__link" to="/login">
+                                <Link className="home-link" to="/login">
                                     Войти
                                 </Link>{' '}
                                 или{' '}
-                                <Link className="home__link" to="/register">
+                                <Link className="home-link" to="/register">
                                     зарегистрироваться
                                 </Link>
                             </>

@@ -5,12 +5,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
-import LessonForm from '../components/LessonForm'
 import {
+    type Lesson,
+    LessonForm,
     useEditLessonMutation,
     useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
-import type { Lesson } from '../types'
+} from '../../lessons'
 
 export const LessonEditPage = () => {
     const navigate = useNavigate()
@@ -20,31 +20,21 @@ export const LessonEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editLesson] = useEditLessonMutation()
-    const { data: lesson, isLoading } = useGetLessonByIdQuery(id!)
+    const { data } = useGetLessonByIdQuery(id!)
 
     useEffect(() => {
-        if (lesson && !isDirty) {
+        if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    title: lesson?.title,
-                    shortDescription: lesson?.shortDescription,
-                    videoUrl: lesson?.videoUrl,
-                    fullDescription: lesson?.fullDescription,
-                    selectedProductIds: lesson?.productIds?.map((p) => p._id!),
+                    title: data.title,
+                    shortDescription: data.shortDescription,
+                    videoUrl: data.videoUrl,
+                    fullDescription: data.fullDescription,
+                    selectedProductIds: data.productIds?.map((p) => p._id!),
                 })
             )
         }
-    }, [lesson, dispatch, isDirty])
-
-    if (isLoading) return <p>Loading...</p>
-
-    if (!lesson) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Lesson not found</p>
-            </div>
-        )
-    }
+    }, [data, dispatch, isDirty])
 
     const handleEditLesson = async (lesson: Lesson) => {
         try {

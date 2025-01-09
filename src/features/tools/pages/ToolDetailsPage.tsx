@@ -12,13 +12,14 @@ export const ToolDetailsPage = () => {
     if (error) return <LoadingOrError message="Ошибка загрузки" />
     if (!data) return <LoadingOrError message="Инструмент не найден" />
 
-    const { name, image, number, comment } = data
+    const { brandId, name, image, number, comment } = data
 
     return (
         <DetailsPage
             topPanelTitle="Инструмент"
             redirectPath="/tools"
             title={name}
+            subtitle={brandId.name}
             description={number}
             deleteMutation={useDeleteToolMutation}
             mediaContent={

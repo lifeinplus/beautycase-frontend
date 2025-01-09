@@ -9,7 +9,3 @@ export interface Lesson {
     productIds?: Product[]
     selectedProductIds?: string[]
 }
-
-export interface QueryResult {
-    message: string
-}

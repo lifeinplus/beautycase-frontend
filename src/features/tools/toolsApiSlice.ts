@@ -1,6 +1,6 @@
-import type { MutationResult } from '../../types'
+import type { MutationResult, QueryResult } from '../../types'
 import { apiSlice } from '../api/apiSlice'
-import type { QueryResult, Tool } from './types'
+import type { Tool } from './types'
 
 export const toolsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -11,6 +11,25 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
                 body: data,
             }),
             invalidatesTags: ['Tool'],
+        }),
+
+        editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
+            query: ({ id, brandId, name, image, number, comment }) => ({
+                url: `/tools/${id}`,
+                method: 'PUT',
+                body: { name, brandId, image, number, comment },
+            }),
+            invalidatesTags: (_result, _error, tool) => [
+                { type: 'Tool', id: tool._id },
+                { type: 'Tool', id: 'LIST' },
+            ],
+        }),
+        deleteTool: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/tools/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
         }),
         getToolById: builder.query<Tool, string>({
             query: (id) => `/tools/${id}`,
@@ -29,31 +48,13 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
                       ]
                     : [{ type: 'Tool', id: 'LIST' }],
         }),
-        editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
-            query: ({ id, name, image, number, comment }) => ({
-                url: `/tools/${id}`,
-                method: 'PUT',
-                body: { name, image, number, comment },
-            }),
-            invalidatesTags: (_result, _error, tool) => [
-                { type: 'Tool', id: tool._id },
-                { type: 'Tool', id: 'LIST' },
-            ],
-        }),
-        deleteTool: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/tools/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
-        }),
     }),
 })
 
 export const {
     useAddToolMutation,
+    useDeleteToolMutation,
     useEditToolMutation,
     useGetToolByIdQuery,
     useGetToolsQuery,
-    useDeleteToolMutation,
 } = toolsApiSlice

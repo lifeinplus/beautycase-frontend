@@ -1,24 +1,26 @@
 import classNames from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
 interface TableRowProps {
     cellClasses?: string[]
     cellData: (string | number)[]
-    actions?: JSX.Element
+    redirectPath: string
 }
 
 export const TableRow = ({
     cellClasses = [],
     cellData,
-    actions,
-}: TableRowProps) => (
-    <tr className="tr">
-        {cellData.map((data, idx) => (
-            <td key={idx} className={classNames('td', cellClasses[idx])}>
-                {data}
-            </td>
-        ))}
-        {actions && (
-            <td className={classNames('td', 'td-actions')}>{actions}</td>
-        )}
-    </tr>
-)
+    redirectPath,
+}: TableRowProps) => {
+    const navigate = useNavigate()
+
+    return (
+        <tr className="tr" onClick={() => navigate(redirectPath)}>
+            {cellData.map((data, idx) => (
+                <td key={idx} className={classNames('td', cellClasses[idx])}>
+                    {data}
+                </td>
+            ))}
+        </tr>
+    )
+}

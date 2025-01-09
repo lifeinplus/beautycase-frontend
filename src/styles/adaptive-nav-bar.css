@@ -1,11 +1,13 @@
 .adaptive-nav-bar {
-    @apply fixed bottom-0 left-0 z-20 flex w-full border-t;
+    @apply fixed bottom-0 left-0 z-20 flex w-full overflow-y-auto border-t;
     @apply border-neutral-300 bg-white dark:border-neutral-700 dark:bg-black;
     @apply sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open;
 }
 
 .nav-btn {
-    @apply flex p-3 hover:text-rose-500 dark:hover:text-rose-400 sm:my-2 sm:p-3 lg:gap-4;
+    @apply flex rounded-lg p-3;
+    @apply hover:bg-neutral-100 dark:hover:bg-neutral-800;
+    @apply sm:my-1 sm:p-3 lg:gap-4;
 }
 
 .nav-btn-active {

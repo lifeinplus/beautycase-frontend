@@ -17,7 +17,7 @@ interface DynamicFormProps<T> {
 }
 
 const generateButtonText = (value: string[]) =>
-    value?.length ? `Выбрано: ${value.length}` : 'Выбрать продукты'
+    value?.length ? `Выбрано: ${value.length}` : 'Выбрать'
 
 const renderYouTubeThumbnail = (url: string) => (
     <div className="form-thumbnail-container">
@@ -38,7 +38,10 @@ const renderField = <T extends Record<string, any>>(
         >
     ) => void
 ) => {
-    const { label, name, onClick, options, required, rows, type } = field
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
+
+    const { label, name, options, path, required, rows, type } = field
 
     if (type === 'textarea') {
         return (
@@ -56,17 +59,72 @@ const renderField = <T extends Record<string, any>>(
         )
     }
 
-    if (type === 'button') {
+    if (type === 'textarea-steps') {
+        const joined = value ? value.join('\n\n') : ''
+
+        const handleTextareaSteps = (e: ChangeEvent<HTMLTextAreaElement>) => {
+            const value = e.target.value.split('\n\n')
+            dispatch(setFormData({ [name]: value }))
+        }
+
+        return (
+            <Label key={name as string} text={label}>
+                <textarea
+                    className="form-input"
+                    name={name as string}
+                    onChange={handleTextareaSteps}
+                    placeholder={label}
+                    required={required}
+                    rows={rows}
+                    value={joined}
+                />
+            </Label>
+        )
+    }
+
+    if (type === 'button-products') {
         return (
             <div key={name as string}>
                 <Label text={label} />
                 <button
                     className="form-button-select"
-                    onClick={onClick}
+                    onClick={() => navigate(`/products/selection`)}
                     type="button"
                 >
                     <span>{generateButtonText(value)}</span>
-                    <ChevronRightIcon className="h-6 w-6" />
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                </button>
+            </div>
+        )
+    }
+
+    if (type === 'button-stages') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => navigate(`/stages/selection`)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                </button>
+            </div>
+        )
+    }
+
+    if (type === 'button-tools') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => path && navigate(path)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                 </button>
             </div>
         )
@@ -83,6 +141,9 @@ const renderField = <T extends Record<string, any>>(
                         onChange={handleChange}
                         value={value}
                     >
+                        <option value="" disabled>
+                            Выбрать
+                        </option>
                         {options?.map((o) => (
                             <option key={o.value} value={o.value}>
                                 {o.text}

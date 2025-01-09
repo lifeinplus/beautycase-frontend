@@ -1,9 +1,16 @@
 export interface FieldConfig<T> {
     label: string
     name: keyof T
-    onClick?: () => void
     options?: { text: string; value: string }[]
+    path?: string
     required?: boolean
     rows?: number
-    type: 'text' | 'textarea' | 'button' | 'select'
+    type:
+        | 'button-products'
+        | 'button-stages'
+        | 'button-tools'
+        | 'select'
+        | 'text'
+        | 'textarea'
+        | 'textarea-steps'
 }

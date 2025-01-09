@@ -43,12 +43,14 @@ import {
     StageDetailsPage,
     StageEditPage,
     StageListPage,
+    StageSelectionPage,
 } from './features/stages'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
     ToolDetailsPage,
     ToolEditPage,
+    ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
 
@@ -115,10 +117,6 @@ const App = () => {
                                     path="edit/:id"
                                     element={<LessonEditPage />}
                                 />
-                                <Route
-                                    path="/lessons/edit/:lessonId/products"
-                                    element={<ProductSelectionPage />}
-                                />
                             </Route>
                         </Route>
 
@@ -166,6 +164,10 @@ const App = () => {
                                     path="edit/:id"
                                     element={<ProductEditPage />}
                                 />
+                                <Route
+                                    path="selection"
+                                    element={<ProductSelectionPage />}
+                                />
                             </Route>
                         </Route>
 
@@ -209,6 +211,11 @@ const App = () => {
                                     path="edit/:id"
                                     element={<StageEditPage />}
                                 />
+
+                                <Route
+                                    path="selection"
+                                    element={<StageSelectionPage />}
+                                />
                             </Route>
                         </Route>
 
@@ -227,6 +234,10 @@ const App = () => {
                                 <Route
                                     path="edit/:id"
                                     element={<ToolEditPage />}
+                                />
+                                <Route
+                                    path="selection"
+                                    element={<ToolSelectionPage />}
                                 />
                             </Route>
                         </Route>

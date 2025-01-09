@@ -1,9 +1,10 @@
+import { getErrorMessage } from '../utils'
 import { LoadingOrError } from './LoadingOrError'
 
 interface DataWrapperProps<T> {
     isLoading: boolean
     error: unknown
-    data: T[] | undefined
+    data: T | T[] | undefined
     children: JSX.Element
     emptyMessage: string
 }
@@ -20,10 +21,10 @@ export const DataWrapper = <T,>({
     }
 
     if (error) {
-        return <LoadingOrError message="Ошибка загрузки" />
+        return <LoadingOrError message={getErrorMessage(error)} />
     }
 
-    if (!data?.length) {
+    if (!data || (Array.isArray(data) && data.length === 0)) {
         return <LoadingOrError message={emptyMessage} />
     }
 

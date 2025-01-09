@@ -1,6 +1,3 @@
-import { EyeIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
-
 import { Table, TableRow } from '../../../components'
 import type { Header } from '../../../types'
 import { formatDate } from '../../../utils'
@@ -16,7 +13,6 @@ const headers: Header[] = [
     { label: 'Имя клиента', className: 'text-left' },
     { label: 'Возраст', className: 'text-right' },
     { label: 'Город', className: 'text-left' },
-    { label: 'Действия', className: 'text-center' },
 ]
 
 export const QuestionnaireTable = ({
@@ -45,14 +41,7 @@ export const QuestionnaireTable = ({
                         item.age || '—',
                         item.city || '—',
                     ]}
-                    actions={
-                        <Link
-                            className="td-action"
-                            to={`/questionnaires/${item._id}`}
-                        >
-                            <EyeIcon className="h-6 w-6" />
-                        </Link>
-                    }
+                    redirectPath={`/questionnaires/${item._id}`}
                 />
             )}
         />

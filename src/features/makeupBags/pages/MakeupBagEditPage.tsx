@@ -3,7 +3,6 @@ import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { LoadingOrError } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import {
@@ -21,21 +20,19 @@ export const MakeupBagEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editMakeupBag] = useEditMakeupBagMutation()
-    const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
+    const { data } = useGetMakeupBagByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
                     clientId: data.clientId,
+                    selectedStageIds: data?.stageIds?.map((s) => s._id!),
+                    selectedToolIds: data?.toolIds?.map((t) => t._id!),
                 })
             )
         }
     }, [data, dispatch, isDirty])
-
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Косметичка не найдена" />
 
     const handleEditMakeupBag = async (makeupBag: MakeupBag) => {
         try {

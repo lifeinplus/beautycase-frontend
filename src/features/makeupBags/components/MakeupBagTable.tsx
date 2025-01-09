@@ -1,6 +1,3 @@
-import { EyeIcon, PencilSquareIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
-
 import { Table, TableRow } from '../../../components'
 import { Header } from '../../../types'
 import { formatDate } from '../../../utils'
@@ -13,8 +10,7 @@ interface MakeupBagTableProps {
 const headers: Header[] = [
     { label: 'Дата', className: 'text-center' },
     { label: 'Время', className: 'text-center' },
-    { label: 'Имя клиента', className: 'text-left' },
-    { label: 'Действия', className: 'text-center' },
+    { label: 'Клиент', className: 'text-left' },
 ]
 
 export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
@@ -33,22 +29,7 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                         formatDate(item.createdAt, 'HH:mm'),
                         item.clientId.username,
                     ]}
-                    actions={
-                        <>
-                            <Link
-                                className="td-action"
-                                to={`/makeup_bags/${item._id}`}
-                            >
-                                <EyeIcon className="h-6 w-6" />
-                            </Link>
-                            <Link
-                                className="td-action"
-                                to={`/makeup_bags/edit/${item._id}`}
-                            >
-                                <PencilSquareIcon className="h-6 w-6" />
-                            </Link>
-                        </>
-                    }
+                    redirectPath={`/makeup_bags/${item._id}`}
                 />
             )}
         />

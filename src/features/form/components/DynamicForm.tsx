@@ -41,7 +41,7 @@ const renderField = <T extends Record<string, any>>(
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
-    const { label, name, options, required, rows, type } = field
+    const { label, name, options, path, required, rows, type } = field
 
     if (type === 'textarea') {
         return (
@@ -92,7 +92,7 @@ const renderField = <T extends Record<string, any>>(
                     type="button"
                 >
                     <span>{generateButtonText(value)}</span>
-                    <ChevronRightIcon className="h-6 w-6" />
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                 </button>
             </div>
         )
@@ -108,7 +108,23 @@ const renderField = <T extends Record<string, any>>(
                     type="button"
                 >
                     <span>{generateButtonText(value)}</span>
-                    <ChevronRightIcon className="h-6 w-6" />
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                </button>
+            </div>
+        )
+    }
+
+    if (type === 'button-tools') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => path && navigate(path)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                 </button>
             </div>
         )
@@ -126,7 +142,7 @@ const renderField = <T extends Record<string, any>>(
                         value={value}
                     >
                         <option value="" disabled>
-                            Клиент
+                            Выбрать
                         </option>
                         {options?.map((o) => (
                             <option key={o.value} value={o.value}>

@@ -1,3 +1,4 @@
+import { useGetBrandsQuery } from '../../brands'
 import { DynamicForm, type FieldConfig } from '../../form'
 import type { Tool } from '../types'
 
@@ -6,33 +7,43 @@ interface ToolFormProps {
     title: string
 }
 
-const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
+export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
+    const { data: brands } = useGetBrandsQuery()
+
     const fields: FieldConfig<Tool>[] = [
         {
-            name: 'name',
             label: 'Название',
-            type: 'text',
+            name: 'name',
             required: true,
+            type: 'text',
         },
         {
-            name: 'image',
+            label: 'Бренд',
+            name: 'brandId',
+            options: brands?.map((b) => ({
+                text: b.name,
+                value: b._id,
+            })),
+            required: true,
+            type: 'select',
+        },
+        {
             label: 'Ссылка на изображение',
-            type: 'text',
+            name: 'image',
             required: true,
-        },
-        {
-            name: 'number',
-            label: 'Номер',
             type: 'text',
         },
         {
-            name: 'comment',
+            label: 'Номер',
+            name: 'number',
+            type: 'text',
+        },
+        {
             label: 'Комментарий',
+            name: 'comment',
             type: 'text',
         },
     ]
 
     return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />
 }
-
-export default ToolForm

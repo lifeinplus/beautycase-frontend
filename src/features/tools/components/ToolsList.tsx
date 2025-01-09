@@ -4,7 +4,7 @@ import { useScrollToElement } from '../../../hooks'
 import type { Tool } from '../types'
 
 interface ToolsListProps {
-    tools: Tool[]
+    tools: Partial<Tool>[]
 }
 
 export const ToolsList = ({ tools }: ToolsListProps) => {

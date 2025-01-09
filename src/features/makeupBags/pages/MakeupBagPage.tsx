@@ -21,13 +21,13 @@ import {
 } from '../../../components'
 import { canAccess, getErrorMessage } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
-import { Brands } from '../../brands'
 import { clearFormData } from '../../form'
 import { Stages } from '../../stages'
 import {
+    Brushes,
     useDeleteMakeupBagMutation,
     useGetMakeupBagByIdQuery,
-} from '../makeupBagsApiSlice'
+} from '../../makeupBags'
 
 const ACTIONS = {
     back: {
@@ -85,6 +85,8 @@ export const MakeupBagPage = () => {
     const [deleteMakeupBag] = useDeleteMakeupBagMutation()
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
+    const stageIds = data?.stageIds || []
+    const toolIds = data?.toolIds || []
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -102,7 +104,7 @@ export const MakeupBagPage = () => {
                 ?.scrollIntoView({ behavior: 'smooth' }),
         brushes: () =>
             document
-                .getElementById('brands')
+                .getElementById('brushes')
                 ?.scrollIntoView({ behavior: 'smooth' }),
         edit: () => navigate(`${redirectPath}/edit/${id}`),
         delete: () => setIsModalOpen(true),
@@ -148,12 +150,12 @@ export const MakeupBagPage = () => {
                         <DataWrapper
                             isLoading={isLoading}
                             error={error}
-                            data={data}
+                            data={[...stageIds, ...toolIds]}
                             emptyMessage="Косметичка не найдена"
                         >
                             <>
                                 <Stages stages={data?.stageIds} />
-                                <Brands brands={data?.brands} />
+                                <Brushes tools={data?.toolIds} />
                             </>
                         </DataWrapper>
                     </article>

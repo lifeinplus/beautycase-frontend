@@ -26,6 +26,12 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
             name: 'selectedStageIds',
             type: 'button-stages',
         },
+        {
+            label: 'Инструменты',
+            name: 'selectedToolIds',
+            path: '/tools/selection',
+            type: 'button-tools',
+        },
     ]
 
     return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />

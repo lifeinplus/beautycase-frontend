@@ -28,6 +28,7 @@ export const MakeupBagEditPage = () => {
                 setFormData({
                     clientId: data.clientId,
                     selectedStageIds: data?.stageIds?.map((s) => s._id!),
+                    selectedToolIds: data?.toolIds?.map((t) => t._id!),
                 })
             )
         }

@@ -1,3 +1,4 @@
+export * from './components/Brushes'
 export * from './components/MakeupBagForm'
 export * from './components/MakeupBagMobileView'
 export * from './components/MakeupBagTable'

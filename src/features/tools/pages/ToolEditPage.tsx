@@ -1,11 +1,16 @@
 import { useEffect } from 'react'
+import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { selectIsDirty, setFormData } from '../../form'
-import ToolForm from '../components/ToolForm'
-import { useEditToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
-import type { Tool } from '../types'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form'
+import {
+    type Tool,
+    ToolForm,
+    useEditToolMutation,
+    useGetToolByIdQuery,
+} from '../../tools'
 
 export const ToolEditPage = () => {
     const { id } = useParams()
@@ -15,12 +20,13 @@ export const ToolEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editTool] = useEditToolMutation()
-    const { data, isLoading } = useGetToolByIdQuery(id!)
+    const { data } = useGetToolByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
+                    brandId: data.brandId._id,
                     name: data.name,
                     image: data.image,
                     number: data.number,
@@ -30,22 +36,18 @@ export const ToolEditPage = () => {
         }
     }, [data, dispatch, isDirty])
 
-    if (isLoading) return <p>Loading...</p>
-
-    if (!data) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Tool not found</p>
-            </div>
-        )
-    }
-
     const handleEditTool = async (tool: Tool) => {
-        await editTool({
-            id: id!,
-            ...tool,
-        }).unwrap()
-        navigate(`/tools/${id}`)
+        try {
+            await editTool({
+                id: id!,
+                ...tool,
+            }).unwrap()
+            dispatch(clearFormData())
+            navigate(`/tools/${id}`)
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
     return (

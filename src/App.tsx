@@ -50,6 +50,7 @@ import {
     ToolAddPage,
     ToolDetailsPage,
     ToolEditPage,
+    ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
 
@@ -233,6 +234,10 @@ const App = () => {
                                 <Route
                                     path="edit/:id"
                                     element={<ToolEditPage />}
+                                />
+                                <Route
+                                    path="selection"
+                                    element={<ToolSelectionPage />}
                                 />
                             </Route>
                         </Route>

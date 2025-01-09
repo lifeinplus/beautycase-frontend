@@ -2,9 +2,10 @@ import { apiSlice } from '../api'
 import type { Tool } from '../tools'
 
 export interface Brand {
+    _id: string
     name: string
     link: string
-    toolIds: Tool[]
+    toolIds?: Partial<Tool>[]
 }
 
 const brandsApiSlice = apiSlice.injectEndpoints({

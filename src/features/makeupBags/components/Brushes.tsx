@@ -1,13 +1,33 @@
-import { ToolsList } from '../../tools'
-import { Brand } from '../brandsApiSlice'
+import { Brand } from '../../brands'
+import { type Tool, ToolsList } from '../../tools'
 
-interface BrandsProps {
-    brands?: Brand[]
+interface BrushesProps {
+    tools?: Tool[]
 }
 
-export const Brands = ({ brands }: BrandsProps) => {
+export const Brushes = ({ tools }: BrushesProps) => {
+    const brands = tools?.reduce((acc: Brand[], tool) => {
+        const { brandId, ...toolData } = tool
+
+        let brand = acc.find((item) => item._id === brandId._id)
+
+        if (!brand) {
+            brand = {
+                _id: brandId._id,
+                name: brandId.name,
+                link: brandId.link,
+                toolIds: [],
+            }
+            acc.push(brand)
+        }
+
+        brand.toolIds?.push(toolData)
+
+        return acc
+    }, [])
+
     return (
-        <section id="brands" className="scroll-mt-header sm:scroll-mt-0">
+        <section id="brushes" className="scroll-mt-header sm:scroll-mt-0">
             <h2 className="mb-6 pt-10 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl">
                 Кисти
             </h2>

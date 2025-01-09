@@ -23,7 +23,8 @@
 }
 
 .form-select-icon {
-    @apply pointer-events-none relative right-3 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden;
+    @apply pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end forced-colors:hidden;
+    @apply text-neutral-600 dark:text-neutral-400;
 }
 
 .form-thumbnail-container {

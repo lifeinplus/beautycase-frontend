@@ -48,5 +48,10 @@ export const ToolEditPage = () => {
         navigate(`/tools/${id}`)
     }
 
-    return <ToolForm title={'Редактировать'} onSubmit={handleEditTool} />
+    return (
+        <ToolForm
+            title={'Редактировать инструмент'}
+            onSubmit={handleEditTool}
+        />
+    )
 }

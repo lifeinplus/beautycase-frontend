@@ -125,6 +125,9 @@ const renderField = <T extends Record<string, any>>(
                         onChange={handleChange}
                         value={value}
                     >
+                        <option value="" disabled>
+                            Клиент
+                        </option>
                         {options?.map((o) => (
                             <option key={o.value} value={o.value}>
                                 {o.text}

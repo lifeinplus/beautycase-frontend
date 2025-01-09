@@ -50,5 +50,10 @@ export const ProductEditPage = () => {
         navigate(`/products/${id}`)
     }
 
-    return <ProductForm title={'Редактировать'} onSubmit={handleEditProduct} />
+    return (
+        <ProductForm
+            title={'Редактировать продукт'}
+            onSubmit={handleEditProduct}
+        />
+    )
 }

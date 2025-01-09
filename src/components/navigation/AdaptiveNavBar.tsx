@@ -82,7 +82,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                     ))}
             </div>
 
-            <div className="flex w-full grow flex-row justify-evenly sm:mt-16 sm:flex-col sm:justify-start">
+            <div className="flex w-full grow flex-row justify-evenly sm:my-8 sm:flex-col sm:justify-start">
                 {children}
             </div>
 

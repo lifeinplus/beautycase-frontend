@@ -1,41 +1,42 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { AdaptiveNavBar, Hero, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    DataWrapper,
+    Hero,
+    TopPanel,
+} from '../../../components'
 import { type QuestionnaireResultOption } from '../options'
 import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
-import { Questionnaire } from '../types'
+import type { Questionnaire } from '../types'
 import { questions } from '../utils'
+
+const fields: (keyof Questionnaire)[] = [
+    'name',
+    'instagram',
+    'city',
+    'age',
+    'makeupBag',
+    'procedures',
+    'skinType',
+    'allergies',
+    'peeling',
+    'pores',
+    'oilyShine',
+    'currentSkills',
+    'desiredSkills',
+    'makeupTime',
+    'budget',
+    'brushes',
+    'problems',
+    'referral',
+]
 
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
 
-    const {
-        data: questionnaire,
-        isLoading,
-        error,
-    } = useGetQuestionnaireByIdQuery(id!)
-
-    const fields: (keyof typeof questions)[] = [
-        'name',
-        'instagram',
-        'city',
-        'age',
-        'makeupBag',
-        'procedures',
-        'skinType',
-        'allergies',
-        'peeling',
-        'pores',
-        'oilyShine',
-        'currentSkills',
-        'desiredSkills',
-        'makeupTime',
-        'budget',
-        'brushes',
-        'problems',
-        'referral',
-    ]
+    const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)
 
     const renderValue = (
         value: Questionnaire[keyof Questionnaire],
@@ -55,15 +56,11 @@ export const QuestionnaireResultPage = () => {
 
         return (
             result
-                .map((item) => options?.find((o) => o.value === item)?.label)
+                .map((r) => options?.find((o) => o.value === r)?.label)
                 .join(' • ') ||
             value?.toString() ||
             'Не указано'
         )
-    }
-
-    if (isLoading || error || !questionnaire) {
-        return <div>Error loading questionnaire</div>
     }
 
     const handleBack = () => {
@@ -81,28 +78,30 @@ export const QuestionnaireResultPage = () => {
                             <Hero headline="Результаты анкеты" />
                         </div>
 
-                        <div className="sm:rounded-2.5xl pb-4 sm:border sm:border-gray-200 sm:pb-0 sm:dark:border-neutral-800">
-                            <dl className="grid grid-cols-1">
-                                {fields.map((f) => (
-                                    <div
-                                        key={f}
-                                        className="border-b border-gray-200 px-3 py-3 last:border-b-0 dark:border-neutral-800 sm:first:border-t-0 sm:dark:border-neutral-800"
-                                    >
-                                        <dt className="text-xs font-medium dark:text-neutral-400">
-                                            {questions[f]?.label}
-                                        </dt>
-                                        <dd className="mt-1">
-                                            {renderValue(
-                                                questionnaire[
-                                                    f as keyof Questionnaire
-                                                ],
-                                                questions[f]?.options
-                                            )}
-                                        </dd>
-                                    </div>
-                                ))}
-                            </dl>
-                        </div>
+                        <DataWrapper
+                            isLoading={isLoading}
+                            error={error}
+                            data={data}
+                            emptyMessage="Анкета не найдена"
+                        >
+                            <div className="dl-container">
+                                <dl className="dl">
+                                    {fields.map((f) => (
+                                        <div key={f} className="dl-grid">
+                                            <dt className="dt">
+                                                {questions[f]?.label}
+                                            </dt>
+                                            <dd className="dd">
+                                                {renderValue(
+                                                    data?.[f],
+                                                    questions[f]?.options
+                                                )}
+                                            </dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        </DataWrapper>
                     </article>
                 </section>
             </main>

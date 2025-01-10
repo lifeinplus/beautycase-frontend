@@ -55,11 +55,17 @@ export const menuItems: MenuItem[] = [
         auth: true,
         label: 'Уроки',
         path: '/lessons',
+        roles: ['admin', 'mua'],
     },
     {
         auth: true,
         label: 'Этапы',
         path: '/stages',
         roles: ['admin', 'mua'],
+    },
+    {
+        auth: true,
+        label: 'Личный кабинет',
+        path: '/account',
     },
 ]

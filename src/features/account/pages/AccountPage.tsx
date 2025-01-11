@@ -1,11 +1,11 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, DataWrapper, Header, Hero } from '../../../components'
 import { selectUserId } from '../../auth'
 import { useGetUserByIdQuery, type User, type UserResult } from '../../users'
-import { Link } from 'react-router-dom'
 
 interface Field {
     label: string
@@ -17,6 +17,7 @@ interface Field {
 const renderContent = (data: UserResult | undefined) => {
     if (!data) return
 
+    const { pathname } = useLocation()
     const { makeupBags, user } = data
 
     const fields: Field[] = [
@@ -34,7 +35,7 @@ const renderContent = (data: UserResult | undefined) => {
             content: makeupBags?.length && (
                 <ul
                     role="list"
-                    className="divide-y divide-neutral-100 rounded-2xl border border-neutral-200 dark:divide-neutral-800 dark:border-neutral-700"
+                    className="mt-1 divide-y divide-neutral-100 rounded-2xl border border-neutral-200 dark:divide-neutral-800 dark:border-neutral-700 sm:mt-0"
                 >
                     {makeupBags.map((bag) => (
                         <li
@@ -48,7 +49,7 @@ const renderContent = (data: UserResult | undefined) => {
                                 />
                                 <div className="ml-4 flex min-w-0 flex-1 gap-2">
                                     <span className="truncate font-medium">
-                                        {bag._id}
+                                        {bag.categoryId.name}
                                     </span>
                                 </div>
                             </div>
@@ -56,6 +57,7 @@ const renderContent = (data: UserResult | undefined) => {
                                 <Link
                                     className="font-medium text-rose-400 hover:text-rose-600"
                                     to={`/makeup_bags/${bag._id}`}
+                                    state={{ fromPathname: pathname }}
                                 >
                                     Открыть
                                 </Link>

@@ -85,6 +85,8 @@ export const MakeupBagPage = () => {
     const [deleteMakeupBag] = useDeleteMakeupBagMutation()
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
+
+    const categoryName = data?.categoryId.name || 'Косметичка'
     const stageIds = data?.stageIds || []
     const toolIds = data?.toolIds || []
 
@@ -142,7 +144,7 @@ export const MakeupBagPage = () => {
                 <section className="w-full max-w-2xl">
                     <article className="page-content__container page-content__container-sm">
                         <Hero
-                            headline="Косметичка"
+                            headline={categoryName}
                             byline="Индивидуальный подбор продуктов"
                             imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
                         />

@@ -1,3 +1,4 @@
+import { useGetCategoriesQuery } from '../../categories'
 import { DynamicForm, type FieldConfig } from '../../form'
 import { useGetUsersQuery } from '../../users'
 import { MakeupBag } from '../types'
@@ -8,9 +9,19 @@ interface MakeupBagFormProps {
 }
 
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
+    const { data: categories } = useGetCategoriesQuery()
     const { data: users } = useGetUsersQuery()
 
     const fields: FieldConfig<MakeupBag>[] = [
+        {
+            label: 'Категория',
+            name: 'categoryId',
+            options: categories?.map((c) => ({
+                text: c.name,
+                value: c._id,
+            })),
+            type: 'select',
+        },
         {
             label: 'Клиент',
             name: 'clientId',

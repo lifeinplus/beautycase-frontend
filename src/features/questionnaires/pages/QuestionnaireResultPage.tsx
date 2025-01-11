@@ -6,6 +6,7 @@ import {
     Hero,
     TopPanel,
 } from '../../../components'
+import { formatDate } from '../../../utils'
 import { type QuestionnaireResultOption } from '../options'
 import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
 import type { Questionnaire } from '../types'
@@ -75,7 +76,13 @@ export const QuestionnaireResultPage = () => {
                 <section className="w-full max-w-2xl sm:space-y-6">
                     <article className="page-content__container page-content__container-xl">
                         <div className="hidden sm:block">
-                            <Hero headline="Результаты анкеты" />
+                            <Hero
+                                headline="Результаты анкеты"
+                                byline={formatDate(
+                                    data?.createdAt,
+                                    'dd.MM.yyyy HH:mm'
+                                )}
+                            />
                         </div>
 
                         <DataWrapper

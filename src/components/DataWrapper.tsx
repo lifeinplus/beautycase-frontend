@@ -5,7 +5,7 @@ interface DataWrapperProps<T> {
     isLoading: boolean
     error: unknown
     data: T | T[] | undefined
-    children: JSX.Element
+    children?: JSX.Element
     emptyMessage: string
 }
 

@@ -1,11 +1,11 @@
 .dl-container {
     @apply pb-4;
-    @apply sm:border-neutral-200 sm:dark:border-neutral-800;
+    @apply sm:border-neutral-200 sm:dark:border-neutral-700;
     @apply sm:rounded-2.5xl sm:border sm:pb-0;
 }
 
 .dl {
-    @apply divide-y divide-neutral-200 dark:divide-neutral-800;
+    @apply divide-y divide-neutral-100 dark:divide-neutral-800;
 }
 
 .dl-grid {

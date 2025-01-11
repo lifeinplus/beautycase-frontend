@@ -1,9 +1,9 @@
 import { apiSlice } from '../api/apiSlice'
-import type { User } from './types'
+import type { User, UserResult } from './types'
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getUserById: builder.query<User, string>({
+        getUserById: builder.query<UserResult, string>({
             query: (id) => `/users/${id}`,
         }),
         getUsers: builder.query<User[], void>({

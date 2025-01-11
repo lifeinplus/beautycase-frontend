@@ -1,7 +1,7 @@
 import { Table, TableRow } from '../../../components'
-import { Header } from '../../../types'
+import type { Header } from '../../../types'
 import { formatDate } from '../../../utils'
-import { MakeupBag } from '../types'
+import { type MakeupBag } from '../../makeupBags'
 
 interface MakeupBagTableProps {
     makeupBags?: MakeupBag[]
@@ -10,11 +10,12 @@ interface MakeupBagTableProps {
 const headers: Header[] = [
     { label: 'Дата', className: 'text-center' },
     { label: 'Время', className: 'text-center' },
+    { label: 'Категория', className: 'text-left' },
     { label: 'Клиент', className: 'text-left' },
 ]
 
 export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
-    const cellClasses = ['text-center', 'text-center', 'text-left']
+    const cellClasses = headers.map((h) => h.className)
 
     return (
         <Table
@@ -27,6 +28,7 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                     cellData={[
                         formatDate(item.createdAt, 'yyyy.MM.dd'),
                         formatDate(item.createdAt, 'HH:mm'),
+                        item.categoryId.name,
                         item.clientId.username,
                     ]}
                     redirectPath={`/makeup_bags/${item._id}`}

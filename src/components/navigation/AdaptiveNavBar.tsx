@@ -6,6 +6,7 @@ import {
     RectangleGroupIcon,
     ScissorsIcon,
     ShoppingBagIcon,
+    UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -27,7 +28,8 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const isActive = (path: string) => location.pathname === path
+    const isActive = (path: string) =>
+        location.pathname.split('/').some((p) => p === path.split('/').join(''))
 
     const icons: { [key: string]: ReactNode } = {
         '/questionnaire': <ClipboardIcon className="h-6 w-6" />,
@@ -37,6 +39,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         '/tools': <ScissorsIcon className="h-6 w-6" />,
         '/lessons': <FilmIcon className="h-6 w-6" />,
         '/stages': <QueueListIcon className="h-6 w-6" />,
+        '/account': <UserCircleIcon className="h-6 w-6" />,
     }
 
     const navItems = menuItems.map(({ label, path, auth, roles }) => ({

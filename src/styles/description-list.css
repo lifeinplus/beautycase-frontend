@@ -1,0 +1,21 @@
+.dl-container {
+    @apply pb-4;
+    @apply sm:border-neutral-200 sm:dark:border-neutral-700;
+    @apply sm:rounded-2.5xl sm:border sm:pb-0;
+}
+
+.dl {
+    @apply divide-y divide-neutral-100 dark:divide-neutral-800;
+}
+
+.dl-grid {
+    @apply px-3 py-3 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-4;
+}
+
+.dt {
+    @apply text-xs font-medium text-neutral-600 dark:text-neutral-400 sm:text-xs/6;
+}
+
+.dd {
+    @apply pt-1 sm:col-span-2 sm:pt-0;
+}

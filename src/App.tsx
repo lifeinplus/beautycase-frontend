@@ -53,6 +53,7 @@ import {
     ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
+import { AccountPage } from './features/account'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -100,6 +101,8 @@ const App = () => {
                     />
 
                     <Route element={<RequireAuth />}>
+                        <Route path="/account" element={<AccountPage />} />
+
                         <Route path="/lessons">
                             <Route index element={<LessonsGalleryPage />} />
 

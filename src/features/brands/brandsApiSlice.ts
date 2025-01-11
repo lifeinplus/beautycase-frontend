@@ -1,12 +1,5 @@
 import { apiSlice } from '../api'
-import type { Tool } from '../tools'
-
-export interface Brand {
-    _id: string
-    name: string
-    link: string
-    toolIds?: Partial<Tool>[]
-}
+import { Brand } from './types'
 
 const brandsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

@@ -41,7 +41,7 @@ export const StageListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data: stages, isLoading, error } = useGetStagesQuery()
+    const { data, isLoading, error } = useGetStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -72,12 +72,12 @@ export const StageListPage = () => {
                         <DataWrapper
                             isLoading={isLoading}
                             error={error}
-                            data={stages}
+                            data={data}
                             emptyMessage="Этапы не найдены"
                         >
                             <>
-                                <StageMobileView stages={stages} />
-                                <StageTable stages={stages} />
+                                <StageMobileView stages={data} />
+                                <StageTable stages={data} />
                             </>
                         </DataWrapper>
                     </article>

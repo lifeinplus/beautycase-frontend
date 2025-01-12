@@ -1,8 +1,8 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage, LoadingOrError } from '../../../components'
+import { DetailsPage } from '../../../components'
 import { Product } from '../../products'
-import { useDeleteStageMutation, useGetStageByIdQuery } from '../stagesApiSlice'
+import { useDeleteStageMutation, useGetStageByIdQuery } from '../../stages'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()
@@ -17,24 +17,24 @@ export const StageDetailsPage = () => {
         })
     }
 
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Этап не найден" />
-
-    const { title, subtitle, image, steps, productIds } = data
-
     return (
         <DetailsPage
+            isLoading={isLoading}
+            error={error}
             topPanelTitle="Этап"
             redirectPath="/stages"
-            title={title}
-            subtitle={subtitle}
-            description={steps.reduce((p, c) => p + c, '')}
+            title={data?.title}
+            subtitle={data?.subtitle}
+            description={data?.steps.reduce((p, c) => p + c, '')}
             deleteMutation={useDeleteStageMutation}
             mediaContent={
                 <section className="page-content__image">
                     <div className="img-container img-container-rectangle">
-                        <img alt={title} className="img" src={image} />
+                        <img
+                            alt={data?.title}
+                            className="img"
+                            src={data?.image}
+                        />
                     </div>
                 </section>
             }
@@ -42,7 +42,7 @@ export const StageDetailsPage = () => {
                 <section className="page-content__description">
                     <p className="my-2 font-bold sm:text-left">Шаги</p>
                     <ul className="ms-5 list-outside list-decimal">
-                        {steps.map((step: string, index: number) => (
+                        {data?.steps.map((step: string, index: number) => (
                             <li key={index}>{step}</li>
                         ))}
                     </ul>
@@ -50,7 +50,7 @@ export const StageDetailsPage = () => {
             }
             additionalContent={
                 <div className="page-gallery__container">
-                    {productIds?.map((product: Product) => (
+                    {data?.productIds?.map((product: Product) => (
                         <div
                             key={product._id}
                             className="img-container img-container-square"

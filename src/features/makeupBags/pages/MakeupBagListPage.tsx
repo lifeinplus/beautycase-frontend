@@ -45,7 +45,7 @@ export const MakeupBagListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data: makeupBags, isLoading, error } = useGetMakeupBagsQuery()
+    const { data, isLoading, error } = useGetMakeupBagsQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -76,12 +76,12 @@ export const MakeupBagListPage = () => {
                         <DataWrapper
                             isLoading={isLoading}
                             error={error}
-                            data={makeupBags}
+                            data={data}
                             emptyMessage="Косметички не найдены"
                         >
                             <>
-                                <MakeupBagMobileView makeupBags={makeupBags} />
-                                <MakeupBagTable makeupBags={makeupBags} />
+                                <MakeupBagMobileView makeupBags={data} />
+                                <MakeupBagTable makeupBags={data} />
                             </>
                         </DataWrapper>
                     </article>

@@ -1,12 +1,9 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage, LoadingOrError } from '../../../components'
+import { DetailsPage } from '../../../components'
 import { getYouTubeEmbedUrl } from '../../../utils'
 import { Product } from '../../products'
-import {
-    useDeleteLessonMutation,
-    useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
+import { useDeleteLessonMutation, useGetLessonByIdQuery } from '../../lessons'
 
 export const LessonDetailsPage = () => {
     const { pathname } = useLocation()
@@ -21,22 +18,17 @@ export const LessonDetailsPage = () => {
         })
     }
 
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Урок не найден" />
-
-    const { title, shortDescription, videoUrl, fullDescription, productIds } =
-        data
-
-    const embedUrl = getYouTubeEmbedUrl(videoUrl)
+    const embedUrl = getYouTubeEmbedUrl(data?.videoUrl)
 
     return (
         <DetailsPage
+            isLoading={isLoading}
+            error={error}
             topPanelTitle="Урок"
             redirectPath="/lessons"
-            title={title}
-            subtitle={shortDescription}
-            description={fullDescription}
+            title={data?.title}
+            subtitle={data?.shortDescription}
+            description={data?.fullDescription}
             deleteMutation={useDeleteLessonMutation}
             mediaContent={
                 <div className="lesson-video-container">
@@ -45,14 +37,14 @@ export const LessonDetailsPage = () => {
                             width="100%"
                             height="315"
                             src={embedUrl}
-                            title={title}
+                            title={data?.title}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         ></iframe>
                     ) : (
                         <img
-                            alt={`${title} Thumbnail`}
+                            alt={`${data?.title} Thumbnail`}
                             className="lesson-card-thumbnail-image"
                             src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
                         />
@@ -61,7 +53,7 @@ export const LessonDetailsPage = () => {
             }
             additionalContent={
                 <div className="page-gallery__container">
-                    {productIds?.map((product: Product) => (
+                    {data?.productIds?.map((product: Product) => (
                         <div
                             key={product._id}
                             className="img-container img-container-square"

@@ -25,6 +25,7 @@ export const ProductEditPage = () => {
             dispatch(
                 setFormData({
                     name: data.name,
+                    brandId: data.brandId?._id,
                     image: data.image,
                     buy: data.buy,
                 })

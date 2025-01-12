@@ -1,38 +1,37 @@
 import { useParams } from 'react-router-dom'
 
-import { DetailsPage, LoadingOrError } from '../../../components'
-import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
+import { DetailsPage } from '../../../components'
+import { useDeleteToolMutation, useGetToolByIdQuery } from '../../tools'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
-
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
-
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Инструмент не найден" />
-
-    const { brandId, name, image, number, comment } = data
 
     return (
         <DetailsPage
+            isLoading={isLoading}
+            error={error}
             topPanelTitle="Инструмент"
             redirectPath="/tools"
-            title={name}
-            subtitle={brandId.name}
-            description={number}
+            title={data?.name}
+            subtitle={data?.brandId.name}
+            description={data?.number}
             deleteMutation={useDeleteToolMutation}
             mediaContent={
                 <section className="page-content__image">
                     <div className="img-container img-container-rectangle">
-                        <img src={image} alt={name} className="img" />
+                        <img
+                            src={data?.image}
+                            alt={data?.name}
+                            className="img"
+                        />
                     </div>
                 </section>
             }
             additionalContent={
-                comment && (
+                data?.comment && (
                     <section className="page-content__description">
-                        <p>{comment}</p>
+                        <p>{data?.comment}</p>
                     </section>
                 )
             }

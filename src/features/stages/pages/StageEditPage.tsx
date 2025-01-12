@@ -3,7 +3,6 @@ import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { LoadingOrError } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import {
@@ -21,7 +20,7 @@ export const StageEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editStage] = useEditStageMutation()
-    const { data, isLoading, error } = useGetStageByIdQuery(id!)
+    const { data } = useGetStageByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -36,10 +35,6 @@ export const StageEditPage = () => {
             )
         }
     }, [data, dispatch, isDirty])
-
-    if (isLoading) return <LoadingOrError message="Загрузка..." />
-    if (error) return <LoadingOrError message="Ошибка загрузки" />
-    if (!data) return <LoadingOrError message="Этап не найден" />
 
     const handleEditStage = async (stage: Stage) => {
         try {

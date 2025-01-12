@@ -1,0 +1,26 @@
+.hero {
+    @apply mb-6 flex flex-col items-center justify-center pt-6;
+    @apply sm:pt-0;
+}
+
+.hero-title {
+    @apply mx-auto w-11/12;
+}
+
+.hero-headline {
+    @apply mx-auto text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
+}
+
+.hero-byline {
+    @apply mx-auto mt-3 text-center font-heading;
+    @apply text-slate-700 dark:text-slate-400;
+    @apply sm:text-xl;
+}
+
+.hero-img {
+    @apply mt-6 sm:rounded;
+}
+
+.hero-content {
+    @apply me-3 ms-3 mt-6;
+}

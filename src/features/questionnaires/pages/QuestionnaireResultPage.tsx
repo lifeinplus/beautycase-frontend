@@ -39,6 +39,8 @@ export const QuestionnaireResultPage = () => {
 
     const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)
 
+    const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
+
     const renderValue = (
         value: Questionnaire[keyof Questionnaire],
         options?: QuestionnaireResultOption[]
@@ -78,11 +80,12 @@ export const QuestionnaireResultPage = () => {
                         <div className="hidden sm:block">
                             <Hero
                                 headline="Результаты анкеты"
-                                byline={formatDate(
-                                    data?.createdAt,
-                                    'dd.MM.yyyy HH:mm'
-                                )}
+                                byline={createdAt}
                             />
+                        </div>
+
+                        <div className="sm:hidden">
+                            <Hero byline={createdAt} />
                         </div>
 
                         <DataWrapper

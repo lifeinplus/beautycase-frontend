@@ -6,11 +6,7 @@ import {
 } from '../../questionnaires'
 
 export const QuestionnaireListPage = () => {
-    const {
-        data: questionnaires,
-        isLoading,
-        error,
-    } = useGetQuestionnairesQuery()
+    const { data, isLoading, error } = useGetQuestionnairesQuery()
 
     return (
         <article>
@@ -24,16 +20,14 @@ export const QuestionnaireListPage = () => {
                         <DataWrapper
                             isLoading={isLoading}
                             error={error}
-                            data={questionnaires}
+                            data={data}
                             emptyMessage="Анкеты не найдены"
                         >
                             <>
                                 <QuestionnaireMobileView
-                                    questionnaires={questionnaires}
+                                    questionnaires={data}
                                 />
-                                <QuestionnaireTable
-                                    questionnaires={questionnaires}
-                                />
+                                <QuestionnaireTable questionnaires={data} />
                             </>
                         </DataWrapper>
                     </article>

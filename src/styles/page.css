@@ -7,19 +7,6 @@
     @apply sm:ms-navbar-left sm:pb-6 lg:ms-navbar-left-open;
 }
 
-.page-title {
-    @apply mx-auto w-11/12;
-}
-
-.page-headline {
-    @apply mx-auto text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
-}
-
-.page-byline {
-    @apply mx-auto mt-3 text-center font-heading text-lg sm:text-xl;
-    @apply text-slate-700 dark:text-slate-400;
-}
-
 .page-content__container {
     @apply mx-auto max-w-makeup-item-md sm:pt-6;
 }

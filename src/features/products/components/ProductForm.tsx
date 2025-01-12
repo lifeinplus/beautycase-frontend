@@ -1,3 +1,4 @@
+import { useGetBrandsQuery } from '../../brands'
 import { DynamicForm, type FieldConfig } from '../../form'
 import type { Product } from '../types'
 
@@ -7,12 +8,24 @@ interface ProductFormProps {
 }
 
 const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
+    const { data } = useGetBrandsQuery()
+
     const fields: FieldConfig<Product>[] = [
         {
             name: 'name',
             label: 'Название',
-            type: 'text',
+            type: 'textarea',
             required: true,
+        },
+        {
+            label: 'Бренд',
+            name: 'brandId',
+            options: data?.map((b) => ({
+                text: b.name,
+                value: b._id,
+            })),
+            required: true,
+            type: 'select',
         },
         {
             name: 'image',

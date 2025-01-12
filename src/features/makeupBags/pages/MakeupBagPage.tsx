@@ -156,8 +156,8 @@ export const MakeupBagPage = () => {
                             emptyMessage="Косметичка не найдена"
                         >
                             <>
-                                <Stages stages={data?.stageIds} />
-                                <Brushes tools={data?.toolIds} />
+                                <Stages stages={stageIds} />
+                                <Brushes tools={toolIds} />
                             </>
                         </DataWrapper>
                     </article>

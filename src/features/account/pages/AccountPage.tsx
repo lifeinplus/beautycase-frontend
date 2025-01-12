@@ -15,9 +15,10 @@ interface Field {
 }
 
 const renderContent = (data: UserResult | undefined) => {
+    const { pathname } = useLocation()
+
     if (!data) return
 
-    const { pathname } = useLocation()
     const { makeupBags, user } = data
 
     const fields: Field[] = [

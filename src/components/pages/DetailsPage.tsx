@@ -10,6 +10,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import {
     AdaptiveNavBar,
+    DataWrapper,
     Modal,
     NavigationButton,
     TopPanel,
@@ -49,9 +50,11 @@ const ACTION_ITEMS: ActionItem[] = [
 ]
 
 interface DetailsPageProps {
+    isLoading: boolean
+    error: unknown
     topPanelTitle: string
     redirectPath: string
-    title: string
+    title?: string
     subtitle?: string
     description?: string
     deleteMutation: () => any
@@ -61,9 +64,11 @@ interface DetailsPageProps {
 }
 
 export const DetailsPage = ({
+    isLoading = false,
+    error,
     topPanelTitle,
     redirectPath,
-    title,
+    title = 'Заголовок',
     subtitle,
     description,
     deleteMutation,
@@ -128,26 +133,35 @@ export const DetailsPage = ({
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
                     <article className="page-content__container">
-                        <section className="page-content__title">
-                            <h1 className="page-content__title__headline">
-                                {title}
-                            </h1>
-                            <p className="page-content__title__byline">
-                                {subtitle}
-                            </p>
-                        </section>
+                        <DataWrapper
+                            isLoading={isLoading}
+                            error={error}
+                            data={title}
+                            emptyMessage={`${topPanelTitle} не найден`}
+                        >
+                            <>
+                                <section className="page-content__title">
+                                    <h1 className="page-content__title__headline">
+                                        {title}
+                                    </h1>
+                                    <p className="page-content__title__byline">
+                                        {subtitle}
+                                    </p>
+                                </section>
 
-                        {mediaContent}
+                                {mediaContent}
 
-                        {descriptionContent
-                            ? descriptionContent
-                            : description && (
-                                  <section className="page-content__description">
-                                      <p>{description}</p>
-                                  </section>
-                              )}
+                                {descriptionContent
+                                    ? descriptionContent
+                                    : description && (
+                                          <section className="page-content__description">
+                                              <p>{description}</p>
+                                          </section>
+                                      )}
 
-                        {additionalContent}
+                                {additionalContent}
+                            </>
+                        </DataWrapper>
                     </article>
                 </section>
             </main>

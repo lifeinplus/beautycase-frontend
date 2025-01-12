@@ -33,10 +33,10 @@ export const productApiSlice = apiSlice.injectEndpoints({
             Product,
             { id: string } & Partial<Product>
         >({
-            query: ({ id, name, image, buy }) => ({
+            query: ({ id, name, brandId, image, buy }) => ({
                 url: `/products/${id}`,
                 method: 'PUT',
-                body: { name, image, buy },
+                body: { name, brandId, image, buy },
             }),
             invalidatesTags: (_result, _error, product) => [
                 { type: 'Product', id: product._id },

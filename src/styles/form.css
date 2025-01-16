@@ -13,13 +13,13 @@
 .form-input {
     @apply block w-full rounded-xl px-4 py-2.5 focus:outline-none;
     @apply bg-white placeholder-neutral-500 dark:bg-black dark:placeholder-neutral-600;
-    @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
+    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }
 
 .form-select {
     @apply col-start-1 row-start-1 block w-full appearance-none rounded-xl px-4 py-2.5 focus:outline-none;
     @apply bg-white placeholder-neutral-500 dark:bg-black dark:placeholder-neutral-600;
-    @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
+    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }
 
 .form-select-icon {
@@ -29,15 +29,21 @@
 
 .form-thumbnail-container {
     @apply relative mx-auto mt-5 aspect-video w-full overflow-hidden rounded-2xl p-1;
-    @apply border border-neutral-200 peer-focus:border-1.5 peer-focus:border-black dark:border-neutral-700 dark:peer-focus:border-white;
+    @apply border border-neutral-200 peer-focus:border-black dark:border-neutral-700 dark:peer-focus:border-white;
 }
 
 .form-thumbnail-image {
     @apply h-full w-full rounded-xl object-cover;
 }
 
+.form-button {
+    @apply flex w-full place-content-center rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply bg-white dark:bg-black;
+    @apply border border-neutral-200 dark:border-neutral-700;
+}
+
 .form-button-select {
     @apply flex w-full items-center justify-between rounded-xl px-4 py-2.5 focus:outline-none;
     @apply bg-white dark:bg-black;
-    @apply border border-neutral-200 focus:border-1.5 focus:border-black dark:border-neutral-700 dark:focus:border-white;
+    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }

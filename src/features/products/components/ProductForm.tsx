@@ -14,8 +14,8 @@ const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         {
             name: 'name',
             label: 'Название',
-            type: 'textarea',
             required: true,
+            type: 'textarea',
         },
         {
             label: 'Бренд',
@@ -30,14 +30,13 @@ const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         {
             name: 'image',
             label: 'Ссылка на изображение',
-            type: 'text',
             required: true,
+            type: 'textarea',
         },
         {
-            name: 'buy',
-            label: 'Где купить',
-            type: 'text',
-            required: true,
+            name: 'stores',
+            label: 'Ссылки на магазины',
+            type: 'button-store-links',
         },
     ]
 

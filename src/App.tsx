@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks'
 import { ScrollToTop } from './components'
+import { AccountPage } from './features/account'
 import {
     LoginPage,
     PersistLogin,
@@ -45,6 +46,7 @@ import {
     StageListPage,
     StageSelectionPage,
 } from './features/stages'
+import { StoreLinkAddPage } from './features/stores'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -53,7 +55,6 @@ import {
     ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
-import { AccountPage } from './features/account'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -218,6 +219,21 @@ const App = () => {
                                 <Route
                                     path="selection"
                                     element={<StageSelectionPage />}
+                                />
+                            </Route>
+                        </Route>
+
+                        <Route path="/stores">
+                            <Route
+                                element={
+                                    <RequireRole
+                                        allowedRoles={['admin', 'mua']}
+                                    />
+                                }
+                            >
+                                <Route
+                                    path="links/add"
+                                    element={<StoreLinkAddPage />}
                                 />
                             </Route>
                         </Route>

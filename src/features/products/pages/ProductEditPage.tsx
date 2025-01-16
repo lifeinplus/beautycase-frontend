@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { selectIsDirty, setFormData } from '../../form'
+import { getErrorMessage } from '../../../utils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import ProductForm from '../components/ProductForm'
 import {
     useGetProductByIdQuery,
@@ -18,7 +20,7 @@ export const ProductEditPage = () => {
     const isDirty = useAppSelector(selectIsDirty)
 
     const [editProduct] = useEditProductMutation()
-    const { data, isLoading } = useGetProductByIdQuery(id!)
+    const { data } = useGetProductByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -27,28 +29,25 @@ export const ProductEditPage = () => {
                     name: data.name,
                     brandId: data.brandId?._id,
                     image: data.image,
-                    buy: data.buy,
+                    stores: data.stores,
                 })
             )
         }
     }, [data, dispatch, isDirty])
 
-    if (isLoading) return <p>Loading...</p>
-
-    if (!data) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                <p className="text-gray-500">Product not found</p>
-            </div>
-        )
-    }
-
     const handleEditProduct = async (product: Product) => {
-        await editProduct({
-            id: id!,
-            ...product,
-        }).unwrap()
-        navigate(`/products/${id}`)
+        try {
+            await editProduct({
+                id: id!,
+                ...product,
+            }).unwrap()
+
+            dispatch(clearFormData())
+            navigate(`/products/${id}`)
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
     return (

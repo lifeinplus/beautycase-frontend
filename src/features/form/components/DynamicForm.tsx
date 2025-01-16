@@ -82,6 +82,22 @@ const renderField = <T extends Record<string, any>>(
         )
     }
 
+    if (type === 'button-store-links') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => navigate(`/stores/links/add`)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                </button>
+            </div>
+        )
+    }
+
     if (type === 'button-products') {
         return (
             <div key={name as string}>

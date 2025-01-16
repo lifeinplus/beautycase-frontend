@@ -42,6 +42,7 @@ export const ToolEditPage = () => {
                 id: id!,
                 ...tool,
             }).unwrap()
+
             dispatch(clearFormData())
             navigate(`/tools/${id}`)
         } catch (error) {

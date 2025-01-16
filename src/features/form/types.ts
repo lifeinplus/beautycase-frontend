@@ -8,6 +8,7 @@ export interface FieldConfig<T> {
     type:
         | 'button-products'
         | 'button-stages'
+        | 'button-store-links'
         | 'button-tools'
         | 'select'
         | 'text'

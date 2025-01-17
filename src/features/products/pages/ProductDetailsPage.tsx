@@ -21,7 +21,7 @@ export const ProductDetailsPage = () => {
             subtitle={data?.brandId?.name}
             deleteMutation={useDeleteProductMutation}
             mediaContent={
-                <section className="page-content__image">
+                <section className="content-image">
                     <div className="img-container img-container-rectangle">
                         <img
                             src={data?.image}
@@ -31,21 +31,19 @@ export const ProductDetailsPage = () => {
                     </div>
                 </section>
             }
-            descriptionContent={
-                data?.stores?.length && (
-                    <section className="page-content__description">
-                        <p className="my-2 font-bold sm:text-left">
-                            Ссылки на магазины
-                        </p>
+            additionalContent={
+                data?.stores?.length !== 0 && (
+                    <section className="content-description">
+                        <p className="my-3 font-bold">Ссылки на товар</p>
 
-                        <div className="flex gap-3">
+                        <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.stores?.map((store, index) => (
                                 <a
                                     key={index}
                                     href={store.link}
                                     target="_blank"
                                 >
-                                    <span className="inline-flex items-center gap-1 rounded-2xl bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                    <span className="store-link">
                                         {store.name}
                                         <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                                     </span>

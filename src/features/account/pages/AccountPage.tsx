@@ -103,7 +103,7 @@ export const AccountPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container page-content__container-xl">
+                    <article className="content-container content-container-xl">
                         <Hero
                             headline="Личный кабинет"
                             byline="Сведения о вас и доступный контент"

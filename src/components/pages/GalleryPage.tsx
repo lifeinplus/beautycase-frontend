@@ -78,7 +78,7 @@ export const GalleryPage = ({
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container page-content__container-xl">
+                    <article className="content-container content-container-xl">
                         <Hero headline={title} byline={subtitle} />
 
                         {isLoading ? (

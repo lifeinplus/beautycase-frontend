@@ -12,6 +12,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Product'],
         }),
+
         deleteProduct: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/products/${id}`,
@@ -19,6 +20,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
         }),
+
         editProduct: builder.mutation<
             Product,
             { id: string } & Partial<Product>
@@ -33,10 +35,12 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 { type: 'Product', id: 'LIST' },
             ],
         }),
+
         getProductById: builder.query<Product, string>({
             query: (id) => `/products/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Product', id }],
         }),
+
         getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
             providesTags: (result) =>

@@ -1,15 +1,10 @@
-import { Brand } from '../brands'
-
-export interface ProductStore {
-    _id?: string
-    name?: string
-    link?: string
-}
+import { type Brand } from '../brands'
+import { type Store } from '../stores'
 
 export interface Product {
     _id: string
     name: string
     brandId?: Pick<Brand, '_id' | 'name'>
     image: string
-    stores?: ProductStore[]
+    stores?: Store[]
 }

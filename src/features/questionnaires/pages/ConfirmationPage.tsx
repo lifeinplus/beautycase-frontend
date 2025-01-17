@@ -7,7 +7,7 @@ export const ConfirmationPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl">
-                    <article className="page-content__container">
+                    <article className="content-container">
                         <Hero
                             headline="Спасибо!"
                             byline="Ваша анкета успешно отправлена"

@@ -11,8 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { type ProductStore } from '../../products'
-import { useGetStoresQuery } from '../../stores'
+import { Store, useGetStoresQuery } from '../../stores'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -21,13 +20,11 @@ export const StoreLinkAddPage = () => {
     const formData = useAppSelector(selectFormData)
     const { data: stores } = useGetStoresQuery()
 
-    const emptyStore: ProductStore = { _id: '', link: '', name: '' }
+    const emptyStoreLink: Store = { _id: '', link: '', name: '' }
 
-    const [productStores, setProductStores] = useState<ProductStore[]>([
-        ...(formData.stores?.length ? formData.stores : [emptyStore]),
+    const [storeLinks, setStoreLinks] = useState<Store[]>([
+        ...(formData.stores?.length ? formData.stores : [emptyStoreLink]),
     ])
-
-    console.log(productStores)
 
     const title = 'Добавить ссылки'
 
@@ -37,13 +34,13 @@ export const StoreLinkAddPage = () => {
     ) => {
         const { options, selectedIndex, value } = e.target
 
-        const updatedStores = productStores.map((s, i) =>
+        const updated = storeLinks.map((s, i) =>
             i === index
                 ? { ...s, _id: value, name: options[selectedIndex].innerHTML }
                 : s
         )
 
-        setProductStores(updatedStores)
+        setStoreLinks(updated)
     }
 
     const handleChangeLink = (
@@ -52,19 +49,19 @@ export const StoreLinkAddPage = () => {
     ) => {
         const { value } = e.target
 
-        const updatedStores = productStores.map((s, i) =>
+        const updated = storeLinks.map((s, i) =>
             i === index ? { ...s, link: value } : s
         )
 
-        setProductStores(updatedStores)
+        setStoreLinks(updated)
     }
 
-    const handleAddStore = () => {
-        setProductStores([...productStores, emptyStore])
+    const handleAdd = () => {
+        setStoreLinks([...storeLinks, emptyStoreLink])
     }
 
-    const handleDeleteStore = (index: number) => {
-        setProductStores(productStores.filter((_, i) => i !== index))
+    const handleDelete = (index: number) => {
+        setStoreLinks(storeLinks.filter((_, i) => i !== index))
     }
 
     const handleBack = () => {
@@ -72,12 +69,15 @@ export const StoreLinkAddPage = () => {
     }
 
     const handleSave = () => {
+        const filtered = storeLinks.filter((l) => l._id)
+
         dispatch(
             setFormData({
                 ...formData,
-                stores: productStores,
+                stores: filtered,
             })
         )
+
         navigate(-1)
     }
 
@@ -87,7 +87,7 @@ export const StoreLinkAddPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container">
+                    <article className="content-container">
                         <section className="page-gallery__title">
                             <h1 className="page-gallery__title__text">
                                 {title}
@@ -95,7 +95,7 @@ export const StoreLinkAddPage = () => {
                         </section>
 
                         <form onSubmit={handleSave} className="form pt-6">
-                            {productStores.map((store, index) => {
+                            {storeLinks.map((store, index) => {
                                 const { _id = '', link } = store
 
                                 return (
@@ -135,9 +135,7 @@ export const StoreLinkAddPage = () => {
                                         />
                                         <button
                                             className="form-button"
-                                            onClick={() =>
-                                                handleDeleteStore(index)
-                                            }
+                                            onClick={() => handleDelete(index)}
                                             type="button"
                                         >
                                             <MinusCircleIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
@@ -147,7 +145,7 @@ export const StoreLinkAddPage = () => {
                             })}
                             <button
                                 className="form-button"
-                                onClick={handleAddStore}
+                                onClick={handleAdd}
                                 type="button"
                             >
                                 <PlusCircleIcon className="h-6 w-6 text-lime-600 dark:text-lime-400" />

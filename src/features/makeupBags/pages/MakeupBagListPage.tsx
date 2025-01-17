@@ -70,7 +70,7 @@ export const MakeupBagListPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container page-content__container-sm">
+                    <article className="content-container content-container-sm">
                         <Hero headline="Косметички" />
 
                         <DataWrapper

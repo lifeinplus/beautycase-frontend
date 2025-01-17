@@ -5,12 +5,12 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form'
-import ProductForm from '../components/ProductForm'
 import {
-    useGetProductByIdQuery,
+    type Product,
+    ProductForm,
     useEditProductMutation,
-} from '../productApiSlice'
-import type { Product } from '../types'
+    useGetProductByIdQuery,
+} from '../../products'
 
 export const ProductEditPage = () => {
     const { id } = useParams()

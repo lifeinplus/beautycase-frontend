@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
-import ProductForm from '../components/ProductForm'
-import { useAddProductMutation } from '../productApiSlice'
-import type { Product } from '../types'
+import {
+    type Product,
+    ProductForm,
+    useAddProductMutation,
+} from '../../products'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()

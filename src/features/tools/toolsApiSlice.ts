@@ -13,17 +13,6 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ['Tool'],
         }),
 
-        editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
-            query: ({ id, brandId, name, image, number, comment }) => ({
-                url: `/tools/${id}`,
-                method: 'PUT',
-                body: { name, brandId, image, number, comment },
-            }),
-            invalidatesTags: (_result, _error, tool) => [
-                { type: 'Tool', id: tool._id },
-                { type: 'Tool', id: 'LIST' },
-            ],
-        }),
         deleteTool: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/tools/${id}`,
@@ -31,10 +20,24 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
         }),
+
+        editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
+            query: ({ id, name, brandId, image, stores, number, comment }) => ({
+                url: `/tools/${id}`,
+                method: 'PUT',
+                body: { name, brandId, image, stores, number, comment },
+            }),
+            invalidatesTags: (_result, _error, tool) => [
+                { type: 'Tool', id: tool._id },
+                { type: 'Tool', id: 'LIST' },
+            ],
+        }),
+
         getToolById: builder.query<Tool, string>({
             query: (id) => `/tools/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Tool', id }],
         }),
+
         getTools: builder.query<Tool[], void>({
             query: () => '/tools/all',
             providesTags: (result) =>

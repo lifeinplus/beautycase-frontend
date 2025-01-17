@@ -25,7 +25,6 @@ export default {
                 4.5: '18px',
             },
             margin: {
-                'navbar-bottom': '49px',
                 'navbar-left': '73px',
                 'navbar-left-open': '245px',
             },

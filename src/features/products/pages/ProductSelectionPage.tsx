@@ -64,7 +64,7 @@ export const ProductSelectionPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container">
+                    <article className="content-container">
                         <section className="page-gallery__title">
                             <h1 className="page-gallery__title__text">
                                 {title}

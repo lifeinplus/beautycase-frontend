@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components'
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../../tools'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -15,10 +16,9 @@ export const ToolDetailsPage = () => {
             redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brandId.name}
-            description={data?.number}
             deleteMutation={useDeleteToolMutation}
             mediaContent={
-                <section className="page-content__image">
+                <section className="content-image">
                     <div className="img-container img-container-rectangle">
                         <img
                             src={data?.image}
@@ -28,12 +28,35 @@ export const ToolDetailsPage = () => {
                     </div>
                 </section>
             }
+            descriptionContent={
+                <section className="content-description">
+                    {data?.number && <p>{`Номер: ${data?.number}`}</p>}
+                    {data?.comment && <p>{data?.comment}</p>}
+                </section>
+            }
             additionalContent={
-                data?.comment && (
-                    <section className="page-content__description">
-                        <p>{data?.comment}</p>
-                    </section>
-                )
+                <section className="content-description">
+                    {data?.stores?.length !== 0 && (
+                        <>
+                            <p className="my-3 font-bold">Ссылки на товар</p>
+
+                            <div className="flex flex-col gap-3 sm:flex-row">
+                                {data?.stores?.map((store, index) => (
+                                    <a
+                                        key={index}
+                                        href={store.link}
+                                        target="_blank"
+                                    >
+                                        <span className="store-link">
+                                            {store.name}
+                                            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                                        </span>
+                                    </a>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </section>
             }
         />
     )

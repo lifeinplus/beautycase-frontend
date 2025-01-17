@@ -8,21 +8,21 @@ interface ToolFormProps {
 }
 
 export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
-    const { data: brands } = useGetBrandsQuery()
+    const { data } = useGetBrandsQuery()
 
     const fields: FieldConfig<Tool>[] = [
         {
             label: 'Название',
             name: 'name',
             required: true,
-            type: 'text',
+            type: 'textarea',
         },
         {
             label: 'Бренд',
             name: 'brandId',
-            options: brands?.map((b) => ({
-                text: b.name,
-                value: b._id,
+            options: data?.map((d) => ({
+                text: d.name,
+                value: d._id,
             })),
             required: true,
             type: 'select',
@@ -31,7 +31,12 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
             label: 'Ссылка на изображение',
             name: 'image',
             required: true,
-            type: 'text',
+            type: 'textarea',
+        },
+        {
+            label: 'Ссылки на товар',
+            name: 'stores',
+            type: 'button-store-links',
         },
         {
             label: 'Номер',
@@ -41,7 +46,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         {
             label: 'Комментарий',
             name: 'comment',
-            type: 'text',
+            type: 'textarea',
         },
     ]
 

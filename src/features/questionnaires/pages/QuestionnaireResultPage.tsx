@@ -76,7 +76,7 @@ export const QuestionnaireResultPage = () => {
 
             <main className="page-content">
                 <section className="w-full max-w-2xl sm:space-y-6">
-                    <article className="page-content__container page-content__container-xl">
+                    <article className="content-container content-container-xl">
                         <div className="hidden sm:block">
                             <Hero
                                 headline="Результаты анкеты"

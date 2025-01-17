@@ -26,9 +26,10 @@ export const ToolEditPage = () => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    brandId: data.brandId._id,
                     name: data.name,
+                    brandId: data.brandId._id,
                     image: data.image,
+                    stores: data.stores,
                     number: data.number,
                     comment: data.comment,
                 })

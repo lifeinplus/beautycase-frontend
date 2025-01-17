@@ -221,11 +221,9 @@ export const DynamicForm = <T extends Record<string, any>>({
 
             <main className="page-content">
                 <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container page-content__container-xl">
-                        <section className="page-content__title hidden sm:block">
-                            <h1 className="page-content__title__headline">
-                                {title}
-                            </h1>
+                    <article className="content-container content-container-xl">
+                        <section className="title-container hidden sm:block">
+                            <h1 className="title-headline">{title}</h1>
                         </section>
 
                         <form onSubmit={handleSubmit} className="form">

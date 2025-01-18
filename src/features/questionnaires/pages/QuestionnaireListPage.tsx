@@ -13,25 +13,21 @@ export const QuestionnaireListPage = () => {
             <Header />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container content-container-sm">
-                        <Hero headline="Анкеты" />
+                <article className="content-container">
+                    <Hero headline="Анкеты" />
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={data}
-                            emptyMessage="Анкеты не найдены"
-                        >
-                            <>
-                                <QuestionnaireMobileView
-                                    questionnaires={data}
-                                />
-                                <QuestionnaireTable questionnaires={data} />
-                            </>
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Анкеты не найдены"
+                    >
+                        <>
+                            <QuestionnaireMobileView questionnaires={data} />
+                            <QuestionnaireTable questionnaires={data} />
+                        </>
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar />

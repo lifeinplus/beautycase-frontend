@@ -35,7 +35,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         },
         {
             label: 'Ссылки на товар',
-            name: 'stores',
+            name: 'storeLinks',
             type: 'button-store-links',
         },
         {

@@ -102,23 +102,21 @@ export const AccountPage = () => {
             <Header />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container content-container-xl">
-                        <Hero
-                            headline="Личный кабинет"
-                            byline="Сведения о вас и доступный контент"
-                        />
+                <article className="content-container">
+                    <Hero
+                        headline="Личный кабинет"
+                        byline="Сведения о вас и доступный контент"
+                    />
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={data}
-                            emptyMessage="Пользователь не найден"
-                        >
-                            {renderContent(data)}
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Пользователь не найден"
+                    >
+                        {renderContent(data)}
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar />

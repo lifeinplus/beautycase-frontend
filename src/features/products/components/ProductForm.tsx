@@ -35,7 +35,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         },
         {
             label: 'Ссылки на товар',
-            name: 'stores',
+            name: 'storeLinks',
             type: 'button-store-links',
         },
     ]

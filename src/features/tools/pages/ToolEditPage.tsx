@@ -29,7 +29,7 @@ export const ToolEditPage = () => {
                     name: data.name,
                     brandId: data.brandId._id,
                     image: data.image,
-                    stores: data.stores,
+                    storeLinks: data.storeLinks,
                     number: data.number,
                     comment: data.comment,
                 })

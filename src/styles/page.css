@@ -14,19 +14,12 @@
 }
 
 .content-container {
-    @apply mx-auto max-w-makeup-item-md sm:pt-6;
-}
-
-.content-container-sm {
-    @apply sm:max-w-makeup-item-xl;
-}
-
-.content-container-xl {
-    @apply xl:max-w-makeup-item-xl;
+    @apply mx-auto w-full;
+    @apply sm:max-w-lg sm:pt-6 md:max-w-2xl;
 }
 
 .content-image {
-    @apply mb-3;
+    @apply mx-auto mb-3 max-w-md;
 }
 
 .content-description {

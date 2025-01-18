@@ -141,27 +141,25 @@ export const MakeupBagPage = () => {
             <TopPanel title="Косметичка" onBack={actionHandlers.back} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl">
-                    <article className="content-container content-container-sm">
-                        <Hero
-                            headline={categoryName}
-                            byline="Индивидуальный подбор продуктов"
-                            imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
-                        />
+                <article className="content-container">
+                    <Hero
+                        headline={categoryName}
+                        byline="Индивидуальный подбор продуктов"
+                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
+                    />
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={[...stageIds, ...toolIds]}
-                            emptyMessage="Косметичка не найдена"
-                        >
-                            <>
-                                <Stages stages={stageIds} />
-                                <Brushes tools={toolIds} />
-                            </>
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={[...stageIds, ...toolIds]}
+                        emptyMessage="Косметичка не найдена"
+                    >
+                        <>
+                            <Stages stages={stageIds} />
+                            <Brushes tools={toolIds} />
+                        </>
+                    </DataWrapper>
+                </article>
             </main>
 
             <Footer />

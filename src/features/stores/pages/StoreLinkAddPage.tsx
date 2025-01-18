@@ -4,14 +4,14 @@ import {
     ChevronDownIcon,
     MinusCircleIcon,
     PlusCircleIcon,
-} from '@heroicons/react/24/solid'
+} from '@heroicons/react/24/outline'
 import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { Store, useGetStoresQuery } from '../../stores'
+import { type StoreLink, useGetStoresQuery } from '../../stores'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -20,10 +20,12 @@ export const StoreLinkAddPage = () => {
     const formData = useAppSelector(selectFormData)
     const { data: stores } = useGetStoresQuery()
 
-    const emptyStoreLink: Store = { _id: '', link: '', name: '' }
+    const emptyStoreLink: StoreLink = { _id: '', link: '', name: '' }
 
-    const [storeLinks, setStoreLinks] = useState<Store[]>([
-        ...(formData.stores?.length ? formData.stores : [emptyStoreLink]),
+    const [storeLinks, setStoreLinks] = useState<StoreLink[]>([
+        ...(formData.storeLinks?.length
+            ? formData.storeLinks
+            : [emptyStoreLink]),
     ])
 
     const title = 'Добавить ссылки'
@@ -44,7 +46,7 @@ export const StoreLinkAddPage = () => {
     }
 
     const handleChangeLink = (
-        e: ChangeEvent<HTMLTextAreaElement>,
+        e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
         index: number
     ) => {
         const { value } = e.target
@@ -74,7 +76,7 @@ export const StoreLinkAddPage = () => {
         dispatch(
             setFormData({
                 ...formData,
-                stores: filtered,
+                storeLinks: filtered,
             })
         )
 
@@ -86,53 +88,65 @@ export const StoreLinkAddPage = () => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container">
-                        <section className="page-gallery__title">
-                            <h1 className="page-gallery__title__text">
-                                {title}
-                            </h1>
-                        </section>
+                <article className="content-container">
+                    <section className="page-gallery__title">
+                        <h1 className="page-gallery__title__text">{title}</h1>
+                    </section>
 
-                        <form onSubmit={handleSave} className="form pt-6">
-                            {storeLinks.map((store, index) => {
-                                const { _id = '', link } = store
+                    <form onSubmit={handleSave} className="form px-0 pt-6">
+                        {storeLinks.map((storeLink, index) => {
+                            const { _id = '', link } = storeLink
 
-                                return (
-                                    <div key={index} className="space-y-4">
-                                        <div className="grid">
-                                            <ChevronDownIcon className="form-select-icon" />
-                                            <select
-                                                className="form-select"
-                                                name="stores"
-                                                onChange={(e) =>
-                                                    handleChangeStore(e, index)
-                                                }
-                                                value={_id}
-                                            >
-                                                <option value="" disabled>
-                                                    Выбрать
+                            return (
+                                <div
+                                    key={index}
+                                    className="store-link-container"
+                                >
+                                    <div className="grid sm:col-span-3">
+                                        <ChevronDownIcon className="form-select-icon" />
+                                        <select
+                                            className="form-select"
+                                            name="stores"
+                                            onChange={(e) =>
+                                                handleChangeStore(e, index)
+                                            }
+                                            value={_id}
+                                        >
+                                            <option value="" disabled>
+                                                Выбрать
+                                            </option>
+                                            {stores?.map((s) => (
+                                                <option
+                                                    key={s._id}
+                                                    value={s._id}
+                                                >
+                                                    {s.name}
                                                 </option>
-                                                {stores?.map((s) => (
-                                                    <option
-                                                        key={s._id}
-                                                        value={s._id}
-                                                    >
-                                                        {s.name}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="sm:col-span-7">
                                         <textarea
-                                            className="form-input"
+                                            className="form-input sm:hidden"
                                             name="links"
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
                                             }
-                                            placeholder={'Ссылка'}
+                                            placeholder="Ссылка"
                                             required={true}
                                             value={link}
                                         />
+                                        <input
+                                            className="form-input hidden sm:block"
+                                            onChange={(e) =>
+                                                handleChangeLink(e, index)
+                                            }
+                                            placeholder="Ссылка"
+                                            type="url"
+                                            value={link}
+                                        />
+                                    </div>
+                                    <div className="sm:col-span-2">
                                         <button
                                             className="form-button"
                                             onClick={() => handleDelete(index)}
@@ -141,8 +155,10 @@ export const StoreLinkAddPage = () => {
                                             <MinusCircleIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
                                         </button>
                                     </div>
-                                )
-                            })}
+                                </div>
+                            )
+                        })}
+                        <div className="px-3">
                             <button
                                 className="form-button"
                                 onClick={handleAdd}
@@ -150,9 +166,9 @@ export const StoreLinkAddPage = () => {
                             >
                                 <PlusCircleIcon className="h-6 w-6 text-lime-600 dark:text-lime-400" />
                             </button>
-                        </form>
-                    </article>
-                </section>
+                        </div>
+                    </form>
+                </article>
             </main>
 
             <AdaptiveNavBar>

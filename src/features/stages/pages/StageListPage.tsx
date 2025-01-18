@@ -65,23 +65,21 @@ export const StageListPage = () => {
             <Header />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container content-container-sm">
-                        <Hero headline="Этапы" />
+                <article className="content-container">
+                    <Hero headline="Этапы" />
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={data}
-                            emptyMessage="Этапы не найдены"
-                        >
-                            <>
-                                <StageMobileView stages={data} />
-                                <StageTable stages={data} />
-                            </>
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Этапы не найдены"
+                    >
+                        <>
+                            <StageMobileView stages={data} />
+                            <StageTable stages={data} />
+                        </>
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar>

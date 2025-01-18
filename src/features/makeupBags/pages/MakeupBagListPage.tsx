@@ -69,23 +69,21 @@ export const MakeupBagListPage = () => {
             <Header />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container content-container-sm">
-                        <Hero headline="Косметички" />
+                <article className="content-container">
+                    <Hero headline="Косметички" />
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={data}
-                            emptyMessage="Косметички не найдены"
-                        >
-                            <>
-                                <MakeupBagMobileView makeupBags={data} />
-                                <MakeupBagTable makeupBags={data} />
-                            </>
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Косметички не найдены"
+                    >
+                        <>
+                            <MakeupBagMobileView makeupBags={data} />
+                            <MakeupBagTable makeupBags={data} />
+                        </>
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar>

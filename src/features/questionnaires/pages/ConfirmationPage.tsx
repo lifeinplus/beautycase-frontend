@@ -6,14 +6,12 @@ export const ConfirmationPage = () => {
             <Header />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl">
-                    <article className="content-container">
-                        <Hero
-                            headline="Спасибо!"
-                            byline="Ваша анкета успешно отправлена"
-                        />
-                    </article>
-                </section>
+                <article className="content-container">
+                    <Hero
+                        headline="Спасибо!"
+                        byline="Ваша анкета успешно отправлена"
+                    />
+                </article>
             </main>
 
             <AdaptiveNavBar />

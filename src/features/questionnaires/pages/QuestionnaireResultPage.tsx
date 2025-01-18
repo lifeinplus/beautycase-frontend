@@ -75,45 +75,40 @@ export const QuestionnaireResultPage = () => {
             <TopPanel title="Результаты анкеты" onBack={handleBack} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl sm:space-y-6">
-                    <article className="content-container content-container-xl">
-                        <div className="hidden sm:block">
-                            <Hero
-                                headline="Результаты анкеты"
-                                byline={createdAt}
-                            />
-                        </div>
+                <article className="content-container">
+                    <div className="hidden sm:block">
+                        <Hero headline="Результаты анкеты" byline={createdAt} />
+                    </div>
 
-                        <div className="sm:hidden">
-                            <Hero byline={createdAt} />
-                        </div>
+                    <div className="sm:hidden">
+                        <Hero byline={createdAt} />
+                    </div>
 
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={data}
-                            emptyMessage="Анкета не найдена"
-                        >
-                            <div className="dl-container">
-                                <dl className="dl">
-                                    {fields.map((f) => (
-                                        <div key={f} className="dl-grid">
-                                            <dt className="dt">
-                                                {questions[f]?.label}
-                                            </dt>
-                                            <dd className="dd">
-                                                {renderValue(
-                                                    data?.[f],
-                                                    questions[f]?.options
-                                                )}
-                                            </dd>
-                                        </div>
-                                    ))}
-                                </dl>
-                            </div>
-                        </DataWrapper>
-                    </article>
-                </section>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Анкета не найдена"
+                    >
+                        <div className="dl-container">
+                            <dl className="dl">
+                                {fields.map((f) => (
+                                    <div key={f} className="dl-grid">
+                                        <dt className="dt">
+                                            {questions[f]?.label}
+                                        </dt>
+                                        <dd className="dd">
+                                            {renderValue(
+                                                data?.[f],
+                                                questions[f]?.options
+                                            )}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar />

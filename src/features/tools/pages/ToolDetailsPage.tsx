@@ -36,19 +36,14 @@ export const ToolDetailsPage = () => {
             }
             additionalContent={
                 <section className="content-description">
-                    {data?.stores?.length !== 0 && (
+                    {data?.storeLinks?.length !== 0 && (
                         <>
                             <p className="my-3 font-bold">Ссылки на товар</p>
-
                             <div className="flex flex-col gap-3 sm:flex-row">
-                                {data?.stores?.map((store, index) => (
-                                    <a
-                                        key={index}
-                                        href={store.link}
-                                        target="_blank"
-                                    >
+                                {data?.storeLinks?.map((l, i) => (
+                                    <a key={i} href={l.link} target="_blank">
                                         <span className="store-link">
-                                            {store.name}
+                                            {l.name}
                                             <ArrowTopRightOnSquareIcon className="h-4 w-4" />
                                         </span>
                                     </a>

@@ -63,45 +63,41 @@ export const StageSelectionPage = () => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="content-container">
-                        <section className="page-gallery__title">
-                            <h1 className="page-gallery__title__text">
-                                {title}
-                            </h1>
-                        </section>
+                <article className="content-container">
+                    <section className="page-gallery__title">
+                        <h1 className="page-gallery__title__text">{title}</h1>
+                    </section>
 
-                        <section className="page-gallery__container">
-                            {stages?.map(({ _id, title, image }) => {
-                                const isSelected = orderedIds.has(_id!)
-                                const order = orderedIds.get(_id!)
+                    <section className="page-gallery__container">
+                        {stages?.map(({ _id, title, image }) => {
+                            const isSelected = orderedIds.has(_id!)
+                            const order = orderedIds.get(_id!)
 
-                                return (
-                                    <div
-                                        key={_id}
-                                        onClick={() => toggleOrderedIds(_id!)}
-                                        className="img-container img-container-square"
+                            return (
+                                <div
+                                    key={_id}
+                                    onClick={() => toggleOrderedIds(_id!)}
+                                    className="img-container img-container-square"
+                                >
+                                    <img
+                                        src={image}
+                                        alt={title}
+                                        className="img img-sm-rounded"
+                                    />
+                                    <span
+                                        className={`img-order ${
+                                            isSelected
+                                                ? 'img-order-selected'
+                                                : 'img-order-default'
+                                        }`}
                                     >
-                                        <img
-                                            src={image}
-                                            alt={title}
-                                            className="img img-sm-rounded"
-                                        />
-                                        <span
-                                            className={`img-order ${
-                                                isSelected
-                                                    ? 'img-order-selected'
-                                                    : 'img-order-default'
-                                            }`}
-                                        >
-                                            {order ?? ''}
-                                        </span>
-                                    </div>
-                                )
-                            })}
-                        </section>
-                    </article>
-                </section>
+                                        {order ?? ''}
+                                    </span>
+                                </div>
+                            )
+                        })}
+                    </section>
+                </article>
             </main>
 
             <AdaptiveNavBar>

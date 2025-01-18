@@ -29,7 +29,7 @@ export const ProductEditPage = () => {
                     name: data.name,
                     brandId: data.brandId?._id,
                     image: data.image,
-                    stores: data.stores,
+                    storeLinks: data.storeLinks,
                 })
             )
         }

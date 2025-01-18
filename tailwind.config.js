@@ -30,8 +30,6 @@ export default {
             },
             maxWidth: {
                 login: '350px',
-                'makeup-item-md': '470px',
-                'makeup-item-xl': '700px',
             },
             padding: {
                 13: '52px',

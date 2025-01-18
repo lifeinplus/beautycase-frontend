@@ -22,10 +22,18 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
         }),
 
         editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
-            query: ({ id, name, brandId, image, stores, number, comment }) => ({
+            query: ({
+                id,
+                name,
+                brandId,
+                image,
+                storeLinks,
+                number,
+                comment,
+            }) => ({
                 url: `/tools/${id}`,
                 method: 'PUT',
-                body: { name, brandId, image, stores, number, comment },
+                body: { name, brandId, image, storeLinks, number, comment },
             }),
             invalidatesTags: (_result, _error, tool) => [
                 { type: 'Tool', id: tool._id },

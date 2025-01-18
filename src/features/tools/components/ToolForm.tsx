@@ -12,12 +12,6 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
     const fields: FieldConfig<Tool>[] = [
         {
-            label: 'Название',
-            name: 'name',
-            required: true,
-            type: 'textarea',
-        },
-        {
             label: 'Бренд',
             name: 'brandId',
             options: data?.map((d) => ({
@@ -26,6 +20,12 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
             })),
             required: true,
             type: 'select',
+        },
+        {
+            label: 'Название',
+            name: 'name',
+            required: true,
+            type: 'textarea',
         },
         {
             label: 'Ссылка на изображение',

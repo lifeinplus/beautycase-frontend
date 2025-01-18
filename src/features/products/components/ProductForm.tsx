@@ -12,12 +12,6 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
     const fields: FieldConfig<Product>[] = [
         {
-            label: 'Название',
-            name: 'name',
-            required: true,
-            type: 'textarea',
-        },
-        {
             label: 'Бренд',
             name: 'brandId',
             options: data?.map((d) => ({
@@ -26,6 +20,12 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
             })),
             required: true,
             type: 'select',
+        },
+        {
+            label: 'Название',
+            name: 'name',
+            required: true,
+            type: 'textarea',
         },
         {
             label: 'Ссылка на изображение',

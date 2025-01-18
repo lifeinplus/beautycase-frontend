@@ -6,9 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getYouTubeThumbnail } from '../../../utils'
-import { selectFormData, setFormData } from '../formSlice'
-import type { FieldConfig } from '../types'
-import { Label } from './Label'
+import {
+    type FieldConfig,
+    ImagePreview,
+    Label,
+    selectFormData,
+    setFormData,
+} from '../../form'
 
 interface DynamicFormProps<T> {
     title: string
@@ -18,16 +22,6 @@ interface DynamicFormProps<T> {
 
 const generateButtonText = (value: string[]) =>
     value?.length ? `Выбрано: ${value.length}` : 'Выбрать'
-
-const renderYouTubeThumbnail = (url: string) => (
-    <div className="form-thumbnail-container">
-        <img
-            src={getYouTubeThumbnail(url)}
-            alt="Video Thumbnail"
-            className="form-thumbnail-image"
-        />
-    </div>
-)
 
 const renderField = <T extends Record<string, any>>(
     field: FieldConfig<T>,
@@ -47,7 +41,7 @@ const renderField = <T extends Record<string, any>>(
         return (
             <Label key={name as string} text={label}>
                 <textarea
-                    className="form-input"
+                    className="form-input peer"
                     name={name as string}
                     onChange={handleChange}
                     placeholder={label}
@@ -55,6 +49,7 @@ const renderField = <T extends Record<string, any>>(
                     rows={rows}
                     value={value}
                 />
+                {name === 'image' && value && <ImagePreview url={value} />}
             </Label>
         )
     }
@@ -182,7 +177,9 @@ const renderField = <T extends Record<string, any>>(
                 type={type}
                 value={value}
             />
-            {name === 'videoUrl' && value && renderYouTubeThumbnail(value)}
+            {name === 'videoUrl' && value && (
+                <ImagePreview url={getYouTubeThumbnail(value)} />
+            )}
         </Label>
     )
 }

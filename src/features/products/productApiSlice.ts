@@ -12,10 +12,43 @@ export const productApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Product'],
         }),
+
+        deleteProduct: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
+        }),
+
+        editProduct: builder.mutation<
+            Product,
+            { id: string } & Partial<Product>
+        >({
+            query: ({
+                id,
+                name,
+                brandId,
+                image,
+                shade,
+                comment,
+                storeLinks,
+            }) => ({
+                url: `/products/${id}`,
+                method: 'PUT',
+                body: { name, brandId, image, shade, comment, storeLinks },
+            }),
+            invalidatesTags: (_result, _error, product) => [
+                { type: 'Product', id: product._id },
+                { type: 'Product', id: 'LIST' },
+            ],
+        }),
+
         getProductById: builder.query<Product, string>({
             query: (id) => `/products/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Product', id }],
         }),
+
         getProducts: builder.query<Product[], void>({
             query: () => '/products/all',
             providesTags: (result) =>
@@ -28,27 +61,6 @@ export const productApiSlice = apiSlice.injectEndpoints({
                           { type: 'Product', id: 'LIST' },
                       ]
                     : [{ type: 'Product', id: 'LIST' }],
-        }),
-        editProduct: builder.mutation<
-            Product,
-            { id: string } & Partial<Product>
-        >({
-            query: ({ id, name, brandId, image, buy }) => ({
-                url: `/products/${id}`,
-                method: 'PUT',
-                body: { name, brandId, image, buy },
-            }),
-            invalidatesTags: (_result, _error, product) => [
-                { type: 'Product', id: product._id },
-                { type: 'Product', id: 'LIST' },
-            ],
-        }),
-        deleteProduct: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/products/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
         }),
     }),
 })

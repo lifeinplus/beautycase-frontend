@@ -6,9 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { getYouTubeThumbnail } from '../../../utils'
-import { selectFormData, setFormData } from '../formSlice'
-import type { FieldConfig } from '../types'
-import { Label } from './Label'
+import {
+    type FieldConfig,
+    ImagePreview,
+    Label,
+    selectFormData,
+    setFormData,
+} from '../../form'
 
 interface DynamicFormProps<T> {
     title: string
@@ -18,16 +22,6 @@ interface DynamicFormProps<T> {
 
 const generateButtonText = (value: string[]) =>
     value?.length ? `Выбрано: ${value.length}` : 'Выбрать'
-
-const renderYouTubeThumbnail = (url: string) => (
-    <div className="form-thumbnail-container">
-        <img
-            src={getYouTubeThumbnail(url)}
-            alt="Video Thumbnail"
-            className="form-thumbnail-image"
-        />
-    </div>
-)
 
 const renderField = <T extends Record<string, any>>(
     field: FieldConfig<T>,
@@ -47,7 +41,7 @@ const renderField = <T extends Record<string, any>>(
         return (
             <Label key={name as string} text={label}>
                 <textarea
-                    className="form-input"
+                    className="form-input peer"
                     name={name as string}
                     onChange={handleChange}
                     placeholder={label}
@@ -55,6 +49,7 @@ const renderField = <T extends Record<string, any>>(
                     rows={rows}
                     value={value}
                 />
+                {name === 'image' && value && <ImagePreview url={value} />}
             </Label>
         )
     }
@@ -79,6 +74,22 @@ const renderField = <T extends Record<string, any>>(
                     value={joined}
                 />
             </Label>
+        )
+    }
+
+    if (type === 'button-store-links') {
+        return (
+            <div key={name as string}>
+                <Label text={label} />
+                <button
+                    className="form-button-select"
+                    onClick={() => navigate(`/stores/links/add`)}
+                    type="button"
+                >
+                    <span>{generateButtonText(value)}</span>
+                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                </button>
+            </div>
         )
     }
 
@@ -166,7 +177,9 @@ const renderField = <T extends Record<string, any>>(
                 type={type}
                 value={value}
             />
-            {name === 'videoUrl' && value && renderYouTubeThumbnail(value)}
+            {name === 'videoUrl' && value && (
+                <ImagePreview url={getYouTubeThumbnail(value)} />
+            )}
         </Label>
     )
 }
@@ -204,23 +217,19 @@ export const DynamicForm = <T extends Record<string, any>>({
             <TopPanel title={title} onBack={handleBack} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container page-content__container-xl">
-                        <section className="page-content__title hidden sm:block">
-                            <h1 className="page-content__title__headline">
-                                {title}
-                            </h1>
-                        </section>
+                <article className="content-container">
+                    <section className="title-container hidden sm:block">
+                        <h1 className="title-headline">{title}</h1>
+                    </section>
 
-                        <form onSubmit={handleSubmit} className="form">
-                            {fields.map((field) => {
-                                const { name } = field
-                                const value = formData[name] || ''
-                                return renderField(field, value, handleChange)
-                            })}
-                        </form>
-                    </article>
-                </section>
+                    <form onSubmit={handleSubmit} className="form">
+                        {fields.map((field) => {
+                            const { name } = field
+                            const value = formData[name] || ''
+                            return renderField(field, value, handleChange)
+                        })}
+                    </form>
+                </article>
             </main>
 
             <AdaptiveNavBar>

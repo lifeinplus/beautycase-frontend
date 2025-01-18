@@ -1,5 +1,5 @@
 import { apiSlice } from '../api'
-import { Brand } from './types'
+import type { Brand } from './types'
 
 const brandsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

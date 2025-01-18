@@ -34,9 +34,6 @@ export const ProductsList = ({ products }: ProductsListProps) => {
                     <h6 className="text-center font-heading text-sm">
                         {product.name}
                     </h6>
-                    <p className="mt-2 text-center text-sm text-slate-500 dark:text-gray-400">
-                        Купить: {product.buy}
-                    </p>
                 </li>
             ))}
         </ul>

@@ -26,9 +26,10 @@ export const ToolEditPage = () => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    brandId: data.brandId._id,
                     name: data.name,
+                    brandId: data.brandId._id,
                     image: data.image,
+                    storeLinks: data.storeLinks,
                     number: data.number,
                     comment: data.comment,
                 })
@@ -42,6 +43,7 @@ export const ToolEditPage = () => {
                 id: id!,
                 ...tool,
             }).unwrap()
+
             dispatch(clearFormData())
             navigate(`/tools/${id}`)
         } catch (error) {

@@ -131,39 +131,33 @@ export const DetailsPage = ({
             <TopPanel title={topPanelTitle} onBack={actionHandlers.back} />
 
             <main className="page-content">
-                <section className="w-full max-w-2xl space-y-6">
-                    <article className="page-content__container">
-                        <DataWrapper
-                            isLoading={isLoading}
-                            error={error}
-                            data={title}
-                            emptyMessage={`${topPanelTitle} не найден`}
-                        >
-                            <>
-                                <section className="page-content__title">
-                                    <h1 className="page-content__title__headline">
-                                        {title}
-                                    </h1>
-                                    <p className="page-content__title__byline">
-                                        {subtitle}
-                                    </p>
-                                </section>
+                <article className="content-container">
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={title}
+                        emptyMessage={`${topPanelTitle} не найден`}
+                    >
+                        <>
+                            <section className="title-container">
+                                <h1 className="title-headline">{title}</h1>
+                                <p className="title-byline">{subtitle}</p>
+                            </section>
 
-                                {mediaContent}
+                            {mediaContent}
 
-                                {descriptionContent
-                                    ? descriptionContent
-                                    : description && (
-                                          <section className="page-content__description">
-                                              <p>{description}</p>
-                                          </section>
-                                      )}
+                            {descriptionContent
+                                ? descriptionContent
+                                : description && (
+                                      <section className="content-description">
+                                          <p>{description}</p>
+                                      </section>
+                                  )}
 
-                                {additionalContent}
-                            </>
-                        </DataWrapper>
-                    </article>
-                </section>
+                            {additionalContent}
+                        </>
+                    </DataWrapper>
+                </article>
             </main>
 
             <AdaptiveNavBar>

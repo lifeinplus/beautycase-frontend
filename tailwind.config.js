@@ -25,14 +25,11 @@ export default {
                 4.5: '18px',
             },
             margin: {
-                'navbar-bottom': '49px',
                 'navbar-left': '73px',
                 'navbar-left-open': '245px',
             },
             maxWidth: {
                 login: '350px',
-                'makeup-item-md': '470px',
-                'makeup-item-xl': '700px',
             },
             padding: {
                 13: '52px',

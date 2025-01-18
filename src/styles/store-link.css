@@ -1,0 +1,10 @@
+.store-link {
+    @apply inline-flex items-center gap-1 rounded-2xl px-2 py-1 text-xs font-medium ring-1 ring-inset;
+    @apply bg-neutral-100 text-neutral-600 ring-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:ring-neutral-700;
+}
+
+.store-link-container {
+    @apply space-y-4 border-b px-3 pb-4;
+    @apply border-neutral-100 dark:border-neutral-800;
+    @apply sm:grid sm:grid-cols-12 sm:gap-4 sm:space-y-0 sm:border-b-0 sm:pb-0;
+}

@@ -1,8 +1,5 @@
 export const Footer = () => (
-    <footer
-        id="footer"
-        className="mb-navbar-bottom border-t border-gray-300 dark:border-gray-700 sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open"
-    >
+    <footer id="footer" className="page-footer">
         <section className="mx-auto max-w-4xl p-4">
             <h4 className="font-heading text-lg">Спасибо, что выбрали меня!</h4>
         </section>
@@ -27,7 +24,7 @@ export const Footer = () => (
 
         <section className="mx-auto max-w-4xl p-4">
             <p>
-                v5.6.0 &copy; <span id="year">2024</span> Beautycase
+                v5.7.0 &copy; <span id="year">2025</span> Beautycase
             </p>
         </section>
     </footer>

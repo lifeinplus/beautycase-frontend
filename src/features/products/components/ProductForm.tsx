@@ -7,41 +7,48 @@ interface ProductFormProps {
     title: string
 }
 
-const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
+export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const { data } = useGetBrandsQuery()
 
     const fields: FieldConfig<Product>[] = [
         {
-            name: 'name',
-            label: 'Название',
-            type: 'textarea',
-            required: true,
-        },
-        {
             label: 'Бренд',
             name: 'brandId',
-            options: data?.map((b) => ({
-                text: b.name,
-                value: b._id,
+            options: data?.map((d) => ({
+                text: d.name,
+                value: d._id,
             })),
             required: true,
             type: 'select',
         },
         {
-            name: 'image',
-            label: 'Ссылка на изображение',
-            type: 'text',
+            label: 'Название',
+            name: 'name',
             required: true,
+            type: 'textarea',
         },
         {
-            name: 'buy',
-            label: 'Где купить',
-            type: 'text',
+            label: 'Ссылка на изображение',
+            name: 'image',
             required: true,
+            type: 'textarea',
+        },
+        {
+            label: 'Оттенок',
+            name: 'shade',
+            type: 'text',
+        },
+        {
+            label: 'Комментарий',
+            name: 'comment',
+            type: 'textarea',
+        },
+        {
+            label: 'Ссылки на товар',
+            name: 'storeLinks',
+            type: 'button-store-links',
         },
     ]
 
     return <DynamicForm title={title} fields={fields} onSubmit={onSubmit} />
 }
-
-export default ProductForm

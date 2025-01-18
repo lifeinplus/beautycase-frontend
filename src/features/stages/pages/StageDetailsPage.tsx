@@ -28,7 +28,7 @@ export const StageDetailsPage = () => {
             description={data?.steps.reduce((p, c) => p + c, '')}
             deleteMutation={useDeleteStageMutation}
             mediaContent={
-                <section className="page-content__image">
+                <section className="content-image">
                     <div className="img-container img-container-rectangle">
                         <img
                             alt={data?.title}
@@ -39,7 +39,7 @@ export const StageDetailsPage = () => {
                 </section>
             }
             descriptionContent={
-                <section className="page-content__description">
+                <section className="content-description">
                     <p className="my-2 font-bold sm:text-left">Шаги</p>
                     <ul className="ms-5 list-outside list-decimal">
                         {data?.steps.map((step: string, index: number) => (

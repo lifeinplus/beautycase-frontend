@@ -35,23 +35,21 @@ export const ToolDetailsPage = () => {
                 </section>
             }
             additionalContent={
-                <section className="content-description">
-                    {data?.storeLinks?.length !== 0 && (
-                        <>
-                            <p className="my-3 font-bold">Ссылки на товар</p>
-                            <div className="flex flex-col gap-3 sm:flex-row">
-                                {data?.storeLinks?.map((l, i) => (
-                                    <a key={i} href={l.link} target="_blank">
-                                        <span className="store-link">
-                                            {l.name}
-                                            <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-                                        </span>
-                                    </a>
-                                ))}
-                            </div>
-                        </>
-                    )}
-                </section>
+                data?.storeLinks?.length !== 0 && (
+                    <section className="content-description">
+                        <p className="my-3 font-bold">Ссылки на товар</p>
+                        <div className="flex flex-col gap-3 sm:flex-row">
+                            {data?.storeLinks?.map((l, i) => (
+                                <a key={i} href={l.link} target="_blank">
+                                    <span className="store-link">
+                                        {l.name}
+                                        <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                                    </span>
+                                </a>
+                            ))}
+                        </div>
+                    </section>
+                )
             }
         />
     )

@@ -29,6 +29,8 @@ export const ProductEditPage = () => {
                     name: data.name,
                     brandId: data.brandId?._id,
                     image: data.image,
+                    shade: data.shade,
+                    comment: data.comment,
                     storeLinks: data.storeLinks,
                 })
             )

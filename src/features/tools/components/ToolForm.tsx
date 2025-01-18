@@ -34,11 +34,6 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
             type: 'textarea',
         },
         {
-            label: 'Ссылки на товар',
-            name: 'storeLinks',
-            type: 'button-store-links',
-        },
-        {
             label: 'Номер',
             name: 'number',
             type: 'text',
@@ -47,6 +42,11 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
             label: 'Комментарий',
             name: 'comment',
             type: 'textarea',
+        },
+        {
+            label: 'Ссылки на товар',
+            name: 'storeLinks',
+            type: 'button-store-links',
         },
     ]
 

@@ -1,5 +1,5 @@
-import { ProductsList } from '../../products'
-import { Stage } from '../types'
+import { GoodsGrid } from '../../../components'
+import { type Stage } from '../../stages'
 
 interface StagesProps {
     stages?: Stage[]
@@ -15,26 +15,35 @@ export const Stages = ({ stages }: StagesProps) => {
             {stages?.map((stage, index) => (
                 <article
                     key={index}
-                    className="my-4 bg-gray-100 p-4 dark:bg-gray-900 sm:rounded"
+                    className="my-4 bg-gray-100 py-4 dark:bg-gray-900 sm:rounded"
                 >
                     <h3 className="stage-headline">{stage.title}</h3>
                     <h4 className="stage-byline">{stage.subtitle}</h4>
 
-                    <img
-                        src={stage.image}
-                        alt={stage.title}
-                        className="mx-auto my-4 w-full max-w-lg rounded-md"
-                    />
+                    <section className="content-image">
+                        <div className="img-container img-container-rectangle">
+                            <img
+                                alt={stage.title}
+                                className="img"
+                                src={stage.image}
+                            />
+                        </div>
+                    </section>
 
-                    <p className="my-2 font-bold sm:text-left">Шаги</p>
-                    <ul className="ms-5 list-outside list-decimal">
-                        {stage.steps.map((step: string, index: number) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ul>
+                    <section className="px-4">
+                        <p className="my-2 font-bold sm:text-left">Шаги</p>
+                        <ul className="ms-5 list-outside list-decimal">
+                            {stage.steps.map((step: string, index: number) => (
+                                <li key={index}>{step}</li>
+                            ))}
+                        </ul>
+                    </section>
 
                     {stage.productIds && (
-                        <ProductsList products={stage.productIds} />
+                        <GoodsGrid
+                            basePath="/products"
+                            goods={stage.productIds}
+                        />
                     )}
                 </article>
             ))}

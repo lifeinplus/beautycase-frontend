@@ -22,12 +22,12 @@ import {
 import { canAccess, getErrorMessage } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
-import { Stages } from '../../stages'
 import {
-    Brushes,
     useDeleteMakeupBagMutation,
     useGetMakeupBagByIdQuery,
 } from '../../makeupBags'
+import { Stages } from '../../stages'
+import { Tools } from '../../tools'
 
 const ACTIONS = {
     back: {
@@ -38,9 +38,9 @@ const ACTIONS = {
         icon: <ListBulletIcon className="h-6 w-6" />,
         label: 'Этапы',
     },
-    brushes: {
+    tools: {
         icon: <PaintBrushIcon className="h-6 w-6" />,
-        label: 'Кисти',
+        label: 'Инструменты',
     },
     edit: {
         icon: <PencilSquareIcon className="h-6 w-6" />,
@@ -64,7 +64,7 @@ interface ActionItem {
 const ACTION_ITEMS: ActionItem[] = [
     { id: 'back', className: 'nav-btn-back' },
     { id: 'stages' },
-    { id: 'brushes' },
+    { id: 'tools' },
     { id: 'edit', auth: true, roles: ['admin', 'mua'] },
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
@@ -104,9 +104,9 @@ export const MakeupBagPage = () => {
             document
                 .getElementById('stages')
                 ?.scrollIntoView({ behavior: 'smooth' }),
-        brushes: () =>
+        tools: () =>
             document
-                .getElementById('brushes')
+                .getElementById('tools')
                 ?.scrollIntoView({ behavior: 'smooth' }),
         edit: () => navigate(`${redirectPath}/edit/${id}`),
         delete: () => setIsModalOpen(true),
@@ -156,7 +156,7 @@ export const MakeupBagPage = () => {
                     >
                         <>
                             <Stages stages={stageIds} />
-                            <Brushes tools={toolIds} />
+                            <Tools tools={toolIds} />
                         </>
                     </DataWrapper>
                 </article>

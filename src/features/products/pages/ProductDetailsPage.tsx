@@ -24,9 +24,9 @@ export const ProductDetailsPage = () => {
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">
                         <img
-                            src={data?.image}
                             alt={data?.name}
                             className="img"
+                            src={data?.image}
                         />
                     </div>
                 </section>
@@ -43,7 +43,12 @@ export const ProductDetailsPage = () => {
                         <p className="my-3 font-bold">Ссылки на товар</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.storeLinks?.map((l, i) => (
-                                <a key={i} href={l.link} target="_blank">
+                                <a
+                                    key={i}
+                                    href={l.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <span className="store-link">
                                         {l.name}
                                         <ArrowTopRightOnSquareIcon className="h-4 w-4" />

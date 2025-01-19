@@ -14,9 +14,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 to={`/products/${product._id}`}
             >
                 <img
-                    src={product.image}
                     alt={product.name}
                     className="img img-sm-rounded"
+                    src={product.image}
                 />
             </Link>
         </div>

@@ -10,6 +10,7 @@ export * from './table/TableRow'
 
 export * from './DataWrapper'
 export * from './Footer'
+export * from './GoodsGrid'
 export * from './Header'
 export * from './Hero'
 export * from './LoadingOrError'

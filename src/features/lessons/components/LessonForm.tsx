@@ -31,12 +31,14 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         {
             label: 'Полное описание',
             name: 'fullDescription',
+            required: true,
             rows: 4,
             type: 'textarea',
         },
         {
             label: 'Продукты',
             name: 'selectedProductIds',
+            required: true,
             type: 'button-products',
         },
     ]

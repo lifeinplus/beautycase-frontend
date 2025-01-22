@@ -29,6 +29,9 @@ export const questions: Questions = {
         label: 'Содержимое косметички',
         description: 'Что сейчас уже есть в косметичке?',
     },
+    makeupBagPhoto: {
+        label: 'Фото косметички',
+    },
     procedures: {
         label: 'Процедуры',
         description:

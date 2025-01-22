@@ -4,10 +4,7 @@ import { Questionnaire } from './types'
 
 export const questionnaireApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addQuestionnaire: builder.mutation<
-            MutationResult,
-            Partial<Questionnaire>
-        >({
+        addQuestionnaire: builder.mutation<MutationResult, FormData>({
             query: (data) => ({
                 url: '/questionnaires/one',
                 method: 'POST',

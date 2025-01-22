@@ -34,6 +34,7 @@ export interface Questionnaire {
     desiredSkills?: DesiredSkillData
     instagram?: string
     makeupBag: string
+    makeupBagPhoto?: string
     makeupTime?: string
     name: string
     oilyShine?: string

@@ -28,11 +28,7 @@ export const InputSection = ({
             />
         </Label>
 
-        {description && (
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-                {description}
-            </p>
-        )}
+        {description && <p className="form-description">{description}</p>}
 
         {error && (
             <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">

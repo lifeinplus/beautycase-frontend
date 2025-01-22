@@ -41,10 +41,6 @@ export const RadioButtonSection = ({
             </nav>
         </div>
 
-        {description && (
-            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
-                {description}
-            </p>
-        )}
+        {description && <p className="form-description">{description}</p>}
     </div>
 )

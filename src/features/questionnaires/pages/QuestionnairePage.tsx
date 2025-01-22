@@ -7,6 +7,7 @@ import { AdaptiveNavBar, Header, Hero } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
+    FileSection,
     InputSection,
     RadioButtonSection,
     TextareaSection,
@@ -21,6 +22,7 @@ export const QuestionnairePage = () => {
     const navigate = useNavigate()
 
     const {
+        control,
         register,
         reset,
         handleSubmit,
@@ -32,8 +34,16 @@ export const QuestionnairePage = () => {
     const [addQuestionnaire] = useAddQuestionnaireMutation()
 
     const onSubmit = async (data: any) => {
+        console.log(data)
+
+        const formData = new FormData()
+
+        formData.append('makeupBagPhoto', data.makeupBagPhoto)
+        formData.append('makeupBag', data.makeupBag)
+        formData.append('name', data.name)
+
         try {
-            await addQuestionnaire(data).unwrap()
+            await addQuestionnaire(formData).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {
@@ -99,6 +109,12 @@ export const QuestionnairePage = () => {
                                 register={register('makeupBag')}
                                 required={true}
                                 type="text"
+                            />
+
+                            <FileSection
+                                control={control}
+                                label={questions.makeupBagPhoto.label}
+                                name="makeupBagPhoto"
                             />
 
                             <CheckboxSection

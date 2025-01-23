@@ -4,9 +4,10 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, Header, Hero } from '../../../components'
-import { getErrorMessage } from '../../../utils'
+import { appendToFormData, getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
+    FileSection,
     InputSection,
     RadioButtonSection,
     TextareaSection,
@@ -31,9 +32,11 @@ export const QuestionnairePage = () => {
 
     const [addQuestionnaire] = useAddQuestionnaireMutation()
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: Questionnaire) => {
+        const formData = appendToFormData(data)
+
         try {
-            await addQuestionnaire(data).unwrap()
+            await addQuestionnaire(formData).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {
@@ -99,6 +102,11 @@ export const QuestionnairePage = () => {
                                 register={register('makeupBag')}
                                 required={true}
                                 type="text"
+                            />
+
+                            <FileSection
+                                label={questions.makeupBagPhoto.label}
+                                register={register('makeupBagPhoto')}
                             />
 
                             <CheckboxSection

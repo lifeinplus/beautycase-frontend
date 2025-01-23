@@ -20,6 +20,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                 text: c.name,
                 value: c._id,
             })),
+            required: true,
             type: 'select',
         },
         {
@@ -35,12 +36,14 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
         {
             label: 'Этапы',
             name: 'selectedStageIds',
+            required: true,
             type: 'button-stages',
         },
         {
             label: 'Инструменты',
             name: 'selectedToolIds',
             path: '/tools/selection',
+            required: true,
             type: 'button-tools',
         },
     ]

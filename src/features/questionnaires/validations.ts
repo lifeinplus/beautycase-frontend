@@ -30,6 +30,7 @@ export const schema = yup.object({
         .default(undefined),
     instagram: yup.string().transform(transformEmpty),
     makeupBag: yup.string().required('Укажите, что сейчас есть в косметичке'),
+    makeupBagPhoto: yup.mixed(),
     makeupTime: yup.string().transform(transformEmpty),
     name: yup.string().required('Укажите ваше имя'),
     oilyShine: yup.string().transform(transformEmpty),

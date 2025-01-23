@@ -7,7 +7,7 @@ export const useScrollToElement = () => {
 
     const [scrolled, setScrolled] = useState(false)
 
-    const scroll = useCallback((node: HTMLLIElement | null) => {
+    const scroll = useCallback((node: HTMLDivElement | null) => {
         if (!node) return
 
         const { top, height } = node.getBoundingClientRect()

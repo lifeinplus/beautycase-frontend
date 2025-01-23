@@ -41,11 +41,13 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         {
             label: 'Комментарий',
             name: 'comment',
+            required: true,
             type: 'textarea',
         },
         {
             label: 'Ссылки на товар',
             name: 'storeLinks',
+            required: true,
             type: 'button-store-links',
         },
     ]

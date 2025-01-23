@@ -1,6 +1,5 @@
 export * from './components/ProductCard'
 export * from './components/ProductForm'
-export * from './components/ProductList'
 
 export * from './pages/ProductAddPage'
 export * from './pages/ProductDetailsPage'

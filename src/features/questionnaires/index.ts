@@ -1,4 +1,5 @@
 export * from './components/QuestionnaireMobileView'
+export * from './components/QuestionnaireResult'
 export * from './components/QuestionnaireTable'
 
 export * from './pages/ConfirmationPage'

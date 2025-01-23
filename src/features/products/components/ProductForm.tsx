@@ -41,11 +41,13 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         {
             label: 'Комментарий',
             name: 'comment',
+            required: true,
             type: 'textarea',
         },
         {
             label: 'Ссылки на товар',
             name: 'storeLinks',
+            required: true,
             type: 'button-store-links',
         },
     ]

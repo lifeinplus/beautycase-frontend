@@ -29,12 +29,14 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
         {
             label: 'Шаги',
             name: 'steps',
+            required: true,
             rows: 10,
             type: 'textarea-steps',
         },
         {
             label: 'Продукты',
             name: 'selectedProductIds',
+            required: true,
             type: 'button-products',
         },
     ]

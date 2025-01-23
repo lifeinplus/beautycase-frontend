@@ -1,6 +1,6 @@
 export * from './components/ToolCard'
 export * from './components/ToolForm'
-export * from './components/ToolsList'
+export * from './components/Tools'
 
 export * from './pages/ToolAddPage'
 export * from './pages/ToolDetailsPage'

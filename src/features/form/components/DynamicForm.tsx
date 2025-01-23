@@ -39,7 +39,7 @@ const renderField = <T extends Record<string, any>>(
 
     if (type === 'textarea') {
         return (
-            <Label key={name as string} text={label}>
+            <Label key={name as string} required={required} text={label}>
                 <textarea
                     className="form-input peer"
                     name={name as string}
@@ -63,7 +63,7 @@ const renderField = <T extends Record<string, any>>(
         }
 
         return (
-            <Label key={name as string} text={label}>
+            <Label key={name as string} required={required} text={label}>
                 <textarea
                     className="form-input"
                     name={name as string}
@@ -80,7 +80,7 @@ const renderField = <T extends Record<string, any>>(
     if (type === 'button-store-links') {
         return (
             <div key={name as string}>
-                <Label text={label} />
+                <Label required={required} text={label} />
                 <button
                     className="form-button-select"
                     onClick={() => navigate(`/stores/links/add`)}
@@ -96,7 +96,7 @@ const renderField = <T extends Record<string, any>>(
     if (type === 'button-products') {
         return (
             <div key={name as string}>
-                <Label text={label} />
+                <Label required={required} text={label} />
                 <button
                     className="form-button-select"
                     onClick={() => navigate(`/products/selection`)}
@@ -112,7 +112,7 @@ const renderField = <T extends Record<string, any>>(
     if (type === 'button-stages') {
         return (
             <div key={name as string}>
-                <Label text={label} />
+                <Label required={required} text={label} />
                 <button
                     className="form-button-select"
                     onClick={() => navigate(`/stages/selection`)}
@@ -128,7 +128,7 @@ const renderField = <T extends Record<string, any>>(
     if (type === 'button-tools') {
         return (
             <div key={name as string}>
-                <Label text={label} />
+                <Label required={required} text={label} />
                 <button
                     className="form-button-select"
                     onClick={() => path && navigate(path)}
@@ -143,7 +143,7 @@ const renderField = <T extends Record<string, any>>(
 
     if (type === 'select') {
         return (
-            <Label key={name as string} text={label}>
+            <Label key={name as string} required={required} text={label}>
                 <div className="grid">
                     <ChevronDownIcon className="form-select-icon" />
                     <select
@@ -167,7 +167,7 @@ const renderField = <T extends Record<string, any>>(
     }
 
     return (
-        <Label key={name as string} text={label}>
+        <Label key={name as string} required={required} text={label}>
             <input
                 className="form-input peer"
                 name={name as string}

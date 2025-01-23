@@ -24,7 +24,7 @@ export const Footer = () => (
 
         <section className="mx-auto max-w-4xl p-4">
             <p>
-                v5.7.0 &copy; <span id="year">2025</span> Beautycase
+                v6.0.0 &copy; <span id="year">2025</span> Beautycase
             </p>
         </section>
     </footer>

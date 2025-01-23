@@ -1,29 +1,29 @@
 import heic2any from 'heic2any'
-import { useState } from 'react'
-import { Controller } from 'react-hook-form'
+import { ChangeEvent, useState } from 'react'
+import { UseFormRegisterReturn } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
+import { getErrorMessage } from '../../../utils'
 import { ImagePreview, Label } from '../../form'
 
 interface FileSectionProps {
-    control: any
     label: string
-    name: string
-    accept?: string
+    register: UseFormRegisterReturn
     description?: string
     required?: boolean
 }
 
 export const FileSection = ({
-    control,
     label,
-    name,
-    accept = 'image/*,.heic',
+    register,
     description,
     required = false,
 }: FileSectionProps) => {
     const [fileUrl, setFileUrl] = useState<string>()
 
-    const handleMakeupBagPhoto = async (file: File) => {
+    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+
         if (!file) return
 
         if (file.type === 'image/heic' || file.name.endsWith('.heic')) {
@@ -40,48 +40,31 @@ export const FileSection = ({
                 )
 
                 setFileUrl(URL.createObjectURL(convertedFile))
-                return convertedFile
             } catch (error) {
-                console.error('Failed to convert HEIC file:', error)
-                return
+                console.error(error)
+                toast.error(getErrorMessage(error))
             }
         } else {
             setFileUrl(URL.createObjectURL(file))
-            return file
         }
     }
 
     return (
-        <Controller
-            control={control}
-            name={name}
-            render={({ field: { value, onChange, ...field } }) => (
-                <div>
-                    <Label text={label} />
+        <div>
+            <Label text={label} />
 
-                    <input
-                        {...field}
-                        type="file"
-                        accept={accept}
-                        required={required}
-                        className="form-input"
-                        onChange={async (e) => {
-                            const file = e.target.files?.[0]
-                            if (file) {
-                                const processedFile =
-                                    await handleMakeupBagPhoto(file)
-                                onChange(processedFile)
-                            }
-                        }}
-                    />
+            <input
+                {...register}
+                accept="image/*,.heic"
+                className="form-input"
+                onChange={handleChange}
+                required={required}
+                type="file"
+            />
 
-                    {description && (
-                        <p className="form-description">{description}</p>
-                    )}
+            {description && <p className="form-description">{description}</p>}
 
-                    {fileUrl && <ImagePreview url={fileUrl} />}
-                </div>
-            )}
-        />
+            {fileUrl && <ImagePreview url={fileUrl} />}
+        </div>
     )
 }

@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, Header, Hero } from '../../../components'
-import { getErrorMessage } from '../../../utils'
+import { appendToFormData, getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
     FileSection,
@@ -22,7 +22,6 @@ export const QuestionnairePage = () => {
     const navigate = useNavigate()
 
     const {
-        control,
         register,
         reset,
         handleSubmit,
@@ -33,14 +32,8 @@ export const QuestionnairePage = () => {
 
     const [addQuestionnaire] = useAddQuestionnaireMutation()
 
-    const onSubmit = async (data: any) => {
-        console.log(data)
-
-        const formData = new FormData()
-
-        formData.append('makeupBagPhoto', data.makeupBagPhoto)
-        formData.append('makeupBag', data.makeupBag)
-        formData.append('name', data.name)
+    const onSubmit = async (data: Questionnaire) => {
+        const formData = appendToFormData(data)
 
         try {
             await addQuestionnaire(formData).unwrap()
@@ -112,9 +105,8 @@ export const QuestionnairePage = () => {
                             />
 
                             <FileSection
-                                control={control}
                                 label={questions.makeupBagPhoto.label}
-                                name="makeupBagPhoto"
+                                register={register('makeupBagPhoto')}
                             />
 
                             <CheckboxSection

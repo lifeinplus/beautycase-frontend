@@ -1,6 +1,10 @@
 const config = {
-    prod: import.meta.env.PROD,
     apiBaseUrl: import.meta.env.VITE_API_BASE_URL,
+    cloudinary: {
+        cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+        defaultThumbnailName: import.meta.env.VITE_DEFAULT_THUMBNAIL_NAME,
+    },
+    prod: import.meta.env.PROD,
 }
 
 export default config

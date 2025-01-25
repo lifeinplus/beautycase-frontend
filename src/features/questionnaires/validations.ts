@@ -30,7 +30,18 @@ export const schema = yup.object({
         .default(undefined),
     instagram: yup.string().transform(transformEmpty),
     makeupBag: yup.string().required('Укажите, что сейчас есть в косметичке'),
-    makeupBagPhoto: yup.mixed(),
+    makeupBagPhotoId: yup.string(),
+    makeupBagPhotoFile: yup
+        .mixed<File>()
+        .test('file-types', 'Неподдерживаемый тип файла', (file) => {
+            if (!file) return true
+            return ['image/jpeg', 'image/png', 'image/heic'].includes(file.type)
+        })
+        .test('file-sizes', 'Размер файла превышает ограничение', (file) => {
+            if (!file) return true
+            return file.size <= 5 * 1024 * 1024
+        })
+        .optional(),
     makeupTime: yup.string().transform(transformEmpty),
     name: yup.string().required('Укажите ваше имя'),
     oilyShine: yup.string().transform(transformEmpty),

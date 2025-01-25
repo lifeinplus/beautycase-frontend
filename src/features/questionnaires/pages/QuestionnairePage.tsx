@@ -22,6 +22,7 @@ export const QuestionnairePage = () => {
     const navigate = useNavigate()
 
     const {
+        control,
         register,
         reset,
         handleSubmit,
@@ -54,13 +55,14 @@ export const QuestionnairePage = () => {
                     <Hero
                         headline="Анкета"
                         byline="Индивидуальный подбор косметички"
-                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1734995126/Questionnaire_cqv0mc.jpg"
+                        imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1734995126/Questionnaire_cqv0mc.jpg"
                         content="Привет! Спасибо за выбор моей услуги. Для того, чтобы я могла максимально точно подобрать то, что нужно именно вам, прошу ответить на некоторые вопросы."
                     />
 
                     <form
-                        onSubmit={handleSubmit(onSubmit)}
                         className="form-questionnaire"
+                        encType="multipart/form-data"
+                        onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
                             <p className="text-sm text-rose-500 dark:text-rose-400">
@@ -105,8 +107,10 @@ export const QuestionnairePage = () => {
                             />
 
                             <FileSection
-                                label={questions.makeupBagPhoto.label}
-                                register={register('makeupBagPhoto')}
+                                control={control}
+                                error={errors.makeupBagPhotoFile}
+                                label={questions.makeupBagPhotoFile.label}
+                                name="makeupBagPhotoFile"
                             />
 
                             <CheckboxSection

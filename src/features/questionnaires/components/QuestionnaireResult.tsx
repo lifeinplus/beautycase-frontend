@@ -20,7 +20,7 @@ const fields: (keyof Questionnaire)[] = [
     'city',
     'age',
     'makeupBag',
-    'makeupBagPhoto',
+    'makeupBagPhotoId',
     'procedures',
     'skinType',
     'allergies',
@@ -79,7 +79,7 @@ export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
                     <div key={f} className="dl-grid">
                         <dt className="dt">{questions[f]?.label}</dt>
                         <dd className="dd">
-                            {f === 'makeupBagPhoto'
+                            {f === 'makeupBagPhotoId'
                                 ? renderImage(data?.[f])
                                 : renderText(data?.[f], questions[f]?.options)}
                         </dd>

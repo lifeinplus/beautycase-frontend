@@ -145,7 +145,7 @@ export const MakeupBagPage = () => {
                     <Hero
                         headline={categoryName}
                         byline="Индивидуальный подбор продуктов"
-                        imgUrl="https://res.cloudinary.com/dtx4nqyeb/image/upload/v1732162378/title_gm1yla.png"
+                        imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png"
                     />
 
                     <DataWrapper

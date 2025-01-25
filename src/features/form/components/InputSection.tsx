@@ -1,30 +1,31 @@
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
+
 import { Label } from './Label'
 
 interface InputSectionProps {
-    description?: string
-    error?: FieldError
     label: string
     register: UseFormRegisterReturn
-    required?: boolean
     type: string
+    description?: string
+    error?: FieldError
+    required?: boolean
 }
 
 export const InputSection = ({
-    description,
-    error,
     label,
     register,
-    required,
     type,
+    description,
+    error,
+    required,
 }: InputSectionProps) => (
     <div>
         <Label required={required} text={label}>
             <input
+                {...register}
                 className={`form-input ${error ? 'text-rose-500 dark:text-rose-400' : ''}`}
                 placeholder={label}
                 type={type}
-                {...register}
             />
         </Label>
 

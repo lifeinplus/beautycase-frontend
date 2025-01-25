@@ -29,7 +29,10 @@ export const questions: Questions = {
         label: 'Содержимое косметички',
         description: 'Что сейчас уже есть в косметичке?',
     },
-    makeupBagPhoto: {
+    makeupBagPhotoId: {
+        label: 'Фото косметички',
+    },
+    makeupBagPhotoFile: {
         label: 'Фото косметички',
     },
     procedures: {

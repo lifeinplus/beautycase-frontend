@@ -1,30 +1,33 @@
 import heic2any from 'heic2any'
-import { ChangeEvent, useState } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { useState } from 'react'
+import { Control, Controller, FieldError } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { getErrorMessage } from '../../../utils'
 import { ImagePreview, Label } from '../../form'
+import { type Questionnaire } from '../../questionnaires'
 
 interface FileSectionProps {
+    control: Control<Questionnaire, any>
     label: string
-    register: UseFormRegisterReturn
+    name: keyof Questionnaire
     description?: string
+    error?: FieldError
     required?: boolean
 }
 
 export const FileSection = ({
+    control,
     label,
-    register,
+    name,
     description,
+    error,
     required = false,
 }: FileSectionProps) => {
     const [fileUrl, setFileUrl] = useState<string>()
 
-    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]
-
-        if (!file) return
+    const handlePreview = async (file: File) => {
+        let convertedFile
 
         if (file.type === 'image/heic' || file.name.endsWith('.heic')) {
             try {
@@ -33,36 +36,52 @@ export const FileSection = ({
                     toType: 'image/jpeg',
                 })
 
-                const convertedFile = new File(
+                convertedFile = new File(
                     [convertedBlob as Blob],
                     file.name.replace('.heic', '.jpeg'),
                     { type: 'image/jpeg' }
                 )
-
-                setFileUrl(URL.createObjectURL(convertedFile))
             } catch (error) {
                 console.error(error)
                 toast.error(getErrorMessage(error))
             }
-        } else {
-            setFileUrl(URL.createObjectURL(file))
         }
+
+        setFileUrl(URL.createObjectURL(convertedFile || file))
     }
 
     return (
         <div>
             <Label text={label} />
 
-            <input
-                {...register}
-                accept="image/*,.heic"
-                className="form-input"
-                onChange={handleChange}
-                required={required}
-                type="file"
+            <Controller
+                control={control}
+                name={name}
+                render={({ field: { value, onChange, ...field } }) => (
+                    <input
+                        {...field}
+                        accept="image/*,.heic"
+                        className={`form-input ${error ? 'text-rose-500 dark:text-rose-400' : ''}`}
+                        onChange={async (e) => {
+                            const file = e.target.files?.[0]
+                            if (file) {
+                                onChange(file)
+                                handlePreview(file)
+                            }
+                        }}
+                        required={required}
+                        type="file"
+                    />
+                )}
             />
 
             {description && <p className="form-description">{description}</p>}
+
+            {error && (
+                <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
+                    {error.message}
+                </p>
+            )}
 
             {fileUrl && <ImagePreview url={fileUrl} />}
         </div>

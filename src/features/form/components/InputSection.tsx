@@ -17,7 +17,7 @@ export const InputSection = ({
     type,
     description,
     error,
-    required,
+    required = false,
 }: InputSectionProps) => (
     <div>
         <Label required={required} text={label}>

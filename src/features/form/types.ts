@@ -1,10 +1,11 @@
+export interface SelectOption {
+    text: string
+    value: string
+}
+
 export interface FieldConfig<T> {
     label: string
     name: keyof T
-    options?: { text: string; value: string }[]
-    path?: string
-    required?: boolean
-    rows?: number
     type:
         | 'button-products'
         | 'button-stages'
@@ -14,4 +15,9 @@ export interface FieldConfig<T> {
         | 'text'
         | 'textarea'
         | 'textarea-steps'
+    options?: SelectOption[]
+    path?: string
+    preview?: boolean
+    required?: boolean
+    rows?: number
 }

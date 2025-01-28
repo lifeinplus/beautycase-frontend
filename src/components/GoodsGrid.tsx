@@ -6,7 +6,7 @@ interface Good {
     _id?: string
     name: string
     image: string
-    brandId?: {
+    brand?: {
         name: string
     }
 }
@@ -49,7 +49,7 @@ export const GoodsGrid = <T extends Good>({
                         {g.name}
                     </h6>
                     <p className="mt-2 text-center text-sm text-neutral-500 dark:text-neutral-400">
-                        {g.brandId?.name}
+                        {g.brand?.name}
                     </p>
                 </div>
             ))}

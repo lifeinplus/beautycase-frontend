@@ -2,11 +2,12 @@ import { type Brand } from '../brands'
 import { type StoreLink } from '../stores'
 
 export interface Product {
-    _id: string
-    name: string
-    brandId?: Pick<Brand, '_id' | 'name'>
-    image: string
-    shade: string
+    _id?: string
+    brand?: Pick<Brand, '_id' | 'name'>
+    brandId: string
     comment: string
-    storeLinks?: StoreLink[]
+    image: string
+    name: string
+    shade?: string
+    storeLinks: StoreLink[]
 }

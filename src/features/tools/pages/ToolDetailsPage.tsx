@@ -15,7 +15,7 @@ export const ToolDetailsPage = () => {
             topPanelTitle="Инструмент"
             redirectPath="/tools"
             title={data?.name}
-            subtitle={data?.brandId.name}
+            subtitle={data?.brand?.name}
             deleteMutation={useDeleteToolMutation}
             mediaContent={
                 <section className="content-image">

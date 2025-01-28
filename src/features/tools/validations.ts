@@ -1,10 +1,10 @@
 import { array, object, string } from 'yup'
 
-export const productSchema = object({
+export const toolSchema = object({
     brandId: string().required('Выберите бренд'),
-    name: string().required('Укажите название продукта'),
+    name: string().required('Укажите название инструмента'),
     image: string().required('Укажите ссылку на изображение'),
-    shade: string().optional(),
+    number: string().optional(),
     comment: string().required('Укажите комментарий'),
     storeLinks: array()
         .min(1, 'Добавьте ссылку на товар')

@@ -22,8 +22,13 @@ import {
     TextareaSection,
     type FieldConfig,
 } from '../../form'
-import { StoreLink } from '../../stores'
-import { schema, type Product } from '../../products'
+import { type StoreLink } from '../../stores'
+import { productSchema, type Product } from '../../products'
+
+interface ProductFormProps {
+    title: string
+    onSubmit: (data: Product) => void
+}
 
 const renderField = (
     field: FieldConfig<Product>,
@@ -95,11 +100,6 @@ const renderField = (
     )
 }
 
-interface ProductFormProps {
-    title: string
-    onSubmit: (data: Product) => void
-}
-
 export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const navigate = useNavigate()
 
@@ -113,7 +113,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         handleSubmit,
         formState: { errors },
     } = useForm<Product>({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(productSchema),
     })
 
     useEffect(() => {

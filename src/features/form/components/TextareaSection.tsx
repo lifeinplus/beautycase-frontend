@@ -1,5 +1,6 @@
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
+import { getYouTubeThumbnail } from '../../../utils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
@@ -33,15 +34,19 @@ export const TextareaSection = ({
                 rows={rows}
             />
 
-            {preview && value && <ImagePreview url={value} />}
+            {preview && value && (
+                <ImagePreview
+                    url={
+                        register.name === 'videoUrl'
+                            ? getYouTubeThumbnail(value)
+                            : value
+                    }
+                />
+            )}
         </Label>
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && (
-            <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
-                {error.message}
-            </p>
-        )}
+        {error && <p className="form-error">{error.message}</p>}
     </div>
 )

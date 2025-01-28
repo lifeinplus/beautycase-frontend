@@ -7,9 +7,8 @@ export interface FieldConfig<T> {
     label: string
     name: keyof T
     type:
-        | 'button-products'
+        | 'button-navigate'
         | 'button-stages'
-        | 'button-store-links'
         | 'button-tools'
         | 'select'
         | 'text'

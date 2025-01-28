@@ -6,6 +6,6 @@ export interface Lesson {
     shortDescription: string
     videoUrl: string
     fullDescription: string
-    productIds?: Product[]
-    selectedProductIds?: string[]
+    products?: Product[]
+    selectedProductIds: string[]
 }

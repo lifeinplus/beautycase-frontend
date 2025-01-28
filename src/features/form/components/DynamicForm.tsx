@@ -77,28 +77,12 @@ const renderField = <T extends Record<string, any>>(
         )
     }
 
-    if (type === 'button-store-links') {
+    if (type === 'button-navigate') {
         return (
             <div key={name as string}>
                 <Label required={required} text={label} />
                 <button
-                    className="form-button-select"
-                    onClick={() => navigate(`/stores/links/add`)}
-                    type="button"
-                >
-                    <span>{generateButtonText(value)}</span>
-                    <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                </button>
-            </div>
-        )
-    }
-
-    if (type === 'button-products') {
-        return (
-            <div key={name as string}>
-                <Label required={required} text={label} />
-                <button
-                    className="form-button-select"
+                    className="form-button-navigate"
                     onClick={() => navigate(`/products/selection`)}
                     type="button"
                 >
@@ -114,7 +98,7 @@ const renderField = <T extends Record<string, any>>(
             <div key={name as string}>
                 <Label required={required} text={label} />
                 <button
-                    className="form-button-select"
+                    className="form-button-navigate"
                     onClick={() => navigate(`/stages/selection`)}
                     type="button"
                 >
@@ -130,7 +114,7 @@ const renderField = <T extends Record<string, any>>(
             <div key={name as string}>
                 <Label required={required} text={label} />
                 <button
-                    className="form-button-select"
+                    className="form-button-navigate"
                     onClick={() => path && navigate(path)}
                     type="button"
                 >

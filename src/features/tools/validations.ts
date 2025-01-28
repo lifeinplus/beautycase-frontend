@@ -7,6 +7,6 @@ export const toolSchema = object({
     number: string().optional(),
     comment: string().required('Укажите комментарий'),
     storeLinks: array()
-        .min(1, 'Добавьте ссылку на товар')
-        .required('Добавьте ссылку на товар'),
+        .min(1, 'Добавьте ссылки на инструмент')
+        .required('Добавьте ссылки на инструмент'),
 })

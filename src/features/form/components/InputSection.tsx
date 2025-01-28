@@ -31,10 +31,6 @@ export const InputSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && (
-            <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
-                {error.message}
-            </p>
-        )}
+        {error && <p className="form-error">{error.message}</p>}
     </div>
 )

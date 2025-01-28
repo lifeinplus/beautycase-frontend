@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { useGetBrandsQuery } from '../../brands'
 import {
-    ButtonSelectSection,
+    ButtonNavigateSection,
     InputSection,
     selectFormData,
     SelectSection,
@@ -43,18 +43,19 @@ const renderField = (
 
     const error = errors[name] as FieldError
 
-    if (type === 'button-store-links') {
+    if (type === 'button-navigate') {
+        const value = watch(name) as StoreLink[] | undefined
         return (
-            <ButtonSelectSection
+            <ButtonNavigateSection
                 key={name}
-                error={error}
                 handleNavigate={() => {
                     dispatch(setFormData(watch()))
                     if (path) navigate(path)
                 }}
                 label={label}
+                text={value ? `Добавлено: ${value.length}` : 'Добавить'}
+                error={error}
                 required={required}
-                value={watch(name) as StoreLink[]}
             />
         )
     }
@@ -160,7 +161,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
             name: 'storeLinks',
             path: '/stores/links/add',
             required: true,
-            type: 'button-store-links',
+            type: 'button-navigate',
         },
     ]
 

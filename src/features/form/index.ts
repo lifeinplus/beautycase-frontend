@@ -1,4 +1,4 @@
-export * from './components/ButtonSelectSection'
+export * from './components/ButtonNavigateSection'
 export * from './components/CheckboxItem'
 export * from './components/CheckboxSection'
 export * from './components/DynamicForm'

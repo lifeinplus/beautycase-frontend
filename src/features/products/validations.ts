@@ -7,6 +7,6 @@ export const productSchema = object({
     shade: string().optional(),
     comment: string().required('Укажите комментарий'),
     storeLinks: array()
-        .min(1, 'Добавьте ссылку на товар')
-        .required('Добавьте ссылку на товар'),
+        .min(1, 'Добавьте ссылки на продукт')
+        .required('Добавьте ссылки на продукт'),
 })

@@ -37,7 +37,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
             label: 'Продукты',
             name: 'selectedProductIds',
             required: true,
-            type: 'button-products',
+            type: 'button-navigate',
         },
     ]
 

@@ -25,16 +25,16 @@ const stagesApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: () => [{ type: 'Stage', id: 'LIST' }],
         }),
-        editStage: builder.mutation<Stage, { id: string } & Partial<Stage>>({
+        editStage: builder.mutation<Stage, Stage>({
             query: ({
-                id,
+                _id,
                 title,
                 subtitle,
                 image,
                 steps,
                 selectedProductIds,
             }) => ({
-                url: `/stages/${id}`,
+                url: `/stages/${_id}`,
                 method: 'PUT',
                 body: {
                     title,

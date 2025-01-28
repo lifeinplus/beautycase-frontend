@@ -13,7 +13,6 @@ export interface FieldConfig<T> {
         | 'select'
         | 'text'
         | 'textarea'
-        | 'textarea-steps'
     options?: SelectOption[]
     path?: string
     preview?: boolean

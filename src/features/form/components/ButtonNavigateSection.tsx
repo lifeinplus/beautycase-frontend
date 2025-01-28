@@ -24,7 +24,7 @@ export const ButtonNavigateSection = ({
         <div>
             <Label required={required} text={label}>
                 <button
-                    className={`form-button-navigate ${error ? 'border-rose-500 dark:border-rose-400' : ''}`}
+                    className={`form-button-navigate ${error ? 'border-error' : ''}`}
                     onClick={handleNavigate}
                     type="button"
                 >

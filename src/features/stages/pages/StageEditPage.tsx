@@ -30,7 +30,8 @@ export const StageEditPage = () => {
                     subtitle: data.subtitle,
                     image: data.image,
                     steps: data.steps,
-                    selectedProductIds: data?.productIds?.map((p) => p._id!),
+                    stepsText: data.steps?.join('\n\n'),
+                    selectedProductIds: data?.products?.map((p) => p._id!),
                 })
             )
         }
@@ -39,8 +40,9 @@ export const StageEditPage = () => {
     const handleEditStage = async (stage: Stage) => {
         try {
             await editStage({
-                id: id!,
                 ...stage,
+                _id: id!,
+                steps: stage.stepsText.split('\n\n'),
             }).unwrap()
 
             dispatch(clearFormData())

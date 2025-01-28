@@ -23,7 +23,7 @@ export const InputSection = ({
         <Label required={required} text={label}>
             <input
                 {...register}
-                className={`form-input ${error ? 'text-rose-500 dark:text-rose-400' : ''}`}
+                className={`form-input ${error ? 'border-error' : ''}`}
                 placeholder={label}
                 type={type}
             />

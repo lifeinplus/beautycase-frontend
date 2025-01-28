@@ -29,7 +29,7 @@ export const TextareaSection = ({
         <Label required={required} text={label}>
             <textarea
                 {...register}
-                className={`form-input peer ${error ? 'border-rose-500 dark:border-rose-400' : ''}`}
+                className={`form-input peer ${error ? 'border-error' : ''}`}
                 placeholder={label}
                 rows={rows}
             />

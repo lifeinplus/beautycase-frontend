@@ -29,7 +29,7 @@ export const SelectSection = ({
                 <ChevronDownIcon className="form-select-icon" />
                 <select
                     {...register}
-                    className={`form-select ${error ? 'border-rose-500 dark:border-rose-400' : ''}`}
+                    className={`form-select ${error ? 'border-error' : ''}`}
                     value={value}
                 >
                     <option value="" disabled>

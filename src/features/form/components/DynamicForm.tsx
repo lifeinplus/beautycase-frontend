@@ -33,7 +33,6 @@ const renderField = <T extends Record<string, any>>(
     ) => void
 ) => {
     const navigate = useNavigate()
-    const dispatch = useAppDispatch()
 
     const { label, name, options, path, required, rows, type } = field
 
@@ -50,29 +49,6 @@ const renderField = <T extends Record<string, any>>(
                     value={value}
                 />
                 {name === 'image' && value && <ImagePreview url={value} />}
-            </Label>
-        )
-    }
-
-    if (type === 'textarea-steps') {
-        const joined = value ? value.join('\n\n') : ''
-
-        const handleTextareaSteps = (e: ChangeEvent<HTMLTextAreaElement>) => {
-            const value = e.target.value.split('\n\n')
-            dispatch(setFormData({ [name]: value }))
-        }
-
-        return (
-            <Label key={name as string} required={required} text={label}>
-                <textarea
-                    className="form-input"
-                    name={name as string}
-                    onChange={handleTextareaSteps}
-                    placeholder={label}
-                    required={required}
-                    rows={rows}
-                    value={joined}
-                />
             </Label>
         )
     }

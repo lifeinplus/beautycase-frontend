@@ -10,6 +10,10 @@
     @apply mt-2 text-sm text-rose-500 dark:text-rose-400;
 }
 
+.border-error {
+    @apply border-rose-500 dark:border-rose-400;
+}
+
 .form-questionnaire {
     @apply space-y-6;
 }

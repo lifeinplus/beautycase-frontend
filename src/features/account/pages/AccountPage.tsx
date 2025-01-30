@@ -50,7 +50,7 @@ const renderContent = (data: UserResult | undefined) => {
                                 />
                                 <div className="ml-4 flex min-w-0 flex-1 gap-2">
                                     <span className="truncate font-medium">
-                                        {bag.categoryId.name}
+                                        {bag.category?.name}
                                     </span>
                                 </div>
                             </div>

@@ -8,3 +8,4 @@ export * from './pages/LessonsGalleryPage'
 
 export * from './lessonsApiSlice'
 export * from './types'
+export * from './validations'

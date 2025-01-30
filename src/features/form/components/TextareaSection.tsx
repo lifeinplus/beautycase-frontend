@@ -1,27 +1,52 @@
-import { type UseFormRegisterReturn } from 'react-hook-form'
+import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
+import { getYouTubeThumbnail } from '../../../utils'
+import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
 interface TextareaSectionProps {
-    description?: string
     label: string
     register: UseFormRegisterReturn
+    description?: string
+    error?: FieldError
+    preview?: boolean
+    required?: boolean
+    rows?: number
+    value?: string
 }
 
 export const TextareaSection = ({
-    description,
     label,
     register,
+    description,
+    error,
+    preview = false,
+    required = false,
+    rows,
+    value = '',
 }: TextareaSectionProps) => (
     <div>
-        <Label text={label}>
+        <Label required={required} text={label}>
             <textarea
-                className={`form-input`}
-                placeholder={label}
                 {...register}
+                className={`form-input peer ${error ? 'border-error' : ''}`}
+                placeholder={label}
+                rows={rows}
             />
+
+            {preview && value && (
+                <ImagePreview
+                    url={
+                        register.name === 'videoUrl'
+                            ? getYouTubeThumbnail(value)
+                            : value
+                    }
+                />
+            )}
         </Label>
 
         {description && <p className="form-description">{description}</p>}
+
+        {error && <p className="form-error">{error.message}</p>}
     </div>
 )

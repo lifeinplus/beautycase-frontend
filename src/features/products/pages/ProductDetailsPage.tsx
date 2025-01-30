@@ -18,7 +18,7 @@ export const ProductDetailsPage = () => {
             topPanelTitle="Продукт"
             redirectPath="/products"
             title={data?.name}
-            subtitle={data?.brandId?.name}
+            subtitle={data?.brand?.name}
             deleteMutation={useDeleteProductMutation}
             mediaContent={
                 <section className="content-image">
@@ -26,7 +26,7 @@ export const ProductDetailsPage = () => {
                         <img
                             alt={data?.name}
                             className="img"
-                            src={data?.image}
+                            src={data?.imageUrl}
                         />
                     </div>
                 </section>

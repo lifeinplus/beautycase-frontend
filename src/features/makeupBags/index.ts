@@ -9,3 +9,4 @@ export * from './pages/MakeupBagPage'
 
 export * from './makeupBagsApiSlice'
 export * from './types'
+export * from './validations'

@@ -27,8 +27,8 @@ export const ToolEditPage = () => {
             dispatch(
                 setFormData({
                     name: data.name,
-                    brandId: data.brandId._id,
-                    image: data.image,
+                    brandId: data.brand?._id,
+                    imageUrl: data.imageUrl,
                     storeLinks: data.storeLinks,
                     number: data.number,
                     comment: data.comment,

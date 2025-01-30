@@ -27,8 +27,8 @@ export const ProductEditPage = () => {
             dispatch(
                 setFormData({
                     name: data.name,
-                    brandId: data.brandId?._id,
-                    image: data.image,
+                    brandId: data.brand?._id,
+                    imageUrl: data.imageUrl,
                     shade: data.shade,
                     comment: data.comment,
                     storeLinks: data.storeLinks,

@@ -6,10 +6,12 @@ import { type User } from '../users'
 export interface MakeupBag {
     _id?: string
     createdAt?: string
-    categoryId: Pick<Category, '_id' | 'name'>
-    clientId: Pick<User, '_id' | 'username'>
-    selectedStageIds: string[]
-    selectedToolIds: string[]
-    stageIds: Stage[]
-    toolIds: Tool[]
+    category?: Pick<Category, '_id' | 'name'>
+    categoryId: string
+    client?: Pick<User, '_id' | 'username'>
+    clientId: string
+    stages?: Stage[]
+    stageIds: string[]
+    tools?: Tool[]
+    toolIds: string[]
 }

@@ -15,7 +15,7 @@ export const ToolSelectionPage = () => {
     const { data: tools, isLoading, error } = useGetToolsQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
-        const initialIds = formData.selectedToolIds || []
+        const initialIds = formData.toolIds || []
         return new Map(
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
@@ -52,7 +52,7 @@ export const ToolSelectionPage = () => {
         dispatch(
             setFormData({
                 ...formData,
-                selectedToolIds: Array.from(orderedIds.keys()),
+                toolIds: Array.from(orderedIds.keys()),
             })
         )
         navigate(-1)
@@ -69,7 +69,7 @@ export const ToolSelectionPage = () => {
                     </section>
 
                     <section className="page-gallery__container">
-                        {tools?.map(({ _id, name, image }) => {
+                        {tools?.map(({ _id, name, imageUrl }) => {
                             const isSelected = orderedIds.has(_id!)
                             const order = orderedIds.get(_id!)
 
@@ -80,9 +80,9 @@ export const ToolSelectionPage = () => {
                                     className="img-container img-container-square"
                                 >
                                     <img
-                                        src={image}
                                         alt={name}
                                         className="img img-sm-rounded"
+                                        src={imageUrl}
                                     />
                                     <span
                                         className={`img-order ${

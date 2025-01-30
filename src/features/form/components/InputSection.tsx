@@ -17,13 +17,13 @@ export const InputSection = ({
     type,
     description,
     error,
-    required,
+    required = false,
 }: InputSectionProps) => (
     <div>
         <Label required={required} text={label}>
             <input
                 {...register}
-                className={`form-input ${error ? 'text-rose-500 dark:text-rose-400' : ''}`}
+                className={`form-input ${error ? 'border-error' : ''}`}
                 placeholder={label}
                 type={type}
             />
@@ -31,10 +31,6 @@ export const InputSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && (
-            <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
-                {error.message}
-            </p>
-        )}
+        {error && <p className="form-error">{error.message}</p>}
     </div>
 )

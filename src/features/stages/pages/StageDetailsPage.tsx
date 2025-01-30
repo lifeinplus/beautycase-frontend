@@ -25,7 +25,7 @@ export const StageDetailsPage = () => {
             redirectPath="/stages"
             title={data?.title}
             subtitle={data?.subtitle}
-            description={data?.steps.reduce((p, c) => p + c, '')}
+            description={data?.steps?.reduce((p, c) => p + c, '')}
             deleteMutation={useDeleteStageMutation}
             mediaContent={
                 <section className="content-image">
@@ -33,7 +33,7 @@ export const StageDetailsPage = () => {
                         <img
                             alt={data?.title}
                             className="img"
-                            src={data?.image}
+                            src={data?.imageUrl}
                         />
                     </div>
                 </section>
@@ -42,7 +42,7 @@ export const StageDetailsPage = () => {
                 <section className="content-description">
                     <p className="my-2 font-bold sm:text-left">Шаги</p>
                     <ul className="ms-5 list-outside list-decimal">
-                        {data?.steps.map((step: string, index: number) => (
+                        {data?.steps?.map((step: string, index: number) => (
                             <li key={index}>{step}</li>
                         ))}
                     </ul>
@@ -50,7 +50,7 @@ export const StageDetailsPage = () => {
             }
             additionalContent={
                 <div className="page-gallery__container">
-                    {data?.productIds?.map((product: Product) => (
+                    {data?.products?.map((product: Product) => (
                         <div
                             key={product._id}
                             className="img-container img-container-square"
@@ -59,7 +59,7 @@ export const StageDetailsPage = () => {
                             <img
                                 alt={product.name}
                                 className="img img-sm-rounded"
-                                src={product.image}
+                                src={product.imageUrl}
                             />
                         </div>
                     ))}

@@ -10,7 +10,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                 shortDescription,
                 videoUrl,
                 fullDescription,
-                selectedProductIds,
+                productIds,
             }) => ({
                 url: '/lessons/one',
                 method: 'POST',
@@ -19,7 +19,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                     shortDescription,
                     videoUrl,
                     fullDescription,
-                    selectedProductIds,
+                    productIds,
                 },
             }),
             invalidatesTags: ['Lesson'],
@@ -38,7 +38,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                 shortDescription,
                 title,
                 videoUrl,
-                selectedProductIds,
+                productIds,
             }) => ({
                 url: `/lessons/${id}`,
                 method: 'PUT',
@@ -47,7 +47,7 @@ export const lessonsApiSlice = apiSlice.injectEndpoints({
                     shortDescription,
                     title,
                     videoUrl,
-                    selectedProductIds,
+                    productIds,
                 },
             }),
             invalidatesTags: (_result, _error, lesson) => [

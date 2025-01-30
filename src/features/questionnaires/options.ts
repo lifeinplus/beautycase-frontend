@@ -240,16 +240,16 @@ export const options: Options = {
     ],
     skinTypes: [
         {
-            id: 'skin-type-normal',
-            label: 'Нормальная',
-            name: 'skinType',
-            value: 'normal',
-        },
-        {
             id: 'skin-type-dry',
             label: 'Сухая',
             name: 'skinType',
             value: 'dry',
+        },
+        {
+            id: 'skin-type-normal',
+            label: 'Нормальная',
+            name: 'skinType',
+            value: 'normal',
         },
         {
             id: 'skin-type-combination',
@@ -262,6 +262,12 @@ export const options: Options = {
             label: 'Жирная',
             name: 'skinType',
             value: 'oily',
+        },
+        {
+            id: 'skin-type-sensitive',
+            label: 'Чувствительная',
+            name: 'skinType',
+            value: 'sensitive',
         },
     ],
 }

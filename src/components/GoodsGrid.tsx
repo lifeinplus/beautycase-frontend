@@ -5,8 +5,8 @@ import { useScrollToElement } from '../hooks'
 interface Good {
     _id?: string
     name: string
-    image: string
-    brandId?: {
+    imageUrl: string
+    brand?: {
         name: string
     }
 }
@@ -42,14 +42,14 @@ export const GoodsGrid = <T extends Good>({
                         <img
                             alt={g.name}
                             className="h-full w-full rounded object-cover"
-                            src={g.image}
+                            src={g.imageUrl}
                         />
                     </div>
                     <h6 className="mt-4 text-center font-heading text-sm">
                         {g.name}
                     </h6>
                     <p className="mt-2 text-center text-sm text-neutral-500 dark:text-neutral-400">
-                        {g.brandId?.name}
+                        {g.brand?.name}
                     </p>
                 </div>
             ))}

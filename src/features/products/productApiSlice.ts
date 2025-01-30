@@ -29,14 +29,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 id,
                 name,
                 brandId,
-                image,
+                imageUrl,
                 shade,
                 comment,
                 storeLinks,
             }) => ({
                 url: `/products/${id}`,
                 method: 'PUT',
-                body: { name, brandId, image, shade, comment, storeLinks },
+                body: { name, brandId, imageUrl, shade, comment, storeLinks },
             }),
             invalidatesTags: (_result, _error, product) => [
                 { type: 'Product', id: product._id },

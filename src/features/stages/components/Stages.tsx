@@ -25,7 +25,7 @@ export const Stages = ({ stages }: StagesProps) => {
                             <img
                                 alt={stage.title}
                                 className="img"
-                                src={stage.image}
+                                src={stage.imageUrl}
                             />
                         </div>
                     </section>
@@ -33,16 +33,16 @@ export const Stages = ({ stages }: StagesProps) => {
                     <section className="px-4">
                         <p className="my-2 font-bold sm:text-left">Шаги</p>
                         <ul className="ms-5 list-outside list-decimal">
-                            {stage.steps.map((step: string, index: number) => (
+                            {stage.steps?.map((step: string, index: number) => (
                                 <li key={index}>{step}</li>
                             ))}
                         </ul>
                     </section>
 
-                    {stage.productIds && (
+                    {stage.products && (
                         <GoodsGrid
                             basePath="/products"
-                            goods={stage.productIds}
+                            goods={stage.products}
                         />
                     )}
                 </article>

@@ -14,7 +14,10 @@ export const StageAddPage = () => {
 
     const handleAddStage = async (stage: Stage) => {
         try {
-            const response = await addStage(stage).unwrap()
+            const response = await addStage({
+                ...stage,
+                steps: stage.stepsText.split('\n\n'),
+            }).unwrap()
             dispatch(clearFormData())
             navigate(`/stages/${response.id}`)
         } catch (error) {

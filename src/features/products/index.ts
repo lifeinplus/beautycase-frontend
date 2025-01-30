@@ -9,3 +9,4 @@ export * from './pages/ProductSelectionPage'
 
 export * from './productApiSlice'
 export * from './types'
+export * from './validations'

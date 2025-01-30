@@ -23,20 +23,14 @@ const makeupBagsApiSlice = apiSlice.injectEndpoints({
             MakeupBag,
             { id: string } & Partial<MakeupBag>
         >({
-            query: ({
-                id,
-                categoryId,
-                clientId,
-                selectedStageIds,
-                selectedToolIds,
-            }) => ({
+            query: ({ id, categoryId, clientId, stageIds, toolIds }) => ({
                 url: `/makeup-bags/${id}`,
                 method: 'PUT',
                 body: {
                     clientId,
                     categoryId,
-                    selectedStageIds,
-                    selectedToolIds,
+                    stageIds,
+                    toolIds,
                 },
             }),
             invalidatesTags: (_result, _error, makeupBag) => [

@@ -132,7 +132,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
         },
         {
             label: 'Продукты',
-            name: 'selectedProductIds',
+            name: 'productIds',
             path: '/products/selection',
             required: true,
             type: 'button-navigate',

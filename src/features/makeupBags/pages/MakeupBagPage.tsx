@@ -86,9 +86,9 @@ export const MakeupBagPage = () => {
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
-    const categoryName = data?.categoryId.name || 'Косметичка'
-    const stageIds = data?.stageIds || []
-    const toolIds = data?.toolIds || []
+    const categoryName = data?.category?.name || 'Косметичка'
+    const stages = data?.stages || []
+    const tools = data?.tools || []
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -151,12 +151,12 @@ export const MakeupBagPage = () => {
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
-                        data={[...stageIds, ...toolIds]}
+                        data={[...stages, ...tools]}
                         emptyMessage="Косметичка не найдена"
                     >
                         <>
-                            <Stages stages={stageIds} />
-                            <Tools tools={toolIds} />
+                            <Stages stages={stages} />
+                            <Tools tools={tools} />
                         </>
                     </DataWrapper>
                 </article>

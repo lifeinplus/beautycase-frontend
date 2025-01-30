@@ -5,7 +5,7 @@ export const lessonSchema = object({
     shortDescription: string().required('Укажите краткое описание'),
     videoUrl: string().required('Укажите ссылку на видео'),
     fullDescription: string().required('Укажите полное описание'),
-    selectedProductIds: array()
+    productIds: array()
         .min(1, 'Выберите продукты')
         .required('Выберите продукты'),
 })

@@ -1,7 +1,6 @@
 export * from './components/ButtonNavigateSection'
 export * from './components/CheckboxItem'
 export * from './components/CheckboxSection'
-export * from './components/DynamicForm'
 export * from './components/FileSection'
 export * from './components/ImagePreview'
 export * from './components/InputSection'

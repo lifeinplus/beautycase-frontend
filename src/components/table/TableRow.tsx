@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 interface TableRowProps {
     cellClasses?: string[]
-    cellData: (string | number)[]
+    cellData: (string | number | undefined)[]
     redirectPath: string
 }
 

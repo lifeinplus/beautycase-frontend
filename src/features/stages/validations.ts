@@ -5,7 +5,7 @@ export const stageSchema = object({
     subtitle: string().required('Укажите подзаголовок этапа'),
     image: string().required('Укажите ссылку на изображение'),
     stepsText: string().required('Укажите шаги'),
-    selectedProductIds: array()
+    productIds: array()
         .min(1, 'Выберите продукты')
         .required('Выберите продукты'),
 })

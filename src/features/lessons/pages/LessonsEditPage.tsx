@@ -30,7 +30,7 @@ export const LessonEditPage = () => {
                     shortDescription: data.shortDescription,
                     videoUrl: data.videoUrl,
                     fullDescription: data.fullDescription,
-                    selectedProductIds: data.products?.map((p) => p._id!),
+                    productIds: data.products?.map((p) => p._id!),
                 })
             )
         }

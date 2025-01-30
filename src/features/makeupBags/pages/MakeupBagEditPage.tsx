@@ -26,10 +26,10 @@ export const MakeupBagEditPage = () => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    categoryId: data.categoryId._id,
-                    clientId: data.clientId,
-                    selectedStageIds: data?.stageIds?.map((s) => s._id!),
-                    selectedToolIds: data?.toolIds?.map((t) => t._id!),
+                    categoryId: data.category?._id,
+                    clientId: data.client?._id,
+                    stageIds: data?.stages?.map((s) => s._id!),
+                    toolIds: data?.tools?.map((t) => t._id!),
                 })
             )
         }

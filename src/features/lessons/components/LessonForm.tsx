@@ -118,7 +118,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         },
         {
             label: 'Продукты',
-            name: 'selectedProductIds',
+            name: 'productIds',
             path: '/products/selection',
             required: true,
             type: 'button-navigate',

@@ -7,5 +7,5 @@ export interface Lesson {
     videoUrl: string
     fullDescription: string
     products?: Product[]
-    selectedProductIds: string[]
+    productIds: string[]
 }

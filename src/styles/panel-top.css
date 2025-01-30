@@ -5,7 +5,8 @@
 }
 
 .panel-top__button {
-    @apply me-2 flex items-center hover:text-gray-300;
+    @apply me-2 flex items-center pe-0.5 focus:outline-none;
+    @apply rounded-lg border border-white focus:border-black dark:border-black dark:focus:border-white;
 }
 
 .panel-top__title {

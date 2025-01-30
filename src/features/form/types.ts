@@ -6,13 +6,7 @@ export interface SelectOption {
 export interface FieldConfig<T> {
     label: string
     name: keyof T
-    type:
-        | 'button-navigate'
-        | 'button-stages'
-        | 'button-tools'
-        | 'select'
-        | 'text'
-        | 'textarea'
+    type: 'button-navigate' | 'select' | 'text' | 'textarea'
     options?: SelectOption[]
     path?: string
     preview?: boolean

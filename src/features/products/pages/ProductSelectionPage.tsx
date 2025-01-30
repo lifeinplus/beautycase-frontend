@@ -15,7 +15,7 @@ export const ProductSelectionPage = () => {
     const { data: products, isLoading, error } = useGetProductsQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
-        const initialIds = formData.selectedProductIds || []
+        const initialIds = formData.productIds || []
         return new Map(
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
@@ -52,7 +52,7 @@ export const ProductSelectionPage = () => {
         dispatch(
             setFormData({
                 ...formData,
-                selectedProductIds: Array.from(orderedIds.keys()),
+                productIds: Array.from(orderedIds.keys()),
             })
         )
         navigate(-1)

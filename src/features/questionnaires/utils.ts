@@ -62,12 +62,12 @@ export const questions: Questions = {
         label: 'Тип кожи',
         options: [
             {
-                label: 'Нормальная',
-                value: 'normal',
-            },
-            {
                 label: 'Сухая',
                 value: 'dry',
+            },
+            {
+                label: 'Нормальная',
+                value: 'normal',
             },
             {
                 label: 'Комбинированная',
@@ -76,6 +76,10 @@ export const questions: Questions = {
             {
                 label: 'Жирная',
                 value: 'oily',
+            },
+            {
+                label: 'Чувствительная',
+                value: 'sensitive',
             },
         ],
     },

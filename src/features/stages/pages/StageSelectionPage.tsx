@@ -15,7 +15,7 @@ export const StageSelectionPage = () => {
     const { data: stages, isLoading, error } = useGetStagesQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
-        const initialIds = formData.selectedStageIds || []
+        const initialIds = formData.stageIds || []
         return new Map(
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
@@ -52,7 +52,7 @@ export const StageSelectionPage = () => {
         dispatch(
             setFormData({
                 ...formData,
-                selectedStageIds: Array.from(orderedIds.keys()),
+                stageIds: Array.from(orderedIds.keys()),
             })
         )
         navigate(-1)
@@ -80,9 +80,9 @@ export const StageSelectionPage = () => {
                                     className="img-container img-container-square"
                                 >
                                     <img
-                                        src={image}
                                         alt={title}
                                         className="img img-sm-rounded"
+                                        src={image}
                                     />
                                     <span
                                         className={`img-order ${

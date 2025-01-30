@@ -31,7 +31,7 @@ export const StageEditPage = () => {
                     image: data.image,
                     steps: data.steps,
                     stepsText: data.steps?.join('\n\n'),
-                    selectedProductIds: data?.products?.map((p) => p._id!),
+                    productIds: data?.products?.map((p) => p._id!),
                 })
             )
         }

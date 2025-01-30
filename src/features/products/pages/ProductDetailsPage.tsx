@@ -26,7 +26,7 @@ export const ProductDetailsPage = () => {
                         <img
                             alt={data?.name}
                             className="img"
-                            src={data?.image}
+                            src={data?.imageUrl}
                         />
                     </div>
                 </section>

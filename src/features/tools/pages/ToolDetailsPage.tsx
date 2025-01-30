@@ -21,7 +21,7 @@ export const ToolDetailsPage = () => {
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">
                         <img
-                            src={data?.image}
+                            src={data?.imageUrl}
                             alt={data?.name}
                             className="img"
                         />

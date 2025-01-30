@@ -28,7 +28,7 @@ export const ToolEditPage = () => {
                 setFormData({
                     name: data.name,
                     brandId: data.brand?._id,
-                    image: data.image,
+                    imageUrl: data.imageUrl,
                     storeLinks: data.storeLinks,
                     number: data.number,
                     comment: data.comment,

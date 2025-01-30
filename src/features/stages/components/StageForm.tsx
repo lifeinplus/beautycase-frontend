@@ -118,7 +118,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
         },
         {
             label: 'Ссылка на изображение',
-            name: 'image',
+            name: 'imageUrl',
             preview: true,
             required: true,
             type: 'textarea',

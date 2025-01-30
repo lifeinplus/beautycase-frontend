@@ -6,7 +6,7 @@ export interface Product {
     brand?: Pick<Brand, '_id' | 'name'>
     brandId: string
     name: string
-    image: string
+    imageUrl: string
     shade?: string
     comment: string
     storeLinks: StoreLink[]

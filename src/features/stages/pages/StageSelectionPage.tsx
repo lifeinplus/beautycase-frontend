@@ -69,7 +69,7 @@ export const StageSelectionPage = () => {
                     </section>
 
                     <section className="page-gallery__container">
-                        {stages?.map(({ _id, title, image }) => {
+                        {stages?.map(({ _id, title, imageUrl }) => {
                             const isSelected = orderedIds.has(_id!)
                             const order = orderedIds.get(_id!)
 
@@ -82,7 +82,7 @@ export const StageSelectionPage = () => {
                                     <img
                                         alt={title}
                                         className="img img-sm-rounded"
-                                        src={image}
+                                        src={imageUrl}
                                     />
                                     <span
                                         className={`img-order ${

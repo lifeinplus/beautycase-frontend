@@ -33,7 +33,7 @@ export const StageDetailsPage = () => {
                         <img
                             alt={data?.title}
                             className="img"
-                            src={data?.image}
+                            src={data?.imageUrl}
                         />
                     </div>
                 </section>
@@ -59,7 +59,7 @@ export const StageDetailsPage = () => {
                             <img
                                 alt={product.name}
                                 className="img img-sm-rounded"
-                                src={product.image}
+                                src={product.imageUrl}
                             />
                         </div>
                     ))}

@@ -5,13 +5,13 @@ import type { Stage } from './types'
 const stagesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addStage: builder.mutation<MutationResult, Partial<Stage>>({
-            query: ({ title, subtitle, image, steps, productIds }) => ({
+            query: ({ title, subtitle, imageUrl, steps, productIds }) => ({
                 url: '/stages/one',
                 method: 'POST',
                 body: {
                     title,
                     subtitle,
-                    image,
+                    imageUrl,
                     steps,
                     productIds,
                 },
@@ -26,13 +26,13 @@ const stagesApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: () => [{ type: 'Stage', id: 'LIST' }],
         }),
         editStage: builder.mutation<Stage, Stage>({
-            query: ({ _id, title, subtitle, image, steps, productIds }) => ({
+            query: ({ _id, title, subtitle, imageUrl, steps, productIds }) => ({
                 url: `/stages/${_id}`,
                 method: 'PUT',
                 body: {
                     title,
                     subtitle,
-                    image,
+                    imageUrl,
                     steps,
                     productIds,
                 },

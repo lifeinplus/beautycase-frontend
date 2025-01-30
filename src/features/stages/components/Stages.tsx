@@ -25,7 +25,7 @@ export const Stages = ({ stages }: StagesProps) => {
                             <img
                                 alt={stage.title}
                                 className="img"
-                                src={stage.image}
+                                src={stage.imageUrl}
                             />
                         </div>
                     </section>

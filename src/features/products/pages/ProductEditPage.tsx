@@ -28,7 +28,7 @@ export const ProductEditPage = () => {
                 setFormData({
                     name: data.name,
                     brandId: data.brand?._id,
-                    image: data.image,
+                    imageUrl: data.imageUrl,
                     shade: data.shade,
                     comment: data.comment,
                     storeLinks: data.storeLinks,

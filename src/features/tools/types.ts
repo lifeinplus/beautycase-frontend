@@ -6,7 +6,7 @@ export interface Tool {
     brand?: Pick<Brand, '_id' | 'name'>
     brandId: string
     name: string
-    image: string
+    imageUrl: string
     number?: string
     comment: string
     storeLinks: StoreLink[]

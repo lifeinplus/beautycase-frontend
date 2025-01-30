@@ -26,14 +26,14 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
                 id,
                 name,
                 brandId,
-                image,
+                imageUrl,
                 storeLinks,
                 number,
                 comment,
             }) => ({
                 url: `/tools/${id}`,
                 method: 'PUT',
-                body: { name, brandId, image, storeLinks, number, comment },
+                body: { name, brandId, imageUrl, storeLinks, number, comment },
             }),
             invalidatesTags: (_result, _error, tool) => [
                 { type: 'Tool', id: tool._id },

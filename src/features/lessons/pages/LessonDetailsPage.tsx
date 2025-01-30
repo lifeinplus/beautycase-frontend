@@ -62,7 +62,7 @@ export const LessonDetailsPage = () => {
                             <img
                                 alt={product.name}
                                 className="img img-sm-rounded"
-                                src={product.image}
+                                src={product.imageUrl}
                             />
                         </div>
                     ))}

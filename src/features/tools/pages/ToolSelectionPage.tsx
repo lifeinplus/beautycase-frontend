@@ -69,7 +69,7 @@ export const ToolSelectionPage = () => {
                     </section>
 
                     <section className="page-gallery__container">
-                        {tools?.map(({ _id, name, image }) => {
+                        {tools?.map(({ _id, name, imageUrl }) => {
                             const isSelected = orderedIds.has(_id!)
                             const order = orderedIds.get(_id!)
 
@@ -82,7 +82,7 @@ export const ToolSelectionPage = () => {
                                     <img
                                         alt={name}
                                         className="img img-sm-rounded"
-                                        src={image}
+                                        src={imageUrl}
                                     />
                                     <span
                                         className={`img-order ${

@@ -14,7 +14,7 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
                 to={`/tools/${tool._id}`}
             >
                 <img
-                    src={tool.image}
+                    src={tool.imageUrl}
                     alt={tool.name}
                     className="img img-sm-rounded"
                 />

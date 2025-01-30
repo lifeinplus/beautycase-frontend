@@ -16,7 +16,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                 <img
                     alt={product.name}
                     className="img img-sm-rounded"
-                    src={product.image}
+                    src={product.imageUrl}
                 />
             </Link>
         </div>

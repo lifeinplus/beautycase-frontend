@@ -140,7 +140,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         },
         {
             label: 'Ссылка на изображение',
-            name: 'image',
+            name: 'imageUrl',
             preview: true,
             required: true,
             type: 'textarea',

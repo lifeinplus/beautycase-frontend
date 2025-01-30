@@ -140,7 +140,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         },
         {
             label: 'Ссылка на изображение',
-            name: 'image',
+            name: 'imageUrl',
             preview: true,
             required: true,
             type: 'textarea',

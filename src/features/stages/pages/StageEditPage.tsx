@@ -28,7 +28,7 @@ export const StageEditPage = () => {
                 setFormData({
                     title: data.title,
                     subtitle: data.subtitle,
-                    image: data.image,
+                    imageUrl: data.imageUrl,
                     steps: data.steps,
                     stepsText: data.steps?.join('\n\n'),
                     productIds: data?.products?.map((p) => p._id!),

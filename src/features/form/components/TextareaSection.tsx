@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
 import { getYouTubeThumbnail } from '../../../utils'
@@ -29,7 +30,11 @@ export const TextareaSection = ({
         <Label required={required} text={label}>
             <textarea
                 {...register}
-                className={`form-input peer ${error ? 'border-error' : ''}`}
+                className={classNames(
+                    'form-input',
+                    'peer',
+                    error && 'border-error'
+                )}
                 placeholder={label}
                 rows={rows}
             />

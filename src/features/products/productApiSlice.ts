@@ -4,7 +4,7 @@ import type { Product } from './types'
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addProduct: builder.mutation<MutationResult, Partial<Product>>({
+        addProduct: builder.mutation<MutationResult, FormData>({
             query: (data) => ({
                 url: '/products/one',
                 method: 'POST',
@@ -23,23 +23,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
 
         editProduct: builder.mutation<
             Product,
-            { id: string } & Partial<Product>
+            { id: string; formData: FormData }
         >({
-            query: ({
-                id,
-                name,
-                brandId,
-                imageUrl,
-                shade,
-                comment,
-                storeLinks,
-            }) => ({
-                url: `/products/${id}`,
+            query: (data) => ({
+                url: `/products/${data.id}`,
                 method: 'PUT',
-                body: { name, brandId, imageUrl, shade, comment, storeLinks },
+                body: data.formData,
             }),
-            invalidatesTags: (_result, _error, product) => [
-                { type: 'Product', id: product._id },
+            invalidatesTags: (_result, _error, data) => [
+                { type: 'Product', id: data.id },
                 { type: 'Product', id: 'LIST' },
             ],
         }),

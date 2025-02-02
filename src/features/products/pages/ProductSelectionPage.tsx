@@ -69,7 +69,7 @@ export const ProductSelectionPage = () => {
                     </section>
 
                     <section className="page-gallery__container">
-                        {products?.map(({ _id, name, imageUrl }) => {
+                        {products?.map(({ _id, name, imageData }) => {
                             const isSelected = orderedIds.has(_id!)
                             const order = orderedIds.get(_id!)
 
@@ -80,7 +80,7 @@ export const ProductSelectionPage = () => {
                                     className="img-container img-container-square"
                                 >
                                     <img
-                                        src={imageUrl}
+                                        src={imageData?.url}
                                         alt={name}
                                         className="img img-sm-rounded"
                                     />

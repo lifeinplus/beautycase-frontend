@@ -1,29 +1,35 @@
+import classNames from 'classnames'
 import heic2any from 'heic2any'
 import { useState } from 'react'
-import { Control, Controller, FieldError } from 'react-hook-form'
+import {
+    Control,
+    Controller,
+    FieldError,
+    FieldValues,
+    Path,
+} from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { getErrorMessage } from '../../../utils'
 import { ImagePreview, Label } from '../../form'
-import { type Questionnaire } from '../../questionnaires'
 
-interface FileSectionProps {
-    control: Control<Questionnaire, any>
+interface FileSectionProps<T extends FieldValues> {
+    control: Control<T>
     label: string
-    name: keyof Questionnaire
+    name: Path<T>
     description?: string
     error?: FieldError
     required?: boolean
 }
 
-export const FileSection = ({
+export const FileSection = <T extends FieldValues>({
     control,
     label,
     name,
     description,
     error,
     required = false,
-}: FileSectionProps) => {
+}: FileSectionProps<T>) => {
     const [fileUrl, setFileUrl] = useState<string>()
 
     const handlePreview = async (file: File) => {
@@ -52,7 +58,7 @@ export const FileSection = ({
 
     return (
         <div>
-            <Label text={label} />
+            <Label text={label} required={required} />
 
             <Controller
                 control={control}
@@ -61,7 +67,10 @@ export const FileSection = ({
                     <input
                         {...field}
                         accept="image/*,.heic"
-                        className={`form-input ${error ? 'text-rose-500 dark:text-rose-400' : ''}`}
+                        className={classNames(
+                            'form-input',
+                            error && 'border-error'
+                        )}
                         onChange={async (e) => {
                             const file = e.target.files?.[0]
                             if (file) {
@@ -69,7 +78,6 @@ export const FileSection = ({
                                 handlePreview(file)
                             }
                         }}
-                        required={required}
                         type="file"
                     />
                 )}

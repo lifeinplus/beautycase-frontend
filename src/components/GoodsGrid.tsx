@@ -5,7 +5,7 @@ import { useScrollToElement } from '../hooks'
 interface Good {
     _id?: string
     name: string
-    imageUrl: string
+    imageUrl?: string
     brand?: {
         name: string
     }

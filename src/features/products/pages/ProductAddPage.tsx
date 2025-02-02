@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
+import { appendToFormData, getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
 import {
     type Product,
@@ -16,9 +16,11 @@ export const ProductAddPage = () => {
     const dispatch = useAppDispatch()
     const [addProduct] = useAddProductMutation()
 
-    const handleAddProduct = async (product: Product) => {
+    const handleAddProduct = async (data: Product) => {
+        const formData = appendToFormData(data)
+
         try {
-            const response = await addProduct(product).unwrap()
+            const response = await addProduct(formData).unwrap()
             dispatch(clearFormData())
             navigate(`/products/${response.id}`)
         } catch (error) {

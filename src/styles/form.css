@@ -59,3 +59,7 @@
 .border-error {
     @apply border-rose-500 dark:border-rose-400;
 }
+
+.text-error {
+    @apply text-rose-500 dark:text-rose-400;
+}

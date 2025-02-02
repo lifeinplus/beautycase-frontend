@@ -2,6 +2,7 @@ import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import {
+    Control,
     FieldError,
     FieldErrors,
     useForm,
@@ -15,6 +16,7 @@ import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { useGetBrandsQuery } from '../../brands'
 import {
     ButtonNavigateSection,
+    FileSection,
     InputSection,
     selectFormData,
     SelectSection,
@@ -32,6 +34,7 @@ interface ProductFormProps {
 
 const renderField = (
     field: FieldConfig<Product>,
+    control: Control<Product, any>,
     register: UseFormRegister<Product>,
     watch: UseFormWatch<Product>,
     errors: FieldErrors<Product>
@@ -56,6 +59,17 @@ const renderField = (
                 text={value ? `Добавлено: ${value.length}` : 'Добавить'}
                 error={error}
                 required={required}
+            />
+        )
+    }
+
+    if (type === 'file') {
+        return (
+            <FileSection
+                control={control}
+                error={error}
+                label={label}
+                name="imageFile"
             />
         )
     }
@@ -108,6 +122,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const { data: brands } = useGetBrandsQuery()
 
     const {
+        control,
         register,
         reset,
         watch,
@@ -140,10 +155,15 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         },
         {
             label: 'Ссылка на изображение',
-            name: 'imageUrl',
+            name: 'imageData',
             preview: true,
-            required: true,
             type: 'textarea',
+        },
+        {
+            label: 'Изображение',
+            name: 'imageFile',
+            preview: true,
+            type: 'file',
         },
         {
             label: 'Оттенок',
@@ -181,7 +201,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         {fields.map((f) =>
-                            renderField(f, register, watch, errors)
+                            renderField(f, control, register, watch, errors)
                         )}
                     </form>
                 </article>

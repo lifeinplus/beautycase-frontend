@@ -59,7 +59,7 @@ export const StageDetailsPage = () => {
                             <img
                                 alt={product.name}
                                 className="img img-sm-rounded"
-                                src={product.imageUrl}
+                                src={product.imageData?.url}
                             />
                         </div>
                     ))}

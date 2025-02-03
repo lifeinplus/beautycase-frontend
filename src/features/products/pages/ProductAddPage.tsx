@@ -17,7 +17,11 @@ export const ProductAddPage = () => {
     const [addProduct] = useAddProductMutation()
 
     const handleAddProduct = async (data: Product) => {
+        console.log('handleAddProduct', 111, data)
+
         const formData = appendToFormData(data)
+
+        console.log('handleAddProduct', 222, formData.keys())
 
         try {
             const response = await addProduct(formData).unwrap()

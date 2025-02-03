@@ -66,6 +66,7 @@ const renderField = (
     if (type === 'file') {
         return (
             <FileSection
+                key={name}
                 control={control}
                 error={error}
                 label={label}

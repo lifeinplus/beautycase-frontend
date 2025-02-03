@@ -21,9 +21,11 @@ const renderMediaContent = (data?: Product) => {
     let content: ReactNode
 
     if (imageData?.url || imageUrl) {
+        console.log(111)
         const url = imageData?.url || imageUrl
         content = <img alt={name} className="img" src={url} />
     } else if (imageData?.id && imageData?.version) {
+        console.log(222)
         const cldImg = cloudinary
             .image(imageData?.id)
             .setVersion(imageData?.version)
@@ -33,6 +35,7 @@ const renderMediaContent = (data?: Product) => {
 
         content = <AdvancedImage className="img" cldImg={cldImg} />
     } else {
+        console.log(333)
         const cldImg = cloudinary
             .image(config.cloudinary.defaultThumbnailName)
             .resize(scale().width(800))

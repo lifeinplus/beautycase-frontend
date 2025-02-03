@@ -38,6 +38,8 @@ export const ProductEditPage = () => {
     }, [data, dispatch, isDirty])
 
     const handleEditProduct = async (data: Product) => {
+        console.log('handleEditProduct', 111, data)
+
         const formData = appendToFormData(data)
 
         try {

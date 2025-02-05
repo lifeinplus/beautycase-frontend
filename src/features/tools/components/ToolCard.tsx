@@ -13,11 +13,7 @@ export const ToolCard = ({ tool }: ToolCardProps) => {
                 className="relative overflow-hidden"
                 to={`/tools/${tool._id}`}
             >
-                <img
-                    src={tool.imageUrl}
-                    alt={tool.name}
-                    className="img img-sm-rounded"
-                />
+                <img alt={tool.name} className="img" src={tool.imageUrl} />
             </Link>
         </div>
     )

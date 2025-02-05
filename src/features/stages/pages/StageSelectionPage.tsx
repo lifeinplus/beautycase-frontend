@@ -81,7 +81,7 @@ export const StageSelectionPage = () => {
                                 >
                                     <img
                                         alt={title}
-                                        className="img img-sm-rounded"
+                                        className="img"
                                         src={imageUrl}
                                     />
                                     <span

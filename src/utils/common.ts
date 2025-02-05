@@ -10,7 +10,7 @@ export const appendToFormData = <T extends Record<string, any>>(
             formData.append(key, value)
         } else if (typeof value === 'object' && value !== null) {
             formData.append(key, JSON.stringify(value))
-        } else {
+        } else if (value) {
             formData.append(key, value as string)
         }
     })

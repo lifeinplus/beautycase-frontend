@@ -80,9 +80,9 @@ export const ProductSelectionPage = () => {
                                     className="img-container img-container-square"
                                 >
                                     <img
-                                        src={imageUrl}
                                         alt={name}
-                                        className="img img-sm-rounded"
+                                        className="img"
+                                        src={imageUrl}
                                     />
                                     <span
                                         className={`img-order ${

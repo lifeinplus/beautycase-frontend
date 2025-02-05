@@ -11,11 +11,7 @@
 }
 
 .img {
-    @apply h-full w-full object-cover sm:rounded-md;
-}
-
-.img-sm-rounded {
-    @apply sm:rounded;
+    @apply h-full w-full object-cover sm:rounded;
 }
 
 .img-order {

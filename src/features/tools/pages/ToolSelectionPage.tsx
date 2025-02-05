@@ -81,7 +81,7 @@ export const ToolSelectionPage = () => {
                                 >
                                     <img
                                         alt={name}
-                                        className="img img-sm-rounded"
+                                        className="img"
                                         src={imageUrl}
                                     />
                                     <span

@@ -17,3 +17,19 @@ export const appendToFormData = <T extends Record<string, any>>(
 
     return formData
 }
+
+export const cleanObject = <T>(obj: T): T => {
+    if (Array.isArray(obj)) {
+        return obj.map(cleanObject) as T
+    } else if (obj !== null && typeof obj === 'object') {
+        return Object.fromEntries(
+            Object.entries(obj as Record<string, any>)
+                .filter(
+                    ([_, value]) =>
+                        value !== undefined && value !== null && value !== ''
+                )
+                .map(([key, value]) => [key, cleanObject(value)])
+        ) as T
+    }
+    return obj
+}

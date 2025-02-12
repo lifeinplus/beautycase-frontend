@@ -1,7 +1,7 @@
+import classNames from 'classnames'
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
 import { Label } from './Label'
-import classNames from 'classnames'
 
 interface InputSectionProps {
     label: string

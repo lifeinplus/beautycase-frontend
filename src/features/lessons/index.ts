@@ -1,4 +1,3 @@
-export * from './components/LessonCard'
 export * from './components/LessonForm'
 
 export * from './pages/LessonAddPage'

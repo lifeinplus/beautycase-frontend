@@ -1,5 +1,4 @@
-import { GalleryPage } from '../../../components'
-import { LessonCard } from '../components/LessonCard'
+import { GalleryPage, VideoCard } from '../../../components'
 import { useGetLessonsQuery } from '../lessonsApiSlice'
 
 export const LessonsGalleryPage = () => {
@@ -12,9 +11,13 @@ export const LessonsGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <section className="page-gallery__container--video">
+                <section className="gallery-container-video">
                     {lessons?.map((lesson) => (
-                        <LessonCard key={lesson._id} lesson={lesson} />
+                        <VideoCard
+                            key={lesson._id}
+                            data={lesson}
+                            path={`/lessons/${lesson._id}`}
+                        />
                     ))}
                 </section>
             }

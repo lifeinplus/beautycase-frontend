@@ -1,5 +1,4 @@
-import { GalleryPage } from '../../../components'
-import { ProductCard } from '../components/ProductCard'
+import { ImageCard, GalleryPage } from '../../../components'
 import { useGetProductsQuery } from '../productApiSlice'
 
 export const ProductGalleryPage = () => {
@@ -13,9 +12,13 @@ export const ProductGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <article className="page-gallery__container">
+                <article className="gallery-container">
                     {products?.map((product) => (
-                        <ProductCard key={product._id} product={product} />
+                        <ImageCard
+                            key={product._id}
+                            data={product}
+                            path={`/products/${product._id}`}
+                        />
                     ))}
                 </article>
             }

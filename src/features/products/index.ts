@@ -1,4 +1,3 @@
-export * from './components/ProductCard'
 export * from './components/ProductForm'
 
 export * from './pages/ProductAddPage'

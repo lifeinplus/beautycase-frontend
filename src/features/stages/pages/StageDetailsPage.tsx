@@ -49,7 +49,7 @@ export const StageDetailsPage = () => {
                 </section>
             }
             additionalContent={
-                <div className="page-gallery__container">
+                <div className="gallery-container">
                     {data?.products?.map((product: Product) => (
                         <div
                             key={product._id}

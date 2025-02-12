@@ -89,8 +89,8 @@ export const StoreLinkAddPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <section className="page-gallery__title">
-                        <h1 className="page-gallery__title__text">{title}</h1>
+                    <section className="gallery-header">
+                        <h1 className="gallery-title">{title}</h1>
                     </section>
 
                     <form onSubmit={handleSave} className="form px-0 pt-6">

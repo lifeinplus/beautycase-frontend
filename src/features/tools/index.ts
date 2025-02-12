@@ -1,4 +1,3 @@
-export * from './components/ToolCard'
 export * from './components/ToolForm'
 export * from './components/Tools'
 

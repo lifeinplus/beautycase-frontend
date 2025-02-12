@@ -1,6 +1,6 @@
 import type { MutationResult, QueryResult } from '../../types'
 import { apiSlice } from '../api/apiSlice'
-import type { Tool } from './types'
+import { type Tool } from '../tools'
 
 export const toolsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

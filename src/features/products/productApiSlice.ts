@@ -1,7 +1,7 @@
 import type { MutationResult, QueryResult } from '../../types'
 import { cleanObject } from '../../utils'
 import { apiSlice } from '../api/apiSlice'
-import type { Product } from './types'
+import { type Product } from '../products'
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -53,10 +53,11 @@ export const productApiSlice = apiSlice.injectEndpoints({
                     : [{ type: 'Product', id: 'LIST' }],
         }),
 
+        // TODO: move to a separate api slice
         uploadFile: builder.mutation<{ imageUrl: string }, FormData>({
             query: (formData) => {
                 return {
-                    url: '/products/image-temp',
+                    url: `/uploads/image-temp`,
                     method: 'POST',
                     body: formData,
                 }

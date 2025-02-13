@@ -26,12 +26,12 @@ export const ToolEditPage = () => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    name: data.name,
                     brandId: data.brand?._id,
+                    name: data.name,
                     imageUrl: data.imageUrl,
-                    storeLinks: data.storeLinks,
                     number: data.number,
                     comment: data.comment,
+                    storeLinks: data.storeLinks,
                 })
             )
         }
@@ -39,10 +39,7 @@ export const ToolEditPage = () => {
 
     const handleEditTool = async (tool: Tool) => {
         try {
-            await editTool({
-                id: id!,
-                ...tool,
-            }).unwrap()
+            await editTool({ id: id!, body: tool }).unwrap()
 
             dispatch(clearFormData())
             navigate(`/tools/${id}`)

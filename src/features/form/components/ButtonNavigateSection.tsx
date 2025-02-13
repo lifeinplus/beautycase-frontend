@@ -4,8 +4,8 @@ import { type FieldError } from 'react-hook-form'
 import { Label } from './Label'
 
 interface ButtonNavigateSectionProps {
-    handleNavigate: () => void
     label: string
+    onNavigate: () => void
     text: string
     description?: string
     error?: FieldError
@@ -13,8 +13,8 @@ interface ButtonNavigateSectionProps {
 }
 
 export const ButtonNavigateSection = ({
-    handleNavigate,
     label,
+    onNavigate,
     text,
     description,
     error,
@@ -25,7 +25,7 @@ export const ButtonNavigateSection = ({
             <Label required={required} text={label}>
                 <button
                     className={`form-button-navigate ${error ? 'border-error' : ''}`}
-                    onClick={handleNavigate}
+                    onClick={onNavigate}
                     type="button"
                 >
                     <span>{text}</span>

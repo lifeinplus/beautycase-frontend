@@ -1,14 +1,15 @@
 import type { MutationResult, QueryResult } from '../../types'
+import { cleanObject } from '../../utils'
 import { apiSlice } from '../api/apiSlice'
 import { type Tool } from '../tools'
 
 export const toolsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addTool: builder.mutation<MutationResult, Partial<Tool>>({
+        addTool: builder.mutation<MutationResult, Tool>({
             query: (data) => ({
                 url: '/tools/one',
                 method: 'POST',
-                body: data,
+                body: cleanObject(data),
             }),
             invalidatesTags: ['Tool'],
         }),
@@ -21,22 +22,14 @@ export const toolsApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
         }),
 
-        editTool: builder.mutation<Tool, { id: string } & Partial<Tool>>({
-            query: ({
-                id,
-                name,
-                brandId,
-                imageUrl,
-                storeLinks,
-                number,
-                comment,
-            }) => ({
-                url: `/tools/${id}`,
+        editTool: builder.mutation<Tool, { id: string; body: Tool }>({
+            query: (data) => ({
+                url: `/tools/${data.id}`,
                 method: 'PUT',
-                body: { name, brandId, imageUrl, storeLinks, number, comment },
+                body: cleanObject(data.body),
             }),
             invalidatesTags: (_result, _error, tool) => [
-                { type: 'Tool', id: tool._id },
+                { type: 'Tool', id: tool.id },
                 { type: 'Tool', id: 'LIST' },
             ],
         }),

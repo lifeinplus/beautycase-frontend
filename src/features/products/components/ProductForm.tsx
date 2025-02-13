@@ -17,7 +17,6 @@ import {
     TextareaSection,
 } from '../../form'
 import { productSchema, type Product } from '../../products'
-import { type StoreLink } from '../../stores'
 
 interface ProductFormProps {
     title: string
@@ -26,10 +25,6 @@ interface ProductFormProps {
 
 export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-    const formData = useAppSelector(selectFormData) as Product
-    const { data: brands } = useGetBrandsQuery()
 
     const {
         clearErrors,
@@ -43,15 +38,34 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         resolver: yupResolver(productSchema),
     })
 
+    const dispatch = useAppDispatch()
+    const formData = useAppSelector(selectFormData) as Product
+
     useEffect(() => {
         reset(formData)
     }, [formData])
+
+    const { data: brands } = useGetBrandsQuery()
+
+    const brandOptions = brands?.map((b) => ({
+        text: b.name,
+        value: b._id,
+    }))
+
+    const storeLinks = watch('storeLinks')
+
+    const linksText = storeLinks
+        ? `Добавлено: ${storeLinks.length}`
+        : 'Добавить'
 
     const handleBack = () => {
         navigate(-1)
     }
 
-    const storeLinks = watch('storeLinks') as StoreLink[] | undefined
+    const handleNavigate = () => {
+        dispatch(setFormData(watch()))
+        navigate('/stores/links/add')
+    }
 
     return (
         <article className="page">
@@ -67,10 +81,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         <SelectSection
                             error={errors.brandId}
                             label={'Бренд'}
-                            options={brands?.map((b) => ({
-                                text: b.name,
-                                value: b._id,
-                            }))}
+                            options={brandOptions}
                             register={register('brandId')}
                             required={true}
                             value={watch('brandId')}
@@ -86,6 +97,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
                         <ImageUrlSection
                             clearErrors={clearErrors}
+                            folder="products"
                             error={errors.imageUrl}
                             label={'Ссылка на изображение'}
                             name={'imageUrl'}
@@ -112,17 +124,10 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
                         <ButtonNavigateSection
                             error={errors.storeLinks as FieldError}
-                            handleNavigate={() => {
-                                dispatch(setFormData(watch()))
-                                navigate('/stores/links/add')
-                            }}
-                            label={'Ссылки на товар'}
+                            label={'Ссылки на продукт'}
+                            onNavigate={handleNavigate}
                             required={true}
-                            text={
-                                storeLinks
-                                    ? `Добавлено: ${storeLinks.length}`
-                                    : 'Добавить'
-                            }
+                            text={linksText}
                         />
                     </form>
                 </article>

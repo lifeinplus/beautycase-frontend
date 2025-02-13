@@ -17,6 +17,7 @@ import { Label } from './Label'
 
 interface ImageUrlSectionProps {
     clearErrors: UseFormClearErrors<Product>
+    folder: 'products' | 'tools'
     label: string
     name: Path<Product>
     register: UseFormRegisterReturn
@@ -29,6 +30,7 @@ interface ImageUrlSectionProps {
 
 export const ImageUrlSection = ({
     clearErrors,
+    folder,
     label,
     name,
     register,
@@ -53,6 +55,7 @@ export const ImageUrlSection = ({
 
         try {
             const formData = new FormData()
+            formData.append('folder', folder)
             formData.append('imageFile', file)
 
             const response = await uploadFile(formData).unwrap()

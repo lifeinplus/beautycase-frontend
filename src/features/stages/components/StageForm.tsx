@@ -45,7 +45,7 @@ const renderField = (
         return (
             <ButtonNavigateSection
                 key={name}
-                handleNavigate={() => {
+                onNavigate={() => {
                     dispatch(setFormData(watch()))
                     if (path) navigate(path)
                 }}

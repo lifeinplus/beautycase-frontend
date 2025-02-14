@@ -3,7 +3,9 @@ import { array, object, string } from 'yup'
 export const toolSchema = object({
     brandId: string().required('Выберите бренд'),
     name: string().required('Укажите название инструмента'),
-    imageUrl: string().required('Укажите ссылку на изображение'),
+    imageUrl: string()
+        .url('Введите корректный URL')
+        .required('Укажите ссылку на изображение'),
     number: string().optional(),
     comment: string().required('Укажите комментарий'),
     storeLinks: array()

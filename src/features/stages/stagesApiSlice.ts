@@ -1,20 +1,15 @@
 import type { MutationResult, QueryResult } from '../../types'
-import { apiSlice } from '../api'
-import type { Stage } from './types'
+import { cleanObject } from '../../utils'
+import { apiSlice } from '../api/apiSlice'
+import { type Stage } from '../stages'
 
 const stagesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addStage: builder.mutation<MutationResult, Partial<Stage>>({
-            query: ({ title, subtitle, imageUrl, steps, productIds }) => ({
+            query: (data) => ({
                 url: '/stages/one',
                 method: 'POST',
-                body: {
-                    title,
-                    subtitle,
-                    imageUrl,
-                    steps,
-                    productIds,
-                },
+                body: cleanObject(data),
             }),
             invalidatesTags: ['Stage'],
         }),
@@ -25,20 +20,17 @@ const stagesApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: () => [{ type: 'Stage', id: 'LIST' }],
         }),
-        editStage: builder.mutation<Stage, Stage>({
-            query: ({ _id, title, subtitle, imageUrl, steps, productIds }) => ({
-                url: `/stages/${_id}`,
+        editStage: builder.mutation<
+            Stage,
+            { id: string; body: Partial<Stage> }
+        >({
+            query: (data) => ({
+                url: `/stages/${data.id}`,
                 method: 'PUT',
-                body: {
-                    title,
-                    subtitle,
-                    imageUrl,
-                    steps,
-                    productIds,
-                },
+                body: cleanObject(data.body),
             }),
             invalidatesTags: (_result, _error, stage) => [
-                { type: 'Stage', id: stage._id },
+                { type: 'Stage', id: stage.id },
                 { type: 'Stage', id: 'LIST' },
             ],
         }),

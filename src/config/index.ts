@@ -3,6 +3,7 @@ const config = {
     cloudinary: {
         cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
         defaultThumbnailName: import.meta.env.VITE_DEFAULT_THUMBNAIL_NAME,
+        defaultThumbnailUrl: import.meta.env.VITE_DEFAULT_THUMBNAIL_URL,
     },
     prod: import.meta.env.PROD,
 }

@@ -26,8 +26,8 @@ export const ProductEditPage = () => {
         if (data && !isDirty) {
             dispatch(
                 setFormData({
-                    name: data.name,
                     brandId: data.brand?._id,
+                    name: data.name,
                     imageUrl: data.imageUrl,
                     shade: data.shade,
                     comment: data.comment,
@@ -39,11 +39,7 @@ export const ProductEditPage = () => {
 
     const handleEditProduct = async (product: Product) => {
         try {
-            await editProduct({
-                id: id!,
-                ...product,
-            }).unwrap()
-
+            await editProduct({ id: id!, body: product }).unwrap()
             dispatch(clearFormData())
             navigate(`/products/${id}`)
         } catch (error) {

@@ -1,14 +1,15 @@
 import type { MutationResult, QueryResult } from '../../types'
+import { cleanObject } from '../../utils'
 import { apiSlice } from '../api/apiSlice'
-import type { Product } from './types'
+import { type Product } from '../products'
 
-export const productApiSlice = apiSlice.injectEndpoints({
+const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addProduct: builder.mutation<MutationResult, Partial<Product>>({
+        addProduct: builder.mutation<MutationResult, Product>({
             query: (data) => ({
                 url: '/products/one',
                 method: 'POST',
-                body: data,
+                body: cleanObject(data),
             }),
             invalidatesTags: ['Product'],
         }),
@@ -21,25 +22,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
         }),
 
-        editProduct: builder.mutation<
-            Product,
-            { id: string } & Partial<Product>
-        >({
-            query: ({
-                id,
-                name,
-                brandId,
-                imageUrl,
-                shade,
-                comment,
-                storeLinks,
-            }) => ({
-                url: `/products/${id}`,
+        editProduct: builder.mutation<Product, { id: string; body: Product }>({
+            query: (data) => ({
+                url: `/products/${data.id}`,
                 method: 'PUT',
-                body: { name, brandId, imageUrl, shade, comment, storeLinks },
+                body: cleanObject(data.body),
             }),
-            invalidatesTags: (_result, _error, product) => [
-                { type: 'Product', id: product._id },
+            invalidatesTags: (_result, _error, data) => [
+                { type: 'Product', id: data.id },
                 { type: 'Product', id: 'LIST' },
             ],
         }),

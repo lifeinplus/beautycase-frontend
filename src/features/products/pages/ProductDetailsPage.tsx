@@ -1,11 +1,12 @@
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components'
+import config from '../../../config'
 import {
     useDeleteProductMutation,
     useGetProductByIdQuery,
 } from '../../products'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -26,6 +27,11 @@ export const ProductDetailsPage = () => {
                         <img
                             alt={data?.name}
                             className="img"
+                            onError={(e) => {
+                                e.currentTarget.alt = 'Default Image'
+                                e.currentTarget.src =
+                                    config.cloudinary.defaultThumbnailUrl
+                            }}
                             src={data?.imageUrl}
                         />
                     </div>

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components'
+import config from '../../../config'
 import { Product } from '../../products'
 import { useDeleteStageMutation, useGetStageByIdQuery } from '../../stages'
 
@@ -49,7 +50,7 @@ export const StageDetailsPage = () => {
                 </section>
             }
             additionalContent={
-                <div className="page-gallery__container">
+                <div className="gallery-container">
                     {data?.products?.map((product: Product) => (
                         <div
                             key={product._id}
@@ -58,7 +59,12 @@ export const StageDetailsPage = () => {
                         >
                             <img
                                 alt={product.name}
-                                className="img img-sm-rounded"
+                                className="img"
+                                onError={(e) => {
+                                    e.currentTarget.alt = 'Default Image'
+                                    e.currentTarget.src =
+                                        config.cloudinary.defaultThumbnailUrl
+                                }}
                                 src={product.imageUrl}
                             />
                         </div>

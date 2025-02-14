@@ -5,7 +5,10 @@ interface FormState<T> {
     isDirty: boolean
 }
 
-const initialState: FormState<any> = { data: {}, isDirty: false }
+const initialState: FormState<any> = {
+    data: {},
+    isDirty: false,
+}
 
 export const formSlice = createSlice({
     name: 'form',
@@ -23,6 +26,6 @@ export const formSlice = createSlice({
     },
 })
 
-export const { setFormData, clearFormData } = formSlice.actions
+export const { clearFormData, setFormData } = formSlice.actions
 
 export const { selectFormData, selectIsDirty } = formSlice.selectors

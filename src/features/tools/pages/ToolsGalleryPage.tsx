@@ -1,5 +1,4 @@
-import { GalleryPage } from '../../../components'
-import { ToolCard } from '../components/ToolCard'
+import { GalleryPage, ImageCard } from '../../../components'
 import { useGetToolsQuery } from '../toolsApiSlice'
 
 export const ToolsGalleryPage = () => {
@@ -13,9 +12,13 @@ export const ToolsGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <section className="page-gallery__container">
+                <section className="gallery-container">
                     {tools?.map((tool) => (
-                        <ToolCard key={tool._id} tool={tool} />
+                        <ImageCard
+                            key={tool._id}
+                            data={tool}
+                            path={`/tools/${tool._id}`}
+                        />
                     ))}
                 </section>
             }

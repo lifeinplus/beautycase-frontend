@@ -1,8 +1,11 @@
+export * from './gallery/GalleryPage'
+export * from './gallery/ImageCard'
+export * from './gallery/VideoCard'
+
 export * from './navigation/AdaptiveNavBar'
 export * from './navigation/NavigationButton'
 
 export * from './pages/DetailsPage'
-export * from './pages/GalleryPage'
 
 export * from './table/MobileView'
 export * from './table/Table'

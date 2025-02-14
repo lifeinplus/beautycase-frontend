@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
 import { Label } from './Label'
@@ -23,7 +24,7 @@ export const InputSection = ({
         <Label required={required} text={label}>
             <input
                 {...register}
-                className={`form-input ${error ? 'border-error' : ''}`}
+                className={classNames('form-input', error && 'border-error')}
                 placeholder={label}
                 type={type}
             />

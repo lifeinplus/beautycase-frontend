@@ -65,7 +65,7 @@ export const QuestionnairePage = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p className="text-sm text-rose-500 dark:text-rose-400">
+                            <p className="text-error text-sm">
                                 * Обязательно для заполнения
                             </p>
 

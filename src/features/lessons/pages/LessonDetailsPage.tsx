@@ -52,7 +52,7 @@ export const LessonDetailsPage = () => {
                 </div>
             }
             additionalContent={
-                <div className="page-gallery__container">
+                <div className="gallery-container">
                     {data?.products?.map((product: Product) => (
                         <div
                             key={product._id}
@@ -61,7 +61,7 @@ export const LessonDetailsPage = () => {
                         >
                             <img
                                 alt={product.name}
-                                className="img img-sm-rounded"
+                                className="img"
                                 src={product.imageUrl}
                             />
                         </div>

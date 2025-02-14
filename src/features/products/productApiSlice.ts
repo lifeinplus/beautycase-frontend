@@ -3,7 +3,7 @@ import { cleanObject } from '../../utils'
 import { apiSlice } from '../api/apiSlice'
 import { type Product } from '../products'
 
-export const productApiSlice = apiSlice.injectEndpoints({
+const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addProduct: builder.mutation<MutationResult, Product>({
             query: (data) => ({
@@ -52,17 +52,6 @@ export const productApiSlice = apiSlice.injectEndpoints({
                       ]
                     : [{ type: 'Product', id: 'LIST' }],
         }),
-
-        // TODO: move to a separate api slice
-        uploadFile: builder.mutation<{ imageUrl: string }, FormData>({
-            query: (formData) => {
-                return {
-                    url: `/uploads/image-temp`,
-                    method: 'POST',
-                    body: formData,
-                }
-            },
-        }),
     }),
 })
 
@@ -72,5 +61,4 @@ export const {
     useEditProductMutation,
     useGetProductByIdQuery,
     useGetProductsQuery,
-    useUploadFileMutation,
 } = productApiSlice

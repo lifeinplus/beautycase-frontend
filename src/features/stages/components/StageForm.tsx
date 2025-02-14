@@ -1,24 +1,18 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import {
-    FieldError,
-    FieldErrors,
-    useForm,
-    UseFormRegister,
-    UseFormWatch,
-} from 'react-hook-form'
+import { FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import {
     ButtonNavigateSection,
+    ImageUrlSection,
     InputSection,
     selectFormData,
     setFormData,
     TextareaSection,
-    type FieldConfig,
 } from '../../form'
 import { stageSchema, type Stage } from '../../stages'
 
@@ -27,71 +21,14 @@ interface StageFormProps {
     title: string
 }
 
-const renderField = (
-    field: FieldConfig<Stage>,
-    register: UseFormRegister<Stage>,
-    watch: UseFormWatch<Stage>,
-    errors: FieldErrors<Stage>
-) => {
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-    const { label, name, path, preview, required, rows, type } = field
-
-    const error = errors[name] as FieldError
-
-    if (type === 'button-navigate') {
-        const value = watch(name) as string[] | undefined
-        return (
-            <ButtonNavigateSection
-                key={name}
-                onNavigate={() => {
-                    dispatch(setFormData(watch()))
-                    if (path) navigate(path)
-                }}
-                label={label}
-                text={value ? `Выбрано: ${value.length}` : 'Выбрать'}
-                error={error}
-                required={required}
-            />
-        )
-    }
-
-    if (type === 'textarea') {
-        return (
-            <TextareaSection
-                key={name}
-                label={label}
-                register={register(name)}
-                error={error}
-                preview={preview}
-                required={required}
-                rows={rows}
-                value={watch(name)?.toString()}
-            />
-        )
-    }
-
-    return (
-        <InputSection
-            key={name}
-            error={error}
-            label={label}
-            register={register(name)}
-            required={required}
-            type={type}
-        />
-    )
-}
-
 export const StageForm = ({ onSubmit, title }: StageFormProps) => {
     const navigate = useNavigate()
 
-    const formData = useAppSelector(selectFormData) as Stage
-
     const {
+        clearErrors,
         register,
         reset,
+        setValue,
         watch,
         handleSubmit,
         formState: { errors },
@@ -99,48 +36,26 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
         resolver: yupResolver(stageSchema),
     })
 
+    const dispatch = useAppDispatch()
+    const formData = useAppSelector(selectFormData) as Stage
+
     useEffect(() => {
         reset(formData)
     }, [formData])
 
-    const fields: FieldConfig<Stage>[] = [
-        {
-            label: 'Заголовок',
-            name: 'title',
-            required: true,
-            type: 'text',
-        },
-        {
-            label: 'Подзаголовок',
-            name: 'subtitle',
-            required: true,
-            type: 'textarea',
-        },
-        {
-            label: 'Ссылка на изображение',
-            name: 'imageUrl',
-            preview: true,
-            required: true,
-            type: 'textarea',
-        },
-        {
-            label: 'Шаги',
-            name: 'stepsText',
-            required: true,
-            rows: 10,
-            type: 'textarea',
-        },
-        {
-            label: 'Продукты',
-            name: 'productIds',
-            path: '/products/selection',
-            required: true,
-            type: 'button-navigate',
-        },
-    ]
+    const productIds = watch('productIds')
+
+    const productsText = productIds
+        ? `Выбрано: ${productIds.length}`
+        : 'Выбрать'
 
     const handleBack = () => {
         navigate(-1)
+    }
+
+    const handleNavigate = () => {
+        dispatch(setFormData(watch()))
+        navigate('/products/selection')
     }
 
     return (
@@ -154,9 +69,50 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                     </section>
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                        {fields.map((f) =>
-                            renderField(f, register, watch, errors)
-                        )}
+                        <InputSection
+                            error={errors.title}
+                            label="Заголовок"
+                            register={register('title')}
+                            required={true}
+                            type="text"
+                        />
+
+                        <TextareaSection
+                            error={errors.subtitle}
+                            label="Подзаголовок"
+                            register={register('subtitle')}
+                            required={true}
+                            value={watch('subtitle')}
+                        />
+
+                        <ImageUrlSection
+                            clearErrors={clearErrors}
+                            folder="stages"
+                            error={errors.imageUrl}
+                            label="Ссылка на изображение"
+                            name="imageUrl"
+                            register={register('imageUrl')}
+                            required={true}
+                            setValue={setValue}
+                            value={watch('imageUrl')}
+                        />
+
+                        <TextareaSection
+                            error={errors.stepsText}
+                            label="Шаги"
+                            register={register('stepsText')}
+                            required={true}
+                            rows={10}
+                            value={watch('stepsText')}
+                        />
+
+                        <ButtonNavigateSection
+                            error={errors.productIds as FieldError}
+                            label="Продукты"
+                            onNavigate={handleNavigate}
+                            required={true}
+                            text={productsText}
+                        />
                     </form>
                 </article>
             </main>

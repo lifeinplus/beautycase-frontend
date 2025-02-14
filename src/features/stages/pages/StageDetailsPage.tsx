@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components'
+import config from '../../../config'
 import { Product } from '../../products'
 import { useDeleteStageMutation, useGetStageByIdQuery } from '../../stages'
 
@@ -59,6 +60,11 @@ export const StageDetailsPage = () => {
                             <img
                                 alt={product.name}
                                 className="img"
+                                onError={(e) => {
+                                    e.currentTarget.alt = 'Default Image'
+                                    e.currentTarget.src =
+                                        config.cloudinary.defaultThumbnailUrl
+                                }}
                                 src={product.imageUrl}
                             />
                         </div>

@@ -2,33 +2,35 @@ import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent, useEffect, useState } from 'react'
 import {
-    Path,
-    UseFormClearErrors,
-    UseFormSetValue,
     type FieldError,
+    type FieldValues,
+    type Path,
+    type PathValue,
+    type UseFormClearErrors,
     type UseFormRegisterReturn,
+    type UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { getErrorMessage } from '../../../utils'
-import { useUploadFileMutation, type Product } from '../../products'
+import { useUploadImageTempMutation } from '../../uploads'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
-interface ImageUrlSectionProps {
-    clearErrors: UseFormClearErrors<Product>
-    folder: 'products' | 'tools'
+interface ImageUrlSectionProps<T extends FieldValues> {
+    clearErrors: UseFormClearErrors<T>
+    folder: 'products' | 'stages' | 'tools'
     label: string
-    name: Path<Product>
+    name: Path<T>
     register: UseFormRegisterReturn
-    setValue: UseFormSetValue<Product>
+    setValue: UseFormSetValue<T>
     description?: string
     error?: FieldError
     required?: boolean
     value?: string
 }
 
-export const ImageUrlSection = ({
+export const ImageUrlSection = <T extends FieldValues>({
     clearErrors,
     folder,
     label,
@@ -39,14 +41,14 @@ export const ImageUrlSection = ({
     error,
     required = false,
     value = '',
-}: ImageUrlSectionProps) => {
+}: ImageUrlSectionProps<T>) => {
     const [imageUrl, setImageUrl] = useState<string>()
 
     useEffect(() => {
         setImageUrl(value)
     }, [value])
 
-    const [uploadFile] = useUploadFileMutation()
+    const [uploadImageTemp] = useUploadImageTempMutation()
 
     const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -58,10 +60,10 @@ export const ImageUrlSection = ({
             formData.append('folder', folder)
             formData.append('imageFile', file)
 
-            const response = await uploadFile(formData).unwrap()
+            const response = await uploadImageTemp(formData).unwrap()
 
             setImageUrl(response.imageUrl)
-            setValue(name, response.imageUrl)
+            setValue(name, response.imageUrl as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
             console.error(error)

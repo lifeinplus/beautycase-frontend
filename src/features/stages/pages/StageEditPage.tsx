@@ -38,11 +38,15 @@ export const StageEditPage = () => {
     }, [data, dispatch, isDirty])
 
     const handleEditStage = async (stage: Stage) => {
+        const { stepsText, ...newStage } = stage
+
         try {
             await editStage({
-                ...stage,
-                _id: id!,
-                steps: stage.stepsText.split('\n\n'),
+                id: id!,
+                body: {
+                    ...newStage,
+                    steps: stepsText?.split('\n\n'),
+                },
             }).unwrap()
 
             dispatch(clearFormData())

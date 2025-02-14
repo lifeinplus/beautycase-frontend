@@ -3,7 +3,7 @@ import { cleanObject } from '../../utils'
 import { apiSlice } from '../api/apiSlice'
 import { type Tool } from '../tools'
 
-export const toolsApiSlice = apiSlice.injectEndpoints({
+const toolsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addTool: builder.mutation<MutationResult, Tool>({
             query: (data) => ({

@@ -5,7 +5,7 @@ interface MobileViewProps<T> {
     items?: T[]
     getTitle: (item: T) => string
     getSubtitle?: (item: T) => string
-    getDate: (item: T) => string
+    getDate?: (item: T) => string
     getLink: (item: T) => string
 }
 
@@ -35,9 +35,11 @@ export const MobileView = <T,>({
                 </div>
                 <div className="flex gap-5">
                     <div className="text-center">
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                            {getDate(item)}
-                        </p>
+                        {getDate && (
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                                {getDate(item)}
+                            </p>
+                        )}
                     </div>
 
                     <div>

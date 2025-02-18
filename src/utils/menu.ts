@@ -41,6 +41,12 @@ export const menuItems: MenuItem[] = [
     },
     {
         auth: true,
+        label: 'Этапы',
+        path: '/stages',
+        roles: ['admin', 'mua'],
+    },
+    {
+        auth: true,
         label: 'Продукты',
         path: '/products',
         roles: ['admin', 'mua'],
@@ -59,9 +65,9 @@ export const menuItems: MenuItem[] = [
     },
     {
         auth: true,
-        label: 'Этапы',
-        path: '/stages',
-        roles: ['admin', 'mua'],
+        label: 'Справочники',
+        path: '/reference_lists',
+        roles: ['admin'],
     },
     {
         auth: true,

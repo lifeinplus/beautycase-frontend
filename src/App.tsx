@@ -55,6 +55,11 @@ import {
     ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
+import {
+    BrandsPage,
+    ReferenceListsPage,
+    StoresPage,
+} from './features/referenceLists'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -191,6 +196,18 @@ const App = () => {
                                     path=":id"
                                     element={<QuestionnaireResultPage />}
                                 />
+                            </Route>
+                        </Route>
+
+                        <Route path="/reference_lists">
+                            <Route
+                                element={
+                                    <RequireRole allowedRoles={['admin']} />
+                                }
+                            >
+                                <Route index element={<ReferenceListsPage />} />
+                                <Route path="brands" element={<BrandsPage />} />
+                                <Route path="stores" element={<StoresPage />} />
                             </Route>
                         </Route>
 

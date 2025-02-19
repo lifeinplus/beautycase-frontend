@@ -13,6 +13,7 @@ import {
     RequireRole,
     UnauthorizedPage,
 } from './features/auth'
+import { BrandsPage } from './features/brands'
 import { HomePage } from './features/home'
 import {
     LessonAddPage,
@@ -39,6 +40,7 @@ import {
     QuestionnairePage,
     QuestionnaireResultPage,
 } from './features/questionnaires'
+import { ReferenceListsPage } from './features/referenceLists'
 import {
     StageAddPage,
     StageDetailsPage,
@@ -46,7 +48,7 @@ import {
     StageListPage,
     StageSelectionPage,
 } from './features/stages'
-import { StoreLinkAddPage } from './features/stores'
+import { StoreLinkAddPage, StoresPage } from './features/stores'
 import { selectDarkMode } from './features/theme'
 import {
     ToolAddPage,
@@ -55,11 +57,6 @@ import {
     ToolSelectionPage,
     ToolsGalleryPage,
 } from './features/tools'
-import {
-    BrandsPage,
-    ReferenceListsPage,
-    StoresPage,
-} from './features/referenceLists'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)

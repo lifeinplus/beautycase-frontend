@@ -3,20 +3,18 @@ import type { Header } from '../../../types'
 import { type ReferenceList } from '../../referenceLists'
 
 interface ReferenceListsTableProps {
-    referenceLists?: ReferenceList[]
+    data?: ReferenceList[]
 }
 
 const headers: Header[] = [{ label: 'Справочник', className: 'text-left' }]
 
-export const ReferenceListsTable = ({
-    referenceLists,
-}: ReferenceListsTableProps) => {
+export const ReferenceListsTable = ({ data }: ReferenceListsTableProps) => {
     const cellClasses = headers.map((h) => h.className)
 
     return (
         <Table
             headers={headers}
-            data={referenceLists}
+            data={data}
             renderRow={(item) => (
                 <TableRow
                     key={item.id}

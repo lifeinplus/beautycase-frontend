@@ -3,13 +3,14 @@ import {
     ArrowLeftIcon,
     PlusCircleIcon,
 } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import {
     AdaptiveNavBar,
     Button,
+    DataWrapper,
     Hero,
     Input,
     NavigationButton,
@@ -17,6 +18,7 @@ import {
 } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import {
+    BrandsMobileView,
     BrandsTable,
     useCreateBrandMutation,
     useReadBrandsQuery,
@@ -26,7 +28,7 @@ import {
 export const BrandsPage = () => {
     const navigate = useNavigate()
 
-    const { data: brands, isLoading, isError } = useReadBrandsQuery()
+    const { data, isLoading, error } = useReadBrandsQuery()
     const [createBrand] = useCreateBrandMutation()
     const [updateBrand] = useUpdateBrandMutation()
 
@@ -65,12 +67,6 @@ export const BrandsPage = () => {
         }
     }
 
-    useEffect(() => {
-        if (isError) {
-            console.error('Failed to fetch brands')
-        }
-    }, [isError])
-
     return (
         <article>
             <TopPanel title="Бренды" onBack={handleBack} />
@@ -81,7 +77,7 @@ export const BrandsPage = () => {
                         <Hero headline="Бренды" />
                     </div>
 
-                    <div className="mb-4 flex gap-2">
+                    <div className="my-6 flex gap-3 pe-4 ps-4 sm:px-0">
                         <Input
                             className="flex-grow"
                             onChange={(e) => setBrandName(e.target.value)}
@@ -94,7 +90,7 @@ export const BrandsPage = () => {
                             onClick={
                                 editId ? handleUpdateBrand : handleAddBrand
                             }
-                            className="min-w-[100px]"
+                            className="min-w-28"
                         >
                             {editId ? (
                                 <ArrowDownCircleIcon className="h-6 w-6" />
@@ -104,15 +100,28 @@ export const BrandsPage = () => {
                         </Button>
                     </div>
 
-                    {isLoading ? (
-                        <p>Loading...</p>
-                    ) : (
-                        <BrandsTable
-                            brands={brands}
-                            setBrandName={setBrandName}
-                            setEditId={setEditId}
-                        />
-                    )}
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage="Бренды не найдены"
+                    >
+                        {data && (
+                            <>
+                                <BrandsMobileView
+                                    data={data}
+                                    getTitle={(item) => item.name || ''}
+                                    setBrandName={setBrandName}
+                                    setEditId={setEditId}
+                                />
+                                <BrandsTable
+                                    data={data}
+                                    setBrandName={setBrandName}
+                                    setEditId={setEditId}
+                                />
+                            </>
+                        )}
+                    </DataWrapper>
                 </article>
             </main>
 

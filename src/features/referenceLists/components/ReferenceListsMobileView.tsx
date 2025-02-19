@@ -2,14 +2,14 @@ import { MobileView } from '../../../components'
 import { type ReferenceList } from '../../referenceLists'
 
 interface ReferenceListsMobileViewProps {
-    referenceLists?: ReferenceList[]
+    data?: ReferenceList[]
 }
 
 export const ReferenceListsMobileView = ({
-    referenceLists,
+    data,
 }: ReferenceListsMobileViewProps) => (
     <MobileView
-        items={referenceLists}
+        items={data}
         getTitle={(item) => item.name || ''}
         getLink={(item) => `/reference_lists/${item.id}`}
     />

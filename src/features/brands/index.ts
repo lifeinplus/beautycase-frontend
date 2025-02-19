@@ -1,3 +1,4 @@
+export * from './components/BrandsMobileView'
 export * from './components/BrandsTable'
 
 export * from './pages/BrandsPage'

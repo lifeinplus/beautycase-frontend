@@ -8,7 +8,7 @@ import { useDeleteBrandMutation, type Brand } from '../../brands'
 import { Dispatch, SetStateAction } from 'react'
 
 interface BrandsTableProps {
-    brands?: Brand[]
+    data?: Brand[]
     setBrandName: Dispatch<SetStateAction<string>>
     setEditId: Dispatch<SetStateAction<string | null>>
 }
@@ -19,7 +19,7 @@ const headers: Header[] = [
 ]
 
 export const BrandsTable = ({
-    brands,
+    data,
     setBrandName,
     setEditId,
 }: BrandsTableProps) => {
@@ -39,7 +39,7 @@ export const BrandsTable = ({
     return (
         <Table
             headers={headers}
-            data={brands}
+            data={data}
             renderRow={(item) => (
                 <TableRow
                     key={item._id}

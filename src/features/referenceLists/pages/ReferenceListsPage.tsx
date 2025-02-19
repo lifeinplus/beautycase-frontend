@@ -18,8 +18,8 @@ export const ReferenceListsPage = () => {
             <main className="page-content">
                 <article className="content-container">
                     <Hero headline="Справочники" />
-                    <ReferenceListsMobileView referenceLists={data} />
-                    <ReferenceListsTable referenceLists={data} />
+                    <ReferenceListsMobileView data={data} />
+                    <ReferenceListsTable data={data} />
                 </article>
             </main>
 

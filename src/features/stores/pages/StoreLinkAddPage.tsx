@@ -11,14 +11,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { type StoreLink, useGetStoresQuery } from '../../stores'
+import { type StoreLink, useReadStoresQuery } from '../../stores'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: stores } = useGetStoresQuery()
+    const { data: stores } = useReadStoresQuery()
 
     const emptyStoreLink: StoreLink = { _id: '', link: '', name: '' }
 

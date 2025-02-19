@@ -3,10 +3,10 @@ import type { Store } from './types'
 
 const storesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getStores: builder.query<Store[], void>({
-            query: () => '/stores/all',
+        readStores: builder.query<Store[], void>({
+            query: () => '/stores',
         }),
     }),
 })
 
-export const { useGetStoresQuery } = storesApiSlice
+export const { useReadStoresQuery } = storesApiSlice

@@ -6,11 +6,12 @@ import {
 import { useAppDispatch } from '../../../app/hooks'
 import { Button, Table, TableRow } from '../../../components'
 import type { Header } from '../../../types'
-import { useDeleteBrandMutation, type Brand } from '../../brands'
+import { type Brand } from '../../brands'
 import { setFormData } from '../../form'
 
 interface BrandsTableProps {
     items?: Brand[]
+    onDelete: (data: Brand) => void
 }
 
 const headers: Header[] = [
@@ -18,19 +19,10 @@ const headers: Header[] = [
     { label: 'Действия', className: 'text-center w-1' },
 ]
 
-export const BrandsTable = ({ items }: BrandsTableProps) => {
-    const cellClasses = headers.map((h) => h.className)
+const cellClasses = headers.map((h) => h.className)
 
+export const BrandsTable = ({ items, onDelete }: BrandsTableProps) => {
     const dispatch = useAppDispatch()
-    const [deleteBrand] = useDeleteBrandMutation()
-
-    const handleEditBrand = (data: Brand) => {
-        dispatch(setFormData(data))
-    }
-
-    const handleDeleteBrand = async (id: string) => {
-        await deleteBrand(id).unwrap()
-    }
 
     return (
         <Table
@@ -45,13 +37,13 @@ export const BrandsTable = ({ items }: BrandsTableProps) => {
                         <div className="flex gap-2">
                             <Button
                                 variant="warning"
-                                onClick={() => handleEditBrand(item)}
+                                onClick={() => dispatch(setFormData(item))}
                             >
                                 <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                             </Button>
                             <Button
                                 variant="danger"
-                                onClick={() => handleDeleteBrand(item._id!)}
+                                onClick={() => onDelete(item)}
                             >
                                 <MinusCircleIcon className="h-5 w-5" />
                             </Button>

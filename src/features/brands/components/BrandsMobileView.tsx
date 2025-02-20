@@ -5,24 +5,19 @@ import {
 
 import { useAppDispatch } from '../../../app/hooks'
 import { Button } from '../../../components'
-import { useDeleteBrandMutation, type Brand } from '../../brands'
+import { type Brand } from '../../brands'
 import { setFormData } from '../../form'
 
 interface BrandsMobileViewProps {
     items?: Brand[]
+    onDelete: (data: Brand) => void
 }
 
-export const BrandsMobileView = ({ items }: BrandsMobileViewProps) => {
+export const BrandsMobileView = ({
+    items,
+    onDelete,
+}: BrandsMobileViewProps) => {
     const dispatch = useAppDispatch()
-    const [deleteBrand] = useDeleteBrandMutation()
-
-    const handleEditBrand = (data: Brand) => {
-        dispatch(setFormData(data))
-    }
-
-    const handleDeleteBrand = async (id: string) => {
-        await deleteBrand(id).unwrap()
-    }
 
     return (
         <div className="space-y-5 sm:hidden">
@@ -39,14 +34,11 @@ export const BrandsMobileView = ({ items }: BrandsMobileViewProps) => {
                     <div className="flex gap-2">
                         <Button
                             variant="warning"
-                            onClick={() => handleEditBrand(item)}
+                            onClick={() => dispatch(setFormData(item))}
                         >
                             <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                         </Button>
-                        <Button
-                            variant="danger"
-                            onClick={() => handleDeleteBrand(item._id!)}
-                        >
+                        <Button variant="danger" onClick={() => onDelete(item)}>
                             <MinusCircleIcon className="h-5 w-5" />
                         </Button>
                     </div>

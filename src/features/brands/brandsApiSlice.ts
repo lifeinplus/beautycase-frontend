@@ -4,11 +4,11 @@ import { type Brand } from '../brands'
 
 const brandsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createBrand: builder.mutation<MutationResult, Partial<Brand>>({
-            query: (newBrand) => ({
+        createBrand: builder.mutation<MutationResult, Brand>({
+            query: (body) => ({
                 url: '/brands',
                 method: 'POST',
-                body: newBrand,
+                body: body,
             }),
             invalidatesTags: ['Brands'],
         }),
@@ -16,14 +16,11 @@ const brandsApiSlice = apiSlice.injectEndpoints({
             query: () => '/brands',
             providesTags: ['Brands'],
         }),
-        updateBrand: builder.mutation<
-            Brand,
-            { id: string; body: Partial<Brand> }
-        >({
-            query: (data) => ({
-                url: `/brands/${data.id}`,
+        updateBrand: builder.mutation<Brand, Brand>({
+            query: ({ _id, ...body }) => ({
+                url: `/brands/${_id}`,
                 method: 'PUT',
-                body: data.body,
+                body: body,
             }),
             invalidatesTags: ['Brands'],
         }),

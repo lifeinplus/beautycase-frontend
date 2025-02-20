@@ -10,7 +10,7 @@ import { setFormData } from '../../form'
 import { useDeleteStoreMutation, type Store } from '../../stores'
 
 interface StoresTableProps {
-    data?: Store[]
+    items?: Store[]
 }
 
 const headers: Header[] = [
@@ -18,14 +18,14 @@ const headers: Header[] = [
     { label: 'Действия', className: 'text-center w-1' },
 ]
 
-export const StoresTable = ({ data }: StoresTableProps) => {
+export const StoresTable = ({ items }: StoresTableProps) => {
     const cellClasses = headers.map((h) => h.className)
 
     const dispatch = useAppDispatch()
     const [deleteStore] = useDeleteStoreMutation()
 
-    const handleEditStore = (store: Store) => {
-        dispatch(setFormData(store))
+    const handleEditStore = (data: Store) => {
+        dispatch(setFormData(data))
     }
 
     const handleDeleteStore = async (id: string) => {
@@ -35,7 +35,7 @@ export const StoresTable = ({ data }: StoresTableProps) => {
     return (
         <Table
             headers={headers}
-            data={data}
+            data={items}
             renderRow={(item) => (
                 <TableRow
                     key={item._id}

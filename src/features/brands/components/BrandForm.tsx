@@ -12,27 +12,27 @@ import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData, selectFormData } from '../../form'
 import {
-    type Store,
-    storeSchema,
-    useCreateStoreMutation,
-    useUpdateStoreMutation,
-} from '../../stores'
+    type Brand,
+    brandSchema,
+    useCreateBrandMutation,
+    useUpdateBrandMutation,
+} from '../../brands'
 
-export const StoreForm = () => {
-    const defaultValues: Store = { name: '' }
+export const BrandForm = () => {
+    const defaultValues: Brand = { name: '' }
 
     const {
         handleSubmit,
         register,
         reset,
         formState: { errors, isSubmitSuccessful },
-    } = useForm<Store>({
+    } = useForm<Brand>({
         defaultValues,
-        resolver: yupResolver(storeSchema),
+        resolver: yupResolver(brandSchema),
     })
 
     const dispatch = useAppDispatch()
-    const formData = useAppSelector(selectFormData) as Store
+    const formData = useAppSelector(selectFormData) as Brand
 
     useEffect(() => {
         reset(formData)
@@ -44,12 +44,12 @@ export const StoreForm = () => {
         }
     }, [isSubmitSuccessful, reset])
 
-    const [createStore] = useCreateStoreMutation()
-    const [updateStore] = useUpdateStoreMutation()
+    const [createBrand] = useCreateBrandMutation()
+    const [updateBrand] = useUpdateBrandMutation()
 
-    const handleAddStore = async (data: Store) => {
+    const handleAddBrand = async (data: Brand) => {
         try {
-            await createStore(data).unwrap()
+            await createBrand(data).unwrap()
             dispatch(clearFormData())
         } catch (error) {
             console.error(error)
@@ -57,9 +57,9 @@ export const StoreForm = () => {
         }
     }
 
-    const handleUpdateStore = async (data: Store) => {
+    const handleUpdateBrand = async (data: Brand) => {
         try {
-            await updateStore(data).unwrap()
+            await updateBrand(data).unwrap()
             dispatch(clearFormData())
         } catch (error) {
             console.error(error)
@@ -73,14 +73,14 @@ export const StoreForm = () => {
                 <input
                     {...register('name')}
                     className="form-input flex-grow"
-                    placeholder="Магазин"
+                    placeholder="Бренд"
                     type="text"
                 />
 
                 {formData._id ? (
                     <Button
                         className="min-w-28"
-                        onClick={handleSubmit(handleUpdateStore)}
+                        onClick={handleSubmit(handleUpdateBrand)}
                         type="submit"
                         variant="warning"
                     >
@@ -89,7 +89,7 @@ export const StoreForm = () => {
                 ) : (
                     <Button
                         className="min-w-28"
-                        onClick={handleSubmit(handleAddStore)}
+                        onClick={handleSubmit(handleAddBrand)}
                         type="submit"
                         variant="success"
                     >

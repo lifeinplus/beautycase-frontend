@@ -9,15 +9,15 @@ import { setFormData } from '../../form'
 import { useDeleteStoreMutation, type Store } from '../../stores'
 
 interface StoresMobileViewProps {
-    data?: Store[]
+    items?: Store[]
 }
 
-export const StoresMobileView = ({ data }: StoresMobileViewProps) => {
+export const StoresMobileView = ({ items }: StoresMobileViewProps) => {
     const dispatch = useAppDispatch()
     const [deleteStore] = useDeleteStoreMutation()
 
-    const handleEditStore = (store: Store) => {
-        dispatch(setFormData(store))
+    const handleEditStore = (data: Store) => {
+        dispatch(setFormData(data))
     }
 
     const handleDeleteStore = async (id: string) => {
@@ -26,7 +26,7 @@ export const StoresMobileView = ({ data }: StoresMobileViewProps) => {
 
     return (
         <div className="space-y-5 sm:hidden">
-            {data?.map((item) => (
+            {items?.map((item) => (
                 <div
                     key={item._id}
                     className="flex items-center justify-between pe-4 ps-4"

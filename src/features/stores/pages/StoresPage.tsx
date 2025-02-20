@@ -44,8 +44,8 @@ export const StoresPage = () => {
                     >
                         {data && (
                             <>
-                                <StoresMobileView data={data} />
-                                <StoresTable data={data} />
+                                <StoresMobileView items={data} />
+                                <StoresTable items={data} />
                             </>
                         )}
                     </DataWrapper>

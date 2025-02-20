@@ -4,11 +4,11 @@ import { type Store } from '../stores'
 
 const storesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createStore: builder.mutation<MutationResult, Partial<Store>>({
-            query: (newStore) => ({
+        createStore: builder.mutation<MutationResult, Store>({
+            query: (body) => ({
                 url: '/stores',
                 method: 'POST',
-                body: newStore,
+                body: body,
             }),
             invalidatesTags: ['Stores'],
         }),

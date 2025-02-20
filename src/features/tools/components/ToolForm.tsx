@@ -12,6 +12,7 @@ import {
     ImageUrlSection,
     InputSection,
     selectFormData,
+    SelectOption,
     SelectSection,
     setFormData,
     TextareaSection,
@@ -47,9 +48,9 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
     const { data: brands } = useReadBrandsQuery()
 
-    const brandOptions = brands?.map((b) => ({
+    const brandOptions: SelectOption[] | undefined = brands?.map((b) => ({
         text: b.name,
-        value: b._id,
+        value: b._id!,
     }))
 
     const storeLinks = watch('storeLinks')

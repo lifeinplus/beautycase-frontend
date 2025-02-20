@@ -2,28 +2,22 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
-import { Dispatch, SetStateAction } from 'react'
 
+import { useAppDispatch } from '../../../app/hooks'
 import { Button } from '../../../components'
 import { useDeleteBrandMutation, type Brand } from '../../brands'
+import { setFormData } from '../../form'
 
 interface BrandsMobileViewProps {
-    data?: Brand[]
-    getTitle: (item: Brand) => string
-    setBrandName: Dispatch<SetStateAction<string>>
-    setEditId: Dispatch<SetStateAction<string | null>>
+    items?: Brand[]
 }
 
-export const BrandsMobileView = ({
-    data,
-    setBrandName,
-    setEditId,
-}: BrandsMobileViewProps) => {
+export const BrandsMobileView = ({ items }: BrandsMobileViewProps) => {
+    const dispatch = useAppDispatch()
     const [deleteBrand] = useDeleteBrandMutation()
 
-    const handleEditBrand = (id: string, name: string) => {
-        setEditId(id)
-        setBrandName(name)
+    const handleEditBrand = (data: Brand) => {
+        dispatch(setFormData(data))
     }
 
     const handleDeleteBrand = async (id: string) => {
@@ -32,8 +26,11 @@ export const BrandsMobileView = ({
 
     return (
         <div className="space-y-5 sm:hidden">
-            {data?.map((item) => (
-                <div className="flex items-center justify-between pe-4 ps-4">
+            {items?.map((item) => (
+                <div
+                    key={item._id}
+                    className="flex items-center justify-between pe-4 ps-4"
+                >
                     <div>
                         <p className="text-black dark:text-white">
                             {item.name}
@@ -42,13 +39,13 @@ export const BrandsMobileView = ({
                     <div className="flex gap-2">
                         <Button
                             variant="warning"
-                            onClick={() => handleEditBrand(item._id, item.name)}
+                            onClick={() => handleEditBrand(item)}
                         >
                             <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                         </Button>
                         <Button
                             variant="danger"
-                            onClick={() => handleDeleteBrand(item._id)}
+                            onClick={() => handleDeleteBrand(item._id!)}
                         >
                             <MinusCircleIcon className="h-5 w-5" />
                         </Button>

@@ -2,15 +2,15 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
+
+import { useAppDispatch } from '../../../app/hooks'
 import { Button, Table, TableRow } from '../../../components'
 import type { Header } from '../../../types'
 import { useDeleteBrandMutation, type Brand } from '../../brands'
-import { Dispatch, SetStateAction } from 'react'
+import { setFormData } from '../../form'
 
 interface BrandsTableProps {
-    data?: Brand[]
-    setBrandName: Dispatch<SetStateAction<string>>
-    setEditId: Dispatch<SetStateAction<string | null>>
+    items?: Brand[]
 }
 
 const headers: Header[] = [
@@ -18,18 +18,14 @@ const headers: Header[] = [
     { label: 'Действия', className: 'text-center w-1' },
 ]
 
-export const BrandsTable = ({
-    data,
-    setBrandName,
-    setEditId,
-}: BrandsTableProps) => {
+export const BrandsTable = ({ items }: BrandsTableProps) => {
     const cellClasses = headers.map((h) => h.className)
 
+    const dispatch = useAppDispatch()
     const [deleteBrand] = useDeleteBrandMutation()
 
-    const handleEditBrand = (id: string, name: string) => {
-        setEditId(id)
-        setBrandName(name)
+    const handleEditBrand = (data: Brand) => {
+        dispatch(setFormData(data))
     }
 
     const handleDeleteBrand = async (id: string) => {
@@ -39,7 +35,7 @@ export const BrandsTable = ({
     return (
         <Table
             headers={headers}
-            data={data}
+            data={items}
             renderRow={(item) => (
                 <TableRow
                     key={item._id}
@@ -49,15 +45,13 @@ export const BrandsTable = ({
                         <div className="flex gap-2">
                             <Button
                                 variant="warning"
-                                onClick={() =>
-                                    handleEditBrand(item._id, item.name)
-                                }
+                                onClick={() => handleEditBrand(item)}
                             >
                                 <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                             </Button>
                             <Button
                                 variant="danger"
-                                onClick={() => handleDeleteBrand(item._id)}
+                                onClick={() => handleDeleteBrand(item._id!)}
                             >
                                 <MinusCircleIcon className="h-5 w-5" />
                             </Button>

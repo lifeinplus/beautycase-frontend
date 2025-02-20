@@ -2,15 +2,15 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
+
+import { useAppDispatch } from '../../../app/hooks'
 import { Button, Table, TableRow } from '../../../components'
 import type { Header } from '../../../types'
+import { setFormData } from '../../form'
 import { useDeleteStoreMutation, type Store } from '../../stores'
-import { Dispatch, SetStateAction } from 'react'
 
 interface StoresTableProps {
-    stores?: Store[]
-    setStoreName: Dispatch<SetStateAction<string>>
-    setEditId: Dispatch<SetStateAction<string | null>>
+    data?: Store[]
 }
 
 const headers: Header[] = [
@@ -18,18 +18,14 @@ const headers: Header[] = [
     { label: 'Действия', className: 'text-center w-1' },
 ]
 
-export const StoresTable = ({
-    stores,
-    setStoreName,
-    setEditId,
-}: StoresTableProps) => {
+export const StoresTable = ({ data }: StoresTableProps) => {
     const cellClasses = headers.map((h) => h.className)
 
+    const dispatch = useAppDispatch()
     const [deleteStore] = useDeleteStoreMutation()
 
-    const handleEditStore = (id: string, name: string) => {
-        setEditId(id)
-        setStoreName(name)
+    const handleEditStore = (store: Store) => {
+        dispatch(setFormData(store))
     }
 
     const handleDeleteStore = async (id: string) => {
@@ -39,7 +35,7 @@ export const StoresTable = ({
     return (
         <Table
             headers={headers}
-            data={stores}
+            data={data}
             renderRow={(item) => (
                 <TableRow
                     key={item._id}
@@ -49,15 +45,13 @@ export const StoresTable = ({
                         <div className="flex gap-2">
                             <Button
                                 variant="warning"
-                                onClick={() =>
-                                    handleEditStore(item._id, item.name)
-                                }
+                                onClick={() => handleEditStore(item)}
                             >
                                 <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                             </Button>
                             <Button
                                 variant="danger"
-                                onClick={() => handleDeleteStore(item._id)}
+                                onClick={() => handleDeleteStore(item._id!)}
                             >
                                 <MinusCircleIcon className="h-5 w-5" />
                             </Button>

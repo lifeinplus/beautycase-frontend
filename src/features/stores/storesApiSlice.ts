@@ -16,14 +16,11 @@ const storesApiSlice = apiSlice.injectEndpoints({
             query: () => '/stores',
             providesTags: ['Stores'],
         }),
-        updateStore: builder.mutation<
-            Store,
-            { id: string; body: Partial<Store> }
-        >({
-            query: (data) => ({
-                url: `/stores/${data.id}`,
+        updateStore: builder.mutation<Store, Store>({
+            query: ({ _id, ...body }) => ({
+                url: `/stores/${_id}`,
                 method: 'PUT',
-                body: data.body,
+                body: body,
             }),
             invalidatesTags: ['Stores'],
         }),

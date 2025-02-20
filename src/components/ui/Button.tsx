@@ -4,13 +4,15 @@ import classNames from 'classnames'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode
+    type?: 'button' | 'submit' | 'reset'
     variant?: 'success' | 'danger' | 'warning'
 }
 
 export const Button = ({
     children,
-    variant = 'success',
     className,
+    type = 'button',
+    variant = 'success',
     ...props
 }: ButtonProps) => {
     const variants = {
@@ -21,8 +23,9 @@ export const Button = ({
 
     return (
         <button
-            className={classNames('btn-base', variants[variant], className)}
             {...props}
+            className={classNames('btn-base', variants[variant], className)}
+            type={type}
         >
             {children}
         </button>

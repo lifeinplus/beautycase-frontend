@@ -1,21 +1,29 @@
-import { MouseEvent, useRef } from 'react'
+import { MouseEvent, useEffect, useRef } from 'react'
 
 interface ModalProps {
-    isOpen: boolean
-    title: string
     description: string
+    isOpen: boolean
     onConfirm: () => void
     onCancel: () => void
+    title: string
 }
 
 export const Modal = ({
-    isOpen,
-    title,
     description,
-    onConfirm,
+    isOpen,
     onCancel,
+    onConfirm,
+    title,
 }: ModalProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden')
+        } else {
+            document.body.classList.remove('overflow-hidden')
+        }
+    }, [isOpen])
 
     const handleClickOutside = (e: MouseEvent) => {
         if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
@@ -27,21 +35,18 @@ export const Modal = ({
 
     return (
         <div className="modal" onClick={handleClickOutside}>
-            <div className="modal__container" ref={modalRef}>
-                <div className="modal__content">
-                    <h2 className="modal__content__title">{title}</h2>
-                    <p className="modal__content__text">{description}</p>
+            <div className="modal-container" ref={modalRef}>
+                <div className="modal-content">
+                    <h2 className="modal-title">{title}</h2>
+                    <p className="modal-description">{description}</p>
                 </div>
-                <div className="modal__button-group">
-                    <button
-                        onClick={onConfirm}
-                        className="modal__button--danger"
-                    >
+                <div className="modal-button-group">
+                    <button onClick={onConfirm} className="modal-button-danger">
                         Удалить
                     </button>
                     <button
                         onClick={onCancel}
-                        className="modal__button--secondary"
+                        className="modal-button-secondary"
                     >
                         Отмена
                     </button>

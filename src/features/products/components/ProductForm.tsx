@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import { useGetBrandsQuery } from '../../brands'
+import { useReadBrandsQuery } from '../../brands'
 import {
     ButtonNavigateSection,
     ImageUrlSection,
     InputSection,
     selectFormData,
+    SelectOption,
     SelectSection,
     setFormData,
     TextareaSection,
@@ -45,11 +46,11 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         reset(formData)
     }, [formData])
 
-    const { data: brands } = useGetBrandsQuery()
+    const { data: brands } = useReadBrandsQuery()
 
-    const brandOptions = brands?.map((b) => ({
+    const brandOptions: SelectOption[] | undefined = brands?.map((b) => ({
         text: b.name,
-        value: b._id,
+        value: b._id!,
     }))
 
     const storeLinks = watch('storeLinks')

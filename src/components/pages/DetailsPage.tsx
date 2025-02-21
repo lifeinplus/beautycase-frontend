@@ -177,7 +177,7 @@ export const DetailsPage = ({
             <Modal
                 isOpen={isModalOpen}
                 title="Удалить?"
-                description={`Вы действительно хотите удалить этот ${title.toLowerCase()}?`}
+                description={`Вы действительно хотите удалить ${title}?`}
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalOpen(false)}
             />

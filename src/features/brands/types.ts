@@ -1,8 +1,7 @@
 import { type Tool } from '../tools'
 
 export interface Brand {
-    _id: string
+    _id?: string
     name: string
-    link: string
     toolIds?: Partial<Tool>[]
 }

@@ -3,14 +3,14 @@ import {
     PlusCircleIcon,
 } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useEffect } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils'
-import { clearFormData, selectFormData } from '../../form'
+import { clearFormData, type FormRef, selectFormData } from '../../form'
 import {
     type Store,
     storeSchema,
@@ -18,7 +18,15 @@ import {
     useUpdateStoreMutation,
 } from '../../stores'
 
-export const StoreForm = () => {
+export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
+    const inputRef = useRef<HTMLInputElement | null>(null)
+
+    useImperativeHandle(ref, () => ({
+        focusInput: () => {
+            inputRef.current?.focus()
+        },
+    }))
+
     const defaultValues: Store = { name: '' }
 
     const {
@@ -67,13 +75,19 @@ export const StoreForm = () => {
         }
     }
 
+    const { ref: refName, ...restName } = register('name')
+
     return (
         <form className="my-6 pe-4 ps-4 sm:px-0">
             <div className="flex gap-3">
                 <input
-                    {...register('name')}
+                    {...restName}
                     className="form-input flex-grow"
                     placeholder="Магазин"
+                    ref={(e) => {
+                        refName(e)
+                        inputRef.current = e
+                    }}
                     type="text"
                 />
 
@@ -101,4 +115,4 @@ export const StoreForm = () => {
             {errors.name && <p className="form-error">{errors.name.message}</p>}
         </form>
     )
-}
+})

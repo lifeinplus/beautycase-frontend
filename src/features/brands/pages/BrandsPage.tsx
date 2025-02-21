@@ -1,8 +1,9 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
+import { useAppDispatch } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
     DataWrapper,
@@ -13,18 +14,18 @@ import {
 } from '../../../components'
 import { getErrorMessage } from '../../../utils'
 import {
-    Brand,
+    type Brand,
     BrandForm,
     BrandsMobileView,
     BrandsTable,
     useDeleteBrandMutation,
     useReadBrandsQuery,
 } from '../../brands'
-import { useAppDispatch } from '../../../app/hooks'
-import { clearFormData } from '../../form'
+import { clearFormData, type FormRef, setFormData } from '../../form'
 
 export const BrandsPage = () => {
     const navigate = useNavigate()
+    const brandFormRef = useRef<FormRef | null>(null)
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [brand, setBrand] = useState<Brand>()
@@ -57,6 +58,11 @@ export const BrandsPage = () => {
         }
     }
 
+    const handleEdit = (data: Brand) => {
+        dispatch(setFormData(data))
+        brandFormRef.current?.focusInput()
+    }
+
     return (
         <article>
             <TopPanel title="Бренды" onBack={handleBack} />
@@ -67,7 +73,7 @@ export const BrandsPage = () => {
                         <Hero headline="Бренды" />
                     </div>
 
-                    <BrandForm />
+                    <BrandForm ref={brandFormRef} />
 
                     <DataWrapper
                         isLoading={isLoading}
@@ -80,10 +86,12 @@ export const BrandsPage = () => {
                                 <BrandsMobileView
                                     items={data}
                                     onDelete={handleDelete}
+                                    onEdit={handleEdit}
                                 />
                                 <BrandsTable
                                     items={data}
                                     onDelete={handleDelete}
+                                    onEdit={handleEdit}
                                 />
                             </>
                         )}

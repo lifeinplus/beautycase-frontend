@@ -1,8 +1,3 @@
-export interface SelectOption {
-    text: string
-    value: string
-}
-
 export interface FieldConfig<T> {
     label: string
     name: keyof T
@@ -12,4 +7,13 @@ export interface FieldConfig<T> {
     preview?: boolean
     required?: boolean
     rows?: number
+}
+
+export interface FormRef {
+    focusInput: () => void
+}
+
+export interface SelectOption {
+    text: string
+    value: string
 }

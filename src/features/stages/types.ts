@@ -6,8 +6,9 @@ export interface Stage {
     title: string
     subtitle: string
     imageUrl: string
+    comment?: string
     steps?: string[]
-    stepsText: string
+    stepsText?: string
     products?: Product[]
     productIds: string[]
 }

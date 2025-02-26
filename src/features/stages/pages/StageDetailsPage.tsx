@@ -3,14 +3,14 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { DetailsPage } from '../../../components'
 import config from '../../../config'
 import { Product } from '../../products'
-import { useDeleteStageMutation, useGetStageByIdQuery } from '../../stages'
+import { useDeleteStageMutation, useReadStageByIdQuery } from '../../stages'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useGetStageByIdQuery(id!)
+    const { data, isLoading, error } = useReadStageByIdQuery(id!)
 
     const handleProduct = (id?: string) => {
         navigate(`/products/${id}`, {
@@ -41,12 +41,19 @@ export const StageDetailsPage = () => {
             }
             descriptionContent={
                 <section className="content-description">
-                    <p className="my-2 font-bold sm:text-left">Шаги</p>
-                    <ul className="ms-5 list-outside list-decimal">
-                        {data?.steps?.map((step: string, index: number) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ul>
+                    {data?.comment && <p>{data?.comment}</p>}
+                    {data?.steps?.length ? (
+                        <>
+                            <p className="my-2 font-bold sm:text-left">Шаги</p>
+                            <ul className="ms-5 list-outside list-decimal">
+                                {data.steps.map(
+                                    (step: string, index: number) => (
+                                        <li key={index}>{step}</li>
+                                    )
+                                )}
+                            </ul>
+                        </>
+                    ) : undefined}
                 </section>
             }
             additionalContent={

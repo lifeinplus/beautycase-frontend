@@ -13,7 +13,7 @@ import {
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
-import { StageMobileView, StageTable, useGetStagesQuery } from '../../stages'
+import { StageMobileView, StageTable, useReadStagesQuery } from '../../stages'
 
 const ACTIONS = {
     add: {
@@ -41,7 +41,7 @@ export const StageListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data, isLoading, error } = useGetStagesQuery()
+    const { data, isLoading, error } = useReadStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())

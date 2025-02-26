@@ -8,8 +8,8 @@ import { clearFormData, selectIsDirty, setFormData } from '../../form'
 import {
     type Stage,
     StageForm,
-    useEditStageMutation,
-    useGetStageByIdQuery,
+    useReadStageByIdQuery,
+    useUpdateStageMutation,
 } from '../../stages'
 
 export const StageEditPage = () => {
@@ -19,8 +19,8 @@ export const StageEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editStage] = useEditStageMutation()
-    const { data } = useGetStageByIdQuery(id!)
+    const [editStage] = useUpdateStageMutation()
+    const { data } = useReadStageByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -29,6 +29,7 @@ export const StageEditPage = () => {
                     title: data.title,
                     subtitle: data.subtitle,
                     imageUrl: data.imageUrl,
+                    comment: data.comment,
                     steps: data.steps,
                     stepsText: data.steps?.join('\n\n'),
                     productIds: data?.products?.map((p) => p._id!),
@@ -37,16 +38,15 @@ export const StageEditPage = () => {
         }
     }, [data, dispatch, isDirty])
 
-    const handleEditStage = async (stage: Stage) => {
+    const handleUpdateStage = async (stage: Stage) => {
         const { stepsText, ...newStage } = stage
+        const steps = stepsText ? stepsText?.split('\n\n') : undefined
 
         try {
             await editStage({
-                id: id!,
-                body: {
-                    ...newStage,
-                    steps: stepsText?.split('\n\n'),
-                },
+                ...newStage,
+                _id: id,
+                steps,
             }).unwrap()
 
             dispatch(clearFormData())
@@ -57,5 +57,7 @@ export const StageEditPage = () => {
         }
     }
 
-    return <StageForm title={'Редактировать этап'} onSubmit={handleEditStage} />
+    return (
+        <StageForm title={'Редактировать этап'} onSubmit={handleUpdateStage} />
+    )
 }

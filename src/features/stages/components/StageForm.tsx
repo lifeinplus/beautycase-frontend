@@ -98,10 +98,14 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.stepsText}
+                            label={'Комментарий'}
+                            register={register('comment')}
+                            value={watch('comment')}
+                        />
+
+                        <TextareaSection
                             label="Шаги"
                             register={register('stepsText')}
-                            required={true}
                             rows={10}
                             value={watch('stepsText')}
                         />

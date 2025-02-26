@@ -7,9 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+coverage
 dist
 dist-ssr
+node_modules
 src/data
 *.local
 
@@ -29,3 +30,4 @@ src/data
 .env
 .env.development
 .env.production
+.env.test

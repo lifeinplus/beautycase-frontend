@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { useGetStagesQuery } from '../stagesApiSlice'
+import { useReadStagesQuery } from '../stagesApiSlice'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: stages, isLoading, error } = useGetStagesQuery()
+    const { data: stages, isLoading, error } = useReadStagesQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.stageIds || []

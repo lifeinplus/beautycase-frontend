@@ -4,9 +4,7 @@ export const appendToFormData = <T extends Record<string, any>>(
     const formData = new FormData()
 
     Object.entries(data).forEach(([key, value]) => {
-        if (value instanceof FileList) {
-            Array.from(value).forEach((file) => formData.append(key, file))
-        } else if (value instanceof File) {
+        if (value instanceof File) {
             formData.append(key, value)
         } else if (typeof value === 'object' && value !== null) {
             formData.append(key, JSON.stringify(value))
@@ -21,7 +19,7 @@ export const appendToFormData = <T extends Record<string, any>>(
 export const cleanObject = <T>(obj: T): T => {
     if (Array.isArray(obj)) {
         return obj.map(cleanObject) as T
-    } else if (obj !== null && typeof obj === 'object') {
+    } else if (typeof obj === 'object' && obj !== null) {
         return Object.fromEntries(
             Object.entries(obj as Record<string, any>)
                 .filter(

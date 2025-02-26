@@ -4,21 +4,22 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils'
 import { clearFormData } from '../../form'
-import { type Stage, StageForm, useAddStageMutation } from '../../stages'
+import { type Stage, StageForm, useCreateStageMutation } from '../../stages'
 
 export const StageAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addStage] = useAddStageMutation()
+    const [addStage] = useCreateStageMutation()
 
     const handleAddStage = async (stage: Stage) => {
         const { stepsText, ...newStage } = stage
+        const steps = stepsText ? stepsText?.split('\n\n') : undefined
 
         try {
             const response = await addStage({
                 ...newStage,
-                steps: stepsText?.split('\n\n'),
+                steps,
             }).unwrap()
             dispatch(clearFormData())
             navigate(`/stages/${response.id}`)

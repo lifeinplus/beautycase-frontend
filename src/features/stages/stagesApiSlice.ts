@@ -5,41 +5,20 @@ import { type Stage } from '../stages'
 
 const stagesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        addStage: builder.mutation<MutationResult, Partial<Stage>>({
+        createStage: builder.mutation<MutationResult, Stage>({
             query: (data) => ({
-                url: '/stages/one',
+                url: '/stages',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Stage'],
         }),
-        deleteStage: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/stages/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Stage', id: 'LIST' }],
-        }),
-        editStage: builder.mutation<
-            Stage,
-            { id: string; body: Partial<Stage> }
-        >({
-            query: (data) => ({
-                url: `/stages/${data.id}`,
-                method: 'PUT',
-                body: cleanObject(data.body),
-            }),
-            invalidatesTags: (_result, _error, stage) => [
-                { type: 'Stage', id: stage.id },
-                { type: 'Stage', id: 'LIST' },
-            ],
-        }),
-        getStageById: builder.query<Stage, string>({
+        readStageById: builder.query<Stage, string>({
             query: (id) => `/stages/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
         }),
-        getStages: builder.query<Stage[], void>({
-            query: () => '/stages/all',
+        readStages: builder.query<Stage[], void>({
+            query: () => '/stages',
             providesTags: (result) =>
                 result
                     ? [
@@ -51,13 +30,31 @@ const stagesApiSlice = apiSlice.injectEndpoints({
                       ]
                     : [{ type: 'Stage', id: 'LIST' }],
         }),
+        updateStage: builder.mutation<Stage, Stage>({
+            query: ({ _id, ...body }) => ({
+                url: `/stages/${_id}`,
+                method: 'PUT',
+                body: cleanObject(body),
+            }),
+            invalidatesTags: (_result, _error, stage) => [
+                { type: 'Stage', id: stage._id },
+                { type: 'Stage', id: 'LIST' },
+            ],
+        }),
+        deleteStage: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/stages/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Stage', id: 'LIST' }],
+        }),
     }),
 })
 
 export const {
-    useAddStageMutation,
+    useCreateStageMutation,
+    useReadStageByIdQuery,
+    useReadStagesQuery,
+    useUpdateStageMutation,
     useDeleteStageMutation,
-    useEditStageMutation,
-    useGetStageByIdQuery,
-    useGetStagesQuery,
 } = stagesApiSlice

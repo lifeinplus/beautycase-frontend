@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -13,7 +13,13 @@ import {
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
-import { StageMobileView, StageTable, useReadStagesQuery } from '../../stages'
+import {
+    Stage,
+    StageMobileView,
+    StageTable,
+    useReadStagesQuery,
+} from '../../stages'
+import { MakeupBagSelect } from '../components/MakeupBagSelect'
 
 const ACTIONS = {
     add: {
@@ -41,7 +47,9 @@ export const StageListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data, isLoading, error } = useReadStagesQuery()
+    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
+
+    const { data: stages = [], isLoading, error } = useReadStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -60,6 +68,10 @@ export const StageListPage = () => {
         onClick: actionHandlers[id],
     }))
 
+    const handleFilterChange = useCallback((filteredStages: Stage[]) => {
+        setFilteredStages(filteredStages)
+    }, [])
+
     return (
         <article>
             <Header />
@@ -68,15 +80,20 @@ export const StageListPage = () => {
                 <article className="content-container">
                     <Hero headline="Этапы" />
 
+                    <MakeupBagSelect
+                        onFilterChange={handleFilterChange}
+                        stages={stages}
+                    />
+
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
-                        data={data}
+                        data={filteredStages}
                         emptyMessage="Этапы не найдены"
                     >
                         <>
-                            <StageMobileView stages={data} />
-                            <StageTable stages={data} />
+                            <StageMobileView stages={filteredStages} />
+                            <StageTable stages={filteredStages} />
                         </>
                     </DataWrapper>
                 </article>

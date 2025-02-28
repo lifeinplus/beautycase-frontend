@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import config from '../../../config'
 import { selectFormData, setFormData } from '../../form'
 import { useReadStagesQuery } from '../stagesApiSlice'
 
@@ -68,31 +69,45 @@ export const StageSelectionPage = () => {
                         <h1 className="gallery-title">{title}</h1>
                     </section>
 
-                    <section className="gallery-container">
-                        {stages?.map(({ _id, title, imageUrl }) => {
+                    <section className="gallery-container-stages">
+                        {stages?.map(({ _id, title, subtitle, imageUrl }) => {
                             const isSelected = orderedIds.has(_id!)
                             const order = orderedIds.get(_id!)
 
                             return (
                                 <div
                                     key={_id}
+                                    className="grid grid-cols-3 gap-3"
                                     onClick={() => toggleOrderedIds(_id!)}
-                                    className="img-container img-container-square"
                                 >
-                                    <img
-                                        alt={title}
-                                        className="img"
-                                        src={imageUrl}
-                                    />
-                                    <span
-                                        className={`img-order ${
-                                            isSelected
-                                                ? 'img-order-selected'
-                                                : 'img-order-default'
-                                        }`}
-                                    >
-                                        {order ?? ''}
-                                    </span>
+                                    <div className="img-container img-container-square">
+                                        <img
+                                            alt={title}
+                                            className="img-stage"
+                                            onError={(e) => {
+                                                e.currentTarget.alt =
+                                                    'Default Image'
+                                                e.currentTarget.src =
+                                                    config.cloudinary.defaultThumbnailUrl
+                                            }}
+                                            src={imageUrl}
+                                        />
+                                        <span
+                                            className={`img-order-left ${
+                                                isSelected
+                                                    ? 'img-order-selected'
+                                                    : 'img-order-default'
+                                            }`}
+                                        >
+                                            {order ?? ''}
+                                        </span>
+                                    </div>
+                                    <div className="col-span-2">
+                                        <h2>{title}</h2>
+                                        <h3 className="text-sm text-neutral-500 dark:text-neutral-400">
+                                            {subtitle}
+                                        </h3>
+                                    </div>
                                 </div>
                             )
                         })}

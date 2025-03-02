@@ -1,3 +1,4 @@
+export * from './components/StageFilter'
 export * from './components/StageForm'
 export * from './components/StageMobileView'
 export * from './components/Stages'

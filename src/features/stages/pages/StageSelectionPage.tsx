@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -11,14 +11,21 @@ import {
     TopPanel,
 } from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { useReadStagesQuery } from '../stagesApiSlice'
+import { useReadStagesQuery, type Stage } from '../../stages'
+import { useGetMakeupBagsQuery } from '../../makeupBags'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: stages, isLoading, error } = useReadStagesQuery()
+
+    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
+
+    const { data: makeupBags = [] } = useGetMakeupBagsQuery()
+    const { data: stages = [], isLoading, error } = useReadStagesQuery()
+
+    useEffect(() => {}, [makeupBags, stages, setFilteredStages])
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.stageIds || []
@@ -74,11 +81,11 @@ export const StageSelectionPage = () => {
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
-                        data={stages}
+                        data={filteredStages}
                         emptyMessage="Этапы не найден"
                     >
                         <section className="gallery-container-stages">
-                            {stages?.map(
+                            {filteredStages.map(
                                 ({ _id, title, subtitle, imageUrl }) => {
                                     const isSelected = orderedIds.has(_id!)
                                     const order = orderedIds.get(_id!)

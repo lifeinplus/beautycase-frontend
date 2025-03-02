@@ -14,12 +14,12 @@ import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
 import {
-    Stage,
+    type Stage,
+    StageFilter,
     StageMobileView,
     StageTable,
     useReadStagesQuery,
 } from '../../stages'
-import { MakeupBagSelect } from '../components/MakeupBagSelect'
 
 const ACTIONS = {
     add: {
@@ -80,7 +80,7 @@ export const StageListPage = () => {
                 <article className="content-container">
                     <Hero headline="Этапы" />
 
-                    <MakeupBagSelect
+                    <StageFilter
                         onFilterChange={handleFilterChange}
                         stages={stages}
                     />

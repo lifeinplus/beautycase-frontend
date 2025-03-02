@@ -4,15 +4,12 @@ import { useEffect, useState } from 'react'
 import { useGetMakeupBagsQuery } from '../../makeupBags'
 import { Stage } from '../types'
 
-interface MakeupBagSelectProps {
+interface StageFilterProps {
     onFilterChange: (filteredStages: Stage[]) => void
     stages: Stage[]
 }
 
-export const MakeupBagSelect = ({
-    onFilterChange,
-    stages,
-}: MakeupBagSelectProps) => {
+export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
     const [selectedMakeupBagId, setSelectedMakeupBagId] =
         useState('noMakeupBag')
 

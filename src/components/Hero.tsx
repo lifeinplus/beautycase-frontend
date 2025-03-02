@@ -1,3 +1,5 @@
+import { Image } from '../components'
+
 interface HeroProps {
     headline?: string
     byline?: string
@@ -12,7 +14,7 @@ export const Hero = ({ headline, byline, imgUrl, content }: HeroProps) => (
             {byline && <h2 className="hero-byline">{byline}</h2>}
         </div>
 
-        {imgUrl && <img alt={headline} className="hero-img" src={imgUrl} />}
+        {imgUrl && <Image alt={headline} className="hero-img" src={imgUrl} />}
 
         {content && <p className="hero-content">{content}</p>}
     </section>

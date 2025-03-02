@@ -1,14 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import {
-    FieldError,
-    FieldErrors,
-    useForm,
-    UseFormRegister,
-    UseFormWatch,
-} from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { type FieldError, useForm } from 'react-hook-form'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
@@ -16,9 +10,9 @@ import { useGetCategoriesQuery } from '../../categories'
 import {
     ButtonNavigateSection,
     selectFormData,
+    type SelectOption,
     SelectSection,
     setFormData,
-    type FieldConfig,
 } from '../../form'
 import { makeupBagSchema, type MakeupBag } from '../../makeupBags'
 import { useGetUsersQuery } from '../../users'
@@ -28,55 +22,9 @@ interface MakeupBagFormProps {
     onSubmit: (data: MakeupBag) => void
 }
 
-const renderField = (
-    field: FieldConfig<MakeupBag>,
-    register: UseFormRegister<MakeupBag>,
-    watch: UseFormWatch<MakeupBag>,
-    errors: FieldErrors<MakeupBag>
-) => {
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-    const { label, name, options, path, required, type } = field
-
-    const error = errors[name] as FieldError
-
-    if (type === 'button-navigate') {
-        const value = watch(name) as string[] | undefined
-        return (
-            <ButtonNavigateSection
-                key={name}
-                onNavigate={() => {
-                    dispatch(setFormData(watch()))
-                    if (path) navigate(path)
-                }}
-                label={label}
-                text={value ? `Выбрано: ${value.length}` : 'Выбрать'}
-                error={error}
-                required={required}
-            />
-        )
-    }
-
-    return (
-        <SelectSection
-            key={name}
-            error={error}
-            label={label}
-            options={options}
-            register={register(name)}
-            required={required}
-            value={watch(name)?.toString()}
-        />
-    )
-}
-
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const navigate = useNavigate()
-
-    const formData = useAppSelector(selectFormData) as MakeupBag
-    const { data: categories } = useGetCategoriesQuery()
-    const { data: users } = useGetUsersQuery()
+    const { id } = useParams()
 
     const {
         register,
@@ -88,49 +36,43 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
         resolver: yupResolver(makeupBagSchema),
     })
 
+    const dispatch = useAppDispatch()
+    const formData: MakeupBag = useAppSelector(selectFormData)
+
     useEffect(() => {
         reset(formData)
     }, [formData])
 
-    const fields: FieldConfig<MakeupBag>[] = [
-        {
-            label: 'Категория',
-            name: 'categoryId',
-            options: categories?.map((c) => ({
-                text: c.name,
-                value: c._id,
-            })),
-            required: true,
-            type: 'select',
-        },
-        {
-            label: 'Клиент',
-            name: 'clientId',
-            options: users?.map((u) => ({
-                text: u.username,
-                value: u._id,
-            })),
-            required: true,
-            type: 'select',
-        },
-        {
-            label: 'Этапы',
-            name: 'stageIds',
-            path: '/stages/selection',
-            required: true,
-            type: 'button-navigate',
-        },
-        {
-            label: 'Инструменты',
-            name: 'toolIds',
-            path: '/tools/selection',
-            required: true,
-            type: 'button-navigate',
-        },
-    ]
+    const { data: categories = [] } = useGetCategoriesQuery()
+    const { data: users = [] } = useGetUsersQuery()
+
+    const categoryOptions = categories.map(
+        (c): SelectOption => ({
+            text: c.name,
+            value: c._id,
+        })
+    )
+
+    const clientOptions = users.map(
+        (u): SelectOption => ({
+            text: u.username,
+            value: u._id,
+        })
+    )
+
+    const stageIds = watch('stageIds')
+    const toolIds = watch('toolIds')
+
+    const stagesText = stageIds ? `Выбрано: ${stageIds.length}` : 'Выбрать'
+    const toolsText = toolIds ? `Выбрано: ${toolIds.length}` : 'Выбрать'
 
     const handleBack = () => {
         navigate(-1)
+    }
+
+    const handleNavigate = (path: string) => {
+        dispatch(setFormData({ ...watch(), makeupBagId: id }))
+        navigate(path)
     }
 
     return (
@@ -144,9 +86,43 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                     </section>
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                        {fields.map((f) =>
-                            renderField(f, register, watch, errors)
-                        )}
+                        <SelectSection
+                            error={errors.categoryId}
+                            label="Категория"
+                            options={categoryOptions}
+                            register={register('categoryId')}
+                            required={true}
+                            value={watch('categoryId')}
+                        />
+
+                        <SelectSection
+                            error={errors.clientId}
+                            label="Клиент"
+                            options={clientOptions}
+                            register={register('clientId')}
+                            required={true}
+                            value={watch('clientId')}
+                        />
+
+                        <ButtonNavigateSection
+                            error={errors.stageIds as FieldError}
+                            label="Этапы"
+                            onNavigate={() =>
+                                handleNavigate('/stages/selection')
+                            }
+                            required={true}
+                            text={stagesText}
+                        />
+
+                        <ButtonNavigateSection
+                            error={errors.toolIds as FieldError}
+                            label="Инструменты"
+                            onNavigate={() =>
+                                handleNavigate('/tools/selection')
+                            }
+                            required={true}
+                            text={toolsText}
+                        />
                     </form>
                 </article>
             </main>

@@ -1,8 +1,8 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useParams } from 'react-router-dom'
 
-import { DetailsPage } from '../../../components'
-import config from '../../../config'
+import { DetailsPage, Image } from '../../../components'
+
 import { useDeleteToolMutation, useGetToolByIdQuery } from '../../tools'
 
 export const ToolDetailsPage = () => {
@@ -21,16 +21,7 @@ export const ToolDetailsPage = () => {
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">
-                        <img
-                            alt={data?.name}
-                            className="img"
-                            onError={(e) => {
-                                e.currentTarget.alt = 'Default Image'
-                                e.currentTarget.src =
-                                    config.cloudinary.defaultThumbnailUrl
-                            }}
-                            src={data?.imageUrl}
-                        />
+                        <Image alt={data?.name} src={data?.imageUrl} />
                     </div>
                 </section>
             }

@@ -1,4 +1,4 @@
-import { GoodsGrid } from '../../../components'
+import { GoodsGrid, Image } from '../../../components'
 import { type Stage } from '../../stages'
 
 interface StagesProps {
@@ -22,11 +22,7 @@ export const Stages = ({ stages }: StagesProps) => {
 
                     <section className="content-image">
                         <div className="img-container img-container-rectangle">
-                            <img
-                                alt={stage.title}
-                                className="img"
-                                src={stage.imageUrl}
-                            />
+                            <Image alt={stage.title} src={stage.imageUrl} />
                         </div>
                     </section>
 

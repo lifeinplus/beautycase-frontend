@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import { Image } from '../../components'
 import { getYouTubeThumbnail } from '../../utils'
 
 interface Video {
@@ -16,9 +17,8 @@ interface VideoCardProps {
 export const VideoCard = ({ data, path }: VideoCardProps) => (
     <Link to={path} className="lesson-card">
         <div className="lesson-card-thumbnail-container">
-            <img
+            <Image
                 alt={`${data.title} Thumbnail`}
-                className="lesson-card-thumbnail-image"
                 src={getYouTubeThumbnail(data.videoUrl)}
             />
         </div>

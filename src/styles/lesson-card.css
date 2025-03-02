@@ -7,10 +7,6 @@
     @apply relative mx-auto aspect-video w-full overflow-hidden;
 }
 
-.lesson-card-thumbnail-image {
-    @apply h-full w-full object-cover sm:rounded;
-}
-
 .lesson-card-metadata {
     @apply mx-3 mt-2;
 }

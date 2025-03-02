@@ -116,7 +116,7 @@ export const DetailsPage = ({
         }
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id, className }) => ({
         key: id,
@@ -161,7 +161,7 @@ export const DetailsPage = ({
             </main>
 
             <AdaptiveNavBar>
-                {visibleItems.map(
+                {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
                         <NavigationButton
                             key={key}

@@ -1,13 +1,7 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import {
-    FieldError,
-    FieldErrors,
-    useForm,
-    UseFormRegister,
-    UseFormWatch,
-} from 'react-hook-form'
+import { type FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -17,63 +11,16 @@ import {
     selectFormData,
     setFormData,
     TextareaSection,
-    type FieldConfig,
 } from '../../form'
 import { lessonSchema, type Lesson } from '../../lessons'
 
 interface LessonFormProps {
-    onSubmit: (data: Lesson) => void
     title: string
-}
-
-const renderField = (
-    field: FieldConfig<Lesson>,
-    register: UseFormRegister<Lesson>,
-    watch: UseFormWatch<Lesson>,
-    errors: FieldErrors<Lesson>
-) => {
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-    const { label, name, path, preview, required, rows, type } = field
-
-    const error = errors[name] as FieldError
-
-    if (type === 'button-navigate') {
-        const value = watch(name) as string[] | undefined
-        return (
-            <ButtonNavigateSection
-                key={name}
-                onNavigate={() => {
-                    dispatch(setFormData(watch()))
-                    if (path) navigate(path)
-                }}
-                label={label}
-                text={value ? `Выбрано: ${value.length}` : 'Выбрать'}
-                error={error}
-                required={required}
-            />
-        )
-    }
-
-    return (
-        <TextareaSection
-            key={name}
-            label={label}
-            register={register(name)}
-            error={error}
-            preview={preview}
-            required={required}
-            rows={rows}
-            value={watch(name)?.toString()}
-        />
-    )
+    onSubmit: (data: Lesson) => void
 }
 
 export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const navigate = useNavigate()
-
-    const formData = useAppSelector(selectFormData) as Lesson
 
     const {
         register,
@@ -85,48 +32,26 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         resolver: yupResolver(lessonSchema),
     })
 
+    const dispatch = useAppDispatch()
+    const formData: Lesson = useAppSelector(selectFormData)
+
     useEffect(() => {
         reset(formData)
     }, [formData])
 
-    const fields: FieldConfig<Lesson>[] = [
-        {
-            label: 'Заголовок',
-            name: 'title',
-            required: true,
-            type: 'textarea',
-        },
-        {
-            label: 'Краткое описание',
-            name: 'shortDescription',
-            required: true,
-            type: 'textarea',
-        },
-        {
-            label: 'Ссылка на видео',
-            name: 'videoUrl',
-            preview: true,
-            required: true,
-            type: 'textarea',
-        },
-        {
-            label: 'Полное описание',
-            name: 'fullDescription',
-            required: true,
-            rows: 4,
-            type: 'textarea',
-        },
-        {
-            label: 'Продукты',
-            name: 'productIds',
-            path: '/products/selection',
-            required: true,
-            type: 'button-navigate',
-        },
-    ]
+    const productIds = watch('productIds')
+
+    const productsText = productIds
+        ? `Выбрано: ${productIds.length}`
+        : 'Выбрать'
 
     const handleBack = () => {
         navigate(-1)
+    }
+
+    const handleNavigate = (path: string) => {
+        dispatch(setFormData(watch()))
+        navigate(path)
     }
 
     return (
@@ -140,9 +65,49 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                     </section>
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                        {fields.map((f) =>
-                            renderField(f, register, watch, errors)
-                        )}
+                        <TextareaSection
+                            error={errors.title}
+                            label="Заголовок"
+                            register={register('title')}
+                            required={true}
+                            value={watch('title')}
+                        />
+
+                        <TextareaSection
+                            error={errors.shortDescription}
+                            label="Краткое описание"
+                            register={register('shortDescription')}
+                            required={true}
+                            value={watch('shortDescription')}
+                        />
+
+                        <TextareaSection
+                            error={errors.videoUrl}
+                            label="Ссылка на видео"
+                            preview={true}
+                            register={register('videoUrl')}
+                            required={true}
+                            value={watch('videoUrl')}
+                        />
+
+                        <TextareaSection
+                            error={errors.fullDescription}
+                            label="Полное описание"
+                            register={register('fullDescription')}
+                            required={true}
+                            rows={4}
+                            value={watch('fullDescription')}
+                        />
+
+                        <ButtonNavigateSection
+                            error={errors.productIds as FieldError}
+                            label="Продукты"
+                            onNavigate={() =>
+                                handleNavigate('/products/selection')
+                            }
+                            required={true}
+                            text={productsText}
+                        />
                     </form>
                 </article>
             </main>

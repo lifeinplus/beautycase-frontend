@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage } from '../../../components'
+import { DetailsPage, Image } from '../../../components'
 import { getYouTubeEmbedUrl } from '../../../utils'
 import { Product } from '../../products'
 import { useDeleteLessonMutation, useGetLessonByIdQuery } from '../../lessons'
@@ -43,9 +43,8 @@ export const LessonDetailsPage = () => {
                             allowFullScreen
                         ></iframe>
                     ) : (
-                        <img
+                        <Image
                             alt={`${data?.title} Thumbnail`}
-                            className="lesson-card-thumbnail-image"
                             src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
                         />
                     )}
@@ -59,11 +58,7 @@ export const LessonDetailsPage = () => {
                             className="img-container img-container-square"
                             onClick={() => handleProduct(product._id)}
                         >
-                            <img
-                                alt={product.name}
-                                className="img"
-                                src={product.imageUrl}
-                            />
+                            <Image alt={product.name} src={product.imageUrl} />
                         </div>
                     ))}
                 </div>

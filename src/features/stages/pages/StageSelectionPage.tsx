@@ -1,18 +1,41 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    DataWrapper,
+    Image,
+    NavigationButton,
+    TopPanel,
+} from '../../../components'
 import { selectFormData, setFormData } from '../../form'
-import { useReadStagesQuery } from '../stagesApiSlice'
+import { useReadStagesQuery, type Stage } from '../../stages'
+import { useGetMakeupBagsQuery } from '../../makeupBags'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: stages, isLoading, error } = useReadStagesQuery()
+
+    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
+
+    const { data: makeupBags = [] } = useGetMakeupBagsQuery()
+    const { data: stages = [], isLoading, error } = useReadStagesQuery()
+
+    useEffect(() => {
+        const otherMakeupBags = makeupBags.filter(
+            (b) => b._id !== formData.makeupBagId
+        )
+
+        const otherStageIds = otherMakeupBags.flatMap((b) =>
+            b.stages?.map((s) => s._id)
+        )
+
+        setFilteredStages(stages.filter((s) => !otherStageIds.includes(s._id)))
+    }, [formData.makeupBagId, makeupBags, stages, setFilteredStages])
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.stageIds || []
@@ -20,9 +43,6 @@ export const StageSelectionPage = () => {
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
     })
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading stages</div>
 
     const title = 'Выбрать этапы'
 
@@ -68,35 +88,56 @@ export const StageSelectionPage = () => {
                         <h1 className="gallery-title">{title}</h1>
                     </section>
 
-                    <section className="gallery-container">
-                        {stages?.map(({ _id, title, imageUrl }) => {
-                            const isSelected = orderedIds.has(_id!)
-                            const order = orderedIds.get(_id!)
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={filteredStages}
+                        emptyMessage="Этапы не найден"
+                    >
+                        <section className="gallery-container-stages">
+                            {filteredStages.map(
+                                ({ _id, title, subtitle, imageUrl }) => {
+                                    const isSelected = orderedIds.has(_id!)
+                                    const order = orderedIds.get(_id!)
 
-                            return (
-                                <div
-                                    key={_id}
-                                    onClick={() => toggleOrderedIds(_id!)}
-                                    className="img-container img-container-square"
-                                >
-                                    <img
-                                        alt={title}
-                                        className="img"
-                                        src={imageUrl}
-                                    />
-                                    <span
-                                        className={`img-order ${
-                                            isSelected
-                                                ? 'img-order-selected'
-                                                : 'img-order-default'
-                                        }`}
-                                    >
-                                        {order ?? ''}
-                                    </span>
-                                </div>
-                            )
-                        })}
-                    </section>
+                                    return (
+                                        <div
+                                            key={_id}
+                                            className="grid grid-cols-3 gap-3"
+                                            onClick={() =>
+                                                toggleOrderedIds(_id!)
+                                            }
+                                        >
+                                            <div className="img-container img-container-square">
+                                                <Image
+                                                    alt={title}
+                                                    className="img rounded"
+                                                    src={imageUrl}
+                                                />
+
+                                                <span
+                                                    className={`img-order-left ${
+                                                        isSelected
+                                                            ? 'img-order-selected'
+                                                            : 'img-order-default'
+                                                    }`}
+                                                >
+                                                    {order ?? ''}
+                                                </span>
+                                            </div>
+
+                                            <div className="col-span-2">
+                                                <h2>{title}</h2>
+                                                <h3 className="text-sm text-neutral-500 dark:text-neutral-400">
+                                                    {subtitle}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            )}
+                        </section>
+                    </DataWrapper>
                 </article>
             </main>
 

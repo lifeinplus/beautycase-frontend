@@ -35,13 +35,9 @@
     @apply text-neutral-600 dark:text-neutral-400;
 }
 
-.form-preview-container {
+.form-preview {
     @apply relative mx-auto mt-5 aspect-video w-full overflow-hidden rounded-2xl p-1;
     @apply border border-neutral-200 peer-focus:border-black dark:border-neutral-700 dark:peer-focus:border-white;
-}
-
-.form-preview {
-    @apply h-full w-full rounded-xl object-cover;
 }
 
 .form-button {

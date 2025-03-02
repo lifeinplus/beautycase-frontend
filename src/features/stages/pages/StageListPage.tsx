@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -13,7 +13,13 @@ import {
 import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
-import { StageMobileView, StageTable, useReadStagesQuery } from '../../stages'
+import {
+    type Stage,
+    StageFilter,
+    StageMobileView,
+    StageTable,
+    useReadStagesQuery,
+} from '../../stages'
 
 const ACTIONS = {
     add: {
@@ -41,7 +47,9 @@ export const StageListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data, isLoading, error } = useReadStagesQuery()
+    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
+
+    const { data: stages = [], isLoading, error } = useReadStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -51,7 +59,7 @@ export const StageListPage = () => {
         add: () => navigate('add'),
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id }) => ({
         key: id,
@@ -59,6 +67,10 @@ export const StageListPage = () => {
         label: ACTIONS[id].label,
         onClick: actionHandlers[id],
     }))
+
+    const handleFilterChange = useCallback((filteredStages: Stage[]) => {
+        setFilteredStages(filteredStages)
+    }, [])
 
     return (
         <article>
@@ -68,22 +80,27 @@ export const StageListPage = () => {
                 <article className="content-container">
                     <Hero headline="Этапы" />
 
+                    <StageFilter
+                        onFilterChange={handleFilterChange}
+                        stages={stages}
+                    />
+
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
-                        data={data}
+                        data={filteredStages}
                         emptyMessage="Этапы не найдены"
                     >
                         <>
-                            <StageMobileView stages={data} />
-                            <StageTable stages={data} />
+                            <StageMobileView stages={filteredStages} />
+                            <StageTable stages={filteredStages} />
                         </>
                     </DataWrapper>
                 </article>
             </main>
 
             <AdaptiveNavBar>
-                {visibleItems.map(({ key, icon, label, onClick }) => (
+                {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavigationButton
                         key={key}
                         icon={icon}

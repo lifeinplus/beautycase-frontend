@@ -3,7 +3,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
+import {
+    AdaptiveNavBar,
+    Image,
+    NavigationButton,
+    TopPanel,
+} from '../../../components'
 import { selectFormData, setFormData } from '../../form'
 import { useGetToolsQuery } from '../toolsApiSlice'
 
@@ -79,11 +84,7 @@ export const ToolSelectionPage = () => {
                                     onClick={() => toggleOrderedIds(_id!)}
                                     className="img-container img-container-square"
                                 >
-                                    <img
-                                        alt={name}
-                                        className="img"
-                                        src={imageUrl}
-                                    />
+                                    <Image alt={name} src={imageUrl} />
                                     <span
                                         className={`img-order ${
                                             isSelected

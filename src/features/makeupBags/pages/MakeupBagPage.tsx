@@ -1,6 +1,4 @@
 import {
-    PaintBrushIcon,
-    ListBulletIcon,
     ArrowLeftIcon,
     PencilSquareIcon,
     TrashIcon,
@@ -34,14 +32,6 @@ const ACTIONS = {
         icon: <ArrowLeftIcon className="h-6 w-6" />,
         label: 'Назад',
     },
-    stages: {
-        icon: <ListBulletIcon className="h-6 w-6" />,
-        label: 'Этапы',
-    },
-    tools: {
-        icon: <PaintBrushIcon className="h-6 w-6" />,
-        label: 'Инструменты',
-    },
     edit: {
         icon: <PencilSquareIcon className="h-6 w-6" />,
         label: 'Редактировать',
@@ -63,8 +53,6 @@ interface ActionItem {
 
 const ACTION_ITEMS: ActionItem[] = [
     { id: 'back', className: 'nav-btn-back' },
-    { id: 'stages' },
-    { id: 'tools' },
     { id: 'edit', auth: true, roles: ['admin', 'mua'] },
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
@@ -126,7 +114,7 @@ export const MakeupBagPage = () => {
         }
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id, className }) => ({
         key: id,
@@ -165,7 +153,7 @@ export const MakeupBagPage = () => {
             <Footer />
 
             <AdaptiveNavBar>
-                {visibleItems.map(
+                {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
                         <NavigationButton
                             key={key}

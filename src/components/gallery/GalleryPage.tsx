@@ -63,7 +63,7 @@ export const GalleryPage = ({
         add: () => navigate(`${redirectPath}/add`),
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id }) => ({
         key: id,
@@ -91,7 +91,7 @@ export const GalleryPage = ({
             </main>
 
             <AdaptiveNavBar>
-                {visibleItems.map(({ key, icon, label, onClick }) => (
+                {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavigationButton
                         key={key}
                         icon={icon}

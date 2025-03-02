@@ -59,7 +59,7 @@ export const StageListPage = () => {
         add: () => navigate('add'),
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id }) => ({
         key: id,
@@ -100,7 +100,7 @@ export const StageListPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                {visibleItems.map(({ key, icon, label, onClick }) => (
+                {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavigationButton
                         key={key}
                         icon={icon}

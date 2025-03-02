@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import {
     AdaptiveNavBar,
+    DataWrapper,
     Image,
     NavigationButton,
     TopPanel,
@@ -25,9 +26,6 @@ export const StageSelectionPage = () => {
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
     })
-
-    if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error loading stages</div>
 
     const title = 'Выбрать этапы'
 
@@ -73,45 +71,56 @@ export const StageSelectionPage = () => {
                         <h1 className="gallery-title">{title}</h1>
                     </section>
 
-                    <section className="gallery-container-stages">
-                        {stages?.map(({ _id, title, subtitle, imageUrl }) => {
-                            const isSelected = orderedIds.has(_id!)
-                            const order = orderedIds.get(_id!)
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={stages}
+                        emptyMessage="Этапы не найден"
+                    >
+                        <section className="gallery-container-stages">
+                            {stages?.map(
+                                ({ _id, title, subtitle, imageUrl }) => {
+                                    const isSelected = orderedIds.has(_id!)
+                                    const order = orderedIds.get(_id!)
 
-                            return (
-                                <div
-                                    key={_id}
-                                    className="grid grid-cols-3 gap-3"
-                                    onClick={() => toggleOrderedIds(_id!)}
-                                >
-                                    <div className="img-container img-container-square">
-                                        <Image
-                                            alt={title}
-                                            className="img rounded"
-                                            src={imageUrl}
-                                        />
-
-                                        <span
-                                            className={`img-order-left ${
-                                                isSelected
-                                                    ? 'img-order-selected'
-                                                    : 'img-order-default'
-                                            }`}
+                                    return (
+                                        <div
+                                            key={_id}
+                                            className="grid grid-cols-3 gap-3"
+                                            onClick={() =>
+                                                toggleOrderedIds(_id!)
+                                            }
                                         >
-                                            {order ?? ''}
-                                        </span>
-                                    </div>
+                                            <div className="img-container img-container-square">
+                                                <Image
+                                                    alt={title}
+                                                    className="img rounded"
+                                                    src={imageUrl}
+                                                />
 
-                                    <div className="col-span-2">
-                                        <h2>{title}</h2>
-                                        <h3 className="text-sm text-neutral-500 dark:text-neutral-400">
-                                            {subtitle}
-                                        </h3>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </section>
+                                                <span
+                                                    className={`img-order-left ${
+                                                        isSelected
+                                                            ? 'img-order-selected'
+                                                            : 'img-order-default'
+                                                    }`}
+                                                >
+                                                    {order ?? ''}
+                                                </span>
+                                            </div>
+
+                                            <div className="col-span-2">
+                                                <h2>{title}</h2>
+                                                <h3 className="text-sm text-neutral-500 dark:text-neutral-400">
+                                                    {subtitle}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            )}
+                        </section>
+                    </DataWrapper>
                 </article>
             </main>
 

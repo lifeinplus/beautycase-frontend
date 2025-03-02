@@ -1,7 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage } from '../../../components'
-import config from '../../../config'
+import { DetailsPage, Image } from '../../../components'
 import { Product } from '../../products'
 import { useDeleteStageMutation, useReadStageByIdQuery } from '../../stages'
 
@@ -31,11 +30,7 @@ export const StageDetailsPage = () => {
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">
-                        <img
-                            alt={data?.title}
-                            className="img"
-                            src={data?.imageUrl}
-                        />
+                        <Image alt={data?.title} src={data?.imageUrl} />
                     </div>
                 </section>
             }
@@ -64,16 +59,7 @@ export const StageDetailsPage = () => {
                             className="img-container img-container-square"
                             onClick={() => handleProduct(product._id)}
                         >
-                            <img
-                                alt={product.name}
-                                className="img"
-                                onError={(e) => {
-                                    e.currentTarget.alt = 'Default Image'
-                                    e.currentTarget.src =
-                                        config.cloudinary.defaultThumbnailUrl
-                                }}
-                                src={product.imageUrl}
-                            />
+                            <Image alt={product.name} src={product.imageUrl} />
                         </div>
                     ))}
                 </div>

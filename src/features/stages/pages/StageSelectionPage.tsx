@@ -3,8 +3,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import config from '../../../config'
+import {
+    AdaptiveNavBar,
+    Image,
+    NavigationButton,
+    TopPanel,
+} from '../../../components'
 import { selectFormData, setFormData } from '../../form'
 import { useReadStagesQuery } from '../stagesApiSlice'
 
@@ -81,17 +85,12 @@ export const StageSelectionPage = () => {
                                     onClick={() => toggleOrderedIds(_id!)}
                                 >
                                     <div className="img-container img-container-square">
-                                        <img
+                                        <Image
                                             alt={title}
-                                            className="img-stage"
-                                            onError={(e) => {
-                                                e.currentTarget.alt =
-                                                    'Default Image'
-                                                e.currentTarget.src =
-                                                    config.cloudinary.defaultThumbnailUrl
-                                            }}
+                                            className="img rounded"
                                             src={imageUrl}
                                         />
+
                                         <span
                                             className={`img-order-left ${
                                                 isSelected
@@ -102,6 +101,7 @@ export const StageSelectionPage = () => {
                                             {order ?? ''}
                                         </span>
                                     </div>
+
                                     <div className="col-span-2">
                                         <h2>{title}</h2>
                                         <h3 className="text-sm text-neutral-500 dark:text-neutral-400">

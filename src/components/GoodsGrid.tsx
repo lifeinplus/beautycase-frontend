@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
+import { Image } from '../components'
 import { useScrollToElement } from '../hooks'
 
 interface Good {
@@ -39,9 +40,9 @@ export const GoodsGrid = <T extends Good>({
                     ref={g._id === state?.scrollId ? scroll : null}
                 >
                     <div className="relative mx-auto aspect-square w-2/3 overflow-hidden">
-                        <img
+                        <Image
                             alt={g.name}
-                            className="h-full w-full rounded object-cover"
+                            className="img rounded"
                             src={g.imageUrl}
                         />
                     </div>

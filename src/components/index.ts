@@ -12,6 +12,7 @@ export * from './table/Table'
 export * from './table/TableRow'
 
 export * from './ui/Button'
+export * from './ui/Image'
 export * from './ui/Input'
 
 export * from './DataWrapper'

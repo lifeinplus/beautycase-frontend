@@ -14,10 +14,6 @@
     @apply h-full w-full object-cover sm:rounded;
 }
 
-.img-stage {
-    @apply h-full w-full rounded object-cover;
-}
-
 .img-order {
     @apply absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm font-bold shadow-lg;
     @apply border-white;

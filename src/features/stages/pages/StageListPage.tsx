@@ -14,12 +14,12 @@ import { canAccess } from '../../../utils'
 import { selectRole, selectUsername } from '../../auth'
 import { clearFormData } from '../../form'
 import {
-    Stage,
+    type Stage,
+    StageFilter,
     StageMobileView,
     StageTable,
     useReadStagesQuery,
 } from '../../stages'
-import { MakeupBagSelect } from '../components/MakeupBagSelect'
 
 const ACTIONS = {
     add: {
@@ -59,7 +59,7 @@ export const StageListPage = () => {
         add: () => navigate('add'),
     }
 
-    const visibleItems = ACTION_ITEMS.filter((item) =>
+    const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id }) => ({
         key: id,
@@ -80,7 +80,7 @@ export const StageListPage = () => {
                 <article className="content-container">
                     <Hero headline="Этапы" />
 
-                    <MakeupBagSelect
+                    <StageFilter
                         onFilterChange={handleFilterChange}
                         stages={stages}
                     />
@@ -100,7 +100,7 @@ export const StageListPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                {visibleItems.map(({ key, icon, label, onClick }) => (
+                {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavigationButton
                         key={key}
                         icon={icon}

@@ -8,7 +8,7 @@ import {
     UseFormRegister,
     UseFormWatch,
 } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
@@ -35,6 +35,7 @@ const renderField = (
     errors: FieldErrors<MakeupBag>
 ) => {
     const navigate = useNavigate()
+    const { id } = useParams()
     const dispatch = useAppDispatch()
 
     const { label, name, options, path, required, type } = field
@@ -47,7 +48,7 @@ const renderField = (
             <ButtonNavigateSection
                 key={name}
                 onNavigate={() => {
-                    dispatch(setFormData(watch()))
+                    dispatch(setFormData({ ...watch(), makeupBagId: id }))
                     if (path) navigate(path)
                 }}
                 label={label}

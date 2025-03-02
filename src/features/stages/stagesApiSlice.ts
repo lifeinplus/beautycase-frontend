@@ -14,7 +14,7 @@ const stagesApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ['Stage'],
         }),
 
-        duplicateStage: builder.mutation<MutationResult, Stage>({
+        duplicateStage: builder.mutation<MutationResult, string>({
             query: (id) => ({
                 url: `/stages/duplicate/${id}`,
                 method: 'POST',

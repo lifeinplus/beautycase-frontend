@@ -75,7 +75,7 @@ interface DetailsPageProps {
     subtitle?: string
     description?: string
     deleteMutation: () => any
-    duplicateMutation: () => any
+    onDuplicate: () => any
     showDuplicate?: boolean
     mediaContent?: ReactNode
     descriptionContent?: ReactNode
@@ -91,7 +91,7 @@ export const DetailsPage = ({
     subtitle,
     description,
     deleteMutation,
-    duplicateMutation,
+    onDuplicate,
     showDuplicate = false,
     mediaContent,
     descriptionContent,
@@ -108,7 +108,6 @@ export const DetailsPage = ({
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const [deleteItem] = deleteMutation()
-    const [duplicateItem] = duplicateMutation()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -121,17 +120,7 @@ export const DetailsPage = ({
                 state: { scrollId: id },
             }),
         edit: () => navigate(`${redirectPath}/edit/${id}`),
-        duplicate: async () => {
-            if (!id) return
-            try {
-                await duplicateItem(id).unwrap()
-                toast.success(`${title} дублирован`)
-                navigate(redirectPath)
-            } catch (err) {
-                console.error(err)
-                toast.error(getErrorMessage(err))
-            }
-        },
+        duplicate: onDuplicate,
         delete: () => setIsModalOpen(true),
     }
 

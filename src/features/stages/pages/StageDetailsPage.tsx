@@ -2,7 +2,11 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { DetailsPage, Image } from '../../../components'
 import { Product } from '../../products'
-import { useDeleteStageMutation, useReadStageByIdQuery } from '../../stages'
+import {
+    useDeleteStageMutation,
+    useDuplicateStageMutation,
+    useReadStageByIdQuery,
+} from '../../stages'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()
@@ -27,6 +31,8 @@ export const StageDetailsPage = () => {
             subtitle={data?.subtitle}
             description={data?.steps?.reduce((p, c) => p + c, '')}
             deleteMutation={useDeleteStageMutation}
+            duplicateMutation={useDuplicateStageMutation}
+            showDuplicate={true}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">

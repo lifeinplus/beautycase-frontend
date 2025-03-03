@@ -1,5 +1,6 @@
 import {
     ArrowLeftIcon,
+    DocumentDuplicateIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/react/24/outline'
@@ -11,7 +12,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import {
     AdaptiveNavBar,
     DataWrapper,
-    Modal,
+    ModalDelete,
+    ModalDuplicate,
     NavigationButton,
     TopPanel,
 } from '../../components'
@@ -28,6 +30,10 @@ const ACTIONS = {
         icon: <PencilSquareIcon className="h-6 w-6" />,
         label: 'Редактировать',
     },
+    duplicate: {
+        icon: <DocumentDuplicateIcon className="h-6 w-6" />,
+        label: 'Дублировать',
+    },
     delete: {
         icon: <TrashIcon className="h-6 w-6" />,
         label: 'Удалить',
@@ -43,11 +49,23 @@ interface ActionItem {
     roles?: string[]
 }
 
-const ACTION_ITEMS: ActionItem[] = [
-    { id: 'back', className: 'nav-btn-back' },
-    { id: 'edit', auth: true, roles: ['admin', 'mua'] },
-    { id: 'delete', auth: true, roles: ['admin', 'mua'] },
-]
+const getActionItems = (showDuplicate: boolean): ActionItem[] => {
+    const items: ActionItem[] = [
+        { id: 'back', className: 'nav-btn-back' },
+        { id: 'edit', auth: true, roles: ['admin', 'mua'] },
+        { id: 'delete', auth: true, roles: ['admin', 'mua'] },
+    ]
+
+    if (showDuplicate) {
+        items.splice(2, 0, {
+            id: 'duplicate',
+            auth: true,
+            roles: ['admin', 'mua'],
+        })
+    }
+
+    return items
+}
 
 interface DetailsPageProps {
     isLoading: boolean
@@ -58,6 +76,8 @@ interface DetailsPageProps {
     subtitle?: string
     description?: string
     deleteMutation: () => any
+    duplicateMutation: () => any
+    showDuplicate?: boolean
     mediaContent?: ReactNode
     descriptionContent?: ReactNode
     additionalContent?: ReactNode
@@ -72,6 +92,8 @@ export const DetailsPage = ({
     subtitle,
     description,
     deleteMutation,
+    duplicateMutation,
+    showDuplicate = false,
     mediaContent,
     descriptionContent,
     additionalContent,
@@ -84,9 +106,11 @@ export const DetailsPage = ({
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+    const [isModalDuplicateOpen, setIsModalDuplicateOpen] = useState(false)
 
     const [deleteItem] = deleteMutation()
+    const [duplicateItem] = duplicateMutation()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -98,8 +122,9 @@ export const DetailsPage = ({
                 replace: true,
                 state: { scrollId: id },
             }),
+        delete: () => setIsModalDeleteOpen(true),
+        duplicate: () => setIsModalDuplicateOpen(true),
         edit: () => navigate(`${redirectPath}/edit/${id}`),
-        delete: () => setIsModalOpen(true),
     }
 
     const handleDelete = async () => {
@@ -112,19 +137,31 @@ export const DetailsPage = ({
             console.error(err)
             toast.error(getErrorMessage(err))
         } finally {
-            setIsModalOpen(false)
+            setIsModalDeleteOpen(false)
         }
     }
 
-    const visibleActions = ACTION_ITEMS.filter((item) =>
-        canAccess(item, username, role)
-    ).map(({ id, className }) => ({
-        key: id,
-        className,
-        icon: ACTIONS[id].icon,
-        label: ACTIONS[id].label,
-        onClick: actionHandlers[id],
-    }))
+    const handleDuplicate = async () => {
+        if (!id) return
+        try {
+            await duplicateItem(id).unwrap()
+            toast.success(`${title} дублирован`)
+            navigate(redirectPath)
+        } catch (err) {
+            console.error(err)
+            toast.error(getErrorMessage(err))
+        }
+    }
+
+    const visibleActions = getActionItems(showDuplicate)
+        .filter((item) => canAccess(item, username, role))
+        .map(({ id, className }) => ({
+            key: id,
+            className,
+            icon: ACTIONS[id].icon,
+            label: ACTIONS[id].label,
+            onClick: actionHandlers[id],
+        }))
 
     return (
         <article className="page">
@@ -174,12 +211,20 @@ export const DetailsPage = ({
                 )}
             </AdaptiveNavBar>
 
-            <Modal
-                isOpen={isModalOpen}
+            <ModalDelete
+                isOpen={isModalDeleteOpen}
                 title="Удалить?"
                 description={`Вы действительно хотите удалить ${title}?`}
                 onConfirm={handleDelete}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={() => setIsModalDeleteOpen(false)}
+            />
+
+            <ModalDuplicate
+                isOpen={isModalDuplicateOpen}
+                title="Дублировать?"
+                description={`Вы действительно хотите дублировать ${title}?`}
+                onConfirm={handleDuplicate}
+                onCancel={() => setIsModalDuplicateOpen(false)}
             />
         </article>
     )

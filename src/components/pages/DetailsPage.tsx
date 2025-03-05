@@ -76,7 +76,7 @@ interface DetailsPageProps {
     subtitle?: string
     description?: string
     deleteMutation: () => any
-    duplicateMutation: () => any
+    duplicateMutation?: () => any
     showDuplicate?: boolean
     mediaContent?: ReactNode
     descriptionContent?: ReactNode
@@ -92,7 +92,7 @@ export const DetailsPage = ({
     subtitle,
     description,
     deleteMutation,
-    duplicateMutation,
+    duplicateMutation = () => {},
     showDuplicate = false,
     mediaContent,
     descriptionContent,

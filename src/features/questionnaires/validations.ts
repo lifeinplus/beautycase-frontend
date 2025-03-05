@@ -1,4 +1,4 @@
-import { boolean, mixed, number, object, string } from 'yup'
+import { boolean, number, object, string } from 'yup'
 
 const transformAllFalse = (value: any) => {
     return value && Object.values(value).every((v) => v === false)
@@ -29,17 +29,6 @@ export const schema = object({
         .default(undefined),
     instagram: string().transform(transformEmpty),
     makeupBag: string().required('Укажите, что сейчас есть в косметичке'),
-    makeupBagPhotoId: string(),
-    makeupBagPhotoFile: mixed<File>()
-        .test('file-types', 'Неподдерживаемый тип файла', (file) => {
-            if (!file) return true
-            return ['image/jpeg', 'image/png', 'image/heic'].includes(file.type)
-        })
-        .test('file-sizes', 'Размер файла превышает ограничение', (file) => {
-            if (!file) return true
-            return file.size <= 5 * 1024 * 1024
-        })
-        .optional(),
     makeupTime: string().transform(transformEmpty),
     name: string().required('Укажите ваше имя'),
     oilyShine: string().transform(transformEmpty),

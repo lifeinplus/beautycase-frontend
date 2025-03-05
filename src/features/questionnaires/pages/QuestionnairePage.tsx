@@ -4,10 +4,10 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar, Header, Hero } from '../../../components'
-import { appendToFormData, getErrorMessage } from '../../../utils'
+import { getErrorMessage } from '../../../utils'
 import {
     CheckboxSection,
-    FileSection,
+    ImageTextSection,
     InputSection,
     RadioButtonSection,
     TextareaSection,
@@ -22,9 +22,11 @@ export const QuestionnairePage = () => {
     const navigate = useNavigate()
 
     const {
-        control,
+        clearErrors,
         register,
         reset,
+        setValue,
+        watch,
         handleSubmit,
         formState: { errors },
     } = useForm<Questionnaire>({
@@ -34,10 +36,8 @@ export const QuestionnairePage = () => {
     const [addQuestionnaire] = useAddQuestionnaireMutation()
 
     const onSubmit = async (data: Questionnaire) => {
-        const formData = appendToFormData(data)
-
         try {
-            await addQuestionnaire(formData).unwrap()
+            await addQuestionnaire(data).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {
@@ -97,20 +97,21 @@ export const QuestionnairePage = () => {
                                 type="number"
                             />
 
-                            <InputSection
+                            <ImageTextSection
+                                clearErrors={clearErrors}
                                 description={questions.makeupBag.description}
+                                folder="questionnaires"
                                 error={errors.makeupBag}
                                 label={questions.makeupBag.label}
+                                labelUrl={questions.makeupBagPhotoUrl.label}
+                                name={'makeupBag'}
+                                nameUrl={'makeupBagPhotoUrl'}
                                 register={register('makeupBag')}
+                                registerUrl={register('makeupBagPhotoUrl')}
                                 required={true}
-                                type="text"
-                            />
-
-                            <FileSection
-                                control={control}
-                                error={errors.makeupBagPhotoFile}
-                                label={questions.makeupBagPhotoFile.label}
-                                name="makeupBagPhotoFile"
+                                setValue={setValue}
+                                value={watch('makeupBag')}
+                                valueUrl={watch('makeupBagPhotoUrl')}
                             />
 
                             <CheckboxSection

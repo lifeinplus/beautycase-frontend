@@ -75,8 +75,8 @@ interface DetailsPageProps {
     title?: string
     subtitle?: string
     description?: string
-    deleteMutation: () => any
-    duplicateMutation?: () => any
+    deleteItem: (id: string) => any
+    duplicateItem?: (id: string) => any
     showDuplicate?: boolean
     mediaContent?: ReactNode
     descriptionContent?: ReactNode
@@ -91,8 +91,8 @@ export const DetailsPage = ({
     title = 'Заголовок',
     subtitle,
     description,
-    deleteMutation,
-    duplicateMutation = () => {},
+    deleteItem,
+    duplicateItem = () => {},
     showDuplicate = false,
     mediaContent,
     descriptionContent,
@@ -108,9 +108,6 @@ export const DetailsPage = ({
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [isModalDuplicateOpen, setIsModalDuplicateOpen] = useState(false)
-
-    const [deleteItem] = deleteMutation()
-    const [duplicateItem] = duplicateMutation()
 
     useEffect(() => {
         dispatch(clearFormData())

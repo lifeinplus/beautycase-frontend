@@ -35,7 +35,7 @@ export interface Questionnaire {
     instagram?: string
     makeupBag: string
     makeupBagPhotoId?: string
-    makeupBagPhotoFile?: File
+    makeupBagPhotoUrl?: string
     makeupTime?: string
     name: string
     oilyShine?: string

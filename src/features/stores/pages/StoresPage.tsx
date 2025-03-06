@@ -8,7 +8,7 @@ import {
     AdaptiveNavBar,
     DataWrapper,
     Hero,
-    Modal,
+    ModalDelete,
     NavigationButton,
     TopPanel,
 } from '../../../components'
@@ -27,7 +27,7 @@ export const StoresPage = () => {
     const navigate = useNavigate()
     const storeFormRef = useRef<FormRef | null>(null)
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [store, setStore] = useState<Store>()
 
     const dispatch = useAppDispatch()
@@ -40,7 +40,7 @@ export const StoresPage = () => {
 
     const handleDelete = async (data: Store) => {
         setStore(data)
-        setIsModalOpen(true)
+        setIsModalDeleteOpen(true)
     }
 
     const handleDeleteConfirm = async () => {
@@ -54,7 +54,7 @@ export const StoresPage = () => {
             console.error(err)
             toast.error(getErrorMessage(err))
         } finally {
-            setIsModalOpen(false)
+            setIsModalDeleteOpen(false)
         }
     }
 
@@ -108,12 +108,12 @@ export const StoresPage = () => {
                 />
             </AdaptiveNavBar>
 
-            <Modal
-                isOpen={isModalOpen}
+            <ModalDelete
+                isOpen={isModalDeleteOpen}
                 title="Удалить?"
                 description={`Вы действительно хотите удалить ${store?.name}?`}
                 onConfirm={handleDeleteConfirm}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={() => setIsModalDeleteOpen(false)}
             />
         </article>
     )

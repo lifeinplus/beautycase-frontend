@@ -13,10 +13,20 @@ const stagesApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Stage'],
         }),
+
+        duplicateStage: builder.mutation<MutationResult, string>({
+            query: (id) => ({
+                url: `/stages/duplicate/${id}`,
+                method: 'POST',
+            }),
+            invalidatesTags: ['Stage'],
+        }),
+
         readStageById: builder.query<Stage, string>({
             query: (id) => `/stages/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
         }),
+
         readStages: builder.query<Stage[], void>({
             query: () => '/stages',
             providesTags: (result) =>
@@ -30,6 +40,7 @@ const stagesApiSlice = apiSlice.injectEndpoints({
                       ]
                     : [{ type: 'Stage', id: 'LIST' }],
         }),
+
         updateStage: builder.mutation<Stage, Stage>({
             query: ({ _id, ...body }) => ({
                 url: `/stages/${_id}`,
@@ -41,6 +52,7 @@ const stagesApiSlice = apiSlice.injectEndpoints({
                 { type: 'Stage', id: 'LIST' },
             ],
         }),
+
         deleteStage: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stages/${id}`,
@@ -53,6 +65,7 @@ const stagesApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useCreateStageMutation,
+    useDuplicateStageMutation,
     useReadStageByIdQuery,
     useReadStagesQuery,
     useUpdateStageMutation,

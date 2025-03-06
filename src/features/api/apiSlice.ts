@@ -44,6 +44,7 @@ export const apiSlice = createApi({
         'Lesson',
         'MakeupBag',
         'Product',
+        'Questionnaires',
         'Stage',
         'Stores',
         'Tool',

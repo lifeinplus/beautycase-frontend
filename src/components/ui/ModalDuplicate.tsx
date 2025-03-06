@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useRef } from 'react'
 
-interface ModalProps {
+interface ModalDuplicateProps {
     description: string
     isOpen: boolean
     onConfirm: () => void
@@ -8,13 +8,13 @@ interface ModalProps {
     title: string
 }
 
-export const Modal = ({
+export const ModalDuplicate = ({
     description,
     isOpen,
     onCancel,
     onConfirm,
     title,
-}: ModalProps) => {
+}: ModalDuplicateProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -40,13 +40,16 @@ export const Modal = ({
                     <h2 className="modal-title">{title}</h2>
                     <p className="modal-description">{description}</p>
                 </div>
-                <div className="modal-button-group">
-                    <button onClick={onConfirm} className="modal-button-danger">
-                        Удалить
+                <div className="modal-btn-group">
+                    <button
+                        onClick={onConfirm}
+                        className="modal-btn modal-btn-warning"
+                    >
+                        Дублировать
                     </button>
                     <button
                         onClick={onCancel}
-                        className="modal-button-secondary"
+                        className="modal-btn modal-btn-bottom"
                     >
                         Отмена
                     </button>

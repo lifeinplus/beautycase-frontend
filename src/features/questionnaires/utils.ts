@@ -27,13 +27,13 @@ export const questions: Questions = {
     },
     makeupBag: {
         label: 'Содержимое косметички',
-        description: 'Что сейчас уже есть в косметичке?',
+        description: 'Опишите свою косметичку и/или приложите фото',
     },
     makeupBagPhotoId: {
         label: 'Фото косметички',
     },
-    makeupBagPhotoFile: {
-        label: 'Фото косметички',
+    makeupBagPhotoUrl: {
+        label: 'Ссылка на изображение косметички',
     },
     procedures: {
         label: 'Процедуры',

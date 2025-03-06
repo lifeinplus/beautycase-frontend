@@ -18,14 +18,22 @@
     @apply pt-2.5 text-sm leading-4.5 text-neutral-500 dark:text-neutral-400;
 }
 
-.modal-button-group {
+.modal-btn-group {
     @apply mt-3 w-full;
 }
 
-.modal-button-danger {
-    @apply min-h-12 w-full rounded border-t border-neutral-300 bg-transparent px-2 py-1 text-sm font-semibold text-rose-500 dark:border-neutral-700;
+.modal-btn {
+    @apply min-h-12 w-full rounded border-t border-neutral-300 bg-transparent px-2 py-1 text-sm font-semibold dark:border-neutral-700;
 }
 
-.modal-button-secondary {
-    @apply min-h-12 w-full rounded-b-xl border-t border-neutral-300 bg-transparent px-2 py-1 text-sm text-black dark:border-neutral-700 dark:text-white;
+.modal-btn-bottom {
+    @apply rounded-b-xl text-black dark:text-white;
+}
+
+.modal-btn-danger {
+    @apply text-rose-500;
+}
+
+.modal-btn-warning {
+    @apply text-amber-500;
 }

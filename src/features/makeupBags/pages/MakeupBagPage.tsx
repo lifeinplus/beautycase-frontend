@@ -13,7 +13,7 @@ import {
     DataWrapper,
     Footer,
     Hero,
-    Modal,
+    ModalDelete,
     NavigationButton,
     TopPanel,
 } from '../../../components'
@@ -68,7 +68,7 @@ export const MakeupBagPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
     const [deleteMakeupBag] = useDeleteMakeupBagMutation()
 
@@ -97,7 +97,7 @@ export const MakeupBagPage = () => {
                 .getElementById('tools')
                 ?.scrollIntoView({ behavior: 'smooth' }),
         edit: () => navigate(`${redirectPath}/edit/${id}`),
-        delete: () => setIsModalOpen(true),
+        delete: () => setIsModalDeleteOpen(true),
     }
 
     const handleDelete = async () => {
@@ -110,7 +110,7 @@ export const MakeupBagPage = () => {
             console.error(err)
             toast.error(getErrorMessage(err))
         } finally {
-            setIsModalOpen(false)
+            setIsModalDeleteOpen(false)
         }
     }
 
@@ -166,12 +166,12 @@ export const MakeupBagPage = () => {
                 )}
             </AdaptiveNavBar>
 
-            <Modal
-                isOpen={isModalOpen}
+            <ModalDelete
+                isOpen={isModalDeleteOpen}
                 title="Удалить?"
                 description={`Вы действительно хотите удалить эту косметичку?`}
                 onConfirm={handleDelete}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={() => setIsModalDeleteOpen(false)}
             />
         </article>
     )

@@ -9,7 +9,9 @@ import {
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
+
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
+    const [deleteProduct] = useDeleteProductMutation()
 
     return (
         <DetailsPage
@@ -19,7 +21,7 @@ export const ProductDetailsPage = () => {
             redirectPath="/products"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteMutation={useDeleteProductMutation}
+            deleteItem={deleteProduct}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">

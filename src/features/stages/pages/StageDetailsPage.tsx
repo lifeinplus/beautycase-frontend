@@ -14,6 +14,8 @@ export const StageDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
     const { data, isLoading, error } = useReadStageByIdQuery(id!)
+    const [deleteStage] = useDeleteStageMutation()
+    const [duplicateStage] = useDuplicateStageMutation()
 
     const handleProduct = (id?: string) => {
         navigate(`/products/${id}`, {
@@ -30,8 +32,8 @@ export const StageDetailsPage = () => {
             title={data?.title}
             subtitle={data?.subtitle}
             description={data?.steps?.reduce((p, c) => p + c, '')}
-            deleteMutation={useDeleteStageMutation}
-            duplicateMutation={useDuplicateStageMutation}
+            deleteItem={deleteStage}
+            duplicateItem={duplicateStage}
             showDuplicate={true}
             mediaContent={
                 <section className="content-image">

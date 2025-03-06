@@ -11,6 +11,7 @@ export const LessonDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
+    const [deleteLesson] = useDeleteLessonMutation()
 
     const handleProduct = (id?: string) => {
         navigate(`/products/${id}`, {
@@ -29,7 +30,7 @@ export const LessonDetailsPage = () => {
             title={data?.title}
             subtitle={data?.shortDescription}
             description={data?.fullDescription}
-            deleteMutation={useDeleteLessonMutation}
+            deleteItem={deleteLesson}
             mediaContent={
                 <div className="lesson-video-container">
                     {embedUrl ? (

@@ -7,7 +7,9 @@ import { useDeleteToolMutation, useGetToolByIdQuery } from '../../tools'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
+
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
+    const [deleteTool] = useDeleteToolMutation()
 
     return (
         <DetailsPage
@@ -17,7 +19,7 @@ export const ToolDetailsPage = () => {
             redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteMutation={useDeleteToolMutation}
+            deleteItem={deleteTool}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">

@@ -10,6 +10,10 @@ export const mockUsers: User[] = [
 export const mockUser: User = { _id: '1', role: 'admin', username: 'John Doe' }
 
 export const handlers = [
+    http.post('api/uploads/image-temp', async () => {
+        return HttpResponse.json({ imageUrl: 'https://example.com/image.jpg' })
+    }),
+
     http.get('api/users/all', async () => HttpResponse.json(mockUsers)),
 
     http.get('api/users/:id', async ({ params }) => {

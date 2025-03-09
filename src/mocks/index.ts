@@ -1,3 +1,4 @@
+export * from './handlers/productsHandlers'
 export * from './handlers/questionnairesHandlers'
 export * from './handlers/stagesHandlers'
 export * from './handlers/storesHandlers'

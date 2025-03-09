@@ -1,12 +1,8 @@
-import { renderHook, waitFor } from '@testing-library/react'
+import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockUser, mockUsers, Wrapper } from '../../../mocks'
+import { mockUser, mockUsers, renderWithProvider } from '../../../mocks'
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
-
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
 
 describe('usersApiSlice', () => {
     it('fetches all users successfully', async () => {

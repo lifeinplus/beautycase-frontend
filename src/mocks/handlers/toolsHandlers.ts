@@ -2,21 +2,23 @@ import { http, HttpResponse } from 'msw'
 
 import { type Tool } from '../../features/tools'
 
+export const mockTool: Tool = {
+    _id: '1',
+    name: 'Brush',
+    brandId: '11',
+    imageUrl: 'https://example.com/1.webp',
+    comment: 'Perfect',
+    storeLinks: [
+        {
+            _id: '111',
+            name: 'ManlyPRO',
+            link: 'https://example.com/111',
+        },
+    ],
+}
+
 export const mockTools: Tool[] = [
-    {
-        _id: '1',
-        name: 'Brush',
-        brandId: '11',
-        imageUrl: 'https://example.com/1.webp',
-        comment: 'Perfect',
-        storeLinks: [
-            {
-                _id: '111',
-                name: 'ManlyPRO',
-                link: 'https://example.com/111',
-            },
-        ],
-    },
+    mockTool,
     {
         _id: '2',
         name: 'Sponge',
@@ -32,8 +34,6 @@ export const mockTools: Tool[] = [
         ],
     },
 ]
-
-export const mockTool: Tool = { ...mockTools[0] }
 
 export const toolsHandlers = [
     http.post('api/tools/one', () =>

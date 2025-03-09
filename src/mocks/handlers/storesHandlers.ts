@@ -2,12 +2,9 @@ import { http, HttpResponse } from 'msw'
 
 import { type Store } from '../../features/stores'
 
-export const mockStores: Store[] = [
-    { _id: '1', name: 'Brush' },
-    { _id: '2', name: 'Sponge' },
-]
+export const mockStore: Store = { _id: '1', name: 'Brush' }
 
-export const mockStore: Store = { ...mockStores[0] }
+export const mockStores: Store[] = [mockStore, { _id: '2', name: 'Sponge' }]
 
 export const storesHandlers = [
     http.post('api/stores', () =>

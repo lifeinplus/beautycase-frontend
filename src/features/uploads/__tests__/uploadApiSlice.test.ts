@@ -1,15 +1,10 @@
-import { renderHook } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-
-import { server, Wrapper } from '../../../mocks'
-import { useUploadImageTempMutation } from '../uploadApiSlice'
 import { act } from 'react'
 import { http, HttpResponse } from 'msw'
-import { type DataMessageError } from '../../../utils'
+import { describe, expect, it } from 'vitest'
 
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
+import { renderWithProvider, server } from '../../../mocks'
+import { type DataMessageError } from '../../../utils'
+import { useUploadImageTempMutation } from '../uploadApiSlice'
 
 describe('uploadApiSlice', () => {
     it('uploads an image successfully', async () => {

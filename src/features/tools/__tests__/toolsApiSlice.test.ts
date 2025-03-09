@@ -1,4 +1,7 @@
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+import { act, waitFor } from '@testing-library/react'
+
+import { mockTool, mockTools, renderWithProvider } from '../../../mocks'
 import {
     useAddToolMutation,
     useDeleteToolMutation,
@@ -6,12 +9,6 @@ import {
     useGetToolByIdQuery,
     useGetToolsQuery,
 } from '../toolsApiSlice'
-import { describe, expect, it } from 'vitest'
-import { mockTool, mockTools, Wrapper } from '../../../mocks'
-
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
 
 describe('toolsApiSlice', () => {
     it('fetches all tools successfully', async () => {

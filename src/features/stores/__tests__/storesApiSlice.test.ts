@@ -1,16 +1,13 @@
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { act, waitFor } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+
+import { mockStore, mockStores, renderWithProvider } from '../../../mocks'
 import {
     useCreateStoreMutation,
     useDeleteStoreMutation,
     useUpdateStoreMutation,
     useReadStoresQuery,
 } from '../storesApiSlice'
-import { describe, expect, it } from 'vitest'
-import { mockStore, mockStores, Wrapper } from '../../../mocks'
-
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
 
 describe('storesApiSlice', () => {
     it('creates a new store successfully', async () => {

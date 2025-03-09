@@ -1,4 +1,7 @@
-import { renderHook, act, waitFor } from '@testing-library/react'
+import { act, waitFor } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+
+import { mockStage, mockStages, renderWithProvider } from '../../../mocks'
 import {
     useCreateStageMutation,
     useDeleteStageMutation,
@@ -7,12 +10,6 @@ import {
     useReadStageByIdQuery,
     useUpdateStageMutation,
 } from '../stagesApiSlice'
-import { describe, expect, it } from 'vitest'
-import { mockStage, mockStages, Wrapper } from '../../../mocks'
-
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
 
 describe('stagesApiSlice', () => {
     it('creates a new stage', async () => {

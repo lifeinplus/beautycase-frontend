@@ -1,8 +1,8 @@
 import { Cloudinary } from '@cloudinary/url-gen/index'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { cloudinary } from '../cloudinary'
 import config from '../../config'
+import { cloudinary } from '../cloudinary'
 
 vi.mock('../../config', () => ({
     default: {

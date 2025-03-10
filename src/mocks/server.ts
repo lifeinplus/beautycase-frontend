@@ -1,5 +1,6 @@
 import { setupServer } from 'msw/node'
 
+import { lessonsHandlers } from './handlers/lessonsHandlers'
 import { makeupBagsHandlers } from './handlers/makeupBagsHandlers'
 import { productsHandlers } from './handlers/productsHandlers'
 import { questionnairesHandlers } from './handlers/questionnairesHandlers'
@@ -10,6 +11,7 @@ import { uploadsHandlers } from './handlers/uploadsHandlers'
 import { usersHandlers } from './handlers/usersHandlers'
 
 export const server = setupServer(
+    ...lessonsHandlers,
     ...makeupBagsHandlers,
     ...productsHandlers,
     ...questionnairesHandlers,

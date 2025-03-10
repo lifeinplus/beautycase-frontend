@@ -1,6 +1,6 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-interface DataMessageError {
+export interface DataMessageError {
     data: {
         name: string
         message: string

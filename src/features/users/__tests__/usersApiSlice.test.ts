@@ -1,15 +1,8 @@
-import { renderHook, waitFor } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { waitFor } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
 
-import { mockUser, mockUsers, Wrapper } from '../../../mocks'
+import { mockUser, mockUsers, renderWithProvider } from '../../../mocks'
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
-
-// ReferenceError: Worker is not defined
-vi.mock('heic2any', () => ({ window: vi.fn() }))
-
-const renderWithProvider = <T>(hook: () => T) => {
-    return renderHook(hook, { wrapper: Wrapper })
-}
 
 describe('usersApiSlice', () => {
     it('fetches all users successfully', async () => {

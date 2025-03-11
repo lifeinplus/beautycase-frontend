@@ -1,6 +1,45 @@
 import { http, HttpResponse } from 'msw'
 import { type Questionnaire } from '../../features/questionnaires'
 
+export const mockQuestionnaireFull: Questionnaire = {
+    name: 'Anna Petrova',
+    makeupBag: 'Foundation, mascara, lipstick, blush',
+    age: 28,
+    allergies: 'None',
+    budget: '50-100',
+    brushes: 'yes',
+    city: 'Moscow',
+    currentSkills: 'Basic everyday makeup',
+    desiredSkills: {
+        bright: true,
+        delicate: true,
+        evening: false,
+        office: true,
+        filming: false,
+    },
+    instagram: 'annapetrova',
+    makeupTime: '15-30',
+    oilyShine: 'yes',
+    peeling: 'no',
+    pores: 'yes',
+    problems: {
+        eyeshadowCrease: true,
+        eyeshadowMatch: false,
+        foundationPores: true,
+        foundationStay: false,
+        mascaraSmudge: false,
+        sculpting: true,
+    },
+    procedures: {
+        browCorrection: true,
+        lashExtensions: false,
+        lashLamination: true,
+        none: false,
+    },
+    referral: 'recommendation',
+    skinType: 'combination',
+}
+
 export const mockQuestionnaire: Questionnaire = {
     _id: '1',
     name: 'Inna',

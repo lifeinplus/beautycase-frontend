@@ -10,7 +10,7 @@ const transformEmpty = (value: any, originalValue: any) => {
     return originalValue === '' || originalValue === null ? undefined : value
 }
 
-export const schema = object({
+export const questionnaireSchema = object({
     age: number().transform(transformEmpty),
     allergies: string().transform(transformEmpty),
     budget: string().transform(transformEmpty),
@@ -36,12 +36,11 @@ export const schema = object({
     pores: string().transform(transformEmpty),
     problems: object({
         eyeshadowCrease: boolean(),
-        eyeshadowMatch: boolean(),
+        mascaraSmudge: boolean(),
         foundationPores: boolean(),
         foundationStay: boolean(),
-        mascaraSmudge: boolean(),
-        other: string(),
         sculpting: boolean(),
+        eyeshadowMatch: boolean(),
     })
         .transform(transformAllFalse)
         .optional()

@@ -14,7 +14,7 @@ import {
 } from '../../form'
 import { options } from '../options'
 import type { Questionnaire } from '../types'
-import { schema } from '../validations'
+import { questionnaireSchema } from '../validations'
 import { useAddQuestionnaireMutation } from '../questionnaireApiSlice'
 import { questions } from '../utils'
 
@@ -30,7 +30,7 @@ export const QuestionnairePage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Questionnaire>({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(questionnaireSchema),
     })
 
     const [addQuestionnaire] = useAddQuestionnaireMutation()

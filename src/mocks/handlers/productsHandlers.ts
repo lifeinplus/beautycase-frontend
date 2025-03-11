@@ -3,20 +3,27 @@ import { type Product } from '../../features/products'
 
 export const mockProduct: Product = {
     _id: '1',
-    brandId: '11',
-    name: 'Foundation',
-    imageUrl: '',
-    comment: '',
-    storeLinks: [],
+    brandId: 'brand-1',
+    name: 'Liquid Foundation',
+    imageUrl: 'https://example.com/foundation.jpg',
+    shade: 'Natural Beige',
+    comment: 'Long-lasting, natural finish',
+    storeLinks: [
+        {
+            _id: 'store-1',
+            name: 'Store 1',
+            link: 'https://store1.com/foundation',
+        },
+    ],
 }
 
 export const mockProducts: Product[] = [
     mockProduct,
     {
         _id: '2',
-        brandId: '22',
+        brandId: 'brand-2',
         name: 'Lipstick',
-        imageUrl: '',
+        imageUrl: 'https://example.com/lipstick.jpg',
         comment: '',
         storeLinks: [],
     },

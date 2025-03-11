@@ -25,16 +25,6 @@ export const brandsHandlers = [
 
     http.get('api/brands', () => HttpResponse.json(mockBrands)),
 
-    http.get('api/brands/:id', ({ params }) => {
-        const brand = mockBrands.find((p) => p._id === params.id)
-        return brand
-            ? HttpResponse.json(brand)
-            : HttpResponse.json(
-                  { success: false, message: 'Brand not found' },
-                  { status: 404 }
-              )
-    }),
-
     http.put('api/brands/:id', async ({ params }) =>
         HttpResponse.json({
             id: params.id,

@@ -1,5 +1,6 @@
-import { renderHook } from '@testing-library/react'
+import { render, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { store } from '../app/store'
@@ -16,4 +17,8 @@ export const renderWithProvider = <T,>(hook: () => T) => {
     return renderHook(hook, {
         wrapper: Wrapper,
     })
+}
+
+export const renderWithRouter = (component: ReactNode) => {
+    return render(<BrowserRouter>{component}</BrowserRouter>)
 }

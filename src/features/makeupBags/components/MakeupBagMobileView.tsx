@@ -12,7 +12,7 @@ export const MakeupBagMobileView = ({
     <MobileView
         items={makeupBags}
         getTitle={(item) => item.client?.username || ''}
-        getSubtitle={(item) => item.category?.name || ''}
+        getSubtitle={(item) => item.category?.name || '—'}
         getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
         getLink={(item) => `/makeup_bags/${item._id}`}
     />

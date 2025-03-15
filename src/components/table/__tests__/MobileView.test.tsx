@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import { renderWithRouter } from '../../../mocks'
+import { renderWithRouter } from '../../../tests'
 import { formatDate } from '../../../utils'
 import { MobileView } from '../MobileView'
 

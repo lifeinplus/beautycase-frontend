@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type MakeupBag } from '../../features/makeupBags'
+import { type MakeupBag } from '../../../features/makeupBags'
 
 export const mockMakeupBag: MakeupBag = {
     _id: '1',

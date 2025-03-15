@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import { mockStore } from '../../../mocks'
+import { mockStore } from '../../../tests'
 import { storeSchema } from '../validations'
 
 describe('storeSchema validation', () => {

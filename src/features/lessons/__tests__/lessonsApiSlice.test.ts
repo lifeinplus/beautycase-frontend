@@ -7,7 +7,7 @@ import {
     mockLessons,
     renderWithProvider,
     server,
-} from '../../../mocks'
+} from '../../../tests'
 import {
     useAddLessonMutation,
     useDeleteLessonMutation,

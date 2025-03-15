@@ -7,7 +7,7 @@ import {
     mockBrands,
     renderWithProvider,
     server,
-} from '../../../mocks'
+} from '../../../tests'
 import {
     useCreateBrandMutation,
     useDeleteBrandMutation,

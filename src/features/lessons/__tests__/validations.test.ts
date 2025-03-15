@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
-import { mockLesson } from '../../../mocks'
+import { mockLesson } from '../../../tests'
 import { lessonSchema } from '../validations'
 
 describe('Lesson Schema Validation', () => {

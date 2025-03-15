@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { store } from '../app/store'
+import { store } from '../../app/store'
 
 interface WrapperProps {
     children: ReactNode

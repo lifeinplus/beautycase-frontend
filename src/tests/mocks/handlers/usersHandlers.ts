@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { type User } from '../../features/users'
+import { type User } from '../../../features/users'
 
 export const mockUser: User = { _id: '1', role: 'admin', username: 'Admin' }
 

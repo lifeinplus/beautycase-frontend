@@ -7,7 +7,7 @@ import {
     mockProducts,
     renderWithProvider,
     server,
-} from '../../../mocks'
+} from '../../../tests'
 import {
     useAddProductMutation,
     useDeleteProductMutation,

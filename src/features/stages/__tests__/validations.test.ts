@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import { mockStage } from '../../../mocks'
+import { mockStage } from '../../../tests'
 import { stageSchema } from '../validations'
 
 describe('stageSchema validation', () => {

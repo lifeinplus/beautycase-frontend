@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Product } from '../../features/products'
+import { type Product } from '../../../features/products'
 
 export const mockProduct: Product = {
     _id: '1',

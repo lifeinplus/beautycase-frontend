@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Lesson } from '../../features/lessons'
+import { type Lesson } from '../../../features/lessons'
 
 export const mockLesson: Lesson = {
     _id: '1',

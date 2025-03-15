@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Questionnaire } from '../../features/questionnaires'
+import { type Questionnaire } from '../../../features/questionnaires'
 
 export const mockQuestionnaireFull: Questionnaire = {
     name: 'Anna Petrova',

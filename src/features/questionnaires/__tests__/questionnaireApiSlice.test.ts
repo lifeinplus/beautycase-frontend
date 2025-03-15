@@ -7,7 +7,7 @@ import {
     mockQuestionnaires,
     renderWithProvider,
     server,
-} from '../../../mocks'
+} from '../../../tests'
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,

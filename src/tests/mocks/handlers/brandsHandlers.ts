@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Brand } from '../../features/brands'
+import { type Brand } from '../../../features/brands'
 
 export const mockBrand: Brand = {
     _id: '1',

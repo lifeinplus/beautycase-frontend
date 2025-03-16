@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ModalDuplicate } from '../ModalDuplicate'
 
 describe('ModalDuplicate component', () => {
@@ -10,10 +10,6 @@ describe('ModalDuplicate component', () => {
         onConfirm: vi.fn(),
         title: 'Duplicate Item',
     }
-
-    beforeEach(() => {
-        vi.clearAllMocks()
-    })
 
     afterEach(() => {
         cleanup()

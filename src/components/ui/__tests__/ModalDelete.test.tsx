@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ModalDelete } from '../ModalDelete'
 
 describe('ModalDelete component', () => {
@@ -10,10 +10,6 @@ describe('ModalDelete component', () => {
         onConfirm: vi.fn(),
         title: 'Delete Item',
     }
-
-    beforeEach(() => {
-        vi.clearAllMocks()
-    })
 
     afterEach(() => {
         cleanup()

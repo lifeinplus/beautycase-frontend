@@ -20,7 +20,6 @@ describe('useScrollToElement', () => {
     const mockScrollTo = vi.fn()
 
     beforeEach(() => {
-        vi.clearAllMocks()
         window.scrollTo = mockScrollTo
         ;(useLocation as any).mockReturnValue(mockLocation)
         ;(useNavigate as any).mockReturnValue(mockNavigate)

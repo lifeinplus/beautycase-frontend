@@ -1,5 +1,5 @@
 import { screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { useNavigate } from 'react-router-dom'
 
 import { renderTableRow } from '../../../tests'
@@ -9,10 +9,6 @@ const mockedNavigate = vi.fn()
 vi.mocked(useNavigate).mockImplementation(() => mockedNavigate)
 
 describe('TableRow Component', () => {
-    beforeEach(() => {
-        vi.clearAllMocks()
-    })
-
     it('renders with cell data', () => {
         const cellData = ['Name', 'Age', 'Email']
 

@@ -34,7 +34,6 @@ describe('useRefreshAuth', () => {
     }
 
     beforeEach(() => {
-        vi.clearAllMocks()
         ;(useAppDispatch as unknown as Mock).mockReturnValue(mockDispatch)
         ;(axiosClient.get as Mock).mockResolvedValue({
             data: mockResponse,

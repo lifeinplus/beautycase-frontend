@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { store } from '../../app/store'
+import { TableRow, type TableRowProps } from '../../components'
 
 interface WrapperProps {
     children: ReactNode
@@ -21,4 +22,14 @@ export const renderWithProvider = <T,>(hook: () => T) => {
 
 export const renderWithRouter = (component: ReactNode) => {
     return render(<BrowserRouter>{component}</BrowserRouter>)
+}
+
+export const renderTableRow = (props: TableRowProps) => {
+    return render(
+        <table>
+            <tbody>
+                <TableRow {...props} />
+            </tbody>
+        </table>
+    )
 }

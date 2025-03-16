@@ -4,11 +4,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useScrollToElement } from '../useScrollToElement'
 
-vi.mock('react-router-dom', async () => ({
-    useLocation: vi.fn(),
-    useNavigate: vi.fn(),
-}))
-
 describe('useScrollToElement', () => {
     const mockGetBoundingClientRect = vi.fn().mockReturnValue({
         top: 100,

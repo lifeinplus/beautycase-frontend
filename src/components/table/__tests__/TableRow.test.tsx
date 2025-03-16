@@ -1,25 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { TableRow, type TableRowProps } from '../TableRow'
 import { useNavigate } from 'react-router-dom'
 
-vi.mock('react-router-dom', () => ({
-    useNavigate: vi.fn(),
-}))
+import { renderTableRow } from '../../../tests'
 
 const mockedNavigate = vi.fn()
 
 vi.mocked(useNavigate).mockImplementation(() => mockedNavigate)
-
-const renderTableRow = (props: TableRowProps) => {
-    return render(
-        <table>
-            <tbody>
-                <TableRow {...props} />
-            </tbody>
-        </table>
-    )
-}
 
 describe('TableRow Component', () => {
     beforeEach(() => {

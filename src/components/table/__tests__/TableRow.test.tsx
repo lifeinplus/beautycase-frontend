@@ -1,12 +1,7 @@
 import { screen, fireEvent } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
-import { useNavigate } from 'react-router-dom'
+import { describe, it, expect } from 'vitest'
 
-import { renderTableRow } from '../../../tests'
-
-const mockedNavigate = vi.fn()
-
-vi.mocked(useNavigate).mockImplementation(() => mockedNavigate)
+import { mockedNavigate, renderTableRow } from '../../../tests'
 
 describe('TableRow Component', () => {
     it('renders with cell data', () => {

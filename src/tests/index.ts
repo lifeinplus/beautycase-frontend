@@ -11,5 +11,8 @@ export * from './mocks/handlers/uploadsHandlers'
 export * from './mocks/handlers/usersHandlers'
 
 export * from './mocks/Icon'
+export * from './mocks/router'
 export * from './mocks/server'
 export * from './mocks/Wrapper'
+
+export * from './setup'

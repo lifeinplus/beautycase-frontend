@@ -1,28 +1,13 @@
 import { act, renderHook } from '@testing-library/react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
+import { mockedNavigate, mockedScrollTo } from '../../tests'
 import { useScrollToElement } from '../useScrollToElement'
 
 describe('useScrollToElement', () => {
     const mockGetBoundingClientRect = vi.fn().mockReturnValue({
         top: 100,
         height: 50,
-    })
-
-    const mockLocation = {
-        pathname: '/test-page',
-        state: { scrollId: '123' },
-    }
-
-    const mockNavigate = vi.fn()
-
-    const mockScrollTo = vi.fn()
-
-    beforeEach(() => {
-        window.scrollTo = mockScrollTo
-        ;(useLocation as any).mockReturnValue(mockLocation)
-        ;(useNavigate as any).mockReturnValue(mockNavigate)
     })
 
     it('should return pathname, state, and scroll function', () => {
@@ -40,7 +25,7 @@ describe('useScrollToElement', () => {
             result.current.scroll(null)
         })
 
-        expect(mockScrollTo).not.toHaveBeenCalled()
+        expect(mockedScrollTo).not.toHaveBeenCalled()
     })
 
     it('should scroll to the element when node is provided', () => {
@@ -54,7 +39,7 @@ describe('useScrollToElement', () => {
             result.current.scroll(mockElement)
         })
 
-        expect(mockScrollTo).toHaveBeenCalledWith({
+        expect(mockedScrollTo).toHaveBeenCalledWith({
             top: 75, // 100 - 50/2 = 75
             behavior: 'instant',
         })
@@ -74,7 +59,7 @@ describe('useScrollToElement', () => {
             vi.runAllTimers()
         })
 
-        expect(mockNavigate).toHaveBeenCalledWith('/test-page', {
+        expect(mockedNavigate).toHaveBeenCalledWith('/test-page', {
             replace: true,
         })
 
@@ -83,6 +68,6 @@ describe('useScrollToElement', () => {
 
     it('should not navigate if scrolled is false', () => {
         renderHook(() => useScrollToElement())
-        expect(mockNavigate).not.toHaveBeenCalled()
+        expect(mockedNavigate).not.toHaveBeenCalled()
     })
 })

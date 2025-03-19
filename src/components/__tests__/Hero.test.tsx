@@ -1,12 +1,7 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
 import { Hero } from '../Hero'
-import { type ImageProps } from '../ui/Image'
-
-vi.mock('../ui/Image', () => ({
-    Image: (props: ImageProps) => <img {...props} data-testid="mocked-image" />,
-}))
 
 const props = {
     headline: 'Welcome to our site',
@@ -40,7 +35,7 @@ describe('Hero', () => {
     it('renders image when imgUrl is provided', () => {
         render(<Hero headline={props.headline} imgUrl={props.imgUrl} />)
 
-        const image = screen.getByTestId('mocked-image')
+        const image = screen.getByRole('img')
 
         expect(image).toBeInTheDocument()
         expect(image).toHaveAttribute('alt', props.headline)
@@ -53,10 +48,7 @@ describe('Hero', () => {
 
         expect(screen.queryByText(props.headline)).toBeInTheDocument()
         expect(screen.queryByText(props.byline)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
-            'src',
-            props.imgUrl
-        )
+        expect(screen.getByRole('img')).toHaveAttribute('src', props.imgUrl)
         expect(screen.getByText(props.content)).toBeInTheDocument()
     })
 

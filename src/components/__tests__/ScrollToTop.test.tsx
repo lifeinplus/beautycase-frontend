@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mockedLocation, mockedScrollTo } from '../../tests'
 import { ScrollToTop } from '../ScrollToTop'
 
-describe('ScrollToTop component', () => {
+describe('ScrollToTop', () => {
     beforeEach(() => {
         vi.mocked(useLocation).mockReturnValue(mockedLocation)
     })

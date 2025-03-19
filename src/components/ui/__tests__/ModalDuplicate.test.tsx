@@ -2,7 +2,7 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ModalDuplicate } from '../ModalDuplicate'
 
-describe('ModalDuplicate component', () => {
+describe('ModalDuplicate', () => {
     const mockProps = {
         description: 'Are you sure?',
         isOpen: true,

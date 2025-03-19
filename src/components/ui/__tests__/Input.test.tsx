@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { Input } from '../Input'
 
-describe('Input component', () => {
+describe('Input', () => {
     it('renders with default className', () => {
         render(<Input data-testid="test-input" />)
         const inputElement = screen.getByTestId('test-input')

@@ -9,7 +9,7 @@ interface TestItem {
     age: number
 }
 
-describe('Table Component', () => {
+describe('Table', () => {
     const headers: Header[] = [
         { label: 'Name', className: 'name-column' },
         { label: 'Age', className: 'age-column' },

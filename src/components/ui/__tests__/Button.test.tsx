@@ -5,7 +5,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { Button } from '../Button'
 
-describe('Button Component', () => {
+describe('Button', () => {
     it('renders correctly with default props', () => {
         render(<Button>Click me</Button>)
 

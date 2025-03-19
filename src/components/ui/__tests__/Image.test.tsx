@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 import config from '../../../config'
 import { Image } from '../Image'
 
-describe('Image Component', () => {
+describe('Image', () => {
     it('renders with provided src', () => {
         const testSrc = 'test-image.jpg'
         render(<Image src={testSrc} alt="Test image" />)

@@ -5,7 +5,7 @@ import { renderWithRouter } from '../../../tests'
 import { formatDate } from '../../../utils'
 import { MobileView } from '../MobileView'
 
-describe('MobileView Component', () => {
+describe('MobileView', () => {
     interface TestItem {
         id: string
         title: string

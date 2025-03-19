@@ -1,6 +1,6 @@
 import config from '../../config'
 
-interface ImageProps {
+export interface ImageProps {
     alt?: string
     className?: string
     src?: string

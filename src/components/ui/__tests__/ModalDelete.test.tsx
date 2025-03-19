@@ -2,7 +2,7 @@ import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { ModalDelete } from '../ModalDelete'
 
-describe('ModalDelete component', () => {
+describe('ModalDelete', () => {
     const mockProps = {
         description: 'Are you sure?',
         isOpen: true,

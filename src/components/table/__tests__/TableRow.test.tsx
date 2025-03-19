@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest'
 
 import { mockedNavigate, renderTableRow } from '../../../tests'
 
-describe('TableRow Component', () => {
+describe('TableRow', () => {
     it('renders with cell data', () => {
         const cellData = ['Name', 'Age', 'Email']
 

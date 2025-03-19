@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { mockedNavigate } from '../../tests'
 import { TopPanel } from '../TopPanel'
 
-describe('TopPanel component', () => {
+describe('TopPanel', () => {
     it('renders with the correct title', () => {
         const title = 'Test Title'
 

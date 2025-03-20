@@ -1,0 +1,162 @@
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+
+import { getErrorMessage } from '../../utils'
+import { DataWrapper } from '../DataWrapper'
+
+vi.mock('../../utils', () => ({
+    getErrorMessage: vi.fn((error) => String(error)),
+}))
+
+const mockData = { id: 1, name: 'Test' }
+const mockDataArrray = [mockData]
+
+const mockError = new Error('Test error')
+const mockEmptyMessage = 'No data available'
+
+const mockChildren = <div data-testid="children-content">Test Content</div>
+
+describe('DataWrapper', () => {
+    it('renders loading state', () => {
+        render(
+            <DataWrapper
+                isLoading={true}
+                error={null}
+                data={undefined}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const loadingElement = screen.getByText('Загрузка...')
+        expect(loadingElement).toBeInTheDocument()
+
+        const childrenElement = screen.queryByTestId('children-content')
+        expect(childrenElement).not.toBeInTheDocument()
+    })
+
+    it('renders error state when error is present', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={mockError}
+                data={undefined}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+
+        const errorElement = screen.getByText('Error: Test error')
+        expect(errorElement).toBeInTheDocument()
+
+        const childrenElement = screen.queryByTestId('children-content')
+        expect(childrenElement).not.toBeInTheDocument()
+    })
+
+    it('renders empty message when data is undefined', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={null}
+                data={undefined}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const emptyElement = screen.getByText(mockEmptyMessage)
+        expect(emptyElement).toBeInTheDocument()
+
+        const childrenElement = screen.queryByTestId('children-content')
+        expect(childrenElement).not.toBeInTheDocument()
+    })
+
+    it('renders empty message when data is an empty array', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={null}
+                data={[]}
+                emptyMessage={mockEmptyMessage}
+            />
+        )
+
+        const emptyElement = screen.getByText(mockEmptyMessage)
+        expect(emptyElement).toBeInTheDocument()
+
+        expect(screen.queryByTestId('children-content')).not.toBeInTheDocument()
+    })
+
+    it('renders children when data is present and not empty', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={null}
+                data={mockData}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const childrenElement = screen.getByTestId('children-content')
+        expect(childrenElement).toBeInTheDocument()
+        expect(childrenElement).toHaveTextContent('Test Content')
+    })
+
+    it('renders children when data is a non-empty array', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={null}
+                data={mockDataArrray}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const childrenElement = screen.getByTestId('children-content')
+        expect(childrenElement).toBeInTheDocument()
+    })
+
+    it('prioritizes loading state over error and empty states', () => {
+        render(
+            <DataWrapper
+                isLoading={true}
+                error={mockError}
+                data={undefined}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const loadingElement = screen.getByText('Загрузка...')
+        expect(loadingElement).toBeInTheDocument()
+
+        expect(getErrorMessage).not.toHaveBeenCalled()
+    })
+
+    it('prioritizes error state over empty state', () => {
+        render(
+            <DataWrapper
+                isLoading={false}
+                error={mockError}
+                data={undefined}
+                emptyMessage={mockEmptyMessage}
+            >
+                {mockChildren}
+            </DataWrapper>
+        )
+
+        const errorElement = screen.getByText('Error: Test error')
+        expect(errorElement).toBeInTheDocument()
+        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+    })
+})

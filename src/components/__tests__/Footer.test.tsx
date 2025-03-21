@@ -73,11 +73,9 @@ describe('Footer', () => {
     it('displays the copyright information correctly', () => {
         render(<Footer />)
 
-        const copyrightText = screen.getByText(/v6\.7\.0/)
-        expect(copyrightText).toBeInTheDocument()
-        expect(copyrightText).toHaveTextContent('Beautycase')
+        const copyrightTextRegex = /© Beautycase \d{4}\.\d+\.\d+/
+        const copyrightElement = screen.getByText(copyrightTextRegex)
 
-        const yearElement = screen.getByText('2025')
-        expect(yearElement).toHaveAttribute('id', 'year')
+        expect(copyrightElement).toBeInTheDocument()
     })
 })

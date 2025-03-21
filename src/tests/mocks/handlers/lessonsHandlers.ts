@@ -1,13 +1,13 @@
 import { http, HttpResponse } from 'msw'
-import { type Lesson } from '../../features/lessons'
+import { type Lesson } from '../../../features/lessons'
 
 export const mockLesson: Lesson = {
     _id: '1',
-    title: 'Lesson 1',
-    shortDescription: 'Short Desc 1',
-    fullDescription: 'Full Desc 1',
-    videoUrl: 'https://video.com/1',
-    productIds: [],
+    title: 'Makeup Basics',
+    shortDescription: 'Introduction to Makeup fundamentals',
+    fullDescription: 'A comprehensive introduction to Makeup',
+    videoUrl: 'https://video.com/makeup-basics',
+    productIds: ['1', '2', '3'],
 }
 
 export const mockLessons: Lesson[] = [

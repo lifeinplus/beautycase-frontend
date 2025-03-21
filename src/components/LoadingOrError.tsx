@@ -1,4 +1,4 @@
-interface LoadingOrErrorProps {
+export interface LoadingOrErrorProps {
     message: string
 }
 

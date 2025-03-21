@@ -1,3 +1,5 @@
+import packageJson from '../../package.json'
+
 export const Footer = () => (
     <footer id="footer" className="page-footer">
         <section className="mx-auto max-w-4xl p-4">
@@ -23,9 +25,7 @@ export const Footer = () => (
         </section>
 
         <section className="mx-auto max-w-4xl p-4">
-            <p>
-                v6.7.0 &copy; <span id="year">2025</span> Beautycase
-            </p>
+            <p>&copy; Beautycase {packageJson.version}</p>
         </section>
     </footer>
 )

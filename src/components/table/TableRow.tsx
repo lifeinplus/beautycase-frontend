@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-interface TableRowProps {
+export interface TableRowProps {
     cellClasses?: string[]
     cellData: (string | number | undefined)[]
     redirectPath?: string

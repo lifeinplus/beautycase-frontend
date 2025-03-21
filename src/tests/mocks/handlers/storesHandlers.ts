@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 
-import { type Store } from '../../features/stores'
+import { type Store } from '../../../features/stores'
 
 export const mockStore: Store = { _id: '1', name: 'Brush' }
 

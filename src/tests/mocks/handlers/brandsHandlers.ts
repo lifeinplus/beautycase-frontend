@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Brand } from '../../features/brands'
+import { type Brand } from '../../../features/brands'
 
 export const mockBrand: Brand = {
     _id: '1',
@@ -24,16 +24,6 @@ export const brandsHandlers = [
     }),
 
     http.get('api/brands', () => HttpResponse.json(mockBrands)),
-
-    http.get('api/brands/:id', ({ params }) => {
-        const brand = mockBrands.find((p) => p._id === params.id)
-        return brand
-            ? HttpResponse.json(brand)
-            : HttpResponse.json(
-                  { success: false, message: 'Brand not found' },
-                  { status: 404 }
-              )
-    }),
 
     http.put('api/brands/:id', async ({ params }) =>
         HttpResponse.json({

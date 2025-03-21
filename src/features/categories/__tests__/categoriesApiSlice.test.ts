@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockCategories, renderWithProvider } from '../../../mocks'
+import { mockCategories, renderWithProvider } from '../../../tests'
 import { useGetCategoriesQuery } from '../categoriesApiSlice'
 
 describe('categoriesApiSlice', () => {

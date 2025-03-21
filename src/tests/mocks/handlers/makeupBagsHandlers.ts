@@ -1,22 +1,22 @@
 import { http, HttpResponse } from 'msw'
-import { type MakeupBag } from '../../features/makeupBags'
+import { type MakeupBag } from '../../../features/makeupBags'
 
 export const mockMakeupBag: MakeupBag = {
     _id: '1',
-    categoryId: 'category1',
-    clientId: 'client1',
-    stageIds: [],
-    toolIds: [],
+    categoryId: 'category-1',
+    clientId: 'client-1',
+    stageIds: ['stage-1', 'stage-2'],
+    toolIds: ['tool-1', 'tool-2', 'tool-3'],
 }
 
 export const mockMakeupBags: MakeupBag[] = [
     mockMakeupBag,
     {
         _id: '2',
-        categoryId: 'category2',
-        clientId: 'client2',
-        stageIds: [],
-        toolIds: [],
+        categoryId: 'category-2',
+        clientId: 'client-2',
+        stageIds: ['stage-3', 'stage-4'],
+        toolIds: ['tool-4', 'tool-5', 'tool-6'],
     },
 ]
 

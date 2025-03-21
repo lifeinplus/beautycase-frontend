@@ -1,7 +1,7 @@
 import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockStore, mockStores, renderWithProvider } from '../../../mocks'
+import { mockStore, mockStores, renderWithProvider } from '../../../tests'
 import {
     useCreateStoreMutation,
     useDeleteStoreMutation,

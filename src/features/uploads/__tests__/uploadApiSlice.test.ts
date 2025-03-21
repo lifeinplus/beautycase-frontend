@@ -2,7 +2,7 @@ import { act } from 'react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
-import { renderWithProvider, server } from '../../../mocks'
+import { renderWithProvider, server } from '../../../tests'
 import { type DataMessageError } from '../../../utils'
 import { useUploadImageTempMutation } from '../uploadApiSlice'
 

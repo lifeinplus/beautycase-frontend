@@ -1,5 +1,5 @@
 import { Cloudinary } from '@cloudinary/url-gen/index'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import config from '../../config'
 import { cloudinary } from '../cloudinary'
@@ -13,10 +13,6 @@ vi.mock('../../config', () => ({
 }))
 
 describe('cloudinary utility', () => {
-    beforeEach(() => {
-        vi.clearAllMocks()
-    })
-
     it('should create a Cloudinary instance', () => {
         expect(cloudinary).toBeInstanceOf(Cloudinary)
     })

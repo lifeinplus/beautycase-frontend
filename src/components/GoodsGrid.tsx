@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Image } from '../components'
 import { useScrollToElement } from '../hooks'
 
-interface Good {
+export interface Good {
     _id?: string
     name: string
     imageUrl: string

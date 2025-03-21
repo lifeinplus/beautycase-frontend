@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockUser, mockUsers, renderWithProvider } from '../../../mocks'
+import { mockUser, mockUsers, renderWithProvider } from '../../../tests'
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
 
 describe('usersApiSlice', () => {

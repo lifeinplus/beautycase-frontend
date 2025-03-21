@@ -7,7 +7,7 @@ import {
     mockMakeupBags,
     renderWithProvider,
     server,
-} from '../../../mocks'
+} from '../../../tests'
 import {
     useAddMakeupBagMutation,
     useDeleteMakeupBagMutation,

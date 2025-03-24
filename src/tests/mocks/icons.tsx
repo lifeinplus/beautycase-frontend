@@ -2,6 +2,12 @@ import { vi } from 'vitest'
 
 const icons = {
     ArrowLeftIcon: () => <div data-testid="arrow-left-icon" />,
+    ArrowLeftStartOnRectangleIcon: () => (
+        <div data-testid="arrow-left-start-on-rectangle-icon" />
+    ),
+    ArrowRightEndOnRectangleIcon: () => (
+        <div data-testid="arrow-right-end-on-rectangle-icon" />
+    ),
     ChevronLeftIcon: () => <svg data-testid="chevron-left-icon" />,
     ChevronRightIcon: () => <div data-testid="chevron-right-icon" />,
     DocumentDuplicateIcon: () => <div data-testid="document-duplicate-icon" />,

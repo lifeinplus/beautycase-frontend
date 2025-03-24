@@ -8,21 +8,22 @@ export const mockAuthResponse: AuthState = {
     username: 'testuser',
 }
 
+export const mockHandleLogout = vi.fn()
+
 export const mockAuth = () => {
-    vi.mock('../../features/auth', async (importOriginal) => {
+    vi.mock('../../features/auth/authSlice', async (importOriginal) => {
         const actual = await importOriginal()
 
         return {
             ...(actual as object),
-
-            AuthButton: () => (
-                <button data-testid="auth-button">Sign In</button>
-            ),
-
             setCredentials: vi.fn((payload) => ({
                 type: 'auth/setCredentials',
                 payload,
             })),
         }
     })
+
+    vi.mock('../../features/auth/hooks/useAuthLogout', () => ({
+        useAuthLogout: vi.fn(),
+    }))
 }

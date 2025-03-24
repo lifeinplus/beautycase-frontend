@@ -6,7 +6,7 @@ import { mockApp } from './mocks/app'
 import { mockAuth } from './mocks/auth'
 import { mockHooks } from './mocks/hooks'
 import { mockIcons } from './mocks/icons'
-import { mockReactRouterDom } from './mocks/router'
+import { mockRouter } from './mocks/router'
 import { server } from './mocks/server'
 
 export const mockScrollTo = vi.fn()
@@ -16,7 +16,7 @@ mockApp()
 mockAuth()
 mockHooks()
 mockIcons()
-mockReactRouterDom()
+mockRouter()
 
 beforeAll(() => {
     server.listen()

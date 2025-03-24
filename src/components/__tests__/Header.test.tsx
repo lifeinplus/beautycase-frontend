@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { Header } from '../Header'
+
+vi.mock('../../features/auth/components/AuthButton', async () => ({
+    AuthButton: () => <button data-testid="auth-button">Sign In</button>,
+}))
 
 describe('Header', () => {
     it('renders the header with correct structure', () => {

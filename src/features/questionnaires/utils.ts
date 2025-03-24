@@ -186,12 +186,24 @@ export const questions: Questions = {
                 value: '50',
             },
             {
+                label: 'До 150 евро',
+                value: '150',
+            },
+            {
                 label: '50-100 евро',
                 value: '50-100',
             },
             {
+                label: '150-250 евро',
+                value: '150-250',
+            },
+            {
                 label: 'Более 100 евро',
                 value: '100',
+            },
+            {
+                label: 'Более 250 евро',
+                value: '250',
             },
         ],
     },

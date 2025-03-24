@@ -45,22 +45,22 @@ export const options: Options = {
     ],
     budget: [
         {
-            id: 'budget-up-to-50',
-            label: 'До 50 евро',
+            id: 'budget-up-to-150',
+            label: 'До 150 евро',
             name: 'budget',
-            value: '50',
+            value: '150',
         },
         {
-            id: 'budget-50-100',
-            label: '50-100 евро',
+            id: 'budget-150-250',
+            label: '150-250 евро',
             name: 'budget',
-            value: '50-100',
+            value: '150-250',
         },
         {
-            id: 'budget-more-than-100',
-            label: 'Более 100 евро',
+            id: 'budget-more-than-250',
+            label: 'Более 250 евро',
             name: 'budget',
-            value: '100',
+            value: '250',
         },
     ],
     desiredSkills: [

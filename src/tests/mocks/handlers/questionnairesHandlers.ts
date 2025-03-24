@@ -6,7 +6,7 @@ export const mockQuestionnaireFull: Questionnaire = {
     makeupBag: 'Foundation, mascara, lipstick, blush',
     age: 28,
     allergies: 'None',
-    budget: '50-100',
+    budget: '150-250',
     brushes: 'yes',
     city: 'Moscow',
     currentSkills: 'Basic everyday makeup',

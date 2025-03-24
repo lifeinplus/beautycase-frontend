@@ -22,7 +22,7 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
                 >
                     <ChevronLeftIcon className="h-6 w-6" />
                 </button>
-                <h1 className="panel-top__title">{title}</h1>
+                <h2 className="panel-top__title">{title}</h2>
                 <div className="w-8"></div>
             </div>
         </nav>

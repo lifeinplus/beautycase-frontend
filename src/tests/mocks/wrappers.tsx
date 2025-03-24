@@ -1,6 +1,6 @@
 import { render, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { store } from '../../app/store'
@@ -21,7 +21,7 @@ export const renderWithProvider = <T,>(hook: () => T) => {
 }
 
 export const renderWithRouter = (component: ReactNode) => {
-    return render(<BrowserRouter>{component}</BrowserRouter>)
+    return render(<MemoryRouter>{component}</MemoryRouter>)
 }
 
 export const renderTableRow = (props: TableRowProps) => {

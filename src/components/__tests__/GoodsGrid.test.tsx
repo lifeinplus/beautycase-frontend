@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import { mockedNavigate } from '../../tests'
+import { mockNavigate } from '../../tests'
 import { type Good, GoodsGrid } from '../GoodsGrid'
 
-const mockedGoods: Good[] = [
+const mockGoods: Good[] = [
     {
         _id: '1',
         name: 'Product 1',
@@ -25,12 +25,12 @@ const mockedGoods: Good[] = [
     },
 ]
 
-const mockedBasePath = '/goods'
+const mockBasePath = '/goods'
 
 describe('GoodsGrid', () => {
     it('renders the grid with correct structure', () => {
         const { container } = render(
-            <GoodsGrid goods={mockedGoods} basePath={mockedBasePath} />
+            <GoodsGrid goods={mockGoods} basePath={mockBasePath} />
         )
 
         const articleElement = container.querySelector('article')
@@ -45,14 +45,14 @@ describe('GoodsGrid', () => {
     })
 
     it('renders the correct number of goods', () => {
-        render(<GoodsGrid goods={mockedGoods} basePath={mockedBasePath} />)
+        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
 
         const productItems = screen.getAllByRole('heading', { level: 6 })
         expect(productItems).toHaveLength(3)
     })
 
     it('renders all goods correctly', () => {
-        render(<GoodsGrid goods={mockedGoods} basePath={mockedBasePath} />)
+        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
 
         expect(screen.getByText('Product 1')).toBeInTheDocument()
         expect(screen.getByText('Product 2')).toBeInTheDocument()
@@ -71,17 +71,17 @@ describe('GoodsGrid', () => {
     })
 
     it('navigates to the correct path when an item is clicked', () => {
-        render(<GoodsGrid goods={mockedGoods} basePath={mockedBasePath} />)
+        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
 
         const productItems = screen.getAllByRole('heading', { level: 6 })
 
         fireEvent.click(productItems[0].parentElement!)
-        expect(mockedNavigate).toHaveBeenCalledWith('/goods/1', {
+        expect(mockNavigate).toHaveBeenCalledWith('/goods/1', {
             state: { fromPathname: '/current-page' },
         })
 
         fireEvent.click(productItems[1].parentElement!)
-        expect(mockedNavigate).toHaveBeenCalledWith('/goods/2', {
+        expect(mockNavigate).toHaveBeenCalledWith('/goods/2', {
             state: { fromPathname: '/current-page' },
         })
     })

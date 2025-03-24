@@ -1,7 +1,7 @@
 import { vi } from 'vitest'
 import { type AuthState } from '../../features/auth'
 
-export const mockedAuthResponse: AuthState = {
+export const mockAuthResponse: AuthState = {
     accessToken: 'mock-access-token',
     role: 'admin',
     userId: '123',

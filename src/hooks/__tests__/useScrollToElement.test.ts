@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockedNavigate, mockedScrollTo } from '../../tests'
+import { mockNavigate, mockScrollTo } from '../../tests'
 import { useScrollToElement } from '../useScrollToElement'
 
 describe('useScrollToElement', () => {
@@ -25,7 +25,7 @@ describe('useScrollToElement', () => {
             result.current.scroll(null)
         })
 
-        expect(mockedScrollTo).not.toHaveBeenCalled()
+        expect(mockScrollTo).not.toHaveBeenCalled()
     })
 
     it('should scroll to the element when node is provided', () => {
@@ -39,7 +39,7 @@ describe('useScrollToElement', () => {
             result.current.scroll(mockElement)
         })
 
-        expect(mockedScrollTo).toHaveBeenCalledWith({
+        expect(mockScrollTo).toHaveBeenCalledWith({
             top: 75, // 100 - 50/2 = 75
             behavior: 'instant',
         })
@@ -59,7 +59,7 @@ describe('useScrollToElement', () => {
             vi.runAllTimers()
         })
 
-        expect(mockedNavigate).toHaveBeenCalledWith('/test-page', {
+        expect(mockNavigate).toHaveBeenCalledWith('/test-page', {
             replace: true,
         })
 
@@ -68,6 +68,6 @@ describe('useScrollToElement', () => {
 
     it('should not navigate if scrolled is false', () => {
         renderHook(() => useScrollToElement())
-        expect(mockedNavigate).not.toHaveBeenCalled()
+        expect(mockNavigate).not.toHaveBeenCalled()
     })
 })

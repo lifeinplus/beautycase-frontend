@@ -8,7 +8,7 @@ import { mockIcons } from './mocks/icons'
 import { mockReactRouterDom } from './mocks/router'
 import { server } from './mocks/server'
 
-export const mockedScrollTo = vi.fn()
+export const mockScrollTo = vi.fn()
 
 mockApi()
 mockAuth()
@@ -21,7 +21,7 @@ beforeAll(() => {
 })
 
 beforeEach(() => {
-    window.scrollTo = mockedScrollTo
+    window.scrollTo = mockScrollTo
     vi.clearAllMocks()
 })
 

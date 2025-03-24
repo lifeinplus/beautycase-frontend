@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockedNavigate } from '../../tests'
+import { mockNavigate } from '../../tests'
 import { TopPanel } from '../TopPanel'
 
 describe('TopPanel', () => {
@@ -27,17 +27,17 @@ describe('TopPanel', () => {
     it('navigates back when default back button is clicked', () => {
         render(<TopPanel title="Test Title" />)
         fireEvent.click(screen.getByRole('button'))
-        expect(mockedNavigate).toHaveBeenCalledWith(-1)
+        expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
 
     it('calls custom onBack function when provided', () => {
-        const mockedOnBack = vi.fn()
+        const mockOnBack = vi.fn()
 
-        render(<TopPanel title="Test Title" onBack={mockedOnBack} />)
+        render(<TopPanel title="Test Title" onBack={mockOnBack} />)
 
         fireEvent.click(screen.getByRole('button'))
 
-        expect(mockedOnBack).toHaveBeenCalledTimes(1)
-        expect(mockedNavigate).not.toHaveBeenCalled()
+        expect(mockOnBack).toHaveBeenCalledTimes(1)
+        expect(mockNavigate).not.toHaveBeenCalled()
     })
 })

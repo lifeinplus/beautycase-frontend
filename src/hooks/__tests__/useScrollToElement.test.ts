@@ -13,7 +13,7 @@ describe('useScrollToElement', () => {
     it('should return pathname, state, and scroll function', () => {
         const { result } = renderHook(() => useScrollToElement())
 
-        expect(result.current.pathname).toBe('/test-page')
+        expect(result.current.pathname).toBe('/questionnaire')
         expect(result.current.state).toEqual({ scrollId: '123' })
         expect(typeof result.current.scroll).toBe('function')
     })
@@ -59,7 +59,7 @@ describe('useScrollToElement', () => {
             vi.runAllTimers()
         })
 
-        expect(mockNavigate).toHaveBeenCalledWith('/test-page', {
+        expect(mockNavigate).toHaveBeenCalledWith('/questionnaire', {
             replace: true,
         })
 

@@ -25,8 +25,10 @@ describe('ThemeToggler', () => {
 
         render(<ThemeToggler />)
 
-        expect(screen.getByLabelText('Toggle Theme')).toBeInTheDocument()
-        expect(screen.getByText('Светлый режим')).toBeInTheDocument()
+        expect(
+            screen.getByRole('button', { name: /Light mode/i })
+        ).toBeInTheDocument()
+
         expect(screen.getByTestId('sun-icon')).toBeInTheDocument()
         expect(screen.queryByTestId('moon-icon')).not.toBeInTheDocument()
     })
@@ -36,8 +38,10 @@ describe('ThemeToggler', () => {
 
         render(<ThemeToggler />)
 
-        expect(screen.getByLabelText('Toggle Theme')).toBeInTheDocument()
-        expect(screen.getByText('Тёмный режим')).toBeInTheDocument()
+        expect(
+            screen.getByRole('button', { name: /Dark mode/i })
+        ).toBeInTheDocument()
+
         expect(screen.getByTestId('moon-icon')).toBeInTheDocument()
         expect(screen.queryByTestId('sun-icon')).not.toBeInTheDocument()
     })
@@ -79,7 +83,7 @@ describe('ThemeToggler', () => {
         render(<ThemeToggler />)
 
         const button = screen.getByRole('button')
-        expect(button).toHaveAttribute('aria-label', 'Toggle Theme')
+        expect(button).toHaveAttribute('aria-label', 'Dark mode')
         expect(button).toHaveClass('nav-btn')
         expect(button).toHaveClass('nav-btn-common')
     })

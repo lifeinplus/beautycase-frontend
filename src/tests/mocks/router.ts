@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { vi } from 'vitest'
 
 export const mockLocation = {
-    pathname: '/test-page',
+    pathname: '/questionnaire',
     search: '',
     hash: '',
     state: { scrollId: '123' },

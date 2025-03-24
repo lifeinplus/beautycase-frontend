@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom'
 
 import { Image } from '../../components'
 
-interface Image {
+interface ImageData {
     imageUrl: string
     name: string
 }
 
 interface ImageCardProps {
-    data: Image
+    data: ImageData
     path: string
 }
 

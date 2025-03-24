@@ -9,7 +9,7 @@ vi.mock('../../../utils', () => ({
     ),
 }))
 
-describe('VideoCard component', () => {
+describe('VideoCard', () => {
     const mockVideo = {
         title: 'Makeup Tutorial',
         shortDescription: 'Learn how to apply makeup professionally.',

@@ -11,6 +11,7 @@ export * from './mocks/handlers/uploadsHandlers'
 export * from './mocks/handlers/usersHandlers'
 
 export * from './mocks/api'
+export * from './mocks/app'
 export * from './mocks/auth'
 export * from './mocks/hooks'
 export * from './mocks/icons'

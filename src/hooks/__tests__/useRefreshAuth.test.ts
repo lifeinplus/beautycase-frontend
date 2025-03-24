@@ -4,18 +4,12 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { useAppDispatch } from '../../app/hooks'
 import { axiosClient } from '../../features/api'
 import { setCredentials } from '../../features/auth'
-import { mockAuthResponse } from '../../tests'
+import { mockAuthResponse, mockDispatch } from '../../tests'
 import { useRefreshAuth } from '../useRefreshAuth'
 
-vi.mock('../../app/hooks', () => ({
-    useAppDispatch: vi.fn(),
-}))
-
 describe('useRefreshAuth', () => {
-    const mockDispatch = vi.fn()
-
     beforeEach(() => {
-        ;(useAppDispatch as unknown as Mock).mockReturnValue(mockDispatch)
+        vi.mocked(useAppDispatch).mockReturnValue(mockDispatch)
         ;(axiosClient.get as Mock).mockResolvedValue({
             data: mockAuthResponse,
         })

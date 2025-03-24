@@ -10,8 +10,8 @@ interface HeroProps {
 export const Hero = ({ headline, byline, imgUrl, content }: HeroProps) => (
     <section id="hero" className="hero">
         <div className="hero-title">
-            {headline && <h1 className="hero-headline">{headline}</h1>}
-            {byline && <h2 className="hero-byline">{byline}</h2>}
+            {headline && <h2 className="hero-headline">{headline}</h2>}
+            {byline && <h3 className="hero-byline">{byline}</h3>}
         </div>
 
         {imgUrl && <Image alt={headline} className="hero-img" src={imgUrl} />}

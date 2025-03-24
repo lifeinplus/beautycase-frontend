@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { getErrorMessage } from '../../utils'
 import { DataWrapper } from '../DataWrapper'
 
-vi.mock('../../utils', () => ({
+vi.mock('../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
 }))
 

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { useAppSelector } from '../../../app/hooks'
 import { mockDispatch } from '../../../tests'
 import { ThemeToggler } from '../ThemeToggler'
 import { toggleTheme } from '../themeSlice'
@@ -17,7 +17,6 @@ describe('ThemeToggler', () => {
         })
 
         document.documentElement.classList.toggle = vi.fn()
-        vi.mocked(useAppDispatch).mockReturnValue(mockDispatch)
     })
 
     it('renders light mode button when darkMode is false', () => {

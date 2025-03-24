@@ -1,7 +1,6 @@
 import { renderHook } from '@testing-library/react'
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+import { beforeEach, describe, expect, it, Mock } from 'vitest'
 
-import { useAppDispatch } from '../../app/hooks'
 import { axiosClient } from '../../features/api'
 import { setCredentials } from '../../features/auth'
 import { mockAuthResponse, mockDispatch } from '../../tests'
@@ -9,7 +8,6 @@ import { useRefreshAuth } from '../useRefreshAuth'
 
 describe('useRefreshAuth', () => {
     beforeEach(() => {
-        vi.mocked(useAppDispatch).mockReturnValue(mockDispatch)
         ;(axiosClient.get as Mock).mockResolvedValue({
             data: mockAuthResponse,
         })

@@ -63,12 +63,12 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     return (
         <aside className="adaptive-nav-bar">
             <div className="mt-3 hidden flex-col pb-10 pe-3 ps-4 pt-3 sm:flex">
-                <h1 className="font-logo text-2xl font-bold">
+                <h2 className="font-logo text-2xl font-bold">
                     <a href="/">
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>
                     </a>
-                </h1>
+                </h2>
             </div>
 
             <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">

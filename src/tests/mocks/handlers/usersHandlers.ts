@@ -1,11 +1,27 @@
 import { http, HttpResponse } from 'msw'
 
-import { type User } from '../../../features/users'
+import { type UserResult, type User } from '../../../features/users'
 
-export const mockUser: User = { _id: '1', role: 'admin', username: 'Admin' }
+export const mockUserResult: UserResult = {
+    user: {
+        _id: '1',
+        role: 'admin',
+        username: 'Admin',
+    },
+    makeupBags: [
+        {
+            _id: '1',
+            category: { name: 'Daily Makeup' },
+        },
+        {
+            _id: '2',
+            category: { name: 'Evening Makeup' },
+        },
+    ],
+}
 
 export const mockUsers: User[] = [
-    mockUser,
+    mockUserResult.user,
     { _id: '2', role: 'mua', username: 'Inna' },
 ]
 
@@ -13,7 +29,8 @@ export const usersHandlers = [
     http.get('api/users/all', async () => HttpResponse.json(mockUsers)),
 
     http.get('api/users/:id', async ({ params }) => {
-        const user = mockUsers.find((user) => user._id === params.id)
-        return user ? HttpResponse.json(user) : HttpResponse.error()
+        return mockUserResult.user._id === params.id
+            ? HttpResponse.json(mockUserResult)
+            : HttpResponse.error()
     }),
 ]

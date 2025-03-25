@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockUser, mockUsers, renderWithProvider } from '../../../tests'
+import { mockUserResult, mockUsers, renderWithProvider } from '../../../tests'
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
 
 describe('usersApiSlice', () => {
@@ -22,7 +22,7 @@ describe('usersApiSlice', () => {
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockUser)
+        expect(result.current.data).toEqual(mockUserResult)
     })
 
     it('handles 404 error when user is not found', async () => {

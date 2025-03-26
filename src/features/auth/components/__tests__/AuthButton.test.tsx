@@ -6,6 +6,10 @@ import { mockHandleLogout, mockNavigate } from '../../../../tests'
 import { useAuthLogout } from '../../hooks/useAuthLogout'
 import { AuthButton } from '../AuthButton'
 
+vi.mock('../../hooks/useAuthLogout', () => ({
+    useAuthLogout: vi.fn(),
+}))
+
 describe('AuthButton', () => {
     beforeEach(() => {
         vi.mocked(useAuthLogout).mockReturnValue(mockHandleLogout)

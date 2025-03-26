@@ -8,6 +8,10 @@ import { clearFormData } from '../../../features/form'
 import { mockDispatch, mockNavigate } from '../../../tests'
 import { getErrorMessage } from '../../../utils'
 
+vi.mock('../../../features/auth/hooks/useAuthLogout', () => ({
+    useAuthLogout: vi.fn(),
+}))
+
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
 }))

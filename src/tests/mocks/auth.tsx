@@ -22,8 +22,4 @@ export const mockAuth = () => {
             })),
         }
     })
-
-    vi.mock('../../features/auth/hooks/useAuthLogout', () => ({
-        useAuthLogout: vi.fn(),
-    }))
 }

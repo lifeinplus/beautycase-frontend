@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { getYouTubeEmbedUrl, getYouTubeThumbnail } from '../youtube'
 
@@ -21,7 +21,13 @@ describe('getYouTubeEmbedUrl', () => {
     })
 
     it('returns undefined for invalid URL', () => {
+        const mockConsoleError = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+
         expect(getYouTubeEmbedUrl('invalid-url')).toBeUndefined()
+
+        mockConsoleError.mockRestore()
     })
 })
 
@@ -34,8 +40,14 @@ describe('getYouTubeThumbnail', () => {
     })
 
     it('returns default thumbnail for invalid URL', () => {
+        const mockConsoleError = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+
         expect(getYouTubeThumbnail('invalid-url')).toBe(
             import.meta.env.VITE_DEFAULT_THUMBNAIL_URL
         )
+
+        mockConsoleError.mockRestore()
     })
 })

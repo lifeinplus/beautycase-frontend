@@ -6,6 +6,10 @@ import { mockUserResult, renderWithRouter } from '../../../../tests'
 import { selectUserId } from '../../../auth'
 import { AccountPage } from '../AccountPage'
 
+vi.mock('../../../auth/hooks/useAuthLogout', () => ({
+    useAuthLogout: vi.fn(),
+}))
+
 const mockUseGetUserByIdQuery = vi.fn()
 
 vi.mock('../../../users', async () => ({

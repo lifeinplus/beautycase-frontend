@@ -6,6 +6,10 @@ import { selectRole, selectUsername } from '../../../features/auth'
 import { mockNavigate } from '../../../tests'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
 
+vi.mock('../../../features/auth/hooks/useAuthLogout', () => ({
+    useAuthLogout: vi.fn(),
+}))
+
 describe('AdaptiveNavBar', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {

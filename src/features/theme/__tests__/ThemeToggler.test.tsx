@@ -8,14 +8,6 @@ import { toggleTheme } from '../themeSlice'
 
 describe('ThemeToggler', () => {
     beforeEach(() => {
-        Object.defineProperty(window, 'localStorage', {
-            value: {
-                getItem: vi.fn(),
-                setItem: vi.fn(),
-            },
-            writable: true,
-        })
-
         document.documentElement.classList.toggle = vi.fn()
     })
 

@@ -9,6 +9,13 @@ import { mockIcons } from './mocks/icons'
 import { mockRouter } from './mocks/router'
 import { server } from './mocks/server'
 
+vi.mock('react-hot-toast', async () => ({
+    default: {
+        success: vi.fn(),
+        error: vi.fn(),
+    },
+}))
+
 export const mockScrollTo = vi.fn()
 
 mockApi()
@@ -17,6 +24,14 @@ mockAuth()
 mockHooks()
 mockIcons()
 mockRouter()
+
+Object.defineProperty(window, 'localStorage', {
+    value: {
+        getItem: vi.fn(),
+        setItem: vi.fn(),
+    },
+    writable: true,
+})
 
 beforeAll(() => {
     server.listen()

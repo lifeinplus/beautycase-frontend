@@ -7,13 +7,6 @@ import { useLogoutUserMutation } from '../../authApiSlice'
 import { logout } from '../../authSlice'
 import { useAuthLogout } from '../useAuthLogout'
 
-vi.mock('react-hot-toast', async () => ({
-    default: {
-        success: vi.fn(),
-        error: vi.fn(),
-    },
-}))
-
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
 }))
@@ -62,5 +55,7 @@ describe('useAuthLogout', () => {
         expect(toast.error).toHaveBeenCalledWith(expect.any(String))
         expect(mockNavigate).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
+
+        mockConsoleError.mockRestore()
     })
 })

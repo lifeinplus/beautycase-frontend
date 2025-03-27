@@ -10,13 +10,6 @@ import { mockDispatch, mockNavigate } from '../../../tests'
 import { getErrorMessage } from '../../../utils'
 import { DetailsPage } from '../DetailsPage'
 
-vi.mock('react-hot-toast', () => ({
-    default: {
-        success: vi.fn(),
-        error: vi.fn(),
-    },
-}))
-
 vi.mock('../../../features/auth/hooks/useAuthLogout', () => ({
     useAuthLogout: vi.fn(),
 }))

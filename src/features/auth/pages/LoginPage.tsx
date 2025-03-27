@@ -16,7 +16,7 @@ export const LoginPage = () => {
     const [password, setPassword] = useState('')
 
     const dispatch = useAppDispatch()
-    const [login, { isLoading }] = useLoginUserMutation()
+    const [loginUser, { isLoading }] = useLoginUserMutation()
 
     const from = location.state?.from?.pathname || '/'
 
@@ -28,7 +28,7 @@ export const LoginPage = () => {
         e.preventDefault()
 
         try {
-            const response = await login({ username, password }).unwrap()
+            const response = await loginUser({ username, password }).unwrap()
             dispatch(setCredentials(response))
             navigate(from, { replace: true })
         } catch (error) {

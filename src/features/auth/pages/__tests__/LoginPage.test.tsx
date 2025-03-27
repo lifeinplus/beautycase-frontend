@@ -1,4 +1,5 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
@@ -9,13 +10,8 @@ import {
     renderWithRouter,
     Wrapper,
 } from '../../../../tests'
-import { useLoginUserMutation } from '../../authApiSlice'
-import { AuthState } from '../../authSlice'
+import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
-
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
-}))
 
 vi.mock('../../authApiSlice', () => ({
     useLoginUserMutation: vi.fn(),
@@ -28,8 +24,8 @@ const MockRegister = () => <div data-testid="register-page">Register Page</div>
 const MockRoutes = () => (
     <Wrapper>
         <Routes>
-            <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<MockHome />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<MockRegister />} />
         </Routes>
     </Wrapper>
@@ -38,37 +34,41 @@ const MockRoutes = () => (
 describe('LoginPage', () => {
     const initialEntries = ['/login']
 
-    const mockLoginResponse: AuthState = {
-        accessToken: 'test-token',
-        userId: '1',
+    const mockParams = {
         username: 'testuser',
+        password: 'password123',
     }
 
-    const mockLogin = vi.fn(() => ({
-        unwrap: () => Promise.resolve(mockLoginResponse),
+    const mockLoginResult: AuthResultLogin = {
+        accessToken: 'test-token',
+        userId: '1',
+    }
+
+    const mockLoginUser = vi.fn(() => ({
+        unwrap: () => Promise.resolve(mockLoginResult),
     }))
 
     beforeEach(() => {
         ;(useLoginUserMutation as Mock).mockReturnValue([
-            mockLogin,
+            mockLoginUser,
             { isLoading: false },
         ])
     })
 
-    it('renders login form correctly', () => {
+    it('renders the login form correctly', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
         const title = screen.getByText('Beautycase')
         const username = screen.getByPlaceholderText('Имя пользователя')
         const password = screen.getByPlaceholderText('Пароль')
         const submit = screen.getByRole('button', { name: /войти/i })
-        const registerLink = screen.getByText(/зарегистрироваться/i)
+        const link = screen.getByText(/зарегистрироваться/i)
 
         expect(title).toBeInTheDocument()
         expect(username).toBeInTheDocument()
         expect(password).toBeInTheDocument()
         expect(submit).toBeInTheDocument()
-        expect(registerLink).toBeInTheDocument()
+        expect(link).toBeInTheDocument()
     })
 
     it('focuses username input on mount', () => {
@@ -77,63 +77,58 @@ describe('LoginPage', () => {
         expect(document.activeElement).toBe(username)
     })
 
-    it('allows entering username and password', () => {
+    it('allows user to type in the fields', async () => {
+        const user = userEvent.setup()
+
         renderWithRouter(<MockRoutes />, initialEntries)
 
         const username = screen.getByPlaceholderText('Имя пользователя')
         const password = screen.getByPlaceholderText('Пароль')
 
-        fireEvent.change(username, { target: { value: 'testuser' } })
-        fireEvent.change(password, { target: { value: 'password123' } })
+        await user.type(username, mockParams.username)
+        await user.type(password, mockParams.password)
 
-        expect(username).toHaveValue('testuser')
-        expect(password).toHaveValue('password123')
-    })
-
-    it('navigates to register page when register link is clicked', () => {
-        renderWithRouter(<MockRoutes />, initialEntries)
-
-        const registerLink = screen.getByText(/зарегистрироваться/i)
-        fireEvent.click(registerLink)
-
-        expect(screen.getByTestId('register-page')).toBeInTheDocument()
+        expect(username).toHaveValue(mockParams.username)
+        expect(password).toHaveValue(mockParams.password)
     })
 
     it('submits form and handles successful login', async () => {
+        const user = userEvent.setup()
+
         renderWithRouter(<MockRoutes />, initialEntries)
 
         const username = screen.getByPlaceholderText('Имя пользователя')
         const password = screen.getByPlaceholderText('Пароль')
         const submit = screen.getByRole('button', { name: /войти/i })
 
-        fireEvent.change(username, { target: { value: 'testuser' } })
-        fireEvent.change(password, { target: { value: 'password123' } })
+        await user.type(username, mockParams.username)
+        await user.type(password, mockParams.password)
 
-        fireEvent.submit(submit)
+        await user.click(submit)
 
-        await waitFor(() => {
-            expect(mockLogin).toHaveBeenCalledWith({
-                username: 'testuser',
-                password: 'password123',
-            })
-            expect(mockDispatch).toHaveBeenCalled()
-            expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
+        expect(mockLoginUser).toHaveBeenCalledWith({
+            username: mockParams.username,
+            password: mockParams.password,
         })
+        expect(mockDispatch).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
     })
 
     it('handles login error', async () => {
+        const user = userEvent.setup()
+
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
         const mockError = new Error('Invalid credentials')
 
-        const mockLogin = vi.fn(() => ({
+        const mockLoginUser = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),
         }))
 
         ;(useLoginUserMutation as Mock).mockReturnValue([
-            mockLogin,
+            mockLoginUser,
             { isLoading: false },
         ])
 
@@ -143,23 +138,21 @@ describe('LoginPage', () => {
         const password = screen.getByPlaceholderText('Пароль')
         const submit = screen.getByRole('button', { name: /войти/i })
 
-        fireEvent.change(username, { target: { value: 'testuser' } })
-        fireEvent.change(password, { target: { value: 'wrongpassword' } })
+        await user.type(username, mockParams.username)
+        await user.type(password, 'wrongpassword')
 
-        fireEvent.submit(submit)
+        await user.click(submit)
 
-        await waitFor(() => {
-            expect(mockLogin).toHaveBeenCalled()
-            expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-            expect(toast.error).toHaveBeenCalledWith(expect.any(String))
-        })
+        expect(mockLoginUser).toHaveBeenCalled()
+        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
 
         mockConsoleError.mockRestore()
     })
 
     it('disables submit button while loading', () => {
         ;(useLoginUserMutation as Mock).mockReturnValue([
-            mockLogin,
+            mockLoginUser,
             { isLoading: true },
         ])
 
@@ -168,5 +161,12 @@ describe('LoginPage', () => {
         const submit = screen.getByRole('button', { name: /вход.../i })
         expect(submit).toBeDisabled()
         expect(submit).toHaveTextContent('Вход...')
+    })
+
+    it('navigates to register page when register link is clicked', async () => {
+        const user = userEvent.setup()
+        renderWithRouter(<MockRoutes />, initialEntries)
+        await user.click(screen.getByText(/зарегистрироваться/i))
+        expect(screen.getByTestId('register-page')).toBeInTheDocument()
     })
 })

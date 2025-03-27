@@ -6,9 +6,10 @@ interface AuthQueryLogin {
     password: string
 }
 
-interface AuthResultLogin extends Pick<AuthState, 'accessToken' | 'userId'> {}
+export interface AuthResultLogin
+    extends Pick<AuthState, 'accessToken' | 'userId'> {}
 
-interface AuthResultRegister {
+export interface AuthResultRegister {
     message: string
 }
 

@@ -1,12 +1,12 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockCategories, renderWithProvider } from '../../../tests'
+import { mockCategories, renderHookWithProvider } from '../../../tests'
 import { useGetCategoriesQuery } from '../categoriesApiSlice'
 
 describe('categoriesApiSlice', () => {
     it('reads all categories', async () => {
-        const { result } = renderWithProvider(() => useGetCategoriesQuery())
+        const { result } = renderHookWithProvider(() => useGetCategoriesQuery())
 
         expect(result.current.isLoading).toBe(true)
 

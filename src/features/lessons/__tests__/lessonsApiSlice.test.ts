@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
     mockLesson,
     mockLessons,
-    renderWithProvider,
+    renderHookWithProvider,
     server,
 } from '../../../tests'
 import {
@@ -18,7 +18,7 @@ import {
 
 describe('lessonsApiSlice', () => {
     it('creates a new lesson', async () => {
-        const { result } = renderWithProvider(() => useAddLessonMutation())
+        const { result } = renderHookWithProvider(() => useAddLessonMutation())
 
         const [addLesson] = result.current
 
@@ -34,7 +34,7 @@ describe('lessonsApiSlice', () => {
     })
 
     it('reads all lessons', async () => {
-        const { result } = renderWithProvider(() => useGetLessonsQuery())
+        const { result } = renderHookWithProvider(() => useGetLessonsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -46,7 +46,9 @@ describe('lessonsApiSlice', () => {
     })
 
     it('reads a lesson by id', async () => {
-        const { result } = renderWithProvider(() => useGetLessonByIdQuery('1'))
+        const { result } = renderHookWithProvider(() =>
+            useGetLessonByIdQuery('1')
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -57,7 +59,7 @@ describe('lessonsApiSlice', () => {
     })
 
     it('updates a lesson', async () => {
-        const { result } = renderWithProvider(() => useEditLessonMutation())
+        const { result } = renderHookWithProvider(() => useEditLessonMutation())
 
         const [editLesson] = result.current
 
@@ -75,7 +77,9 @@ describe('lessonsApiSlice', () => {
     })
 
     it('deletes a lesson', async () => {
-        const { result } = renderWithProvider(() => useDeleteLessonMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteLessonMutation()
+        )
 
         const [deleteLesson] = result.current
 
@@ -95,7 +99,7 @@ describe('lessonsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useAddLessonMutation())
+        const { result } = renderHookWithProvider(() => useAddLessonMutation())
 
         const [addLesson] = result.current
 
@@ -116,7 +120,9 @@ describe('lessonsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useDeleteLessonMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteLessonMutation()
+        )
 
         const [deleteLesson] = result.current
 
@@ -127,7 +133,7 @@ describe('lessonsApiSlice', () => {
     })
 
     it('returns 404 error when lesson is not found', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetLessonByIdQuery('999')
         )
 

@@ -1,12 +1,16 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockUserResult, mockUsers, renderWithProvider } from '../../../tests'
+import {
+    mockUserResult,
+    mockUsers,
+    renderHookWithProvider,
+} from '../../../tests'
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
 
 describe('usersApiSlice', () => {
     it('fetches all users successfully', async () => {
-        const { result } = renderWithProvider(() => useGetUsersQuery())
+        const { result } = renderHookWithProvider(() => useGetUsersQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -16,7 +20,9 @@ describe('usersApiSlice', () => {
     })
 
     it('fetches a single user successfully', async () => {
-        const { result } = renderWithProvider(() => useGetUserByIdQuery('1'))
+        const { result } = renderHookWithProvider(() =>
+            useGetUserByIdQuery('1')
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -26,7 +32,9 @@ describe('usersApiSlice', () => {
     })
 
     it('handles 404 error when user is not found', async () => {
-        const { result } = renderWithProvider(() => useGetUserByIdQuery('999'))
+        const { result } = renderHookWithProvider(() =>
+            useGetUserByIdQuery('999')
+        )
 
         expect(result.current.isLoading).toBe(true)
 

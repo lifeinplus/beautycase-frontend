@@ -1,14 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth'
-import { mockNavigate } from '../../../tests'
+import { mockNavigate, renderWithProvider } from '../../../tests'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
-
-vi.mock('../../../features/auth/hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
 
 describe('AdaptiveNavBar', () => {
     beforeEach(() => {
@@ -20,14 +16,14 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders the brand logo with responsive behavior', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         expect(screen.getByText('B')).toBeInTheDocument()
         expect(screen.getByText('Beautycase')).toBeInTheDocument()
     })
 
     it('renders navigation buttons for accessible menu items', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         expect(
             screen.getByRole('button', { name: /Анкета/i })
@@ -49,7 +45,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders ThemeToggler and AuthButton', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         expect(
             screen.getByRole('button', { name: /Light mode/i })
@@ -61,7 +57,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('calls navigate when a menu item is clicked', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         fireEvent.click(screen.getByRole('button', { name: /Этапы/i }))
         fireEvent.click(screen.getByRole('button', { name: /Уроки/i }))
@@ -70,7 +66,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('applies active class to current path navigation button', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         expect(screen.getByRole('button', { name: /Анкета/i })).toHaveClass(
             'nav-btn-active'
@@ -82,7 +78,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('navigates when clicking a navigation button', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         fireEvent.click(screen.getByRole('button', { name: /Косметички/i }))
 
@@ -90,7 +86,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('scrolls to top when clicking the active navigation button', () => {
-        render(<AdaptiveNavBar />)
+        renderWithProvider(<AdaptiveNavBar />)
 
         fireEvent.click(screen.getByRole('button', { name: /Анкета/i }))
 
@@ -103,7 +99,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders children content', () => {
-        render(
+        renderWithProvider(
             <AdaptiveNavBar>
                 <button data-testid="child-content">Child Content</button>
             </AdaptiveNavBar>

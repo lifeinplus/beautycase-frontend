@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -6,13 +6,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth'
 import { clearFormData } from '../../../features/form'
-import { mockDispatch, mockNavigate } from '../../../tests'
+import { mockDispatch, mockNavigate, renderWithProvider } from '../../../tests'
 import { getErrorMessage } from '../../../utils'
 import { DetailsPage } from '../DetailsPage'
-
-vi.mock('../../../features/auth/hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
 
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
@@ -48,7 +44,7 @@ describe('DetailsPage', () => {
     })
 
     it('renders the component with all elements', () => {
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         expect(
             screen.getByRole('heading', {
@@ -71,13 +67,13 @@ describe('DetailsPage', () => {
     })
 
     it('dispatches clearFormData on mount', () => {
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('shows loading state when isLoading is true', () => {
-        render(<DetailsPage {...mockProps} isLoading={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} isLoading={true} />)
 
         expect(screen.getByText('Загрузка...')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
@@ -86,7 +82,7 @@ describe('DetailsPage', () => {
     it('shows error state when error is present', () => {
         const error = 'Something went wrong'
 
-        render(<DetailsPage {...mockProps} error={error} />)
+        renderWithProvider(<DetailsPage {...mockProps} error={error} />)
 
         expect(getErrorMessage).toHaveBeenCalledWith(error)
         expect(screen.getByText(error)).toBeInTheDocument()
@@ -94,7 +90,7 @@ describe('DetailsPage', () => {
     })
 
     it('renders navigation buttons for actions that user can access', () => {
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         expect(
             screen.getByRole('button', { name: 'Назад' })
@@ -112,7 +108,7 @@ describe('DetailsPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         await user.click(screen.getByRole('button', { name: 'Назад' }))
 
@@ -123,7 +119,7 @@ describe('DetailsPage', () => {
     })
 
     it('navigates to edit page when edit button is clicked', async () => {
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         await userEvent.click(
             screen.getByRole('button', { name: 'Редактировать' })
@@ -133,7 +129,7 @@ describe('DetailsPage', () => {
     })
 
     it('does not render duplicate button when showDuplicate is false', () => {
-        render(<DetailsPage {...mockProps} showDuplicate={false} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={false} />)
 
         expect(
             screen.queryByRole('button', { name: 'Дублировать' })
@@ -143,7 +139,7 @@ describe('DetailsPage', () => {
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
 
@@ -157,7 +153,7 @@ describe('DetailsPage', () => {
     it('opens delete modal when delete button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         await user.click(screen.getByRole('button', { name: 'Удалить' }))
 
@@ -171,7 +167,7 @@ describe('DetailsPage', () => {
     it('handles successful item duplication', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
         await user.click(screen.getByLabelText('Modal duplicate button'))
@@ -186,7 +182,7 @@ describe('DetailsPage', () => {
     it('handles successful item deletion', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        renderWithProvider(<DetailsPage {...mockProps} />)
 
         await user.click(screen.getByRole('button', { name: 'Удалить' }))
         await user.click(screen.getByLabelText('Modal delete button'))

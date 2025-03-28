@@ -2,13 +2,13 @@ import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockUserResult, renderWithRouter } from '../../../../tests'
+import {
+    mockUserResult,
+    renderWithProvider,
+    renderWithProviderAndRouter,
+} from '../../../../tests'
 import { selectUserId } from '../../../auth'
 import { AccountPage } from '../AccountPage'
-
-vi.mock('../../../auth/hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
 
 const mockUseGetUserByIdQuery = vi.fn()
 
@@ -36,14 +36,14 @@ describe('AccountPage', () => {
             error: null,
         })
 
-        renderWithRouter(<AccountPage />)
+        renderWithProvider(<AccountPage />)
 
         expect(screen.getByText('Личный кабинет')).toBeInTheDocument()
         expect(screen.getByText('Загрузка...')).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
-        renderWithRouter(<AccountPage />)
+        renderWithProviderAndRouter(<AccountPage />)
 
         expect(
             screen.getByRole('heading', { level: 2, name: 'Личный кабинет' })
@@ -55,7 +55,7 @@ describe('AccountPage', () => {
     })
 
     it('renders user data correctly', () => {
-        renderWithRouter(<AccountPage />)
+        renderWithProviderAndRouter(<AccountPage />)
 
         expect(screen.getByText('Имя пользователя')).toBeInTheDocument()
         expect(
@@ -67,7 +67,7 @@ describe('AccountPage', () => {
     })
 
     it('renders makeup bags section with a link', () => {
-        renderWithRouter(<AccountPage />)
+        renderWithProviderAndRouter(<AccountPage />)
 
         expect(screen.getByText('Косметички')).toBeInTheDocument()
         expect(screen.getByText('Daily Makeup')).toBeInTheDocument()
@@ -86,7 +86,7 @@ describe('AccountPage', () => {
             error: null,
         })
 
-        renderWithRouter(<AccountPage />)
+        renderWithProvider(<AccountPage />)
 
         expect(
             screen.getByText('У вас нет доступных косметичек')
@@ -94,7 +94,7 @@ describe('AccountPage', () => {
     })
 
     it('handles empty lessons', () => {
-        renderWithRouter(<AccountPage />)
+        renderWithProviderAndRouter(<AccountPage />)
 
         expect(
             screen.getByText('У вас нет доступных уроков')
@@ -108,7 +108,7 @@ describe('AccountPage', () => {
             error: 'User not found',
         })
 
-        renderWithRouter(<AccountPage />)
+        renderWithProvider(<AccountPage />)
 
         expect(
             screen.getByText('An unknown error occurred')

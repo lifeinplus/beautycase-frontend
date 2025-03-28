@@ -4,12 +4,7 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import {
-    mockDispatch,
-    mockNavigate,
-    renderWithRouter,
-    Wrapper,
-} from '../../../../tests'
+import { mockDispatch, mockNavigate, renderWithRouter } from '../../../../tests'
 import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
 
@@ -22,13 +17,11 @@ const MockHome = () => <div data-testid="home-page">Home Page</div>
 const MockRegister = () => <div data-testid="register-page">Register Page</div>
 
 const MockRoutes = () => (
-    <Wrapper>
-        <Routes>
-            <Route path="/" element={<MockHome />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<MockRegister />} />
-        </Routes>
-    </Wrapper>
+    <Routes>
+        <Route path="/" element={<MockHome />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<MockRegister />} />
+    </Routes>
 )
 
 describe('LoginPage', () => {

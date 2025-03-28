@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
     mockMakeupBag,
     mockMakeupBags,
-    renderWithProvider,
+    renderHookWithProvider,
     server,
 } from '../../../tests'
 import {
@@ -18,7 +18,9 @@ import {
 
 describe('makeupBagsApiSlice', () => {
     it('creates a new makeup bag', async () => {
-        const { result } = renderWithProvider(() => useAddMakeupBagMutation())
+        const { result } = renderHookWithProvider(() =>
+            useAddMakeupBagMutation()
+        )
 
         const [addMakeupBag] = result.current
 
@@ -34,7 +36,7 @@ describe('makeupBagsApiSlice', () => {
     })
 
     it('reads all makeupBags', async () => {
-        const { result } = renderWithProvider(() => useGetMakeupBagsQuery())
+        const { result } = renderHookWithProvider(() => useGetMakeupBagsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -46,7 +48,7 @@ describe('makeupBagsApiSlice', () => {
     })
 
     it('reads a makeupBag by id', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetMakeupBagByIdQuery('1')
         )
 
@@ -59,7 +61,9 @@ describe('makeupBagsApiSlice', () => {
     })
 
     it('updates a makeupBag', async () => {
-        const { result } = renderWithProvider(() => useEditMakeupBagMutation())
+        const { result } = renderHookWithProvider(() =>
+            useEditMakeupBagMutation()
+        )
 
         const [editMakeupBag] = result.current
 
@@ -77,7 +81,7 @@ describe('makeupBagsApiSlice', () => {
     })
 
     it('deletes a makeupBag', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useDeleteMakeupBagMutation()
         )
 
@@ -99,7 +103,9 @@ describe('makeupBagsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useAddMakeupBagMutation())
+        const { result } = renderHookWithProvider(() =>
+            useAddMakeupBagMutation()
+        )
 
         const [addMakeupBag] = result.current
 
@@ -110,7 +116,7 @@ describe('makeupBagsApiSlice', () => {
     })
 
     it('returns error when makeup bag is not found', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetMakeupBagByIdQuery('999')
         )
 
@@ -132,7 +138,7 @@ describe('makeupBagsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useDeleteMakeupBagMutation()
         )
 

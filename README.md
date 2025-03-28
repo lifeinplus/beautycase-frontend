@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Beautycase - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This repository contains the frontend of the Beautycase web application, designed for makeup artists to manage their workflow more efficiently. It provides features such as a lessons gallery, product recommendations, client data collection, and an admin panel for managing beauty-related content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-   **Client Questionnaire** – Collect client preferences and requirements through a structured form.
+-   **User Authentication** – Secure login and registration functionality.
+-   **Product Recommendations** – Display and manage recommended beauty products.
+-   **Lessons Gallery** – Browse and watch video lessons with detailed descriptions and linked materials.
+-   **Admin Panel** – Manage brands, stores, and beauty bags.
+-   **File Uploads** – Store and manage images using **Cloudinary**.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
 
-- Configure the top-level `parserOptions` property like this:
+-   **Framework**: React 18.3
+-   **Language**: TypeScript
+-   **Build Tool**: Vite
+-   **State Management**: Redux Toolkit (RTK Query)
+-   **Form Handling**: React Hook Form
+-   **Routing**: React Router
+-   **Styling**: Tailwind CSS, Sass
+-   **Image Handling**: Cloudinary
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Testing
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+-   **Unit and Integration Testing:** Vitest, React Testing Library
+-   **Mocking API Calls:** MSW (Mock Service Worker)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Deployment
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+-   **Frontend Hosting:** Vercel
+-   **Backend Hosting:** Render
+-   **File Storage:** Cloudinary
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any inquiries or contributions, feel free to reach out.
+
+-   Author: Artem Denisov
+-   LinkedIn: linkedin.com/in/lifeinplus

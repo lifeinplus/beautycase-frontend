@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
     mockQuestionnaire,
     mockQuestionnaires,
-    renderWithProvider,
+    renderHookWithProvider,
     server,
 } from '../../../tests'
 import {
@@ -16,7 +16,7 @@ import {
 
 describe('questionnairesApiSlice', () => {
     it('creates a new questionnaire', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useAddQuestionnaireMutation()
         )
 
@@ -35,7 +35,9 @@ describe('questionnairesApiSlice', () => {
     })
 
     it('reads all questionnaires', async () => {
-        const { result } = renderWithProvider(() => useGetQuestionnairesQuery())
+        const { result } = renderHookWithProvider(() =>
+            useGetQuestionnairesQuery()
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -47,7 +49,7 @@ describe('questionnairesApiSlice', () => {
     })
 
     it('reads a questionnaire by id', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetQuestionnaireByIdQuery('1')
         )
 
@@ -69,7 +71,7 @@ describe('questionnairesApiSlice', () => {
             })
         )
 
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useAddQuestionnaireMutation()
         )
 
@@ -86,7 +88,7 @@ describe('questionnairesApiSlice', () => {
     })
 
     it('handles 404 error when questionnaire is not found', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetQuestionnaireByIdQuery('999')
         )
 

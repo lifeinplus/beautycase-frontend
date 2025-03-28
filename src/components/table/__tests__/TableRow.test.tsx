@@ -1,7 +1,7 @@
 import { screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import { mockedNavigate, renderTableRow } from '../../../tests'
+import { mockNavigate, renderTableRow } from '../../../tests'
 
 describe('TableRow', () => {
     it('renders with cell data', () => {
@@ -50,7 +50,7 @@ describe('TableRow', () => {
         renderTableRow({ cellData, redirectPath })
 
         fireEvent.click(screen.getByRole('row'))
-        expect(mockedNavigate).toHaveBeenCalledWith(redirectPath)
+        expect(mockNavigate).toHaveBeenCalledWith(redirectPath)
     })
 
     it('does not navigate when clicked without redirectPath', () => {
@@ -59,6 +59,6 @@ describe('TableRow', () => {
         renderTableRow({ cellData })
 
         fireEvent.click(screen.getByRole('row'))
-        expect(mockedNavigate).not.toHaveBeenCalled()
+        expect(mockNavigate).not.toHaveBeenCalled()
     })
 })

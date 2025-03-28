@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { act, waitFor } from '@testing-library/react'
 
-import { mockTool, mockTools, renderWithProvider } from '../../../tests'
+import { mockTool, mockTools, renderHookWithProvider } from '../../../tests'
 import {
     useAddToolMutation,
     useDeleteToolMutation,
@@ -12,7 +12,7 @@ import {
 
 describe('toolsApiSlice', () => {
     it('fetches all tools successfully', async () => {
-        const { result } = renderWithProvider(() => useGetToolsQuery())
+        const { result } = renderHookWithProvider(() => useGetToolsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -22,7 +22,7 @@ describe('toolsApiSlice', () => {
     })
 
     it('fetches a single tool successfully', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetToolByIdQuery(mockTool._id!)
         )
 
@@ -34,7 +34,7 @@ describe('toolsApiSlice', () => {
     })
 
     it('adds a new tool successfully', async () => {
-        const { result } = renderWithProvider(() => useAddToolMutation())
+        const { result } = renderHookWithProvider(() => useAddToolMutation())
 
         const [addTool] = result.current
 
@@ -50,7 +50,7 @@ describe('toolsApiSlice', () => {
     })
 
     it('edits a tool successfully', async () => {
-        const { result } = renderWithProvider(() => useEditToolMutation())
+        const { result } = renderHookWithProvider(() => useEditToolMutation())
 
         const [editTool] = result.current
 
@@ -68,7 +68,7 @@ describe('toolsApiSlice', () => {
     })
 
     it('deletes a tool successfully', async () => {
-        const { result } = renderWithProvider(() => useDeleteToolMutation())
+        const { result } = renderHookWithProvider(() => useDeleteToolMutation())
 
         const [deleteTool] = result.current
 
@@ -80,7 +80,9 @@ describe('toolsApiSlice', () => {
     })
 
     it('handles 404 error when tool is not found', async () => {
-        const { result } = renderWithProvider(() => useGetToolByIdQuery('999'))
+        const { result } = renderHookWithProvider(() =>
+            useGetToolByIdQuery('999')
+        )
 
         expect(result.current.isLoading).toBe(true)
 

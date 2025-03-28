@@ -42,12 +42,14 @@ export const ModalDuplicate = ({
                 </div>
                 <div className="modal-btn-group">
                     <button
+                        aria-label="Modal duplicate button"
                         onClick={onConfirm}
                         className="modal-btn modal-btn-warning"
                     >
                         Дублировать
                     </button>
                     <button
+                        aria-label="Modal cancel button"
                         onClick={onCancel}
                         className="modal-btn modal-btn-bottom"
                     >

@@ -16,7 +16,7 @@ export function ThemeToggler() {
 
     return darkMode ? (
         <button
-            aria-label="Toggle Theme"
+            aria-label="Dark mode"
             className="nav-btn nav-btn-common"
             onClick={handleThemeToggle}
         >
@@ -25,7 +25,7 @@ export function ThemeToggler() {
         </button>
     ) : (
         <button
-            aria-label="Toggle Theme"
+            aria-label="Light mode"
             className="nav-btn nav-btn-common"
             onClick={handleThemeToggle}
         >

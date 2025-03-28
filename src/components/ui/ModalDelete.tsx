@@ -42,12 +42,14 @@ export const ModalDelete = ({
                 </div>
                 <div className="modal-btn-group">
                     <button
+                        aria-label="Modal delete button"
                         onClick={onConfirm}
                         className="modal-btn modal-btn-danger"
                     >
                         Удалить
                     </button>
                     <button
+                        aria-label="Modal cancel button"
                         onClick={onCancel}
                         className="modal-btn modal-btn-bottom"
                     >

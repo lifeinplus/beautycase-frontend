@@ -14,7 +14,7 @@ describe('Spinner', () => {
 
     it('has proper styling for full screen centering', () => {
         render(<Spinner />)
-        const container = screen.getByTestId('spinner').parentElement
+        const container = screen.getByRole('presentation')
 
         expect(container).toHaveClass('min-h-screen')
         expect(container).toHaveClass('items-center')
@@ -23,7 +23,7 @@ describe('Spinner', () => {
 
     it('has proper styling for the spinner animation', () => {
         render(<Spinner />)
-        const spinner = screen.getByTestId('spinner')
+        const { firstChild: spinner } = screen.getByRole('presentation')
 
         expect(spinner).toHaveClass('h-10')
         expect(spinner).toHaveClass('w-10')

@@ -18,12 +18,20 @@ export const AuthButton = () => {
     }
 
     return username ? (
-        <button className="nav-btn nav-btn-common" onClick={handleLogout}>
+        <button
+            aria-label="Logout"
+            className="nav-btn nav-btn-common"
+            onClick={handleLogout}
+        >
             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
             <span className="hidden lg:inline">Выйти</span>
         </button>
     ) : (
-        <button className="nav-btn nav-btn-common" onClick={handleLogin}>
+        <button
+            aria-label="Login"
+            className="nav-btn nav-btn-common"
+            onClick={handleLogin}
+        >
             <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
             <span className="hidden lg:inline">Войти</span>
         </button>

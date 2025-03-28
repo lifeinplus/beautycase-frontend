@@ -1,7 +1,7 @@
 import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockStage, mockStages, renderWithProvider } from '../../../tests'
+import { mockStage, mockStages, renderHookWithProvider } from '../../../tests'
 import {
     useCreateStageMutation,
     useDeleteStageMutation,
@@ -13,7 +13,9 @@ import {
 
 describe('stagesApiSlice', () => {
     it('creates a new stage', async () => {
-        const { result } = renderWithProvider(() => useCreateStageMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateStageMutation()
+        )
 
         const [createStage] = result.current
 
@@ -29,7 +31,9 @@ describe('stagesApiSlice', () => {
     })
 
     it('duplicates a stage', async () => {
-        const { result } = renderWithProvider(() => useDuplicateStageMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDuplicateStageMutation()
+        )
 
         const [duplicateStage] = result.current
 
@@ -45,7 +49,7 @@ describe('stagesApiSlice', () => {
     })
 
     it('reads all stages', async () => {
-        const { result } = renderWithProvider(() => useReadStagesQuery())
+        const { result } = renderHookWithProvider(() => useReadStagesQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -57,7 +61,9 @@ describe('stagesApiSlice', () => {
     })
 
     it('reads a stage by id', async () => {
-        const { result } = renderWithProvider(() => useReadStageByIdQuery('1'))
+        const { result } = renderHookWithProvider(() =>
+            useReadStageByIdQuery('1')
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -68,7 +74,9 @@ describe('stagesApiSlice', () => {
     })
 
     it('updates a stage', async () => {
-        const { result } = renderWithProvider(() => useUpdateStageMutation())
+        const { result } = renderHookWithProvider(() =>
+            useUpdateStageMutation()
+        )
 
         const [updateStage] = result.current
 
@@ -83,7 +91,9 @@ describe('stagesApiSlice', () => {
     })
 
     it('deletes a stage', async () => {
-        const { result } = renderWithProvider(() => useDeleteStageMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteStageMutation()
+        )
 
         const [deleteStage] = result.current
 
@@ -95,7 +105,7 @@ describe('stagesApiSlice', () => {
     })
 
     it('handles 404 error when stage is not found', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useReadStageByIdQuery('999')
         )
 

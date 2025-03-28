@@ -1,20 +1,21 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { vi } from 'vitest'
 
-export const mockedLocation = {
-    pathname: '/test-page',
+export const mockLocation = {
+    pathname: '/questionnaire',
     search: '',
     hash: '',
     state: { scrollId: '123' },
     key: 'default',
 }
 
-export const mockedNavigate = vi.fn()
+export const mockNavigate = vi.fn()
 
-vi.mocked(useLocation).mockReturnValue(mockedLocation)
-vi.mocked(useNavigate).mockReturnValue(mockedNavigate)
+vi.mocked(useLocation).mockReturnValue(mockLocation)
+vi.mocked(useNavigate).mockReturnValue(mockNavigate)
+vi.mocked(useParams).mockReturnValue({ id: '123' })
 
-export const mockReactRouterDom = () => {
+export const mockRouter = () => {
     vi.mock('react-router-dom', async (importOriginal) => {
         const actual = await importOriginal()
 
@@ -22,6 +23,7 @@ export const mockReactRouterDom = () => {
             ...(actual as object),
             useLocation: vi.fn(),
             useNavigate: vi.fn(),
+            useParams: vi.fn(),
         }
     })
 }

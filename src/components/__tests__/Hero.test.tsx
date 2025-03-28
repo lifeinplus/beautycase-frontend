@@ -55,16 +55,16 @@ describe('Hero', () => {
     it('does not render elements when props are missing', () => {
         const { container } = render(<Hero />)
 
-        expect(
-            screen.queryByRole('heading', { level: 1 })
-        ).not.toBeInTheDocument()
+        const h1 = screen.queryByRole('heading', { level: 1 })
+        expect(h1).not.toBeInTheDocument()
 
-        expect(
-            screen.queryByRole('heading', { level: 2 })
-        ).not.toBeInTheDocument()
+        const h2 = screen.queryByRole('heading', { level: 2 })
+        expect(h2).not.toBeInTheDocument()
 
-        expect(screen.queryByTestId('mocked-image')).not.toBeInTheDocument()
+        const image = screen.queryByRole('img')
+        expect(image).not.toBeInTheDocument()
 
-        expect(container.querySelector('.hero-content')).not.toBeInTheDocument()
+        const content = container.querySelector('.hero-content')
+        expect(content).not.toBeInTheDocument()
     })
 })

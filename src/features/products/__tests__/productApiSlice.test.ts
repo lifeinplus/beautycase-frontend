@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
     mockProduct,
     mockProducts,
-    renderWithProvider,
+    renderHookWithProvider,
     server,
 } from '../../../tests'
 import {
@@ -18,7 +18,7 @@ import {
 
 describe('productsApiSlice', () => {
     it('creates a new product', async () => {
-        const { result } = renderWithProvider(() => useAddProductMutation())
+        const { result } = renderHookWithProvider(() => useAddProductMutation())
 
         const [addProduct] = result.current
 
@@ -34,7 +34,7 @@ describe('productsApiSlice', () => {
     })
 
     it('reads all products', async () => {
-        const { result } = renderWithProvider(() => useGetProductsQuery())
+        const { result } = renderHookWithProvider(() => useGetProductsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -46,7 +46,9 @@ describe('productsApiSlice', () => {
     })
 
     it('reads a product by id', async () => {
-        const { result } = renderWithProvider(() => useGetProductByIdQuery('1'))
+        const { result } = renderHookWithProvider(() =>
+            useGetProductByIdQuery('1')
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -57,7 +59,9 @@ describe('productsApiSlice', () => {
     })
 
     it('updates a product', async () => {
-        const { result } = renderWithProvider(() => useEditProductMutation())
+        const { result } = renderHookWithProvider(() =>
+            useEditProductMutation()
+        )
 
         const [editProduct] = result.current
 
@@ -75,7 +79,9 @@ describe('productsApiSlice', () => {
     })
 
     it('deletes a product', async () => {
-        const { result } = renderWithProvider(() => useDeleteProductMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteProductMutation()
+        )
 
         const [deleteProduct] = result.current
 
@@ -95,7 +101,7 @@ describe('productsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useAddProductMutation())
+        const { result } = renderHookWithProvider(() => useAddProductMutation())
 
         const [addProduct] = result.current
 
@@ -116,7 +122,9 @@ describe('productsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useDeleteProductMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteProductMutation()
+        )
 
         const [deleteProduct] = result.current
 
@@ -127,7 +135,7 @@ describe('productsApiSlice', () => {
     })
 
     it('returns 404 error when product is not found', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useGetProductByIdQuery('999')
         )
 

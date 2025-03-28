@@ -2,26 +2,43 @@ import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest'
 
 import { mockApi } from './mocks/api'
+import { mockApp } from './mocks/app'
 import { mockAuth } from './mocks/auth'
 import { mockHooks } from './mocks/hooks'
 import { mockIcons } from './mocks/icons'
-import { mockReactRouterDom } from './mocks/router'
+import { mockRouter } from './mocks/router'
 import { server } from './mocks/server'
 
-export const mockedScrollTo = vi.fn()
+vi.mock('react-hot-toast', async () => ({
+    default: {
+        success: vi.fn(),
+        error: vi.fn(),
+    },
+}))
+
+export const mockScrollTo = vi.fn()
 
 mockApi()
+mockApp()
 mockAuth()
 mockHooks()
 mockIcons()
-mockReactRouterDom()
+mockRouter()
+
+Object.defineProperty(window, 'localStorage', {
+    value: {
+        getItem: vi.fn(),
+        setItem: vi.fn(),
+    },
+    writable: true,
+})
 
 beforeAll(() => {
     server.listen()
 })
 
 beforeEach(() => {
-    window.scrollTo = mockedScrollTo
+    window.scrollTo = mockScrollTo
     vi.clearAllMocks()
 })
 

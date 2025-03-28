@@ -1,7 +1,7 @@
 import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockStore, mockStores, renderWithProvider } from '../../../tests'
+import { mockStore, mockStores, renderHookWithProvider } from '../../../tests'
 import {
     useCreateStoreMutation,
     useDeleteStoreMutation,
@@ -11,7 +11,9 @@ import {
 
 describe('storesApiSlice', () => {
     it('creates a new store successfully', async () => {
-        const { result } = renderWithProvider(() => useCreateStoreMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateStoreMutation()
+        )
 
         const [createStore] = result.current
 
@@ -27,7 +29,7 @@ describe('storesApiSlice', () => {
     })
 
     it('reads all stores successfully', async () => {
-        const { result } = renderWithProvider(() => useReadStoresQuery())
+        const { result } = renderHookWithProvider(() => useReadStoresQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -37,7 +39,9 @@ describe('storesApiSlice', () => {
     })
 
     it('updates a store successfully', async () => {
-        const { result } = renderWithProvider(() => useUpdateStoreMutation())
+        const { result } = renderHookWithProvider(() =>
+            useUpdateStoreMutation()
+        )
 
         const [updateStore] = result.current
 
@@ -52,7 +56,9 @@ describe('storesApiSlice', () => {
     })
 
     it('deletes a store successfully', async () => {
-        const { result } = renderWithProvider(() => useDeleteStoreMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteStoreMutation()
+        )
 
         const [deleteStore] = result.current
 

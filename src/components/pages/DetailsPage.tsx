@@ -174,7 +174,7 @@ export const DetailsPage = ({
                     >
                         <>
                             <section className="title-container">
-                                <h1 className="title-headline">{title}</h1>
+                                <h2 className="title-headline">{title}</h2>
                                 <p className="title-byline">{subtitle}</p>
                             </section>
 

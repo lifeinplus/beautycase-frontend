@@ -1,5 +1,3 @@
-import { type MakeupBag } from '../makeupBags'
-
 export interface User {
     _id: string
     role: string
@@ -8,7 +6,12 @@ export interface User {
     lessons?: string[]
 }
 
+export interface UserMakeupBag {
+    _id: string
+    category: { name: string }
+}
+
 export interface UserResult {
     user: User
-    makeupBags?: MakeupBag[]
+    makeupBags?: UserMakeupBag[]
 }

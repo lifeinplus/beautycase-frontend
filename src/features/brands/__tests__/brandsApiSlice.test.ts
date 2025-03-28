@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import {
     mockBrand,
     mockBrands,
-    renderWithProvider,
+    renderHookWithProvider,
     server,
 } from '../../../tests'
 import {
@@ -17,7 +17,9 @@ import {
 
 describe('brandsApiSlice', () => {
     it('creates a new brand', async () => {
-        const { result } = renderWithProvider(() => useCreateBrandMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateBrandMutation()
+        )
 
         const [addBrand] = result.current
 
@@ -33,7 +35,7 @@ describe('brandsApiSlice', () => {
     })
 
     it('reads all brands', async () => {
-        const { result } = renderWithProvider(() => useReadBrandsQuery())
+        const { result } = renderHookWithProvider(() => useReadBrandsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -45,7 +47,9 @@ describe('brandsApiSlice', () => {
     })
 
     it('updates a brand', async () => {
-        const { result } = renderWithProvider(() => useUpdateBrandMutation())
+        const { result } = renderHookWithProvider(() =>
+            useUpdateBrandMutation()
+        )
 
         const [editBrand] = result.current
 
@@ -60,7 +64,9 @@ describe('brandsApiSlice', () => {
     })
 
     it('deletes a brand', async () => {
-        const { result } = renderWithProvider(() => useDeleteBrandMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteBrandMutation()
+        )
 
         const [deleteBrand] = result.current
 
@@ -80,7 +86,9 @@ describe('brandsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useCreateBrandMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateBrandMutation()
+        )
 
         const [createBrand] = result.current
 
@@ -101,7 +109,9 @@ describe('brandsApiSlice', () => {
             )
         )
 
-        const { result } = renderWithProvider(() => useDeleteBrandMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteBrandMutation()
+        )
 
         const [deleteBrand] = result.current
 

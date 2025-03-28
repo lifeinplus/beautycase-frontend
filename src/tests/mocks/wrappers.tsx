@@ -1,27 +1,49 @@
 import { render, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import { store } from '../../app/store'
 import { TableRow, type TableRowProps } from '../../components'
 
-interface WrapperProps {
+interface ProviderWrapperProps {
     children: ReactNode
 }
 
-export const Wrapper = ({ children }: WrapperProps) => {
+const ProviderWrapper = ({ children }: ProviderWrapperProps) => {
     return <Provider store={store}>{children}</Provider>
 }
 
-export const renderWithProvider = <T,>(hook: () => T) => {
+export const renderHookWithProvider = <T,>(hook: () => T) => {
     return renderHook(hook, {
-        wrapper: Wrapper,
+        wrapper: ProviderWrapper,
     })
 }
 
-export const renderWithRouter = (component: ReactNode) => {
-    return render(<BrowserRouter>{component}</BrowserRouter>)
+export const renderWithProvider = (component: ReactNode) => {
+    return render(<Provider store={store}>{component}</Provider>)
+}
+
+export const renderWithProviderAndRouter = (
+    component: ReactNode,
+    initialEntries?: string[]
+) => {
+    return render(
+        <Provider store={store}>
+            <MemoryRouter initialEntries={initialEntries}>
+                {component}
+            </MemoryRouter>
+        </Provider>
+    )
+}
+
+export const renderWithRouter = (
+    component: ReactNode,
+    initialEntries?: string[]
+) => {
+    return render(
+        <MemoryRouter initialEntries={initialEntries}>{component}</MemoryRouter>
+    )
 }
 
 export const renderTableRow = (props: TableRowProps) => {

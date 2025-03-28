@@ -2,13 +2,13 @@ import { act } from 'react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
-import { renderWithProvider, server } from '../../../tests'
+import { renderHookWithProvider, server } from '../../../tests'
 import { type DataMessageError } from '../../../utils'
 import { useUploadImageTempMutation } from '../uploadApiSlice'
 
 describe('uploadApiSlice', () => {
     it('uploads an image successfully', async () => {
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useUploadImageTempMutation()
         )
 
@@ -40,7 +40,7 @@ describe('uploadApiSlice', () => {
             })
         )
 
-        const { result } = renderWithProvider(() =>
+        const { result } = renderHookWithProvider(() =>
             useUploadImageTempMutation()
         )
 

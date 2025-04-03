@@ -3,6 +3,7 @@ import { vi } from 'vitest'
 const mockIcon = (name: string) => () => <svg data-testid={name} />
 
 const icons = {
+    ArrowDownCircleIcon: mockIcon('arrow-down-circle-icon'),
     ArrowLeftIcon: mockIcon('arrow-left-icon'),
     ArrowLeftStartOnRectangleIcon: mockIcon(
         'arrow-left-start-on-rectangle-icon'
@@ -18,6 +19,7 @@ const icons = {
     MoonIcon: mockIcon('moon-icon'),
     PaintBrushIcon: mockIcon('paint-brush-icon'),
     PencilSquareIcon: mockIcon('pencil-square-icon'),
+    PlusCircleIcon: mockIcon('plus-circle-icon'),
     PlusIcon: mockIcon('plus-icon'),
     QueueListIcon: mockIcon('queue-list-icon'),
     RectangleGroupIcon: mockIcon('rectangle-group-icon'),

@@ -1,7 +1,7 @@
 import { getErrorMessage } from '../utils'
 import { LoadingOrError } from './LoadingOrError'
 
-interface DataWrapperProps<T> {
+export interface DataWrapperProps<T> {
     isLoading: boolean
     error: unknown
     data: T | T[] | undefined

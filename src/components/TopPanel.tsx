@@ -1,7 +1,7 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 import { useNavigate } from 'react-router-dom'
 
-interface TopPanelProps {
+export interface TopPanelProps {
     title: string
     onBack?: () => void
 }
@@ -22,7 +22,9 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
                 >
                     <ChevronLeftIcon className="h-6 w-6" />
                 </button>
-                <h2 className="panel-top__title">{title}</h2>
+                <h2 aria-label="Top Panel Title" className="panel-top__title">
+                    {title}
+                </h2>
                 <div className="w-8"></div>
             </div>
         </nav>

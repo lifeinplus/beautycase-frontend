@@ -18,7 +18,7 @@ import { ThemeToggler } from '../../features/theme'
 import { canAccess, menuItems } from '../../utils'
 import { NavigationButton } from './NavigationButton'
 
-interface AdaptiveNavBarProps {
+export interface AdaptiveNavBarProps {
     children?: ReactNode
 }
 

@@ -6,7 +6,7 @@ import {
 import { Button } from '../../../components/ui/Button'
 import type { Brand } from '../types'
 
-interface BrandsMobileViewProps {
+export interface BrandsMobileViewProps {
     items?: Brand[]
     onDelete: (data: Brand) => void
     onEdit: (data: Brand) => void

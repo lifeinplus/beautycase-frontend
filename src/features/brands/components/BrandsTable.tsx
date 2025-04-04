@@ -9,7 +9,7 @@ import { Button } from '../../../components/ui/Button'
 import type { Header } from '../../../types/table'
 import type { Brand } from '../types'
 
-interface BrandsTableProps {
+export interface BrandsTableProps {
     items?: Brand[]
     onDelete: (data: Brand) => void
     onEdit: (data: Brand) => void

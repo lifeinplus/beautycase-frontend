@@ -1,6 +1,6 @@
 import { Image } from '../components'
 
-interface HeroProps {
+export interface HeroProps {
     headline?: string
     byline?: string
     imgUrl?: string

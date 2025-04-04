@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
-import { mockQuestionnaire, mockQuestionnaireFull } from '../../../tests'
+import {
+    mockQuestionnaire,
+    mockQuestionnaireFull,
+} from '../../../tests/mocks/handlers/questionnairesHandlers'
+
 import { questionnaireSchema } from '../validations'
 
 describe('Questionnaire validation schema', () => {

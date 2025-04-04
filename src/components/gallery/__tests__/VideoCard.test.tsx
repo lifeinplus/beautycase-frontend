@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { VideoCard } from '../VideoCard'
-import { renderWithRouter } from '../../../tests'
+import { renderWithRouter } from '../../../tests/mocks/wrappers'
 
 vi.mock('../../../utils', () => ({
     getYouTubeThumbnail: vi.fn(

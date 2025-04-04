@@ -5,9 +5,10 @@ import { describe, expect, it } from 'vitest'
 import {
     mockQuestionnaire,
     mockQuestionnaires,
-    renderHookWithProvider,
-    server,
-} from '../../../tests'
+} from '../../../tests/mocks/handlers/questionnairesHandlers'
+import { server } from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,

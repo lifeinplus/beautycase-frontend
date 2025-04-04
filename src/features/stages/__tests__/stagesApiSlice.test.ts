@@ -1,7 +1,12 @@
 import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockStage, mockStages, renderHookWithProvider } from '../../../tests'
+import {
+    mockStage,
+    mockStages,
+} from '../../../tests/mocks/handlers/stagesHandlers'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+
 import {
     useCreateStageMutation,
     useDeleteStageMutation,

@@ -2,7 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
-import { mockDispatch } from '../../../tests'
+import { mockDispatch } from '../../../tests/mocks/app'
+
 import { ThemeToggler } from '../ThemeToggler'
 import { toggleTheme } from '../themeSlice'
 

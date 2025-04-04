@@ -4,12 +4,16 @@ import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+
 import { clearFormData, type FormRef } from '../../../form'
-import { mockDispatch, renderWithProvider } from '../../../../tests'
+
 import {
     useCreateBrandMutation,
     useUpdateBrandMutation,
 } from '../../brandsApiSlice'
+
 import { BrandForm } from '../BrandForm'
 
 vi.mock('../../brandsApiSlice', () => ({

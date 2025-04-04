@@ -4,11 +4,14 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockNavigate, renderWithRouter } from '../../../../tests'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+
 import {
     type AuthResultRegister,
     useRegisterUserMutation,
 } from '../../authApiSlice'
+
 import { RegisterPage } from '../RegisterPage'
 
 vi.mock('../../authApiSlice', () => ({

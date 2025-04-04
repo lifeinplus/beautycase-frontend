@@ -3,7 +3,9 @@ import { beforeEach, describe, expect, it, Mock } from 'vitest'
 
 import { axiosClient } from '../../features/api'
 import { setCredentials } from '../../features/auth'
-import { mockAuthResponse, mockDispatch } from '../../tests'
+import { mockDispatch } from '../../tests/mocks/app'
+import { mockAuthResponse } from '../../tests/mocks/auth'
+
 import { useRefreshAuth } from '../useRefreshAuth'
 
 describe('useRefreshAuth', () => {

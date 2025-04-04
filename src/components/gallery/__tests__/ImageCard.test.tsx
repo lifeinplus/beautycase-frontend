@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { ImageCard } from '../ImageCard'
-import { renderWithRouter } from '../../../tests'
+import { renderWithRouter } from '../../../tests/mocks/wrappers'
 
 describe('ImageCard', () => {
     const mockData = {

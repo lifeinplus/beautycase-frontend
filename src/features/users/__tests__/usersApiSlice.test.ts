@@ -4,8 +4,9 @@ import { describe, expect, it } from 'vitest'
 import {
     mockUserResult,
     mockUsers,
-    renderHookWithProvider,
-} from '../../../tests'
+} from '../../../tests/mocks/handlers/usersHandlers'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
 
 describe('usersApiSlice', () => {

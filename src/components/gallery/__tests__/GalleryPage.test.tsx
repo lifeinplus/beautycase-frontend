@@ -4,8 +4,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth'
 import { clearFormData } from '../../../features/form'
-import { mockDispatch, mockNavigate, renderWithProvider } from '../../../tests'
+import { mockDispatch } from '../../../tests/mocks/app'
+import { mockNavigate } from '../../../tests/mocks/router'
+import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils'
+
 import { GalleryPage } from '../GalleryPage'
 
 vi.mock('../../../utils/errorUtils', () => ({

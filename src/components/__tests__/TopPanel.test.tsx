@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockNavigate } from '../../tests'
+import { mockNavigate } from '../../tests/mocks/router'
+
 import { TopPanel } from '../TopPanel'
 
 describe('TopPanel', () => {

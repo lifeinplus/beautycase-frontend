@@ -1,6 +1,5 @@
 import { http, HttpResponse } from 'msw'
-
-import { type UserResult, type User } from '../../../features/users'
+import type { User, UserResult } from '../../../features/users/types'
 
 export const mockUserResult: UserResult = {
     user: {

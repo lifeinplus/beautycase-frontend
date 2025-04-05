@@ -10,7 +10,8 @@ import { type DataWrapperProps } from '../../../../components/DataWrapper'
 import { type HeroProps } from '../../../../components/Hero'
 import { type TopPanelProps } from '../../../../components/TopPanel'
 import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { mockDispatch, mockNavigate } from '../../../../tests'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockNavigate } from '../../../../tests/mocks/router'
 
 import { clearFormData, setFormData } from '../../../form/formSlice'
 

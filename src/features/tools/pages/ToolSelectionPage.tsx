@@ -1,15 +1,12 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    Image,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { selectFormData, setFormData } from '../../form'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { Image } from '../../../components/ui/Image'
+import { selectFormData, setFormData } from '../../form/formSlice'
 import { useGetToolsQuery } from '../toolsApiSlice'
 
 export const ToolSelectionPage = () => {

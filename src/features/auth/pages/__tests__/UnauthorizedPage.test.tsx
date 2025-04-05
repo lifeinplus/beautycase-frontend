@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { renderWithProvider } from '../../../../tests'
+import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+
 import { UnauthorizedPage } from '../UnauthorizedPage'
 
 describe('UnauthorizedPage', () => {

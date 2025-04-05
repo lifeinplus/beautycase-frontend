@@ -1,5 +1,5 @@
-import type { MutationResult, QueryResult } from '../../types'
-import { apiSlice } from '../api'
+import type { MutationResult, QueryResult } from '../../types/api'
+import { apiSlice } from '../api/apiSlice'
 import type { MakeupBag } from './types'
 
 const makeupBagsApiSlice = apiSlice.injectEndpoints({

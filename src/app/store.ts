@@ -1,10 +1,9 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit'
-
 import config from '../config'
-import { apiSlice } from '../features/api'
-import { authSlice } from '../features/auth'
+import { apiSlice } from '../features/api/apiSlice'
+import { authSlice } from '../features/auth/authSlice'
 import { formSlice } from '../features/form/formSlice'
-import { themeSlice } from '../features/theme'
+import { themeSlice } from '../features/theme/themeSlice'
 
 const rootReducer = combineSlices(apiSlice, authSlice, formSlice, themeSlice)
 

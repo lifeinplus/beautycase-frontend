@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData, selectIsDirty, setFormData } from '../../form'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
+import { LessonForm } from '../components/LessonForm'
 import {
-    type Lesson,
-    LessonForm,
     useEditLessonMutation,
     useGetLessonByIdQuery,
-} from '../../lessons'
+} from '../lessonsApiSlice'
+import type { Lesson } from '../types'
 
 export const LessonEditPage = () => {
     const navigate = useNavigate()

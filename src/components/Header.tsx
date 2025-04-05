@@ -1,4 +1,4 @@
-import { AuthButton } from '../features/auth'
+import { AuthButton } from '../features/auth/components/AuthButton'
 
 export const Header = () => {
     return (

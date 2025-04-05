@@ -1,7 +1,7 @@
-import { type Category } from '../categories'
-import { type Stage } from '../stages'
-import { type Tool } from '../tools'
-import { type User } from '../users'
+import type { Category } from '../categories/types'
+import type { Stage } from '../stages/types'
+import type { Tool } from '../tools/types'
+import type { User } from '../users/types'
 
 export interface MakeupBag {
     _id?: string

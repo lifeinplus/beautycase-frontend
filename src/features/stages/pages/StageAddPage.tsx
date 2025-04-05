@@ -2,9 +2,11 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData } from '../../form'
-import { type Stage, StageForm, useCreateStageMutation } from '../../stages'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData } from '../../form/formSlice'
+import { StageForm } from '../components/StageForm'
+import { useCreateStageMutation } from '../stagesApiSlice'
+import type { Stage } from '../types'
 
 export const StageAddPage = () => {
     const navigate = useNavigate()

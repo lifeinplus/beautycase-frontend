@@ -4,11 +4,14 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockNavigate, renderWithRouter } from '../../../../tests'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+
 import {
     type AuthResultRegister,
     useRegisterUserMutation,
 } from '../../authApiSlice'
+
 import { RegisterPage } from '../RegisterPage'
 
 vi.mock('../../authApiSlice', () => ({
@@ -45,7 +48,7 @@ describe('RegisterPage', () => {
     }))
 
     beforeEach(() => {
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
@@ -128,7 +131,7 @@ describe('RegisterPage', () => {
             unwrap: () => Promise.reject(mockError),
         }))
 
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
@@ -157,7 +160,7 @@ describe('RegisterPage', () => {
     })
 
     it('disables submit button while loading', async () => {
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: true },
         ])

@@ -1,4 +1,4 @@
-import { Image } from '../../../components'
+import { Image } from '../../../components/ui/Image'
 
 interface ImagePreviewProps {
     url: string

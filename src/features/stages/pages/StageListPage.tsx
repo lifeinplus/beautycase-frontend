@@ -1,25 +1,20 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Header,
-    Hero,
-    NavigationButton,
-} from '../../../components'
-import { canAccess } from '../../../utils'
-import { selectRole, selectUsername } from '../../auth'
-import { clearFormData } from '../../form'
-import {
-    type Stage,
-    StageFilter,
-    StageMobileView,
-    StageTable,
-    useReadStagesQuery,
-} from '../../stages'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { canAccess } from '../../../utils/menu'
+import { selectRole, selectUsername } from '../../auth/authSlice'
+import { StageFilter } from '../components/StageFilter'
+import { StageMobileView } from '../components/StageMobileView'
+import { StageTable } from '../components/StageTable'
+import { clearFormData } from '../../form/formSlice'
+import type { Stage } from '../types'
+import { useReadStagesQuery } from '../stagesApiSlice'
 
 const ACTIONS = {
     add: {

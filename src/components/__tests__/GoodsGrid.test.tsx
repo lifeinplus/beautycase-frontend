@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-
-import { mockNavigate } from '../../tests'
+import { mockNavigate } from '../../tests/mocks/router'
 import { type Good, GoodsGrid } from '../GoodsGrid'
 
 const mockGoods: Good[] = [
@@ -77,12 +76,12 @@ describe('GoodsGrid', () => {
 
         fireEvent.click(productItems[0].parentElement!)
         expect(mockNavigate).toHaveBeenCalledWith('/goods/1', {
-            state: { fromPathname: '/current-page' },
+            state: { fromPathname: '/questionnaire' },
         })
 
         fireEvent.click(productItems[1].parentElement!)
         expect(mockNavigate).toHaveBeenCalledWith('/goods/2', {
-            state: { fromPathname: '/current-page' },
+            state: { fromPathname: '/questionnaire' },
         })
     })
 

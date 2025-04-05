@@ -1,14 +1,11 @@
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData } from '../../form'
-import {
-    type Product,
-    ProductForm,
-    useAddProductMutation,
-} from '../../products'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData } from '../../form/formSlice'
+import { ProductForm } from '../components/ProductForm'
+import { useAddProductMutation } from '../productApiSlice'
+import type { Product } from '../types'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()

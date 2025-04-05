@@ -3,16 +3,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { type FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import {
-    ButtonNavigateSection,
-    selectFormData,
-    setFormData,
-    TextareaSection,
-} from '../../form'
-import { lessonSchema, type Lesson } from '../../lessons'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
+import { TextareaSection } from '../../form/components/TextareaSection'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import type { Lesson } from '../types'
+import { lessonSchema } from '../validations'
 
 interface LessonFormProps {
     title: string

@@ -1,11 +1,14 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
 import { useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, DataWrapper, Header, Hero } from '../../../components'
-import { selectUserId } from '../../auth'
-import { useGetUserByIdQuery, type User, type UserResult } from '../../users'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { selectUserId } from '../../auth/authSlice'
+import type { User, UserResult } from '../../users/types'
+import { useGetUserByIdQuery } from '../../users/usersApiSlice'
 
 interface Field {
     label: string

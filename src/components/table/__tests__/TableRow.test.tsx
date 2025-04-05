@@ -1,7 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import { mockNavigate, renderTableRow } from '../../../tests'
+import { mockNavigate } from '../../../tests/mocks/router'
+import { renderTableRow } from '../../../tests/mocks/wrappers'
 
 describe('TableRow', () => {
     it('renders with cell data', () => {

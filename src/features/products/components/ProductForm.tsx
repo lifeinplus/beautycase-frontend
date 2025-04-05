@@ -3,21 +3,20 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import { useReadBrandsQuery } from '../../brands'
-import {
-    ButtonNavigateSection,
-    ImageUrlSection,
-    InputSection,
-    selectFormData,
-    SelectOption,
-    SelectSection,
-    setFormData,
-    TextareaSection,
-} from '../../form'
-import { productSchema, type Product } from '../../products'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { useReadBrandsQuery } from '../../brands/brandsApiSlice'
+import { SelectSection } from '../../form/components/SelectSection'
+import { TextareaSection } from '../../form/components/TextareaSection'
+import { ImageUrlSection } from '../../form/components/ImageUrlSection'
+import { InputSection } from '../../form/components/InputSection'
+import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import type { SelectOption } from '../../form/types'
+import type { Product } from '../types'
+import { productSchema } from '../validations'
 
 interface ProductFormProps {
     title: string

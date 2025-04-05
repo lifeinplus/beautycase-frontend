@@ -4,8 +4,12 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch, mockNavigate, renderWithRouter } from '../../../../tests'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+
 import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
+
 import { LoginPage } from '../LoginPage'
 
 vi.mock('../../authApiSlice', () => ({
@@ -42,7 +46,7 @@ describe('LoginPage', () => {
     }))
 
     beforeEach(() => {
-        ;(useLoginUserMutation as Mock).mockReturnValue([
+        vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
             mockLoginUser,
             { isLoading: false },
         ])
@@ -120,7 +124,7 @@ describe('LoginPage', () => {
             unwrap: () => Promise.reject(mockError),
         }))
 
-        ;(useLoginUserMutation as Mock).mockReturnValue([
+        vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
             mockLoginUser,
             { isLoading: false },
         ])
@@ -144,7 +148,7 @@ describe('LoginPage', () => {
     })
 
     it('disables submit button while loading', () => {
-        ;(useLoginUserMutation as Mock).mockReturnValue([
+        vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
             mockLoginUser,
             { isLoading: true },
         ])

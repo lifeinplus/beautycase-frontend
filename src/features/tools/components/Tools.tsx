@@ -1,5 +1,5 @@
-import { GoodsGrid } from '../../../components'
-import { type Tool } from '../../tools'
+import { GoodsGrid } from '../../../components/GoodsGrid'
+import type { Tool } from '../types'
 
 interface ToolsProps {
     tools?: Tool[]

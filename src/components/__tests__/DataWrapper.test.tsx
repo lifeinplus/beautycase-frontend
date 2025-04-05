@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { getErrorMessage } from '../../utils'
+import { getErrorMessage } from '../../utils/errorUtils'
 import { DataWrapper } from '../DataWrapper'
 
 vi.mock('../../utils/errorUtils', () => ({

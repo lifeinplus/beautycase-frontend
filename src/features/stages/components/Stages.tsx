@@ -1,5 +1,6 @@
-import { GoodsGrid, Image } from '../../../components'
-import { type Stage } from '../../stages'
+import { Image } from '../../../components/ui/Image'
+import { GoodsGrid } from '../../../components/GoodsGrid'
+import type { Stage } from '../types'
 
 interface StagesProps {
     stages?: Stage[]

@@ -1,10 +1,11 @@
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData } from '../../form'
-import { type Tool, ToolForm, useAddToolMutation } from '../../tools'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData } from '../../form/formSlice'
+import { ToolForm } from '../components/ToolForm'
+import { useAddToolMutation } from '../toolsApiSlice'
+import type { Tool } from '../types'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()

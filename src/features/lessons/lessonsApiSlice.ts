@@ -1,4 +1,4 @@
-import type { MutationResult, QueryResult } from '../../types'
+import type { MutationResult, QueryResult } from '../../types/api'
 import { apiSlice } from '../api/apiSlice'
 import type { Lesson } from './types'
 

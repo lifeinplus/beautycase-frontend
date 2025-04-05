@@ -1,4 +1,6 @@
-import { AdaptiveNavBar, Header, Hero } from '../../../components'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 
 export const ConfirmationPage = () => {
     return (

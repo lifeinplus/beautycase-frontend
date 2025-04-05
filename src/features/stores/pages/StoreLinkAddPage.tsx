@@ -7,11 +7,13 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import { selectFormData, setFormData } from '../../form'
-import { type StoreLink, useReadStoresQuery } from '../../stores'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import { useReadStoresQuery } from '../storesApiSlice'
+import type { StoreLink } from '../types'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-
-import { Image } from '../components'
-import { useScrollToElement } from '../hooks'
+import { Image } from '../components/ui/Image'
+import { useScrollToElement } from '../hooks/useScrollToElement'
 
 export interface Good {
     _id?: string

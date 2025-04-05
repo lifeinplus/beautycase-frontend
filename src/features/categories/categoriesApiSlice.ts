@@ -1,4 +1,4 @@
-import { apiSlice } from '../api'
+import { apiSlice } from '../api/apiSlice'
 import type { Category } from './types'
 
 const categoriesApiSlice = apiSlice.injectEndpoints({

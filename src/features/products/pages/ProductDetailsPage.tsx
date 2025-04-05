@@ -1,11 +1,11 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useParams } from 'react-router-dom'
-
-import { DetailsPage, Image } from '../../../components'
+import { DetailsPage } from '../../../components/pages/DetailsPage'
+import { Image } from '../../../components/ui/Image'
 import {
     useDeleteProductMutation,
     useGetProductByIdQuery,
-} from '../../products'
+} from '../productApiSlice'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()

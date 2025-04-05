@@ -1,9 +1,8 @@
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
+import { getErrorMessage } from '../../../utils/errorUtils'
 import { useLoginUserMutation } from '../authApiSlice'
 import { setCredentials } from '../authSlice'
 

@@ -2,10 +2,11 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
-
-import { Button, Table, TableRow } from '../../../components'
-import type { Header } from '../../../types'
-import { type Store } from '../../stores'
+import { Table } from '../../../components/table/Table'
+import { TableRow } from '../../../components/table/TableRow'
+import { Button } from '../../../components/ui/Button'
+import type { Header } from '../../../types/table'
+import type { Store } from '../types'
 
 interface StoresTableProps {
     items?: Store[]

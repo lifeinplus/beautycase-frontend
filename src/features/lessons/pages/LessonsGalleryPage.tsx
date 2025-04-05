@@ -1,4 +1,5 @@
-import { GalleryPage, VideoCard } from '../../../components'
+import { GalleryPage } from '../../../components/gallery/GalleryPage'
+import { VideoCard } from '../../../components/gallery/VideoCard'
 import { useGetLessonsQuery } from '../lessonsApiSlice'
 
 export const LessonsGalleryPage = () => {

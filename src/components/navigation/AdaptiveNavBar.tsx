@@ -11,11 +11,11 @@ import {
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-
 import { useAppSelector } from '../../app/hooks'
-import { AuthButton, selectRole, selectUsername } from '../../features/auth'
-import { ThemeToggler } from '../../features/theme'
-import { canAccess, menuItems } from '../../utils'
+import { selectRole, selectUsername } from '../../features/auth/authSlice'
+import { AuthButton } from '../../features/auth/components/AuthButton'
+import { ThemeToggler } from '../../features/theme/ThemeToggler'
+import { canAccess, menuItems } from '../../utils/menu'
 import { NavigationButton } from './NavigationButton'
 
 export interface AdaptiveNavBarProps {

@@ -2,26 +2,21 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Hero,
-    ModalDelete,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { getErrorMessage } from '../../../utils'
-import {
-    type Store,
-    StoreForm,
-    StoresMobileView,
-    StoresTable,
-    useDeleteStoreMutation,
-    useReadStoresQuery,
-} from '../../stores'
-import { clearFormData, type FormRef, setFormData } from '../../form'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { Hero } from '../../../components/Hero'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { ModalDelete } from '../../../components/ui/ModalDelete'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, setFormData } from '../../form/formSlice'
+import type { FormRef } from '../../form/types'
+import { StoreForm } from '../components/StoreForm'
+import { StoresMobileView } from '../components/StoresMobileView'
+import { StoresTable } from '../components/StoresTable'
+import { useDeleteStoreMutation, useReadStoresQuery } from '../storesApiSlice'
+import type { Store } from '../types'
 
 export const StoresPage = () => {
     const navigate = useNavigate()

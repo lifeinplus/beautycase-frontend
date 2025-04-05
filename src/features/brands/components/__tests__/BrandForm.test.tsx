@@ -2,10 +2,11 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
-
 import { useAppSelector } from '../../../../app/hooks'
-import { clearFormData, type FormRef } from '../../../form'
-import { mockDispatch, renderWithProvider } from '../../../../tests'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+import { clearFormData } from '../../../form/formSlice'
+import type { FormRef } from '../../../form/types'
 import {
     useCreateBrandMutation,
     useUpdateBrandMutation,
@@ -147,7 +148,7 @@ describe('BrandForm', () => {
             unwrap: () => Promise.reject(mockError),
         }))
 
-        ;(useCreateBrandMutation as Mock).mockReturnValue([
+        vi.mocked(useCreateBrandMutation as Mock).mockReturnValue([
             mockCreateBrand,
             { isLoading: false },
         ])
@@ -180,7 +181,7 @@ describe('BrandForm', () => {
             unwrap: () => Promise.reject(mockError),
         }))
 
-        ;(useUpdateBrandMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateBrandMutation as Mock).mockReturnValue([
             mockUpdateBrand,
             { isLoading: false },
         ])

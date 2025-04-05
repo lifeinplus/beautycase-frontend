@@ -7,19 +7,17 @@ import {
 import { ReactNode, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    ModalDelete,
-    ModalDuplicate,
-    NavigationButton,
-    TopPanel,
-} from '../../components'
-import { selectRole, selectUsername } from '../../features/auth'
-import { clearFormData } from '../../features/form'
-import { canAccess, getErrorMessage } from '../../utils'
+import { selectRole, selectUsername } from '../../features/auth/authSlice'
+import { clearFormData } from '../../features/form/formSlice'
+import { getErrorMessage } from '../../utils/errorUtils'
+import { canAccess } from '../../utils/menu'
+import { DataWrapper } from '../DataWrapper'
+import { TopPanel } from '../TopPanel'
+import { AdaptiveNavBar } from '../navigation/AdaptiveNavBar'
+import { NavigationButton } from '../navigation/NavigationButton'
+import { ModalDelete } from '../ui/ModalDelete'
+import { ModalDuplicate } from '../ui/ModalDuplicate'
 
 const ACTIONS = {
     back: {

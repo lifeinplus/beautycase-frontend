@@ -1,14 +1,14 @@
 import { renderHook } from '@testing-library/react'
-import { beforeEach, describe, expect, it, Mock } from 'vitest'
-
-import { axiosClient } from '../../features/api'
-import { setCredentials } from '../../features/auth'
-import { mockAuthResponse, mockDispatch } from '../../tests'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+import { axiosClient } from '../../features/api/axiosClient'
+import { setCredentials } from '../../features/auth/authSlice'
+import { mockDispatch } from '../../tests/mocks/app'
+import { mockAuthResponse } from '../../tests/mocks/auth'
 import { useRefreshAuth } from '../useRefreshAuth'
 
 describe('useRefreshAuth', () => {
     beforeEach(() => {
-        ;(axiosClient.get as Mock).mockResolvedValue({
+        vi.mocked(axiosClient.get as Mock).mockResolvedValue({
             data: mockAuthResponse,
         })
     })
@@ -28,7 +28,7 @@ describe('useRefreshAuth', () => {
 
     it('handles API errors gracefully', async () => {
         const mockError = new Error('Network error')
-        ;(axiosClient.get as Mock).mockRejectedValue(mockError)
+        vi.mocked(axiosClient.get as Mock).mockRejectedValue(mockError)
 
         const { result } = renderHook(() => useRefreshAuth())
         const refreshAuth = result.current

@@ -1,4 +1,5 @@
-import { GalleryPage, ImageCard } from '../../../components'
+import { GalleryPage } from '../../../components/gallery/GalleryPage'
+import { ImageCard } from '../../../components/gallery/ImageCard'
 import { useGetToolsQuery } from '../toolsApiSlice'
 
 export const ToolsGalleryPage = () => {

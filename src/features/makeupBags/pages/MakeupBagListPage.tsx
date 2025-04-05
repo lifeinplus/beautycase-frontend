@@ -1,23 +1,18 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Header,
-    Hero,
-    NavigationButton,
-} from '../../../components'
-import { canAccess } from '../../../utils'
-import { selectRole, selectUsername } from '../../auth'
-import { clearFormData } from '../../form'
-import {
-    MakeupBagMobileView,
-    MakeupBagTable,
-    useGetMakeupBagsQuery,
-} from '../../makeupBags'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { canAccess } from '../../../utils/menu'
+import { selectRole, selectUsername } from '../../auth/authSlice'
+import { clearFormData } from '../../form/formSlice'
+import { MakeupBagMobileView } from '../components/MakeupBagMobileView'
+import { MakeupBagTable } from '../components/MakeupBagTable'
+import { useGetMakeupBagsQuery } from '../makeupBagsApiSlice'
 
 const ACTIONS = {
     add: {

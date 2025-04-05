@@ -1,12 +1,12 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
-import { DetailsPage, Image } from '../../../components'
-import { Product } from '../../products'
+import { DetailsPage } from '../../../components/pages/DetailsPage'
+import { Image } from '../../../components/ui/Image'
+import type { Product } from '../../products/types'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
     useReadStageByIdQuery,
-} from '../../stages'
+} from '../stagesApiSlice'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()

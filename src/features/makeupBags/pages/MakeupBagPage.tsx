@@ -6,26 +6,24 @@ import {
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Footer,
-    Hero,
-    ModalDelete,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { canAccess, getErrorMessage } from '../../../utils'
-import { selectRole, selectUsername } from '../../auth'
-import { clearFormData } from '../../form'
+import { TopPanel } from '../../../components/TopPanel'
+import { Hero } from '../../../components/Hero'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { Footer } from '../../../components/Footer'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { ModalDelete } from '../../../components/ui/ModalDelete'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { canAccess } from '../../../utils/menu'
+import { selectRole, selectUsername } from '../../auth/authSlice'
+import { clearFormData } from '../../form/formSlice'
+import { Stages } from '../../stages/components/Stages'
+import { Tools } from '../../tools/components/Tools'
 import {
     useDeleteMakeupBagMutation,
     useGetMakeupBagByIdQuery,
-} from '../../makeupBags'
-import { Stages } from '../../stages'
-import { Tools } from '../../tools'
+} from '../makeupBagsApiSlice'
 
 const ACTIONS = {
     back: {

@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import { describe, it, expect, vi } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { renderWithRouter } from '../../../../tests'
+import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+
 import { RequireAuth } from '../RequireAuth'
 
 const MockProtected = () => (

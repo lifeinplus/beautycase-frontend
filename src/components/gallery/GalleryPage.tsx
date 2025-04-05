@@ -1,17 +1,15 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
 import { ReactNode, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import {
-    AdaptiveNavBar,
-    Header,
-    Hero,
-    NavigationButton,
-} from '../../components'
-import { selectRole, selectUsername } from '../../features/auth'
-import { clearFormData } from '../../features/form'
-import { canAccess, getErrorMessage } from '../../utils'
+import { selectRole, selectUsername } from '../../features/auth/authSlice'
+import { clearFormData } from '../../features/form/formSlice'
+import { getErrorMessage } from '../../utils/errorUtils'
+import { canAccess } from '../../utils/menu'
+import { Header } from '../Header'
+import { Hero } from '../Hero'
+import { AdaptiveNavBar } from '../navigation/AdaptiveNavBar'
+import { NavigationButton } from '../navigation/NavigationButton'
 
 const ACTIONS = {
     add: {

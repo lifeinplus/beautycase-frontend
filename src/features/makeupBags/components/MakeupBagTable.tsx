@@ -1,7 +1,8 @@
-import { Table, TableRow } from '../../../components'
-import type { Header } from '../../../types'
-import { formatDate } from '../../../utils'
-import { type MakeupBag } from '../../makeupBags'
+import { Table } from '../../../components/table/Table'
+import { TableRow } from '../../../components/table/TableRow'
+import type { Header } from '../../../types/table'
+import { formatDate } from '../../../utils/date'
+import type { MakeupBag } from '../types'
 
 interface MakeupBagTableProps {
     makeupBags?: MakeupBag[]

@@ -1,4 +1,4 @@
-import { getErrorMessage } from '../utils'
+import { getErrorMessage } from '../utils/errorUtils'
 import { LoadingOrError } from './LoadingOrError'
 
 export interface DataWrapperProps<T> {

@@ -2,9 +2,12 @@ import { renderHook, act } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch, mockNavigate } from '../../../../tests'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockNavigate } from '../../../../tests/mocks/router'
+
 import { useLogoutUserMutation } from '../../authApiSlice'
 import { logout } from '../../authSlice'
+
 import { useAuthLogout } from '../useAuthLogout'
 
 vi.mock('../../../../utils/errorUtils', () => ({
@@ -19,7 +22,9 @@ describe('useAuthLogout', () => {
     const mockLogoutUser = vi.fn().mockResolvedValue({})
 
     beforeEach(() => {
-        ;(useLogoutUserMutation as Mock).mockReturnValue([mockLogoutUser])
+        vi.mocked(useLogoutUserMutation as Mock).mockReturnValue([
+            mockLogoutUser,
+        ])
     })
 
     it('logs out user, dispatches logout, and navigates to the redirect path', async () => {

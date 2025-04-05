@@ -1,9 +1,6 @@
 import { UseFormRegister } from 'react-hook-form'
-
-import {
-    type Questionnaire,
-    type QuestionnaireOption,
-} from '../../questionnaires'
+import { QuestionnaireOption } from '../../questionnaires/options'
+import { Questionnaire } from '../../questionnaires/types'
 import { CheckboxItem } from './CheckboxItem'
 import { Label } from './Label'
 

@@ -1,4 +1,4 @@
-import { apiSlice } from '../api'
+import { apiSlice } from '../api/apiSlice'
 import { AuthState } from './authSlice'
 
 interface AuthQueryLogin {

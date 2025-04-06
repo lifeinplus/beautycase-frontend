@@ -8,7 +8,7 @@ import { Button } from '../../../components/ui/Button'
 import type { Header } from '../../../types/table'
 import type { Store } from '../types'
 
-interface StoresTableProps {
+export interface StoresTableProps {
     items?: Store[]
     onDelete: (data: Store) => void
     onEdit: (data: Store) => void
@@ -32,10 +32,18 @@ export const StoresTable = ({ items, onDelete, onEdit }: StoresTableProps) => (
                 cellData={[item.name]}
                 actions={
                     <div className="flex gap-2">
-                        <Button variant="warning" onClick={() => onEdit(item)}>
+                        <Button
+                            aria-label="Edit Button"
+                            onClick={() => onEdit(item)}
+                            variant="warning"
+                        >
                             <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                         </Button>
-                        <Button variant="danger" onClick={() => onDelete(item)}>
+                        <Button
+                            aria-label="Delete Button"
+                            onClick={() => onDelete(item)}
+                            variant="danger"
+                        >
                             <MinusCircleIcon className="h-5 w-5" />
                         </Button>
                     </div>

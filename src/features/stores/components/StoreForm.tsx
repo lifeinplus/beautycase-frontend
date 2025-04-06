@@ -40,7 +40,7 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
     })
 
     const dispatch = useAppDispatch()
-    const formData = useAppSelector(selectFormData) as Store
+    const formData = useAppSelector(selectFormData) as Store | undefined
 
     useEffect(() => {
         reset(formData)
@@ -91,7 +91,7 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
                     type="text"
                 />
 
-                {formData._id ? (
+                {formData?._id ? (
                     <Button
                         className="min-w-28"
                         onClick={handleSubmit(handleUpdateStore)}

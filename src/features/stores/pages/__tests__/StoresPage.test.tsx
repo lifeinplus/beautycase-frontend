@@ -12,9 +12,7 @@ import { type TopPanelProps } from '../../../../components/TopPanel'
 import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
-
 import { clearFormData, setFormData } from '../../../form/formSlice'
-
 import {
     useReadStoresQuery,
     useDeleteStoreMutation,
@@ -22,13 +20,7 @@ import {
 import { type StoresMobileViewProps } from '../../components/StoresMobileView'
 import { type StoresTableProps } from '../../components/StoresTable'
 import type { Store } from '../../types'
-
 import { StoresPage } from '../StoresPage'
-
-vi.mock('../../../../app/hooks', () => ({
-    useAppDispatch: vi.fn(),
-    useAppSelector: vi.fn(),
-}))
 
 vi.mock('../../../../components/DataWrapper', () => ({
     DataWrapper: ({ children }: DataWrapperProps<Store>) => (

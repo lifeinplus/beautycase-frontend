@@ -139,6 +139,7 @@ export const StoreLinkAddPage = () => {
                                             value={link}
                                         />
                                         <input
+                                            aria-label="Link Input"
                                             className="form-input hidden sm:block"
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
@@ -150,6 +151,7 @@ export const StoreLinkAddPage = () => {
                                     </div>
                                     <div className="sm:col-span-2">
                                         <button
+                                            aria-label="Delete Button"
                                             className="form-button"
                                             onClick={() => handleDelete(index)}
                                             type="button"
@@ -162,6 +164,7 @@ export const StoreLinkAddPage = () => {
                         })}
                         <div className="px-3">
                             <button
+                                aria-label="Add Button"
                                 className="form-button"
                                 onClick={handleAdd}
                                 type="button"

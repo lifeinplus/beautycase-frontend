@@ -9,6 +9,8 @@ const icons = {
         'arrow-left-start-on-rectangle-icon'
     ),
     ArrowRightEndOnRectangleIcon: mockIcon('arrow-right-end-on-rectangle-icon'),
+    CheckIcon: mockIcon('check-icon'),
+    ChevronDownIcon: mockIcon('chevron-down-icon'),
     ChevronLeftIcon: mockIcon('chevron-left-icon'),
     ChevronRightIcon: mockIcon('chevron-right-icon'),
     ClipboardDocumentListIcon: mockIcon('clipboard-document-list-icon'),

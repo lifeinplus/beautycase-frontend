@@ -12,9 +12,7 @@ import { type TopPanelProps } from '../../../../components/TopPanel'
 import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
-
 import { clearFormData, setFormData } from '../../../form/formSlice'
-
 import {
     useReadBrandsQuery,
     useDeleteBrandMutation,
@@ -22,13 +20,7 @@ import {
 import { type BrandsMobileViewProps } from '../../components/BrandsMobileView'
 import { type BrandsTableProps } from '../../components/BrandsTable'
 import type { Brand } from '../../types'
-
 import { BrandsPage } from '../BrandsPage'
-
-vi.mock('../../../../app/hooks', () => ({
-    useAppDispatch: vi.fn(),
-    useAppSelector: vi.fn(),
-}))
 
 vi.mock('../../../../components/DataWrapper', () => ({
     DataWrapper: ({ children }: DataWrapperProps<Brand>) => (

@@ -6,13 +6,15 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-
 import {
     type AuthResultRegister,
     useRegisterUserMutation,
 } from '../../authApiSlice'
-
 import { RegisterPage } from '../RegisterPage'
+
+vi.mock('../../../../utils/errorUtils', () => ({
+    getErrorMessage: vi.fn((error) => error.message),
+}))
 
 vi.mock('../../authApiSlice', () => ({
     useRegisterUserMutation: vi.fn(),
@@ -154,7 +156,7 @@ describe('RegisterPage', () => {
 
         expect(mockRegisterUser).toHaveBeenCalledTimes(1)
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
     })

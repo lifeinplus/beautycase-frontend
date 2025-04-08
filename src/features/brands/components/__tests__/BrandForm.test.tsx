@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
+
 import { useAppSelector } from '../../../../app/hooks'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
@@ -12,6 +13,10 @@ import {
     useUpdateBrandMutation,
 } from '../../brandsApiSlice'
 import { BrandForm } from '../BrandForm'
+
+vi.mock('../../../../utils/errorUtils', () => ({
+    getErrorMessage: vi.fn((error) => error.message),
+}))
 
 vi.mock('../../brandsApiSlice', () => ({
     useCreateBrandMutation: vi.fn(),
@@ -163,7 +168,7 @@ describe('BrandForm', () => {
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalled()
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
     })
@@ -201,7 +206,7 @@ describe('BrandForm', () => {
 
         expect(mockUpdateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalled()
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
     })

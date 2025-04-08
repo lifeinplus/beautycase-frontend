@@ -4,14 +4,12 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
-
 import { useLogoutUserMutation } from '../../authApiSlice'
 import { logout } from '../../authSlice'
-
 import { useAuthLogout } from '../useAuthLogout'
 
 vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 vi.mock('../../authApiSlice', () => ({
@@ -57,7 +55,7 @@ describe('useAuthLogout', () => {
         })
 
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
         expect(mockNavigate).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
 

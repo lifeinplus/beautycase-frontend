@@ -1,4 +1,4 @@
-interface LabelProps {
+export interface LabelProps {
     children?: React.ReactNode
     required?: boolean
     text: string

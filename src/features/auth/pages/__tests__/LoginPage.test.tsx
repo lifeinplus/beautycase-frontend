@@ -7,10 +7,12 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-
 import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
-
 import { LoginPage } from '../LoginPage'
+
+vi.mock('../../../../utils/errorUtils', () => ({
+    getErrorMessage: vi.fn((error) => error.message),
+}))
 
 vi.mock('../../authApiSlice', () => ({
     useLoginUserMutation: vi.fn(),
@@ -142,7 +144,7 @@ describe('LoginPage', () => {
 
         expect(mockLoginUser).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
     })

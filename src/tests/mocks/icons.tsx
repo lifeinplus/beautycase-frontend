@@ -23,6 +23,7 @@ const icons = {
     MoonIcon: mockIcon('moon-icon'),
     PaintBrushIcon: mockIcon('paint-brush-icon'),
     PencilSquareIcon: mockIcon('pencil-square-icon'),
+    PhotoIcon: mockIcon('photo-icon'),
     PlusCircleIcon: mockIcon('plus-circle-icon'),
     PlusIcon: mockIcon('plus-icon'),
     QueueListIcon: mockIcon('queue-list-icon'),

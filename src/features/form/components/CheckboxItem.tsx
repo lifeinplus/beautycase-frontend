@@ -1,6 +1,6 @@
 import { UseFormRegisterReturn } from 'react-hook-form'
 
-interface CheckboxItemProps {
+export interface CheckboxItemProps {
     id: string
     label: string
     register: UseFormRegisterReturn

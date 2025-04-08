@@ -16,7 +16,7 @@ import { useUploadImageTempMutation } from '../../uploads/uploadApiSlice'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
-interface ImageTextSectionProps<T extends FieldValues> {
+export interface ImageTextSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
     folder: 'products' | 'questionnaires' | 'stages' | 'tools'
     label: string

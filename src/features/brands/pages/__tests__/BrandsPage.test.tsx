@@ -152,19 +152,23 @@ describe('BrandsPage', () => {
     })
 
     it('should navigate back when back button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<BrandsPage />)
 
         const backButton = screen.getByTestId('back-button')
-        await userEvent.click(backButton)
+        await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith('/reference_lists')
     })
 
     it('should edit brand when edit button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<BrandsPage />)
 
         const editButton = screen.getByTestId('table-edit-1')
-        await userEvent.click(editButton)
+        await user.click(editButton)
 
         expect(setFormData).toHaveBeenCalledWith(mockBrands[0])
     })

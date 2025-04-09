@@ -1,6 +1,6 @@
 import { Image } from '../../../components/ui/Image'
 
-interface ImagePreviewProps {
+export interface ImagePreviewProps {
     url: string
 }
 

@@ -21,7 +21,6 @@ vi.mock('../Label', () => ({
 
 describe('CheckboxSection', () => {
     const mockLabel = 'Test Label'
-    const mockDescription = 'Test Description'
     const mockRegister = vi.fn()
 
     const mockOptions: QuestionnaireOption[] = [
@@ -62,7 +61,9 @@ describe('CheckboxSection', () => {
         expect(option3).toBeInTheDocument()
     })
 
-    it('renders the description when provided', () => {
+    it('renders description if provided', () => {
+        const mockDescription = 'Test Description'
+
         render(
             <CheckboxSection
                 label={mockLabel}
@@ -73,7 +74,6 @@ describe('CheckboxSection', () => {
         )
 
         const description = screen.getByText(mockDescription)
-
         expect(description).toBeInTheDocument()
         expect(description).toHaveClass('form-description')
     })

@@ -6,9 +6,9 @@ import { CheckboxItem } from '../CheckboxItem'
 
 describe('CheckboxItem', () => {
     const mockRegister = {
+        name: 'testName',
         onChange: vi.fn(),
         onBlur: vi.fn(),
-        name: 'testName',
         ref: vi.fn(),
     }
 
@@ -38,16 +38,18 @@ describe('CheckboxItem', () => {
     })
 
     it('triggers onChange when clicked', async () => {
+        const user = userEvent.setup()
+
         render(<CheckboxItem {...defaultProps} />)
 
         const checkbox = screen.getByRole('checkbox')
         expect(checkbox).not.toBeChecked()
 
-        await userEvent.click(checkbox)
+        await user.click(checkbox)
         expect(checkbox).toBeChecked()
         expect(mockRegister.onChange).toHaveBeenCalled()
 
-        await userEvent.click(checkbox)
+        await user.click(checkbox)
         expect(checkbox).not.toBeChecked()
     })
 })

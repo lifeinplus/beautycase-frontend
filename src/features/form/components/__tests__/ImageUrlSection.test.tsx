@@ -2,13 +2,10 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import type { Questionnaire } from '../../../questionnaires/types'
+import type { Product } from '../../../products/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
 import { type ImagePreviewProps } from '../ImagePreview'
-import {
-    ImageTextSection,
-    type ImageTextSectionProps,
-} from '../ImageTextSection'
+import { ImageUrlSection, ImageUrlSectionProps } from '../ImageUrlSection'
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -24,20 +21,17 @@ vi.mock('../ImagePreview', () => ({
     ),
 }))
 
-describe('ImageTextSection', () => {
+describe('ImageUrlSection', () => {
     const mockClearErrors = vi.fn()
     const mockRegister = vi.fn()
     const mockSetValue = vi.fn()
 
-    const mockProps: ImageTextSectionProps<Questionnaire> = {
+    const mockProps: ImageUrlSectionProps<Product> = {
         clearErrors: mockClearErrors,
-        folder: 'questionnaires',
-        label: 'Makeup Bag',
-        labelUrl: 'Makeup Bag Photo Url',
-        name: 'makeupBag',
-        nameUrl: 'makeupBagPhotoUrl',
-        register: mockRegister('makeupBag'),
-        registerUrl: mockRegister('makeupBagPhotoUrl'),
+        folder: 'products',
+        label: 'Image Url',
+        name: 'imageUrl',
+        register: mockRegister('imageUrl'),
         setValue: mockSetValue,
     }
 
@@ -57,17 +51,16 @@ describe('ImageTextSection', () => {
     })
 
     it('renders with required props', () => {
-        render(<ImageTextSection {...mockProps} />)
-        expect(screen.getByText('Makeup Bag')).toBeInTheDocument()
-        expect(screen.getByPlaceholderText('Makeup Bag')).toBeInTheDocument()
+        render(<ImageUrlSection {...mockProps} />)
+
+        expect(screen.getByText('Image Url')).toBeInTheDocument()
+        expect(screen.getByPlaceholderText('Image Url')).toBeInTheDocument()
     })
 
     it('renders description if provided', () => {
         const mockDescription = 'Test Description'
 
-        render(
-            <ImageTextSection {...mockProps} description={mockDescription} />
-        )
+        render(<ImageUrlSection {...mockProps} description={mockDescription} />)
 
         const description = screen.getByText(mockDescription)
         expect(description).toBeInTheDocument()
@@ -80,14 +73,14 @@ describe('ImageTextSection', () => {
             type: 'required',
         }
 
-        render(<ImageTextSection {...mockProps} error={mockError} />)
+        render(<ImageUrlSection {...mockProps} error={mockError} />)
 
         const error = screen.getByText(mockError.message)
         expect(error).toBeInTheDocument()
     })
 
-    it('renders image preview if valueUrl is present', () => {
-        render(<ImageTextSection {...mockProps} valueUrl={mockUrl} />)
+    it('renders image preview if imageUrl is present', () => {
+        render(<ImageUrlSection {...mockProps} value={mockUrl} />)
 
         const image = screen.getByTestId('image-preview') as HTMLImageElement
 
@@ -96,7 +89,7 @@ describe('ImageTextSection', () => {
     })
 
     it('handles file upload successfully', async () => {
-        render(<ImageTextSection {...mockProps} />)
+        render(<ImageUrlSection {...mockProps} />)
 
         const input = screen.getByLabelText('', {
             selector: 'input[type="file"]',
@@ -107,12 +100,8 @@ describe('ImageTextSection', () => {
         )
 
         expect(mockUploadImageTemp).toHaveBeenCalledTimes(1)
-        expect(mockSetValue).toHaveBeenCalledWith(
-            'makeupBag',
-            '[приложено фото]'
-        )
-        expect(mockSetValue).toHaveBeenCalledWith('makeupBagPhotoUrl', mockUrl)
-        expect(mockClearErrors).toHaveBeenCalledWith('makeupBag')
+        expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockUrl)
+        expect(mockClearErrors).toHaveBeenCalledWith('imageUrl')
     })
 
     it('handles upload error', async () => {
@@ -130,7 +119,7 @@ describe('ImageTextSection', () => {
             mockUploadImageTemp,
         ])
 
-        render(<ImageTextSection {...mockProps} />)
+        render(<ImageUrlSection {...mockProps} />)
 
         const input = screen.getByLabelText('', {
             selector: 'input[type="file"]',
@@ -152,7 +141,7 @@ describe('ImageTextSection', () => {
     })
 
     it('does nothing when no file is selected', async () => {
-        render(<ImageTextSection {...mockProps} />)
+        render(<ImageUrlSection {...mockProps} />)
 
         const input = screen.getByLabelText('', {
             selector: 'input[type="file"]',
@@ -162,21 +151,5 @@ describe('ImageTextSection', () => {
 
         expect(mockUploadImageTemp).not.toHaveBeenCalled()
         expect(mockSetValue).not.toHaveBeenCalled()
-    })
-
-    it('uses existing text value when uploading file', async () => {
-        const mockText = 'Custom Text'
-
-        render(<ImageTextSection {...mockProps} value={mockText} />)
-
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
-        })
-
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
-
-        expect(mockSetValue).toHaveBeenCalledWith('makeupBag', mockText)
     })
 })

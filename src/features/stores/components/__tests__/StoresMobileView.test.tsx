@@ -28,6 +28,8 @@ describe('StoresMobileView', () => {
     })
 
     it('calls onEdit when edit button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(
             <StoresMobileView
                 items={mockStores}
@@ -40,13 +42,15 @@ describe('StoresMobileView', () => {
             name: /edit/i,
         })
 
-        await userEvent.click(editButtons[0])
+        await user.click(editButtons[0])
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
         expect(mockOnEdit).toHaveBeenCalledWith(mockStores[0])
     })
 
     it('calls onDelete when delete button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(
             <StoresMobileView
                 items={mockStores}
@@ -59,7 +63,7 @@ describe('StoresMobileView', () => {
             name: /delete/i,
         })
 
-        await userEvent.click(deleteButtons[1])
+        await user.click(deleteButtons[1])
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)
         expect(mockOnDelete).toHaveBeenCalledWith(mockStores[1])

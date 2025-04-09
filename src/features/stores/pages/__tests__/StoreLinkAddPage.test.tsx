@@ -90,11 +90,13 @@ describe('StoreLinkAddPage', () => {
     })
 
     it('adds a new store link when plus button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<StoreLinkAddPage />)
 
         const addButton = screen.getByRole('button', { name: 'Add Button' })
 
-        await userEvent.click(addButton)
+        await user.click(addButton)
 
         const linkInputs = screen.getAllByRole('textbox', {
             name: 'Link Input',
@@ -104,6 +106,8 @@ describe('StoreLinkAddPage', () => {
     })
 
     it('removes a store link when minus button is clicked', async () => {
+        const user = userEvent.setup()
+
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
         render(<StoreLinkAddPage />)
@@ -118,7 +122,7 @@ describe('StoreLinkAddPage', () => {
             name: 'Delete Button',
         })
 
-        await userEvent.click(deleteButtons[0])
+        await user.click(deleteButtons[0])
 
         linkInputs = screen.getAllByRole('textbox', {
             name: 'Link Input',
@@ -128,10 +132,12 @@ describe('StoreLinkAddPage', () => {
     })
 
     it('updates store selection when select is changed', async () => {
+        const user = userEvent.setup()
+
         render(<StoreLinkAddPage />)
 
         const select = screen.getByRole('combobox')
-        await userEvent.selectOptions(select, 'store1')
+        await user.selectOptions(select, 'store1')
 
         const selectedOption = Array.from(
             select.querySelectorAll('option')
@@ -142,39 +148,45 @@ describe('StoreLinkAddPage', () => {
     })
 
     it('updates link value when input changes', async () => {
+        const user = userEvent.setup()
+
         render(<StoreLinkAddPage />)
 
         const linkInput = screen.getByRole('textbox', {
             name: 'Link Input',
         }) as HTMLInputElement
 
-        await userEvent.type(linkInput, 'https://example.com')
+        await user.type(linkInput, 'https://example.com')
 
         expect(linkInput).toHaveValue('https://example.com')
     })
 
     it('navigates back when back button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<StoreLinkAddPage />)
 
         const backButton = screen.getByText('Назад')
-        await userEvent.click(backButton)
+        await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
 
     it('saves form data and navigates back when save button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<StoreLinkAddPage />)
 
         const select = screen.getByRole('combobox')
-        await userEvent.selectOptions(select, 'store1')
+        await user.selectOptions(select, 'store1')
 
         const linkInput = screen.getByRole('textbox', {
             name: 'Link Input',
         }) as HTMLInputElement
-        await userEvent.type(linkInput, 'https://example.com')
+        await user.type(linkInput, 'https://example.com')
 
         const saveButton = screen.getByText('Сохранить')
-        await userEvent.click(saveButton)
+        await user.click(saveButton)
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

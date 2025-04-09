@@ -9,8 +9,6 @@ describe('ButtonNavigateSection', () => {
 
     const mockLabel = 'Test Label'
     const mockText = 'Test Text'
-    const mockDescription = 'Test Description'
-    const mockError = { message: 'This is an error', type: 'required' }
 
     it('renders with required props', () => {
         render(
@@ -27,6 +25,8 @@ describe('ButtonNavigateSection', () => {
     })
 
     it('renders description if provided', () => {
+        const mockDescription = 'Test Description'
+
         render(
             <ButtonNavigateSection
                 label={mockLabel}
@@ -36,10 +36,17 @@ describe('ButtonNavigateSection', () => {
             />
         )
 
-        expect(screen.getByText(mockDescription)).toBeInTheDocument()
+        const description = screen.getByText(mockDescription)
+        expect(description).toBeInTheDocument()
+        expect(description).toHaveClass('form-description')
     })
 
-    it('renders error message if error provided', () => {
+    it('renders error message and applies error class', () => {
+        const mockError = {
+            message: 'This field is required',
+            type: 'required',
+        }
+
         render(
             <ButtonNavigateSection
                 label={mockLabel}
@@ -49,10 +56,16 @@ describe('ButtonNavigateSection', () => {
             />
         )
 
-        expect(screen.getByText(mockError.message)).toBeInTheDocument()
+        const error = screen.getByText(mockError.message)
+        expect(error).toBeInTheDocument()
+
+        const button = screen.getByRole('button')
+        expect(button).toHaveClass('border-error')
     })
 
     it('calls onNavigate when button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(
             <ButtonNavigateSection
                 label={mockLabel}
@@ -62,23 +75,8 @@ describe('ButtonNavigateSection', () => {
         )
 
         const button = screen.getByRole('button')
-        await userEvent.click(button)
+        await user.click(button)
 
         expect(mockOnNavigate).toHaveBeenCalledTimes(1)
-    })
-
-    it('applies border-error class when error is present', () => {
-        render(
-            <ButtonNavigateSection
-                label={mockLabel}
-                onNavigate={mockOnNavigate}
-                text={mockText}
-                error={mockError}
-            />
-        )
-
-        const button = screen.getByRole('button')
-
-        expect(button.className).toContain('border-error')
     })
 })

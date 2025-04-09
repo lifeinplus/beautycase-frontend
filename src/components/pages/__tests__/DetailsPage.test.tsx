@@ -120,11 +120,11 @@ describe('DetailsPage', () => {
     })
 
     it('navigates to edit page when edit button is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await userEvent.click(
-            screen.getByRole('button', { name: 'Редактировать' })
-        )
+        await user.click(screen.getByRole('button', { name: 'Редактировать' }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/edit/123')
     })

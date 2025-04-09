@@ -21,9 +21,13 @@ describe('Input', () => {
     })
 
     it('accepts user input', async () => {
+        const user = userEvent.setup()
+
         render(<Input data-testid="test-input" />)
+
         const inputElement = screen.getByTestId('test-input')
-        await userEvent.type(inputElement, 'Hello')
+        await user.type(inputElement, 'Hello')
+
         expect(inputElement).toHaveValue('Hello')
     })
 
@@ -66,10 +70,14 @@ describe('Input', () => {
     })
 
     it('triggers onChange event', async () => {
+        const user = userEvent.setup()
         const handleChange = vi.fn()
+
         render(<Input data-testid="test-input" onChange={handleChange} />)
+
         const inputElement = screen.getByTestId('test-input')
-        await userEvent.type(inputElement, 'Test')
+        await user.type(inputElement, 'Test')
+
         expect(handleChange).toHaveBeenCalled()
     })
 })

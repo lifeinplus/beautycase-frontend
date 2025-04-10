@@ -65,7 +65,7 @@ const getActionItems = (showDuplicate: boolean): ActionItem[] => {
     return items
 }
 
-interface DetailsPageProps {
+export interface DetailsPageProps {
     isLoading: boolean
     error: unknown
     topPanelTitle: string

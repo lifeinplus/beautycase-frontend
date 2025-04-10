@@ -2,24 +2,24 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import { CheckboxItem } from '../CheckboxItem'
+import { CheckboxItem, type CheckboxItemProps } from '../CheckboxItem'
 
 describe('CheckboxItem', () => {
     const mockRegister = {
-        name: 'testName',
+        name: 'test-name',
         onChange: vi.fn(),
         onBlur: vi.fn(),
         ref: vi.fn(),
     }
 
-    const defaultProps = {
+    const mockProps: CheckboxItemProps = {
         id: 'test-id',
         label: 'Test Label',
         register: mockRegister,
     }
 
     it('renders correctly with provided props', () => {
-        render(<CheckboxItem {...defaultProps} />)
+        render(<CheckboxItem {...mockProps} />)
 
         const label = screen.getByText('Test Label')
         const checkbox = screen.getByRole('checkbox')
@@ -31,16 +31,16 @@ describe('CheckboxItem', () => {
     })
 
     it('applies the register props to the checkbox input', () => {
-        render(<CheckboxItem {...defaultProps} />)
+        render(<CheckboxItem {...mockProps} />)
 
         const checkbox = screen.getByRole('checkbox')
-        expect(checkbox).toHaveAttribute('name', 'testName')
+        expect(checkbox).toHaveAttribute('name', mockRegister.name)
     })
 
     it('triggers onChange when clicked', async () => {
         const user = userEvent.setup()
 
-        render(<CheckboxItem {...defaultProps} />)
+        render(<CheckboxItem {...mockProps} />)
 
         const checkbox = screen.getByRole('checkbox')
         expect(checkbox).not.toBeChecked()

@@ -2,25 +2,23 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import { ButtonNavigateSection } from '../ButtonNavigateSection'
+import {
+    ButtonNavigateSection,
+    type ButtonNavigateSectionProps,
+} from '../ButtonNavigateSection'
 
 describe('ButtonNavigateSection', () => {
-    const mockOnNavigate = vi.fn()
-
-    const mockLabel = 'Test Label'
-    const mockText = 'Test Text'
+    const mockProps: ButtonNavigateSectionProps = {
+        label: 'Test Label',
+        onNavigate: vi.fn(),
+        text: 'Test Text',
+    }
 
     it('renders with required props', () => {
-        render(
-            <ButtonNavigateSection
-                label={mockLabel}
-                onNavigate={mockOnNavigate}
-                text={mockText}
-            />
-        )
+        render(<ButtonNavigateSection {...mockProps} />)
 
-        expect(screen.getByText(mockLabel)).toBeInTheDocument()
-        expect(screen.getByText(mockText)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.text)).toBeInTheDocument()
         expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
@@ -29,9 +27,7 @@ describe('ButtonNavigateSection', () => {
 
         render(
             <ButtonNavigateSection
-                label={mockLabel}
-                onNavigate={mockOnNavigate}
-                text={mockText}
+                {...mockProps}
                 description={mockDescription}
             />
         )
@@ -47,14 +43,7 @@ describe('ButtonNavigateSection', () => {
             type: 'required',
         }
 
-        render(
-            <ButtonNavigateSection
-                label={mockLabel}
-                onNavigate={mockOnNavigate}
-                text={mockText}
-                error={mockError}
-            />
-        )
+        render(<ButtonNavigateSection {...mockProps} error={mockError} />)
 
         const error = screen.getByText(mockError.message)
         expect(error).toBeInTheDocument()
@@ -66,17 +55,11 @@ describe('ButtonNavigateSection', () => {
     it('calls onNavigate when button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(
-            <ButtonNavigateSection
-                label={mockLabel}
-                onNavigate={mockOnNavigate}
-                text={mockText}
-            />
-        )
+        render(<ButtonNavigateSection {...mockProps} />)
 
         const button = screen.getByRole('button')
         await user.click(button)
 
-        expect(mockOnNavigate).toHaveBeenCalledTimes(1)
+        expect(mockProps.onNavigate).toHaveBeenCalledTimes(1)
     })
 })

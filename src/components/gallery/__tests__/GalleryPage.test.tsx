@@ -9,7 +9,7 @@ import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils/errorUtils'
 
-import { GalleryPage } from '../GalleryPage'
+import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
@@ -20,10 +20,10 @@ describe('GalleryPage', () => {
         <div data-testid="media-content">Media Content</div>
     )
 
-    const mockProps = {
+    const mockProps: GalleryPageProps = {
         redirectPath: '/gallery',
-        title: 'Gallery',
-        subtitle: 'Subtitle',
+        title: 'Test Title',
+        subtitle: 'Test Subtitle',
         isLoading: false,
         error: null,
         mediaContent: mockMediaContent,
@@ -48,7 +48,7 @@ describe('GalleryPage', () => {
 
         expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.subtitle)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
         expect(screen.getByTestId('media-content')).toBeInTheDocument()
         expect(screen.getByRole('complementary')).toBeInTheDocument()
     })
@@ -59,7 +59,7 @@ describe('GalleryPage', () => {
         renderWithProvider(<GalleryPage {...withoutSubtitle} />)
 
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.queryByText(mockProps.subtitle)).not.toBeInTheDocument()
+        expect(screen.queryByText(mockProps.subtitle!)).not.toBeInTheDocument()
     })
 
     it('shows loading state when isLoading is true', () => {

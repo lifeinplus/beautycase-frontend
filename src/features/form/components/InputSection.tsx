@@ -3,7 +3,7 @@ import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 
 import { Label } from './Label'
 
-interface InputSectionProps {
+export interface InputSectionProps {
     label: string
     register: UseFormRegisterReturn
     type: string

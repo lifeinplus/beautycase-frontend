@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
@@ -9,7 +10,19 @@ import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { DetailsPage } from '../DetailsPage'
+import { type TopPanelProps } from '../../TopPanel'
+import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
+
+vi.mock('../../TopPanel', () => ({
+    TopPanel: ({ title, onBack }: TopPanelProps) => (
+        <div data-testid="top-panel">
+            <button data-testid="back-button" onClick={onBack}>
+                Back
+            </button>
+            <h2>{title}</h2>
+        </div>
+    ),
+}))
 
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => String(error)),
@@ -23,11 +36,11 @@ describe('DetailsPage', () => {
         <div data-testid="media-content">Media Content</div>
     )
 
-    const mockProps = {
+    const mockProps: DetailsPageProps = {
         redirectPath: '/products',
-        topPanelTitle: 'Top Panel Title',
-        title: 'Title',
-        subtitle: 'Subtitle',
+        topPanelTitle: 'Test Top Panel Title',
+        title: 'Test Title',
+        subtitle: 'Test Subtitle',
         description: 'Test Description',
         isLoading: false,
         error: null,
@@ -47,12 +60,7 @@ describe('DetailsPage', () => {
     it('renders the component with all elements', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        expect(
-            screen.getByRole('heading', {
-                level: 2,
-                name: mockProps.topPanelTitle,
-            })
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
 
         expect(
             screen.getByRole('heading', {
@@ -61,8 +69,8 @@ describe('DetailsPage', () => {
             })
         ).toBeInTheDocument()
 
-        expect(screen.getByText(mockProps.subtitle)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
         expect(screen.getByTestId('media-content')).toBeInTheDocument()
         expect(screen.getByRole('complementary')).toBeInTheDocument()
     })

@@ -30,7 +30,7 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'add', auth: true, roles: ['admin', 'mua'] },
 ]
 
-interface GalleryPageProps {
+export interface GalleryPageProps {
     redirectPath: string
     title: string
     subtitle?: string

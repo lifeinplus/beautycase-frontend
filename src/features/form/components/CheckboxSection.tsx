@@ -4,7 +4,7 @@ import { Questionnaire } from '../../questionnaires/types'
 import { CheckboxItem } from './CheckboxItem'
 import { Label } from './Label'
 
-interface CheckboxSectionProps {
+export interface CheckboxSectionProps {
     description?: string
     label: string
     options: QuestionnaireOption[]

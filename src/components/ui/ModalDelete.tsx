@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useRef } from 'react'
 
-interface ModalDeleteProps {
+export interface ModalDeleteProps {
     description: string
     isOpen: boolean
     onCancel: () => void

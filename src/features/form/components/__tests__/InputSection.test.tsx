@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { InputSection } from '../InputSection'
+import { InputSection, type InputSectionProps } from '../InputSection'
 
 describe('InputSection', () => {
     const mockRegister = vi.fn()
 
-    const mockProps = {
-        label: 'Test City',
-        register: mockRegister('city'),
+    const mockProps: InputSectionProps = {
+        label: 'Test Label',
+        register: mockRegister('testName'),
         type: 'text',
     }
 

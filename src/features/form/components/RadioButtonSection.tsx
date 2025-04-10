@@ -4,7 +4,7 @@ import { Questionnaire } from '../../questionnaires/types'
 import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 
-interface RadioButtonSectionProps {
+export interface RadioButtonSectionProps {
     description?: string
     horizontal?: boolean
     label: string

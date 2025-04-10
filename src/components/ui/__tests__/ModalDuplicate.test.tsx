@@ -1,14 +1,14 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { ModalDuplicate } from '../ModalDuplicate'
+import { ModalDuplicate, type ModalDuplicateProps } from '../ModalDuplicate'
 
 describe('ModalDuplicate', () => {
-    const mockProps = {
-        description: 'Are you sure?',
+    const mockProps: ModalDuplicateProps = {
+        description: 'Test Description',
         isOpen: true,
         onCancel: vi.fn(),
         onConfirm: vi.fn(),
-        title: 'Duplicate Item',
+        title: 'Test Title',
     }
 
     afterEach(() => {
@@ -26,8 +26,9 @@ describe('ModalDuplicate', () => {
 
     it('renders when isOpen is true', () => {
         render(<ModalDuplicate {...mockProps} />)
-        expect(screen.getByText('Duplicate Item')).toBeInTheDocument()
-        expect(screen.getByText('Are you sure?')).toBeInTheDocument()
+
+        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
         expect(screen.getByText('Дублировать')).toBeInTheDocument()
         expect(screen.getByText('Отмена')).toBeInTheDocument()
     })

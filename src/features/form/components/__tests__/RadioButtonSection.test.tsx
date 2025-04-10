@@ -4,7 +4,10 @@ import { describe, it, expect, vi } from 'vitest'
 import type { QuestionnaireOption } from '../../../questionnaires/options'
 import { type LabelProps } from '../Label'
 import { type RadioButtonItemProps } from '../RadioButtonItem'
-import { RadioButtonSection } from '../RadioButtonSection'
+import {
+    RadioButtonSection,
+    type RadioButtonSectionProps,
+} from '../RadioButtonSection'
 
 vi.mock('../Label', () => ({
     Label: ({ text }: LabelProps) => {
@@ -32,7 +35,7 @@ describe('RadioButtonSection', () => {
         { id: 'option-3', label: 'Option 3', name: 'city', value: 'value3' },
     ]
 
-    const mockProps = {
+    const mockProps: RadioButtonSectionProps = {
         label: 'Test Label',
         options: mockOptions,
         register: mockRegister,
@@ -42,7 +45,7 @@ describe('RadioButtonSection', () => {
         render(<RadioButtonSection {...mockProps} />)
 
         const label = screen.getByTestId('label')
-        expect(label).toHaveTextContent('Test Label')
+        expect(label).toHaveTextContent(mockProps.label)
 
         const option1 = screen.getByTestId('radio-item-option-1')
         const option2 = screen.getByTestId('radio-item-option-2')

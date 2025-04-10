@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import { RadioButtonItem } from '../RadioButtonItem'
+import { RadioButtonItem, type RadioButtonItemProps } from '../RadioButtonItem'
 
 describe('RadioButtonItem', () => {
     const mockRegister = {
@@ -12,8 +12,8 @@ describe('RadioButtonItem', () => {
         ref: vi.fn(),
     }
 
-    const mockProps = {
-        id: 'option1',
+    const mockProps: RadioButtonItemProps = {
+        id: 'option-1',
         label: 'Option 1',
         register: mockRegister,
     }
@@ -21,12 +21,12 @@ describe('RadioButtonItem', () => {
     it('renders with the correct label', () => {
         render(<RadioButtonItem {...mockProps} />)
 
-        const label = screen.getByText('Option 1')
+        const label = screen.getByText(mockProps.label)
         expect(label).toBeInTheDocument()
 
         const radio = screen.getByRole('radio')
         expect(radio).toBeInTheDocument()
-        expect(radio).toHaveAttribute('id', 'option1')
+        expect(radio).toHaveAttribute('id', mockProps.id)
     })
 
     it('sets the value attribute when provided', () => {

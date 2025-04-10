@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 import type { Product } from '../../../products/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
 import { type ImagePreviewProps } from '../ImagePreview'
-import { ImageUrlSection, ImageUrlSectionProps } from '../ImageUrlSection'
+import { ImageUrlSection, type ImageUrlSectionProps } from '../ImageUrlSection'
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),

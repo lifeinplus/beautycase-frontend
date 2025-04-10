@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { type QuestionnaireOption } from '../../../questionnaires/options'
 import { CheckboxItemProps } from '../CheckboxItem'
-import { CheckboxSection } from '../CheckboxSection'
+import { CheckboxSection, type CheckboxSectionProps } from '../CheckboxSection'
 import { LabelProps } from '../Label'
 
 vi.mock('../CheckboxItem', () => ({
@@ -20,37 +20,28 @@ vi.mock('../Label', () => ({
 }))
 
 describe('CheckboxSection', () => {
-    const mockLabel = 'Test Label'
-    const mockRegister = vi.fn()
-
     const mockOptions: QuestionnaireOption[] = [
         { id: 'option-1', label: 'Option 1', name: 'age' },
         { id: 'option-2', label: 'Option 2', name: 'city' },
         { id: 'option-3', label: 'Option 3', name: 'referral' },
     ]
 
+    const mockProps: CheckboxSectionProps = {
+        label: 'Test Label',
+        options: mockOptions,
+        register: vi.fn(),
+    }
+
     it('renders the label correctly', () => {
-        render(
-            <CheckboxSection
-                label={mockLabel}
-                options={mockOptions}
-                register={mockRegister}
-            />
-        )
+        render(<CheckboxSection {...mockProps} />)
 
         const label = screen.getByTestId('label')
         expect(label).toBeInTheDocument()
-        expect(label).toHaveTextContent(mockLabel)
+        expect(label).toHaveTextContent(mockProps.label)
     })
 
     it('renders all options as checkbox items', () => {
-        render(
-            <CheckboxSection
-                label={mockLabel}
-                options={mockOptions}
-                register={mockRegister}
-            />
-        )
+        render(<CheckboxSection {...mockProps} />)
 
         const option1 = screen.getByTestId('checkbox-item-option-1')
         const option2 = screen.getByTestId('checkbox-item-option-2')
@@ -64,14 +55,7 @@ describe('CheckboxSection', () => {
     it('renders description if provided', () => {
         const mockDescription = 'Test Description'
 
-        render(
-            <CheckboxSection
-                label={mockLabel}
-                options={mockOptions}
-                register={mockRegister}
-                description={mockDescription}
-            />
-        )
+        render(<CheckboxSection {...mockProps} description={mockDescription} />)
 
         const description = screen.getByText(mockDescription)
         expect(description).toBeInTheDocument()
@@ -79,13 +63,7 @@ describe('CheckboxSection', () => {
     })
 
     it('does not render description when not provided', () => {
-        render(
-            <CheckboxSection
-                label={mockLabel}
-                options={mockOptions}
-                register={mockRegister}
-            />
-        )
+        render(<CheckboxSection {...mockProps} />)
 
         const description = screen.queryByText(/description/i)
 

@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import type { SelectOption } from '../../types'
 import { type LabelProps } from '../Label'
-import { SelectSection, SelectSectionProps } from '../SelectSection'
+import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
 vi.mock('../Label', () => ({
     Label: ({ children, text }: LabelProps) => (
@@ -38,7 +38,7 @@ describe('SelectSection', () => {
         render(<SelectSection {...mockProps} />)
 
         const label = screen.getByTestId('label')
-        expect(label).toHaveTextContent('Test Label')
+        expect(label).toHaveTextContent(mockProps.label)
     })
 
     it('renders with options', () => {

@@ -1,6 +1,6 @@
 import { FormEvent, ReactNode } from 'react'
 
-interface NavigationButtonProps {
+export interface NavigationButtonProps {
     className?: string
     icon: ReactNode
     onClick: (e: FormEvent) => void

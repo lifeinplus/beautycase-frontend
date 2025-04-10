@@ -6,6 +6,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
+import { mockError } from '../../../tests/mocks'
 import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
@@ -25,7 +26,7 @@ vi.mock('../../TopPanel', () => ({
 }))
 
 vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 describe('DetailsPage', () => {
@@ -82,19 +83,17 @@ describe('DetailsPage', () => {
     })
 
     it('shows loading state when isLoading is true', () => {
-        renderWithProvider(<DetailsPage {...mockProps} isLoading={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} isLoading />)
 
         expect(screen.getByText('Загрузка...')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('shows error state when error is present', () => {
-        const error = 'Something went wrong'
+        renderWithProvider(<DetailsPage {...mockProps} error={mockError} />)
 
-        renderWithProvider(<DetailsPage {...mockProps} error={error} />)
-
-        expect(getErrorMessage).toHaveBeenCalledWith(error)
-        expect(screen.getByText(error)).toBeInTheDocument()
+        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+        expect(screen.getByText(mockError.message)).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
@@ -148,7 +147,7 @@ describe('DetailsPage', () => {
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
 
@@ -176,7 +175,7 @@ describe('DetailsPage', () => {
     it('handles successful item duplication', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
         await user.click(screen.getByLabelText('Modal duplicate button'))

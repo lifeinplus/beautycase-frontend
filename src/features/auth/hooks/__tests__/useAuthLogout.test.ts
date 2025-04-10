@@ -2,6 +2,7 @@ import { renderHook, act } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
+import { mockError } from '../../../../tests/mocks'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { useLogoutUserMutation } from '../../authApiSlice'
@@ -40,8 +41,6 @@ describe('useAuthLogout', () => {
     })
 
     it('handles errors correctly when logout fails', async () => {
-        const mockError = new Error('Logout failed')
-
         mockLogoutUser.mockRejectedValue(mockError)
 
         const mockConsoleError = vi

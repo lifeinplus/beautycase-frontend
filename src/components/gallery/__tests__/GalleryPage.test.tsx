@@ -4,15 +4,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
+import { mockError } from '../../../tests/mocks'
 import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils/errorUtils'
-
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
 vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 describe('GalleryPage', () => {
@@ -63,19 +63,17 @@ describe('GalleryPage', () => {
     })
 
     it('shows loading state when isLoading is true', () => {
-        renderWithProvider(<GalleryPage {...mockProps} isLoading={true} />)
+        renderWithProvider(<GalleryPage {...mockProps} isLoading />)
 
         expect(screen.getByText('Loading...')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('shows error message when error is present', () => {
-        const error = 'Something went wrong'
+        renderWithProvider(<GalleryPage {...mockProps} error={mockError} />)
 
-        renderWithProvider(<GalleryPage {...mockProps} error={error} />)
-
-        expect(getErrorMessage).toHaveBeenCalledWith(error)
-        expect(screen.getByText(error)).toBeInTheDocument()
+        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+        expect(screen.getByText(mockError.message)).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 

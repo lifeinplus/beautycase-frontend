@@ -10,9 +10,12 @@ import {
 } from '../RadioButtonSection'
 
 vi.mock('../Label', () => ({
-    Label: ({ text }: LabelProps) => {
-        return <div data-testid="label">{text}</div>
-    },
+    Label: ({ children, text }: LabelProps) => (
+        <label data-testid="label">
+            <span>{text}</span>
+            {children}
+        </label>
+    ),
 }))
 
 vi.mock('../RadioButtonItem', () => ({
@@ -27,8 +30,6 @@ vi.mock('../RadioButtonItem', () => ({
 }))
 
 describe('RadioButtonSection', () => {
-    const mockRegister = vi.fn()
-
     const mockOptions: QuestionnaireOption[] = [
         { id: 'option-1', label: 'Option 1', name: 'age', value: 'value1' },
         { id: 'option-2', label: 'Option 2', name: 'brushes', value: 'value2' },
@@ -38,13 +39,14 @@ describe('RadioButtonSection', () => {
     const mockProps: RadioButtonSectionProps = {
         label: 'Test Label',
         options: mockOptions,
-        register: mockRegister,
+        register: vi.fn(),
     }
 
     it('renders label and radio buttons', () => {
         render(<RadioButtonSection {...mockProps} />)
 
         const label = screen.getByTestId('label')
+        expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
 
         const option1 = screen.getByTestId('radio-item-option-1')
@@ -70,7 +72,7 @@ describe('RadioButtonSection', () => {
 
     it('handles horizontal layout when horizontal prop is true', () => {
         const { container } = render(
-            <RadioButtonSection {...mockProps} horizontal={true} />
+            <RadioButtonSection {...mockProps} horizontal />
         )
 
         const nav = container.querySelector('nav')

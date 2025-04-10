@@ -16,7 +16,12 @@ vi.mock('../CheckboxItem', () => ({
 }))
 
 vi.mock('../Label', () => ({
-    Label: ({ text }: LabelProps) => <div data-testid="label">{text}</div>,
+    Label: ({ children, text }: LabelProps) => (
+        <label data-testid="label">
+            <span>{text}</span>
+            {children}
+        </label>
+    ),
 }))
 
 describe('CheckboxSection', () => {
@@ -32,7 +37,7 @@ describe('CheckboxSection', () => {
         register: vi.fn(),
     }
 
-    it('renders the label correctly', () => {
+    it('renders with the label correctly', () => {
         render(<CheckboxSection {...mockProps} />)
 
         const label = screen.getByTestId('label')

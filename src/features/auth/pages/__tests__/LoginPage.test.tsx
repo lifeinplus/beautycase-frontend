@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
+import { mockError } from '../../../../tests/mocks'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
@@ -119,8 +120,6 @@ describe('LoginPage', () => {
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
-
-        const mockError = new Error('Invalid credentials')
 
         const mockLoginUser = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),

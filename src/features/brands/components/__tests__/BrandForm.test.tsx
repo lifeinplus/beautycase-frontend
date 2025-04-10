@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
+import { mockError } from '../../../../tests/mocks'
 import { mockDispatch } from '../../../../tests/mocks/app'
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
 import { clearFormData } from '../../../form/formSlice'
@@ -147,8 +148,6 @@ describe('BrandForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockError = new Error('Network error')
-
         const mockCreateBrand = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),
         }))
@@ -179,8 +178,6 @@ describe('BrandForm', () => {
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
-
-        const mockError = new Error('Network error')
 
         const mockUpdateBrand = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),

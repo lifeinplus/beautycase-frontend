@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
 import type { SelectOption } from '../../types'
 import { type LabelProps } from '../Label'
 import { SelectSection, type SelectSectionProps } from '../SelectSection'
@@ -15,13 +16,6 @@ vi.mock('../Label', () => ({
 }))
 
 describe('SelectSection', () => {
-    const mockRegister = {
-        name: 'brand',
-        onChange: vi.fn(),
-        onBlur: vi.fn(),
-        ref: vi.fn(),
-    }
-
     const mockOptions: SelectOption[] = [
         { value: 'option1', text: 'Option 1' },
         { value: 'option2', text: 'Option 2' },
@@ -34,10 +28,11 @@ describe('SelectSection', () => {
         options: mockOptions,
     }
 
-    it('renders with label', () => {
+    it('renders with the label correctly', () => {
         render(<SelectSection {...mockProps} />)
 
         const label = screen.getByTestId('label')
+        expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
     })
 
@@ -62,14 +57,9 @@ describe('SelectSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        const mockError = {
-            message: 'This field is required',
-            type: 'required',
-        }
+        render(<SelectSection {...mockProps} error={mockFieldError} />)
 
-        render(<SelectSection {...mockProps} error={mockError} />)
-
-        const error = screen.getByText(mockError.message)
+        const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
 
         const select = screen.getByRole('combobox')

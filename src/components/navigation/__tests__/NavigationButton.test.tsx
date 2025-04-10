@@ -7,6 +7,7 @@ import {
 
 describe('NavigationButton', () => {
     const MockIcon = () => <svg data-testid="mocked-icon" />
+
     const mockOnClick = vi.fn()
 
     const mockProps: NavigationButtonProps = {

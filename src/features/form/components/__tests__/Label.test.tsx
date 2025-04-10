@@ -6,7 +6,8 @@ import { Label } from '../Label'
 describe('Label', () => {
     it('renders label text', () => {
         render(<Label text="Username" />)
-        expect(screen.getByText('Username')).toBeInTheDocument()
+        const label = screen.getByText('Username')
+        expect(label).toBeInTheDocument()
     })
 
     it('renders with required prop showing asterisk', () => {

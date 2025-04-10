@@ -1,24 +1,18 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
+import { mockRegister } from '../../../../tests/mocks/form'
 import { RadioButtonItem, type RadioButtonItemProps } from '../RadioButtonItem'
 
 describe('RadioButtonItem', () => {
-    const mockRegister = {
-        name: 'test-option',
-        onBlur: vi.fn(),
-        onChange: vi.fn(),
-        ref: vi.fn(),
-    }
-
     const mockProps: RadioButtonItemProps = {
         id: 'option-1',
         label: 'Option 1',
         register: mockRegister,
     }
 
-    it('renders with the correct label', () => {
+    it('renders with the label correctly', () => {
         render(<RadioButtonItem {...mockProps} />)
 
         const label = screen.getByText(mockProps.label)

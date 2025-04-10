@@ -4,7 +4,7 @@ import { getYouTubeThumbnail } from '../../../utils/youtube'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
-interface TextareaSectionProps {
+export interface TextareaSectionProps {
     label: string
     register: UseFormRegisterReturn
     description?: string

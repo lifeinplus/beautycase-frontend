@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
+import { mockFieldError } from '../../../../tests/mocks/form'
 import {
     ButtonNavigateSection,
     type ButtonNavigateSectionProps,
@@ -38,14 +39,9 @@ describe('ButtonNavigateSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        const mockError = {
-            message: 'This field is required',
-            type: 'required',
-        }
+        render(<ButtonNavigateSection {...mockProps} error={mockFieldError} />)
 
-        render(<ButtonNavigateSection {...mockProps} error={mockError} />)
-
-        const error = screen.getByText(mockError.message)
+        const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
 
         const button = screen.getByRole('button')

@@ -5,6 +5,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 import { mockDispatch } from '../../tests/mocks/app'
 import { mockAuthResponse } from '../../tests/mocks/auth'
 import { useRefreshAuth } from '../useRefreshAuth'
+import { mockError } from '../../tests/mocks'
 
 describe('useRefreshAuth', () => {
     beforeEach(() => {
@@ -27,13 +28,12 @@ describe('useRefreshAuth', () => {
     })
 
     it('handles API errors gracefully', async () => {
-        const mockError = new Error('Network error')
         vi.mocked(axiosClient.get as Mock).mockRejectedValue(mockError)
 
         const { result } = renderHook(() => useRefreshAuth())
         const refreshAuth = result.current
 
-        await expect(refreshAuth()).rejects.toThrow('Network error')
+        await expect(refreshAuth()).rejects.toThrow(mockError.message)
         expect(mockDispatch).not.toHaveBeenCalled()
     })
 })

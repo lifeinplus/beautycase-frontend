@@ -2,6 +2,15 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
+import { mockError } from '../../../../tests/mocks'
+import {
+    mockClearErrors,
+    mockFieldError,
+    mockFile,
+    mockRegister,
+    mockSetValue,
+    mockUrl,
+} from '../../../../tests/mocks/form'
 import type { Questionnaire } from '../../../questionnaires/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
 import { type ImagePreviewProps } from '../ImagePreview'
@@ -25,10 +34,6 @@ vi.mock('../ImagePreview', () => ({
 }))
 
 describe('ImageTextSection', () => {
-    const mockClearErrors = vi.fn()
-    const mockRegister = vi.fn()
-    const mockSetValue = vi.fn()
-
     const mockProps: ImageTextSectionProps<Questionnaire> = {
         clearErrors: mockClearErrors,
         folder: 'questionnaires',
@@ -36,14 +41,11 @@ describe('ImageTextSection', () => {
         labelUrl: 'Makeup Bag Photo Url',
         name: 'makeupBag',
         nameUrl: 'makeupBagPhotoUrl',
-        register: mockRegister('makeupBag'),
-        registerUrl: mockRegister('makeupBagPhotoUrl'),
+        register: mockRegister,
+        registerUrl: mockRegister,
         setValue: mockSetValue,
     }
 
-    const mockFile = new File(['image'], 'image.png', { type: 'image/png' })
-
-    const mockUrl = 'https://example.com/image.jpg'
     const mockResult = { imageUrl: mockUrl }
 
     const mockUploadImageTemp = vi.fn(() => ({
@@ -75,14 +77,9 @@ describe('ImageTextSection', () => {
     })
 
     it('renders error message', () => {
-        const mockError = {
-            message: 'This field is required',
-            type: 'required',
-        }
+        render(<ImageTextSection {...mockProps} error={mockFieldError} />)
 
-        render(<ImageTextSection {...mockProps} error={mockError} />)
-
-        const error = screen.getByText(mockError.message)
+        const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
     })
 
@@ -119,8 +116,6 @@ describe('ImageTextSection', () => {
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
-
-        const mockError = new Error('Upload failed')
 
         const mockUploadImageTemp = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),

@@ -2,6 +2,15 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
+import { mockError } from '../../../../tests/mocks'
+import {
+    mockClearErrors,
+    mockFieldError,
+    mockFile,
+    mockRegister,
+    mockSetValue,
+    mockUrl,
+} from '../../../../tests/mocks/form'
 import type { Product } from '../../../products/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
 import { type ImagePreviewProps } from '../ImagePreview'
@@ -22,22 +31,15 @@ vi.mock('../ImagePreview', () => ({
 }))
 
 describe('ImageUrlSection', () => {
-    const mockClearErrors = vi.fn()
-    const mockRegister = vi.fn()
-    const mockSetValue = vi.fn()
-
     const mockProps: ImageUrlSectionProps<Product> = {
         clearErrors: mockClearErrors,
         folder: 'products',
         label: 'Image Url',
         name: 'imageUrl',
-        register: mockRegister('imageUrl'),
+        register: mockRegister,
         setValue: mockSetValue,
     }
 
-    const mockFile = new File(['image'], 'image.png', { type: 'image/png' })
-
-    const mockUrl = 'https://example.com/image.jpg'
     const mockResult = { imageUrl: mockUrl }
 
     const mockUploadImageTemp = vi.fn(() => ({
@@ -68,18 +70,13 @@ describe('ImageUrlSection', () => {
     })
 
     it('renders error message', () => {
-        const mockError = {
-            message: 'This field is required',
-            type: 'required',
-        }
+        render(<ImageUrlSection {...mockProps} error={mockFieldError} />)
 
-        render(<ImageUrlSection {...mockProps} error={mockError} />)
-
-        const error = screen.getByText(mockError.message)
+        const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
     })
 
-    it('renders image preview if imageUrl is present', () => {
+    it('renders image preview if value is provided', () => {
         render(<ImageUrlSection {...mockProps} value={mockUrl} />)
 
         const image = screen.getByTestId('image-preview') as HTMLImageElement
@@ -108,8 +105,6 @@ describe('ImageUrlSection', () => {
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
-
-        const mockError = new Error('Upload failed')
 
         const mockUploadImageTemp = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),

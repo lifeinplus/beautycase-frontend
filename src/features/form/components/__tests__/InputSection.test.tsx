@@ -1,18 +1,17 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
+import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
 import { InputSection, type InputSectionProps } from '../InputSection'
 
 describe('InputSection', () => {
-    const mockRegister = vi.fn()
-
     const mockProps: InputSectionProps = {
         label: 'Test Label',
-        register: mockRegister('testName'),
+        register: mockRegister,
         type: 'text',
     }
 
-    it('renders with required label and input', () => {
+    it('renders with the label and input correctly', () => {
         render(<InputSection {...mockProps} />)
 
         const label = screen.getByLabelText(mockProps.label)
@@ -34,14 +33,9 @@ describe('InputSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        const mockError = {
-            message: 'This field is required',
-            type: 'required',
-        }
+        render(<InputSection {...mockProps} error={mockFieldError} />)
 
-        render(<InputSection {...mockProps} error={mockError} />)
-
-        const error = screen.getByText(mockError.message)
+        const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
         expect(error).toHaveClass('form-error')
 

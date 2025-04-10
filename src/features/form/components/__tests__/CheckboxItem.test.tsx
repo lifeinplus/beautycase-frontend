@@ -1,17 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect } from 'vitest'
 
+import { mockRegister } from '../../../../tests/mocks/form'
 import { CheckboxItem, type CheckboxItemProps } from '../CheckboxItem'
 
 describe('CheckboxItem', () => {
-    const mockRegister = {
-        name: 'test-name',
-        onChange: vi.fn(),
-        onBlur: vi.fn(),
-        ref: vi.fn(),
-    }
-
     const mockProps: CheckboxItemProps = {
         id: 'test-id',
         label: 'Test Label',

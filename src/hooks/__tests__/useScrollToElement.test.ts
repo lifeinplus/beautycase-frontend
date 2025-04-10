@@ -1,9 +1,8 @@
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { mockScrollTo } from '../../tests/mocks'
 import { mockNavigate } from '../../tests/mocks/router'
-import { mockScrollTo } from '../../tests/setup'
-
 import { useScrollToElement } from '../useScrollToElement'
 
 describe('useScrollToElement', () => {

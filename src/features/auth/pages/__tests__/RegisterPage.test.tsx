@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { mockError } from '../../../../tests/mocks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import {
@@ -126,8 +127,6 @@ describe('RegisterPage', () => {
         const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
-
-        const mockError = new Error('Registration failed')
 
         const mockRegisterUser = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),

@@ -23,7 +23,7 @@
 }
 
 .content-description {
-    @apply px-4 text-sm;
+    @apply my-3 px-4 text-sm;
 }
 
 .title-container {

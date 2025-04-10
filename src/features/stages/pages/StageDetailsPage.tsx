@@ -43,10 +43,14 @@ export const StageDetailsPage = () => {
                 </section>
             }
             descriptionContent={
-                <section className="content-description">
-                    {data?.comment && <p>{data?.comment}</p>}
+                <>
+                    {data?.comment && (
+                        <section className="content-description">
+                            <p>{data?.comment}</p>
+                        </section>
+                    )}
                     {data?.steps?.length ? (
-                        <>
+                        <section className="content-description">
                             <p className="my-2 font-bold sm:text-left">Шаги</p>
                             <ul className="ms-5 list-outside list-decimal">
                                 {data.steps.map(
@@ -55,9 +59,9 @@ export const StageDetailsPage = () => {
                                     )
                                 )}
                             </ul>
-                        </>
+                        </section>
                     ) : undefined}
-                </section>
+                </>
             }
             additionalContent={
                 <div className="gallery-container">

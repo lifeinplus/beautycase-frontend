@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Stage } from '../../../features/stages'
+import type { Stage } from '../../../features/stages/types'
 
 export const mockStage: Stage = {
     _id: '1',

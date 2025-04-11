@@ -5,9 +5,10 @@ import { describe, expect, it } from 'vitest'
 import {
     mockMakeupBag,
     mockMakeupBags,
-    renderHookWithProvider,
-    server,
-} from '../../../tests'
+} from '../../../tests/mocks/handlers/makeupBagsHandlers'
+import { server } from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+
 import {
     useAddMakeupBagMutation,
     useDeleteMakeupBagMutation,

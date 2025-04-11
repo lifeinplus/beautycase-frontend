@@ -7,11 +7,13 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import { selectFormData, setFormData } from '../../form'
-import { type StoreLink, useReadStoresQuery } from '../../stores'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import { useReadStoresQuery } from '../storesApiSlice'
+import type { StoreLink } from '../types'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -137,6 +139,7 @@ export const StoreLinkAddPage = () => {
                                             value={link}
                                         />
                                         <input
+                                            aria-label="Link Input"
                                             className="form-input hidden sm:block"
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
@@ -148,6 +151,7 @@ export const StoreLinkAddPage = () => {
                                     </div>
                                     <div className="sm:col-span-2">
                                         <button
+                                            aria-label="Delete Button"
                                             className="form-button"
                                             onClick={() => handleDelete(index)}
                                             type="button"
@@ -160,6 +164,7 @@ export const StoreLinkAddPage = () => {
                         })}
                         <div className="px-3">
                             <button
+                                aria-label="Add Button"
                                 className="form-button"
                                 onClick={handleAdd}
                                 type="button"

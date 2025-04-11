@@ -1,6 +1,6 @@
 import { UseFormRegisterReturn } from 'react-hook-form'
 
-interface RadioButtonItemProps {
+export interface RadioButtonItemProps {
     id: string
     label: string
     register: UseFormRegisterReturn

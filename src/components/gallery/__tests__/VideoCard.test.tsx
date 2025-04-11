@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { VideoCard } from '../VideoCard'
-import { renderWithRouter } from '../../../tests'
+import { renderWithRouter } from '../../../tests/mocks/wrappers'
 
-vi.mock('../../../utils', () => ({
+vi.mock('../../../utils/youtube', () => ({
     getYouTubeThumbnail: vi.fn(
         (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`
     ),

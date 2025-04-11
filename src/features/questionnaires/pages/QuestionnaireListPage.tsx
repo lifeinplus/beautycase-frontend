@@ -1,9 +1,10 @@
-import { AdaptiveNavBar, DataWrapper, Header, Hero } from '../../../components'
-import {
-    QuestionnaireMobileView,
-    QuestionnaireTable,
-    useGetQuestionnairesQuery,
-} from '../../questionnaires'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { QuestionnaireMobileView } from '../components/QuestionnaireMobileView'
+import { QuestionnaireTable } from '../components/QuestionnaireTable'
+import { useGetQuestionnairesQuery } from '../questionnaireApiSlice'
 
 export const QuestionnaireListPage = () => {
     const { data, isLoading, error } = useGetQuestionnairesQuery()

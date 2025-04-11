@@ -3,14 +3,14 @@ import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData, selectIsDirty, setFormData } from '../../form'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
+import { ProductForm } from '../components/ProductForm'
 import {
-    type Product,
-    ProductForm,
     useEditProductMutation,
     useGetProductByIdQuery,
-} from '../../products'
+} from '../productApiSlice'
+import type { Product } from '../types'
 
 export const ProductEditPage = () => {
     const { id } = useParams()

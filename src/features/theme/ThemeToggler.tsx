@@ -1,7 +1,6 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
-
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { selectDarkMode, toggleTheme } from '.'
+import { selectDarkMode, toggleTheme } from './themeSlice'
 
 export function ThemeToggler() {
     const dispatch = useAppDispatch()

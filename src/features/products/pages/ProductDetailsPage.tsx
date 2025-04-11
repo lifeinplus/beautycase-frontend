@@ -1,11 +1,11 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useParams } from 'react-router-dom'
-
-import { DetailsPage, Image } from '../../../components'
+import { DetailsPage } from '../../../components/pages/DetailsPage'
+import { Image } from '../../../components/ui/Image'
 import {
     useDeleteProductMutation,
     useGetProductByIdQuery,
-} from '../../products'
+} from '../productApiSlice'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
@@ -30,15 +30,23 @@ export const ProductDetailsPage = () => {
                 </section>
             }
             descriptionContent={
-                <section className="content-description">
-                    {data?.shade && <p>{`Оттенок: ${data?.shade}`}</p>}
-                    {data?.comment && <p>{data?.comment}</p>}
-                </section>
+                <>
+                    {data?.shade && (
+                        <section className="content-description">
+                            <p>{`Оттенок: ${data?.shade}`}</p>
+                        </section>
+                    )}
+                    {data?.comment && (
+                        <section className="content-description">
+                            <p>{data?.comment}</p>
+                        </section>
+                    )}
+                </>
             }
             additionalContent={
                 data?.storeLinks?.length !== 0 && (
                     <section className="content-description">
-                        <p className="my-3 font-bold">Ссылки на товар</p>
+                        <p className="mb-3 font-bold">Ссылки на товар</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.storeLinks?.map((l, i) => (
                                 <a

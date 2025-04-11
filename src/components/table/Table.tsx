@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-import type { Header } from '../../types'
+import type { Header } from '../../types/table'
 
 interface TableProps<T> {
     headers: Header[]

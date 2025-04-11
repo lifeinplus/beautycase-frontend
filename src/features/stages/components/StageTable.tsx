@@ -1,6 +1,7 @@
-import { Table, TableRow } from '../../../components'
-import type { Header } from '../../../types'
-import { formatDate } from '../../../utils'
+import { Table } from '../../../components/table/Table'
+import { TableRow } from '../../../components/table/TableRow'
+import type { Header } from '../../../types/table'
+import { formatDate } from '../../../utils/date'
 import type { Stage } from '../types'
 
 interface StageTableProps {

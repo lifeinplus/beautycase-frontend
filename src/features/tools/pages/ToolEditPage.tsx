@@ -3,14 +3,11 @@ import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData, selectIsDirty, setFormData } from '../../form'
-import {
-    type Tool,
-    ToolForm,
-    useEditToolMutation,
-    useGetToolByIdQuery,
-} from '../../tools'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
+import { ToolForm } from '../components/ToolForm'
+import { useEditToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
+import type { Tool } from '../types'
 
 export const ToolEditPage = () => {
     const { id } = useParams()

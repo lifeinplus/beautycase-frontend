@@ -1,16 +1,15 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useParams, useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData, selectIsDirty, setFormData } from '../../form'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
+import { StageForm } from '../components/StageForm'
 import {
-    type Stage,
-    StageForm,
     useReadStageByIdQuery,
     useUpdateStageMutation,
-} from '../../stages'
+} from '../stagesApiSlice'
+import type { Stage } from '../types'
 
 export const StageEditPage = () => {
     const navigate = useNavigate()

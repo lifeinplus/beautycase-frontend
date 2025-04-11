@@ -1,18 +1,17 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-
 import { useAppSelector } from '../../../../app/hooks'
+import { mockUserResult } from '../../../../tests/mocks/handlers/usersHandlers'
 import {
-    mockUserResult,
     renderWithProvider,
     renderWithProviderAndRouter,
-} from '../../../../tests'
-import { selectUserId } from '../../../auth'
+} from '../../../../tests/mocks/wrappers'
+import { selectUserId } from '../../../auth/authSlice'
 import { AccountPage } from '../AccountPage'
 
 const mockUseGetUserByIdQuery = vi.fn()
 
-vi.mock('../../../users', async () => ({
+vi.mock('../../../users/usersApiSlice', async () => ({
     useGetUserByIdQuery: () => mockUseGetUserByIdQuery(),
 }))
 

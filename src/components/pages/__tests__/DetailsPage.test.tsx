@@ -4,14 +4,29 @@ import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
-import { selectRole, selectUsername } from '../../../features/auth'
-import { clearFormData } from '../../../features/form'
-import { mockDispatch, mockNavigate, renderWithProvider } from '../../../tests'
-import { getErrorMessage } from '../../../utils'
-import { DetailsPage } from '../DetailsPage'
+import { selectRole, selectUsername } from '../../../features/auth/authSlice'
+import { clearFormData } from '../../../features/form/formSlice'
+import { mockError } from '../../../tests/mocks'
+import { mockDispatch } from '../../../tests/mocks/app'
+import { mockNavigate } from '../../../tests/mocks/router'
+import { renderWithProvider } from '../../../tests/mocks/wrappers'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { type TopPanelProps } from '../../TopPanel'
+import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
+
+vi.mock('../../TopPanel', () => ({
+    TopPanel: ({ title, onBack }: TopPanelProps) => (
+        <div data-testid="top-panel">
+            <button data-testid="back-button" onClick={onBack}>
+                Back
+            </button>
+            <h2>{title}</h2>
+        </div>
+    ),
+}))
 
 vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 describe('DetailsPage', () => {
@@ -22,11 +37,11 @@ describe('DetailsPage', () => {
         <div data-testid="media-content">Media Content</div>
     )
 
-    const mockProps = {
+    const mockProps: DetailsPageProps = {
         redirectPath: '/products',
-        topPanelTitle: 'Top Panel Title',
-        title: 'Title',
-        subtitle: 'Subtitle',
+        topPanelTitle: 'Test Top Panel Title',
+        title: 'Test Title',
+        subtitle: 'Test Subtitle',
         description: 'Test Description',
         isLoading: false,
         error: null,
@@ -46,12 +61,7 @@ describe('DetailsPage', () => {
     it('renders the component with all elements', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        expect(
-            screen.getByRole('heading', {
-                level: 2,
-                name: mockProps.topPanelTitle,
-            })
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
 
         expect(
             screen.getByRole('heading', {
@@ -60,8 +70,8 @@ describe('DetailsPage', () => {
             })
         ).toBeInTheDocument()
 
-        expect(screen.getByText(mockProps.subtitle)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
         expect(screen.getByTestId('media-content')).toBeInTheDocument()
         expect(screen.getByRole('complementary')).toBeInTheDocument()
     })
@@ -73,19 +83,17 @@ describe('DetailsPage', () => {
     })
 
     it('shows loading state when isLoading is true', () => {
-        renderWithProvider(<DetailsPage {...mockProps} isLoading={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} isLoading />)
 
         expect(screen.getByText('Загрузка...')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('shows error state when error is present', () => {
-        const error = 'Something went wrong'
+        renderWithProvider(<DetailsPage {...mockProps} error={mockError} />)
 
-        renderWithProvider(<DetailsPage {...mockProps} error={error} />)
-
-        expect(getErrorMessage).toHaveBeenCalledWith(error)
-        expect(screen.getByText(error)).toBeInTheDocument()
+        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+        expect(screen.getByText(mockError.message)).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
@@ -119,11 +127,11 @@ describe('DetailsPage', () => {
     })
 
     it('navigates to edit page when edit button is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await userEvent.click(
-            screen.getByRole('button', { name: 'Редактировать' })
-        )
+        await user.click(screen.getByRole('button', { name: 'Редактировать' }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/edit/123')
     })
@@ -139,7 +147,7 @@ describe('DetailsPage', () => {
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
 
@@ -167,7 +175,7 @@ describe('DetailsPage', () => {
     it('handles successful item duplication', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={true} />)
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: 'Дублировать' }))
         await user.click(screen.getByLabelText('Modal duplicate button'))

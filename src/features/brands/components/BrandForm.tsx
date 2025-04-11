@@ -6,17 +6,17 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { Button } from '../../../components/ui/Button'
-import { getErrorMessage } from '../../../utils'
-import { clearFormData, type FormRef, selectFormData } from '../../form'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { clearFormData, selectFormData } from '../../form/formSlice'
+import type { FormRef } from '../../form/types'
 import {
-    type Brand,
-    brandSchema,
     useCreateBrandMutation,
     useUpdateBrandMutation,
-} from '../../brands'
+} from '../brandsApiSlice'
+import type { Brand } from '../types'
+import { brandSchema } from '../validations'
 
 export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
@@ -40,7 +40,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
     })
 
     const dispatch = useAppDispatch()
-    const formData = useAppSelector(selectFormData) as Brand
+    const formData = useAppSelector(selectFormData) as Brand | undefined
 
     useEffect(() => {
         reset(formData)
@@ -91,7 +91,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                     type="text"
                 />
 
-                {formData._id ? (
+                {formData?._id ? (
                     <Button
                         className="min-w-28"
                         onClick={handleSubmit(handleUpdateBrand)}

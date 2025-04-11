@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-
 import { useAppSelector } from '../../../app/hooks'
-import { canAccess, menuItems } from '../../../utils'
-import { selectRole, selectUsername, useAuthLogout } from '../../auth'
+import { canAccess, menuItems } from '../../../utils/menu'
+import { selectRole, selectUsername } from '../../auth/authSlice'
+import { useAuthLogout } from '../../auth/hooks/useAuthLogout'
 import { HomeButton } from '../components/HomeButton'
 
 export const HomePage = () => {

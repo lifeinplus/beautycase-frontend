@@ -1,9 +1,12 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
-import { DetailsPage, Image } from '../../../components'
-import { getYouTubeEmbedUrl } from '../../../utils'
-import { Product } from '../../products'
-import { useDeleteLessonMutation, useGetLessonByIdQuery } from '../../lessons'
+import { DetailsPage } from '../../../components/pages/DetailsPage'
+import { Image } from '../../../components/ui/Image'
+import { getYouTubeEmbedUrl } from '../../../utils/youtube'
+import type { Product } from '../../products/types'
+import {
+    useDeleteLessonMutation,
+    useGetLessonByIdQuery,
+} from '../lessonsApiSlice'
 
 export const LessonDetailsPage = () => {
     const { pathname } = useLocation()

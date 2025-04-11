@@ -1,7 +1,7 @@
-import type { MutationResult, QueryResult } from '../../types'
-import { cleanObject } from '../../utils'
+import type { MutationResult, QueryResult } from '../../types/api'
+import { cleanObject } from '../../utils/common'
 import { apiSlice } from '../api/apiSlice'
-import { type Stage } from '../stages'
+import type { Stage } from './types'
 
 const stagesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

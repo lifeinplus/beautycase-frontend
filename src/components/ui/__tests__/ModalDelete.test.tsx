@@ -1,14 +1,14 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { ModalDelete } from '../ModalDelete'
+import { ModalDelete, type ModalDeleteProps } from '../ModalDelete'
 
 describe('ModalDelete', () => {
-    const mockProps = {
-        description: 'Are you sure?',
+    const mockProps: ModalDeleteProps = {
+        description: 'Test Description',
         isOpen: true,
         onCancel: vi.fn(),
         onConfirm: vi.fn(),
-        title: 'Delete Item',
+        title: 'Test Title',
     }
 
     afterEach(() => {
@@ -26,8 +26,9 @@ describe('ModalDelete', () => {
 
     it('renders when isOpen is true', () => {
         render(<ModalDelete {...mockProps} />)
-        expect(screen.getByText('Delete Item')).toBeInTheDocument()
-        expect(screen.getByText('Are you sure?')).toBeInTheDocument()
+
+        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
         expect(screen.getByText('Удалить')).toBeInTheDocument()
         expect(screen.getByText('Отмена')).toBeInTheDocument()
     })

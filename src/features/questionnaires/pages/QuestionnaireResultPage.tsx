@@ -1,18 +1,13 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useNavigate, useParams } from 'react-router-dom'
-
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Hero,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { formatDate } from '../../../utils'
-import {
-    QuestionnaireResult,
-    useGetQuestionnaireByIdQuery,
-} from '../../questionnaires'
+import { TopPanel } from '../../../components/TopPanel'
+import { Hero } from '../../../components/Hero'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { formatDate } from '../../../utils/date'
+import { QuestionnaireResult } from '../components/QuestionnaireResult'
+import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
 
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()

@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useRef } from 'react'
 
-interface ModalDuplicateProps {
+export interface ModalDuplicateProps {
     description: string
     isOpen: boolean
     onConfirm: () => void

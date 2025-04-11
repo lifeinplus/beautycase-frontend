@@ -1,5 +1,5 @@
-import { MobileView } from '../../../components'
-import { formatDate } from '../../../utils'
+import { MobileView } from '../../../components/table/MobileView'
+import { formatDate } from '../../../utils/date'
 import type { MakeupBag } from '../types'
 
 interface MakeupBagMobileViewProps {

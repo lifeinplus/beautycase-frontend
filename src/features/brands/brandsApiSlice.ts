@@ -1,6 +1,6 @@
-import type { MutationResult, QueryResult } from '../../types'
-import { apiSlice } from '../api'
-import { type Brand } from '../brands'
+import type { MutationResult, QueryResult } from '../../types/api'
+import { apiSlice } from '../api/apiSlice'
+import type { Brand } from './types'
 
 const brandsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({

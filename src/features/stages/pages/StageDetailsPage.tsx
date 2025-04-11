@@ -1,12 +1,12 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-
-import { DetailsPage, Image } from '../../../components'
-import { Product } from '../../products'
+import { DetailsPage } from '../../../components/pages/DetailsPage'
+import { Image } from '../../../components/ui/Image'
+import type { Product } from '../../products/types'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
     useReadStageByIdQuery,
-} from '../../stages'
+} from '../stagesApiSlice'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()
@@ -43,10 +43,14 @@ export const StageDetailsPage = () => {
                 </section>
             }
             descriptionContent={
-                <section className="content-description">
-                    {data?.comment && <p>{data?.comment}</p>}
+                <>
+                    {data?.comment && (
+                        <section className="content-description">
+                            <p>{data?.comment}</p>
+                        </section>
+                    )}
                     {data?.steps?.length ? (
-                        <>
+                        <section className="content-description">
                             <p className="my-2 font-bold sm:text-left">Шаги</p>
                             <ul className="ms-5 list-outside list-decimal">
                                 {data.steps.map(
@@ -55,9 +59,9 @@ export const StageDetailsPage = () => {
                                     )
                                 )}
                             </ul>
-                        </>
+                        </section>
                     ) : undefined}
-                </section>
+                </>
             }
             additionalContent={
                 <div className="gallery-container">

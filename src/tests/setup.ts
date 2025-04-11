@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest'
 
+import { mockScrollTo } from './mocks'
 import { mockApi } from './mocks/api'
 import { mockApp } from './mocks/app'
 import { mockAuth } from './mocks/auth'
@@ -15,8 +16,6 @@ vi.mock('react-hot-toast', async () => ({
         error: vi.fn(),
     },
 }))
-
-export const mockScrollTo = vi.fn()
 
 mockApi()
 mockApp()

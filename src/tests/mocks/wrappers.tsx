@@ -2,9 +2,8 @@ import { render, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-
 import { store } from '../../app/store'
-import { TableRow, type TableRowProps } from '../../components'
+import { TableRow, type TableRowProps } from '../../components/table/TableRow'
 
 interface ProviderWrapperProps {
     children: ReactNode

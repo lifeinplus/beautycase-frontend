@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { Table } from '../Table'
-import type { Header } from '../../../types'
+import type { Header } from '../../../types/table'
 
 interface TestItem {
     id: number

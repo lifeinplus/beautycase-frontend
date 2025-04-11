@@ -1,7 +1,7 @@
 import { vi } from 'vitest'
 
 export const mockApi = () => {
-    vi.mock('../../features/api', async (importOriginal) => {
+    vi.mock('../../features/api/axiosClient', async (importOriginal) => {
         const actual = await importOriginal()
 
         return {

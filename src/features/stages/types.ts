@@ -1,4 +1,4 @@
-import type { Product } from '../products'
+import type { Product } from '../products/types'
 
 export interface Stage {
     _id?: string

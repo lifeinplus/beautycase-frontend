@@ -4,12 +4,18 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockNavigate, renderWithRouter } from '../../../../tests'
+import { mockError } from '../../../../tests/mocks'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import {
     type AuthResultRegister,
     useRegisterUserMutation,
 } from '../../authApiSlice'
 import { RegisterPage } from '../RegisterPage'
+
+vi.mock('../../../../utils/errorUtils', () => ({
+    getErrorMessage: vi.fn((error) => error.message),
+}))
 
 vi.mock('../../authApiSlice', () => ({
     useRegisterUserMutation: vi.fn(),
@@ -45,7 +51,7 @@ describe('RegisterPage', () => {
     }))
 
     beforeEach(() => {
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
@@ -122,13 +128,11 @@ describe('RegisterPage', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockError = new Error('Registration failed')
-
         const mockRegisterUser = vi.fn(() => ({
             unwrap: () => Promise.reject(mockError),
         }))
 
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
@@ -151,13 +155,13 @@ describe('RegisterPage', () => {
 
         expect(mockRegisterUser).toHaveBeenCalledTimes(1)
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
     })
 
     it('disables submit button while loading', async () => {
-        ;(useRegisterUserMutation as Mock).mockReturnValue([
+        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: true },
         ])

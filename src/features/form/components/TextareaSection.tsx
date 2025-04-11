@@ -1,11 +1,10 @@
 import classNames from 'classnames'
 import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
-
-import { getYouTubeThumbnail } from '../../../utils'
+import { getYouTubeThumbnail } from '../../../utils/youtube'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
-interface TextareaSectionProps {
+export interface TextareaSectionProps {
     label: string
     register: UseFormRegisterReturn
     description?: string

@@ -4,7 +4,7 @@ import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
 import { Label } from './Label'
 import type { SelectOption } from '../types'
 
-interface SelectSectionProps {
+export interface SelectSectionProps {
     label: string
     register: UseFormRegisterReturn
     description?: string

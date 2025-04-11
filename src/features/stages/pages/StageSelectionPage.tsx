@@ -1,18 +1,16 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Image,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { selectFormData, setFormData } from '../../form'
-import { useReadStagesQuery, type Stage } from '../../stages'
-import { useGetMakeupBagsQuery } from '../../makeupBags'
+import { Image } from '../../../components/ui/Image'
+import { TopPanel } from '../../../components/TopPanel'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
+import { useReadStagesQuery } from '../stagesApiSlice'
+import type { Stage } from '../types'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()

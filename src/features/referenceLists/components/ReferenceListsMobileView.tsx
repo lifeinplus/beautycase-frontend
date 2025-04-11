@@ -1,5 +1,5 @@
-import { MobileView } from '../../../components'
-import { type ReferenceList } from '../../referenceLists'
+import { MobileView } from '../../../components/table/MobileView'
+import type { ReferenceList } from '../types'
 
 interface ReferenceListsMobileViewProps {
     data?: ReferenceList[]

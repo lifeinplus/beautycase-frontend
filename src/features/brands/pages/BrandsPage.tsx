@@ -4,24 +4,22 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import {
-    AdaptiveNavBar,
-    DataWrapper,
-    Hero,
-    ModalDelete,
-    NavigationButton,
-    TopPanel,
-} from '../../../components'
-import { getErrorMessage } from '../../../utils'
-import {
-    type Brand,
-    BrandForm,
-    BrandsMobileView,
-    BrandsTable,
-    useDeleteBrandMutation,
-    useReadBrandsQuery,
-} from '../../brands'
-import { clearFormData, type FormRef, setFormData } from '../../form'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { Hero } from '../../../components/Hero'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { ModalDelete } from '../../../components/ui/ModalDelete'
+import { getErrorMessage } from '../../../utils/errorUtils'
+
+import { clearFormData, setFormData } from '../../form/formSlice'
+import type { FormRef } from '../../form/types'
+
+import { useDeleteBrandMutation, useReadBrandsQuery } from '../brandsApiSlice'
+import { BrandForm } from '../components/BrandForm'
+import { BrandsMobileView } from '../components/BrandsMobileView'
+import { BrandsTable } from '../components/BrandsTable'
+import type { Brand } from '../types'
 
 export const BrandsPage = () => {
     const navigate = useNavigate()

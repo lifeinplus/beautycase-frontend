@@ -1,8 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-
-import { renderWithRouter } from '../../../tests'
-import { formatDate } from '../../../utils'
+import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import { formatDate } from '../../../utils/date'
 import { MobileView } from '../MobileView'
 
 describe('MobileView', () => {

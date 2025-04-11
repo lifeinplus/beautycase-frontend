@@ -2,7 +2,8 @@ import { render } from '@testing-library/react'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { mockLocation, mockScrollTo } from '../../tests'
+import { mockScrollTo } from '../../tests/mocks'
+import { mockLocation } from '../../tests/mocks/router'
 import { ScrollToTop } from '../ScrollToTop'
 
 describe('ScrollToTop', () => {

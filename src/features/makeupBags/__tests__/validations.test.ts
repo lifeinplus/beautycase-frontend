@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
+import { mockMakeupBag } from '../../../tests/mocks/handlers/makeupBagsHandlers'
+
 import { makeupBagSchema } from '../validations'
-import { mockMakeupBag } from '../../../tests'
 
 describe('makeupBagSchema validation', () => {
     it('should validate when all required fields are present and valid', async () => {

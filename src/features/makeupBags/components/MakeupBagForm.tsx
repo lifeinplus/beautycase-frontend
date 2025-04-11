@@ -3,19 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { type FieldError, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import { useGetCategoriesQuery } from '../../categories'
-import {
-    ButtonNavigateSection,
-    selectFormData,
-    type SelectOption,
-    SelectSection,
-    setFormData,
-} from '../../form'
-import { makeupBagSchema, type MakeupBag } from '../../makeupBags'
-import { useGetUsersQuery } from '../../users'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { useGetCategoriesQuery } from '../../categories/categoriesApiSlice'
+import { SelectSection } from '../../form/components/SelectSection'
+import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import type { SelectOption } from '../../form/types'
+import { useGetUsersQuery } from '../../users/usersApiSlice'
+import type { MakeupBag } from '../types'
+import { makeupBagSchema } from '../validations'
 
 interface MakeupBagFormProps {
     title: string

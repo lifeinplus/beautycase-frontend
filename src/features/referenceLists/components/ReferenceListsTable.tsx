@@ -1,6 +1,7 @@
-import { Table, TableRow } from '../../../components'
-import type { Header } from '../../../types'
-import { type ReferenceList } from '../../referenceLists'
+import { Table } from '../../../components/table/Table'
+import { TableRow } from '../../../components/table/TableRow'
+import type { Header } from '../../../types/table'
+import type { ReferenceList } from '../types'
 
 interface ReferenceListsTableProps {
     data?: ReferenceList[]

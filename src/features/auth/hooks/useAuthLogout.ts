@@ -1,8 +1,7 @@
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils'
+import { getErrorMessage } from '../../../utils/errorUtils'
 import { useLogoutUserMutation } from '../authApiSlice'
 import { logout } from '../authSlice'
 

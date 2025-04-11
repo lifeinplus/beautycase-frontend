@@ -1,6 +1,5 @@
 import { http, HttpResponse } from 'msw'
-
-import { type Tool } from '../../../features/tools'
+import type { Tool } from '../../../features/tools/types'
 
 export const mockTool: Tool = {
     _id: '1',

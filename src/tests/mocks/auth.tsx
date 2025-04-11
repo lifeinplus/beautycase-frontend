@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
-import { type AuthState } from '../../features/auth'
+import { type AuthState } from '../../features/auth/authSlice'
 
 export const mockAuthResponse: AuthState = {
     accessToken: 'mock-access-token',

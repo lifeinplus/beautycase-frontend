@@ -3,18 +3,17 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar, NavigationButton, TopPanel } from '../../../components'
-import {
-    ButtonNavigateSection,
-    ImageUrlSection,
-    InputSection,
-    selectFormData,
-    setFormData,
-    TextareaSection,
-} from '../../form'
-import { stageSchema, type Stage } from '../../stages'
+import { TopPanel } from '../../../components/TopPanel'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
+import { InputSection } from '../../form/components/InputSection'
+import { ImageUrlSection } from '../../form/components/ImageUrlSection'
+import { TextareaSection } from '../../form/components/TextareaSection'
+import { selectFormData, setFormData } from '../../form/formSlice'
+import type { Stage } from '../types'
+import { stageSchema } from '../validations'
 
 interface StageFormProps {
     onSubmit: (data: Stage) => void

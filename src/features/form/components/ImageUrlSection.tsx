@@ -11,13 +11,12 @@ import {
     type UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
-
-import { getErrorMessage } from '../../../utils'
-import { useUploadImageTempMutation } from '../../uploads'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { useUploadImageTempMutation } from '../../uploads/uploadApiSlice'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
-interface ImageUrlSectionProps<T extends FieldValues> {
+export interface ImageUrlSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
     folder: 'products' | 'stages' | 'tools'
     label: string

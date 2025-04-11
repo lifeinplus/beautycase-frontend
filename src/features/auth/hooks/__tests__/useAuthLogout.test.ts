@@ -2,13 +2,15 @@ import { renderHook, act } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch, mockNavigate } from '../../../../tests'
+import { mockError } from '../../../../tests/mocks'
+import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockNavigate } from '../../../../tests/mocks/router'
 import { useLogoutUserMutation } from '../../authApiSlice'
 import { logout } from '../../authSlice'
 import { useAuthLogout } from '../useAuthLogout'
 
 vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 vi.mock('../../authApiSlice', () => ({
@@ -19,7 +21,9 @@ describe('useAuthLogout', () => {
     const mockLogoutUser = vi.fn().mockResolvedValue({})
 
     beforeEach(() => {
-        ;(useLogoutUserMutation as Mock).mockReturnValue([mockLogoutUser])
+        vi.mocked(useLogoutUserMutation as Mock).mockReturnValue([
+            mockLogoutUser,
+        ])
     })
 
     it('logs out user, dispatches logout, and navigates to the redirect path', async () => {
@@ -37,8 +41,6 @@ describe('useAuthLogout', () => {
     })
 
     it('handles errors correctly when logout fails', async () => {
-        const mockError = new Error('Logout failed')
-
         mockLogoutUser.mockRejectedValue(mockError)
 
         const mockConsoleError = vi
@@ -52,7 +54,7 @@ describe('useAuthLogout', () => {
         })
 
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(expect.any(String))
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
         expect(mockNavigate).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
 

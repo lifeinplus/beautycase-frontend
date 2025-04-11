@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { getErrorMessage } from '../../utils'
+import { getErrorMessage } from '../../utils/errorUtils'
 import { DataWrapper } from '../DataWrapper'
+import { mockError } from '../../tests/mocks'
 
 vi.mock('../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => String(error)),
+    getErrorMessage: vi.fn((error) => error.message),
 }))
 
 const mockData = { id: 1, name: 'Test' }
 const mockDataArrray = [mockData]
 
-const mockError = new Error('Test error')
 const mockEmptyMessage = 'No data available'
 
 const mockChildren = <div data-testid="children-content">Test Content</div>
@@ -20,7 +20,7 @@ describe('DataWrapper', () => {
     it('renders loading state', () => {
         render(
             <DataWrapper
-                isLoading={true}
+                isLoading
                 error={null}
                 data={undefined}
                 emptyMessage={mockEmptyMessage}
@@ -50,7 +50,7 @@ describe('DataWrapper', () => {
 
         expect(getErrorMessage).toHaveBeenCalledWith(mockError)
 
-        const errorElement = screen.getByText('Error: Test error')
+        const errorElement = screen.getByText(mockError.message)
         expect(errorElement).toBeInTheDocument()
 
         const childrenElement = screen.queryByTestId('children-content')
@@ -128,7 +128,7 @@ describe('DataWrapper', () => {
     it('prioritizes loading state over error and empty states', () => {
         render(
             <DataWrapper
-                isLoading={true}
+                isLoading
                 error={mockError}
                 data={undefined}
                 emptyMessage={mockEmptyMessage}
@@ -155,7 +155,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const errorElement = screen.getByText('Error: Test error')
+        const errorElement = screen.getByText(mockError.message)
         expect(errorElement).toBeInTheDocument()
         expect(getErrorMessage).toHaveBeenCalledWith(mockError)
     })

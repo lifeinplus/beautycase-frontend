@@ -2,16 +2,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-
-import { AdaptiveNavBar, Header, Hero } from '../../../components'
-import { getErrorMessage } from '../../../utils'
-import {
-    CheckboxSection,
-    ImageTextSection,
-    InputSection,
-    RadioButtonSection,
-    TextareaSection,
-} from '../../form'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { getErrorMessage } from '../../../utils/errorUtils'
+import { CheckboxSection } from '../../form/components/CheckboxSection'
+import { InputSection } from '../../form/components/InputSection'
+import { ImageTextSection } from '../../form/components/ImageTextSection'
+import { RadioButtonSection } from '../../form/components/RadioButtonSection'
+import { TextareaSection } from '../../form/components/TextareaSection'
 import { options } from '../options'
 import type { Questionnaire } from '../types'
 import { questionnaireSchema } from '../validations'

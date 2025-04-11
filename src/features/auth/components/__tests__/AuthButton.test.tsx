@@ -2,8 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockHandleLogout, mockNavigate } from '../../../../tests'
+import { mockHandleLogout } from '../../../../tests/mocks/auth'
+import { mockNavigate } from '../../../../tests/mocks/router'
+
 import { useAuthLogout } from '../../hooks/useAuthLogout'
+
 import { AuthButton } from '../AuthButton'
 
 vi.mock('../../hooks/useAuthLogout', () => ({

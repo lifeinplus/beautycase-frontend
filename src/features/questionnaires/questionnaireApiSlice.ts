@@ -1,5 +1,5 @@
-import type { MutationResult } from '../../types'
-import { cleanObject } from '../../utils'
+import type { MutationResult } from '../../types/api'
+import { cleanObject } from '../../utils/common'
 import { apiSlice } from '../api/apiSlice'
 import { Questionnaire } from './types'
 

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-
-import { Image } from '../../components'
-import { getYouTubeThumbnail } from '../../utils'
+import { Image } from '../../components/ui/Image'
+import { getYouTubeThumbnail } from '../../utils/youtube'
 
 interface Video {
     shortDescription: string

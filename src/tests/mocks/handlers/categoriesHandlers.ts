@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { type Category } from '../../../features/categories'
+import type { Category } from '../../../features/categories/types'
 
 export const mockCategories: Category[] = [
     {

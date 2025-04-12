@@ -1,5 +1,7 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { mockNavigate } from '../../../tests/mocks/router'
@@ -56,11 +58,16 @@ describe('AdaptiveNavBar', () => {
         ).toBeInTheDocument()
     })
 
-    it('calls navigate when a menu item is clicked', () => {
+    it('calls navigate when a menu item is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Этапы/i }))
-        fireEvent.click(screen.getByRole('button', { name: /Уроки/i }))
+        const btnStages = screen.getByRole('button', { name: /Этапы/i })
+        const btnLessons = screen.getByRole('button', { name: /Уроки/i })
+
+        await user.click(btnStages)
+        await user.click(btnLessons)
 
         expect(mockNavigate).toHaveBeenCalledTimes(2)
     })
@@ -77,18 +84,24 @@ describe('AdaptiveNavBar', () => {
         ).not.toHaveClass('nav-btn-active')
     })
 
-    it('navigates when clicking a navigation button', () => {
+    it('navigates when clicking a navigation button', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Косметички/i }))
+        const button = screen.getByRole('button', { name: /Косметички/i })
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
     })
 
-    it('scrolls to top when clicking the active navigation button', () => {
+    it('scrolls to top when clicking the active navigation button', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Анкета/i }))
+        const button = screen.getByRole('button', { name: /Анкета/i })
+        await user.click(button)
 
         expect(window.scrollTo).toHaveBeenCalledWith({
             top: 0,

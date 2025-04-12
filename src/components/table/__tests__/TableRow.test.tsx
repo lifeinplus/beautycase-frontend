@@ -1,4 +1,5 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 
 import { mockNavigate } from '../../../tests/mocks/router'
@@ -44,22 +45,28 @@ describe('TableRow', () => {
         )
     })
 
-    it('navigates when clicked with redirectPath', () => {
+    it('navigates when clicked with redirectPath', async () => {
+        const user = userEvent.setup()
         const cellData = ['Name', 'Age', 'Email']
         const redirectPath = '/details/123'
 
         renderTableRow({ cellData, redirectPath })
 
-        fireEvent.click(screen.getByRole('row'))
+        const row = screen.getByRole('row')
+        await user.click(row)
+
         expect(mockNavigate).toHaveBeenCalledWith(redirectPath)
     })
 
-    it('does not navigate when clicked without redirectPath', () => {
+    it('does not navigate when clicked without redirectPath', async () => {
+        const user = userEvent.setup()
         const cellData = ['Name', 'Age', 'Email']
 
         renderTableRow({ cellData })
 
-        fireEvent.click(screen.getByRole('row'))
+        const row = screen.getByRole('row')
+        await user.click(row)
+
         expect(mockNavigate).not.toHaveBeenCalled()
     })
 })

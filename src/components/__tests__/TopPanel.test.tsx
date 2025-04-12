@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
 import { mockNavigate } from '../../tests/mocks/router'
-
 import { TopPanel } from '../TopPanel'
 
 describe('TopPanel', () => {
@@ -25,18 +25,25 @@ describe('TopPanel', () => {
         expect(screen.getByTestId('chevron-left-icon')).toBeInTheDocument()
     })
 
-    it('navigates back when default back button is clicked', () => {
+    it('navigates back when default back button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<TopPanel title="Test Title" />)
-        fireEvent.click(screen.getByRole('button'))
+
+        const button = screen.getByRole('button')
+        await user.click(button)
+
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
 
-    it('calls custom onBack function when provided', () => {
+    it('calls custom onBack function when provided', async () => {
+        const user = userEvent.setup()
         const mockOnBack = vi.fn()
 
         render(<TopPanel title="Test Title" onBack={mockOnBack} />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockOnBack).toHaveBeenCalledTimes(1)
         expect(mockNavigate).not.toHaveBeenCalled()

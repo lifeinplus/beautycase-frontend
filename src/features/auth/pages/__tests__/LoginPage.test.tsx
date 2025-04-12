@@ -163,8 +163,12 @@ describe('LoginPage', () => {
 
     it('navigates to register page when register link is clicked', async () => {
         const user = userEvent.setup()
+
         renderWithRouter(<MockRoutes />, initialEntries)
-        await user.click(screen.getByText(/зарегистрироваться/i))
+
+        const link = screen.getByRole('link', { name: /зарегистрироваться/i })
+        await user.click(link)
+
         expect(screen.getByTestId('register-page')).toBeInTheDocument()
     })
 })

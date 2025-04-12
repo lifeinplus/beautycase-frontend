@@ -1,9 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
 import { mockDispatch } from '../../../tests/mocks/app'
-
 import { ThemeToggler } from '../ThemeToggler'
 import { toggleTheme } from '../themeSlice'
 
@@ -38,33 +38,39 @@ describe('ThemeToggler', () => {
         expect(screen.queryByTestId('sun-icon')).not.toBeInTheDocument()
     })
 
-    it('dispatches toggleTheme action when clicked', () => {
+    it('dispatches toggleTheme action when clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue(false)
 
         render(<ThemeToggler />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(toggleTheme())
     })
 
-    it('toggles the dark class on document element when clicked', () => {
+    it('toggles the dark class on document element when clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue(false)
 
         render(<ThemeToggler />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         const toggle = document.documentElement.classList.toggle
         expect(toggle).toHaveBeenCalledWith('dark', true)
     })
 
-    it('updates localStorage when clicked', () => {
+    it('updates localStorage when clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue(true)
 
         render(<ThemeToggler />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(localStorage.setItem).toHaveBeenCalledWith('darkMode', 'false')
     })

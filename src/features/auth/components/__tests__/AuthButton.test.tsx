@@ -1,12 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { mockHandleLogout } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
-
 import { useAuthLogout } from '../../hooks/useAuthLogout'
-
 import { AuthButton } from '../AuthButton'
 
 vi.mock('../../hooks/useAuthLogout', () => ({
@@ -54,22 +53,26 @@ describe('AuthButton', () => {
         expect(screen.queryByText('Войти')).not.toBeInTheDocument()
     })
 
-    it('navigates to login page when login button is clicked', () => {
+    it('navigates to login page when login button is clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue(null)
 
         render(<AuthButton />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
 
-    it('calls logout function when logout button is clicked', () => {
+    it('calls logout function when logout button is clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue('testuser')
 
         render(<AuthButton />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockHandleLogout).toHaveBeenCalledTimes(1)
     })

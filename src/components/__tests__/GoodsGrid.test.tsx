@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
+
 import { mockNavigate } from '../../tests/mocks/router'
 import { type Good, GoodsGrid } from '../GoodsGrid'
 
@@ -69,17 +71,23 @@ describe('GoodsGrid', () => {
         expect(images[2]).toHaveAttribute('src', '/images/product3.jpg')
     })
 
-    it('navigates to the correct path when an item is clicked', () => {
+    it('navigates to the correct path when an item is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
 
         const productItems = screen.getAllByRole('heading', { level: 6 })
 
-        fireEvent.click(productItems[0].parentElement!)
+        const parent1 = productItems[0].parentElement!
+        await user.click(parent1)
+
         expect(mockNavigate).toHaveBeenCalledWith('/goods/1', {
             state: { fromPathname: '/questionnaire' },
         })
 
-        fireEvent.click(productItems[1].parentElement!)
+        const parent2 = productItems[1].parentElement!
+        await user.click(parent2)
+
         expect(mockNavigate).toHaveBeenCalledWith('/goods/2', {
             state: { fromPathname: '/questionnaire' },
         })

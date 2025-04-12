@@ -95,7 +95,6 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         const addButton = screen.getByRole('button', { name: 'Add Button' })
-
         await user.click(addButton)
 
         const linkInputs = screen.getAllByRole('textbox', {
@@ -122,7 +121,8 @@ describe('StoreLinkAddPage', () => {
             name: 'Delete Button',
         })
 
-        await user.click(deleteButtons[0])
+        const deleteStore1 = deleteButtons[0]
+        await user.click(deleteStore1)
 
         linkInputs = screen.getAllByRole('textbox', {
             name: 'Link Input',
@@ -166,7 +166,7 @@ describe('StoreLinkAddPage', () => {
 
         render(<StoreLinkAddPage />)
 
-        const backButton = screen.getByText('Назад')
+        const backButton = screen.getByRole('button', { name: 'Назад' })
         await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -185,7 +185,7 @@ describe('StoreLinkAddPage', () => {
         }) as HTMLInputElement
         await user.type(linkInput, 'https://example.com')
 
-        const saveButton = screen.getByText('Сохранить')
+        const saveButton = screen.getByRole('button', { name: 'Сохранить' })
         await user.click(saveButton)
 
         expect(mockDispatch).toHaveBeenCalledWith(

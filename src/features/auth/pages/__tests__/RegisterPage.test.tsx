@@ -175,8 +175,12 @@ describe('RegisterPage', () => {
 
     it('navigates to login page when login link is clicked', async () => {
         const user = userEvent.setup()
+
         renderWithRouter(<MockRoutes />, initialEntries)
-        await user.click(screen.getByText(/войти/i))
+
+        const link = screen.getByRole('link', { name: /войти/i })
+        await user.click(link)
+
         expect(screen.getByTestId('login-page')).toBeInTheDocument()
     })
 })

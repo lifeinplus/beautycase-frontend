@@ -42,7 +42,8 @@ describe('BrandsMobileView', () => {
             name: /edit/i,
         })
 
-        await user.click(editButtons[0])
+        const editBrandA = editButtons[0]
+        await user.click(editBrandA)
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
         expect(mockOnEdit).toHaveBeenCalledWith(mockBrands[0])
@@ -63,7 +64,8 @@ describe('BrandsMobileView', () => {
             name: /delete/i,
         })
 
-        await user.click(deleteButtons[1])
+        const deleteBrandB = deleteButtons[1]
+        await user.click(deleteBrandB)
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)
         expect(mockOnDelete).toHaveBeenCalledWith(mockBrands[1])

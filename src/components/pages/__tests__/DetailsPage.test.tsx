@@ -78,7 +78,6 @@ describe('DetailsPage', () => {
 
     it('dispatches clearFormData on mount', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
-
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
@@ -100,17 +99,13 @@ describe('DetailsPage', () => {
     it('renders navigation buttons for actions that user can access', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        expect(
-            screen.getByRole('button', { name: 'Назад' })
-        ).toBeInTheDocument()
+        const btnBack = screen.getByRole('button', { name: 'Назад' })
+        const btnEdit = screen.getByRole('button', { name: 'Редактировать' })
+        const btnDelete = screen.getByRole('button', { name: 'Удалить' })
 
-        expect(
-            screen.getByRole('button', { name: 'Редактировать' })
-        ).toBeInTheDocument()
-
-        expect(
-            screen.getByRole('button', { name: 'Удалить' })
-        ).toBeInTheDocument()
+        expect(btnBack).toBeInTheDocument()
+        expect(btnEdit).toBeInTheDocument()
+        expect(btnDelete).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -118,7 +113,8 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await user.click(screen.getByRole('button', { name: 'Назад' }))
+        const button = screen.getByRole('button', { name: 'Назад' })
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath, {
             replace: true,
@@ -131,7 +127,8 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await user.click(screen.getByRole('button', { name: 'Редактировать' }))
+        const button = screen.getByRole('button', { name: 'Редактировать' })
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/edit/123')
     })
@@ -139,9 +136,8 @@ describe('DetailsPage', () => {
     it('does not render duplicate button when showDuplicate is false', () => {
         renderWithProvider(<DetailsPage {...mockProps} showDuplicate={false} />)
 
-        expect(
-            screen.queryByRole('button', { name: 'Дублировать' })
-        ).not.toBeInTheDocument()
+        const button = screen.queryByRole('button', { name: 'Дублировать' })
+        expect(button).not.toBeInTheDocument()
     })
 
     it('opens duplicate modal when duplicate button is clicked', async () => {
@@ -149,7 +145,8 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
-        await user.click(screen.getByRole('button', { name: 'Дублировать' }))
+        const button = screen.getByRole('button', { name: 'Дублировать' })
+        await user.click(button)
 
         expect(
             screen.getByText(
@@ -163,7 +160,8 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await user.click(screen.getByRole('button', { name: 'Удалить' }))
+        const button = screen.getByRole('button', { name: 'Удалить' })
+        await user.click(button)
 
         expect(
             screen.getByText(
@@ -177,8 +175,11 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
 
-        await user.click(screen.getByRole('button', { name: 'Дублировать' }))
-        await user.click(screen.getByLabelText('Modal duplicate button'))
+        const button = screen.getByRole('button', { name: 'Дублировать' })
+        await user.click(button)
+
+        const buttonModal = screen.getByLabelText('Modal duplicate button')
+        await user.click(buttonModal)
 
         expect(mockDuplicateItem).toHaveBeenCalledWith('123')
         expect(toast.success).toHaveBeenCalledWith(
@@ -192,8 +193,11 @@ describe('DetailsPage', () => {
 
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        await user.click(screen.getByRole('button', { name: 'Удалить' }))
-        await user.click(screen.getByLabelText('Modal delete button'))
+        const button = screen.getByRole('button', { name: 'Удалить' })
+        await user.click(button)
+
+        const buttonModal = screen.getByLabelText('Modal delete button')
+        await user.click(buttonModal)
 
         expect(mockDeleteItem).toHaveBeenCalledWith('123')
         expect(toast.success).toHaveBeenCalledWith(`${mockProps.title} удалён`)

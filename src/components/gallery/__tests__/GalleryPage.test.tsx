@@ -1,4 +1,5 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
@@ -39,7 +40,6 @@ describe('GalleryPage', () => {
 
     it('dispatches clearFormData on mount', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
-
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
@@ -80,15 +80,17 @@ describe('GalleryPage', () => {
     it('renders navigation buttons for actions that user can access', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        expect(
-            screen.getByRole('button', { name: 'Добавить' })
-        ).toBeInTheDocument()
+        const button = screen.getByRole('button', { name: 'Добавить' })
+        expect(button).toBeInTheDocument()
     })
 
-    it('navigates to correct path when add button is clicked', () => {
+    it('navigates to correct path when add button is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        fireEvent.click(screen.getByRole('button', { name: 'Добавить' }))
+        const button = screen.getByRole('button', { name: 'Добавить' })
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/gallery/add')
     })

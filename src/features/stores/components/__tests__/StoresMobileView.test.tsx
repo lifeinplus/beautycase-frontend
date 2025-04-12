@@ -42,7 +42,8 @@ describe('StoresMobileView', () => {
             name: /edit/i,
         })
 
-        await user.click(editButtons[0])
+        const editStoreA = editButtons[0]
+        await user.click(editStoreA)
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
         expect(mockOnEdit).toHaveBeenCalledWith(mockStores[0])
@@ -63,7 +64,8 @@ describe('StoresMobileView', () => {
             name: /delete/i,
         })
 
-        await user.click(deleteButtons[1])
+        const deleteStoreB = deleteButtons[1]
+        await user.click(deleteStoreB)
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)
         expect(mockOnDelete).toHaveBeenCalledWith(mockStores[1])

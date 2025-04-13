@@ -14,7 +14,7 @@ import { selectFormData, setFormData } from '../../form/formSlice'
 import type { Lesson } from '../types'
 import { lessonSchema } from '../validations'
 
-interface LessonFormProps {
+export interface LessonFormProps {
     title: string
     onSubmit: (data: Lesson) => void
 }

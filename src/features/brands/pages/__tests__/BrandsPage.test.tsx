@@ -5,21 +5,19 @@ import { useNavigate } from 'react-router-dom'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
 
-import { useAppDispatch } from '../../../../app/hooks'
+import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
 import { type DataWrapperProps } from '../../../../components/DataWrapper'
 import { type HeroProps } from '../../../../components/Hero'
 import { type TopPanelProps } from '../../../../components/TopPanel'
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
 import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData, setFormData } from '../../../form/formSlice'
+import { type BrandsMobileViewProps } from '../../components/BrandsMobileView'
+import { type BrandsTableProps } from '../../components/BrandsTable'
 import {
     useReadBrandsQuery,
     useDeleteBrandMutation,
 } from '../../brandsApiSlice'
-import { type BrandsMobileViewProps } from '../../components/BrandsMobileView'
-import { type BrandsTableProps } from '../../components/BrandsTable'
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
@@ -121,8 +119,6 @@ describe('BrandsPage', () => {
     }))
 
     beforeEach(() => {
-        vi.mocked(useAppDispatch).mockReturnValue(mockDispatch)
-
         vi.mocked(useNavigate).mockReturnValue(mockNavigate)
 
         vi.mocked(useDeleteBrandMutation as Mock).mockReturnValue([

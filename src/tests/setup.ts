@@ -10,7 +10,7 @@ import { mockIcons } from './mocks/icons'
 import { mockRouter } from './mocks/router'
 import { server } from './mocks/server'
 
-vi.mock('react-hot-toast', async () => ({
+vi.mock('react-hot-toast', () => ({
     default: {
         success: vi.fn(),
         error: vi.fn(),

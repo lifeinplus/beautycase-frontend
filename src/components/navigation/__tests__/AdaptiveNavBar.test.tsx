@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { useLocation } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
-import { mockNavigate } from '../../../tests/mocks/router'
+import { mockLocation, mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
 
@@ -14,6 +15,11 @@ describe('AdaptiveNavBar', () => {
             if (selector === selectRole) return 'mua'
             if (selector === selectUsername) return 'inna'
             return null
+        })
+
+        vi.mocked(useLocation).mockReturnValue({
+            ...mockLocation,
+            pathname: '/questionnaire',
         })
     })
 
@@ -27,35 +33,34 @@ describe('AdaptiveNavBar', () => {
     it('renders navigation buttons for accessible menu items', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(
-            screen.getByRole('button', { name: /Анкета/i })
-        ).toBeInTheDocument()
+        const questionnaire = screen.getByRole('button', { name: /Анкета/i })
 
-        expect(
-            screen.getByRole('button', { name: /Косметички/i })
-        ).toBeInTheDocument()
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
 
-        expect(
-            screen.getByRole('button', { name: /Личный кабинет/i })
-        ).toBeInTheDocument()
+        const btnAccount = screen.getByRole('button', {
+            name: /Личный кабинет/i,
+        })
 
-        expect(
-            screen.queryByRole('button', {
-                name: /Справочники/i,
-            })
-        ).not.toBeInTheDocument()
+        const btnReferenceLists = screen.queryByRole('button', {
+            name: /Справочники/i,
+        })
+
+        expect(questionnaire).toBeInTheDocument()
+        expect(btnMakeupBags).toBeInTheDocument()
+        expect(btnAccount).toBeInTheDocument()
+        expect(btnReferenceLists).not.toBeInTheDocument()
     })
 
     it('renders ThemeToggler and AuthButton', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(
-            screen.getByRole('button', { name: /Light mode/i })
-        ).toBeInTheDocument()
+        const btnLightMode = screen.getByRole('button', { name: /Light mode/i })
+        const btnLogout = screen.getByRole('button', { name: /Logout/i })
 
-        expect(
-            screen.getByRole('button', { name: /Logout/i })
-        ).toBeInTheDocument()
+        expect(btnLightMode).toBeInTheDocument()
+        expect(btnLogout).toBeInTheDocument()
     })
 
     it('calls navigate when a menu item is clicked', async () => {
@@ -75,13 +80,14 @@ describe('AdaptiveNavBar', () => {
     it('applies active class to current path navigation button', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(screen.getByRole('button', { name: /Анкета/i })).toHaveClass(
-            'nav-btn-active'
-        )
+        const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
 
-        expect(
-            screen.getByRole('button', { name: /Косметички/i })
-        ).not.toHaveClass('nav-btn-active')
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
+
+        expect(btnQuestionnaire).toHaveClass('nav-btn-active')
+        expect(btnMakeupBags).not.toHaveClass('nav-btn-active')
     })
 
     it('navigates when clicking a navigation button', async () => {
@@ -89,8 +95,11 @@ describe('AdaptiveNavBar', () => {
 
         renderWithProvider(<AdaptiveNavBar />)
 
-        const button = screen.getByRole('button', { name: /Косметички/i })
-        await user.click(button)
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
+
+        await user.click(btnMakeupBags)
 
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
     })
@@ -100,8 +109,8 @@ describe('AdaptiveNavBar', () => {
 
         renderWithProvider(<AdaptiveNavBar />)
 
-        const button = screen.getByRole('button', { name: /Анкета/i })
-        await user.click(button)
+        const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
+        await user.click(btnQuestionnaire)
 
         expect(window.scrollTo).toHaveBeenCalledWith({
             top: 0,

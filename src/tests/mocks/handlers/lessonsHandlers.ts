@@ -8,6 +8,16 @@ export const mockLesson: Lesson = {
     fullDescription: 'A comprehensive introduction to Makeup',
     videoUrl: 'https://video.com/makeup-basics',
     productIds: ['1', '2', '3'],
+    products: [
+        {
+            _id: 'product-1',
+            brandId: 'brand-1',
+            name: 'Product 1',
+            imageUrl: 'https://example.com/product-1.jpg',
+            comment: 'Comment 1',
+            storeLinks: [],
+        },
+    ],
 }
 
 export const mockLessons: Lesson[] = [

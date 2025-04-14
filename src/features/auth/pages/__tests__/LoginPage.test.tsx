@@ -44,15 +44,18 @@ describe('LoginPage', () => {
         userId: '1',
     }
 
-    const mockLoginUser = vi.fn(() => ({
-        unwrap: () => Promise.resolve(mockLoginResult),
-    }))
+    const mockLoginUser = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
             mockLoginUser,
             { isLoading: false },
         ])
+
+        mockLoginUser.mockReturnValue({ unwrap: mockUnwrap })
+
+        mockUnwrap.mockResolvedValue(mockLoginResult)
     })
 
     it('renders the login form correctly', () => {
@@ -121,14 +124,7 @@ describe('LoginPage', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockLoginUser = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
-            mockLoginUser,
-            { isLoading: false },
-        ])
+        mockUnwrap.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
 

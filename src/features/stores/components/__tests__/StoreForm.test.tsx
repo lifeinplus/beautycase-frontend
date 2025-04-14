@@ -27,13 +27,11 @@ vi.mock('../../storesApiSlice', () => ({
 describe('StoreForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }
 
-    const mockCreateStore = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockCreateStore = vi.fn()
+    const mockCreateUnwrap = vi.fn()
 
-    const mockUpdateStore = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockUpdateStore = vi.fn()
+    const mockUpdateUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(null)
@@ -43,10 +41,16 @@ describe('StoreForm', () => {
             { isLoading: false },
         ])
 
+        mockCreateStore.mockReturnValue({ unwrap: mockCreateUnwrap })
+        mockCreateUnwrap.mockResolvedValue({})
+
         vi.mocked(useUpdateStoreMutation as Mock).mockReturnValue([
             mockUpdateStore,
             { isLoading: false },
         ])
+
+        mockUpdateStore.mockReturnValue({ unwrap: mockUpdateUnwrap })
+        mockUpdateUnwrap.mockResolvedValue({})
     })
 
     it('renders the form correctly', () => {
@@ -148,14 +152,7 @@ describe('StoreForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockCreateStore = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useCreateStoreMutation as Mock).mockReturnValue([
-            mockCreateStore,
-            { isLoading: false },
-        ])
+        mockCreateUnwrap.mockRejectedValue(mockError)
 
         render(<StoreForm ref={mockRef} />)
 
@@ -179,14 +176,7 @@ describe('StoreForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockUpdateStore = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useUpdateStoreMutation as Mock).mockReturnValue([
-            mockUpdateStore,
-            { isLoading: false },
-        ])
+        mockUpdateUnwrap.mockRejectedValue(mockError)
 
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',

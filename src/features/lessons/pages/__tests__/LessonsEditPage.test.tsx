@@ -9,8 +9,11 @@ import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData } from '../../../form/formSlice'
 import { type LessonFormProps } from '../../components/LessonForm'
-import { useAddLessonMutation } from '../../lessonsApiSlice'
-import { LessonAddPage } from '../LessonAddPage'
+import {
+    useEditLessonMutation,
+    useGetLessonByIdQuery,
+} from '../../lessonsApiSlice'
+import { LessonEditPage } from '../LessonsEditPage'
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -21,12 +24,9 @@ vi.mock('../../../form/formSlice', async (importOriginal) => {
     return {
         ...(actual as object),
         clearFormData: vi.fn(),
+        setFormData: vi.fn(),
     }
 })
-
-vi.mock('../../lessonsApiSlice', () => ({
-    useAddLessonMutation: vi.fn(),
-}))
 
 vi.mock('../../components/LessonForm', () => ({
     LessonForm: ({ title, onSubmit }: LessonFormProps) => (
@@ -42,38 +42,55 @@ vi.mock('../../components/LessonForm', () => ({
     ),
 }))
 
-describe('LessonAddPage', () => {
-    const mockAddLesson = vi.fn()
+vi.mock('../../lessonsApiSlice', () => ({
+    useEditLessonMutation: vi.fn(),
+    useGetLessonByIdQuery: vi.fn(),
+}))
+
+describe('LessonEditPage', () => {
+    const mockEditLesson = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddLessonMutation as Mock).mockReturnValue([mockAddLesson])
+        vi.mocked(useEditLessonMutation as Mock).mockReturnValue([
+            mockEditLesson,
+        ])
 
-        mockAddLesson.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue({ id: '123' })
+        mockEditLesson.mockReturnValue({ unwrap: mockUnwrap })
+
+        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
+            data: mockLesson,
+        })
     })
 
     it('renders the LessonForm with title', () => {
-        render(<LessonAddPage />)
+        render(<LessonEditPage />)
 
-        expect(screen.getByTestId('lesson-form')).toBeInTheDocument()
-        expect(screen.getByText('Добавить урок')).toBeInTheDocument()
+        const form = screen.getByTestId('lesson-form')
+        const title = screen.getByText('Редактировать урок')
+
+        expect(form).toBeInTheDocument()
+        expect(title).toBeInTheDocument()
     })
 
     it('submits lesson and navigates on success', async () => {
         const user = userEvent.setup()
 
-        render(<LessonAddPage />)
+        render(<LessonEditPage />)
 
         const button = screen.getByTestId('submit-button')
         await user.click(button)
 
-        expect(mockAddLesson).toHaveBeenCalledWith(mockLesson)
+        expect(mockEditLesson).toHaveBeenCalledWith({
+            id: '123',
+            ...mockLesson,
+        })
+
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/lessons/123')
     })
 
-    it('displays error toast on failure', async () => {
+    it('shows error toast if edit fails', async () => {
         const user = userEvent.setup()
 
         const mockConsoleError = vi
@@ -82,14 +99,15 @@ describe('LessonAddPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<LessonAddPage />)
+        render(<LessonEditPage />)
 
         const button = screen.getByTestId('submit-button')
         await user.click(button)
 
-        expect(mockAddLesson).toHaveBeenCalled()
+        expect(mockEditLesson).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(mockNavigate).not.toHaveBeenCalled()
 
         mockConsoleError.mockRestore()
     })

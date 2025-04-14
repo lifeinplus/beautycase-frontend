@@ -30,8 +30,8 @@ vi.mock('../../../utils/errorUtils', () => ({
 }))
 
 describe('DetailsPage', () => {
-    const mockDeleteItem = vi.fn().mockReturnValue({ unwrap: vi.fn() })
-    const mockDuplicateItem = vi.fn().mockReturnValue({ unwrap: vi.fn() })
+    const mockDeleteItem = vi.fn()
+    const mockDuplicateItem = vi.fn()
 
     const mockMediaContent = (
         <div data-testid="media-content">Media Content</div>
@@ -52,10 +52,13 @@ describe('DetailsPage', () => {
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
-            if (selector === selectRole) return 'mua'
-            if (selector === selectUsername) return 'inna'
+            if (selector === selectRole) return 'admin'
+            if (selector === selectUsername) return 'testuser'
             return null
         })
+
+        mockDeleteItem.mockReturnValue({ unwrap: vi.fn() })
+        mockDuplicateItem.mockReturnValue({ unwrap: vi.fn() })
     })
 
     it('renders the component with all elements', () => {

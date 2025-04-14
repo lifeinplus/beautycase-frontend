@@ -114,9 +114,8 @@ describe('BrandsPage', () => {
         { _id: '2', name: 'Brand B' },
     ]
 
-    const mockDeleteBrand = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockDeleteBrand = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useNavigate).mockReturnValue(mockNavigate)
@@ -124,6 +123,9 @@ describe('BrandsPage', () => {
         vi.mocked(useDeleteBrandMutation as Mock).mockReturnValue([
             mockDeleteBrand,
         ])
+
+        mockDeleteBrand.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useReadBrandsQuery as Mock).mockReturnValue({
             data: mockBrands,
@@ -198,13 +200,7 @@ describe('BrandsPage', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockDeleteBrand = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useDeleteBrandMutation as Mock).mockReturnValue([
-            mockDeleteBrand,
-        ])
+        mockUnwrap.mockRejectedValue(mockError)
 
         render(<BrandsPage />)
 

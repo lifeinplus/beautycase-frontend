@@ -32,8 +32,8 @@ describe('GalleryPage', () => {
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
-            if (selector === selectRole) return 'mua'
-            if (selector === selectUsername) return 'inna'
+            if (selector === selectRole) return 'admin'
+            if (selector === selectUsername) return 'testuser'
             return null
         })
     })

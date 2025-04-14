@@ -46,15 +46,20 @@ describe('RegisterPage', () => {
         message: 'Account created successfully',
     }
 
-    const mockRegisterUser = vi.fn(() => ({
-        unwrap: () => Promise.resolve(mockRegisterResult),
-    }))
+    const mockRegisterUser = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
+
+        mockRegisterUser.mockReturnValue({
+            unwrap: mockUnwrap,
+        })
+
+        mockUnwrap.mockResolvedValue(mockRegisterResult)
     })
 
     it('renders the registration form correctly', () => {
@@ -128,14 +133,7 @@ describe('RegisterPage', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockRegisterUser = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
-            mockRegisterUser,
-            { isLoading: false },
-        ])
+        mockUnwrap.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
 

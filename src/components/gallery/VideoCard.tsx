@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
+
 import { Image } from '../../components/ui/Image'
 import { getYouTubeThumbnail } from '../../utils/youtube'
 
 interface Video {
+    _id?: string
     shortDescription: string
     title: string
     videoUrl: string
 }
 
-interface VideoCardProps {
+export interface VideoCardProps {
     data: Video
     path: string
 }

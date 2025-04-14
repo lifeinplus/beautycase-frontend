@@ -42,14 +42,16 @@ describe('ImageUrlSection', () => {
 
     const mockResult = { imageUrl: mockUrl }
 
-    const mockUploadImageTemp = vi.fn(() => ({
-        unwrap: () => Promise.resolve(mockResult),
-    }))
+    const mockUploadImageTemp = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useUploadImageTempMutation as Mock).mockReturnValue([
             mockUploadImageTemp,
         ])
+
+        mockUploadImageTemp.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue(mockResult)
     })
 
     it('renders with required props', () => {
@@ -106,13 +108,7 @@ describe('ImageUrlSection', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockUploadImageTemp = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useUploadImageTempMutation as Mock).mockReturnValue([
-            mockUploadImageTemp,
-        ])
+        mockUnwrap.mockRejectedValue(mockError)
 
         render(<ImageUrlSection {...mockProps} />)
 

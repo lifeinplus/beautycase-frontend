@@ -13,7 +13,7 @@ describe('AdaptiveNavBar', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectRole) return 'mua'
-            if (selector === selectUsername) return 'inna'
+            if (selector === selectUsername) return 'testuser'
             return null
         })
 

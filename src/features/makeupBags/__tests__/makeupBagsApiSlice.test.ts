@@ -50,7 +50,7 @@ describe('makeupBagsApiSlice', () => {
 
     it('reads a makeupBag by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetMakeupBagByIdQuery('1')
+            useGetMakeupBagByIdQuery(mockMakeupBag._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -70,7 +70,7 @@ describe('makeupBagsApiSlice', () => {
 
         await act(async () => {
             const response = await editMakeupBag({
-                id: '1',
+                id: mockMakeupBag._id!,
                 ...mockMakeupBag,
             }).unwrap()
 

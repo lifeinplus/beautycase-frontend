@@ -1,16 +1,19 @@
 import { http, HttpResponse } from 'msw'
+
 import type { Category } from '../../../features/categories/types'
 
+const mockCategory: Category = {
+    _id: 'category1',
+    name: 'Category 1',
+    type: 'test_type',
+}
+
 export const mockCategories: Category[] = [
+    mockCategory,
     {
-        _id: '1',
-        name: 'Category1',
-        type: 'Type1',
-    },
-    {
-        _id: '2',
-        name: 'Category2',
-        type: 'Type2',
+        _id: 'category2',
+        name: 'Category 2',
+        type: 'test_type',
     },
 ]
 

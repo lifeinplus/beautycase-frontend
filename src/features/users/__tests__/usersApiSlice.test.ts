@@ -6,7 +6,6 @@ import {
     mockUsers,
 } from '../../../tests/mocks/handlers/usersHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
 
 describe('usersApiSlice', () => {
@@ -22,7 +21,7 @@ describe('usersApiSlice', () => {
 
     it('fetches a single user successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetUserByIdQuery('1')
+            useGetUserByIdQuery('user1')
         )
 
         expect(result.current.isLoading).toBe(true)

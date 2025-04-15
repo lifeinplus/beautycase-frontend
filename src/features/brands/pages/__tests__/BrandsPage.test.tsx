@@ -21,6 +21,12 @@ import {
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
+vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
+    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
+        <div data-testid="adaptive-navbar">{children}</div>
+    ),
+}))
+
 vi.mock('../../../../components/DataWrapper', () => ({
     DataWrapper: ({ children }: DataWrapperProps<Brand>) => (
         <div data-testid="data-wrapper">{children}</div>
@@ -39,12 +45,6 @@ vi.mock('../../../../components/TopPanel', () => ({
             </button>
             <h2>{title}</h2>
         </div>
-    ),
-}))
-
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
     ),
 }))
 
@@ -110,8 +110,8 @@ vi.mock('../../components/BrandsTable', () => ({
 
 describe('BrandsPage', () => {
     const mockBrands: Brand[] = [
-        { _id: '1', name: 'Brand A' },
-        { _id: '2', name: 'Brand B' },
+        { _id: 'brand1', name: 'Brand A' },
+        { _id: 'brand2', name: 'Brand B' },
     ]
 
     const mockDeleteBrand = vi.fn()
@@ -144,10 +144,10 @@ describe('BrandsPage', () => {
         expect(screen.getByTestId('brands-table')).toBeInTheDocument()
         expect(screen.getByTestId('adaptive-navbar')).toBeInTheDocument()
 
-        expect(screen.getByTestId('mobile-brand-1')).toBeInTheDocument()
-        expect(screen.getByTestId('mobile-brand-2')).toBeInTheDocument()
-        expect(screen.getByTestId('table-brand-1')).toBeInTheDocument()
-        expect(screen.getByTestId('table-brand-2')).toBeInTheDocument()
+        expect(screen.getByTestId('mobile-brand-brand1')).toBeInTheDocument()
+        expect(screen.getByTestId('mobile-brand-brand2')).toBeInTheDocument()
+        expect(screen.getByTestId('table-brand-brand1')).toBeInTheDocument()
+        expect(screen.getByTestId('table-brand-brand2')).toBeInTheDocument()
     })
 
     it('should navigate back when back button is clicked', async () => {
@@ -166,7 +166,7 @@ describe('BrandsPage', () => {
 
         render(<BrandsPage />)
 
-        const editButton = screen.getByTestId('table-edit-1')
+        const editButton = screen.getByTestId('table-edit-brand1')
         await user.click(editButton)
 
         expect(setFormData).toHaveBeenCalledWith(mockBrands[0])
@@ -177,7 +177,7 @@ describe('BrandsPage', () => {
 
         render(<BrandsPage />)
 
-        const deleteButton = screen.getByTestId('table-delete-1')
+        const deleteButton = screen.getByTestId('table-delete-brand1')
 
         await user.click(deleteButton)
 
@@ -187,7 +187,7 @@ describe('BrandsPage', () => {
 
         await user.click(modalDeleteButton)
 
-        expect(mockDeleteBrand).toHaveBeenCalledWith('1')
+        expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
         expect(toast.success).toHaveBeenCalledWith('Бренд удалён')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteButton).not.toBeInTheDocument()
@@ -204,7 +204,7 @@ describe('BrandsPage', () => {
 
         render(<BrandsPage />)
 
-        const deleteButton = screen.getByTestId('table-delete-1')
+        const deleteButton = screen.getByTestId('table-delete-brand1')
 
         await user.click(deleteButton)
 
@@ -214,7 +214,7 @@ describe('BrandsPage', () => {
 
         await user.click(modalDeleteButton)
 
-        expect(mockDeleteBrand).toHaveBeenCalledWith('1')
+        expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

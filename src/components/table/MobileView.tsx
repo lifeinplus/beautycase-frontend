@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 
-interface MobileViewProps<T> {
+export interface MobileViewProps<T> {
     items?: T[]
     getTitle: (item: T) => string
     getSubtitle?: (item: T) => string

@@ -29,8 +29,8 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                     cellData={[
                         formatDate(item.createdAt, 'yyyy.MM.dd'),
                         formatDate(item.createdAt, 'HH:mm'),
-                        item.category?.name,
-                        item.client?.username,
+                        item.category?.name || '–',
+                        item.client?.username || '–',
                     ]}
                     redirectPath={`/makeup_bags/${item._id}`}
                 />

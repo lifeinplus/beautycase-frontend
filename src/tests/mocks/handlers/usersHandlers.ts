@@ -1,28 +1,31 @@
 import { http, HttpResponse } from 'msw'
+
 import type { User, UserResult } from '../../../features/users/types'
 
+export const mockUser: User = {
+    _id: 'user1',
+    role: 'admin',
+    username: 'Admin',
+}
+
+export const mockUsers: User[] = [
+    mockUser,
+    { _id: 'user2', role: 'mua', username: 'Inna' },
+]
+
 export const mockUserResult: UserResult = {
-    user: {
-        _id: '1',
-        role: 'admin',
-        username: 'Admin',
-    },
+    user: mockUser,
     makeupBags: [
         {
-            _id: '1',
+            _id: 'makeupBag1',
             category: { name: 'Daily Makeup' },
         },
         {
-            _id: '2',
+            _id: 'makeupBag2',
             category: { name: 'Evening Makeup' },
         },
     ],
 }
-
-export const mockUsers: User[] = [
-    mockUserResult.user,
-    { _id: '2', role: 'mua', username: 'Inna' },
-]
 
 export const usersHandlers = [
     http.get('api/users/all', async () => HttpResponse.json(mockUsers)),

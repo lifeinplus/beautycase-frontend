@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
 import { type TopPanelProps } from '../../../../components/TopPanel'
 import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockUrlYouTube } from '../../../../tests/mocks/form'
+import { mockOnSubmit, mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
 import { LessonForm } from '../LessonForm'
@@ -42,8 +42,6 @@ vi.mock('../../../form/formSlice', async (importOriginal) => {
 })
 
 describe('LessonForm', () => {
-    const mockOnSubmit = vi.fn()
-
     const mockRegister = vi.fn().mockImplementation((name) => ({ name }))
     const mockReset = vi.fn()
     const mockWatch = vi.fn().mockImplementation((field) => {

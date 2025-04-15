@@ -74,8 +74,8 @@ describe('AccountPage', () => {
 
         const links = screen.getAllByRole('link', { name: 'Открыть' })
         expect(links).toHaveLength(2)
-        expect(links[0]).toHaveAttribute('href', `/makeup_bags/1`)
-        expect(links[1]).toHaveAttribute('href', `/makeup_bags/2`)
+        expect(links[0]).toHaveAttribute('href', '/makeup_bags/makeupBag1')
+        expect(links[1]).toHaveAttribute('href', '/makeup_bags/makeupBag2')
     })
 
     it('handles empty makeup bags', () => {

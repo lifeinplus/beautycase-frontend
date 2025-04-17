@@ -5,10 +5,10 @@ import { describe, expect, it } from 'vitest'
 import {
     mockBrand,
     mockBrands,
+    mockBrandCreate,
 } from '../../../tests/mocks/handlers/brandsHandlers'
 import { server } from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useCreateBrandMutation,
     useDeleteBrandMutation,
@@ -26,12 +26,7 @@ describe('brandsApiSlice', () => {
 
         await act(async () => {
             const response = await addBrand(mockBrand).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Brand created successfully',
-            })
+            expect(response).toMatchObject(mockBrandCreate)
         })
     })
 

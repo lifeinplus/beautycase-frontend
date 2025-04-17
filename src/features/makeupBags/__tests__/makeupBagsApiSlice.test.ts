@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest'
 
 import {
     mockMakeupBag,
+    mockMakeupBagCreate,
     mockMakeupBags,
 } from '../../../tests/mocks/handlers/makeupBagsHandlers'
 import { server } from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useAddMakeupBagMutation,
     useDeleteMakeupBagMutation,
@@ -27,12 +27,7 @@ describe('makeupBagsApiSlice', () => {
 
         await act(async () => {
             const response = await addMakeupBag(mockMakeupBag).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'MakeupBag created successfully',
-            })
+            expect(response).toMatchObject(mockMakeupBagCreate)
         })
     })
 

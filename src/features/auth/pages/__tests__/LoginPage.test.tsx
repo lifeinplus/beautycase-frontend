@@ -6,9 +6,10 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockError } from '../../../../tests/mocks'
 import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockLoginResult } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
+import { useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
 
 vi.mock('../../../../utils/errorUtils', () => ({
@@ -39,11 +40,6 @@ describe('LoginPage', () => {
         password: 'password123',
     }
 
-    const mockLoginResult: AuthResultLogin = {
-        accessToken: 'test-token',
-        userId: '1',
-    }
-
     const mockLoginUser = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -54,7 +50,6 @@ describe('LoginPage', () => {
         ])
 
         mockLoginUser.mockReturnValue({ unwrap: mockUnwrap })
-
         mockUnwrap.mockResolvedValue(mockLoginResult)
     })
 

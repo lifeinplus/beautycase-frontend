@@ -17,7 +17,7 @@ import { useGetUsersQuery } from '../../users/usersApiSlice'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
-interface MakeupBagFormProps {
+export interface MakeupBagFormProps {
     title: string
     onSubmit: (data: MakeupBag) => void
 }

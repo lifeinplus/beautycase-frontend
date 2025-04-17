@@ -4,11 +4,11 @@ import { describe, expect, it } from 'vitest'
 
 import {
     mockQuestionnaire,
+    mockQuestionnaireCreated,
     mockQuestionnaires,
 } from '../../../tests/mocks/handlers/questionnairesHandlers'
 import { server } from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,
@@ -26,12 +26,7 @@ describe('questionnairesApiSlice', () => {
         await act(async () => {
             const response =
                 await createQuestionnaire(mockQuestionnaire).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Questionnaire created successfully',
-            })
+            expect(response).toMatchObject(mockQuestionnaireCreated)
         })
     })
 

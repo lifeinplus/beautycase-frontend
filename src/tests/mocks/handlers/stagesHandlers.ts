@@ -1,8 +1,22 @@
 import { http, HttpResponse } from 'msw'
+
 import type { Stage } from '../../../features/stages/types'
+import type { MutationResult } from '../../../types/api'
+
+export const mockStageCreate: MutationResult = {
+    id: 'stage3',
+    count: 1,
+    message: 'Stage created successfully',
+}
+
+export const mockStageDuplicate: MutationResult = {
+    id: 'stage1-copy',
+    count: 1,
+    message: 'Stage duplicated successfully',
+}
 
 export const mockStage: Stage = {
-    _id: '1',
+    _id: 'stage1',
     title: 'Base Makeup',
     subtitle: 'Applying foundation and concealer',
     imageUrl: 'https://example.com/image.jpg',
@@ -12,7 +26,7 @@ export const mockStage: Stage = {
 export const mockStages: Stage[] = [
     mockStage,
     {
-        _id: '2',
+        _id: 'stage2',
         title: 'Eye Makeup',
         subtitle: 'Applying eyeshadow and eyeliner',
         imageUrl: 'https://example.com/image.jpg',
@@ -21,20 +35,10 @@ export const mockStages: Stage[] = [
 ]
 
 export const stagesHandlers = [
-    http.post('api/stages', () =>
-        HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'Stage created successfully',
-        })
-    ),
+    http.post('api/stages', () => HttpResponse.json(mockStageCreate)),
 
     http.post('api/stages/duplicate/:id', ({ params }) =>
-        HttpResponse.json({
-            count: 1,
-            id: `${params.id}-copy`,
-            message: 'Stage duplicated successfully',
-        })
+        HttpResponse.json({ ...mockStageDuplicate, id: `${params.id}-copy` })
     ),
 
     http.get('api/stages', () => HttpResponse.json(mockStages)),

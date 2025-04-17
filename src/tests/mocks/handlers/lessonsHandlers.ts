@@ -1,8 +1,15 @@
 import { http, HttpResponse } from 'msw'
 import type { Lesson } from '../../../features/lessons/types'
+import type { MutationResult } from '../../../types/api'
+
+export const mockLessonCreate: MutationResult = {
+    id: 'lesson3',
+    count: 1,
+    message: 'Lesson created successfully',
+}
 
 export const mockLesson: Lesson = {
-    _id: '1',
+    _id: 'lesson1',
     title: 'Makeup Basics',
     shortDescription: 'Introduction to Makeup fundamentals',
     fullDescription: 'A comprehensive introduction to Makeup',
@@ -23,7 +30,7 @@ export const mockLesson: Lesson = {
 export const mockLessons: Lesson[] = [
     mockLesson,
     {
-        _id: '2',
+        _id: 'lesson2',
         title: 'Lesson 2',
         shortDescription: 'Short Desc 2',
         fullDescription: 'Full Desc 2',
@@ -34,11 +41,7 @@ export const mockLessons: Lesson[] = [
 
 export const lessonsHandlers = [
     http.post('api/lessons/one', () => {
-        return HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'Lesson created successfully',
-        })
+        return HttpResponse.json(mockLessonCreate)
     }),
 
     http.get('api/lessons/all', () => HttpResponse.json(mockLessons)),

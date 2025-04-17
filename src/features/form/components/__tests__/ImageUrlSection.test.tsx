@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockError } from '../../../../tests/mocks'
+import { mockUploadResult } from '../../../../tests/mocks/handlers/uploadsHandlers'
 import {
     mockClearErrors,
     mockFieldError,
@@ -40,8 +41,6 @@ describe('ImageUrlSection', () => {
         setValue: mockSetValue,
     }
 
-    const mockResult = { imageUrl: mockUrl }
-
     const mockUploadImageTemp = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -51,7 +50,7 @@ describe('ImageUrlSection', () => {
         ])
 
         mockUploadImageTemp.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue(mockResult)
+        mockUnwrap.mockResolvedValue(mockUploadResult)
     })
 
     it('renders with required props', () => {

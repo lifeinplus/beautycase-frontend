@@ -18,12 +18,14 @@ vi.mock('../../authApiSlice', () => ({
 }))
 
 describe('useAuthLogout', () => {
-    const mockLogoutUser = vi.fn().mockResolvedValue({})
+    const mockLogoutUser = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useLogoutUserMutation as Mock).mockReturnValue([
             mockLogoutUser,
         ])
+
+        mockLogoutUser.mockResolvedValue({})
     })
 
     it('logs out user, dispatches logout, and navigates to the redirect path', async () => {

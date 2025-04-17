@@ -3,10 +3,11 @@ import { describe, expect, it } from 'vitest'
 
 import {
     mockStage,
+    mockStageCreate,
+    mockStageDuplicate,
     mockStages,
 } from '../../../tests/mocks/handlers/stagesHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useCreateStageMutation,
     useDeleteStageMutation,
@@ -26,12 +27,7 @@ describe('stagesApiSlice', () => {
 
         await act(async () => {
             const response = await createStage(mockStage).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Stage created successfully',
-            })
+            expect(response).toMatchObject(mockStageCreate)
         })
     })
 
@@ -43,13 +39,8 @@ describe('stagesApiSlice', () => {
         const [duplicateStage] = result.current
 
         await act(async () => {
-            const response = await duplicateStage('1').unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: '1-copy',
-                message: 'Stage duplicated successfully',
-            })
+            const response = await duplicateStage('stage1').unwrap()
+            expect(response).toMatchObject(mockStageDuplicate)
         })
     })
 
@@ -67,7 +58,7 @@ describe('stagesApiSlice', () => {
 
     it('reads a stage by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadStageByIdQuery('1')
+            useReadStageByIdQuery('stage1')
         )
 
         expect(result.current.isLoading).toBe(true)

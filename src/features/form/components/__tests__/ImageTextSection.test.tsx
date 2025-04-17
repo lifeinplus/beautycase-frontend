@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockError } from '../../../../tests/mocks'
+import { mockUploadResult } from '../../../../tests/mocks/handlers/uploadsHandlers'
 import {
     mockClearErrors,
     mockFieldError,
@@ -45,8 +46,6 @@ describe('ImageTextSection', () => {
         registerUrl: mockRegister,
         setValue: mockSetValue,
     }
-
-    const mockUploadResult = { imageUrl: mockUrl }
 
     const mockUploadImageTemp = vi.fn()
     const mockUnwrap = vi.fn()

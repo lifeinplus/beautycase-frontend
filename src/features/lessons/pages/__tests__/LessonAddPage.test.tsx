@@ -5,7 +5,10 @@ import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
 import { mockError } from '../../../../tests/mocks'
 import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
+import {
+    mockLesson,
+    mockLessonCreate,
+} from '../../../../tests/mocks/handlers/lessonsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData } from '../../../form/formSlice'
 import { type LessonFormProps } from '../../components/LessonForm'
@@ -50,7 +53,7 @@ describe('LessonAddPage', () => {
         vi.mocked(useAddLessonMutation as Mock).mockReturnValue([mockAddLesson])
 
         mockAddLesson.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue({ id: '123' })
+        mockUnwrap.mockResolvedValue(mockLessonCreate)
     })
 
     it('renders the LessonForm with title', () => {
@@ -70,7 +73,7 @@ describe('LessonAddPage', () => {
 
         expect(mockAddLesson).toHaveBeenCalledWith(mockLesson)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/lessons/123')
+        expect(mockNavigate).toHaveBeenCalledWith('/lessons/lesson3')
     })
 
     it('displays error toast on failure', async () => {

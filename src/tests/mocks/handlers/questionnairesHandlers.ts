@@ -1,5 +1,13 @@
 import { http, HttpResponse } from 'msw'
+
 import type { Questionnaire } from '../../../features/questionnaires/types'
+import type { MutationResult } from '../../../types/api'
+
+export const mockQuestionnaireCreated: MutationResult = {
+    id: 'questionnaire3',
+    count: 1,
+    message: 'Questionnaire created successfully',
+}
 
 export const mockQuestionnaireFull: Questionnaire = {
     name: 'Anna Petrova',
@@ -57,11 +65,7 @@ export const mockQuestionnaires: Questionnaire[] = [
 
 export const questionnairesHandlers = [
     http.post('api/questionnaires/one', () =>
-        HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'Questionnaire created successfully',
-        })
+        HttpResponse.json(mockQuestionnaireCreated)
     ),
 
     http.get('api/questionnaires/all', () =>

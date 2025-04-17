@@ -1,5 +1,19 @@
 import { vi } from 'vitest'
+
 import { type AuthState } from '../../features/auth/authSlice'
+import {
+    type AuthResultRegister,
+    type AuthResultLogin,
+} from '../../features/auth/authApiSlice'
+
+export const mockLoginResult: AuthResultLogin = {
+    accessToken: 'token1',
+    userId: 'user1',
+}
+
+export const mockRegisterResult: AuthResultRegister = {
+    message: 'Account created successfully',
+}
 
 export const mockAuthResponse: AuthState = {
     accessToken: 'mock-access-token',

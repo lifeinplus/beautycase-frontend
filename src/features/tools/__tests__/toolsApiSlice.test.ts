@@ -3,10 +3,10 @@ import { act, waitFor } from '@testing-library/react'
 
 import {
     mockTool,
+    mockToolCreate,
     mockTools,
 } from '../../../tests/mocks/handlers/toolsHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useAddToolMutation,
     useDeleteToolMutation,
@@ -45,12 +45,7 @@ describe('toolsApiSlice', () => {
 
         await act(async () => {
             const response = await addTool(mockTool).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Tool added successfully',
-            })
+            expect(response).toMatchObject(mockToolCreate)
         })
     })
 

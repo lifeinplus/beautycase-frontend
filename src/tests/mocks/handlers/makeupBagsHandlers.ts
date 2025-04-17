@@ -1,5 +1,15 @@
 import { http, HttpResponse } from 'msw'
+
 import { MakeupBag } from '../../../features/makeupBags/types'
+import type { MutationResult } from '../../../types/api'
+import { mockStage } from './stagesHandlers'
+import { mockTool } from './toolsHandlers'
+
+export const mockMakeupBagCreate: MutationResult = {
+    id: 'makeupBag3',
+    count: 1,
+    message: 'MakeupBag created successfully',
+}
 
 export const mockMakeupBag: MakeupBag = {
     _id: 'makeupBag1',
@@ -8,7 +18,9 @@ export const mockMakeupBag: MakeupBag = {
     categoryId: 'category1',
     client: { _id: 'client1', username: 'Test Client 1' },
     clientId: 'client1',
+    stages: [mockStage],
     stageIds: ['stage1', 'stage2'],
+    tools: [mockTool],
     toolIds: ['tool1', 'tool2', 'tool3'],
 }
 
@@ -25,13 +37,9 @@ export const mockMakeupBags: MakeupBag[] = [
 ]
 
 export const makeupBagsHandlers = [
-    http.post('api/makeup-bags/one', () => {
-        return HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'MakeupBag created successfully',
-        })
-    }),
+    http.post('api/makeup-bags/one', () =>
+        HttpResponse.json(mockMakeupBagCreate)
+    ),
 
     http.get('api/makeup-bags/all', () => HttpResponse.json(mockMakeupBags)),
 

@@ -1,16 +1,24 @@
 import { http, HttpResponse } from 'msw'
+
 import type { Product } from '../../../features/products/types'
+import type { MutationResult } from '../../../types/api'
+
+export const mockProductCreate: MutationResult = {
+    id: 'product3',
+    count: 1,
+    message: 'Product created successfully',
+}
 
 export const mockProduct: Product = {
-    _id: '1',
-    brandId: 'brand-1',
+    _id: 'product1',
+    brandId: 'brand1',
     name: 'Liquid Foundation',
     imageUrl: 'https://example.com/foundation.jpg',
     shade: 'Natural Beige',
     comment: 'Long-lasting, natural finish',
     storeLinks: [
         {
-            _id: 'store-1',
+            _id: 'store1',
             name: 'Store 1',
             link: 'https://store1.com/foundation',
         },
@@ -20,8 +28,8 @@ export const mockProduct: Product = {
 export const mockProducts: Product[] = [
     mockProduct,
     {
-        _id: '2',
-        brandId: 'brand-2',
+        _id: 'product2',
+        brandId: 'brand2',
         name: 'Lipstick',
         imageUrl: 'https://example.com/lipstick.jpg',
         comment: '',
@@ -30,13 +38,7 @@ export const mockProducts: Product[] = [
 ]
 
 export const productsHandlers = [
-    http.post('api/products/one', () => {
-        return HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'Product created successfully',
-        })
-    }),
+    http.post('api/products/one', () => HttpResponse.json(mockProductCreate)),
 
     http.get('api/products/all', () => HttpResponse.json(mockProducts)),
 

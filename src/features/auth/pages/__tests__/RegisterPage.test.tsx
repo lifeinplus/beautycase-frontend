@@ -5,12 +5,10 @@ import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockError } from '../../../../tests/mocks'
+import { mockRegisterResult } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import {
-    type AuthResultRegister,
-    useRegisterUserMutation,
-} from '../../authApiSlice'
+import { useRegisterUserMutation } from '../../authApiSlice'
 import { RegisterPage } from '../RegisterPage'
 
 vi.mock('../../../../utils/errorUtils', () => ({
@@ -40,10 +38,6 @@ describe('RegisterPage', () => {
         username: 'testuser',
         password: 'password123',
         confirmPassword: 'password123',
-    }
-
-    const mockRegisterResult: AuthResultRegister = {
-        message: 'Account created successfully',
     }
 
     const mockRegisterUser = vi.fn()

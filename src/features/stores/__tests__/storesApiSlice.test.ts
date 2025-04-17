@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 
 import {
     mockStore,
+    mockStoreCreate,
     mockStores,
 } from '../../../tests/mocks/handlers/storesHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
 import {
     useCreateStoreMutation,
     useDeleteStoreMutation,
@@ -24,12 +24,7 @@ describe('storesApiSlice', () => {
 
         await act(async () => {
             const response = await createStore(mockStore).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Store created successfully',
-            })
+            expect(response).toMatchObject(mockStoreCreate)
         })
     })
 

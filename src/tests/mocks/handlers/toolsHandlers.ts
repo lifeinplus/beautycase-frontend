@@ -1,8 +1,15 @@
 import { http, HttpResponse } from 'msw'
 import type { Tool } from '../../../features/tools/types'
+import { MutationResult } from '../../../types/api'
+
+export const mockToolCreate: MutationResult = {
+    id: 'tool3',
+    count: 1,
+    message: 'Tool added successfully',
+}
 
 export const mockTool: Tool = {
-    _id: '1',
+    _id: 'tool1',
     name: 'Brush',
     brandId: '11',
     imageUrl: 'https://example.com/1.webp',
@@ -19,7 +26,7 @@ export const mockTool: Tool = {
 export const mockTools: Tool[] = [
     mockTool,
     {
-        _id: '2',
+        _id: 'tool2',
         name: 'Sponge',
         brandId: '22',
         imageUrl: 'https://example.com/2.webp',
@@ -35,13 +42,7 @@ export const mockTools: Tool[] = [
 ]
 
 export const toolsHandlers = [
-    http.post('api/tools/one', () =>
-        HttpResponse.json({
-            count: 1,
-            id: 3,
-            message: 'Tool added successfully',
-        })
-    ),
+    http.post('api/tools/one', () => HttpResponse.json(mockToolCreate)),
 
     http.get('api/tools/all', () => HttpResponse.json(mockTools)),
 

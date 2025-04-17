@@ -4,40 +4,13 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { type NavigationButtonProps } from '../../../../components/navigation/NavigationButton'
-import { type DataWrapperProps } from '../../../../components/DataWrapper'
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { useGetMakeupBagsQuery } from '../../makeupBagsApiSlice'
-import type { MakeupBag } from '../../types'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="mocked-nav-bar">{children}</div>
-    ),
-}))
-
-vi.mock('../../../../components/navigation/NavigationButton', () => ({
-    NavigationButton: ({ text, onClick }: NavigationButtonProps) => (
-        <button onClick={onClick}>{text}</button>
-    ),
-}))
-
-vi.mock('../../../../components/DataWrapper', () => ({
-    DataWrapper: ({ children }: DataWrapperProps<MakeupBag>) => (
-        <div data-testid="mocked-data-wrapper">{children}</div>
-    ),
-}))
-
-vi.mock('../../../../components/Header', () => ({
-    Header: () => <div data-testid="mocked-header" />,
-}))
-
-vi.mock('../../../../components/Hero', () => ({
-    Hero: () => <div data-testid="mocked-hero" />,
-}))
+mockComponents()
 
 vi.mock('../../components/MakeupBagMobileView', () => ({
     MakeupBagMobileView: () => <div data-testid="mocked-mobile-view" />,

@@ -1,28 +1,11 @@
-import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
 
-import { type TableProps } from '../../../../components/table/Table'
-import { type TableRowProps } from '../../../../components/table/TableRow'
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
-import type { MakeupBag } from '../../types'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { MakeupBagTable } from '../MakeupBagTable'
 
-vi.mock('../../../../components/table/Table', () => ({
-    Table: ({ headers, renderRow, data }: TableProps<MakeupBag>) => {
-        return (
-            <div>
-                {headers?.map((h, i) => <div key={i}>{h.label}</div>)}
-                {data?.map(renderRow)}
-            </div>
-        )
-    },
-}))
-
-vi.mock('../../../../components/table/TableRow', () => ({
-    TableRow: ({ cellData }: TableRowProps) => {
-        return cellData?.map((cell, i) => <div key={i}>{cell}</div>)
-    },
-}))
+mockComponents()
 
 vi.mock('../../../../utils/date', () => ({
     formatDate: vi.fn((_, format) => {

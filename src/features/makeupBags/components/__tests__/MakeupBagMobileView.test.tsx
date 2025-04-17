@@ -1,30 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
-import { type MobileViewProps } from '../../../../components/table/MobileView'
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
-import type { MakeupBag } from '../../types'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { MakeupBagMobileView } from '../MakeupBagMobileView'
 
-vi.mock('../../../../components/table/MobileView', () => ({
-    MobileView: ({
-        items,
-        getTitle,
-        getSubtitle,
-        getDate,
-        getLink,
-    }: MobileViewProps<MakeupBag>) => (
-        <div data-testid="mocked-mobile-view">
-            {items?.map((item, i) => (
-                <a key={i} href={getLink(item)}>
-                    {getTitle && <div>{getTitle(item)}</div>}
-                    {getSubtitle && <div>{getSubtitle(item)}</div>}
-                    {getDate && <div>{getDate(item)}</div>}
-                </a>
-            ))}
-        </div>
-    ),
-}))
+mockComponents()
 
 vi.mock('../../../../utils/date', () => ({
     formatDate: vi.fn((_, format) => {

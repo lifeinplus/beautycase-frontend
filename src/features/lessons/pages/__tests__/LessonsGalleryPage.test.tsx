@@ -1,38 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { type GalleryPageProps } from '../../../../components/gallery/GalleryPage'
-import { type VideoCardProps } from '../../../../components/gallery/VideoCard'
 import { mockLessons } from '../../../../tests/mocks/handlers/lessonsHandlers'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { useGetLessonsQuery } from '../../lessonsApiSlice'
 import { LessonsGalleryPage } from '../LessonsGalleryPage'
 
-vi.mock('../../../../components/gallery/GalleryPage', () => ({
-    GalleryPage: ({
-        title,
-        isLoading,
-        error,
-        mediaContent,
-    }: GalleryPageProps) => (
-        <div data-testid="mocked-gallery-page">
-            <h2>{title}</h2>
-            {isLoading && <div data-testid="mocked-loading">Loading...</div>}
-            {error ? <div data-testid="mocked-error">Error</div> : <></>}
-            {!isLoading && !error && (
-                <div data-testid="mocked-media-content">{mediaContent}</div>
-            )}
-        </div>
-    ),
-}))
-
-vi.mock('../../../../components/gallery/VideoCard', () => ({
-    VideoCard: ({ data, path }: VideoCardProps) => (
-        <div data-testid={`mocked-video-card-${data._id}`}>
-            <h2>{data.title}</h2>
-            <div>{path}</div>
-        </div>
-    ),
-}))
+mockComponents()
 
 vi.mock('../../lessonsApiSlice', () => ({
     useGetLessonsQuery: vi.fn(),

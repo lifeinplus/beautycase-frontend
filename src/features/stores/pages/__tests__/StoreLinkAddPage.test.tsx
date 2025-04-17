@@ -3,30 +3,14 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { type TopPanelProps } from '../../../../components/TopPanel'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { setFormData } from '../../../form/formSlice'
 import { useReadStoresQuery } from '../../storesApiSlice'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
-vi.mock('../../../../components/TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="mocked-top-panel">
-            <button data-testid="mocked-back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
-
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="mocked-adaptive-navbar">{children}</div>
-    ),
-}))
+mockComponents()
 
 vi.mock('../../storesApiSlice', () => ({
     useReadStoresQuery: vi.fn(),

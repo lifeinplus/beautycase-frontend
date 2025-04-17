@@ -5,11 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
 
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { type DataWrapperProps } from '../../../../components/DataWrapper'
-import { type HeroProps } from '../../../../components/Hero'
-import { type TopPanelProps } from '../../../../components/TopPanel'
 import { mockError } from '../../../../tests/mocks'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData, setFormData } from '../../../form/formSlice'
 import { type StoresMobileViewProps } from '../../components/StoresMobileView'
@@ -21,34 +18,7 @@ import {
 import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
-vi.mock('../../../../components/DataWrapper', () => ({
-    DataWrapper: ({ children }: DataWrapperProps<Store>) => (
-        <div data-testid="mocked-data-wrapper">{children}</div>
-    ),
-}))
-
-vi.mock('../../../../components/Hero', () => ({
-    Hero: ({ headline }: HeroProps) => (
-        <div data-testid="mocked-hero">{headline}</div>
-    ),
-}))
-
-vi.mock('../../../../components/TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="mocked-top-panel">
-            <button data-testid="mocked-back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
-
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="mocked-adaptive-navbar">{children}</div>
-    ),
-}))
+mockComponents()
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -152,7 +122,7 @@ describe('StoresPage', () => {
             screen.getByTestId('mocked-stores-mobile-view')
         ).toBeInTheDocument()
         expect(screen.getByTestId('mocked-stores-table')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-adaptive-navbar')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
 
         expect(screen.getByTestId('mocked-mobile-store-1')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-mobile-store-2')).toBeInTheDocument()

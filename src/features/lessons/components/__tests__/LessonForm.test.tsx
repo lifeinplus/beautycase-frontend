@@ -4,9 +4,8 @@ import { useForm } from 'react-hook-form'
 import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { type TopPanelProps } from '../../../../components/TopPanel'
 import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { mockOnSubmit, mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
@@ -16,22 +15,7 @@ vi.mock('react-hook-form', async () => ({
     useForm: vi.fn(),
 }))
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="mocked-adaptive-navbar">{children}</div>
-    ),
-}))
-
-vi.mock('../../../../components/TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="mocked-top-panel">
-            <button data-testid="mocked-back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
+mockComponents()
 
 vi.mock('../../../form/formSlice', async (importOriginal) => {
     const actual = await importOriginal()

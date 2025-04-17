@@ -1,11 +1,10 @@
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { type DetailsPageProps } from '../../../../components/pages/DetailsPage'
-import { type ImageProps } from '../../../../components/ui/Image'
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
+import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
 import {
@@ -14,49 +13,7 @@ import {
 } from '../../lessonsApiSlice'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
-vi.mock('../../../../components/pages/DetailsPage', () => ({
-    DetailsPage: ({
-        isLoading,
-        error,
-        title,
-        subtitle,
-        description,
-        mediaContent,
-        additionalContent,
-        deleteItem,
-    }: DetailsPageProps) => (
-        <div data-testid="mocked-details-page">
-            {isLoading && <div data-testid="mocked-loading">Loading...</div>}
-            {error ? <div data-testid="mocked-error">Error</div> : <></>}
-            {title && <h1 data-testid="mocked-title">{title}</h1>}
-            {subtitle && <p data-testid="mocked-subtitle">{subtitle}</p>}
-            {description && (
-                <div data-testid="mocked-description">{description}</div>
-            )}
-            <div data-testid="mocked-media-content">{mediaContent}</div>
-            <div data-testid="mocked-additional-content">
-                {additionalContent}
-            </div>
-            <button
-                data-testid="mocked-delete-button"
-                onClick={() => deleteItem('123')}
-            >
-                Delete
-            </button>
-        </div>
-    ),
-}))
-
-vi.mock('../../../../components/ui/Image', () => ({
-    Image: ({ src, alt, className }: ImageProps) => (
-        <img
-            src={src}
-            alt={alt}
-            className={className}
-            data-testid="mocked-mocked-image"
-        />
-    ),
-}))
+mockComponents()
 
 vi.mock('../../../../utils/youtube', async () => ({
     getYouTubeEmbedUrl: vi.fn(),

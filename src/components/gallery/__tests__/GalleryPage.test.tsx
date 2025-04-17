@@ -18,7 +18,7 @@ vi.mock('../../../utils/errorUtils', () => ({
 
 describe('GalleryPage', () => {
     const mockMediaContent = (
-        <div data-testid="media-content">Media Content</div>
+        <div data-testid="mocked-media-content">Media Content</div>
     )
 
     const mockProps: GalleryPageProps = {
@@ -49,7 +49,7 @@ describe('GalleryPage', () => {
         expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
         expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
-        expect(screen.getByTestId('media-content')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
         expect(screen.getByRole('complementary')).toBeInTheDocument()
     })
 

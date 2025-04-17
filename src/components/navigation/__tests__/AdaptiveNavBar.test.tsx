@@ -123,10 +123,12 @@ describe('AdaptiveNavBar', () => {
     it('renders children content', () => {
         renderWithProvider(
             <AdaptiveNavBar>
-                <button data-testid="child-content">Child Content</button>
+                <button data-testid="mocked-child-content">
+                    Child Content
+                </button>
             </AdaptiveNavBar>
         )
 
-        expect(screen.getByTestId('child-content')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-child-content')).toBeInTheDocument()
     })
 })

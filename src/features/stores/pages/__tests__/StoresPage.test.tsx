@@ -23,18 +23,20 @@ import { StoresPage } from '../StoresPage'
 
 vi.mock('../../../../components/DataWrapper', () => ({
     DataWrapper: ({ children }: DataWrapperProps<Store>) => (
-        <div data-testid="data-wrapper">{children}</div>
+        <div data-testid="mocked-data-wrapper">{children}</div>
     ),
 }))
 
 vi.mock('../../../../components/Hero', () => ({
-    Hero: ({ headline }: HeroProps) => <div data-testid="hero">{headline}</div>,
+    Hero: ({ headline }: HeroProps) => (
+        <div data-testid="mocked-hero">{headline}</div>
+    ),
 }))
 
 vi.mock('../../../../components/TopPanel', () => ({
     TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
+        <div data-testid="mocked-top-panel">
+            <button data-testid="mocked-back-button" onClick={onBack}>
                 Back
             </button>
             <h2>{title}</h2>
@@ -44,7 +46,7 @@ vi.mock('../../../../components/TopPanel', () => ({
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
     AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
+        <div data-testid="mocked-adaptive-navbar">{children}</div>
     ),
 }))
 
@@ -68,15 +70,18 @@ vi.mock('../../storesApiSlice', () => ({
 
 vi.mock('../../components/StoreForm', () => ({
     StoreForm: forwardRef(({}, _) => (
-        <div data-testid="store-form">Store Form</div>
+        <div data-testid="mocked-store-form">Store Form</div>
     )),
 }))
 
 vi.mock('../../components/StoresMobileView', () => ({
     StoresMobileView: ({ items }: StoresMobileViewProps) => (
-        <div data-testid="stores-mobile-view">
+        <div data-testid="mocked-stores-mobile-view">
             {items?.map((item) => (
-                <div key={item._id} data-testid={`mobile-store-${item._id}`}>
+                <div
+                    key={item._id}
+                    data-testid={`mocked-mobile-store-${item._id}`}
+                >
                     {item.name}
                 </div>
             ))}
@@ -86,18 +91,21 @@ vi.mock('../../components/StoresMobileView', () => ({
 
 vi.mock('../../components/StoresTable', () => ({
     StoresTable: ({ items, onDelete, onEdit }: StoresTableProps) => (
-        <div data-testid="stores-table">
+        <div data-testid="mocked-stores-table">
             {items?.map((item) => (
-                <div key={item._id} data-testid={`table-store-${item._id}`}>
+                <div
+                    key={item._id}
+                    data-testid={`mocked-table-store-${item._id}`}
+                >
                     <span>{item.name}</span>
                     <button
-                        data-testid={`table-edit-${item._id}`}
+                        data-testid={`mocked-table-edit-${item._id}`}
                         onClick={() => onEdit(item)}
                     >
                         Edit
                     </button>
                     <button
-                        data-testid={`table-delete-${item._id}`}
+                        data-testid={`mocked-table-delete-${item._id}`}
                         onClick={() => onDelete(item)}
                     >
                         Delete
@@ -137,17 +145,19 @@ describe('StoresPage', () => {
     it('renders the page title', () => {
         render(<StoresPage />)
 
-        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('hero')).toBeInTheDocument()
-        expect(screen.getByTestId('store-form')).toBeInTheDocument()
-        expect(screen.getByTestId('stores-mobile-view')).toBeInTheDocument()
-        expect(screen.getByTestId('stores-table')).toBeInTheDocument()
-        expect(screen.getByTestId('adaptive-navbar')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-store-form')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-stores-mobile-view')
+        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stores-table')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-adaptive-navbar')).toBeInTheDocument()
 
-        expect(screen.getByTestId('mobile-store-1')).toBeInTheDocument()
-        expect(screen.getByTestId('mobile-store-2')).toBeInTheDocument()
-        expect(screen.getByTestId('table-store-1')).toBeInTheDocument()
-        expect(screen.getByTestId('table-store-2')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-mobile-store-1')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-mobile-store-2')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-table-store-1')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-table-store-2')).toBeInTheDocument()
     })
 
     it('should navigate back when back button is clicked', async () => {
@@ -155,7 +165,7 @@ describe('StoresPage', () => {
 
         render(<StoresPage />)
 
-        const backButton = screen.getByTestId('back-button')
+        const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith('/reference_lists')
@@ -166,7 +176,7 @@ describe('StoresPage', () => {
 
         render(<StoresPage />)
 
-        const editButton = screen.getByTestId('table-edit-1')
+        const editButton = screen.getByTestId('mocked-table-edit-1')
         await user.click(editButton)
 
         expect(setFormData).toHaveBeenCalledWith(mockStores[0])
@@ -177,7 +187,7 @@ describe('StoresPage', () => {
 
         render(<StoresPage />)
 
-        const deleteButton = screen.getByTestId('table-delete-1')
+        const deleteButton = screen.getByTestId('mocked-table-delete-1')
 
         await user.click(deleteButton)
 
@@ -204,7 +214,7 @@ describe('StoresPage', () => {
 
         render(<StoresPage />)
 
-        const deleteButton = screen.getByTestId('table-delete-1')
+        const deleteButton = screen.getByTestId('mocked-table-delete-1')
 
         await user.click(deleteButton)
 

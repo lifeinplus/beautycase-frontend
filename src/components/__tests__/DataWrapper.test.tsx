@@ -14,7 +14,9 @@ const mockDataArrray = [mockData]
 
 const mockEmptyMessage = 'No data available'
 
-const mockChildren = <div data-testid="children-content">Test Content</div>
+const mockChildren = (
+    <div data-testid="mocked-children-content">Test Content</div>
+)
 
 describe('DataWrapper', () => {
     it('renders loading state', () => {
@@ -104,7 +106,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const childrenElement = screen.getByTestId('children-content')
+        const childrenElement = screen.getByTestId('mocked-children-content')
         expect(childrenElement).toBeInTheDocument()
         expect(childrenElement).toHaveTextContent('Test Content')
     })
@@ -121,7 +123,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const childrenElement = screen.getByTestId('children-content')
+        const childrenElement = screen.getByTestId('mocked-children-content')
         expect(childrenElement).toBeInTheDocument()
     })
 

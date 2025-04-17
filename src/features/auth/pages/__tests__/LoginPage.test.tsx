@@ -20,9 +20,11 @@ vi.mock('../../authApiSlice', () => ({
     useLoginUserMutation: vi.fn(),
 }))
 
-const MockHome = () => <div data-testid="home-page">Home Page</div>
+const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
-const MockRegister = () => <div data-testid="register-page">Register Page</div>
+const MockRegister = () => (
+    <div data-testid="mocked-register-page">Register Page</div>
+)
 
 const MockRoutes = () => (
     <Routes>
@@ -160,6 +162,6 @@ describe('LoginPage', () => {
         const link = screen.getByRole('link', { name: /зарегистрироваться/i })
         await user.click(link)
 
-        expect(screen.getByTestId('register-page')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-register-page')).toBeInTheDocument()
     })
 })

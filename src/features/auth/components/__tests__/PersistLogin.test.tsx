@@ -9,7 +9,7 @@ vi.mock('../../../../hooks/useRefreshAuth', () => ({
 }))
 
 vi.mock('../../../../components/Spinner', () => ({
-    Spinner: () => <div data-testid="spinner">Loading...</div>,
+    Spinner: () => <div data-testid="mocked-spinner">Loading...</div>,
 }))
 
 describe('PersistLogin', () => {
@@ -25,6 +25,6 @@ describe('PersistLogin', () => {
 
         render(<PersistLogin />)
 
-        expect(screen.getByTestId('spinner')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
     })
 })

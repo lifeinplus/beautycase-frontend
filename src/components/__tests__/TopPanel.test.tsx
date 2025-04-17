@@ -18,11 +18,12 @@ describe('TopPanel', () => {
     it('renders back button with chevron icon', () => {
         render(<TopPanel title="Test Title" />)
 
-        const backButton = screen.getByRole('button')
+        const icon = screen.getByTestId('mocked-chevron-left-icon')
+        expect(icon).toBeInTheDocument()
 
+        const backButton = screen.getByRole('button')
         expect(backButton).toBeInTheDocument()
         expect(backButton).toHaveClass('panel-top__button')
-        expect(screen.getByTestId('chevron-left-icon')).toBeInTheDocument()
     })
 
     it('navigates back when default back button is clicked', async () => {

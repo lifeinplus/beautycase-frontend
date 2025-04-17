@@ -8,7 +8,7 @@ import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
 vi.mock('../Label', () => ({
     Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
+        <label data-testid="mocked-label">
             <span>{text}</span>
             {children}
         </label>
@@ -31,7 +31,7 @@ describe('SelectSection', () => {
     it('renders with the label correctly', () => {
         render(<SelectSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
     })

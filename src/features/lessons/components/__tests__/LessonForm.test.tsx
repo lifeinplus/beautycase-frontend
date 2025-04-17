@@ -18,14 +18,14 @@ vi.mock('react-hook-form', async () => ({
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
     AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
+        <div data-testid="mocked-adaptive-navbar">{children}</div>
     ),
 }))
 
 vi.mock('../../../../components/TopPanel', () => ({
     TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
+        <div data-testid="mocked-top-panel">
+            <button data-testid="mocked-back-button" onClick={onBack}>
                 Back
             </button>
             <h2>{title}</h2>

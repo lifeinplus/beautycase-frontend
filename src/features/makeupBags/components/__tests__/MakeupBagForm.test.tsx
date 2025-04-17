@@ -17,14 +17,14 @@ import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
     AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
+        <div data-testid="mocked-adaptive-navbar">{children}</div>
     ),
 }))
 
 vi.mock('../../../../components/TopPanel', () => ({
     TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
+        <div data-testid="mocked-top-panel">
+            <button data-testid="mocked-back-button" onClick={onBack}>
                 Back
             </button>
             <h2>{title}</h2>
@@ -71,7 +71,7 @@ describe('MakeupBagForm', () => {
     it('renders all required form fields', () => {
         render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
 
-        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
         expect(
             screen.getByRole('heading', { name: 'Test Title', level: 1 })

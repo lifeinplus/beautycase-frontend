@@ -25,12 +25,12 @@ describe('AuthButton', () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('arrow-right-end-on-rectangle-icon')
+            screen.getByTestId('mocked-arrow-right-end-on-rectangle-icon')
         ).toBeInTheDocument()
         expect(screen.getByText('Войти')).toBeInTheDocument()
 
         expect(
-            screen.queryByTestId('arrow-left-start-on-rectangle-icon')
+            screen.queryByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).not.toBeInTheDocument()
         expect(screen.queryByText('Выйти')).not.toBeInTheDocument()
     })
@@ -43,7 +43,7 @@ describe('AuthButton', () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('arrow-left-start-on-rectangle-icon')
+            screen.getByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).toBeInTheDocument()
         expect(screen.getByText('Выйти')).toBeInTheDocument()
 

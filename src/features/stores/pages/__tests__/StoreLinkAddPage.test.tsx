@@ -13,8 +13,8 @@ import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
 vi.mock('../../../../components/TopPanel', () => ({
     TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
+        <div data-testid="mocked-top-panel">
+            <button data-testid="mocked-back-button" onClick={onBack}>
                 Back
             </button>
             <h2>{title}</h2>
@@ -24,7 +24,7 @@ vi.mock('../../../../components/TopPanel', () => ({
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
     AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
+        <div data-testid="mocked-adaptive-navbar">{children}</div>
     ),
 }))
 
@@ -65,7 +65,7 @@ describe('StoreLinkAddPage', () => {
 
     it('renders the page with correct title', () => {
         render(<StoreLinkAddPage />)
-        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
     })
 
     it('renders initial empty store link form', () => {

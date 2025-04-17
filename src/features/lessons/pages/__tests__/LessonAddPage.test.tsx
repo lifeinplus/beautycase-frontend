@@ -33,10 +33,10 @@ vi.mock('../../lessonsApiSlice', () => ({
 
 vi.mock('../../components/LessonForm', () => ({
     LessonForm: ({ title, onSubmit }: LessonFormProps) => (
-        <div data-testid="lesson-form">
+        <div data-testid="mocked-lesson-form">
             <h1>{title}</h1>
             <button
-                data-testid="submit-button"
+                data-testid="mocked-submit-button"
                 onClick={() => onSubmit(mockLesson)}
             >
                 Submit
@@ -59,7 +59,7 @@ describe('LessonAddPage', () => {
     it('renders the LessonForm with title', () => {
         render(<LessonAddPage />)
 
-        expect(screen.getByTestId('lesson-form')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
         expect(screen.getByText('Добавить урок')).toBeInTheDocument()
     })
 
@@ -68,7 +68,7 @@ describe('LessonAddPage', () => {
 
         render(<LessonAddPage />)
 
-        const button = screen.getByTestId('submit-button')
+        const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
         expect(mockAddLesson).toHaveBeenCalledWith(mockLesson)
@@ -87,7 +87,7 @@ describe('LessonAddPage', () => {
 
         render(<LessonAddPage />)
 
-        const button = screen.getByTestId('submit-button')
+        const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
         expect(mockAddLesson).toHaveBeenCalled()

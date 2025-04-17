@@ -21,7 +21,7 @@ describe('Table', () => {
     ]
 
     const renderRow = (item: TestItem) => (
-        <tr key={item.id} data-testid={`row-${item.id}`}>
+        <tr key={item.id} data-testid={`mocked-row-${item.id}`}>
             <td>{item.id}</td>
             <td>{item.name}</td>
             <td>{item.age}</td>
@@ -51,9 +51,12 @@ describe('Table', () => {
         )
 
         mockData.forEach((item) => {
-            expect(screen.getByTestId(`row-${item.id}`)).toBeInTheDocument()
-            expect(screen.getByText(item.name)).toBeInTheDocument()
-            expect(screen.getByText(item.age.toString())).toBeInTheDocument()
+            const row = screen.getByTestId(`mocked-row-${item.id}`)
+            const name = screen.getByText(item.name)
+            const age = screen.getByText(item.age.toString())
+            expect(row).toBeInTheDocument()
+            expect(name).toBeInTheDocument()
+            expect(age).toBeInTheDocument()
         })
     })
 

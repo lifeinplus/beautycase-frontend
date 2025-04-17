@@ -16,8 +16,8 @@ import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
 
 vi.mock('../../TopPanel', () => ({
     TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
+        <div data-testid="mocked-top-panel">
+            <button data-testid="mocked-back-button" onClick={onBack}>
                 Back
             </button>
             <h2>{title}</h2>
@@ -34,7 +34,7 @@ describe('DetailsPage', () => {
     const mockDuplicateItem = vi.fn()
 
     const mockMediaContent = (
-        <div data-testid="media-content">Media Content</div>
+        <div data-testid="mocked-media-content">Media Content</div>
     )
 
     const mockProps: DetailsPageProps = {
@@ -64,7 +64,7 @@ describe('DetailsPage', () => {
     it('renders the component with all elements', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
         expect(
             screen.getByRole('heading', {
@@ -75,7 +75,7 @@ describe('DetailsPage', () => {
 
         expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
         expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
-        expect(screen.getByTestId('media-content')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
         expect(screen.getByRole('complementary')).toBeInTheDocument()
     })
 

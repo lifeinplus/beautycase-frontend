@@ -21,8 +21,8 @@ describe('ThemeToggler', () => {
             screen.getByRole('button', { name: /Light mode/i })
         ).toBeInTheDocument()
 
-        expect(screen.getByTestId('sun-icon')).toBeInTheDocument()
-        expect(screen.queryByTestId('moon-icon')).not.toBeInTheDocument()
+        expect(screen.getByTestId('mocked-sun-icon')).toBeInTheDocument()
+        expect(screen.queryByTestId('mocked-moon-icon')).not.toBeInTheDocument()
     })
 
     it('renders dark mode button when darkMode is true', () => {
@@ -34,8 +34,8 @@ describe('ThemeToggler', () => {
             screen.getByRole('button', { name: /Dark mode/i })
         ).toBeInTheDocument()
 
-        expect(screen.getByTestId('moon-icon')).toBeInTheDocument()
-        expect(screen.queryByTestId('sun-icon')).not.toBeInTheDocument()
+        expect(screen.getByTestId('mocked-moon-icon')).toBeInTheDocument()
+        expect(screen.queryByTestId('mocked-sun-icon')).not.toBeInTheDocument()
     })
 
     it('dispatches toggleTheme action when clicked', async () => {

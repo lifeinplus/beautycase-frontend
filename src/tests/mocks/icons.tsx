@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-const mockIcon = (name: string) => () => <svg data-testid={name} />
+const mockIcon = (name: string) => () => <svg data-testid={`mocked-${name}`} />
 
 const icons = {
     ArrowDownCircleIcon: mockIcon('arrow-down-circle-icon'),

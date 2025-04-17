@@ -4,7 +4,7 @@ import type { Header } from '../../../types/table'
 import { formatDate } from '../../../utils/date'
 import type { MakeupBag } from '../types'
 
-interface MakeupBagTableProps {
+export interface MakeupBagTableProps {
     makeupBags?: MakeupBag[]
 }
 

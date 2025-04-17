@@ -129,7 +129,7 @@ describe('MobileView', () => {
             />
         )
 
-        const icons = screen.getAllByTestId('chevron-right-icon')
+        const icons = screen.getAllByTestId('mocked-chevron-right-icon')
         expect(icons).toHaveLength(3)
     })
 })

@@ -25,16 +25,20 @@ vi.mock('../../../../components/pages/DetailsPage', () => ({
         additionalContent,
         deleteItem,
     }: DetailsPageProps) => (
-        <div data-testid="details-page">
-            {isLoading && <div data-testid="loading">Loading...</div>}
-            {error ? <div data-testid="error">Error</div> : <></>}
-            {title && <h1 data-testid="title">{title}</h1>}
-            {subtitle && <p data-testid="subtitle">{subtitle}</p>}
-            {description && <div data-testid="description">{description}</div>}
-            <div data-testid="media-content">{mediaContent}</div>
-            <div data-testid="additional-content">{additionalContent}</div>
+        <div data-testid="mocked-details-page">
+            {isLoading && <div data-testid="mocked-loading">Loading...</div>}
+            {error ? <div data-testid="mocked-error">Error</div> : <></>}
+            {title && <h1 data-testid="mocked-title">{title}</h1>}
+            {subtitle && <p data-testid="mocked-subtitle">{subtitle}</p>}
+            {description && (
+                <div data-testid="mocked-description">{description}</div>
+            )}
+            <div data-testid="mocked-media-content">{mediaContent}</div>
+            <div data-testid="mocked-additional-content">
+                {additionalContent}
+            </div>
             <button
-                data-testid="delete-button"
+                data-testid="mocked-delete-button"
                 onClick={() => deleteItem('123')}
             >
                 Delete
@@ -49,7 +53,7 @@ vi.mock('../../../../components/ui/Image', () => ({
             src={src}
             alt={alt}
             className={className}
-            data-testid="mocked-image"
+            data-testid="mocked-mocked-image"
         />
     ),
 }))

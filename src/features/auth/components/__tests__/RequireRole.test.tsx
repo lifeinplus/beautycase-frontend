@@ -8,11 +8,11 @@ import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { RequireRole } from '../RequireRole'
 
 const MockProtected = () => (
-    <div data-testid="protected-content">Protected Content</div>
+    <div data-testid="mocked-protected-content">Protected Content</div>
 )
 
 const MockUnauthorized = () => (
-    <div data-testid="unauthorized-page">Unauthorized</div>
+    <div data-testid="mocked-unauthorized-page">Unauthorized</div>
 )
 
 const MockRoutes = () => (
@@ -35,7 +35,8 @@ describe('RequireRole', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByTestId('protected-content')).toBeInTheDocument()
+        const content = screen.getByTestId('mocked-protected-content')
+        expect(content).toBeInTheDocument()
     })
 
     it('redirects to unauthorized page when user role is not allowed', () => {
@@ -43,7 +44,8 @@ describe('RequireRole', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByTestId('unauthorized-page')).toBeInTheDocument()
+        const page = screen.getByTestId('mocked-unauthorized-page')
+        expect(page).toBeInTheDocument()
     })
 
     it('redirects to unauthorized page if user has no role', () => {
@@ -51,6 +53,7 @@ describe('RequireRole', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByTestId('unauthorized-page')).toBeInTheDocument()
+        const page = screen.getByTestId('mocked-unauthorized-page')
+        expect(page).toBeInTheDocument()
     })
 })

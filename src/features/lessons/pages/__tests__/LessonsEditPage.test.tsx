@@ -30,10 +30,10 @@ vi.mock('../../../form/formSlice', async (importOriginal) => {
 
 vi.mock('../../components/LessonForm', () => ({
     LessonForm: ({ title, onSubmit }: LessonFormProps) => (
-        <div data-testid="lesson-form">
+        <div data-testid="mocked-lesson-form">
             <h1>{title}</h1>
             <button
-                data-testid="submit-button"
+                data-testid="mocked-submit-button"
                 onClick={() => onSubmit(mockLesson)}
             >
                 Submit
@@ -66,7 +66,7 @@ describe('LessonEditPage', () => {
     it('renders the LessonForm with title', () => {
         render(<LessonEditPage />)
 
-        const form = screen.getByTestId('lesson-form')
+        const form = screen.getByTestId('mocked-lesson-form')
         const title = screen.getByText('Редактировать урок')
 
         expect(form).toBeInTheDocument()
@@ -78,7 +78,7 @@ describe('LessonEditPage', () => {
 
         render(<LessonEditPage />)
 
-        const button = screen.getByTestId('submit-button')
+        const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
         expect(mockEditLesson).toHaveBeenCalledWith({
@@ -101,7 +101,7 @@ describe('LessonEditPage', () => {
 
         render(<LessonEditPage />)
 
-        const button = screen.getByTestId('submit-button')
+        const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
         expect(mockEditLesson).toHaveBeenCalled()

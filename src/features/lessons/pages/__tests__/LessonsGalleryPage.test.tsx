@@ -14,12 +14,12 @@ vi.mock('../../../../components/gallery/GalleryPage', () => ({
         error,
         mediaContent,
     }: GalleryPageProps) => (
-        <div data-testid="gallery-page">
+        <div data-testid="mocked-gallery-page">
             <h2>{title}</h2>
-            {isLoading && <div data-testid="loading">Loading...</div>}
-            {error ? <div data-testid="error">Error</div> : <></>}
+            {isLoading && <div data-testid="mocked-loading">Loading...</div>}
+            {error ? <div data-testid="mocked-error">Error</div> : <></>}
             {!isLoading && !error && (
-                <div data-testid="media-content">{mediaContent}</div>
+                <div data-testid="mocked-media-content">{mediaContent}</div>
             )}
         </div>
     ),
@@ -27,7 +27,7 @@ vi.mock('../../../../components/gallery/GalleryPage', () => ({
 
 vi.mock('../../../../components/gallery/VideoCard', () => ({
     VideoCard: ({ data, path }: VideoCardProps) => (
-        <div data-testid={`video-card-${data._id}`}>
+        <div data-testid={`mocked-video-card-${data._id}`}>
             <h2>{data.title}</h2>
             <div>{path}</div>
         </div>
@@ -50,12 +50,14 @@ describe('LessonsGalleryPage', () => {
     it('renders list of lessons when data is available', () => {
         render(<LessonsGalleryPage />)
 
-        expect(screen.getByTestId('gallery-page')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
         expect(screen.getByText('Уроки')).toBeInTheDocument()
-        expect(screen.getByTestId('media-content')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockLessons.forEach((lesson) => {
-            const videoCard = screen.getByTestId(`video-card-${lesson._id}`)
+            const videoCard = screen.getByTestId(
+                `mocked-video-card-${lesson._id}`
+            )
             const title = screen.getByText(lesson.title)
             const path = screen.getByText(`/lessons/${lesson._id}`)
 

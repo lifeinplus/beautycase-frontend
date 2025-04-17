@@ -11,7 +11,7 @@ import {
 
 vi.mock('../Label', () => ({
     Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
+        <label data-testid="mocked-label">
             <span>{text}</span>
             {children}
         </label>
@@ -21,7 +21,7 @@ vi.mock('../Label', () => ({
 vi.mock('../RadioButtonItem', () => ({
     RadioButtonItem: ({ id, label, register, value }: RadioButtonItemProps) => {
         return (
-            <div data-testid={`radio-item-${id}`}>
+            <div data-testid={`mocked-radio-item-${id}`}>
                 <label>{label}</label>
                 <input {...register} readOnly value={value} />
             </div>
@@ -45,13 +45,13 @@ describe('RadioButtonSection', () => {
     it('renders label and radio buttons', () => {
         render(<RadioButtonSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
 
-        const option1 = screen.getByTestId('radio-item-option-1')
-        const option2 = screen.getByTestId('radio-item-option-2')
-        const option3 = screen.getByTestId('radio-item-option-3')
+        const option1 = screen.getByTestId('mocked-radio-item-option-1')
+        const option2 = screen.getByTestId('mocked-radio-item-option-2')
+        const option3 = screen.getByTestId('mocked-radio-item-option-3')
 
         expect(option1).toBeInTheDocument()
         expect(option2).toBeInTheDocument()

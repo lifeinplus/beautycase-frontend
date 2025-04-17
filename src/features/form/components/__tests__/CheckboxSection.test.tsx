@@ -8,7 +8,7 @@ import { LabelProps } from '../Label'
 
 vi.mock('../CheckboxItem', () => ({
     CheckboxItem: ({ id, label, register }: CheckboxItemProps) => (
-        <div data-testid={`checkbox-item-${id}`}>
+        <div data-testid={`mocked-checkbox-item-${id}`}>
             <span>{label}</span>
             <input type="checkbox" {...register} />
         </div>
@@ -17,7 +17,7 @@ vi.mock('../CheckboxItem', () => ({
 
 vi.mock('../Label', () => ({
     Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
+        <label data-testid="mocked-label">
             <span>{text}</span>
             {children}
         </label>
@@ -40,7 +40,7 @@ describe('CheckboxSection', () => {
     it('renders with the label correctly', () => {
         render(<CheckboxSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
     })
@@ -48,9 +48,9 @@ describe('CheckboxSection', () => {
     it('renders all options as checkbox items', () => {
         render(<CheckboxSection {...mockProps} />)
 
-        const option1 = screen.getByTestId('checkbox-item-option-1')
-        const option2 = screen.getByTestId('checkbox-item-option-2')
-        const option3 = screen.getByTestId('checkbox-item-option-3')
+        const option1 = screen.getByTestId('mocked-checkbox-item-option-1')
+        const option2 = screen.getByTestId('mocked-checkbox-item-option-2')
+        const option3 = screen.getByTestId('mocked-checkbox-item-option-3')
 
         expect(option1).toBeInTheDocument()
         expect(option2).toBeInTheDocument()

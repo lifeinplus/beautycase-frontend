@@ -30,7 +30,7 @@ vi.mock('../../../uploads/uploadApiSlice', () => ({
 
 vi.mock('../ImagePreview', () => ({
     ImagePreview: ({ url }: ImagePreviewProps) => (
-        <img data-testid="image-preview" src={url} />
+        <img data-testid="mocked-image-preview" src={url} />
     ),
 }))
 
@@ -87,7 +87,9 @@ describe('ImageTextSection', () => {
     it('renders image preview if valueUrl is present', () => {
         render(<ImageTextSection {...mockProps} valueUrl={mockUrl} />)
 
-        const image = screen.getByTestId('image-preview') as HTMLImageElement
+        const image = screen.getByTestId(
+            'mocked-image-preview'
+        ) as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toBe(mockUrl)

@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
@@ -9,8 +8,6 @@ import { mockError } from '../../../../tests/mocks'
 import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData, setFormData } from '../../../form/formSlice'
-import { type StoresMobileViewProps } from '../../components/StoresMobileView'
-import { type StoresTableProps } from '../../components/StoresTable'
 import {
     useReadStoresQuery,
     useDeleteStoreMutation,
@@ -38,53 +35,9 @@ vi.mock('../../storesApiSlice', () => ({
     useReadStoresQuery: vi.fn(),
 }))
 
-vi.mock('../../components/StoreForm', () => ({
-    StoreForm: forwardRef(({}, _) => (
-        <div data-testid="mocked-store-form">Store Form</div>
-    )),
-}))
-
-vi.mock('../../components/StoresMobileView', () => ({
-    StoresMobileView: ({ items }: StoresMobileViewProps) => (
-        <div data-testid="mocked-stores-mobile-view">
-            {items?.map((item) => (
-                <div
-                    key={item._id}
-                    data-testid={`mocked-mobile-store-${item._id}`}
-                >
-                    {item.name}
-                </div>
-            ))}
-        </div>
-    ),
-}))
-
-vi.mock('../../components/StoresTable', () => ({
-    StoresTable: ({ items, onDelete, onEdit }: StoresTableProps) => (
-        <div data-testid="mocked-stores-table">
-            {items?.map((item) => (
-                <div
-                    key={item._id}
-                    data-testid={`mocked-table-store-${item._id}`}
-                >
-                    <span>{item.name}</span>
-                    <button
-                        data-testid={`mocked-table-edit-${item._id}`}
-                        onClick={() => onEdit(item)}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        data-testid={`mocked-table-delete-${item._id}`}
-                        onClick={() => onDelete(item)}
-                    >
-                        Delete
-                    </button>
-                </div>
-            ))}
-        </div>
-    ),
-}))
+vi.mock('../../components/StoreForm')
+vi.mock('../../components/StoresMobileView')
+vi.mock('../../components/StoresTable')
 
 describe('StoresPage', () => {
     const mockStores: Store[] = [

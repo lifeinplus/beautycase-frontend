@@ -12,13 +12,8 @@ import { MakeupBagListPage } from '../MakeupBagListPage'
 
 mockComponents()
 
-vi.mock('../../components/MakeupBagMobileView', () => ({
-    MakeupBagMobileView: () => <div data-testid="mocked-mobile-view" />,
-}))
-
-vi.mock('../../components/MakeupBagTable', () => ({
-    MakeupBagTable: () => <div data-testid="mocked-table" />,
-}))
+vi.mock('../../components/MakeupBagMobileView')
+vi.mock('../../components/MakeupBagTable')
 
 vi.mock('../../makeupBagsApiSlice', () => ({
     useGetMakeupBagsQuery: vi.fn(),

@@ -2,18 +2,10 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import { type QuestionnaireOption } from '../../../questionnaires/options'
-import { CheckboxItemProps } from '../CheckboxItem'
 import { CheckboxSection, type CheckboxSectionProps } from '../CheckboxSection'
 import { LabelProps } from '../Label'
 
-vi.mock('../CheckboxItem', () => ({
-    CheckboxItem: ({ id, label, register }: CheckboxItemProps) => (
-        <div data-testid={`mocked-checkbox-item-${id}`}>
-            <span>{label}</span>
-            <input type="checkbox" {...register} />
-        </div>
-    ),
-}))
+vi.mock('../CheckboxItem')
 
 vi.mock('../Label', () => ({
     Label: ({ children, text }: LabelProps) => (

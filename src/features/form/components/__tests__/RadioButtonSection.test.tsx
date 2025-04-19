@@ -2,32 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import type { QuestionnaireOption } from '../../../questionnaires/options'
-import { type LabelProps } from '../Label'
-import { type RadioButtonItemProps } from '../RadioButtonItem'
 import {
     RadioButtonSection,
     type RadioButtonSectionProps,
 } from '../RadioButtonSection'
 
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="mocked-label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
-
-vi.mock('../RadioButtonItem', () => ({
-    RadioButtonItem: ({ id, label, register, value }: RadioButtonItemProps) => {
-        return (
-            <div data-testid={`mocked-radio-item-${id}`}>
-                <label>{label}</label>
-                <input {...register} readOnly value={value} />
-            </div>
-        )
-    },
-}))
+vi.mock('../Label')
+vi.mock('../RadioButtonItem')
 
 describe('RadioButtonSection', () => {
     const mockOptions: QuestionnaireOption[] = [

@@ -3,18 +3,9 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { type QuestionnaireOption } from '../../../questionnaires/options'
 import { CheckboxSection, type CheckboxSectionProps } from '../CheckboxSection'
-import { LabelProps } from '../Label'
 
 vi.mock('../CheckboxItem')
-
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="mocked-label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
+vi.mock('../Label')
 
 describe('CheckboxSection', () => {
     const mockOptions: QuestionnaireOption[] = [

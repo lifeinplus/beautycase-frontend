@@ -3,17 +3,9 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
 import type { SelectOption } from '../../types'
-import { type LabelProps } from '../Label'
 import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="mocked-label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
+vi.mock('../Label')
 
 describe('SelectSection', () => {
     const mockOptions: SelectOption[] = [

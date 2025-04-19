@@ -12,6 +12,11 @@ import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
+vi.mock('../../navigation/AdaptiveNavBar')
+vi.mock('../../navigation/NavigationButton')
+vi.mock('../../Header')
+vi.mock('../../Hero')
+
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
 }))
@@ -46,11 +51,17 @@ describe('GalleryPage', () => {
     it('renders the component with all elements', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
-        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
-        expect(screen.getByRole('complementary')).toBeInTheDocument()
+        const header = screen.getByTestId('mocked-header')
+        const hero = screen.getByTestId('mocked-hero')
+        const mediaContent = screen.getByTestId('mocked-media-content')
+        const navBar = screen.getByTestId('mocked-nav-bar')
+        const navButton = screen.getByTestId('mocked-nav-button')
+
+        expect(header).toBeInTheDocument()
+        expect(hero).toBeInTheDocument()
+        expect(mediaContent).toBeInTheDocument()
+        expect(navBar).toBeInTheDocument()
+        expect(navButton).toBeInTheDocument()
     })
 
     it('renders without subtitle when not provided', () => {

@@ -5,6 +5,8 @@ import { getErrorMessage } from '../../utils/errorUtils'
 import { DataWrapper } from '../DataWrapper'
 import { mockError } from '../../tests/mocks'
 
+vi.mock('../LoadingOrError')
+
 vi.mock('../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
 }))
@@ -31,10 +33,12 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
+        const loadingOrError = screen.getByTestId('mocked-loading-or-error')
         const loadingElement = screen.getByText('Загрузка...')
-        expect(loadingElement).toBeInTheDocument()
-
         const childrenElement = screen.queryByTestId('children-content')
+
+        expect(loadingOrError).toBeInTheDocument()
+        expect(loadingElement).toBeInTheDocument()
         expect(childrenElement).not.toBeInTheDocument()
     })
 

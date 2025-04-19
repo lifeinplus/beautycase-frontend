@@ -11,7 +11,6 @@ import {
 } from '../../../../tests/mocks/handlers/lessonsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData } from '../../../form/formSlice'
-import { type LessonFormProps } from '../../components/LessonForm'
 import { useAddLessonMutation } from '../../lessonsApiSlice'
 import { LessonAddPage } from '../LessonAddPage'
 
@@ -27,22 +26,10 @@ vi.mock('../../../form/formSlice', async (importOriginal) => {
     }
 })
 
+vi.mock('../../components/LessonForm')
+
 vi.mock('../../lessonsApiSlice', () => ({
     useAddLessonMutation: vi.fn(),
-}))
-
-vi.mock('../../components/LessonForm', () => ({
-    LessonForm: ({ title, onSubmit }: LessonFormProps) => (
-        <div data-testid="mocked-lesson-form">
-            <h1>{title}</h1>
-            <button
-                data-testid="mocked-submit-button"
-                onClick={() => onSubmit(mockLesson)}
-            >
-                Submit
-            </button>
-        </div>
-    ),
 }))
 
 describe('LessonAddPage', () => {

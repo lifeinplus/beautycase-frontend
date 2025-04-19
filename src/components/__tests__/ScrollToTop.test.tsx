@@ -1,9 +1,9 @@
-import { render } from '@testing-library/react'
-import { MemoryRouter, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { mockScrollTo } from '../../tests/mocks'
 import { mockLocation } from '../../tests/mocks/router'
+import { renderWithRouter } from '../../tests/mocks/wrappers'
 import { ScrollToTop } from '../ScrollToTop'
 
 describe('ScrollToTop', () => {
@@ -16,11 +16,7 @@ describe('ScrollToTop', () => {
 
         vi.mocked(useLocation).mockReturnValue(withoutState)
 
-        render(
-            <MemoryRouter>
-                <ScrollToTop />
-            </MemoryRouter>
-        )
+        renderWithRouter(<ScrollToTop />)
 
         expect(mockScrollTo).toHaveBeenCalledTimes(1)
         expect(mockScrollTo).toHaveBeenCalledWith({
@@ -30,22 +26,12 @@ describe('ScrollToTop', () => {
     })
 
     it('should not scroll to top when scrollId is present in state', () => {
-        render(
-            <MemoryRouter>
-                <ScrollToTop />
-            </MemoryRouter>
-        )
-
+        renderWithRouter(<ScrollToTop />)
         expect(mockScrollTo).not.toHaveBeenCalled()
     })
 
     it('renders nothing to the DOM', () => {
-        const { container } = render(
-            <MemoryRouter>
-                <ScrollToTop />
-            </MemoryRouter>
-        )
-
+        const { container } = renderWithRouter(<ScrollToTop />)
         expect(container.firstChild).toBeNull()
     })
 })

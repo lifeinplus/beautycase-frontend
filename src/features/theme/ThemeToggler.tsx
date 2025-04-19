@@ -1,4 +1,5 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { selectDarkMode, toggleTheme } from './themeSlice'
 

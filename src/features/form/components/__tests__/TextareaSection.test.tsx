@@ -8,24 +8,10 @@ import {
     mockUrl,
     mockUrlYouTube,
 } from '../../../../tests/mocks/form'
-import { type ImagePreviewProps } from '../ImagePreview'
-import { type LabelProps } from '../Label'
 import { TextareaSection, type TextareaSectionProps } from '../TextareaSection'
 
-vi.mock('../ImagePreview', () => ({
-    ImagePreview: ({ url }: ImagePreviewProps) => (
-        <img data-testid="mocked-image-preview" src={url} />
-    ),
-}))
-
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="mocked-label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
+vi.mock('../ImagePreview')
+vi.mock('../Label')
 
 describe('TextareaSection', () => {
     const mockProps: TextareaSectionProps = {

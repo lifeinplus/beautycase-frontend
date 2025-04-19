@@ -10,20 +10,10 @@ import { mockError } from '../../../tests/mocks'
 import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
-import { getErrorMessage } from '../../../utils/errorUtils'
-import { type TopPanelProps } from '../../TopPanel'
 import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
 
-vi.mock('../../TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="mocked-top-panel">
-            <button data-testid="mocked-back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
+vi.mock('../../TopPanel')
+vi.mock('../../DataWrapper')
 
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -31,7 +21,10 @@ vi.mock('../../../utils/errorUtils', () => ({
 
 describe('DetailsPage', () => {
     const mockDeleteItem = vi.fn()
+    const mockDeleteUnwrap = vi.fn()
+
     const mockDuplicateItem = vi.fn()
+    const mockDuplicateUnwrap = vi.fn()
 
     const mockMediaContent = (
         <div data-testid="mocked-media-content">Media Content</div>
@@ -57,46 +50,39 @@ describe('DetailsPage', () => {
             return null
         })
 
-        mockDeleteItem.mockReturnValue({ unwrap: vi.fn() })
-        mockDuplicateItem.mockReturnValue({ unwrap: vi.fn() })
+        mockDeleteItem.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDeleteUnwrap.mockResolvedValue({})
+
+        mockDuplicateItem.mockReturnValue({ unwrap: mockDuplicateUnwrap })
+        mockDuplicateUnwrap.mockResolvedValue({})
     })
 
     it('renders the component with all elements', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        const topPanel = screen.getByTestId('mocked-top-panel')
+        const title = screen.getByRole('heading', {
+            level: 2,
+            name: mockProps.title,
+        })
+        const subtitle = screen.getByText(mockProps.subtitle!)
+        const description = screen.getByText(mockProps.description!)
+        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
+        const mediaContent = screen.getByTestId('mocked-media-content')
+        const complementary = screen.getByRole('complementary')
 
-        expect(
-            screen.getByRole('heading', {
-                level: 2,
-                name: mockProps.title,
-            })
-        ).toBeInTheDocument()
-
-        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
-        expect(screen.getByRole('complementary')).toBeInTheDocument()
+        expect(topPanel).toBeInTheDocument()
+        expect(title).toBeInTheDocument()
+        expect(subtitle).toBeInTheDocument()
+        expect(description).toBeInTheDocument()
+        expect(dataWrapper).toBeInTheDocument()
+        expect(mediaContent).toBeInTheDocument()
+        expect(complementary).toBeInTheDocument()
     })
 
     it('dispatches clearFormData on mount', () => {
         renderWithProvider(<DetailsPage {...mockProps} />)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-    })
-
-    it('shows loading state when isLoading is true', () => {
-        renderWithProvider(<DetailsPage {...mockProps} isLoading />)
-
-        expect(screen.getByText('Загрузка...')).toBeInTheDocument()
-        expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
-    })
-
-    it('shows error state when error is present', () => {
-        renderWithProvider(<DetailsPage {...mockProps} error={mockError} />)
-
-        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
-        expect(screen.getByText(mockError.message)).toBeInTheDocument()
-        expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('renders navigation buttons for actions that user can access', () => {
@@ -191,6 +177,30 @@ describe('DetailsPage', () => {
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath)
     })
 
+    it('handles duplicate item error', async () => {
+        const user = userEvent.setup()
+
+        const mockConsoleError = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+
+        mockDuplicateUnwrap.mockRejectedValue(mockError)
+
+        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
+
+        const button = screen.getByRole('button', { name: 'Дублировать' })
+        await user.click(button)
+
+        const buttonModal = screen.getByLabelText('Modal duplicate button')
+        await user.click(buttonModal)
+
+        expect(mockDuplicateItem).toHaveBeenCalled()
+        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+
+        mockConsoleError.mockRestore()
+    })
+
     it('handles successful item deletion', async () => {
         const user = userEvent.setup()
 
@@ -205,5 +215,29 @@ describe('DetailsPage', () => {
         expect(mockDeleteItem).toHaveBeenCalledWith('123')
         expect(toast.success).toHaveBeenCalledWith(`${mockProps.title} удалён`)
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath)
+    })
+
+    it('handles delete item error', async () => {
+        const user = userEvent.setup()
+
+        const mockConsoleError = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+
+        mockDeleteUnwrap.mockRejectedValue(mockError)
+
+        renderWithProvider(<DetailsPage {...mockProps} />)
+
+        const button = screen.getByRole('button', { name: 'Удалить' })
+        await user.click(button)
+
+        const buttonModal = screen.getByLabelText('Modal delete button')
+        await user.click(buttonModal)
+
+        expect(mockDeleteItem).toHaveBeenCalled()
+        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+
+        mockConsoleError.mockRestore()
     })
 })

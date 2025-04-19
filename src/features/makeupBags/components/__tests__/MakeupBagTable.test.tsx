@@ -2,10 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { MakeupBagTable } from '../MakeupBagTable'
-
-mockComponents()
 
 vi.mock('../../../../utils/date', () => ({
     formatDate: vi.fn((_, format) => {

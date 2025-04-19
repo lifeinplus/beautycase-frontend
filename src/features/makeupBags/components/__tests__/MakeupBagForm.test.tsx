@@ -6,7 +6,6 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockCategories } from '../../../../tests/mocks/handlers/categoriesHandlers'
 import { mockUsers } from '../../../../tests/mocks/handlers/usersHandlers'
 import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
@@ -14,7 +13,8 @@ import { useGetCategoriesQuery } from '../../../categories/categoriesApiSlice'
 import { useGetUsersQuery } from '../../../users/usersApiSlice'
 import { MakeupBagForm } from '../MakeupBagForm'
 
-mockComponents()
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/TopPanel')
 
 vi.mock('../../../categories/categoriesApiSlice', () => ({
     useGetCategoriesQuery: vi.fn(),

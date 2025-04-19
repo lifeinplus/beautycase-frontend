@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Image } from '../../components/ui/Image'
+
+import { Image } from '../ui/Image'
 
 interface ImageData {
     imageUrl: string

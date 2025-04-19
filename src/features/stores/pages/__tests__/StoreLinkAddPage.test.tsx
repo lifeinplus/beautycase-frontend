@@ -5,12 +5,12 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { setFormData } from '../../../form/formSlice'
 import { useReadStoresQuery } from '../../storesApiSlice'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
-mockComponents()
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/TopPanel')
 
 vi.mock('../../storesApiSlice', () => ({
     useReadStoresQuery: vi.fn(),

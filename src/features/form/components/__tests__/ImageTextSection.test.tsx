@@ -14,7 +14,6 @@ import {
 } from '../../../../tests/mocks/form'
 import type { Questionnaire } from '../../../questionnaires/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
-import { type ImagePreviewProps } from '../ImagePreview'
 import {
     ImageTextSection,
     type ImageTextSectionProps,
@@ -28,11 +27,7 @@ vi.mock('../../../uploads/uploadApiSlice', () => ({
     useUploadImageTempMutation: vi.fn(),
 }))
 
-vi.mock('../ImagePreview', () => ({
-    ImagePreview: ({ url }: ImagePreviewProps) => (
-        <img data-testid="mocked-image-preview" src={url} />
-    ),
-}))
+vi.mock('../ImagePreview')
 
 describe('ImageTextSection', () => {
     const mockProps: ImageTextSectionProps<Questionnaire> = {

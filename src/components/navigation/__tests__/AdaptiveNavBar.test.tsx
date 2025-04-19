@@ -9,6 +9,10 @@ import { mockLocation, mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
 
+vi.mock('../../../features/auth/components/AuthButton')
+vi.mock('../../../features/theme/ThemeToggler')
+vi.mock('../NavigationButton')
+
 describe('AdaptiveNavBar', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
@@ -50,17 +54,18 @@ describe('AdaptiveNavBar', () => {
         expect(questionnaire).toBeInTheDocument()
         expect(btnMakeupBags).toBeInTheDocument()
         expect(btnAccount).toBeInTheDocument()
+
         expect(btnReferenceLists).not.toBeInTheDocument()
     })
 
     it('renders ThemeToggler and AuthButton', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        const btnLightMode = screen.getByRole('button', { name: /Light mode/i })
-        const btnLogout = screen.getByRole('button', { name: /Logout/i })
+        const authButton = screen.getByTestId('mocked-auth-button')
+        const themeToggler = screen.getByTestId('mocked-theme-toggler')
 
-        expect(btnLightMode).toBeInTheDocument()
-        expect(btnLogout).toBeInTheDocument()
+        expect(authButton).toBeInTheDocument()
+        expect(themeToggler).toBeInTheDocument()
     })
 
     it('calls navigate when a menu item is clicked', async () => {

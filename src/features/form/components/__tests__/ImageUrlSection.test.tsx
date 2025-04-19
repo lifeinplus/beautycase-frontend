@@ -14,7 +14,6 @@ import {
 } from '../../../../tests/mocks/form'
 import type { Product } from '../../../products/types'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
-import { type ImagePreviewProps } from '../ImagePreview'
 import { ImageUrlSection, type ImageUrlSectionProps } from '../ImageUrlSection'
 
 vi.mock('../../../../utils/errorUtils', () => ({
@@ -25,11 +24,7 @@ vi.mock('../../../uploads/uploadApiSlice', () => ({
     useUploadImageTempMutation: vi.fn(),
 }))
 
-vi.mock('../ImagePreview', () => ({
-    ImagePreview: ({ url }: ImagePreviewProps) => (
-        <img data-testid="mocked-image-preview" src={url} />
-    ),
-}))
+vi.mock('../ImagePreview')
 
 describe('ImageUrlSection', () => {
     const mockProps: ImageUrlSectionProps<Product> = {

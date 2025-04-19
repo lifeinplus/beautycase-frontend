@@ -6,30 +6,31 @@ import { mockNavigate } from '../../tests/mocks/router'
 import { TopPanel } from '../TopPanel'
 
 describe('TopPanel', () => {
+    const mockTitle = 'Test Title'
+
     it('renders with the correct title', () => {
-        const title = 'Test Title'
+        render(<TopPanel title={mockTitle} />)
 
-        render(<TopPanel title={title} />)
-
-        expect(screen.getByText(title)).toBeInTheDocument()
-        expect(screen.getByText(title)).toHaveClass('panel-top__title')
+        const title = screen.getByText(mockTitle)
+        expect(title).toBeInTheDocument()
+        expect(title).toHaveClass('panel-top__title')
     })
 
     it('renders back button with chevron icon', () => {
-        render(<TopPanel title="Test Title" />)
+        render(<TopPanel title={mockTitle} />)
 
         const icon = screen.getByTestId('mocked-chevron-left-icon')
         expect(icon).toBeInTheDocument()
 
-        const backButton = screen.getByRole('button')
-        expect(backButton).toBeInTheDocument()
-        expect(backButton).toHaveClass('panel-top__button')
+        const button = screen.getByRole('button')
+        expect(button).toBeInTheDocument()
+        expect(button).toHaveClass('panel-top__button')
     })
 
     it('navigates back when default back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<TopPanel title="Test Title" />)
+        render(<TopPanel title={mockTitle} />)
 
         const button = screen.getByRole('button')
         await user.click(button)
@@ -41,7 +42,7 @@ describe('TopPanel', () => {
         const user = userEvent.setup()
         const mockOnBack = vi.fn()
 
-        render(<TopPanel title="Test Title" onBack={mockOnBack} />)
+        render(<TopPanel title={mockTitle} onBack={mockOnBack} />)
 
         const button = screen.getByRole('button')
         await user.click(button)

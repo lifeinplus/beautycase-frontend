@@ -8,7 +8,6 @@ import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockMakeupBag } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData } from '../../../form/formSlice'
-import { type MakeupBagFormProps } from '../../components/MakeupBagForm'
 import {
     useEditMakeupBagMutation,
     useGetMakeupBagByIdQuery,
@@ -19,19 +18,7 @@ vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
 }))
 
-vi.mock('../../components/MakeupBagForm', () => ({
-    MakeupBagForm: ({ title, onSubmit }: MakeupBagFormProps) => (
-        <div data-testid="mocked-makeup-bag-form">
-            <h2>{title}</h2>
-            <button
-                data-testid="mocked-submit-button"
-                onClick={() => onSubmit(mockMakeupBag)}
-            >
-                Submit
-            </button>
-        </div>
-    ),
-}))
+vi.mock('../../components/MakeupBagForm')
 
 vi.mock('../../makeupBagsApiSlice', () => ({
     useEditMakeupBagMutation: vi.fn(),

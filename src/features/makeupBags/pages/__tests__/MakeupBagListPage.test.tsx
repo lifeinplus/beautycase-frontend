@@ -5,13 +5,14 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { useGetMakeupBagsQuery } from '../../makeupBagsApiSlice'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
-mockComponents()
-
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/DataWrapper')
+vi.mock('../../../../components/Header')
+vi.mock('../../../../components/Hero')
 vi.mock('../../components/MakeupBagMobileView')
 vi.mock('../../components/MakeupBagTable')
 

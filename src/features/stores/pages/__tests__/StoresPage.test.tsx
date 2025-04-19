@@ -5,7 +5,6 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
 
 import { mockError } from '../../../../tests/mocks'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { clearFormData, setFormData } from '../../../form/formSlice'
 import {
@@ -15,7 +14,9 @@ import {
 import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
-mockComponents()
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/Hero')
+vi.mock('../../../../components/TopPanel')
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),

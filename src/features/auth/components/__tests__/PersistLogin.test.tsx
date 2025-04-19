@@ -3,10 +3,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { useRefreshAuth } from '../../../../hooks/useRefreshAuth'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { PersistLogin } from '../PersistLogin'
 
-mockComponents()
+vi.mock('../../../../components/Spinner')
 
 vi.mock('../../../../hooks/useRefreshAuth', () => ({
     useRefreshAuth: vi.fn(),

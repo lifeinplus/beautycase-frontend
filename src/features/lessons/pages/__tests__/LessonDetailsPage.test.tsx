@@ -4,7 +4,6 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
 import {
@@ -13,7 +12,7 @@ import {
 } from '../../lessonsApiSlice'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
-mockComponents()
+vi.mock('../../../../components/pages/DetailsPage')
 
 vi.mock('../../../../utils/youtube', async () => ({
     getYouTubeEmbedUrl: vi.fn(),

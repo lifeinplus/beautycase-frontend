@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
-import { mockComponents } from '../../../../tests/mocks/components'
 import { ImagePreview, type ImagePreviewProps } from '../ImagePreview'
 
-mockComponents()
+vi.mock('../../../../components/ui/Image')
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {

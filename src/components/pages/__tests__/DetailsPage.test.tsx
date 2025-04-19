@@ -11,19 +11,9 @@ import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { type TopPanelProps } from '../../TopPanel'
 import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
 
-vi.mock('../../TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="mocked-top-panel">
-            <button data-testid="mocked-back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
+vi.mock('../../TopPanel')
 
 vi.mock('../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),

@@ -5,7 +5,6 @@ import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockComponents } from '../../../../tests/mocks/components'
 import { mockOnSubmit, mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
@@ -15,7 +14,7 @@ vi.mock('react-hook-form', async () => ({
     useForm: vi.fn(),
 }))
 
-mockComponents()
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
 
 vi.mock('../../../form/formSlice', async (importOriginal) => {
     const actual = await importOriginal()

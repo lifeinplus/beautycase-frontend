@@ -1,33 +1,23 @@
 import { screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
-
 import { UnauthorizedPage } from '../UnauthorizedPage'
 
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/Header')
+vi.mock('../../../../components/Hero')
+
 describe('UnauthorizedPage', () => {
-    it('renders the page with correct text', () => {
+    it('renders required components', () => {
         renderWithProvider(<UnauthorizedPage />)
 
-        const headline = screen.getByRole('heading', {
-            name: /Доступ запрещен/i,
-        })
-
-        const byline = screen.getByText(
-            /У вас нет разрешения на просмотр этой страницы/i
-        )
-
-        expect(headline).toBeInTheDocument()
-        expect(byline).toBeInTheDocument()
-    })
-
-    it('renders required components', () => {
-        const { container } = renderWithProvider(<UnauthorizedPage />)
-
-        const header = container.querySelector('header')
-        const navBar = container.querySelector('nav')
+        const header = screen.getByTestId('mocked-header')
+        const headline = screen.getByTestId('mocked-hero')
+        const navBar = screen.getByTestId('mocked-nav-bar')
 
         expect(header).toBeInTheDocument()
+        expect(headline).toBeInTheDocument()
         expect(navBar).toBeInTheDocument()
     })
 

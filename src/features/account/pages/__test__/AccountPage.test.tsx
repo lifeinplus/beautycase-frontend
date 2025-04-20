@@ -1,5 +1,6 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../../app/hooks'
 import { mockUserResult } from '../../../../tests/mocks/handlers/usersHandlers'
 import {
@@ -8,6 +9,11 @@ import {
 } from '../../../../tests/mocks/wrappers'
 import { selectUserId } from '../../../auth/authSlice'
 import { AccountPage } from '../AccountPage'
+
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/DataWrapper')
+vi.mock('../../../../components/Header')
+vi.mock('../../../../components/Hero')
 
 const mockUseGetUserByIdQuery = vi.fn()
 
@@ -37,20 +43,25 @@ describe('AccountPage', () => {
 
         renderWithProvider(<AccountPage />)
 
-        expect(screen.getByText('Личный кабинет')).toBeInTheDocument()
-        expect(screen.getByText('Загрузка...')).toBeInTheDocument()
+        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
+        const loading = screen.getByTestId('mocked-loading')
+
+        expect(dataWrapper).toBeInTheDocument()
+        expect(loading).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
         renderWithProviderAndRouter(<AccountPage />)
 
-        expect(
-            screen.getByRole('heading', { level: 2, name: 'Личный кабинет' })
-        ).toBeInTheDocument()
+        const header = screen.getByTestId('mocked-header')
+        const hero = screen.getByTestId('mocked-hero')
+        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
+        const navBar = screen.getByTestId('mocked-nav-bar')
 
-        expect(
-            screen.getByText('Сведения о вас и доступный контент')
-        ).toBeInTheDocument()
+        expect(header).toBeInTheDocument()
+        expect(hero).toBeInTheDocument()
+        expect(dataWrapper).toBeInTheDocument()
+        expect(navBar).toBeInTheDocument()
     })
 
     it('renders user data correctly', () => {
@@ -109,8 +120,7 @@ describe('AccountPage', () => {
 
         renderWithProvider(<AccountPage />)
 
-        expect(
-            screen.getByText('An unknown error occurred')
-        ).toBeInTheDocument()
+        const error = screen.getByTestId('mocked-error')
+        expect(error).toBeInTheDocument()
     })
 })

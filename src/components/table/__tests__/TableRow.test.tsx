@@ -1,11 +1,21 @@
-import { screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 
 import { mockNavigate } from '../../../tests/mocks/router'
-import { renderTableRow } from '../../../tests/mocks/wrappers'
+import { TableRow, type TableRowProps } from '../TableRow'
 
 describe('TableRow', () => {
+    const renderTableRow = (props: TableRowProps) => {
+        return render(
+            <table>
+                <tbody>
+                    <TableRow {...props} />
+                </tbody>
+            </table>
+        )
+    }
+
     it('renders with cell data', () => {
         const cellData = ['Name', 'Age', 'Email']
 

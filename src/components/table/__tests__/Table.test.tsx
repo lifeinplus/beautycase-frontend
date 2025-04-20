@@ -75,8 +75,10 @@ describe('Table', () => {
             <Table headers={headers} data={mockData} renderRow={renderRow} />
         )
 
-        expect(container.querySelector('.table-container')).toBeInTheDocument()
+        const tableContainer = container.querySelector('.table-container')
+        const table = container.querySelector('.table')
 
-        expect(container.querySelector('.table')).toBeInTheDocument()
+        expect(tableContainer).toBeInTheDocument()
+        expect(table).toBeInTheDocument()
     })
 })

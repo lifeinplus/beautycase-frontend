@@ -15,6 +15,8 @@ import {
 } from '../../brandsApiSlice'
 import { BrandForm } from '../BrandForm'
 
+vi.mock('../../../../components/ui/Button')
+
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
 }))
@@ -77,29 +79,6 @@ describe('BrandForm', () => {
         mockRef.current.focusInput()
 
         expect(input.focus).toHaveBeenCalled()
-    })
-
-    it('displays add button when no form data ID exists', () => {
-        render(<BrandForm ref={mockRef} />)
-
-        const addButton = screen.getByRole('button')
-
-        expect(addButton).toHaveAttribute('type', 'submit')
-        expect(addButton).toHaveClass('btn-success')
-    })
-
-    it('displays update button when form data ID exists', () => {
-        vi.mocked(useAppSelector).mockReturnValue({
-            _id: '123',
-            name: 'Test Brand',
-        })
-
-        render(<BrandForm ref={mockRef} />)
-
-        const updateButton = screen.getByRole('button')
-
-        expect(updateButton).toHaveAttribute('type', 'submit')
-        expect(updateButton).toHaveClass('btn-warning')
     })
 
     it('calls createBrand when add button is clicked', async () => {

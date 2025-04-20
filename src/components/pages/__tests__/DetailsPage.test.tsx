@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -9,9 +9,12 @@ import { clearFormData } from '../../../features/form/formSlice'
 import { mockError } from '../../../tests/mocks'
 import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
-import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
 
+vi.mock('../../navigation/AdaptiveNavBar')
+vi.mock('../../navigation/NavigationButton')
+vi.mock('../../ui/ModalDelete')
+vi.mock('../../ui/ModalDuplicate')
 vi.mock('../../TopPanel')
 vi.mock('../../DataWrapper')
 
@@ -58,7 +61,7 @@ describe('DetailsPage', () => {
     })
 
     it('renders the component with all elements', () => {
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const topPanel = screen.getByTestId('mocked-top-panel')
         const title = screen.getByRole('heading', {
@@ -81,12 +84,12 @@ describe('DetailsPage', () => {
     })
 
     it('dispatches clearFormData on mount', () => {
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('renders navigation buttons for actions that user can access', () => {
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const btnBack = screen.getByRole('button', { name: 'Назад' })
         const btnEdit = screen.getByRole('button', { name: 'Редактировать' })
@@ -100,7 +103,7 @@ describe('DetailsPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Назад' })
         await user.click(button)
@@ -114,7 +117,7 @@ describe('DetailsPage', () => {
     it('navigates to edit page when edit button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Редактировать' })
         await user.click(button)
@@ -123,7 +126,7 @@ describe('DetailsPage', () => {
     })
 
     it('does not render duplicate button when showDuplicate is false', () => {
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate={false} />)
+        render(<DetailsPage {...mockProps} showDuplicate={false} />)
 
         const button = screen.queryByRole('button', { name: 'Дублировать' })
         expect(button).not.toBeInTheDocument()
@@ -132,42 +135,36 @@ describe('DetailsPage', () => {
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
+        render(<DetailsPage {...mockProps} showDuplicate />)
 
         const button = screen.getByRole('button', { name: 'Дублировать' })
         await user.click(button)
 
-        expect(
-            screen.getByText(
-                `Вы действительно хотите дублировать ${mockProps.title}?`
-            )
-        ).toBeInTheDocument()
+        const modal = screen.getByTestId('mocked-modal-duplicate')
+        expect(modal).toBeInTheDocument()
     })
 
     it('opens delete modal when delete button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Удалить' })
         await user.click(button)
 
-        expect(
-            screen.getByText(
-                `Вы действительно хотите удалить ${mockProps.title}?`
-            )
-        ).toBeInTheDocument()
+        const modal = screen.getByTestId('mocked-modal-delete')
+        expect(modal).toBeInTheDocument()
     })
 
     it('handles successful item duplication', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
+        render(<DetailsPage {...mockProps} showDuplicate />)
 
         const button = screen.getByRole('button', { name: 'Дублировать' })
         await user.click(button)
 
-        const buttonModal = screen.getByLabelText('Modal duplicate button')
+        const buttonModal = screen.getByTestId('mocked-modal-duplicate-confirm')
         await user.click(buttonModal)
 
         expect(mockDuplicateItem).toHaveBeenCalledWith('123')
@@ -186,12 +183,12 @@ describe('DetailsPage', () => {
 
         mockDuplicateUnwrap.mockRejectedValue(mockError)
 
-        renderWithProvider(<DetailsPage {...mockProps} showDuplicate />)
+        render(<DetailsPage {...mockProps} showDuplicate />)
 
         const button = screen.getByRole('button', { name: 'Дублировать' })
         await user.click(button)
 
-        const buttonModal = screen.getByLabelText('Modal duplicate button')
+        const buttonModal = screen.getByTestId('mocked-modal-duplicate-confirm')
         await user.click(buttonModal)
 
         expect(mockDuplicateItem).toHaveBeenCalled()
@@ -204,12 +201,12 @@ describe('DetailsPage', () => {
     it('handles successful item deletion', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Удалить' })
         await user.click(button)
 
-        const buttonModal = screen.getByLabelText('Modal delete button')
+        const buttonModal = screen.getByTestId('mocked-modal-delete-confirm')
         await user.click(buttonModal)
 
         expect(mockDeleteItem).toHaveBeenCalledWith('123')
@@ -226,12 +223,12 @@ describe('DetailsPage', () => {
 
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        renderWithProvider(<DetailsPage {...mockProps} />)
+        render(<DetailsPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Удалить' })
         await user.click(button)
 
-        const buttonModal = screen.getByLabelText('Modal delete button')
+        const buttonModal = screen.getByTestId('mocked-modal-delete-confirm')
         await user.click(buttonModal)
 
         expect(mockDeleteItem).toHaveBeenCalled()

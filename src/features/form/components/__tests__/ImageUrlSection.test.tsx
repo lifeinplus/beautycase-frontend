@@ -25,6 +25,7 @@ vi.mock('../../../uploads/uploadApiSlice', () => ({
 }))
 
 vi.mock('../ImagePreview')
+vi.mock('../Label')
 
 describe('ImageUrlSection', () => {
     const mockProps: ImageUrlSectionProps<Product> = {

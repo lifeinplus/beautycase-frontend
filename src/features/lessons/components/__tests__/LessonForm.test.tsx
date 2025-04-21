@@ -15,6 +15,10 @@ vi.mock('react-hook-form', async () => ({
 }))
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/TopPanel')
+vi.mock('../../../form/components/ButtonNavigateSection')
+vi.mock('../../../form/components/TextareaSection')
 
 vi.mock('../../../form/formSlice', async (importOriginal) => {
     const actual = await importOriginal()
@@ -49,10 +53,15 @@ describe('LessonForm', () => {
     it('renders all required form fields', () => {
         render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
 
-        expect(screen.getByText('Заголовок')).toBeInTheDocument()
-        expect(screen.getByText('Краткое описание')).toBeInTheDocument()
-        expect(screen.getByText('Ссылка на видео')).toBeInTheDocument()
-        expect(screen.getByText('Полное описание')).toBeInTheDocument()
+        const title = screen.getByPlaceholderText('Заголовок')
+        const shortDescription = screen.getByPlaceholderText('Краткое описание')
+        const videoUrl = screen.getByPlaceholderText('Ссылка на видео')
+        const fullDescription = screen.getByPlaceholderText('Полное описание')
+
+        expect(title).toBeInTheDocument()
+        expect(shortDescription).toBeInTheDocument()
+        expect(videoUrl).toBeInTheDocument()
+        expect(fullDescription).toBeInTheDocument()
         expect(screen.getByText('Продукты')).toBeInTheDocument()
     })
 
@@ -79,7 +88,7 @@ describe('LessonForm', () => {
 
         render(<LessonForm title="Test Lesson Form" onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Продукты/i })
+        const button = screen.getByTestId('mocked-button-navigate-section')
         expect(button).toHaveTextContent('Выбрано: 2')
     })
 
@@ -110,7 +119,7 @@ describe('LessonForm', () => {
 
         render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Продукты/i })
+        const button = screen.getByTestId('mocked-button-navigate-section')
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()

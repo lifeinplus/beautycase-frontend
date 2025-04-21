@@ -8,6 +8,8 @@ import {
     type ButtonNavigateSectionProps,
 } from '../ButtonNavigateSection'
 
+vi.mock('../Label')
+
 describe('ButtonNavigateSection', () => {
     const mockProps: ButtonNavigateSectionProps = {
         label: 'Test Label',

@@ -13,6 +13,7 @@ import {
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
+vi.mock('../../../../components/ui/Image')
 
 vi.mock('../../../../utils/youtube', async () => ({
     getYouTubeEmbedUrl: vi.fn(),

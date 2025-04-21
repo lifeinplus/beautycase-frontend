@@ -15,8 +15,14 @@ import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/ui/ModalDelete')
+vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Hero')
 vi.mock('../../../../components/TopPanel')
+vi.mock('../../components/BrandForm')
+vi.mock('../../components/BrandsMobileView')
+vi.mock('../../components/BrandsTable')
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -35,10 +41,6 @@ vi.mock('../../brandsApiSlice', () => ({
     useDeleteBrandMutation: vi.fn(),
     useReadBrandsQuery: vi.fn(),
 }))
-
-vi.mock('../../components/BrandForm')
-vi.mock('../../components/BrandsMobileView')
-vi.mock('../../components/BrandsTable')
 
 describe('BrandsPage', () => {
     const mockBrands: Brand[] = [
@@ -69,27 +71,29 @@ describe('BrandsPage', () => {
     it('renders the page title', () => {
         render(<BrandsPage />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-brand-form')).toBeInTheDocument()
-        expect(
-            screen.getByTestId('mocked-brands-mobile-view')
-        ).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-brands-table')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
+        const topPanel = screen.getByTestId('mocked-top-panel')
+        const hero = screen.getByTestId('mocked-hero')
+        const brandForm = screen.getByTestId('mocked-brand-form')
+        const brandsMobileView = screen.getByTestId('mocked-brands-mobile-view')
+        const brandsTable = screen.getByTestId('mocked-brands-table')
+        const navBar = screen.getByTestId('mocked-nav-bar')
 
-        expect(
-            screen.getByTestId('mocked-mobile-brand-brand1')
-        ).toBeInTheDocument()
-        expect(
-            screen.getByTestId('mocked-mobile-brand-brand2')
-        ).toBeInTheDocument()
-        expect(
-            screen.getByTestId('mocked-table-brand-brand1')
-        ).toBeInTheDocument()
-        expect(
-            screen.getByTestId('mocked-table-brand-brand2')
-        ).toBeInTheDocument()
+        expect(topPanel).toBeInTheDocument()
+        expect(hero).toBeInTheDocument()
+        expect(brandForm).toBeInTheDocument()
+        expect(brandsMobileView).toBeInTheDocument()
+        expect(brandsTable).toBeInTheDocument()
+        expect(navBar).toBeInTheDocument()
+
+        const mobileBrand1 = screen.getByTestId('mocked-mobile-brand-brand1')
+        const mobilebBand2 = screen.getByTestId('mocked-mobile-brand-brand2')
+        const tableBrand1 = screen.getByTestId('mocked-table-brand-brand1')
+        const tableBrand2 = screen.getByTestId('mocked-table-brand-brand2')
+
+        expect(mobileBrand1).toBeInTheDocument()
+        expect(mobilebBand2).toBeInTheDocument()
+        expect(tableBrand1).toBeInTheDocument()
+        expect(tableBrand2).toBeInTheDocument()
     })
 
     it('should navigate back when back button is clicked', async () => {
@@ -123,16 +127,16 @@ describe('BrandsPage', () => {
 
         await user.click(deleteButton)
 
-        const modalDeleteButton = screen.getByRole('button', {
-            name: 'Modal delete button',
-        })
+        const modalDeleteConfirm = screen.getByTestId(
+            'mocked-modal-delete-confirm'
+        )
 
-        await user.click(modalDeleteButton)
+        await user.click(modalDeleteConfirm)
 
         expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
         expect(toast.success).toHaveBeenCalledWith('Бренд удалён')
         expect(clearFormData).toHaveBeenCalled()
-        expect(modalDeleteButton).not.toBeInTheDocument()
+        expect(modalDeleteConfirm).not.toBeInTheDocument()
     })
 
     it('shows error toast if delete fails', async () => {
@@ -150,11 +154,11 @@ describe('BrandsPage', () => {
 
         await user.click(deleteButton)
 
-        const modalDeleteButton = screen.getByRole('button', {
-            name: 'Modal delete button',
-        })
+        const modalDeleteConfirm = screen.getByTestId(
+            'mocked-modal-delete-confirm'
+        )
 
-        await user.click(modalDeleteButton)
+        await user.click(modalDeleteConfirm)
 
         expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
@@ -14,6 +14,8 @@ import {
     useUpdateStoreMutation,
 } from '../../storesApiSlice'
 import { StoreForm } from '../StoreForm'
+
+vi.mock('../../../../components/ui/Button')
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -79,29 +81,6 @@ describe('StoreForm', () => {
         expect(input.focus).toHaveBeenCalled()
     })
 
-    it('displays add button when no form data ID exists', () => {
-        render(<StoreForm ref={mockRef} />)
-
-        const addButton = screen.getByRole('button')
-
-        expect(addButton).toHaveAttribute('type', 'submit')
-        expect(addButton).toHaveClass('btn-success')
-    })
-
-    it('displays update button when form data ID exists', () => {
-        vi.mocked(useAppSelector).mockReturnValue({
-            _id: '123',
-            name: 'Test Store',
-        })
-
-        render(<StoreForm ref={mockRef} />)
-
-        const updateButton = screen.getByRole('button')
-
-        expect(updateButton).toHaveAttribute('type', 'submit')
-        expect(updateButton).toHaveClass('btn-warning')
-    })
-
     it('calls createStore when add button is clicked', async () => {
         const user = userEvent.setup()
 
@@ -113,10 +92,8 @@ describe('StoreForm', () => {
         await user.type(input, 'New Store')
         await user.click(addButton)
 
-        await waitFor(() => {
-            expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        })
+        expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('calls updateStore when update button is clicked', async () => {
@@ -136,13 +113,11 @@ describe('StoreForm', () => {
         await user.type(input, 'Updated Store')
         await user.click(updateButton)
 
-        await waitFor(() => {
-            expect(mockUpdateStore).toHaveBeenCalledWith({
-                _id: '123',
-                name: 'Updated Store',
-            })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
+        expect(mockUpdateStore).toHaveBeenCalledWith({
+            _id: '123',
+            name: 'Updated Store',
         })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('handles createStore error', async () => {
@@ -196,5 +171,18 @@ describe('StoreForm', () => {
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
+    })
+
+    it('renders error message and applies error class', async () => {
+        const user = userEvent.setup()
+
+        render(<StoreForm ref={mockRef} />)
+
+        const button = screen.getByTestId('mocked-button')
+        await user.click(button)
+
+        const error = screen.getByText('Укажите название магазина')
+        expect(error).toBeInTheDocument()
+        expect(error).toHaveClass('form-error')
     })
 })

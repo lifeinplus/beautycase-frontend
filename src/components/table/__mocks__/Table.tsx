@@ -1,10 +1,12 @@
 import { type TableProps } from '../Table'
 
-export const Table = <T,>({ headers, renderRow, data }: TableProps<T>) => {
+export const Table = <T,>({ headers, data, renderRow }: TableProps<T>) => {
     return (
-        <div>
-            {headers?.map((h, i) => <div key={i}>{h.label}</div>)}
-            {data?.map(renderRow)}
-        </div>
+        <table>
+            <thead>
+                <tr>{headers?.map((h, i) => <th key={i}>{h.label}</th>)}</tr>
+            </thead>
+            <tbody>{data?.map(renderRow)}</tbody>
+        </table>
     )
 }

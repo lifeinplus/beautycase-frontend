@@ -15,8 +15,14 @@ import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/ui/ModalDelete')
+vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Hero')
 vi.mock('../../../../components/TopPanel')
+vi.mock('../../components/StoreForm')
+vi.mock('../../components/StoresMobileView')
+vi.mock('../../components/StoresTable')
 
 vi.mock('../../../../utils/errorUtils', () => ({
     getErrorMessage: vi.fn((error) => error.message),
@@ -115,16 +121,16 @@ describe('StoresPage', () => {
 
         await user.click(deleteButton)
 
-        const modalDeleteButton = screen.getByRole('button', {
-            name: 'Modal delete button',
-        })
+        const modalDeleteConfirm = screen.getByTestId(
+            'mocked-modal-delete-confirm'
+        )
 
-        await user.click(modalDeleteButton)
+        await user.click(modalDeleteConfirm)
 
         expect(mockDeleteStore).toHaveBeenCalledWith('1')
         expect(toast.success).toHaveBeenCalledWith('Магазин удалён')
         expect(clearFormData).toHaveBeenCalled()
-        expect(modalDeleteButton).not.toBeInTheDocument()
+        expect(modalDeleteConfirm).not.toBeInTheDocument()
     })
 
     it('shows error toast if delete fails', async () => {
@@ -142,11 +148,11 @@ describe('StoresPage', () => {
 
         await user.click(deleteButton)
 
-        const modalDeleteButton = screen.getByRole('button', {
-            name: 'Modal delete button',
-        })
+        const modalDeleteConfirm = screen.getByTestId(
+            'mocked-modal-delete-confirm'
+        )
 
-        await user.click(modalDeleteButton)
+        await user.click(modalDeleteConfirm)
 
         expect(mockDeleteStore).toHaveBeenCalledWith('1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

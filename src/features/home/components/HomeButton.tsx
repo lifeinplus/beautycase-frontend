@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-interface HomeButtonProps {
+export interface HomeButtonProps {
     to: string
     label: string
 }

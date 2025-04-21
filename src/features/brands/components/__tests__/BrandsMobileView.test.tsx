@@ -5,6 +5,8 @@ import { describe, vi, expect, it } from 'vitest'
 import type { Brand } from '../../types'
 import { BrandsMobileView } from '../BrandsMobileView'
 
+vi.mock('../../../../components/ui/Button')
+
 describe('BrandsMobileView', () => {
     const mockBrands: Brand[] = [
         { _id: '1', name: 'Brand A' },
@@ -38,11 +40,9 @@ describe('BrandsMobileView', () => {
             />
         )
 
-        const editButtons = screen.getAllByRole('button', {
-            name: /edit/i,
-        })
+        const buttons = screen.getAllByTestId('mocked-button')
+        const editBrandA = buttons[0]
 
-        const editBrandA = editButtons[0]
         await user.click(editBrandA)
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
@@ -60,11 +60,9 @@ describe('BrandsMobileView', () => {
             />
         )
 
-        const deleteButtons = screen.getAllByRole('button', {
-            name: /delete/i,
-        })
+        const buttons = screen.getAllByTestId('mocked-button')
+        const deleteBrandB = buttons[3]
 
-        const deleteBrandB = deleteButtons[1]
         await user.click(deleteBrandB)
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)

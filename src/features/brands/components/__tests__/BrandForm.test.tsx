@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
@@ -64,7 +64,7 @@ describe('BrandForm', () => {
         renderWithProvider(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const button = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         expect(input).toBeInTheDocument()
         expect(button).toBeInTheDocument()
@@ -87,15 +87,13 @@ describe('BrandForm', () => {
         renderWithProvider(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
-        await waitFor(() => {
-            expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        })
+        expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('calls updateBrand when update button is clicked', async () => {
@@ -109,19 +107,18 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const updateButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.clear(input)
         await user.type(input, 'Updated Brand')
-        await user.click(updateButton)
+        await user.click(button)
 
-        await waitFor(() => {
-            expect(mockUpdateBrand).toHaveBeenCalledWith({
-                _id: '123',
-                name: 'Updated Brand',
-            })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
+        expect(mockUpdateBrand).toHaveBeenCalledWith({
+            _id: '123',
+            name: 'Updated Brand',
         })
+
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('handles createBrand error', async () => {
@@ -136,10 +133,10 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -165,15 +162,28 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
         expect(mockUpdateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
+    })
+
+    it('renders error message and applies error class', async () => {
+        const user = userEvent.setup()
+
+        render(<BrandForm ref={mockRef} />)
+
+        const button = screen.getByTestId('mocked-button')
+        await user.click(button)
+
+        const error = screen.getByText('Укажите название бренда')
+        expect(error).toBeInTheDocument()
+        expect(error).toHaveClass('form-error')
     })
 })

@@ -1,7 +1,11 @@
 import { type ModalDeleteProps } from '../ModalDelete'
 
-export const ModalDelete = ({ onCancel, onConfirm }: ModalDeleteProps) => {
-    return (
+export const ModalDelete = ({
+    isOpen,
+    onCancel,
+    onConfirm,
+}: ModalDeleteProps) =>
+    isOpen && (
         <div data-testid="mocked-modal-delete">
             <button
                 data-testid="mocked-modal-delete-confirm"
@@ -14,4 +18,3 @@ export const ModalDelete = ({ onCancel, onConfirm }: ModalDeleteProps) => {
             </button>
         </div>
     )
-}

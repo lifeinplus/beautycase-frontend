@@ -14,7 +14,10 @@ import { useGetUsersQuery } from '../../../users/usersApiSlice'
 import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
+vi.mock('../../../form/components/ButtonNavigateSection')
+vi.mock('../../../form/components/SelectSection')
 
 vi.mock('../../../categories/categoriesApiSlice', () => ({
     useGetCategoriesQuery: vi.fn(),
@@ -40,6 +43,8 @@ describe('MakeupBagForm', () => {
         toolIds: ['tool1'],
     }
 
+    const mockTitle = 'Test Title'
+
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
@@ -53,26 +58,27 @@ describe('MakeupBagForm', () => {
     })
 
     it('renders all required form fields', () => {
-        render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        const topPanel = screen.getByTestId('mocked-top-panel')
+        const category = screen.getByText('Категория')
+        const client = screen.getByText('Клиент')
+        const stages = screen.getByText('Этапы')
+        const tools = screen.getByText('Инструменты')
 
-        expect(
-            screen.getByRole('heading', { name: 'Test Title', level: 1 })
-        ).toBeInTheDocument()
-
-        expect(screen.getByText('Категория')).toBeInTheDocument()
-        expect(screen.getByText('Клиент')).toBeInTheDocument()
-        expect(screen.getByText('Этапы')).toBeInTheDocument()
-        expect(screen.getByText('Инструменты')).toBeInTheDocument()
+        expect(topPanel).toBeInTheDocument()
+        expect(category).toBeInTheDocument()
+        expect(client).toBeInTheDocument()
+        expect(stages).toBeInTheDocument()
+        expect(tools).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Назад/i })
+        const button = screen.getByTestId('mocked-back-button')
         await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -81,9 +87,9 @@ describe('MakeupBagForm', () => {
     it('navigates to tools selection and saves form data', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Инструменты/i })
+        const button = screen.getByRole('button', { name: 'Инструменты' })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -94,9 +100,9 @@ describe('MakeupBagForm', () => {
     it('navigates to stages selection and saves form data', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Этапы/i })
+        const button = screen.getByRole('button', { name: 'Этапы' })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -105,9 +111,12 @@ describe('MakeupBagForm', () => {
     })
 
     it('renders stage and tool button texts based on watch values', () => {
-        render(<MakeupBagForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        expect(screen.getByText('Выбрано: 2')).toBeInTheDocument()
-        expect(screen.getByText('Выбрано: 1')).toBeInTheDocument()
+        const stagesText = screen.getByText('Выбрано: 2')
+        const toolsText = screen.getByText('Выбрано: 1')
+
+        expect(stagesText).toBeInTheDocument()
+        expect(toolsText).toBeInTheDocument()
     })
 })

@@ -10,6 +10,8 @@ vi.mock('../../../auth/hooks/useAuthLogout', () => ({
     useAuthLogout: vi.fn(),
 }))
 
+vi.mock('../../components/HomeButton')
+
 describe('HomePage', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {

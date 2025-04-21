@@ -10,6 +10,7 @@ import { useGetMakeupBagsQuery } from '../../makeupBagsApiSlice'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')

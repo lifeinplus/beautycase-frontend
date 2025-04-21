@@ -10,6 +10,7 @@ import { useReadStoresQuery } from '../../storesApiSlice'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
 
 vi.mock('../../storesApiSlice', () => ({
@@ -49,7 +50,9 @@ describe('StoreLinkAddPage', () => {
 
     it('renders the page with correct title', () => {
         render(<StoreLinkAddPage />)
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+
+        const topPanel = screen.getByTestId('mocked-top-panel')
+        expect(topPanel).toBeInTheDocument()
     })
 
     it('renders initial empty store link form', () => {

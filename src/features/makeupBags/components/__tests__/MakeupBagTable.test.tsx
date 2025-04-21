@@ -4,6 +4,9 @@ import { describe, it, expect, vi } from 'vitest'
 import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
 import { MakeupBagTable } from '../MakeupBagTable'
 
+vi.mock('../../../../components/table/Table')
+vi.mock('../../../../components/table/TableRow')
+
 vi.mock('../../../../utils/date', () => ({
     formatDate: vi.fn((_, format) => {
         if (format === 'yyyy.MM.dd HH:mm') return '2025.04.10 14:30'

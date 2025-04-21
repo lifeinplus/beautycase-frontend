@@ -73,6 +73,7 @@ describe('MakeupBagEditPage', () => {
             id: '123',
             ...mockMakeupBag,
         })
+
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags/123')

@@ -28,6 +28,7 @@ vi.mock('../../../uploads/uploadApiSlice', () => ({
 }))
 
 vi.mock('../ImagePreview')
+vi.mock('../Label')
 
 describe('ImageTextSection', () => {
     const mockProps: ImageTextSectionProps<Questionnaire> = {

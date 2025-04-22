@@ -2,24 +2,23 @@ import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockUserResult } from '../../../../tests/mocks/handlers/usersHandlers'
 import {
     renderWithProvider,
     renderWithProviderAndRouter,
 } from '../../../../tests/mocks/wrappers'
 import { selectUserId } from '../../../auth/authSlice'
+import {
+    mockUseGetUserByIdQuery,
+    mockUserResult,
+} from '../../../users/__mocks__/usersApiSlice'
 import { AccountPage } from '../AccountPage'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
-
-const mockUseGetUserByIdQuery = vi.fn()
-
-vi.mock('../../../users/usersApiSlice', async () => ({
-    useGetUserByIdQuery: () => mockUseGetUserByIdQuery(),
-}))
+vi.mock('../../../users/usersApiSlice')
 
 describe('AccountPage', () => {
     beforeEach(() => {

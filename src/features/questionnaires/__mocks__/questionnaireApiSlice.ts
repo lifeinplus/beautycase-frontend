@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
-import type { Questionnaire } from '../../../features/questionnaires/types'
 import type { MutationResult } from '../../../types/api'
+import type { Questionnaire } from '../types'
 
 export const mockQuestionnaireCreated: MutationResult = {
     id: 'questionnaire3',
@@ -63,7 +63,7 @@ export const mockQuestionnaires: Questionnaire[] = [
     },
 ]
 
-export const questionnairesHandlers = [
+const questionnairesHandlers = [
     http.post('api/questionnaires/one', () =>
         HttpResponse.json(mockQuestionnaireCreated)
     ),
@@ -84,3 +84,5 @@ export const questionnairesHandlers = [
               )
     }),
 ]
+
+export default questionnairesHandlers

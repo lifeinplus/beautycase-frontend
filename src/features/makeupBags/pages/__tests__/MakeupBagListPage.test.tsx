@@ -4,11 +4,12 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockMakeupBags } from '../../__mocks__/makeupBagsApiSlice'
 import { useGetMakeupBagsQuery } from '../../makeupBagsApiSlice'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/DataWrapper')
@@ -16,10 +17,7 @@ vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 vi.mock('../../components/MakeupBagMobileView')
 vi.mock('../../components/MakeupBagTable')
-
-vi.mock('../../makeupBagsApiSlice', () => ({
-    useGetMakeupBagsQuery: vi.fn(),
-}))
+vi.mock('../../makeupBagsApiSlice')
 
 describe('MakeupBagListPage', () => {
     beforeEach(() => {

@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
-import type { User, UserResult } from '../../../features/users/types'
+import type { User, UserResult } from '../types'
 
 export const mockUser: User = {
     _id: 'user1',
@@ -27,7 +28,12 @@ export const mockUserResult: UserResult = {
     ],
 }
 
-export const usersHandlers = [
+export const mockUseGetUserByIdQuery = vi.fn()
+
+export const useGetUsersQuery = vi.fn()
+export const useGetUserByIdQuery = () => mockUseGetUserByIdQuery()
+
+const usersHandlers = [
     http.get('api/users/all', async () => HttpResponse.json(mockUsers)),
 
     http.get('api/users/:id', async ({ params }) => {
@@ -36,3 +42,5 @@ export const usersHandlers = [
             : HttpResponse.error()
     }),
 ]
+
+export default usersHandlers

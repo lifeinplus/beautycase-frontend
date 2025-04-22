@@ -1,9 +1,10 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
-import { MakeupBag } from '../../../features/makeupBags/types'
 import type { MutationResult } from '../../../types/api'
-import { mockStage } from './stagesHandlers'
-import { mockTool } from './toolsHandlers'
+import { mockStage } from '../../stages/__mocks__/stagesApiSlice'
+import { mockTool } from '../../tools/__mocks__/toolsApiSlice'
+import type { MakeupBag } from '../types'
 
 export const mockMakeupBagCreate: MutationResult = {
     id: 'makeupBag3',
@@ -36,7 +37,13 @@ export const mockMakeupBags: MakeupBag[] = [
     },
 ]
 
-export const makeupBagsHandlers = [
+export const useAddMakeupBagMutation = vi.fn()
+export const useGetMakeupBagByIdQuery = vi.fn()
+export const useGetMakeupBagsQuery = vi.fn()
+export const useEditMakeupBagMutation = vi.fn()
+export const useDeleteMakeupBagMutation = vi.fn()
+
+const makeupBagsHandlers = [
     http.post('api/makeup-bags/one', () =>
         HttpResponse.json(mockMakeupBagCreate)
     ),
@@ -64,3 +71,5 @@ export const makeupBagsHandlers = [
         HttpResponse.json({ message: 'MakeupBag deleted successfully' })
     ),
 ]
+
+export default makeupBagsHandlers

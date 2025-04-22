@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
-import type { Product } from '../../../features/products/types'
 import type { MutationResult } from '../../../types/api'
+import type { Product } from '../types'
 
 export const mockProductCreate: MutationResult = {
     id: 'product3',
@@ -37,7 +37,7 @@ export const mockProducts: Product[] = [
     },
 ]
 
-export const productsHandlers = [
+const productsHandlers = [
     http.post('api/products/one', () => HttpResponse.json(mockProductCreate)),
 
     http.get('api/products/all', () => HttpResponse.json(mockProducts)),
@@ -63,3 +63,5 @@ export const productsHandlers = [
         HttpResponse.json({ message: 'Product deleted successfully' })
     ),
 ]
+
+export default productsHandlers

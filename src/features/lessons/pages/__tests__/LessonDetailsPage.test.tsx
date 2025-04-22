@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
-import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
+import { mockLesson } from '../../__mocks__/lessonsApiSlice'
 import {
     useDeleteLessonMutation,
     useGetLessonByIdQuery,
@@ -14,15 +14,8 @@ import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-
-vi.mock('../../../../utils/youtube', async () => ({
-    getYouTubeEmbedUrl: vi.fn(),
-}))
-
-vi.mock('../../lessonsApiSlice', () => ({
-    useDeleteLessonMutation: vi.fn(),
-    useGetLessonByIdQuery: vi.fn(),
-}))
+vi.mock('../../../../utils/youtube')
+vi.mock('../../lessonsApiSlice')
 
 describe('LessonDetailsPage', () => {
     const mockDeleteLesson = vi.fn()

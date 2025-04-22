@@ -1,12 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { act, waitFor } from '@testing-library/react'
 
-import {
-    mockTool,
-    mockToolCreate,
-    mockTools,
-} from '../../../tests/mocks/handlers/toolsHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApiSlice'
 import {
     useAddToolMutation,
     useDeleteToolMutation,

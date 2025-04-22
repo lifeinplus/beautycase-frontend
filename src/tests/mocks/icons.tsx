@@ -34,7 +34,9 @@ const icons = {
     UserCircleIcon: mockIcon('user-circle-icon'),
 }
 
-export const mockIcons = () => {
+const mockIcons = () => {
     vi.mock('@heroicons/react/24/outline', () => icons)
     vi.mock('@heroicons/react/24/solid', () => icons)
 }
+
+export default mockIcons

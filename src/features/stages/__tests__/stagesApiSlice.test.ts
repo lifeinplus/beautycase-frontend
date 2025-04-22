@@ -1,13 +1,13 @@
 import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockStage,
     mockStageCreate,
     mockStageDuplicate,
     mockStages,
-} from '../../../tests/mocks/handlers/stagesHandlers'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+} from '../__mocks__/stagesApiSlice'
 import {
     useCreateStageMutation,
     useDeleteStageMutation,

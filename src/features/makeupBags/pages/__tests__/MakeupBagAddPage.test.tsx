@@ -3,26 +3,21 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { clearFormData } from '../../../form/formSlice'
 import {
     mockMakeupBag,
     mockMakeupBagCreate,
-} from '../../../../tests/mocks/handlers/makeupBagsHandlers'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { clearFormData } from '../../../form/formSlice'
+} from '../../__mocks__/makeupBagsApiSlice'
 import { useAddMakeupBagMutation } from '../../makeupBagsApiSlice'
 import { MakeupBagAddPage } from '../MakeupBagAddPage'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../utils/errorUtils')
 vi.mock('../../components/MakeupBagForm')
-
-vi.mock('../../makeupBagsApiSlice', () => ({
-    useAddMakeupBagMutation: vi.fn(),
-}))
+vi.mock('../../makeupBagsApiSlice')
 
 describe('MakeupBagAddPage', () => {
     const mockAddMakeupBag = vi.fn()

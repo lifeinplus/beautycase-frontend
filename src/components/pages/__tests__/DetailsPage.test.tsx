@@ -3,24 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+import { mockDispatch } from '../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
-import { mockError } from '../../../tests/mocks'
-import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
+import { mockError } from '../../../utils/__mocks__/errorUtils'
 import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
 
+vi.mock('../../../app/hooks')
+vi.mock('../../../utils/errorUtils')
 vi.mock('../../navigation/AdaptiveNavBar')
 vi.mock('../../navigation/NavigationButton')
 vi.mock('../../ui/ModalDelete')
 vi.mock('../../ui/ModalDuplicate')
 vi.mock('../../TopPanel')
 vi.mock('../../DataWrapper')
-
-vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
 
 describe('DetailsPage', () => {
     const mockDeleteItem = vi.fn()

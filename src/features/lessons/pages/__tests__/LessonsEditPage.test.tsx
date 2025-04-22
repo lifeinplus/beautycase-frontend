@@ -3,36 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
+import { mockLesson } from '../../__mocks__/lessonsApiSlice'
 import {
     useEditLessonMutation,
     useGetLessonByIdQuery,
 } from '../../lessonsApiSlice'
 import { LessonEditPage } from '../LessonsEditPage'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../../form/formSlice', async (importOriginal) => {
-    const actual = await importOriginal()
-    return {
-        ...(actual as object),
-        clearFormData: vi.fn(),
-        setFormData: vi.fn(),
-    }
-})
-
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../form/formSlice')
 vi.mock('../../components/LessonForm')
-
-vi.mock('../../lessonsApiSlice', () => ({
-    useEditLessonMutation: vi.fn(),
-    useGetLessonByIdQuery: vi.fn(),
-}))
+vi.mock('../../lessonsApiSlice')
 
 describe('LessonEditPage', () => {
     const mockEditLesson = vi.fn()

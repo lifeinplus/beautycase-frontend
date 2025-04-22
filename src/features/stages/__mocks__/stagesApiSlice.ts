@@ -1,7 +1,6 @@
 import { http, HttpResponse } from 'msw'
-
-import type { Stage } from '../../../features/stages/types'
 import type { MutationResult } from '../../../types/api'
+import type { Stage } from '../types'
 
 export const mockStageCreate: MutationResult = {
     id: 'stage3',
@@ -34,7 +33,7 @@ export const mockStages: Stage[] = [
     },
 ]
 
-export const stagesHandlers = [
+const stagesHandlers = [
     http.post('api/stages', () => HttpResponse.json(mockStageCreate)),
 
     http.post('api/stages/duplicate/:id', ({ params }) =>
@@ -64,3 +63,5 @@ export const stagesHandlers = [
         HttpResponse.json({ message: 'Stage deleted successfully' })
     ),
 ]
+
+export default stagesHandlers

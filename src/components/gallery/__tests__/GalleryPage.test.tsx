@@ -2,24 +2,22 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+import { mockDispatch } from '../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
-import { mockError } from '../../../tests/mocks'
-import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
+import { mockError } from '../../../utils/__mocks__/errorUtils'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
+vi.mock('../../../app/hooks')
+vi.mock('../../../utils/errorUtils')
 vi.mock('../../navigation/AdaptiveNavBar')
 vi.mock('../../navigation/NavigationButton')
 vi.mock('../../Header')
 vi.mock('../../Hero')
-
-vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
 
 describe('GalleryPage', () => {
     const mockMediaContent = (

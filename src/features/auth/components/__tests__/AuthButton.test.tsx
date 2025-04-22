@@ -3,16 +3,16 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockHandleLogout } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { useAuthLogout } from '../../hooks/useAuthLogout'
 import { AuthButton } from '../AuthButton'
 
-vi.mock('../../hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../hooks/useAuthLogout')
 
 describe('AuthButton', () => {
+    const mockHandleLogout = vi.fn()
+
     beforeEach(() => {
         vi.mocked(useAuthLogout).mockReturnValue(mockHandleLogout)
     })

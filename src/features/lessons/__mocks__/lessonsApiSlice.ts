@@ -1,6 +1,8 @@
 import { http, HttpResponse } from 'msw'
-import type { Lesson } from '../../../features/lessons/types'
+import { vi } from 'vitest'
+
 import type { MutationResult } from '../../../types/api'
+import type { Lesson } from '../types'
 
 export const mockLessonCreate: MutationResult = {
     id: 'lesson3',
@@ -39,7 +41,13 @@ export const mockLessons: Lesson[] = [
     },
 ]
 
-export const lessonsHandlers = [
+export const useAddLessonMutation = vi.fn()
+export const useGetLessonByIdQuery = vi.fn()
+export const useGetLessonsQuery = vi.fn()
+export const useEditLessonMutation = vi.fn()
+export const useDeleteLessonMutation = vi.fn()
+
+const lessonsHandlers = [
     http.post('api/lessons/one', () => {
         return HttpResponse.json(mockLessonCreate)
     }),
@@ -67,3 +75,5 @@ export const lessonsHandlers = [
         HttpResponse.json({ message: 'Lesson deleted successfully' })
     ),
 ]
+
+export default lessonsHandlers

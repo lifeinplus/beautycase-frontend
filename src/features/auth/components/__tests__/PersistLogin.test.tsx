@@ -5,11 +5,9 @@ import { useAppSelector } from '../../../../app/hooks'
 import { useRefreshAuth } from '../../../../hooks/useRefreshAuth'
 import { PersistLogin } from '../PersistLogin'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/Spinner')
-
-vi.mock('../../../../hooks/useRefreshAuth', () => ({
-    useRefreshAuth: vi.fn(),
-}))
+vi.mock('../../../../hooks/useRefreshAuth')
 
 describe('PersistLogin', () => {
     const mockRefreshAuth = vi.fn()

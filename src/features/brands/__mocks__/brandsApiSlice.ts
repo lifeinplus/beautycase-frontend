@@ -1,6 +1,8 @@
 import { http, HttpResponse } from 'msw'
-import type { Brand } from '../../../features/brands/types'
+import { vi } from 'vitest'
+
 import type { MutationResult } from '../../../types/api'
+import type { Brand } from '../types'
 
 export const mockBrandCreate: MutationResult = {
     id: 'brand3',
@@ -21,7 +23,12 @@ export const mockBrands: Brand[] = [
     },
 ]
 
-export const brandsHandlers = [
+export const useCreateBrandMutation = vi.fn()
+export const useReadBrandsQuery = vi.fn()
+export const useUpdateBrandMutation = vi.fn()
+export const useDeleteBrandMutation = vi.fn()
+
+const brandsHandlers = [
     http.post('api/brands', () => HttpResponse.json(mockBrandCreate)),
 
     http.get('api/brands', () => HttpResponse.json(mockBrands)),
@@ -37,3 +44,5 @@ export const brandsHandlers = [
         HttpResponse.json({ message: 'Brand deleted successfully' })
     ),
 ]
+
+export default brandsHandlers

@@ -1,18 +1,18 @@
 import { setupServer } from 'msw/node'
 
-import { brandsHandlers } from './handlers/brandsHandlers'
-import { categoriesHandlers } from './handlers/categoriesHandlers'
-import { lessonsHandlers } from './handlers/lessonsHandlers'
-import { makeupBagsHandlers } from './handlers/makeupBagsHandlers'
-import { productsHandlers } from './handlers/productsHandlers'
-import { questionnairesHandlers } from './handlers/questionnairesHandlers'
-import { stagesHandlers } from './handlers/stagesHandlers'
-import { storesHandlers } from './handlers/storesHandlers'
-import { toolsHandlers } from './handlers/toolsHandlers'
-import { uploadsHandlers } from './handlers/uploadsHandlers'
-import { usersHandlers } from './handlers/usersHandlers'
+import brandsHandlers from '../../features/brands/__mocks__/brandsApiSlice'
+import categoriesHandlers from '../../features/categories/__mocks__/categoriesApiSlice'
+import lessonsHandlers from '../../features/lessons/__mocks__/lessonsApiSlice'
+import makeupBagsHandlers from '../../features/makeupBags/__mocks__/makeupBagsApiSlice'
+import productsHandlers from '../../features/products/__mocks__/productApiSlice'
+import questionnairesHandlers from '../../features/questionnaires/__mocks__/questionnaireApiSlice'
+import stagesHandlers from '../../features/stages/__mocks__/stagesApiSlice'
+import storesHandlers from '../../features/stores/__mocks__/storesApiSlice'
+import toolsHandlers from '../../features/tools/__mocks__/toolsApiSlice'
+import uploadsHandlers from '../../features/uploads/__mocks__/uploadApiSlice'
+import usersHandlers from '../../features/users/__mocks__/usersApiSlice'
 
-export const server = setupServer(
+const server = setupServer(
     ...brandsHandlers,
     ...categoriesHandlers,
     ...lessonsHandlers,
@@ -25,3 +25,5 @@ export const server = setupServer(
     ...uploadsHandlers,
     ...usersHandlers
 )
+
+export default server

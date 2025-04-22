@@ -4,21 +4,16 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockLoginResult } from '../../../../tests/mocks/auth'
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { useLoginUserMutation } from '../../authApiSlice'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../authApiSlice', () => ({
-    useLoginUserMutation: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../authApiSlice')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
@@ -36,6 +31,11 @@ const MockRoutes = () => (
 
 describe('LoginPage', () => {
     const initialEntries = ['/login']
+
+    const mockLoginResult: AuthResultLogin = {
+        accessToken: 'token1',
+        userId: 'user1',
+    }
 
     const mockParams = {
         username: 'testuser',

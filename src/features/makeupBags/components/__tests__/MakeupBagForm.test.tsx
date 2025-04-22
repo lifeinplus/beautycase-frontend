@@ -2,51 +2,33 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { mockCategories } from '../../../../tests/mocks/handlers/categoriesHandlers'
-import { mockUsers } from '../../../../tests/mocks/handlers/usersHandlers'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { setFormData } from '../../../form/formSlice'
+import { mockCategories } from '../../../categories/__mocks__/categoriesApiSlice'
 import { useGetCategoriesQuery } from '../../../categories/categoriesApiSlice'
+import { setFormData } from '../../../form/formSlice'
+import { mockUsers } from '../../../users/__mocks__/usersApiSlice'
 import { useGetUsersQuery } from '../../../users/usersApiSlice'
+import { mockMakeupBag } from '../../__mocks__/makeupBagsApiSlice'
 import { MakeupBagForm } from '../MakeupBagForm'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
+vi.mock('../../../categories/categoriesApiSlice')
 vi.mock('../../../form/components/ButtonNavigateSection')
 vi.mock('../../../form/components/SelectSection')
-
-vi.mock('../../../categories/categoriesApiSlice', () => ({
-    useGetCategoriesQuery: vi.fn(),
-}))
-
-vi.mock('../../../form/formSlice', async (importOriginal) => {
-    const actual = await importOriginal()
-    return {
-        ...(actual as object),
-        setFormData: vi.fn(),
-    }
-})
-
-vi.mock('../../../users/usersApiSlice', () => ({
-    useGetUsersQuery: vi.fn(),
-}))
+vi.mock('../../../form/formSlice')
+vi.mock('../../../users/usersApiSlice')
 
 describe('MakeupBagForm', () => {
-    const mockFormData = {
-        categoryId: 'category1',
-        clientId: 'user1',
-        stageIds: ['stage1', 'stage2'],
-        toolIds: ['tool1'],
-    }
-
     const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(mockFormData)
+        vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag)
 
         vi.mocked(useGetCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,
@@ -110,11 +92,11 @@ describe('MakeupBagForm', () => {
         expect(mockNavigate).toHaveBeenCalledWith('/stages/selection')
     })
 
-    it('renders stage and tool button texts based on watch values', () => {
+    it('displays the correct number of selected stages and tools', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const stagesText = screen.getByText('Выбрано: 2')
-        const toolsText = screen.getByText('Выбрано: 1')
+        const toolsText = screen.getByText('Выбрано: 3')
 
         expect(stagesText).toBeInTheDocument()
         expect(toolsText).toBeInTheDocument()

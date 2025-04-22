@@ -2,8 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockUploadResult } from '../../../../tests/mocks/handlers/uploadsHandlers'
 import {
     mockClearErrors,
     mockFieldError,
@@ -12,21 +10,17 @@ import {
     mockSetValue,
     mockUrl,
 } from '../../../../tests/mocks/form'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Questionnaire } from '../../../questionnaires/types'
+import { mockUploadResult } from '../../../uploads/__mocks__/uploadApiSlice'
 import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
 import {
     ImageTextSection,
     type ImageTextSectionProps,
 } from '../ImageTextSection'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../../uploads/uploadApiSlice', () => ({
-    useUploadImageTempMutation: vi.fn(),
-}))
-
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../uploads/uploadApiSlice')
 vi.mock('../ImagePreview')
 vi.mock('../Label')
 

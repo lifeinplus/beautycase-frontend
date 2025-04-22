@@ -3,10 +3,10 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
 import {
@@ -15,16 +15,10 @@ import {
 } from '../../brandsApiSlice'
 import { BrandForm } from '../BrandForm'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
-
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../brandsApiSlice', () => ({
-    useCreateBrandMutation: vi.fn(),
-    useUpdateBrandMutation: vi.fn(),
-}))
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../brandsApiSlice')
 
 describe('BrandForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }

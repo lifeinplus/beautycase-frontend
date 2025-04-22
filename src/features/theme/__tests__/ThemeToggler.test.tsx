@@ -2,10 +2,12 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+import { mockDispatch } from '../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../app/hooks'
-import { mockDispatch } from '../../../tests/mocks/app'
 import { ThemeToggler } from '../ThemeToggler'
 import { toggleTheme } from '../themeSlice'
+
+vi.mock('../../../app/hooks')
 
 describe('ThemeToggler', () => {
     beforeEach(() => {

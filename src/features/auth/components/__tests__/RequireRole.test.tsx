@@ -4,8 +4,9 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-
 import { RequireRole } from '../RequireRole'
+
+vi.mock('../../../../app/hooks')
 
 const MockProtected = () => (
     <div data-testid="mocked-protected-content">Protected Content</div>

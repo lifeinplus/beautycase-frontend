@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
 
-import { mockError } from '../../../../tests/mocks'
 import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
 import {
     useReadStoresQuery,
@@ -14,37 +14,19 @@ import {
 import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/ui/ModalDelete')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Hero')
 vi.mock('../../../../components/TopPanel')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../form/formSlice')
 vi.mock('../../components/StoreForm')
 vi.mock('../../components/StoresMobileView')
 vi.mock('../../components/StoresTable')
-
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../../form/formSlice', async (importOriginal) => {
-    const actual = await importOriginal()
-    return {
-        ...(actual as object),
-        clearFormData: vi.fn(),
-        setFormData: vi.fn(),
-    }
-})
-
-vi.mock('../../storesApiSlice', () => ({
-    useDeleteStoreMutation: vi.fn(),
-    useReadStoresQuery: vi.fn(),
-}))
-
-vi.mock('../../components/StoreForm')
-vi.mock('../../components/StoresMobileView')
-vi.mock('../../components/StoresTable')
+vi.mock('../../storesApiSlice')
 
 describe('StoresPage', () => {
     const mockStores: Store[] = [

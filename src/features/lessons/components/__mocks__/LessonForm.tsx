@@ -1,4 +1,4 @@
-import { mockLesson } from '../../../../tests/mocks/handlers/lessonsHandlers'
+import { mockLesson } from '../../__mocks__/lessonsApiSlice'
 import { type LessonFormProps } from '../LessonForm'
 
 export const LessonForm = ({ title, onSubmit }: LessonFormProps) => (

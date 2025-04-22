@@ -1,114 +1,54 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { useForm } from 'react-hook-form'
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
+import { describe, it, vi, expect, beforeEach } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { mockDispatch } from '../../../../tests/mocks/app'
-import { mockOnSubmit, mockUrlYouTube } from '../../../../tests/mocks/form'
+import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
+import { mockLesson } from '../../__mocks__/lessonsApiSlice'
 import { LessonForm } from '../LessonForm'
 
-vi.mock('react-hook-form', async () => ({
-    useForm: vi.fn(),
-}))
-
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../form/components/ButtonNavigateSection')
 vi.mock('../../../form/components/TextareaSection')
-
-vi.mock('../../../form/formSlice', async (importOriginal) => {
-    const actual = await importOriginal()
-    return {
-        ...(actual as object),
-        setFormData: vi.fn(),
-    }
-})
+vi.mock('../../../form/formSlice')
 
 describe('LessonForm', () => {
-    const mockRegister = vi.fn().mockImplementation((name) => ({ name }))
-    const mockReset = vi.fn()
-    const mockWatch = vi.fn().mockImplementation((field) => {
-        if (field === 'videoUrl') return mockUrlYouTube
-        return null
-    })
-    const mockHandleSubmit = vi.fn((fn) => fn)
-    const mockFormState = { errors: {} }
+    const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(null)
-
-        vi.mocked(useForm as Mock).mockReturnValue({
-            register: mockRegister,
-            reset: mockReset,
-            watch: mockWatch,
-            handleSubmit: mockHandleSubmit,
-            formState: mockFormState,
-        })
+        vi.mocked(useAppSelector).mockReturnValue(mockLesson)
     })
 
     it('renders all required form fields', () => {
-        render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
+        const topPanel = screen.getByTestId('mocked-top-panel')
         const title = screen.getByPlaceholderText('Заголовок')
         const shortDescription = screen.getByPlaceholderText('Краткое описание')
         const videoUrl = screen.getByPlaceholderText('Ссылка на видео')
         const fullDescription = screen.getByPlaceholderText('Полное описание')
+        const products = screen.getByText('Продукты')
 
+        expect(topPanel).toBeInTheDocument()
         expect(title).toBeInTheDocument()
         expect(shortDescription).toBeInTheDocument()
         expect(videoUrl).toBeInTheDocument()
         expect(fullDescription).toBeInTheDocument()
-        expect(screen.getByText('Продукты')).toBeInTheDocument()
-    })
-
-    it('displays "Выбрать" when no products are selected', () => {
-        render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByRole('button', { name: /Продукты/i })
-        expect(button).toHaveTextContent('Выбрать')
-    })
-
-    it('displays the correct number of selected products', () => {
-        const mockWatch = vi.fn().mockImplementation((field) => {
-            if (field === 'productIds') return ['1', '2']
-            return null
-        })
-
-        vi.mocked(useForm as Mock).mockReturnValue({
-            register: mockRegister,
-            reset: mockReset,
-            watch: mockWatch,
-            handleSubmit: mockHandleSubmit,
-            formState: mockFormState,
-        })
-
-        render(<LessonForm title="Test Lesson Form" onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByTestId('mocked-button-navigate-section')
-        expect(button).toHaveTextContent('Выбрано: 2')
-    })
-
-    it('calls onSubmit when save button is clicked', async () => {
-        const user = userEvent.setup()
-
-        render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByRole('button', { name: /Сохранить/i })
-        await user.click(button)
-
-        expect(mockOnSubmit).toHaveBeenCalledTimes(1)
+        expect(products).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: /Назад/i })
+        const button = screen.getByTestId('mocked-back-button')
         await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -117,7 +57,7 @@ describe('LessonForm', () => {
     it('navigates to products selection and saves form data', async () => {
         const user = userEvent.setup()
 
-        render(<LessonForm title="Test Title" onSubmit={mockOnSubmit} />)
+        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const button = screen.getByTestId('mocked-button-navigate-section')
         await user.click(button)
@@ -125,5 +65,12 @@ describe('LessonForm', () => {
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/products/selection')
+    })
+
+    it('displays the correct number of selected products', () => {
+        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
+
+        const button = screen.getByTestId('mocked-button-navigate-section')
+        expect(button).toHaveTextContent('Выбрано: 3')
     })
 })

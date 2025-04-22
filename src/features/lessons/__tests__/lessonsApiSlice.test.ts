@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockLesson,
     mockLessonCreate,
     mockLessons,
-} from '../../../tests/mocks/handlers/lessonsHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+} from '../__mocks__/lessonsApiSlice'
 import {
     useAddLessonMutation,
     useDeleteLessonMutation,

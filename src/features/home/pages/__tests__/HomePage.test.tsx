@@ -6,10 +6,8 @@ import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { HomePage } from '../HomePage'
 
-vi.mock('../../../auth/hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
-
+vi.mock('../../../../app/hooks')
+vi.mock('../../../auth/hooks/useAuthLogout')
 vi.mock('../../components/HomeButton')
 
 describe('HomePage', () => {

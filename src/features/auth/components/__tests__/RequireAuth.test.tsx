@@ -6,6 +6,8 @@ import { useAppSelector } from '../../../../app/hooks'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { RequireAuth } from '../RequireAuth'
 
+vi.mock('../../../../app/hooks')
+
 const MockProtected = () => (
     <div data-testid="mocked-protected-content">Protected Content</div>
 )

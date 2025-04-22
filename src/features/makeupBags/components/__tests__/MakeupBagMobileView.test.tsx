@@ -1,19 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
-import { mockMakeupBags } from '../../../../tests/mocks/handlers/makeupBagsHandlers'
+import { mockMakeupBags } from '../../__mocks__/makeupBagsApiSlice'
 import { MakeupBagMobileView } from '../MakeupBagMobileView'
 
 vi.mock('../../../../components/table/MobileView')
-
-vi.mock('../../../../utils/date', () => ({
-    formatDate: vi.fn((_, format) => {
-        if (format === 'yyyy.MM.dd HH:mm') return '2025.04.10 14:30'
-        if (format === 'yyyy.MM.dd') return '2025.04.10'
-        if (format === 'HH:mm') return '14:30'
-        return 'formatted-date'
-    }),
-}))
+vi.mock('../../../../utils/date')
 
 describe('MakeupBagMobileView', () => {
     it('renders the MobileView component with correct props', () => {

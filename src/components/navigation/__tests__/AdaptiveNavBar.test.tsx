@@ -9,6 +9,7 @@ import { mockLocation, mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
 
+vi.mock('../../../app/hooks')
 vi.mock('../../../features/auth/components/AuthButton')
 vi.mock('../../../features/theme/ThemeToggler')
 vi.mock('../NavigationButton')

@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
-import type { Tool } from '../../../features/tools/types'
-import { MutationResult } from '../../../types/api'
+
+import type { MutationResult } from '../../../types/api'
+import type { Tool } from '../types'
 
 export const mockToolCreate: MutationResult = {
     id: 'tool3',
@@ -41,7 +42,7 @@ export const mockTools: Tool[] = [
     },
 ]
 
-export const toolsHandlers = [
+const toolsHandlers = [
     http.post('api/tools/one', () => HttpResponse.json(mockToolCreate)),
 
     http.get('api/tools/all', () => HttpResponse.json(mockTools)),
@@ -67,3 +68,5 @@ export const toolsHandlers = [
         HttpResponse.json({ message: 'Tool successfully deleted' })
     ),
 ]
+
+export default toolsHandlers

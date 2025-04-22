@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { mockError } from '../../utils/__mocks__/errorUtils'
 import { getErrorMessage } from '../../utils/errorUtils'
 import { DataWrapper } from '../DataWrapper'
-import { mockError } from '../../tests/mocks'
 
+vi.mock('../../utils/errorUtils')
 vi.mock('../LoadingOrError')
-
-vi.mock('../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
 
 const mockData = { id: 1, name: 'Test' }
 const mockDataArrray = [mockData]

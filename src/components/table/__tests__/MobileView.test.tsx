@@ -5,14 +5,7 @@ import { renderWithRouter } from '../../../tests/mocks/wrappers'
 import { formatDate } from '../../../utils/date'
 import { MobileView } from '../MobileView'
 
-vi.mock('../../../utils/date', () => ({
-    formatDate: vi.fn((_, format) => {
-        if (format === 'yyyy.MM.dd HH:mm') return '2025.04.10 14:30'
-        if (format === 'yyyy.MM.dd') return '2025.04.10'
-        if (format === 'HH:mm') return '14:30'
-        return 'formatted-date'
-    }),
-}))
+vi.mock('../../../utils/date')
 
 interface TestItem {
     id: string

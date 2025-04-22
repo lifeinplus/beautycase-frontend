@@ -2,20 +2,18 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { setFormData } from '../../../form/formSlice'
 import { useReadStoresQuery } from '../../storesApiSlice'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
+vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
-
-vi.mock('../../storesApiSlice', () => ({
-    useReadStoresQuery: vi.fn(),
-}))
+vi.mock('../../storesApiSlice')
 
 describe('StoreLinkAddPage', () => {
     const mockStoreLink = {

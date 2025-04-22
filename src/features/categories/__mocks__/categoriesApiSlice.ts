@@ -1,8 +1,9 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
-import type { Category } from '../../../features/categories/types'
+import type { Category } from '../types'
 
-const mockCategory: Category = {
+export const mockCategory: Category = {
     _id: 'category1',
     name: 'Category 1',
     type: 'test_type',
@@ -17,6 +18,10 @@ export const mockCategories: Category[] = [
     },
 ]
 
-export const categoriesHandlers = [
+export const useGetCategoriesQuery = vi.fn()
+
+const categoriesHandlers = [
     http.get('api/categories/all', () => HttpResponse.json(mockCategories)),
 ]
+
+export default categoriesHandlers

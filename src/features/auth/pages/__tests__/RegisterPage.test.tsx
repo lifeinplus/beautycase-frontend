@@ -4,20 +4,17 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockRegisterResult } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { useRegisterUserMutation } from '../../authApiSlice'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import {
+    type AuthResultRegister,
+    useRegisterUserMutation,
+} from '../../authApiSlice'
 import { RegisterPage } from '../RegisterPage'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../authApiSlice', () => ({
-    useRegisterUserMutation: vi.fn(),
-}))
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../authApiSlice')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
@@ -33,6 +30,10 @@ const MockRoutes = () => (
 
 describe('RegisterPage', () => {
     const initialEntries = ['/register']
+
+    const mockRegisterResult: AuthResultRegister = {
+        message: 'Account created successfully',
+    }
 
     const mockParams = {
         username: 'testuser',

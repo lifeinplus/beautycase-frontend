@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { type FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
@@ -13,7 +14,7 @@ import { selectFormData, setFormData } from '../../form/formSlice'
 import type { Lesson } from '../types'
 import { lessonSchema } from '../validations'
 
-interface LessonFormProps {
+export interface LessonFormProps {
     title: string
     onSubmit: (data: Lesson) => void
 }

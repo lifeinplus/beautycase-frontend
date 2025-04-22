@@ -1,23 +1,27 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
+import { mockDispatch } from '../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
-import { mockError } from '../../../tests/mocks'
-import { mockDispatch } from '../../../tests/mocks/app'
 import { mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
+import { mockError } from '../../../utils/__mocks__/errorUtils'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
-vi.mock('../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
+vi.mock('../../../app/hooks')
+vi.mock('../../../utils/errorUtils')
+vi.mock('../../navigation/AdaptiveNavBar')
+vi.mock('../../navigation/NavigationButton')
+vi.mock('../../Header')
+vi.mock('../../Hero')
 
 describe('GalleryPage', () => {
     const mockMediaContent = (
-        <div data-testid="media-content">Media Content</div>
+        <div data-testid="mocked-media-content">Media Content</div>
     )
 
     const mockProps: GalleryPageProps = {
@@ -31,26 +35,31 @@ describe('GalleryPage', () => {
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
-            if (selector === selectRole) return 'mua'
-            if (selector === selectUsername) return 'inna'
+            if (selector === selectRole) return 'admin'
+            if (selector === selectUsername) return 'testuser'
             return null
         })
     })
 
     it('dispatches clearFormData on mount', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
-
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('renders the component with all elements', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument()
-        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
-        expect(screen.getByTestId('media-content')).toBeInTheDocument()
-        expect(screen.getByRole('complementary')).toBeInTheDocument()
+        const header = screen.getByTestId('mocked-header')
+        const hero = screen.getByTestId('mocked-hero')
+        const mediaContent = screen.getByTestId('mocked-media-content')
+        const navBar = screen.getByTestId('mocked-nav-bar')
+        const navButton = screen.getByTestId('mocked-nav-button')
+
+        expect(header).toBeInTheDocument()
+        expect(hero).toBeInTheDocument()
+        expect(mediaContent).toBeInTheDocument()
+        expect(navBar).toBeInTheDocument()
+        expect(navButton).toBeInTheDocument()
     })
 
     it('renders without subtitle when not provided', () => {
@@ -80,15 +89,17 @@ describe('GalleryPage', () => {
     it('renders navigation buttons for actions that user can access', () => {
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        expect(
-            screen.getByRole('button', { name: 'Добавить' })
-        ).toBeInTheDocument()
+        const button = screen.getByRole('button', { name: 'Добавить' })
+        expect(button).toBeInTheDocument()
     })
 
-    it('navigates to correct path when add button is clicked', () => {
+    it('navigates to correct path when add button is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<GalleryPage {...mockProps} />)
 
-        fireEvent.click(screen.getByRole('button', { name: 'Добавить' }))
+        const button = screen.getByRole('button', { name: 'Добавить' })
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/gallery/add')
     })

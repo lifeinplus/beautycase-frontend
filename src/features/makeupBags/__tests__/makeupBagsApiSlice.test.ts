@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockMakeupBag,
+    mockMakeupBagCreate,
     mockMakeupBags,
-} from '../../../tests/mocks/handlers/makeupBagsHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+} from '../__mocks__/makeupBagsApiSlice'
 import {
     useAddMakeupBagMutation,
     useDeleteMakeupBagMutation,
@@ -27,12 +27,7 @@ describe('makeupBagsApiSlice', () => {
 
         await act(async () => {
             const response = await addMakeupBag(mockMakeupBag).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'MakeupBag created successfully',
-            })
+            expect(response).toMatchObject(mockMakeupBagCreate)
         })
     })
 
@@ -50,7 +45,7 @@ describe('makeupBagsApiSlice', () => {
 
     it('reads a makeupBag by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetMakeupBagByIdQuery('1')
+            useGetMakeupBagByIdQuery(mockMakeupBag._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -70,7 +65,7 @@ describe('makeupBagsApiSlice', () => {
 
         await act(async () => {
             const response = await editMakeupBag({
-                id: '1',
+                id: mockMakeupBag._id!,
                 ...mockMakeupBag,
             }).unwrap()
 

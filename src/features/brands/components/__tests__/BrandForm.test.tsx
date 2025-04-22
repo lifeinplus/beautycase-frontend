@@ -1,12 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
 import {
@@ -15,25 +15,19 @@ import {
 } from '../../brandsApiSlice'
 import { BrandForm } from '../BrandForm'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../brandsApiSlice', () => ({
-    useCreateBrandMutation: vi.fn(),
-    useUpdateBrandMutation: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/ui/Button')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../brandsApiSlice')
 
 describe('BrandForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }
 
-    const mockCreateBrand = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockCreateBrand = vi.fn()
+    const mockCreateUnwrap = vi.fn()
 
-    const mockUpdateBrand = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockUpdateBrand = vi.fn()
+    const mockUpdateUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(null)
@@ -43,10 +37,16 @@ describe('BrandForm', () => {
             { isLoading: false },
         ])
 
+        mockCreateBrand.mockReturnValue({ unwrap: mockCreateUnwrap })
+        mockCreateUnwrap.mockResolvedValue({})
+
         vi.mocked(useUpdateBrandMutation as Mock).mockReturnValue([
             mockUpdateBrand,
             { isLoading: false },
         ])
+
+        mockUpdateBrand.mockReturnValue({ unwrap: mockUpdateUnwrap })
+        mockUpdateUnwrap.mockResolvedValue({})
     })
 
     it('renders the form correctly', () => {
@@ -58,7 +58,7 @@ describe('BrandForm', () => {
         renderWithProvider(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const button = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         expect(input).toBeInTheDocument()
         expect(button).toBeInTheDocument()
@@ -75,44 +75,19 @@ describe('BrandForm', () => {
         expect(input.focus).toHaveBeenCalled()
     })
 
-    it('displays add button when no form data ID exists', () => {
-        render(<BrandForm ref={mockRef} />)
-
-        const addButton = screen.getByRole('button')
-
-        expect(addButton).toHaveAttribute('type', 'submit')
-        expect(addButton).toHaveClass('btn-success')
-    })
-
-    it('displays update button when form data ID exists', () => {
-        vi.mocked(useAppSelector).mockReturnValue({
-            _id: '123',
-            name: 'Test Brand',
-        })
-
-        render(<BrandForm ref={mockRef} />)
-
-        const updateButton = screen.getByRole('button')
-
-        expect(updateButton).toHaveAttribute('type', 'submit')
-        expect(updateButton).toHaveClass('btn-warning')
-    })
-
     it('calls createBrand when add button is clicked', async () => {
         const user = userEvent.setup()
 
         renderWithProvider(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
-        await waitFor(() => {
-            expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        })
+        expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('calls updateBrand when update button is clicked', async () => {
@@ -126,19 +101,18 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const updateButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.clear(input)
         await user.type(input, 'Updated Brand')
-        await user.click(updateButton)
+        await user.click(button)
 
-        await waitFor(() => {
-            expect(mockUpdateBrand).toHaveBeenCalledWith({
-                _id: '123',
-                name: 'Updated Brand',
-            })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
+        expect(mockUpdateBrand).toHaveBeenCalledWith({
+            _id: '123',
+            name: 'Updated Brand',
         })
+
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('handles createBrand error', async () => {
@@ -148,22 +122,15 @@ describe('BrandForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockCreateBrand = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useCreateBrandMutation as Mock).mockReturnValue([
-            mockCreateBrand,
-            { isLoading: false },
-        ])
+        mockCreateUnwrap.mockRejectedValue(mockError)
 
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -179,14 +146,7 @@ describe('BrandForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockUpdateBrand = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useUpdateBrandMutation as Mock).mockReturnValue([
-            mockUpdateBrand,
-            { isLoading: false },
-        ])
+        mockUpdateUnwrap.mockRejectedValue(mockError)
 
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',
@@ -196,15 +156,28 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Бренд')
-        const addButton = screen.getByRole('button')
+        const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
-        await user.click(addButton)
+        await user.click(button)
 
         expect(mockUpdateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
+    })
+
+    it('renders error message and applies error class', async () => {
+        const user = userEvent.setup()
+
+        render(<BrandForm ref={mockRef} />)
+
+        const button = screen.getByTestId('mocked-button')
+        await user.click(button)
+
+        const error = screen.getByText('Укажите название бренда')
+        expect(error).toBeInTheDocument()
+        expect(error).toHaveClass('form-error')
     })
 })

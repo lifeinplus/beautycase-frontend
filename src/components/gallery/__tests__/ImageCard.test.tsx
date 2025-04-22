@@ -1,7 +1,10 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
-import { ImageCard } from '../ImageCard'
+import { describe, it, expect, vi } from 'vitest'
+
 import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import { ImageCard } from '../ImageCard'
+
+vi.mock('../../ui/Image')
 
 describe('ImageCard', () => {
     const mockData = {
@@ -14,7 +17,7 @@ describe('ImageCard', () => {
     it('renders the image correctly', () => {
         renderWithRouter(<ImageCard data={mockData} path={mockPath} />)
 
-        const image = screen.getByRole('img')
+        const image = screen.getByTestId('mocked-image')
         expect(image).toBeInTheDocument()
         expect(image).toHaveAttribute('alt', mockData.name)
         expect(image).toHaveAttribute('src', mockData.imageUrl)

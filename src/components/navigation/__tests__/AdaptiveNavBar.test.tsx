@@ -1,17 +1,30 @@
-import { screen, fireEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { useLocation } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
-import { mockNavigate } from '../../../tests/mocks/router'
+import { mockLocation, mockNavigate } from '../../../tests/mocks/router'
 import { renderWithProvider } from '../../../tests/mocks/wrappers'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
+
+vi.mock('../../../app/hooks')
+vi.mock('../../../features/auth/components/AuthButton')
+vi.mock('../../../features/theme/ThemeToggler')
+vi.mock('../NavigationButton')
 
 describe('AdaptiveNavBar', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectRole) return 'mua'
-            if (selector === selectUsername) return 'inna'
+            if (selector === selectUsername) return 'testuser'
             return null
+        })
+
+        vi.mocked(useLocation).mockReturnValue({
+            ...mockLocation,
+            pathname: '/questionnaire',
         })
     })
 
@@ -25,42 +38,47 @@ describe('AdaptiveNavBar', () => {
     it('renders navigation buttons for accessible menu items', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(
-            screen.getByRole('button', { name: /Анкета/i })
-        ).toBeInTheDocument()
+        const questionnaire = screen.getByRole('button', { name: /Анкета/i })
 
-        expect(
-            screen.getByRole('button', { name: /Косметички/i })
-        ).toBeInTheDocument()
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
 
-        expect(
-            screen.getByRole('button', { name: /Личный кабинет/i })
-        ).toBeInTheDocument()
+        const btnAccount = screen.getByRole('button', {
+            name: /Личный кабинет/i,
+        })
 
-        expect(
-            screen.queryByRole('button', {
-                name: /Справочники/i,
-            })
-        ).not.toBeInTheDocument()
+        const btnReferenceLists = screen.queryByRole('button', {
+            name: /Справочники/i,
+        })
+
+        expect(questionnaire).toBeInTheDocument()
+        expect(btnMakeupBags).toBeInTheDocument()
+        expect(btnAccount).toBeInTheDocument()
+
+        expect(btnReferenceLists).not.toBeInTheDocument()
     })
 
     it('renders ThemeToggler and AuthButton', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(
-            screen.getByRole('button', { name: /Light mode/i })
-        ).toBeInTheDocument()
+        const authButton = screen.getByTestId('mocked-auth-button')
+        const themeToggler = screen.getByTestId('mocked-theme-toggler')
 
-        expect(
-            screen.getByRole('button', { name: /Logout/i })
-        ).toBeInTheDocument()
+        expect(authButton).toBeInTheDocument()
+        expect(themeToggler).toBeInTheDocument()
     })
 
-    it('calls navigate when a menu item is clicked', () => {
+    it('calls navigate when a menu item is clicked', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Этапы/i }))
-        fireEvent.click(screen.getByRole('button', { name: /Уроки/i }))
+        const btnStages = screen.getByRole('button', { name: /Этапы/i })
+        const btnLessons = screen.getByRole('button', { name: /Уроки/i })
+
+        await user.click(btnStages)
+        await user.click(btnLessons)
 
         expect(mockNavigate).toHaveBeenCalledTimes(2)
     })
@@ -68,27 +86,37 @@ describe('AdaptiveNavBar', () => {
     it('applies active class to current path navigation button', () => {
         renderWithProvider(<AdaptiveNavBar />)
 
-        expect(screen.getByRole('button', { name: /Анкета/i })).toHaveClass(
-            'nav-btn-active'
-        )
+        const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
 
-        expect(
-            screen.getByRole('button', { name: /Косметички/i })
-        ).not.toHaveClass('nav-btn-active')
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
+
+        expect(btnQuestionnaire).toHaveClass('nav-btn-active')
+        expect(btnMakeupBags).not.toHaveClass('nav-btn-active')
     })
 
-    it('navigates when clicking a navigation button', () => {
+    it('navigates when clicking a navigation button', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Косметички/i }))
+        const btnMakeupBags = screen.getByRole('button', {
+            name: /Косметички/i,
+        })
+
+        await user.click(btnMakeupBags)
 
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
     })
 
-    it('scrolls to top when clicking the active navigation button', () => {
+    it('scrolls to top when clicking the active navigation button', async () => {
+        const user = userEvent.setup()
+
         renderWithProvider(<AdaptiveNavBar />)
 
-        fireEvent.click(screen.getByRole('button', { name: /Анкета/i }))
+        const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
+        await user.click(btnQuestionnaire)
 
         expect(window.scrollTo).toHaveBeenCalledWith({
             top: 0,
@@ -101,10 +129,12 @@ describe('AdaptiveNavBar', () => {
     it('renders children content', () => {
         renderWithProvider(
             <AdaptiveNavBar>
-                <button data-testid="child-content">Child Content</button>
+                <button data-testid="mocked-child-content">
+                    Child Content
+                </button>
             </AdaptiveNavBar>
         )
 
-        expect(screen.getByTestId('child-content')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-child-content')).toBeInTheDocument()
     })
 })

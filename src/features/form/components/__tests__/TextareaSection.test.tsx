@@ -8,24 +8,10 @@ import {
     mockUrl,
     mockUrlYouTube,
 } from '../../../../tests/mocks/form'
-import { type ImagePreviewProps } from '../ImagePreview'
-import { type LabelProps } from '../Label'
 import { TextareaSection, type TextareaSectionProps } from '../TextareaSection'
 
-vi.mock('../ImagePreview', () => ({
-    ImagePreview: ({ url }: ImagePreviewProps) => (
-        <img data-testid="image-preview" src={url} />
-    ),
-}))
-
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
+vi.mock('../ImagePreview')
+vi.mock('../Label')
 
 describe('TextareaSection', () => {
     const mockProps: TextareaSectionProps = {
@@ -36,7 +22,7 @@ describe('TextareaSection', () => {
     it('renders with the label correctly', () => {
         render(<TextareaSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
 
@@ -67,7 +53,9 @@ describe('TextareaSection', () => {
     it('renders image preview if preview and value are provided', () => {
         render(<TextareaSection {...mockProps} preview value={mockUrl} />)
 
-        const image = screen.getByTestId('image-preview') as HTMLImageElement
+        const image = screen.getByTestId(
+            'mocked-image-preview'
+        ) as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toBe(mockUrl)
@@ -83,7 +71,9 @@ describe('TextareaSection', () => {
             />
         )
 
-        const image = screen.getByTestId('image-preview') as HTMLImageElement
+        const image = screen.getByTestId(
+            'mocked-image-preview'
+        ) as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toContain('img.youtube.com')

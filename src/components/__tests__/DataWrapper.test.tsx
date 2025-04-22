@@ -1,20 +1,21 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { mockError } from '../../utils/__mocks__/errorUtils'
 import { getErrorMessage } from '../../utils/errorUtils'
 import { DataWrapper } from '../DataWrapper'
-import { mockError } from '../../tests/mocks'
 
-vi.mock('../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
+vi.mock('../../utils/errorUtils')
+vi.mock('../LoadingOrError')
 
 const mockData = { id: 1, name: 'Test' }
 const mockDataArrray = [mockData]
 
 const mockEmptyMessage = 'No data available'
 
-const mockChildren = <div data-testid="children-content">Test Content</div>
+const mockChildren = (
+    <div data-testid="mocked-children-content">Test Content</div>
+)
 
 describe('DataWrapper', () => {
     it('renders loading state', () => {
@@ -29,10 +30,12 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
+        const loadingOrError = screen.getByTestId('mocked-loading-or-error')
         const loadingElement = screen.getByText('Загрузка...')
-        expect(loadingElement).toBeInTheDocument()
-
         const childrenElement = screen.queryByTestId('children-content')
+
+        expect(loadingOrError).toBeInTheDocument()
+        expect(loadingElement).toBeInTheDocument()
         expect(childrenElement).not.toBeInTheDocument()
     })
 
@@ -104,7 +107,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const childrenElement = screen.getByTestId('children-content')
+        const childrenElement = screen.getByTestId('mocked-children-content')
         expect(childrenElement).toBeInTheDocument()
         expect(childrenElement).toHaveTextContent('Test Content')
     })
@@ -121,7 +124,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const childrenElement = screen.getByTestId('children-content')
+        const childrenElement = screen.getByTestId('mocked-children-content')
         expect(childrenElement).toBeInTheDocument()
     })
 

@@ -6,77 +6,89 @@ import { Input } from '../Input'
 
 describe('Input', () => {
     it('renders with default className', () => {
-        render(<Input data-testid="test-input" />)
-        const inputElement = screen.getByTestId('test-input')
-        expect(inputElement).toBeInTheDocument()
-        expect(inputElement).toHaveClass('form-input')
+        render(<Input data-testid="mocked-test-input" />)
+
+        const input = screen.getByTestId('mocked-test-input')
+        expect(input).toBeInTheDocument()
+        expect(input).toHaveClass('form-input')
     })
 
     it('renders with custom className', () => {
         const customClass = 'custom-input'
-        render(<Input data-testid="test-input" className={customClass} />)
-        const inputElement = screen.getByTestId('test-input')
-        expect(inputElement).toHaveClass('form-input')
-        expect(inputElement).toHaveClass(customClass)
+
+        render(
+            <Input data-testid="mocked-test-input" className={customClass} />
+        )
+
+        const input = screen.getByTestId('mocked-test-input')
+        expect(input).toHaveClass('form-input')
+        expect(input).toHaveClass(customClass)
     })
 
     it('accepts user input', async () => {
         const user = userEvent.setup()
 
-        render(<Input data-testid="test-input" />)
+        render(<Input data-testid="mocked-test-input" />)
 
-        const inputElement = screen.getByTestId('test-input')
-        await user.type(inputElement, 'Hello')
+        const input = screen.getByTestId('mocked-test-input')
+        await user.type(input, 'Hello')
 
-        expect(inputElement).toHaveValue('Hello')
+        expect(input).toHaveValue('Hello')
     })
 
     it('handles blur events', () => {
         const handleBlur = vi.fn()
-        render(<Input data-testid="test-input" onBlur={handleBlur} />)
 
-        const inputElement = screen.getByTestId('test-input')
-        fireEvent.blur(inputElement)
+        render(<Input data-testid="mocked-test-input" onBlur={handleBlur} />)
+
+        const input = screen.getByTestId('mocked-test-input')
+        fireEvent.blur(input)
 
         expect(handleBlur).toHaveBeenCalledTimes(1)
     })
 
     it('handles focus events', () => {
         const handleFocus = vi.fn()
-        render(<Input data-testid="test-input" onFocus={handleFocus} />)
 
-        const inputElement = screen.getByTestId('test-input')
-        fireEvent.focus(inputElement)
+        render(<Input data-testid="mocked-test-input" onFocus={handleFocus} />)
+
+        const input = screen.getByTestId('mocked-test-input')
+        fireEvent.focus(input)
 
         expect(handleFocus).toHaveBeenCalledTimes(1)
     })
 
     it('handles placeholder text', () => {
         render(<Input placeholder="Enter text" />)
-        const inputElement = screen.getByPlaceholderText('Enter text')
-        expect(inputElement).toBeInTheDocument()
+
+        const input = screen.getByPlaceholderText('Enter text')
+        expect(input).toBeInTheDocument()
     })
 
     it('supports different input types', () => {
-        render(<Input data-testid="test-input" type="password" />)
-        const inputElement = screen.getByTestId('test-input')
-        expect(inputElement).toHaveAttribute('type', 'password')
+        render(<Input data-testid="mocked-test-input" type="password" />)
+
+        const input = screen.getByTestId('mocked-test-input')
+        expect(input).toHaveAttribute('type', 'password')
     })
 
     it('supports disabled state', () => {
-        render(<Input data-testid="test-input" disabled />)
-        const inputElement = screen.getByTestId('test-input')
-        expect(inputElement).toBeDisabled()
+        render(<Input data-testid="mocked-test-input" disabled />)
+
+        const input = screen.getByTestId('mocked-test-input')
+        expect(input).toBeDisabled()
     })
 
     it('triggers onChange event', async () => {
         const user = userEvent.setup()
         const handleChange = vi.fn()
 
-        render(<Input data-testid="test-input" onChange={handleChange} />)
+        render(
+            <Input data-testid="mocked-test-input" onChange={handleChange} />
+        )
 
-        const inputElement = screen.getByTestId('test-input')
-        await user.type(inputElement, 'Test')
+        const input = screen.getByTestId('mocked-test-input')
+        await user.type(input, 'Test')
 
         expect(handleChange).toHaveBeenCalled()
     })

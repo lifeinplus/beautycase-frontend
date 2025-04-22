@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-const mockIcon = (name: string) => () => <svg data-testid={name} />
+const mockIcon = (name: string) => () => <svg data-testid={`mocked-${name}`} />
 
 const icons = {
     ArrowDownCircleIcon: mockIcon('arrow-down-circle-icon'),
@@ -34,7 +34,9 @@ const icons = {
     UserCircleIcon: mockIcon('user-circle-icon'),
 }
 
-export const mockIcons = () => {
+const mockIcons = () => {
     vi.mock('@heroicons/react/24/outline', () => icons)
     vi.mock('@heroicons/react/24/solid', () => icons)
 }
+
+export default mockIcons

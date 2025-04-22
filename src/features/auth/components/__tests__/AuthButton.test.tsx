@@ -1,19 +1,18 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockHandleLogout } from '../../../../tests/mocks/auth'
 import { mockNavigate } from '../../../../tests/mocks/router'
-
 import { useAuthLogout } from '../../hooks/useAuthLogout'
-
 import { AuthButton } from '../AuthButton'
 
-vi.mock('../../hooks/useAuthLogout', () => ({
-    useAuthLogout: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../hooks/useAuthLogout')
 
 describe('AuthButton', () => {
+    const mockHandleLogout = vi.fn()
+
     beforeEach(() => {
         vi.mocked(useAuthLogout).mockReturnValue(mockHandleLogout)
     })
@@ -26,12 +25,12 @@ describe('AuthButton', () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('arrow-right-end-on-rectangle-icon')
+            screen.getByTestId('mocked-arrow-right-end-on-rectangle-icon')
         ).toBeInTheDocument()
         expect(screen.getByText('Войти')).toBeInTheDocument()
 
         expect(
-            screen.queryByTestId('arrow-left-start-on-rectangle-icon')
+            screen.queryByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).not.toBeInTheDocument()
         expect(screen.queryByText('Выйти')).not.toBeInTheDocument()
     })
@@ -44,7 +43,7 @@ describe('AuthButton', () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('arrow-left-start-on-rectangle-icon')
+            screen.getByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).toBeInTheDocument()
         expect(screen.getByText('Выйти')).toBeInTheDocument()
 
@@ -54,22 +53,26 @@ describe('AuthButton', () => {
         expect(screen.queryByText('Войти')).not.toBeInTheDocument()
     })
 
-    it('navigates to login page when login button is clicked', () => {
+    it('navigates to login page when login button is clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue(null)
 
         render(<AuthButton />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
 
-    it('calls logout function when logout button is clicked', () => {
+    it('calls logout function when logout button is clicked', async () => {
+        const user = userEvent.setup()
         vi.mocked(useAppSelector).mockReturnValue('testuser')
 
         render(<AuthButton />)
 
-        fireEvent.click(screen.getByRole('button'))
+        const button = screen.getByRole('button')
+        await user.click(button)
 
         expect(mockHandleLogout).toHaveBeenCalledTimes(1)
     })

@@ -1,19 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { type ImageProps } from '../../../../components/ui/Image'
 import { ImagePreview, type ImagePreviewProps } from '../ImagePreview'
 
-vi.mock('../../../../components/ui/Image', () => ({
-    Image: ({ src, alt, className }: ImageProps) => (
-        <img
-            src={src}
-            alt={alt}
-            className={className}
-            data-testid="mocked-image"
-        />
-    ),
-}))
+vi.mock('../../../../components/ui/Image')
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {

@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockQuestionnaire,
+    mockQuestionnaireCreated,
     mockQuestionnaires,
-} from '../../../tests/mocks/handlers/questionnairesHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+} from '../__mocks__/questionnaireApiSlice'
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,
@@ -26,12 +26,7 @@ describe('questionnairesApiSlice', () => {
         await act(async () => {
             const response =
                 await createQuestionnaire(mockQuestionnaire).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Questionnaire created successfully',
-            })
+            expect(response).toMatchObject(mockQuestionnaireCreated)
         })
     })
 

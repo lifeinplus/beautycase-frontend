@@ -1,5 +1,7 @@
-import { render, screen, fireEvent, cleanup } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, afterEach } from 'vitest'
+
 import { ModalDuplicate, type ModalDuplicateProps } from '../ModalDuplicate'
 
 describe('ModalDuplicate', () => {
@@ -33,27 +35,47 @@ describe('ModalDuplicate', () => {
         expect(screen.getByText('Отмена')).toBeInTheDocument()
     })
 
-    it('calls onConfirm when duplicate button is clicked', () => {
+    it('calls onConfirm when duplicate button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<ModalDuplicate {...mockProps} />)
-        fireEvent.click(screen.getByText('Дублировать'))
+
+        const button = screen.getByRole('button', { name: /duplicate/i })
+        await user.click(button)
+
         expect(mockProps.onConfirm).toHaveBeenCalledTimes(1)
     })
 
-    it('calls onCancel when cancel button is clicked', () => {
+    it('calls onCancel when cancel button is clicked', async () => {
+        const user = userEvent.setup()
+
         render(<ModalDuplicate {...mockProps} />)
-        fireEvent.click(screen.getByText('Отмена'))
+
+        const button = screen.getByRole('button', { name: /cancel/i })
+        await user.click(button)
+
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
 
-    it('calls onCancel when clicking outside the modal', () => {
+    it('calls onCancel when clicking outside the modal', async () => {
+        const user = userEvent.setup()
+
         render(<ModalDuplicate {...mockProps} />)
-        fireEvent.click(document.querySelector('.modal')!)
+
+        const modal = document.querySelector('.modal')!
+        await user.click(modal)
+
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
 
-    it('does not call onCancel when clicking inside the modal content', () => {
+    it('does not call onCancel when clicking inside the modal content', async () => {
+        const user = userEvent.setup()
+
         render(<ModalDuplicate {...mockProps} />)
-        fireEvent.click(document.querySelector('.modal-container')!)
+
+        const container = document.querySelector('.modal-container')!
+        await user.click(container)
+
         expect(mockProps.onCancel).not.toHaveBeenCalled()
     })
 

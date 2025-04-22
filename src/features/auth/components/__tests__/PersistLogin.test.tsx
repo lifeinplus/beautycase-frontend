@@ -1,16 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../../app/hooks'
 import { useRefreshAuth } from '../../../../hooks/useRefreshAuth'
 import { PersistLogin } from '../PersistLogin'
 
-vi.mock('../../../../hooks/useRefreshAuth', () => ({
-    useRefreshAuth: vi.fn(),
-}))
-
-vi.mock('../../../../components/Spinner', () => ({
-    Spinner: () => <div data-testid="spinner">Loading...</div>,
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/Spinner')
+vi.mock('../../../../hooks/useRefreshAuth')
 
 describe('PersistLogin', () => {
     const mockRefreshAuth = vi.fn()
@@ -25,6 +22,6 @@ describe('PersistLogin', () => {
 
         render(<PersistLogin />)
 
-        expect(screen.getByTestId('spinner')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
     })
 })

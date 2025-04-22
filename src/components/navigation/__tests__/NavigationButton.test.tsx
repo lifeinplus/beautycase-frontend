@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+
 import {
     NavigationButton,
     type NavigationButtonProps,
@@ -41,11 +43,13 @@ describe('NavigationButton', () => {
         expect(button).not.toHaveClass('custom-class')
     })
 
-    it('calls onClick when clicked', () => {
+    it('calls onClick when clicked', async () => {
+        const user = userEvent.setup()
+
         render(<NavigationButton {...mockProps} />)
 
         const button = screen.getByRole('button')
-        fireEvent.click(button)
+        await user.click(button)
 
         expect(mockOnClick).toHaveBeenCalledTimes(1)
     })

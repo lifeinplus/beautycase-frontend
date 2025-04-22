@@ -3,17 +3,9 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
 import type { SelectOption } from '../../types'
-import { type LabelProps } from '../Label'
 import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
+vi.mock('../Label')
 
 describe('SelectSection', () => {
     const mockOptions: SelectOption[] = [
@@ -31,7 +23,7 @@ describe('SelectSection', () => {
     it('renders with the label correctly', () => {
         render(<SelectSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
     })

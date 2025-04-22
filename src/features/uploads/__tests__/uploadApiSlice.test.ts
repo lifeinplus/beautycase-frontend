@@ -1,7 +1,8 @@
 import { act } from 'react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
-import { server } from '../../../tests/mocks/server'
+
+import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { type DataMessageError } from '../../../utils/errorUtils'
 import { useUploadImageTempMutation } from '../uploadApiSlice'

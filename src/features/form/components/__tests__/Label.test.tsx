@@ -19,10 +19,10 @@ describe('Label', () => {
     it('renders children inside the label', () => {
         render(
             <Label text="Username">
-                <input data-testid="input-username" />
+                <input data-testid="mocked-input-username" />
             </Label>
         )
         expect(screen.getByText('Username')).toBeInTheDocument()
-        expect(screen.getByTestId('input-username')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-input-username')).toBeInTheDocument()
     })
 })

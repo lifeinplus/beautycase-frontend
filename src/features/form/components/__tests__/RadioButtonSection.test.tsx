@@ -2,32 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import type { QuestionnaireOption } from '../../../questionnaires/options'
-import { type LabelProps } from '../Label'
-import { type RadioButtonItemProps } from '../RadioButtonItem'
 import {
     RadioButtonSection,
     type RadioButtonSectionProps,
 } from '../RadioButtonSection'
 
-vi.mock('../Label', () => ({
-    Label: ({ children, text }: LabelProps) => (
-        <label data-testid="label">
-            <span>{text}</span>
-            {children}
-        </label>
-    ),
-}))
-
-vi.mock('../RadioButtonItem', () => ({
-    RadioButtonItem: ({ id, label, register, value }: RadioButtonItemProps) => {
-        return (
-            <div data-testid={`radio-item-${id}`}>
-                <label>{label}</label>
-                <input {...register} readOnly value={value} />
-            </div>
-        )
-    },
-}))
+vi.mock('../Label')
+vi.mock('../RadioButtonItem')
 
 describe('RadioButtonSection', () => {
     const mockOptions: QuestionnaireOption[] = [
@@ -45,13 +26,13 @@ describe('RadioButtonSection', () => {
     it('renders label and radio buttons', () => {
         render(<RadioButtonSection {...mockProps} />)
 
-        const label = screen.getByTestId('label')
+        const label = screen.getByTestId('mocked-label')
         expect(label).toBeInTheDocument()
         expect(label).toHaveTextContent(mockProps.label)
 
-        const option1 = screen.getByTestId('radio-item-option-1')
-        const option2 = screen.getByTestId('radio-item-option-2')
-        const option3 = screen.getByTestId('radio-item-option-3')
+        const option1 = screen.getByTestId('mocked-radio-item-option-1')
+        const option2 = screen.getByTestId('mocked-radio-item-option-2')
+        const option3 = screen.getByTestId('mocked-radio-item-option-3')
 
         expect(option1).toBeInTheDocument()
         expect(option2).toBeInTheDocument()

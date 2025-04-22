@@ -2,27 +2,14 @@ import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest'
 
 import { mockScrollTo } from './mocks'
-import { mockApi } from './mocks/api'
-import { mockApp } from './mocks/app'
-import { mockAuth } from './mocks/auth'
-import { mockHooks } from './mocks/hooks'
-import { mockIcons } from './mocks/icons'
-import { mockRouter } from './mocks/router'
-import { server } from './mocks/server'
+import mockIcons from './mocks/icons'
+import mockRouter from './mocks/router'
+import server from './mocks/server'
+import mockToast from './mocks/toast'
 
-vi.mock('react-hot-toast', async () => ({
-    default: {
-        success: vi.fn(),
-        error: vi.fn(),
-    },
-}))
-
-mockApi()
-mockApp()
-mockAuth()
-mockHooks()
 mockIcons()
 mockRouter()
+mockToast()
 
 Object.defineProperty(window, 'localStorage', {
     value: {

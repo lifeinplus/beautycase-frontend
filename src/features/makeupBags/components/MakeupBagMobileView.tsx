@@ -2,7 +2,7 @@ import { MobileView } from '../../../components/table/MobileView'
 import { formatDate } from '../../../utils/date'
 import type { MakeupBag } from '../types'
 
-interface MakeupBagMobileViewProps {
+export interface MakeupBagMobileViewProps {
     makeupBags?: MakeupBag[]
 }
 

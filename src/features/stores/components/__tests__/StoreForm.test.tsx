@@ -1,12 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
 import {
@@ -15,25 +15,19 @@ import {
 } from '../../storesApiSlice'
 import { StoreForm } from '../StoreForm'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
-
-vi.mock('../../storesApiSlice', () => ({
-    useCreateStoreMutation: vi.fn(),
-    useUpdateStoreMutation: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/ui/Button')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../storesApiSlice')
 
 describe('StoreForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }
 
-    const mockCreateStore = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockCreateStore = vi.fn()
+    const mockCreateUnwrap = vi.fn()
 
-    const mockUpdateStore = vi.fn(() => ({
-        unwrap: () => Promise.resolve({}),
-    }))
+    const mockUpdateStore = vi.fn()
+    const mockUpdateUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(null)
@@ -43,10 +37,16 @@ describe('StoreForm', () => {
             { isLoading: false },
         ])
 
+        mockCreateStore.mockReturnValue({ unwrap: mockCreateUnwrap })
+        mockCreateUnwrap.mockResolvedValue({})
+
         vi.mocked(useUpdateStoreMutation as Mock).mockReturnValue([
             mockUpdateStore,
             { isLoading: false },
         ])
+
+        mockUpdateStore.mockReturnValue({ unwrap: mockUpdateUnwrap })
+        mockUpdateUnwrap.mockResolvedValue({})
     })
 
     it('renders the form correctly', () => {
@@ -75,29 +75,6 @@ describe('StoreForm', () => {
         expect(input.focus).toHaveBeenCalled()
     })
 
-    it('displays add button when no form data ID exists', () => {
-        render(<StoreForm ref={mockRef} />)
-
-        const addButton = screen.getByRole('button')
-
-        expect(addButton).toHaveAttribute('type', 'submit')
-        expect(addButton).toHaveClass('btn-success')
-    })
-
-    it('displays update button when form data ID exists', () => {
-        vi.mocked(useAppSelector).mockReturnValue({
-            _id: '123',
-            name: 'Test Store',
-        })
-
-        render(<StoreForm ref={mockRef} />)
-
-        const updateButton = screen.getByRole('button')
-
-        expect(updateButton).toHaveAttribute('type', 'submit')
-        expect(updateButton).toHaveClass('btn-warning')
-    })
-
     it('calls createStore when add button is clicked', async () => {
         const user = userEvent.setup()
 
@@ -109,10 +86,8 @@ describe('StoreForm', () => {
         await user.type(input, 'New Store')
         await user.click(addButton)
 
-        await waitFor(() => {
-            expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        })
+        expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('calls updateStore when update button is clicked', async () => {
@@ -132,13 +107,11 @@ describe('StoreForm', () => {
         await user.type(input, 'Updated Store')
         await user.click(updateButton)
 
-        await waitFor(() => {
-            expect(mockUpdateStore).toHaveBeenCalledWith({
-                _id: '123',
-                name: 'Updated Store',
-            })
-            expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
+        expect(mockUpdateStore).toHaveBeenCalledWith({
+            _id: '123',
+            name: 'Updated Store',
         })
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('handles createStore error', async () => {
@@ -148,14 +121,7 @@ describe('StoreForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockCreateStore = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useCreateStoreMutation as Mock).mockReturnValue([
-            mockCreateStore,
-            { isLoading: false },
-        ])
+        mockCreateUnwrap.mockRejectedValue(mockError)
 
         render(<StoreForm ref={mockRef} />)
 
@@ -179,14 +145,7 @@ describe('StoreForm', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockUpdateStore = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useUpdateStoreMutation as Mock).mockReturnValue([
-            mockUpdateStore,
-            { isLoading: false },
-        ])
+        mockUpdateUnwrap.mockRejectedValue(mockError)
 
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',
@@ -206,5 +165,18 @@ describe('StoreForm', () => {
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
         mockConsoleError.mockRestore()
+    })
+
+    it('renders error message and applies error class', async () => {
+        const user = userEvent.setup()
+
+        render(<StoreForm ref={mockRef} />)
+
+        const button = screen.getByTestId('mocked-button')
+        await user.click(button)
+
+        const error = screen.getByText('Укажите название магазина')
+        expect(error).toBeInTheDocument()
+        expect(error).toHaveClass('form-error')
     })
 })

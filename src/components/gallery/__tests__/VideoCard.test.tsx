@@ -1,13 +1,11 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
-import { VideoCard } from '../VideoCard'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
 
-vi.mock('../../../utils/youtube', () => ({
-    getYouTubeThumbnail: vi.fn(
-        (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-    ),
-}))
+import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import { VideoCard } from '../VideoCard'
+
+vi.mock('../../../utils/youtube')
+vi.mock('../../ui/Image')
 
 describe('VideoCard', () => {
     const mockVideo = {
@@ -31,7 +29,7 @@ describe('VideoCard', () => {
     it('renders the video thumbnail correctly', () => {
         renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
 
-        const image = screen.getByRole('img')
+        const image = screen.getByTestId('mocked-image')
 
         expect(image).toBeInTheDocument()
         expect(image).toHaveAttribute('alt', `${mockVideo.title} Thumbnail`)
@@ -52,7 +50,7 @@ describe('VideoCard', () => {
     it('applies correct CSS classes to elements', () => {
         renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
 
-        const container = screen.getByRole('img').parentElement
+        const container = screen.getByTestId('mocked-image').parentElement
         expect(container).toHaveClass('lesson-card-thumbnail-container')
 
         const metadata = screen.getByText(mockVideo.title).parentElement

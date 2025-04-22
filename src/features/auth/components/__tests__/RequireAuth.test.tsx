@@ -4,14 +4,15 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-
 import { RequireAuth } from '../RequireAuth'
 
+vi.mock('../../../../app/hooks')
+
 const MockProtected = () => (
-    <div data-testid="protected-content">Protected Content</div>
+    <div data-testid="mocked-protected-content">Protected Content</div>
 )
 
-const MockLogin = () => <div data-testid="login-page">Login Page</div>
+const MockLogin = () => <div data-testid="mocked-login-page">Login Page</div>
 
 const MockRoutes = () => (
     <Routes>
@@ -30,7 +31,8 @@ describe('RequireAuth', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByTestId('protected-content')).toBeInTheDocument()
+        const content = screen.getByTestId('mocked-protected-content')
+        expect(content).toBeInTheDocument()
     })
 
     it('redirects to login if user is not authenticated', () => {
@@ -38,6 +40,7 @@ describe('RequireAuth', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByTestId('login-page')).toBeInTheDocument()
+        const page = screen.getByTestId('mocked-login-page')
+        expect(page).toBeInTheDocument()
     })
 })

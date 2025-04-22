@@ -1,12 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { act, waitFor } from '@testing-library/react'
 
-import {
-    mockTool,
-    mockTools,
-} from '../../../tests/mocks/handlers/toolsHandlers'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApiSlice'
 import {
     useAddToolMutation,
     useDeleteToolMutation,
@@ -45,12 +41,7 @@ describe('toolsApiSlice', () => {
 
         await act(async () => {
             const response = await addTool(mockTool).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Tool added successfully',
-            })
+            expect(response).toMatchObject(mockToolCreate)
         })
     })
 

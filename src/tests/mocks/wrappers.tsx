@@ -2,8 +2,8 @@ import { render, renderHook } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+
 import { store } from '../../app/store'
-import { TableRow, type TableRowProps } from '../../components/table/TableRow'
 
 interface ProviderWrapperProps {
     children: ReactNode
@@ -42,15 +42,5 @@ export const renderWithRouter = (
 ) => {
     return render(
         <MemoryRouter initialEntries={initialEntries}>{component}</MemoryRouter>
-    )
-}
-
-export const renderTableRow = (props: TableRowProps) => {
-    return render(
-        <table>
-            <tbody>
-                <TableRow {...props} />
-            </tbody>
-        </table>
     )
 }

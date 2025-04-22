@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockLesson,
+    mockLessonCreate,
     mockLessons,
-} from '../../../tests/mocks/handlers/lessonsHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+} from '../__mocks__/lessonsApiSlice'
 import {
     useAddLessonMutation,
     useDeleteLessonMutation,
@@ -26,11 +26,7 @@ describe('lessonsApiSlice', () => {
         await act(async () => {
             const response = await addLesson(mockLesson).unwrap()
 
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Lesson created successfully',
-            })
+            expect(response).toMatchObject(mockLessonCreate)
         })
     })
 
@@ -48,7 +44,7 @@ describe('lessonsApiSlice', () => {
 
     it('reads a lesson by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetLessonByIdQuery('1')
+            useGetLessonByIdQuery('lesson1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -66,7 +62,7 @@ describe('lessonsApiSlice', () => {
 
         await act(async () => {
             const response = await editLesson({
-                id: '1',
+                id: 'lesson1',
                 ...mockLesson,
             }).unwrap()
 

@@ -6,10 +6,10 @@ describe('Footer', () => {
     it('renders the footer with correct structure', () => {
         const { container } = render(<Footer />)
 
-        const footerElement = container.querySelector('footer')
-        expect(footerElement).toBeInTheDocument()
-        expect(footerElement).toHaveAttribute('id', 'footer')
-        expect(footerElement).toHaveClass('page-footer')
+        const footer = container.querySelector('footer')
+        expect(footer).toBeInTheDocument()
+        expect(footer).toHaveAttribute('id', 'footer')
+        expect(footer).toHaveClass('page-footer')
 
         const sections = container.querySelectorAll('section')
         expect(sections).toHaveLength(3)
@@ -35,10 +35,10 @@ describe('Footer', () => {
     it('displays the heading with correct text and styling', () => {
         render(<Footer />)
 
-        const headingElement = screen.getByRole('heading', { level: 4 })
-        expect(headingElement).toBeInTheDocument()
-        expect(headingElement).toHaveTextContent('Спасибо, что выбрали меня!')
-        expect(headingElement).toHaveClass('font-heading', 'text-lg')
+        const heading = screen.getByRole('heading', { level: 4 })
+        expect(heading).toBeInTheDocument()
+        expect(heading).toHaveTextContent('Спасибо, что выбрали меня!')
+        expect(heading).toHaveClass('font-heading', 'text-lg')
     })
 
     it('displays the contact information correctly', () => {
@@ -74,8 +74,8 @@ describe('Footer', () => {
         render(<Footer />)
 
         const copyrightTextRegex = /© Beautycase \d{4}\.\d+\.\d+/
-        const copyrightElement = screen.getByText(copyrightTextRegex)
+        const copyright = screen.getByText(copyrightTextRegex)
 
-        expect(copyrightElement).toBeInTheDocument()
+        expect(copyright).toBeInTheDocument()
     })
 })

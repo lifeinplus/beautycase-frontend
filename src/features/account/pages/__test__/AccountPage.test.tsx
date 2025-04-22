@@ -1,19 +1,24 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+
 import { useAppSelector } from '../../../../app/hooks'
-import { mockUserResult } from '../../../../tests/mocks/handlers/usersHandlers'
 import {
     renderWithProvider,
     renderWithProviderAndRouter,
 } from '../../../../tests/mocks/wrappers'
 import { selectUserId } from '../../../auth/authSlice'
+import {
+    mockUseGetUserByIdQuery,
+    mockUserResult,
+} from '../../../users/__mocks__/usersApiSlice'
 import { AccountPage } from '../AccountPage'
 
-const mockUseGetUserByIdQuery = vi.fn()
-
-vi.mock('../../../users/usersApiSlice', async () => ({
-    useGetUserByIdQuery: () => mockUseGetUserByIdQuery(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/DataWrapper')
+vi.mock('../../../../components/Header')
+vi.mock('../../../../components/Hero')
+vi.mock('../../../users/usersApiSlice')
 
 describe('AccountPage', () => {
     beforeEach(() => {
@@ -37,20 +42,25 @@ describe('AccountPage', () => {
 
         renderWithProvider(<AccountPage />)
 
-        expect(screen.getByText('Личный кабинет')).toBeInTheDocument()
-        expect(screen.getByText('Загрузка...')).toBeInTheDocument()
+        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
+        const loading = screen.getByTestId('mocked-loading')
+
+        expect(dataWrapper).toBeInTheDocument()
+        expect(loading).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
         renderWithProviderAndRouter(<AccountPage />)
 
-        expect(
-            screen.getByRole('heading', { level: 2, name: 'Личный кабинет' })
-        ).toBeInTheDocument()
+        const header = screen.getByTestId('mocked-header')
+        const hero = screen.getByTestId('mocked-hero')
+        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
+        const navBar = screen.getByTestId('mocked-nav-bar')
 
-        expect(
-            screen.getByText('Сведения о вас и доступный контент')
-        ).toBeInTheDocument()
+        expect(header).toBeInTheDocument()
+        expect(hero).toBeInTheDocument()
+        expect(dataWrapper).toBeInTheDocument()
+        expect(navBar).toBeInTheDocument()
     })
 
     it('renders user data correctly', () => {
@@ -74,8 +84,8 @@ describe('AccountPage', () => {
 
         const links = screen.getAllByRole('link', { name: 'Открыть' })
         expect(links).toHaveLength(2)
-        expect(links[0]).toHaveAttribute('href', `/makeup_bags/1`)
-        expect(links[1]).toHaveAttribute('href', `/makeup_bags/2`)
+        expect(links[0]).toHaveAttribute('href', '/makeup_bags/makeupBag1')
+        expect(links[1]).toHaveAttribute('href', '/makeup_bags/makeupBag2')
     })
 
     it('handles empty makeup bags', () => {
@@ -109,8 +119,7 @@ describe('AccountPage', () => {
 
         renderWithProvider(<AccountPage />)
 
-        expect(
-            screen.getByText('An unknown error occurred')
-        ).toBeInTheDocument()
+        const error = screen.getByTestId('mocked-error')
+        expect(error).toBeInTheDocument()
     })
 })

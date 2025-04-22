@@ -2,9 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { Header } from '../Header'
 
-vi.mock('../../features/auth/components/AuthButton', async () => ({
-    AuthButton: () => <button data-testid="auth-button">Sign In</button>,
-}))
+vi.mock('../../features/auth/components/AuthButton')
 
 describe('Header', () => {
     it('renders the header with correct structure', () => {
@@ -47,7 +45,7 @@ describe('Header', () => {
     it('includes the AuthButton component', () => {
         render(<Header />)
 
-        const authButton = screen.getByTestId('auth-button')
+        const authButton = screen.getByTestId('mocked-auth-button')
         expect(authButton).toBeInTheDocument()
         expect(authButton).toHaveTextContent('Sign In')
 
@@ -62,7 +60,7 @@ describe('Header', () => {
         expect(navElement).toHaveClass('sm:hidden')
 
         const authButtonContainer =
-            screen.getByTestId('auth-button').parentElement
+            screen.getByTestId('mocked-auth-button').parentElement
         expect(authButtonContainer).toHaveClass('sm:hidden')
     })
 })

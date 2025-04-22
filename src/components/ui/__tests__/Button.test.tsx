@@ -73,13 +73,13 @@ describe('Button', () => {
 
     it('passes through other HTML attributes', () => {
         render(
-            <Button data-testid="test-button" aria-label="Test Button">
+            <Button data-testid="mocked-test-button" aria-label="Test Button">
                 Extra Props
             </Button>
         )
 
         const button = screen.getByRole('button', { name: 'Test Button' })
-        expect(button).toHaveAttribute('data-testid', 'test-button')
+        expect(button).toHaveAttribute('data-testid', 'mocked-test-button')
         expect(button).toHaveAttribute('aria-label', 'Test Button')
     })
 })

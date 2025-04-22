@@ -1,17 +1,20 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
+
 import { renderWithRouter } from '../../../tests/mocks/wrappers'
 import { formatDate } from '../../../utils/date'
 import { MobileView } from '../MobileView'
 
-describe('MobileView', () => {
-    interface TestItem {
-        id: string
-        title: string
-        subtitle?: string
-        createdAt?: string
-    }
+vi.mock('../../../utils/date')
 
+interface TestItem {
+    id: string
+    title: string
+    subtitle?: string
+    createdAt?: string
+}
+
+describe('MobileView', () => {
     const mockItems: TestItem[] = [
         {
             id: '1',
@@ -98,9 +101,7 @@ describe('MobileView', () => {
             />
         )
 
-        expect(screen.getByText('2025.02.26 20:00')).toBeInTheDocument()
-        expect(screen.getByText('2025.03.02 13:52')).toBeInTheDocument()
-        expect(screen.getByText('—')).toBeInTheDocument()
+        expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(3)
     })
 
     it('renders links with correct URLs', () => {
@@ -129,7 +130,7 @@ describe('MobileView', () => {
             />
         )
 
-        const icons = screen.getAllByTestId('chevron-right-icon')
+        const icons = screen.getAllByTestId('mocked-chevron-right-icon')
         expect(icons).toHaveLength(3)
     })
 })

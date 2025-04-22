@@ -4,24 +4,22 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockError } from '../../../../tests/mocks'
-import { mockDispatch } from '../../../../tests/mocks/app'
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
 
-vi.mock('../../../../utils/errorUtils', () => ({
-    getErrorMessage: vi.fn((error) => error.message),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../utils/errorUtils')
+vi.mock('../../authApiSlice')
 
-vi.mock('../../authApiSlice', () => ({
-    useLoginUserMutation: vi.fn(),
-}))
+const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
-const MockHome = () => <div data-testid="home-page">Home Page</div>
-
-const MockRegister = () => <div data-testid="register-page">Register Page</div>
+const MockRegister = () => (
+    <div data-testid="mocked-register-page">Register Page</div>
+)
 
 const MockRoutes = () => (
     <Routes>
@@ -34,25 +32,27 @@ const MockRoutes = () => (
 describe('LoginPage', () => {
     const initialEntries = ['/login']
 
+    const mockLoginResult: AuthResultLogin = {
+        accessToken: 'token1',
+        userId: 'user1',
+    }
+
     const mockParams = {
         username: 'testuser',
         password: 'password123',
     }
 
-    const mockLoginResult: AuthResultLogin = {
-        accessToken: 'test-token',
-        userId: '1',
-    }
-
-    const mockLoginUser = vi.fn(() => ({
-        unwrap: () => Promise.resolve(mockLoginResult),
-    }))
+    const mockLoginUser = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
             mockLoginUser,
             { isLoading: false },
         ])
+
+        mockLoginUser.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue(mockLoginResult)
     })
 
     it('renders the login form correctly', () => {
@@ -121,14 +121,7 @@ describe('LoginPage', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        const mockLoginUser = vi.fn(() => ({
-            unwrap: () => Promise.reject(mockError),
-        }))
-
-        vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
-            mockLoginUser,
-            { isLoading: false },
-        ])
+        mockUnwrap.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
@@ -163,8 +156,12 @@ describe('LoginPage', () => {
 
     it('navigates to register page when register link is clicked', async () => {
         const user = userEvent.setup()
+
         renderWithRouter(<MockRoutes />, initialEntries)
-        await user.click(screen.getByText(/зарегистрироваться/i))
-        expect(screen.getByTestId('register-page')).toBeInTheDocument()
+
+        const link = screen.getByRole('link', { name: /зарегистрироваться/i })
+        await user.click(link)
+
+        expect(screen.getByTestId('mocked-register-page')).toBeInTheDocument()
     })
 })

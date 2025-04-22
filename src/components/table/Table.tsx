@@ -2,7 +2,7 @@ import classNames from 'classnames'
 
 import type { Header } from '../../types/table'
 
-interface TableProps<T> {
+export interface TableProps<T> {
     headers: Header[]
     data?: T[]
     renderRow: (item: T) => JSX.Element

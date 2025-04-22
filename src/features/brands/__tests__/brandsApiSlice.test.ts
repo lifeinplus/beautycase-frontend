@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockBrand,
+    mockBrandCreate,
     mockBrands,
-} from '../../../tests/mocks/handlers/brandsHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+} from '../__mocks__/brandsApiSlice'
 import {
     useCreateBrandMutation,
     useDeleteBrandMutation,
@@ -26,12 +26,7 @@ describe('brandsApiSlice', () => {
 
         await act(async () => {
             const response = await addBrand(mockBrand).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Brand created successfully',
-            })
+            expect(response).toMatchObject(mockBrandCreate)
         })
     })
 

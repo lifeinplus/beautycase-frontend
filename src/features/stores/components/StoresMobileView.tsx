@@ -2,6 +2,7 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
+
 import { Button } from '../../../components/ui/Button'
 import type { Store } from '../types'
 

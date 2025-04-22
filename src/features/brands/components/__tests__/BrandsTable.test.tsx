@@ -5,6 +5,10 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Brand } from '../../types'
 import { BrandsTable } from '../BrandsTable'
 
+vi.mock('../../../../components/table/Table')
+vi.mock('../../../../components/table/TableRow')
+vi.mock('../../../../components/ui/Button')
+
 describe('BrandsTable', () => {
     const mockBrands: Brand[] = [
         { _id: '1', name: 'Brand A' },
@@ -51,11 +55,10 @@ describe('BrandsTable', () => {
             />
         )
 
-        const editButtons = screen.getAllByRole('button', {
-            name: /edit/i,
-        })
+        const buttons = screen.getAllByTestId('mocked-button')
+        const editBrandA = buttons[0]
 
-        await user.click(editButtons[0])
+        await user.click(editBrandA)
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
         expect(mockOnEdit).toHaveBeenCalledWith(mockBrands[0])
@@ -72,11 +75,10 @@ describe('BrandsTable', () => {
             />
         )
 
-        const deleteButtons = screen.getAllByRole('button', {
-            name: /delete/i,
-        })
+        const buttons = screen.getAllByTestId('mocked-button')
+        const deleteBrandB = buttons[3]
 
-        await user.click(deleteButtons[1])
+        await user.click(deleteBrandB)
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)
         expect(mockOnDelete).toHaveBeenCalledWith(mockBrands[1])

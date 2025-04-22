@@ -2,35 +2,18 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { type AdaptiveNavBarProps } from '../../../../components/navigation/AdaptiveNavBar'
-import { type TopPanelProps } from '../../../../components/TopPanel'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockDispatch } from '../../../../tests/mocks/app'
 import { setFormData } from '../../../form/formSlice'
 import { useReadStoresQuery } from '../../storesApiSlice'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
-vi.mock('../../../../components/TopPanel', () => ({
-    TopPanel: ({ title, onBack }: TopPanelProps) => (
-        <div data-testid="top-panel">
-            <button data-testid="back-button" onClick={onBack}>
-                Back
-            </button>
-            <h2>{title}</h2>
-        </div>
-    ),
-}))
-
-vi.mock('../../../../components/navigation/AdaptiveNavBar', () => ({
-    AdaptiveNavBar: ({ children }: AdaptiveNavBarProps) => (
-        <div data-testid="adaptive-navbar">{children}</div>
-    ),
-}))
-
-vi.mock('../../storesApiSlice', () => ({
-    useReadStoresQuery: vi.fn(),
-}))
+vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/TopPanel')
+vi.mock('../../storesApiSlice')
 
 describe('StoreLinkAddPage', () => {
     const mockStoreLink = {
@@ -65,7 +48,9 @@ describe('StoreLinkAddPage', () => {
 
     it('renders the page with correct title', () => {
         render(<StoreLinkAddPage />)
-        expect(screen.getByTestId('top-panel')).toBeInTheDocument()
+
+        const topPanel = screen.getByTestId('mocked-top-panel')
+        expect(topPanel).toBeInTheDocument()
     })
 
     it('renders initial empty store link form', () => {
@@ -95,7 +80,6 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         const addButton = screen.getByRole('button', { name: 'Add Button' })
-
         await user.click(addButton)
 
         const linkInputs = screen.getAllByRole('textbox', {
@@ -122,7 +106,8 @@ describe('StoreLinkAddPage', () => {
             name: 'Delete Button',
         })
 
-        await user.click(deleteButtons[0])
+        const deleteStore1 = deleteButtons[0]
+        await user.click(deleteStore1)
 
         linkInputs = screen.getAllByRole('textbox', {
             name: 'Link Input',
@@ -166,7 +151,7 @@ describe('StoreLinkAddPage', () => {
 
         render(<StoreLinkAddPage />)
 
-        const backButton = screen.getByText('Назад')
+        const backButton = screen.getByRole('button', { name: 'Назад' })
         await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -185,7 +170,7 @@ describe('StoreLinkAddPage', () => {
         }) as HTMLInputElement
         await user.type(linkInput, 'https://example.com')
 
-        const saveButton = screen.getByText('Сохранить')
+        const saveButton = screen.getByRole('button', { name: 'Сохранить' })
         await user.click(saveButton)
 
         expect(mockDispatch).toHaveBeenCalledWith(

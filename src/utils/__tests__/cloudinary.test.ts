@@ -4,15 +4,9 @@ import { describe, expect, it, vi } from 'vitest'
 import config from '../../config'
 import { cloudinary } from '../cloudinary'
 
-vi.mock('../../config', () => ({
-    default: {
-        cloudinary: {
-            cloudName: 'test-cloud-name',
-        },
-    },
-}))
+vi.mock('../../config')
 
-describe('cloudinary utility', () => {
+describe('cloudinary', () => {
     it('should create a Cloudinary instance', () => {
         expect(cloudinary).toBeInstanceOf(Cloudinary)
     })

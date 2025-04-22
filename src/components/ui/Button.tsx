@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react'
-
 import classNames from 'classnames'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode
     type?: 'button' | 'submit' | 'reset'
     variant?: 'success' | 'danger' | 'warning'

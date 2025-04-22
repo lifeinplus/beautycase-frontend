@@ -2,6 +2,7 @@ import {
     EllipsisHorizontalCircleIcon,
     MinusCircleIcon,
 } from '@heroicons/react/24/outline'
+
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
 import { Button } from '../../../components/ui/Button'

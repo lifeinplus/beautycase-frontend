@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { type FieldError, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
@@ -16,7 +17,7 @@ import { useGetUsersQuery } from '../../users/usersApiSlice'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
-interface MakeupBagFormProps {
+export interface MakeupBagFormProps {
     title: string
     onSubmit: (data: MakeupBag) => void
 }

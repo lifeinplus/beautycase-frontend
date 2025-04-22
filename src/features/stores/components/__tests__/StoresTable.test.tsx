@@ -5,6 +5,10 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Store } from '../../types'
 import { StoresTable } from '../StoresTable'
 
+vi.mock('../../../../components/table/Table')
+vi.mock('../../../../components/table/TableRow')
+vi.mock('../../../../components/ui/Button')
+
 describe('StoresTable', () => {
     const mockStores: Store[] = [
         { _id: '1', name: 'Store A' },
@@ -51,11 +55,10 @@ describe('StoresTable', () => {
             />
         )
 
-        const editButtons = screen.getAllByRole('button', {
-            name: /edit/i,
-        })
+        const editButtons = screen.getAllByTestId('mocked-button')
+        const editStoreA = editButtons[0]
 
-        await user.click(editButtons[0])
+        await user.click(editStoreA)
 
         expect(mockOnEdit).toHaveBeenCalledTimes(1)
         expect(mockOnEdit).toHaveBeenCalledWith(mockStores[0])
@@ -72,11 +75,10 @@ describe('StoresTable', () => {
             />
         )
 
-        const deleteButtons = screen.getAllByRole('button', {
-            name: /delete/i,
-        })
+        const deleteButtons = screen.getAllByTestId('mocked-button')
+        const deleteStoreB = deleteButtons[3]
 
-        await user.click(deleteButtons[1])
+        await user.click(deleteStoreB)
 
         expect(mockOnDelete).toHaveBeenCalledTimes(1)
         expect(mockOnDelete).toHaveBeenCalledWith(mockStores[1])

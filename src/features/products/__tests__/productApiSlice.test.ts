@@ -2,13 +2,13 @@ import { act, waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { describe, expect, it } from 'vitest'
 
+import server from '../../../tests/mocks/server'
+import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
     mockProduct,
+    mockProductCreate,
     mockProducts,
-} from '../../../tests/mocks/handlers/productsHandlers'
-import { server } from '../../../tests/mocks/server'
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-
+} from '../__mocks__/productApiSlice'
 import {
     useAddProductMutation,
     useDeleteProductMutation,
@@ -25,12 +25,7 @@ describe('productsApiSlice', () => {
 
         await act(async () => {
             const response = await addProduct(mockProduct).unwrap()
-
-            expect(response).toMatchObject({
-                count: 1,
-                id: 3,
-                message: 'Product created successfully',
-            })
+            expect(response).toMatchObject(mockProductCreate)
         })
     })
 
@@ -48,7 +43,7 @@ describe('productsApiSlice', () => {
 
     it('reads a product by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetProductByIdQuery('1')
+            useGetProductByIdQuery('product1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -68,7 +63,7 @@ describe('productsApiSlice', () => {
 
         await act(async () => {
             const response = await editProduct({
-                id: '1',
+                id: 'product1',
                 body: mockProduct,
             }).unwrap()
 

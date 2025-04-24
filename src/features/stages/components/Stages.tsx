@@ -2,7 +2,7 @@ import { Image } from '../../../components/ui/Image'
 import { GoodsGrid } from '../../../components/GoodsGrid'
 import type { Stage } from '../types'
 
-interface StagesProps {
+export interface StagesProps {
     stages?: Stage[]
 }
 

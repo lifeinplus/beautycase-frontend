@@ -6,7 +6,7 @@ export const NavigationButton = ({
     text,
 }: NavigationButtonProps) => (
     <button
-        data-testid="mocked-nav-button"
+        data-testid={`mocked-nav-button-${text}`}
         className={className}
         onClick={onClick}
     >

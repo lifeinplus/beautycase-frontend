@@ -43,12 +43,13 @@ describe('MakeupBagForm', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const topPanel = screen.getByTestId('mocked-top-panel')
+        expect(topPanel).toBeInTheDocument()
+
         const category = screen.getByText('Категория')
         const client = screen.getByText('Клиент')
         const stages = screen.getByText('Этапы')
         const tools = screen.getByText('Инструменты')
 
-        expect(topPanel).toBeInTheDocument()
         expect(category).toBeInTheDocument()
         expect(client).toBeInTheDocument()
         expect(stages).toBeInTheDocument()

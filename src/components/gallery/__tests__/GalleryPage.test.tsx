@@ -53,7 +53,7 @@ describe('GalleryPage', () => {
         const hero = screen.getByTestId('mocked-hero')
         const mediaContent = screen.getByTestId('mocked-media-content')
         const navBar = screen.getByTestId('mocked-nav-bar')
-        const navButton = screen.getByTestId('mocked-nav-button')
+        const navButton = screen.getByTestId('mocked-nav-button-Добавить')
 
         expect(header).toBeInTheDocument()
         expect(hero).toBeInTheDocument()

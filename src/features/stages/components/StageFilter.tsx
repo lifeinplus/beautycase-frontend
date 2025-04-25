@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
 import { Stage } from '../types'
 
-interface StageFilterProps {
+export interface StageFilterProps {
     onFilterChange: (filteredStages: Stage[]) => void
     stages: Stage[]
 }

@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
 import type { MutationResult } from '../../../types/api'
 import type { Product } from '../types'
@@ -36,6 +37,12 @@ export const mockProducts: Product[] = [
         storeLinks: [],
     },
 ]
+
+export const useAddProductMutation = vi.fn()
+export const useDeleteProductMutation = vi.fn()
+export const useEditProductMutation = vi.fn()
+export const useGetProductByIdQuery = vi.fn()
+export const useGetProductsQuery = vi.fn()
 
 const productsHandlers = [
     http.post('api/products/one', () => HttpResponse.json(mockProductCreate)),

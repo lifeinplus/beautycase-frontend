@@ -7,7 +7,7 @@ interface ImageData {
     name: string
 }
 
-interface ImageCardProps {
+export interface ImageCardProps {
     data: ImageData
     path: string
 }

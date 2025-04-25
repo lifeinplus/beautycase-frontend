@@ -18,7 +18,7 @@ import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSecti
 import type { Tool } from '../types'
 import { toolSchema } from '../validations'
 
-interface ToolFormProps {
+export interface ToolFormProps {
     title: string
     onSubmit: (data: Tool) => void
 }

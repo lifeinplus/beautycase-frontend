@@ -7,7 +7,7 @@ import type { Questionnaire } from '../types'
 import { type QuestionnaireResultOption } from '../options'
 import { questions } from '../utils'
 
-interface QuestionnaireDetailsProps {
+export interface QuestionnaireDetailsProps {
     data: Questionnaire
 }
 

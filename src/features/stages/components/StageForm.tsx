@@ -15,7 +15,7 @@ import { selectFormData, setFormData } from '../../form/formSlice'
 import type { Stage } from '../types'
 import { stageSchema } from '../validations'
 
-interface StageFormProps {
+export interface StageFormProps {
     onSubmit: (data: Stage) => void
     title: string
 }

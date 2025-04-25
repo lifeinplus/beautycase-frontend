@@ -4,7 +4,7 @@ import type { Header } from '../../../types/table'
 import { formatDate } from '../../../utils/date'
 import type { Stage } from '../types'
 
-interface StageTableProps {
+export interface StageTableProps {
     stages?: Stage[]
 }
 

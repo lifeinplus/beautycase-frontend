@@ -12,8 +12,9 @@ export const mockProductCreate: MutationResult = {
 
 export const mockProduct: Product = {
     _id: 'product1',
+    brand: { _id: 'brand1', name: 'Brand 1' },
     brandId: 'brand1',
-    name: 'Liquid Foundation',
+    name: 'Product 1',
     imageUrl: 'https://example.com/foundation.jpg',
     shade: 'Natural Beige',
     comment: 'Long-lasting, natural finish',
@@ -31,7 +32,7 @@ export const mockProducts: Product[] = [
     {
         _id: 'product2',
         brandId: 'brand2',
-        name: 'Lipstick',
+        name: 'Product 2',
         imageUrl: 'https://example.com/lipstick.jpg',
         comment: '',
         storeLinks: [],

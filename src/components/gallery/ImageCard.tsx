@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Image } from '../ui/Image'
 
 interface ImageData {
+    _id?: string
     imageUrl: string
     name: string
 }

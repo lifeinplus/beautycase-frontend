@@ -1,3 +1,3 @@
 export const MakeupBagMobileView = () => (
-    <div data-testid="mocked-mobile-view" />
+    <div data-testid="mocked-makeup-bag-mobile-view" />
 )

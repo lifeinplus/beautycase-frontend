@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
 import type { MutationResult } from '../../../types/api'
 import type { Questionnaire } from '../types'
@@ -49,19 +50,26 @@ export const mockQuestionnaireFull: Questionnaire = {
 }
 
 export const mockQuestionnaire: Questionnaire = {
-    _id: '1',
-    name: 'Inna',
+    _id: 'questionnaire1',
+    name: 'Client 1',
+    instagram: '@client1',
+    city: 'City 1',
+    age: 30,
     makeupBag: 'Brush',
 }
 
 export const mockQuestionnaires: Questionnaire[] = [
     mockQuestionnaire,
     {
-        _id: '2',
-        name: 'Lana',
+        _id: 'questionnaire2',
+        name: 'Client 2',
         makeupBag: 'Sponge',
     },
 ]
+
+export const useAddQuestionnaireMutation = vi.fn()
+export const useGetQuestionnaireByIdQuery = vi.fn()
+export const useGetQuestionnairesQuery = vi.fn()
 
 const questionnairesHandlers = [
     http.post('api/questionnaires/one', () =>

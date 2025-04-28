@@ -41,12 +41,12 @@ describe('questionnairesApiSlice', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockQuestionnaires)
-        expect(result.current.data?.[0]._id).toBe('1')
+        expect(result.current.data?.[0]._id).toBe(mockQuestionnaire._id)
     })
 
     it('reads a questionnaire by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetQuestionnaireByIdQuery('1')
+            useGetQuestionnaireByIdQuery(mockQuestionnaire._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -54,7 +54,7 @@ describe('questionnairesApiSlice', () => {
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
         expect(result.current.data).toEqual(mockQuestionnaire)
-        expect(result.current.data?._id).toBe('1')
+        expect(result.current.data?._id).toBe(mockQuestionnaire._id)
     })
 
     it('returns error on failed questionnaire creation', async () => {

@@ -12,11 +12,11 @@ describe('QuestionnaireTable', () => {
     it('renders the table headers correctly', () => {
         render(<QuestionnaireTable questionnaires={mockQuestionnaires} />)
 
-        expect(screen.getByText('Дата')).toBeInTheDocument()
-        expect(screen.getByText('Время')).toBeInTheDocument()
-        expect(screen.getByText('Имя клиента')).toBeInTheDocument()
-        expect(screen.getByText('Возраст')).toBeInTheDocument()
-        expect(screen.getByText('Город')).toBeInTheDocument()
+        const headers = ['Дата', 'Время', 'Имя клиента', 'Возраст', 'Город']
+
+        headers.forEach((header) =>
+            expect(screen.getByText(header)).toBeInTheDocument()
+        )
     })
 
     it('renders makeup bag data correctly', () => {

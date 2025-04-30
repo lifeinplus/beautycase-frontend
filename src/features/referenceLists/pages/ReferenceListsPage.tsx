@@ -1,6 +1,6 @@
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { ReferenceListsMobileView } from '../components/ReferenceListsMobileView'
 import { ReferenceListsTable } from '../components/ReferenceListsTable'
 import type { ReferenceList } from '../types'

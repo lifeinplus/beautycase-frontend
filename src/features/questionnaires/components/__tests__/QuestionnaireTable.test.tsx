@@ -19,7 +19,7 @@ describe('QuestionnaireTable', () => {
         )
     })
 
-    it('renders makeup bag data correctly', () => {
+    it('renders the table data correctly', () => {
         render(<QuestionnaireTable questionnaires={mockQuestionnaires} />)
 
         const dates = screen.getAllByText('2025.04.10')

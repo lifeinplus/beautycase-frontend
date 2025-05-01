@@ -1,25 +1,25 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockMakeupBags } from '../../__mocks__/makeupBagsApiSlice'
-import { MakeupBagTable } from '../MakeupBagTable'
+import { mockStage, mockStages } from '../../__mocks__/stagesApiSlice'
+import { StageTable } from '../StageTable'
 
 vi.mock('../../../../components/table/Table')
 vi.mock('../../../../components/table/TableRow')
 vi.mock('../../../../utils/date')
 
-describe('MakeupBagTable', () => {
+describe('StageTable', () => {
     it('renders the table headers correctly', () => {
-        render(<MakeupBagTable makeupBags={mockMakeupBags} />)
+        render(<StageTable stages={mockStages} />)
 
         expect(screen.getByText('Дата')).toBeInTheDocument()
         expect(screen.getByText('Время')).toBeInTheDocument()
-        expect(screen.getByText('Категория')).toBeInTheDocument()
-        expect(screen.getByText('Клиент')).toBeInTheDocument()
+        expect(screen.getByText('Заголовок')).toBeInTheDocument()
+        expect(screen.getByText('Подзаголовок')).toBeInTheDocument()
     })
 
     it('renders the table data correctly', () => {
-        render(<MakeupBagTable makeupBags={mockMakeupBags} />)
+        render(<StageTable stages={mockStages} />)
 
         const dates = screen.getAllByText('2025.04.10')
         const time = screen.getAllByText('14:30')
@@ -27,10 +27,10 @@ describe('MakeupBagTable', () => {
         expect(dates).toHaveLength(2)
         expect(time).toHaveLength(2)
 
-        const category = screen.getByText('Test Category 1')
-        const client = screen.getByText('Test Client 1')
+        const title = screen.getByText(mockStage.title)
+        const subtitle = screen.getByText(mockStage.subtitle)
 
-        expect(category).toBeInTheDocument()
-        expect(client).toBeInTheDocument()
+        expect(title).toBeInTheDocument()
+        expect(subtitle).toBeInTheDocument()
     })
 })

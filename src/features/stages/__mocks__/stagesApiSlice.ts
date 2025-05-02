@@ -22,7 +22,9 @@ export const mockStage: Stage = {
     title: 'Base Makeup',
     subtitle: 'Applying foundation and concealer',
     imageUrl: 'https://example.com/image1.jpg',
+    comment: 'Test Comment 1',
     steps: ['Step 1.1', 'Step 1.2', 'Step 1.3'],
+    stepsText: 'Step 1.1\n\nStep 1.2\n\nStep 1.3',
     products: [mockProduct],
     productIds: ['111', '222'],
 }

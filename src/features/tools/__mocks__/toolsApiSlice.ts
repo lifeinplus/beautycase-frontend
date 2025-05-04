@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw'
+import { vi } from 'vitest'
 
 import type { MutationResult } from '../../../types/api'
 import type { Tool } from '../types'
@@ -11,9 +12,11 @@ export const mockToolCreate: MutationResult = {
 
 export const mockTool: Tool = {
     _id: 'tool1',
-    name: 'Brush',
-    brandId: '11',
+    name: 'Tool 1',
+    brand: { _id: 'brand1', name: 'Brand 1' },
+    brandId: 'brand1',
     imageUrl: 'https://example.com/1.webp',
+    number: '123',
     comment: 'Perfect',
     storeLinks: [
         {
@@ -28,8 +31,8 @@ export const mockTools: Tool[] = [
     mockTool,
     {
         _id: 'tool2',
-        name: 'Sponge',
-        brandId: '22',
+        name: 'Tool 2',
+        brandId: 'brand2',
         imageUrl: 'https://example.com/2.webp',
         comment: 'Best',
         storeLinks: [
@@ -41,6 +44,12 @@ export const mockTools: Tool[] = [
         ],
     },
 ]
+
+export const useAddToolMutation = vi.fn()
+export const useDeleteToolMutation = vi.fn()
+export const useEditToolMutation = vi.fn()
+export const useGetToolByIdQuery = vi.fn()
+export const useGetToolsQuery = vi.fn()
 
 const toolsHandlers = [
     http.post('api/tools/one', () => HttpResponse.json(mockToolCreate)),

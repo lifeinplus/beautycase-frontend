@@ -10,7 +10,6 @@ import { ProductDetailsPage } from '../ProductDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-vi.mock('../../../../utils/youtube')
 vi.mock('../../productApiSlice')
 
 describe('ProductDetailsPage', () => {

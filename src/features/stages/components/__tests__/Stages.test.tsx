@@ -60,7 +60,7 @@ describe('Stages', () => {
         const goodsGrids = screen.getAllByTestId('mocked-goods-grid')
         expect(goodsGrids).toHaveLength(1)
 
-        expect(screen.getByText('Products Count: 1')).toBeInTheDocument()
+        expect(screen.getByText('Goods Count: 1')).toBeInTheDocument()
         expect(screen.getByText('Base Path: /products')).toBeInTheDocument()
     })
 

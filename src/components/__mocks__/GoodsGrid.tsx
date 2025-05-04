@@ -6,6 +6,6 @@ export const GoodsGrid = <T extends Good>({
 }: GoodsGridProps<T>) => (
     <div data-testid="mocked-goods-grid">
         <span>Base Path: {basePath}</span>
-        <span>Products Count: {goods.length}</span>
+        <span>Goods Count: {goods.length}</span>
     </div>
 )

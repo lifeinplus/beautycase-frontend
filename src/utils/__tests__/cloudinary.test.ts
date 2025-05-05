@@ -2,7 +2,7 @@ import { Cloudinary } from '@cloudinary/url-gen/index'
 import { describe, expect, it, vi } from 'vitest'
 
 import config from '../../config'
-import { cloudinary } from '../cloudinary'
+import cloudinary from '../cloudinary'
 
 vi.mock('../../config')
 

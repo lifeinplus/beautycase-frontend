@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole } from '../authSlice'
 
-interface RequireRoleProps {
+export interface RequireRoleProps {
     allowedRoles: string[]
 }
 

@@ -2,9 +2,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+
+import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { CheckboxSection } from '../../form/components/CheckboxSection'
 import { InputSection } from '../../form/components/InputSection'
@@ -211,7 +212,7 @@ export const QuestionnairePage = () => {
                         </article>
 
                         <section className="button-section">
-                            <button type="submit" className="button">
+                            <button className="button" type="submit">
                                 Отправить
                             </button>
                         </section>

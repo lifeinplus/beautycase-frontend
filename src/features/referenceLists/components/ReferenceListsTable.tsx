@@ -3,7 +3,7 @@ import { TableRow } from '../../../components/table/TableRow'
 import type { Header } from '../../../types/table'
 import type { ReferenceList } from '../types'
 
-interface ReferenceListsTableProps {
+export interface ReferenceListsTableProps {
     data?: ReferenceList[]
 }
 

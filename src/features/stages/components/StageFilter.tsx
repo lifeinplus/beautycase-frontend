@@ -1,9 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
-import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
-import { Stage } from '../types'
 
-interface StageFilterProps {
+import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
+import type { Stage } from '../types'
+
+export interface StageFilterProps {
     onFilterChange: (filteredStages: Stage[]) => void
     stages: Stage[]
 }

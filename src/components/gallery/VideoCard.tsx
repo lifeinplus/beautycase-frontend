@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Image } from '../../components/ui/Image'
 import { getYouTubeThumbnail } from '../../utils/youtube'
 
-interface Video {
+interface VideoData {
     _id?: string
     shortDescription: string
     title: string
@@ -11,7 +11,7 @@ interface Video {
 }
 
 export interface VideoCardProps {
-    data: Video
+    data: VideoData
     path: string
 }
 

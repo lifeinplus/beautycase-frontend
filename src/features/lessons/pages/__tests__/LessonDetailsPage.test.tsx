@@ -38,12 +38,12 @@ describe('LessonDetailsPage', () => {
         render(<LessonDetailsPage />)
 
         const title = screen.getByText(mockLesson.title)
-        const shortDesc = screen.getByText(mockLesson.shortDescription)
-        const fullDesc = screen.getByText(mockLesson.fullDescription)
+        const subtitle = screen.getByText(mockLesson.shortDescription)
+        const description = screen.getByText(mockLesson.fullDescription)
 
         expect(title).toBeInTheDocument()
-        expect(shortDesc).toBeInTheDocument()
-        expect(fullDesc).toBeInTheDocument()
+        expect(subtitle).toBeInTheDocument()
+        expect(description).toBeInTheDocument()
     })
 
     it('navigates to product details when product is clicked', async () => {

@@ -2,11 +2,13 @@ import '@testing-library/jest-dom/vitest'
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest'
 
 import { mockScrollTo } from './mocks'
+import mockCloudinary from './mocks/cloudinary'
 import mockIcons from './mocks/icons'
 import mockRouter from './mocks/router'
 import server from './mocks/server'
 import mockToast from './mocks/toast'
 
+mockCloudinary()
 mockIcons()
 mockRouter()
 mockToast()

@@ -4,7 +4,7 @@ import type { Header } from '../../../types/table'
 import { formatDate } from '../../../utils/date'
 import type { Questionnaire } from '../types'
 
-interface QuestionnaireTableProps {
+export interface QuestionnaireTableProps {
     questionnaires?: Questionnaire[]
 }
 

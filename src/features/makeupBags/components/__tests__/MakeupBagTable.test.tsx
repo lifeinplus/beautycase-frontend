@@ -18,7 +18,7 @@ describe('MakeupBagTable', () => {
         expect(screen.getByText('Клиент')).toBeInTheDocument()
     })
 
-    it('renders makeup bag data correctly', () => {
+    it('renders the table data correctly', () => {
         render(<MakeupBagTable makeupBags={mockMakeupBags} />)
 
         const dates = screen.getAllByText('2025.04.10')

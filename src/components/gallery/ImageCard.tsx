@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import { Image } from '../ui/Image'
 
 interface ImageData {
+    _id?: string
     imageUrl: string
     name: string
 }
 
-interface ImageCardProps {
+export interface ImageCardProps {
     data: ImageData
     path: string
 }

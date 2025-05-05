@@ -1,4 +1,4 @@
-interface AccessibleItem {
+export interface AccessibleItem {
     auth?: boolean
     roles?: string[]
 }

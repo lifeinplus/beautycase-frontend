@@ -2,7 +2,7 @@ import { MobileView } from '../../../components/table/MobileView'
 import { formatDate } from '../../../utils/date'
 import type { Stage } from '../types'
 
-interface StageMobileViewProps {
+export interface StageMobileViewProps {
     stages?: Stage[]
 }
 

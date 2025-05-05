@@ -51,8 +51,8 @@ describe('MakeupBagListPage', () => {
     it('renders page components and list views', () => {
         render(<MakeupBagListPage />)
 
-        const mobileView = screen.getByTestId('mocked-mobile-view')
-        const table = screen.getByTestId('mocked-table')
+        const mobileView = screen.getByTestId('mocked-makeup-bag-mobile-view')
+        const table = screen.getByTestId('mocked-makeup-bag-table')
 
         expect(mobileView).toBeInTheDocument()
         expect(table).toBeInTheDocument()

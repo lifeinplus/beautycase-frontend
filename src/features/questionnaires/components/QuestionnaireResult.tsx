@@ -1,13 +1,14 @@
 import { AdvancedImage } from '@cloudinary/react'
 import { scale } from '@cloudinary/url-gen/actions/resize'
 import { ReactNode } from 'react'
+
 import config from '../../../config'
-import { cloudinary } from '../../../utils/cloudinary'
+import cloudinary from '../../../utils/cloudinary'
 import type { Questionnaire } from '../types'
 import { type QuestionnaireResultOption } from '../options'
 import { questions } from '../utils'
 
-interface QuestionnaireDetailsProps {
+export interface QuestionnaireDetailsProps {
     data: Questionnaire
 }
 

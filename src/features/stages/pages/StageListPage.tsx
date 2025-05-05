@@ -1,20 +1,21 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { Header } from '../../../components/Header'
-import { Hero } from '../../../components/Hero'
-import { DataWrapper } from '../../../components/DataWrapper'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { DataWrapper } from '../../../components/DataWrapper'
+import { Header } from '../../../components/Header'
+import { Hero } from '../../../components/Hero'
 import { canAccess } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
+import { clearFormData } from '../../form/formSlice'
 import { StageFilter } from '../components/StageFilter'
 import { StageMobileView } from '../components/StageMobileView'
 import { StageTable } from '../components/StageTable'
-import { clearFormData } from '../../form/formSlice'
-import type { Stage } from '../types'
 import { useReadStagesQuery } from '../stagesApiSlice'
+import type { Stage } from '../types'
 
 const ACTIONS = {
     add: {

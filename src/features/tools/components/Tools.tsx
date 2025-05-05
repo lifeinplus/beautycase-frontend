@@ -1,7 +1,7 @@
 import { GoodsGrid } from '../../../components/GoodsGrid'
 import type { Tool } from '../types'
 
-interface ToolsProps {
+export interface ToolsProps {
     tools?: Tool[]
 }
 

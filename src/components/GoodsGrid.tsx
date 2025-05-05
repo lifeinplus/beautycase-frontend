@@ -11,7 +11,7 @@ export interface Good {
     }
 }
 
-interface GoodsGridProps<T extends Good> {
+export interface GoodsGridProps<T extends Good> {
     goods: T[]
     basePath: string
 }

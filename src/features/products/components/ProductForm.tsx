@@ -5,21 +5,21 @@ import { FieldError, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { TopPanel } from '../../../components/TopPanel'
 import { useReadBrandsQuery } from '../../brands/brandsApiSlice'
-import { SelectSection } from '../../form/components/SelectSection'
-import { TextareaSection } from '../../form/components/TextareaSection'
+import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
 import { ImageUrlSection } from '../../form/components/ImageUrlSection'
 import { InputSection } from '../../form/components/InputSection'
-import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
+import { SelectSection } from '../../form/components/SelectSection'
+import { TextareaSection } from '../../form/components/TextareaSection'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import type { SelectOption } from '../../form/types'
 import type { Product } from '../types'
 import { productSchema } from '../validations'
 
-interface ProductFormProps {
+export interface ProductFormProps {
     title: string
     onSubmit: (data: Product) => void
 }

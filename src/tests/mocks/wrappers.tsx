@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 import { store } from '../../app/store'
 
-interface ProviderWrapperProps {
+export interface ProviderWrapperProps {
     children: ReactNode
 }
 

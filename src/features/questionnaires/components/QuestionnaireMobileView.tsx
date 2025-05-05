@@ -2,7 +2,7 @@ import { MobileView } from '../../../components/table/MobileView'
 import { formatDate } from '../../../utils/date'
 import type { Questionnaire } from '../types'
 
-interface QuestionnaireMobileViewProps {
+export interface QuestionnaireMobileViewProps {
     questionnaires?: Questionnaire[]
 }
 

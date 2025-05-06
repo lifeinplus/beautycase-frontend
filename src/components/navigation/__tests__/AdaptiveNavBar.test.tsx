@@ -6,7 +6,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { mockLocation, mockNavigate } from '../../../tests/mocks/router'
-import { renderWithProvider } from '../../../tests/mocks/wrappers'
+import { renderWithProviders } from '../../../tests/mocks/wrappers'
 import { AdaptiveNavBar } from '../AdaptiveNavBar'
 
 vi.mock('../../../app/hooks')
@@ -29,14 +29,14 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders the brand logo with responsive behavior', () => {
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         expect(screen.getByText('B')).toBeInTheDocument()
         expect(screen.getByText('Beautycase')).toBeInTheDocument()
     })
 
     it('renders navigation buttons for accessible menu items', () => {
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const questionnaire = screen.getByRole('button', { name: /Анкета/i })
 
@@ -60,7 +60,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders ThemeToggler and AuthButton', () => {
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const authButton = screen.getByTestId('mocked-auth-button')
         const themeToggler = screen.getByTestId('mocked-theme-toggler')
@@ -72,7 +72,7 @@ describe('AdaptiveNavBar', () => {
     it('calls navigate when a menu item is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const btnStages = screen.getByRole('button', { name: /Этапы/i })
         const btnLessons = screen.getByRole('button', { name: /Уроки/i })
@@ -84,7 +84,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('applies active class to current path navigation button', () => {
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
 
@@ -99,7 +99,7 @@ describe('AdaptiveNavBar', () => {
     it('navigates when clicking a navigation button', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const btnMakeupBags = screen.getByRole('button', {
             name: /Косметички/i,
@@ -113,7 +113,7 @@ describe('AdaptiveNavBar', () => {
     it('scrolls to top when clicking the active navigation button', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<AdaptiveNavBar />)
+        renderWithProviders(<AdaptiveNavBar />)
 
         const btnQuestionnaire = screen.getByRole('button', { name: /Анкета/i })
         await user.click(btnQuestionnaire)
@@ -127,7 +127,7 @@ describe('AdaptiveNavBar', () => {
     })
 
     it('renders children content', () => {
-        renderWithProvider(
+        renderWithProviders(
             <AdaptiveNavBar>
                 <button data-testid="mocked-child-content">
                     Child Content

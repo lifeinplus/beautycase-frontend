@@ -10,7 +10,7 @@ const initialState: FormState<any> = {
     isDirty: false,
 }
 
-export const formSlice = createSlice({
+const formSlice = createSlice({
     name: 'form',
     initialState,
     reducers: {
@@ -27,5 +27,6 @@ export const formSlice = createSlice({
 })
 
 export const { clearFormData, setFormData } = formSlice.actions
-
 export const { selectFormData, selectIsDirty } = formSlice.selectors
+
+export default formSlice.reducer

@@ -9,7 +9,7 @@ export interface AuthState {
 
 const initialState: AuthState = {}
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -28,3 +28,5 @@ export const { logout, setCredentials } = authSlice.actions
 
 export const { selectAccessToken, selectRole, selectUserId, selectUsername } =
     authSlice.selectors
+
+export default authSlice.reducer

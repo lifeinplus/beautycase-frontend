@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../app/hooks'
 import { selectRole, selectUsername } from '../../../features/auth/authSlice'
 import { clearFormData } from '../../../features/form/formSlice'
 import { mockNavigate } from '../../../tests/mocks/router'
-import { renderWithProvider } from '../../../tests/mocks/wrappers'
+import { renderWithProviders } from '../../../tests/mocks/wrappers'
 import { mockError } from '../../../utils/__mocks__/errorUtils'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
@@ -42,12 +42,12 @@ describe('GalleryPage', () => {
     })
 
     it('dispatches clearFormData on mount', () => {
-        renderWithProvider(<GalleryPage {...mockProps} />)
+        renderWithProviders(<GalleryPage {...mockProps} />)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('renders the component with all elements', () => {
-        renderWithProvider(<GalleryPage {...mockProps} />)
+        renderWithProviders(<GalleryPage {...mockProps} />)
 
         const header = screen.getByTestId('mocked-header')
         const hero = screen.getByTestId('mocked-hero')
@@ -65,21 +65,21 @@ describe('GalleryPage', () => {
     it('renders without subtitle when not provided', () => {
         const { subtitle, ...withoutSubtitle } = mockProps
 
-        renderWithProvider(<GalleryPage {...withoutSubtitle} />)
+        renderWithProviders(<GalleryPage {...withoutSubtitle} />)
 
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
         expect(screen.queryByText(mockProps.subtitle!)).not.toBeInTheDocument()
     })
 
     it('shows loading state when isLoading is true', () => {
-        renderWithProvider(<GalleryPage {...mockProps} isLoading />)
+        renderWithProviders(<GalleryPage {...mockProps} isLoading />)
 
         expect(screen.getByText('Loading...')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('shows error message when error is present', () => {
-        renderWithProvider(<GalleryPage {...mockProps} error={mockError} />)
+        renderWithProviders(<GalleryPage {...mockProps} error={mockError} />)
 
         expect(getErrorMessage).toHaveBeenCalledWith(mockError)
         expect(screen.getByText(mockError.message)).toBeInTheDocument()
@@ -87,7 +87,7 @@ describe('GalleryPage', () => {
     })
 
     it('renders navigation buttons for actions that user can access', () => {
-        renderWithProvider(<GalleryPage {...mockProps} />)
+        renderWithProviders(<GalleryPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Добавить' })
         expect(button).toBeInTheDocument()
@@ -96,7 +96,7 @@ describe('GalleryPage', () => {
     it('navigates to correct path when add button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<GalleryPage {...mockProps} />)
+        renderWithProviders(<GalleryPage {...mockProps} />)
 
         const button = screen.getByRole('button', { name: 'Добавить' })
         await user.click(button)

@@ -1,26 +1,23 @@
+import type { PropsWithChildren, ReactElement, ReactNode } from 'react'
 import { render, renderHook } from '@testing-library/react'
-import { ReactNode } from 'react'
+import type { RenderOptions } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { store } from '../../app/store'
+import { setupStore } from '../../app/store'
+import type { AppStore, RootState } from '../../app/store'
 
-export interface ProviderWrapperProps {
-    children: ReactNode
-}
-
-const ProviderWrapper = ({ children }: ProviderWrapperProps) => {
-    return <Provider store={store}>{children}</Provider>
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+    preloadedState?: Partial<RootState>
+    store?: AppStore
 }
 
 export const renderHookWithProvider = <T,>(hook: () => T) => {
-    return renderHook(hook, {
-        wrapper: ProviderWrapper,
-    })
-}
+    const Wrapper = ({ children }: PropsWithChildren<{}>) => {
+        return <Provider store={setupStore()}>{children}</Provider>
+    }
 
-export const renderWithProvider = (component: ReactNode) => {
-    return render(<Provider store={store}>{component}</Provider>)
+    return renderHook(hook, { wrapper: Wrapper })
 }
 
 export const renderWithProviderAndRouter = (
@@ -28,12 +25,27 @@ export const renderWithProviderAndRouter = (
     initialEntries?: string[]
 ) => {
     return render(
-        <Provider store={store}>
+        <Provider store={setupStore()}>
             <MemoryRouter initialEntries={initialEntries}>
                 {component}
             </MemoryRouter>
         </Provider>
     )
+}
+
+export function renderWithProviders(
+    ui: ReactElement,
+    {
+        preloadedState = {},
+        store = setupStore(preloadedState),
+        ...renderOptions
+    }: ExtendedRenderOptions = {}
+) {
+    function Wrapper({ children }: PropsWithChildren) {
+        return <Provider store={store}>{children}</Provider>
+    }
+
+    return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
 
 export const renderWithRouter = (

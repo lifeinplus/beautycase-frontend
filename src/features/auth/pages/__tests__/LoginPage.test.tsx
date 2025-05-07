@@ -8,7 +8,8 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { type AuthResultLogin, useLoginUserMutation } from '../../authApiSlice'
+import { mockLoginParams, mockLoginResult } from '../../__mocks__/authApiSlice'
+import { useLoginUserMutation } from '../../authApiSlice'
 import { LoginPage } from '../LoginPage'
 
 vi.mock('../../../../app/hooks')
@@ -31,16 +32,6 @@ const MockRoutes = () => (
 
 describe('LoginPage', () => {
     const initialEntries = ['/login']
-
-    const mockLoginResult: AuthResultLogin = {
-        accessToken: 'token1',
-        userId: 'user1',
-    }
-
-    const mockParams = {
-        username: 'testuser',
-        password: 'password123',
-    }
 
     const mockLoginUser = vi.fn()
     const mockUnwrap = vi.fn()
@@ -85,11 +76,11 @@ describe('LoginPage', () => {
         const username = screen.getByPlaceholderText('Имя пользователя')
         const password = screen.getByPlaceholderText('Пароль')
 
-        await user.type(username, mockParams.username)
-        await user.type(password, mockParams.password)
+        await user.type(username, mockLoginParams.username)
+        await user.type(password, mockLoginParams.password)
 
-        expect(username).toHaveValue(mockParams.username)
-        expect(password).toHaveValue(mockParams.password)
+        expect(username).toHaveValue(mockLoginParams.username)
+        expect(password).toHaveValue(mockLoginParams.password)
     })
 
     it('submits form and handles successful login', async () => {
@@ -101,14 +92,14 @@ describe('LoginPage', () => {
         const password = screen.getByPlaceholderText('Пароль')
         const submit = screen.getByRole('button', { name: /войти/i })
 
-        await user.type(username, mockParams.username)
-        await user.type(password, mockParams.password)
+        await user.type(username, mockLoginParams.username)
+        await user.type(password, mockLoginParams.password)
 
         await user.click(submit)
 
         expect(mockLoginUser).toHaveBeenCalledWith({
-            username: mockParams.username,
-            password: mockParams.password,
+            username: mockLoginParams.username,
+            password: mockLoginParams.password,
         })
         expect(mockDispatch).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
@@ -129,7 +120,7 @@ describe('LoginPage', () => {
         const password = screen.getByPlaceholderText('Пароль')
         const submit = screen.getByRole('button', { name: /войти/i })
 
-        await user.type(username, mockParams.username)
+        await user.type(username, mockLoginParams.username)
         await user.type(password, 'wrongpassword')
 
         await user.click(submit)

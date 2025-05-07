@@ -1,5 +1,6 @@
 import { setupServer } from 'msw/node'
 
+import authHandlers from '../../features/auth/__mocks__/authApiSlice'
 import brandsHandlers from '../../features/brands/__mocks__/brandsApiSlice'
 import categoriesHandlers from '../../features/categories/__mocks__/categoriesApiSlice'
 import lessonsHandlers from '../../features/lessons/__mocks__/lessonsApiSlice'
@@ -13,6 +14,7 @@ import uploadsHandlers from '../../features/uploads/__mocks__/uploadApiSlice'
 import usersHandlers from '../../features/users/__mocks__/usersApiSlice'
 
 const server = setupServer(
+    ...authHandlers,
     ...brandsHandlers,
     ...categoriesHandlers,
     ...lessonsHandlers,

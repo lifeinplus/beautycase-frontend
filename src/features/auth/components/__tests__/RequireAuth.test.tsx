@@ -9,10 +9,10 @@ import { RequireAuth } from '../RequireAuth'
 vi.mock('../../../../app/hooks')
 
 const MockProtected = () => (
-    <div data-testid="mocked-protected-content">Protected Content</div>
+    <div data-testid="mocked-protected-content">ProtectedContent</div>
 )
 
-const MockLogin = () => <div data-testid="mocked-login-page">Login Page</div>
+const MockLogin = () => <div data-testid="mocked-login-page">LoginPage</div>
 
 const MockRoutes = () => (
     <Routes>

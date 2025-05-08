@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
 
-export const axiosClient = {
+export default {
     get: vi.fn(),
 }

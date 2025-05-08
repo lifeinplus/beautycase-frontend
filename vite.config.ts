@@ -10,7 +10,14 @@ export default defineConfig({
         environment: 'jsdom',
         setupFiles: './src/tests/setup.ts',
         coverage: {
-            exclude: ['**/*/index.{js,ts}', '**/*/index.{jsx,tsx}', 'dist/**'],
+            exclude: [
+                '**/*/index.{js,ts}',
+                '**/*/index.{jsx,tsx}',
+                '**/*.config.{js,ts}',
+                'dist/**',
+                'src/app/hooks.ts',
+                'src/main.tsx',
+            ],
         },
     },
 })

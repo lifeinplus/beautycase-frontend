@@ -1,3 +1,3 @@
 export const BrandsPage = () => (
-    <div data-testid="mocked-brands-page">Brands Page</div>
+    <div data-testid="mocked-brands-page">BrandsPage</div>
 )

@@ -1,3 +1,3 @@
 export const LessonAddPage = () => (
-    <div data-testid="mocked-lesson-add-page">Lesson Add Page</div>
+    <div data-testid="mocked-lesson-add-page">LessonAddPage</div>
 )

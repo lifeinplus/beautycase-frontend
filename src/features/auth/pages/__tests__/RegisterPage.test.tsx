@@ -18,7 +18,7 @@ vi.mock('../../authApiSlice')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
-const MockLogin = () => <div data-testid="mocked-login-page">Login Page</div>
+const MockLogin = () => <div data-testid="mocked-login-page">LoginPage</div>
 
 const MockRoutes = () => (
     <Routes>

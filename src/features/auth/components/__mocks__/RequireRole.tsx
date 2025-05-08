@@ -1,5 +1,7 @@
-import type { PropsWithChildren } from 'react'
+import { Outlet } from 'react-router-dom'
 
-export const RequireRole = ({ children }: PropsWithChildren) => (
-    <div data-testid="mocked-require-role">{children}</div>
+export const RequireRole = () => (
+    <div data-testid="mocked-require-role">
+        <Outlet />
+    </div>
 )

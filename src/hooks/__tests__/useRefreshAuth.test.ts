@@ -2,13 +2,13 @@ import { renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '../../app/__mocks__/hooks'
-import { axiosClient } from '../../features/api/axiosClient'
+import axiosClient from '../../features/api/axiosClient.config'
 import { type AuthState, setCredentials } from '../../features/auth/authSlice'
 import { mockError } from '../../utils/__mocks__/errorUtils'
 import { useRefreshAuth } from '../useRefreshAuth'
 
 vi.mock('../../app/hooks')
-vi.mock('../../features/api/axiosClient')
+vi.mock('../../features/api/axiosClient.config')
 
 describe('useRefreshAuth', () => {
     const mockAuthResponse: AuthState = {

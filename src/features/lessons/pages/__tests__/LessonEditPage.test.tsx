@@ -12,7 +12,7 @@ import {
     useEditLessonMutation,
     useGetLessonByIdQuery,
 } from '../../lessonsApiSlice'
-import { LessonEditPage } from '../LessonsEditPage'
+import { LessonEditPage } from '../LessonEditPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')

@@ -1,7 +1,7 @@
 import { apiSlice } from '../api/apiSlice'
 import { AuthState } from './authSlice'
 
-interface AuthQueryLogin {
+export interface AuthQueryLogin {
     username: string
     password: string
 }
@@ -13,7 +13,7 @@ export interface AuthResultRegister {
     message: string
 }
 
-interface AuthQueryRegister {
+export interface AuthQueryRegister {
     username: string
     password: string
     confirmPassword: string

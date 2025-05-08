@@ -6,6 +6,7 @@ const mockToast = () => {
             success: vi.fn(),
             error: vi.fn(),
         },
+        Toaster: () => <div data-testid="mocked-toaster" />,
     }))
 }
 

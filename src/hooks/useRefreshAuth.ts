@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../app/hooks'
-import { axiosClient } from '../features/api/axiosClient'
+import axiosClient from '../features/api/axiosClient.config'
 import { setCredentials, type AuthState } from '../features/auth/authSlice'
 
 export const useRefreshAuth = () => {

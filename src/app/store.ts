@@ -1,18 +1,28 @@
-import { combineSlices, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+
 import config from '../config'
 import { apiSlice } from '../features/api/apiSlice'
-import { authSlice } from '../features/auth/authSlice'
-import { formSlice } from '../features/form/formSlice'
-import { themeSlice } from '../features/theme/themeSlice'
+import authReducer from '../features/auth/authSlice'
+import formReducer from '../features/form/formSlice'
+import themeReducer from '../features/theme/themeSlice'
 
-const rootReducer = combineSlices(apiSlice, authSlice, formSlice, themeSlice)
-
-export const store = configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(apiSlice.middleware),
-    devTools: !config.prod,
+const rootReducer = combineReducers({
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authReducer,
+    form: formReducer,
+    theme: themeReducer,
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const setupStore = (preloadedState?: Partial<RootState>) => {
+    return configureStore({
+        reducer: rootReducer,
+        preloadedState,
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(apiSlice.middleware),
+        devTools: !config.prod,
+    })
+}
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']

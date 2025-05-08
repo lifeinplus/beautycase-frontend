@@ -11,10 +11,8 @@ import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
 import { getErrorMessage } from '../../../utils/errorUtils'
-
 import { clearFormData, setFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-
 import { useDeleteBrandMutation, useReadBrandsQuery } from '../brandsApiSlice'
 import { BrandForm } from '../components/BrandForm'
 import { BrandsMobileView } from '../components/BrandsMobileView'

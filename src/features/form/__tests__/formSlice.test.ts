@@ -1,10 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import {
+import reducer, {
     clearFormData,
     setFormData,
     selectFormData,
     selectIsDirty,
-    formSlice,
 } from '../formSlice'
 
 describe('formSlice', () => {
@@ -16,37 +15,36 @@ describe('formSlice', () => {
     describe('reducers', () => {
         describe('clearFormData', () => {
             it('should reset state to initial values', () => {
-                const state = {
+                const previousState = {
                     data: { name: 'John', email: 'john@example.com' },
                     isDirty: true,
                 }
 
-                const newState = formSlice.reducer(state, clearFormData())
-
+                const newState = reducer(previousState, clearFormData())
                 expect(newState).toEqual(initialState)
             })
         })
 
         describe('setFormData', () => {
             it('should update data and set isDirty to true', () => {
-                const state = { ...initialState }
+                const previousState = { ...initialState }
                 const payload = { name: 'John' }
 
-                const newState = formSlice.reducer(state, setFormData(payload))
+                const newState = reducer(previousState, setFormData(payload))
 
                 expect(newState.data).toEqual(payload)
                 expect(newState.isDirty).toBe(true)
             })
 
             it('should merge new data with existing data', () => {
-                const state = {
+                const previousState = {
                     data: { name: 'John' },
                     isDirty: true,
                 }
 
                 const payload = { email: 'john@example.com' }
 
-                const newState = formSlice.reducer(state, setFormData(payload))
+                const newState = reducer(previousState, setFormData(payload))
 
                 expect(newState.data).toEqual({
                     name: 'John',
@@ -57,14 +55,14 @@ describe('formSlice', () => {
             })
 
             it('should overwrite existing fields with new values', () => {
-                const state = {
+                const previousState = {
                     data: { name: 'John', email: 'john@example.com' },
                     isDirty: true,
                 }
 
                 const payload = { name: 'Jane' }
 
-                const newState = formSlice.reducer(state, setFormData(payload))
+                const newState = reducer(previousState, setFormData(payload))
 
                 expect(newState.data).toEqual({
                     name: 'Jane',

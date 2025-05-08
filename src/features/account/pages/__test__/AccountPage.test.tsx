@@ -3,8 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import {
-    renderWithProvider,
     renderWithProviderAndRouter,
+    renderWithProviders,
 } from '../../../../tests/mocks/wrappers'
 import { selectUserId } from '../../../auth/authSlice'
 import {
@@ -40,7 +40,7 @@ describe('AccountPage', () => {
             error: null,
         })
 
-        renderWithProvider(<AccountPage />)
+        renderWithProviders(<AccountPage />)
 
         const dataWrapper = screen.getByTestId('mocked-data-wrapper')
         const loading = screen.getByTestId('mocked-loading')
@@ -95,7 +95,7 @@ describe('AccountPage', () => {
             error: null,
         })
 
-        renderWithProvider(<AccountPage />)
+        renderWithProviders(<AccountPage />)
 
         expect(
             screen.getByText('У вас нет доступных косметичек')
@@ -117,7 +117,7 @@ describe('AccountPage', () => {
             error: 'User not found',
         })
 
-        renderWithProvider(<AccountPage />)
+        renderWithProviders(<AccountPage />)
 
         const error = screen.getByTestId('mocked-error')
         expect(error).toBeInTheDocument()

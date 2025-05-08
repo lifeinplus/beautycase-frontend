@@ -5,7 +5,7 @@ import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
-import { renderWithProvider } from '../../../../tests/mocks/wrappers'
+import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
@@ -55,7 +55,7 @@ describe('StoreForm', () => {
             name: 'Test Store',
         })
 
-        renderWithProvider(<StoreForm ref={mockRef} />)
+        renderWithProviders(<StoreForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Магазин')
         const button = screen.getByRole('button')
@@ -78,7 +78,7 @@ describe('StoreForm', () => {
     it('calls createStore when add button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProvider(<StoreForm ref={mockRef} />)
+        renderWithProviders(<StoreForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('Магазин')
         const addButton = screen.getByRole('button')

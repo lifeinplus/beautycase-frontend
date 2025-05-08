@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import config from '../../../../config'
 import cloudinary from '../../../../utils/cloudinary'
-import { mockQuestionnaire } from '../../__mocks__/questionnaireApiSlice'
+import { mockQuestionnaire } from '../../__mocks__/questionnairesApiSlice'
 import { QuestionnaireResult } from '../QuestionnaireResult'
 
 vi.mock('../../../../config')

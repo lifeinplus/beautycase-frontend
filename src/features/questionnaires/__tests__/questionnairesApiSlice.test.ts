@@ -8,12 +8,12 @@ import {
     mockQuestionnaire,
     mockQuestionnaireCreated,
     mockQuestionnaires,
-} from '../__mocks__/questionnaireApiSlice'
+} from '../__mocks__/questionnairesApiSlice'
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,
     useGetQuestionnaireByIdQuery,
-} from '../questionnaireApiSlice'
+} from '../questionnairesApiSlice'
 
 describe('questionnairesApiSlice', () => {
     it('creates a new questionnaire', async () => {

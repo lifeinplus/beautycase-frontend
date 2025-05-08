@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 
-import { mockQuestionnaires } from '../../__mocks__/questionnaireApiSlice'
-import { useGetQuestionnairesQuery } from '../../questionnaireApiSlice'
+import { mockQuestionnaires } from '../../__mocks__/questionnairesApiSlice'
+import { useGetQuestionnairesQuery } from '../../questionnairesApiSlice'
 import { QuestionnaireListPage } from '../QuestionnaireListPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -11,7 +11,7 @@ vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 vi.mock('../../components/QuestionnaireMobileView')
 vi.mock('../../components/QuestionnaireTable')
-vi.mock('../../questionnaireApiSlice')
+vi.mock('../../questionnairesApiSlice')
 
 describe('QuestionnaireListPage', () => {
     beforeEach(() => {

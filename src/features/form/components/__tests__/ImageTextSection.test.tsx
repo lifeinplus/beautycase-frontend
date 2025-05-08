@@ -12,15 +12,15 @@ import {
 } from '../../../../tests/mocks/form'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Questionnaire } from '../../../questionnaires/types'
-import { mockUploadResult } from '../../../uploads/__mocks__/uploadApiSlice'
-import { useUploadImageTempMutation } from '../../../uploads/uploadApiSlice'
+import { mockUploadResult } from '../../../uploads/__mocks__/uploadsApiSlice'
+import { useUploadImageTempMutation } from '../../../uploads/uploadsApiSlice'
 import {
     ImageTextSection,
     type ImageTextSectionProps,
 } from '../ImageTextSection'
 
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../uploads/uploadApiSlice')
+vi.mock('../../../uploads/uploadsApiSlice')
 vi.mock('../ImagePreview')
 vi.mock('../Label')
 

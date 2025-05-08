@@ -8,14 +8,14 @@ import {
     mockProduct,
     mockProductCreate,
     mockProducts,
-} from '../__mocks__/productApiSlice'
+} from '../__mocks__/productsApiSlice'
 import {
     useAddProductMutation,
     useDeleteProductMutation,
     useEditProductMutation,
     useGetProductByIdQuery,
     useGetProductsQuery,
-} from '../productApiSlice'
+} from '../productsApiSlice'
 
 describe('productsApiSlice', () => {
     it('creates a new product', async () => {

@@ -4,7 +4,7 @@ export interface UploadResult {
     imageUrl: string
 }
 
-export const uploadApiSlice = apiSlice.injectEndpoints({
+export const uploadsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         uploadImageTemp: builder.mutation<UploadResult, FormData>({
             query: (formData) => {
@@ -18,4 +18,4 @@ export const uploadApiSlice = apiSlice.injectEndpoints({
     }),
 })
 
-export const { useUploadImageTempMutation } = uploadApiSlice
+export const { useUploadImageTempMutation } = uploadsApiSlice

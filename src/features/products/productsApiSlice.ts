@@ -3,7 +3,7 @@ import { cleanObject } from '../../utils/common'
 import { apiSlice } from '../api/apiSlice'
 import type { Product } from './types'
 
-const productApiSlice = apiSlice.injectEndpoints({
+const productsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addProduct: builder.mutation<MutationResult, Product>({
             query: (data) => ({
@@ -61,4 +61,4 @@ export const {
     useEditProductMutation,
     useGetProductByIdQuery,
     useGetProductsQuery,
-} = productApiSlice
+} = productsApiSlice

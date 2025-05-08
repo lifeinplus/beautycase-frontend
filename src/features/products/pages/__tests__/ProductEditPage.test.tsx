@@ -7,18 +7,18 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockProduct } from '../../__mocks__/productApiSlice'
+import { mockProduct } from '../../__mocks__/productsApiSlice'
 import {
     useEditProductMutation,
     useGetProductByIdQuery,
-} from '../../productApiSlice'
+} from '../../productsApiSlice'
 import { ProductEditPage } from '../ProductEditPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/ProductForm')
-vi.mock('../../productApiSlice')
+vi.mock('../../productsApiSlice')
 
 describe('ProductEditPage', () => {
     const mockEditProduct = vi.fn()

@@ -8,7 +8,7 @@ import { Hero } from '../../../components/Hero'
 import { TopPanel } from '../../../components/TopPanel'
 import { formatDate } from '../../../utils/date'
 import { QuestionnaireResult } from '../components/QuestionnaireResult'
-import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
+import { useGetQuestionnaireByIdQuery } from '../questionnairesApiSlice'
 
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()

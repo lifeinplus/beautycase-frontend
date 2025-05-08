@@ -5,8 +5,8 @@ import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { mockQuestionnaire } from '../../__mocks__/questionnaireApiSlice'
-import { useAddQuestionnaireMutation } from '../../questionnaireApiSlice'
+import { mockQuestionnaire } from '../../__mocks__/questionnairesApiSlice'
+import { useAddQuestionnaireMutation } from '../../questionnairesApiSlice'
 import { questions } from '../../utils'
 import { QuestionnairePage } from '../QuestionnairePage'
 
@@ -19,7 +19,7 @@ vi.mock('../../../form/components/InputSection')
 vi.mock('../../../form/components/ImageTextSection')
 vi.mock('../../../form/components/RadioButtonSection')
 vi.mock('../../../form/components/TextareaSection')
-vi.mock('../../questionnaireApiSlice')
+vi.mock('../../questionnairesApiSlice')
 
 describe('QuestionnairePage', () => {
     const mockAddQuestionnaire = vi.fn()

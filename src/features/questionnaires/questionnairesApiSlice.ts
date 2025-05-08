@@ -3,7 +3,7 @@ import { cleanObject } from '../../utils/common'
 import { apiSlice } from '../api/apiSlice'
 import { Questionnaire } from './types'
 
-export const questionnaireApiSlice = apiSlice.injectEndpoints({
+export const questionnairesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         addQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
             query: (data) => ({
@@ -28,4 +28,4 @@ export const {
     useAddQuestionnaireMutation,
     useGetQuestionnaireByIdQuery,
     useGetQuestionnairesQuery,
-} = questionnaireApiSlice
+} = questionnairesApiSlice

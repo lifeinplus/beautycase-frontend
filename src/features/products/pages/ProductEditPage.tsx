@@ -9,7 +9,7 @@ import { ProductForm } from '../components/ProductForm'
 import {
     useEditProductMutation,
     useGetProductByIdQuery,
-} from '../productApiSlice'
+} from '../productsApiSlice'
 import type { Product } from '../types'
 
 export const ProductEditPage = () => {

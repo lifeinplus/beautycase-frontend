@@ -9,7 +9,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockBrands } from '../../../brands/__mocks__/brandsApiSlice'
 import { useReadBrandsQuery } from '../../../brands/brandsApiSlice'
 import { setFormData } from '../../../form/formSlice'
-import { mockProduct } from '../../__mocks__/productApiSlice'
+import { mockProduct } from '../../__mocks__/productsApiSlice'
 import { ProductForm } from '../ProductForm'
 
 vi.mock('../../../../app/hooks')

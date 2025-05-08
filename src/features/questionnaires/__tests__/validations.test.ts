@@ -4,7 +4,7 @@ import { ValidationError } from 'yup'
 import {
     mockQuestionnaire,
     mockQuestionnaireFull,
-} from '../__mocks__/questionnaireApiSlice'
+} from '../__mocks__/questionnairesApiSlice'
 import { questionnaireSchema } from '../validations'
 
 describe('Questionnaire validation schema', () => {

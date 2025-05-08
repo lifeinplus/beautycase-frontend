@@ -15,7 +15,7 @@ import { TextareaSection } from '../../form/components/TextareaSection'
 import { options } from '../options'
 import type { Questionnaire } from '../types'
 import { questionnaireSchema } from '../validations'
-import { useAddQuestionnaireMutation } from '../questionnaireApiSlice'
+import { useAddQuestionnaireMutation } from '../questionnairesApiSlice'
 import { questions } from '../utils'
 
 export const QuestionnairePage = () => {

@@ -4,7 +4,7 @@ import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { QuestionnaireMobileView } from '../components/QuestionnaireMobileView'
 import { QuestionnaireTable } from '../components/QuestionnaireTable'
-import { useGetQuestionnairesQuery } from '../questionnaireApiSlice'
+import { useGetQuestionnairesQuery } from '../questionnairesApiSlice'
 
 export const QuestionnaireListPage = () => {
     const { data, isLoading, error } = useGetQuestionnairesQuery()

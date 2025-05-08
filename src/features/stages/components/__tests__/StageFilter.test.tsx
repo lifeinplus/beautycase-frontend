@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import {
@@ -59,7 +60,9 @@ describe('StageFilter', () => {
         expect(mockOnFilterChange).not.toHaveBeenCalled()
     })
 
-    it('filters stages correctly when a makeup bag is selected', () => {
+    it('filters stages correctly when a makeup bag is selected', async () => {
+        const user = userEvent.setup()
+
         render(
             <StageFilter
                 onFilterChange={mockOnFilterChange}
@@ -70,7 +73,7 @@ describe('StageFilter', () => {
         mockOnFilterChange.mockReset()
 
         const select = screen.getByRole('combobox')
-        fireEvent.change(select, { target: { value: 'makeupBag1' } })
+        await user.selectOptions(select, 'makeupBag1')
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1)
         expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage])

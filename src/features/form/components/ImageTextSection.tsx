@@ -13,7 +13,7 @@ import {
 import toast from 'react-hot-toast'
 
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { useUploadImageTempMutation } from '../../uploads/uploadApiSlice'
+import { useUploadImageTempMutation } from '../../uploads/uploadsApiSlice'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 

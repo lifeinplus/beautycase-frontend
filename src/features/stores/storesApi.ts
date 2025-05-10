@@ -1,8 +1,8 @@
 import type { MutationResult, QueryResult } from '../../types/api'
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { Store } from './types'
 
-const storesApiSlice = apiSlice.injectEndpoints({
+const storesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         createStore: builder.mutation<MutationResult, Store>({
             query: (body) => ({
@@ -10,11 +10,11 @@ const storesApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body,
             }),
-            invalidatesTags: ['Stores'],
+            invalidatesTags: ['Store'],
         }),
         readStores: builder.query<Store[], void>({
             query: () => '/stores',
-            providesTags: ['Stores'],
+            providesTags: ['Store'],
         }),
         updateStore: builder.mutation<Store, Store>({
             query: ({ _id, ...body }) => ({
@@ -22,14 +22,14 @@ const storesApiSlice = apiSlice.injectEndpoints({
                 method: 'PUT',
                 body: body,
             }),
-            invalidatesTags: ['Stores'],
+            invalidatesTags: ['Store'],
         }),
         deleteStore: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stores/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Stores'],
+            invalidatesTags: ['Store'],
         }),
     }),
 })
@@ -39,4 +39,4 @@ export const {
     useReadStoresQuery,
     useUpdateStoreMutation,
     useDeleteStoreMutation,
-} = storesApiSlice
+} = storesApi

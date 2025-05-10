@@ -1,7 +1,7 @@
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { User, UserResult } from './types'
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+const usersApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUserById: builder.query<UserResult, string>({
             query: (id) => `/users/${id}`,
@@ -12,4 +12,4 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
 })
 
-export const { useGetUserByIdQuery, useGetUsersQuery } = usersApiSlice
+export const { useGetUserByIdQuery, useGetUsersQuery } = usersApi

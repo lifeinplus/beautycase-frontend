@@ -2,8 +2,8 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockProducts } from '../../__mocks__/productsApiSlice'
-import { useGetProductsQuery } from '../../productsApiSlice'
+import { mockProducts } from '../../__mocks__/productsApi'
+import { useGetProductsQuery } from '../../productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import userEvent from '@testing-library/user-event'
@@ -17,7 +17,7 @@ vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../form/formSlice')
-vi.mock('../../productsApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductSelectionPage', () => {
     const mockFormData = {

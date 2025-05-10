@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockProducts } from '../../__mocks__/productsApiSlice'
-import { useGetProductsQuery } from '../../productsApiSlice'
+import { mockProducts } from '../../__mocks__/productsApi'
+import { useGetProductsQuery } from '../../productsApi'
 import { ProductGalleryPage } from '../ProductGalleryPage'
 
 vi.mock('../../../../components/gallery/GalleryPage')
 vi.mock('../../../../components/gallery/ImageCard')
-vi.mock('../../productsApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductGalleryPage', () => {
     beforeEach(() => {

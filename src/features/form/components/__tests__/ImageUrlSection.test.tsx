@@ -12,12 +12,12 @@ import {
 } from '../../../../tests/mocks/form'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Product } from '../../../products/types'
-import { mockUploadResult } from '../../../uploads/__mocks__/uploadsApiSlice'
-import { useUploadImageTempMutation } from '../../../uploads/uploadsApiSlice'
+import { mockUploadResult } from '../../../uploads/__mocks__/uploadsApi'
+import { useUploadImageTempMutation } from '../../../uploads/uploadsApi'
 import { ImageUrlSection, type ImageUrlSectionProps } from '../ImageUrlSection'
 
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../uploads/uploadsApiSlice')
+vi.mock('../../../uploads/uploadsApi')
 vi.mock('../ImagePreview')
 vi.mock('../Label')
 

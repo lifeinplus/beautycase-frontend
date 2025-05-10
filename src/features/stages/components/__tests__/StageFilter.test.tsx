@@ -5,12 +5,12 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 import {
     mockMakeupBag,
     mockMakeupBags,
-} from '../../../makeupBags/__mocks__/makeupBagsApiSlice'
-import { useGetMakeupBagsQuery } from '../../../makeupBags/makeupBagsApiSlice'
-import { mockStage, mockStages } from '../../__mocks__/stagesApiSlice'
+} from '../../../makeupBags/__mocks__/makeupBagsApi'
+import { useGetMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { mockStage, mockStages } from '../../__mocks__/stagesApi'
 import { StageFilter } from '../StageFilter'
 
-vi.mock('../../../makeupBags/makeupBagsApiSlice')
+vi.mock('../../../makeupBags/makeupBagsApi')
 
 describe('StageFilter', () => {
     const mockOnFilterChange = vi.fn()

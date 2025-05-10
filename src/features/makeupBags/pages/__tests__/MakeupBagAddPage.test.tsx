@@ -10,14 +10,14 @@ import { clearFormData } from '../../../form/formSlice'
 import {
     mockMakeupBag,
     mockMakeupBagCreate,
-} from '../../__mocks__/makeupBagsApiSlice'
-import { useAddMakeupBagMutation } from '../../makeupBagsApiSlice'
+} from '../../__mocks__/makeupBagsApi'
+import { useAddMakeupBagMutation } from '../../makeupBagsApi'
 import { MakeupBagAddPage } from '../MakeupBagAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../components/MakeupBagForm')
-vi.mock('../../makeupBagsApiSlice')
+vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagAddPage', () => {
     const mockAddMakeupBag = vi.fn()

@@ -13,7 +13,7 @@ import { selectRole, selectUsername } from '../../auth/authSlice'
 import { clearFormData } from '../../form/formSlice'
 import { MakeupBagMobileView } from '../components/MakeupBagMobileView'
 import { MakeupBagTable } from '../components/MakeupBagTable'
-import { useGetMakeupBagsQuery } from '../makeupBagsApiSlice'
+import { useGetMakeupBagsQuery } from '../makeupBagsApi'
 
 const ACTIONS = {
     add: {

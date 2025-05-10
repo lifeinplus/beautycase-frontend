@@ -5,8 +5,8 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockStage, mockStages } from '../../__mocks__/stagesApiSlice'
-import { useReadStagesQuery } from '../../stagesApiSlice'
+import { mockStage, mockStages } from '../../__mocks__/stagesApi'
+import { useReadStagesQuery } from '../../stagesApi'
 import { StageListPage } from '../StageListPage'
 
 vi.mock('../../../../app/hooks')
@@ -21,7 +21,7 @@ vi.mock('../../../form/formSlice')
 vi.mock('../../components/StageFilter')
 vi.mock('../../components/StageMobileView')
 vi.mock('../../components/StageTable')
-vi.mock('../../stagesApiSlice')
+vi.mock('../../stagesApi')
 
 describe('StageListPage', () => {
     beforeEach(() => {

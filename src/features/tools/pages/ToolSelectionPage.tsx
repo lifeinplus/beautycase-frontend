@@ -7,7 +7,7 @@ import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { Image } from '../../../components/ui/Image'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useGetToolsQuery } from '../toolsApiSlice'
+import { useGetToolsQuery } from '../toolsApi'
 
 export const ToolSelectionPage = () => {
     const navigate = useNavigate()

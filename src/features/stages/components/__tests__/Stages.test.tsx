@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockStages } from '../../__mocks__/stagesApiSlice'
+import { mockStages } from '../../__mocks__/stagesApi'
 import { Stages } from '../Stages'
 
 vi.mock('../../../../components/ui/Image')

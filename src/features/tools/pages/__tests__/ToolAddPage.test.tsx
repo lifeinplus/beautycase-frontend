@@ -7,15 +7,15 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockTool, mockToolCreate } from '../../__mocks__/toolsApiSlice'
-import { useAddToolMutation } from '../../toolsApiSlice'
+import { mockTool, mockToolCreate } from '../../__mocks__/toolsApi'
+import { useAddToolMutation } from '../../toolsApi'
 import { ToolAddPage } from '../ToolAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/ToolForm')
-vi.mock('../../toolsApiSlice')
+vi.mock('../../toolsApi')
 
 describe('ToolAddPage', () => {
     const mockAddTool = vi.fn()

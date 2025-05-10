@@ -8,13 +8,13 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { mockLoginParams, mockLoginResult } from '../../__mocks__/authApiSlice'
-import { useLoginUserMutation } from '../../authApiSlice'
+import { mockLoginParams, mockLoginResult } from '../../__mocks__/authApi'
+import { useLoginUserMutation } from '../../authApi'
 import { LoginPage } from '../LoginPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../authApiSlice')
+vi.mock('../../authApi')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 

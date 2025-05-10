@@ -10,7 +10,7 @@ import { selectUserId } from '../../../auth/authSlice'
 import {
     mockUseGetUserByIdQuery,
     mockUserResult,
-} from '../../../users/__mocks__/usersApiSlice'
+} from '../../../users/__mocks__/usersApi'
 import { AccountPage } from '../AccountPage'
 
 vi.mock('../../../../app/hooks')
@@ -18,7 +18,7 @@ vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
-vi.mock('../../../users/usersApiSlice')
+vi.mock('../../../users/usersApi')
 
 describe('AccountPage', () => {
     beforeEach(() => {

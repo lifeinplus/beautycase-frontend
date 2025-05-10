@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ToolForm } from '../components/ToolForm'
-import { useEditToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
+import { useEditToolMutation, useGetToolByIdQuery } from '../toolsApi'
 import type { Tool } from '../types'
 
 export const ToolEditPage = () => {

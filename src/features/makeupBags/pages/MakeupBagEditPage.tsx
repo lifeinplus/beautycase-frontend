@@ -9,7 +9,7 @@ import { MakeupBagForm } from '../components/MakeupBagForm'
 import {
     useEditMakeupBagMutation,
     useGetMakeupBagByIdQuery,
-} from '../makeupBagsApiSlice'
+} from '../makeupBagsApi'
 import type { MakeupBag } from '../types'
 
 export const MakeupBagEditPage = () => {

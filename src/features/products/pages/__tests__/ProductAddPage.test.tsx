@@ -7,18 +7,15 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import {
-    mockProduct,
-    mockProductCreate,
-} from '../../__mocks__/productsApiSlice'
-import { useAddProductMutation } from '../../productsApiSlice'
+import { mockProduct, mockProductCreate } from '../../__mocks__/productsApi'
+import { useAddProductMutation } from '../../productsApi'
 import { ProductAddPage } from '../ProductAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/ProductForm')
-vi.mock('../../productsApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductAddPage', () => {
     const mockAddProduct = vi.fn()

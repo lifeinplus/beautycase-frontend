@@ -4,19 +4,15 @@ import { describe, expect, it } from 'vitest'
 
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import {
-    mockBrand,
-    mockBrandCreate,
-    mockBrands,
-} from '../__mocks__/brandsApiSlice'
+import { mockBrand, mockBrandCreate, mockBrands } from '../__mocks__/brandsApi'
 import {
     useCreateBrandMutation,
     useDeleteBrandMutation,
     useReadBrandsQuery,
     useUpdateBrandMutation,
-} from '../brandsApiSlice'
+} from '../brandsApi'
 
-describe('brandsApiSlice', () => {
+describe('brandsApi', () => {
     it('creates a new brand', async () => {
         const { result } = renderHookWithProvider(() =>
             useCreateBrandMutation()

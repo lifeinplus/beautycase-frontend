@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { MakeupBagForm } from '../components/MakeupBagForm'
-import { useAddMakeupBagMutation } from '../makeupBagsApiSlice'
+import { useAddMakeupBagMutation } from '../makeupBagsApi'
 import type { MakeupBag } from '../types'
 
 export const MakeupBagAddPage = () => {

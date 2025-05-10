@@ -8,14 +8,14 @@ import {
     mockQuestionnaire,
     mockQuestionnaireCreated,
     mockQuestionnaires,
-} from '../__mocks__/questionnairesApiSlice'
+} from '../__mocks__/questionnairesApi'
 import {
     useAddQuestionnaireMutation,
     useGetQuestionnairesQuery,
     useGetQuestionnaireByIdQuery,
-} from '../questionnairesApiSlice'
+} from '../questionnairesApi'
 
-describe('questionnairesApiSlice', () => {
+describe('questionnairesApi', () => {
     it('creates a new questionnaire', async () => {
         const { result } = renderHookWithProvider(() =>
             useAddQuestionnaireMutation()

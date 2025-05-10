@@ -1,13 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import config from '../config'
-import { apiSlice } from '../features/api/apiSlice'
+import { api } from '../features/api/api'
 import authReducer from '../features/auth/authSlice'
 import formReducer from '../features/form/formSlice'
 import themeReducer from '../features/theme/themeSlice'
 
 const rootReducer = combineReducers({
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [api.reducerPath]: api.reducer,
     auth: authReducer,
     form: formReducer,
     theme: themeReducer,
@@ -18,7 +18,7 @@ export const setupStore = (preloadedState?: Partial<RootState>) => {
         reducer: rootReducer,
         preloadedState,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(apiSlice.middleware),
+            getDefaultMiddleware().concat(api.middleware),
         devTools: !config.prod,
     })
 }

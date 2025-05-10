@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockTools } from '../../__mocks__/toolsApiSlice'
+import { mockTools } from '../../__mocks__/toolsApi'
 import { Tools } from '../Tools'
 
 vi.mock('../../../../components/GoodsGrid')

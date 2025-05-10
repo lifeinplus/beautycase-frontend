@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { useLoginUserMutation } from '../authApiSlice'
+import { useLoginUserMutation } from '../authApi'
 import { setCredentials } from '../authSlice'
 
 export const LoginPage = () => {

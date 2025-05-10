@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 
-import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
+import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
 import type { Stage } from '../types'
 
 export interface StageFilterProps {

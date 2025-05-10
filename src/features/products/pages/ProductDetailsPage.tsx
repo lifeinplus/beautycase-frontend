@@ -6,7 +6,7 @@ import { Image } from '../../../components/ui/Image'
 import {
     useDeleteProductMutation,
     useGetProductByIdQuery,
-} from '../productsApiSlice'
+} from '../productsApi'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()

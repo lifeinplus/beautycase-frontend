@@ -3,17 +3,17 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockStage } from '../../__mocks__/stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
     useReadStageByIdQuery,
-} from '../../stagesApiSlice'
+} from '../../stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-vi.mock('../../stagesApiSlice')
+vi.mock('../../stagesApi')
 
 describe('StageDetailsPage', () => {
     const mockDeleteStage = vi.fn()

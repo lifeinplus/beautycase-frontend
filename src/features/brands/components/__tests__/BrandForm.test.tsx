@@ -9,16 +9,13 @@ import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
-import {
-    useCreateBrandMutation,
-    useUpdateBrandMutation,
-} from '../../brandsApiSlice'
+import { useCreateBrandMutation, useUpdateBrandMutation } from '../../brandsApi'
 import { BrandForm } from '../BrandForm'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../brandsApiSlice')
+vi.mock('../../brandsApi')
 
 describe('BrandForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }

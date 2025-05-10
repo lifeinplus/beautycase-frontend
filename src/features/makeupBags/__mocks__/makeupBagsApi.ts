@@ -2,8 +2,8 @@ import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
 import type { MutationResult } from '../../../types/api'
-import { mockStage } from '../../stages/__mocks__/stagesApiSlice'
-import { mockTool } from '../../tools/__mocks__/toolsApiSlice'
+import { mockStage } from '../../stages/__mocks__/stagesApi'
+import { mockTool } from '../../tools/__mocks__/toolsApi'
 import type { MakeupBag } from '../types'
 
 export const mockMakeupBagCreate: MutationResult = {

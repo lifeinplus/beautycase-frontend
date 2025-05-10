@@ -1,9 +1,9 @@
 import type { MutationResult } from '../../types/api'
 import { cleanObject } from '../../utils/common'
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import { Questionnaire } from './types'
 
-export const questionnairesApiSlice = apiSlice.injectEndpoints({
+const questionnairesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         addQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
             query: (data) => ({
@@ -11,15 +11,15 @@ export const questionnairesApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: cleanObject(data),
             }),
-            invalidatesTags: ['Questionnaires'],
+            invalidatesTags: ['Questionnaire'],
         }),
         getQuestionnaireById: builder.query<Questionnaire, string>({
             query: (id) => `/questionnaires/${id}`,
-            providesTags: ['Questionnaires'],
+            providesTags: ['Questionnaire'],
         }),
         getQuestionnaires: builder.query<Questionnaire[], void>({
             query: () => '/questionnaires/all',
-            providesTags: ['Questionnaires'],
+            providesTags: ['Questionnaire'],
         }),
     }),
 })
@@ -28,4 +28,4 @@ export const {
     useAddQuestionnaireMutation,
     useGetQuestionnaireByIdQuery,
     useGetQuestionnairesQuery,
-} = questionnairesApiSlice
+} = questionnairesApi

@@ -1,8 +1,8 @@
 import type { MutationResult, QueryResult } from '../../types/api'
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { Brand } from './types'
 
-const brandsApiSlice = apiSlice.injectEndpoints({
+const brandsApi = api.injectEndpoints({
     endpoints: (builder) => ({
         createBrand: builder.mutation<MutationResult, Brand>({
             query: (body) => ({
@@ -10,11 +10,11 @@ const brandsApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: body,
             }),
-            invalidatesTags: ['Brands'],
+            invalidatesTags: ['Brand'],
         }),
         readBrands: builder.query<Brand[], void>({
             query: () => '/brands',
-            providesTags: ['Brands'],
+            providesTags: ['Brand'],
         }),
         updateBrand: builder.mutation<Brand, Brand>({
             query: ({ _id, ...body }) => ({
@@ -22,14 +22,14 @@ const brandsApiSlice = apiSlice.injectEndpoints({
                 method: 'PUT',
                 body: body,
             }),
-            invalidatesTags: ['Brands'],
+            invalidatesTags: ['Brand'],
         }),
         deleteBrand: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/brands/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Brands'],
+            invalidatesTags: ['Brand'],
         }),
     }),
 })
@@ -39,4 +39,4 @@ export const {
     useReadBrandsQuery,
     useUpdateBrandMutation,
     useDeleteBrandMutation,
-} = brandsApiSlice
+} = brandsApi

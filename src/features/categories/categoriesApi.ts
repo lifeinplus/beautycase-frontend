@@ -1,7 +1,7 @@
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { Category } from './types'
 
-const categoriesApiSlice = apiSlice.injectEndpoints({
+const categoriesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getCategories: builder.query<Category[], void>({
             query: () => '/categories/all',
@@ -9,4 +9,4 @@ const categoriesApiSlice = apiSlice.injectEndpoints({
     }),
 })
 
-export const { useGetCategoriesQuery } = categoriesApiSlice
+export const { useGetCategoriesQuery } = categoriesApi

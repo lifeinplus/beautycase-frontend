@@ -1,9 +1,9 @@
 import type { MutationResult, QueryResult } from '../../types/api'
 import { cleanObject } from '../../utils/common'
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { Stage } from './types'
 
-const stagesApiSlice = apiSlice.injectEndpoints({
+const stagesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         createStage: builder.mutation<MutationResult, Stage>({
             query: (data) => ({
@@ -70,4 +70,4 @@ export const {
     useReadStagesQuery,
     useUpdateStageMutation,
     useDeleteStageMutation,
-} = stagesApiSlice
+} = stagesApi

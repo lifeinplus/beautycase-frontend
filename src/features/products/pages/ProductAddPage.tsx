@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { ProductForm } from '../components/ProductForm'
-import { useAddProductMutation } from '../productsApiSlice'
+import { useAddProductMutation } from '../productsApi'
 import type { Product } from '../types'
 
 export const ProductAddPage = () => {

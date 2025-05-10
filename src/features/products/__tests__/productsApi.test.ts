@@ -8,16 +8,16 @@ import {
     mockProduct,
     mockProductCreate,
     mockProducts,
-} from '../__mocks__/productsApiSlice'
+} from '../__mocks__/productsApi'
 import {
     useAddProductMutation,
     useDeleteProductMutation,
     useEditProductMutation,
     useGetProductByIdQuery,
     useGetProductsQuery,
-} from '../productsApiSlice'
+} from '../productsApi'
 
-describe('productsApiSlice', () => {
+describe('productsApi', () => {
     it('creates a new product', async () => {
         const { result } = renderHookWithProvider(() => useAddProductMutation())
 

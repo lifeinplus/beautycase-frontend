@@ -5,9 +5,9 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { type DataMessageError } from '../../../utils/errorUtils'
-import { useUploadImageTempMutation } from '../uploadsApiSlice'
+import { useUploadImageTempMutation } from '../uploadsApi'
 
-describe('uploadsApiSlice', () => {
+describe('uploadsApi', () => {
     it('uploads an image successfully', async () => {
         const { result } = renderHookWithProvider(() =>
             useUploadImageTempMutation()

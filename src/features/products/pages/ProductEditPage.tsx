@@ -6,10 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ProductForm } from '../components/ProductForm'
-import {
-    useEditProductMutation,
-    useGetProductByIdQuery,
-} from '../productsApiSlice'
+import { useEditProductMutation, useGetProductByIdQuery } from '../productsApi'
 import type { Product } from '../types'
 
 export const ProductEditPage = () => {

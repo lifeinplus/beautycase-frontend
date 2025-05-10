@@ -2,10 +2,10 @@ import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import { mockUserResult, mockUsers } from '../__mocks__/usersApiSlice'
-import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApiSlice'
+import { mockUserResult, mockUsers } from '../__mocks__/usersApi'
+import { useGetUserByIdQuery, useGetUsersQuery } from '../usersApi'
 
-describe('usersApiSlice', () => {
+describe('usersApi', () => {
     it('fetches all users successfully', async () => {
         const { result } = renderHookWithProvider(() => useGetUsersQuery())
 

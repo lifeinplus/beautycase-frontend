@@ -1,4 +1,4 @@
-import { mockProduct } from '../../__mocks__/productsApiSlice'
+import { mockProduct } from '../../__mocks__/productsApi'
 import { type ProductFormProps } from '../ProductForm'
 
 export const ProductForm = ({ title, onSubmit }: ProductFormProps) => (

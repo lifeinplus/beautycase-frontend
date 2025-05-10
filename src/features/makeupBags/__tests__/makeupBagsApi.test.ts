@@ -8,16 +8,16 @@ import {
     mockMakeupBag,
     mockMakeupBagCreate,
     mockMakeupBags,
-} from '../__mocks__/makeupBagsApiSlice'
+} from '../__mocks__/makeupBagsApi'
 import {
     useAddMakeupBagMutation,
     useDeleteMakeupBagMutation,
     useEditMakeupBagMutation,
     useGetMakeupBagByIdQuery,
     useGetMakeupBagsQuery,
-} from '../makeupBagsApiSlice'
+} from '../makeupBagsApi'
 
-describe('makeupBagsApiSlice', () => {
+describe('makeupBagsApi', () => {
     it('creates a new makeup bag', async () => {
         const { result } = renderHookWithProvider(() =>
             useAddMakeupBagMutation()

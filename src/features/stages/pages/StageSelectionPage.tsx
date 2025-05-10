@@ -9,8 +9,8 @@ import { Image } from '../../../components/ui/Image'
 import { TopPanel } from '../../../components/TopPanel'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApiSlice'
-import { useReadStagesQuery } from '../stagesApiSlice'
+import { useGetMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
+import { useReadStagesQuery } from '../stagesApi'
 import type { Stage } from '../types'
 
 export const StageSelectionPage = () => {

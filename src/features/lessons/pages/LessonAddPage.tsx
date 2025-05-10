@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { LessonForm } from '../components/LessonForm'
-import { useAddLessonMutation } from '../lessonsApiSlice'
+import { useAddLessonMutation } from '../lessonsApi'
 import type { Lesson } from '../types'
 
 export const LessonAddPage = () => {

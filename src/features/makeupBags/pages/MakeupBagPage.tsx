@@ -24,7 +24,7 @@ import { Tools } from '../../tools/components/Tools'
 import {
     useDeleteMakeupBagMutation,
     useGetMakeupBagByIdQuery,
-} from '../makeupBagsApiSlice'
+} from '../makeupBagsApi'
 
 const ACTIONS = {
     back: {

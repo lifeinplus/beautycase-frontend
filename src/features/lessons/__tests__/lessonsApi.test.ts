@@ -8,16 +8,16 @@ import {
     mockLesson,
     mockLessonCreate,
     mockLessons,
-} from '../__mocks__/lessonsApiSlice'
+} from '../__mocks__/lessonsApi'
 import {
     useAddLessonMutation,
     useDeleteLessonMutation,
     useEditLessonMutation,
     useGetLessonByIdQuery,
     useGetLessonsQuery,
-} from '../lessonsApiSlice'
+} from '../lessonsApi'
 
-describe('lessonsApiSlice', () => {
+describe('lessonsApi', () => {
     it('creates a new lesson', async () => {
         const { result } = renderHookWithProvider(() => useAddLessonMutation())
 

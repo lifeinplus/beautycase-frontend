@@ -6,10 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { LessonForm } from '../components/LessonForm'
-import {
-    useEditLessonMutation,
-    useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
+import { useEditLessonMutation, useGetLessonByIdQuery } from '../lessonsApi'
 import type { Lesson } from '../types'
 
 export const LessonEditPage = () => {

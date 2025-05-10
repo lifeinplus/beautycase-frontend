@@ -8,7 +8,7 @@ import { NavigationButton } from '../../../components/navigation/NavigationButto
 import { Image } from '../../../components/ui/Image'
 import { TopPanel } from '../../../components/TopPanel'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useGetProductsQuery } from '../productsApiSlice'
+import { useGetProductsQuery } from '../productsApi'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()

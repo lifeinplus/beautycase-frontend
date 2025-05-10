@@ -12,10 +12,7 @@ import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-import {
-    useCreateBrandMutation,
-    useUpdateBrandMutation,
-} from '../brandsApiSlice'
+import { useCreateBrandMutation, useUpdateBrandMutation } from '../brandsApi'
 import type { Brand } from '../types'
 import { brandSchema } from '../validations'
 

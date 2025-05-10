@@ -5,13 +5,13 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { useLogoutUserMutation } from '../../authApiSlice'
+import { useLogoutUserMutation } from '../../authApi'
 import { logout } from '../../authSlice'
 import { useAuthLogout } from '../useAuthLogout'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../authApiSlice')
+vi.mock('../../authApi')
 
 describe('useAuthLogout', () => {
     const mockLogoutUser = vi.fn()

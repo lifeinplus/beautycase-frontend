@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockTool } from '../../__mocks__/toolsApiSlice'
-import { useDeleteToolMutation, useGetToolByIdQuery } from '../../toolsApiSlice'
+import { mockTool } from '../../__mocks__/toolsApi'
+import { useDeleteToolMutation, useGetToolByIdQuery } from '../../toolsApi'
 import { ToolDetailsPage } from '../ToolDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-vi.mock('../../toolsApiSlice')
+vi.mock('../../toolsApi')
 
 describe('ToolDetailsPage', () => {
     const mockDeleteTool = vi.fn()

@@ -5,10 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { StageForm } from '../components/StageForm'
-import {
-    useReadStageByIdQuery,
-    useUpdateStageMutation,
-} from '../stagesApiSlice'
+import { useReadStageByIdQuery, useUpdateStageMutation } from '../stagesApi'
 import type { Stage } from '../types'
 
 export const StageEditPage = () => {

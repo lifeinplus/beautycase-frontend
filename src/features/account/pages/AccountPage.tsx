@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { selectUserId } from '../../auth/authSlice'
 import type { User, UserResult } from '../../users/types'
-import { useGetUserByIdQuery } from '../../users/usersApiSlice'
+import { useGetUserByIdQuery } from '../../users/usersApi'
 
 interface Field {
     label: string

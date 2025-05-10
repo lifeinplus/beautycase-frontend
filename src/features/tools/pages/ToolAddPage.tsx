@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { ToolForm } from '../components/ToolForm'
-import { useAddToolMutation } from '../toolsApiSlice'
+import { useAddToolMutation } from '../toolsApi'
 import type { Tool } from '../types'
 
 export const ToolAddPage = () => {

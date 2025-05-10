@@ -5,17 +5,17 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
-import { mockLesson } from '../../__mocks__/lessonsApiSlice'
+import { mockLesson } from '../../__mocks__/lessonsApi'
 import {
     useDeleteLessonMutation,
     useGetLessonByIdQuery,
-} from '../../lessonsApiSlice'
+} from '../../lessonsApi'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../utils/youtube')
-vi.mock('../../lessonsApiSlice')
+vi.mock('../../lessonsApi')
 
 describe('LessonDetailsPage', () => {
     const mockDeleteLesson = vi.fn()

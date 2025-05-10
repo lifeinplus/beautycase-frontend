@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockProduct } from '../../__mocks__/productsApiSlice'
+import { mockProduct } from '../../__mocks__/productsApi'
 import {
     useDeleteProductMutation,
     useGetProductByIdQuery,
-} from '../../productsApiSlice'
+} from '../../productsApi'
 import { ProductDetailsPage } from '../ProductDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-vi.mock('../../productsApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductDetailsPage', () => {
     const mockDeleteProduct = vi.fn()

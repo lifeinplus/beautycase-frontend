@@ -7,7 +7,7 @@ import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
     useReadStageByIdQuery,
-} from '../stagesApiSlice'
+} from '../stagesApi'
 
 export const StageDetailsPage = () => {
     const { pathname } = useLocation()

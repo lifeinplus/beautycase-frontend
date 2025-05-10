@@ -1,10 +1,10 @@
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 
 export interface UploadResult {
     imageUrl: string
 }
 
-export const uploadsApiSlice = apiSlice.injectEndpoints({
+const uploadsApi = api.injectEndpoints({
     endpoints: (builder) => ({
         uploadImageTemp: builder.mutation<UploadResult, FormData>({
             query: (formData) => {
@@ -18,4 +18,4 @@ export const uploadsApiSlice = apiSlice.injectEndpoints({
     }),
 })
 
-export const { useUploadImageTempMutation } = uploadsApiSlice
+export const { useUploadImageTempMutation } = uploadsApi

@@ -1,8 +1,8 @@
 import type { MutationResult, QueryResult } from '../../types/api'
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import type { MakeupBag } from './types'
 
-const makeupBagsApiSlice = apiSlice.injectEndpoints({
+const makeupBagsApi = api.injectEndpoints({
     endpoints: (builder) => ({
         addMakeupBag: builder.mutation<MutationResult, Partial<MakeupBag>>({
             query: (data) => ({
@@ -64,4 +64,4 @@ export const {
     useEditMakeupBagMutation,
     useGetMakeupBagByIdQuery,
     useGetMakeupBagsQuery,
-} = makeupBagsApiSlice
+} = makeupBagsApi

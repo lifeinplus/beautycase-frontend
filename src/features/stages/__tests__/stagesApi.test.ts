@@ -7,7 +7,7 @@ import {
     mockStageCreate,
     mockStageDuplicate,
     mockStages,
-} from '../__mocks__/stagesApiSlice'
+} from '../__mocks__/stagesApi'
 import {
     useCreateStageMutation,
     useDeleteStageMutation,
@@ -15,9 +15,9 @@ import {
     useReadStagesQuery,
     useReadStageByIdQuery,
     useUpdateStageMutation,
-} from '../stagesApiSlice'
+} from '../stagesApi'
 
-describe('stagesApiSlice', () => {
+describe('stagesApi', () => {
     it('creates a new stage', async () => {
         const { result } = renderHookWithProvider(() =>
             useCreateStageMutation()

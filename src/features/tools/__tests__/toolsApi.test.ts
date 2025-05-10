@@ -2,16 +2,16 @@ import { describe, expect, it } from 'vitest'
 import { act, waitFor } from '@testing-library/react'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApiSlice'
+import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApi'
 import {
     useAddToolMutation,
     useDeleteToolMutation,
     useEditToolMutation,
     useGetToolByIdQuery,
     useGetToolsQuery,
-} from '../toolsApiSlice'
+} from '../toolsApi'
 
-describe('toolsApiSlice', () => {
+describe('toolsApi', () => {
     it('fetches all tools successfully', async () => {
         const { result } = renderHookWithProvider(() => useGetToolsQuery())
 

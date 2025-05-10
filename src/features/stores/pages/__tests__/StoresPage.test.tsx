@@ -7,10 +7,7 @@ import toast from 'react-hot-toast'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
-import {
-    useReadStoresQuery,
-    useDeleteStoreMutation,
-} from '../../storesApiSlice'
+import { useReadStoresQuery, useDeleteStoreMutation } from '../../storesApi'
 import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
@@ -26,7 +23,7 @@ vi.mock('../../../form/formSlice')
 vi.mock('../../components/StoreForm')
 vi.mock('../../components/StoresMobileView')
 vi.mock('../../components/StoresTable')
-vi.mock('../../storesApiSlice')
+vi.mock('../../storesApi')
 
 describe('StoresPage', () => {
     const mockStores: Store[] = [

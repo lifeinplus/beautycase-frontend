@@ -1,4 +1,4 @@
-import { apiSlice } from '../api/apiSlice'
+import { api } from '../api/api'
 import { AuthState } from './authSlice'
 
 export interface AuthQueryLogin {
@@ -19,7 +19,7 @@ export interface AuthQueryRegister {
     confirmPassword: string
 }
 
-const authApiSlice = apiSlice.injectEndpoints({
+const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         loginUser: builder.mutation<AuthResultLogin, AuthQueryLogin>({
             query: (credentials) => ({
@@ -48,4 +48,4 @@ export const {
     useLoginUserMutation,
     useLogoutUserMutation,
     useRegisterUserMutation,
-} = authApiSlice
+} = authApi

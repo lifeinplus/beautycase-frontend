@@ -7,14 +7,14 @@ import {
     mockLoginResult,
     mockRegisterParams,
     mockRegisterResult,
-} from '../__mocks__/authApiSlice'
+} from '../__mocks__/authApi'
 import {
     useLoginUserMutation,
     useLogoutUserMutation,
     useRegisterUserMutation,
-} from '../authApiSlice'
+} from '../authApi'
 
-describe('authApiSlice', () => {
+describe('authApi', () => {
     describe('loginUser', () => {
         it('should login user successfully', async () => {
             const { result } = renderHookWithProvider(() =>

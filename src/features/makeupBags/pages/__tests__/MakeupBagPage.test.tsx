@@ -7,11 +7,11 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApiSlice'
+import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagMutation,
     useGetMakeupBagByIdQuery,
-} from '../../makeupBagsApiSlice'
+} from '../../makeupBagsApi'
 import { MakeupBagPage } from '../MakeupBagPage'
 
 vi.mock('../../../../app/hooks')
@@ -28,7 +28,7 @@ vi.mock('../../../auth/authSlice')
 vi.mock('../../../form/formSlice')
 vi.mock('../../../stages/components/Stages')
 vi.mock('../../../tools/components/Tools')
-vi.mock('../../makeupBagsApiSlice')
+vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagPage', () => {
     const mockDeleteMakeupBag = vi.fn()

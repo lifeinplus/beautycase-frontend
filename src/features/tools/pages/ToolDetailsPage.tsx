@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
-import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApiSlice'
+import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApi'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()

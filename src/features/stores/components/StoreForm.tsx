@@ -12,10 +12,7 @@ import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-import {
-    useCreateStoreMutation,
-    useUpdateStoreMutation,
-} from '../storesApiSlice'
+import { useCreateStoreMutation, useUpdateStoreMutation } from '../storesApi'
 import type { Store } from '../types'
 import { storeSchema } from '../validations'
 

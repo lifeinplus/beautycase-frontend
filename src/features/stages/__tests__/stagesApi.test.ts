@@ -13,7 +13,7 @@ import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
     useReadStagesQuery,
-    useReadStageByIdQuery,
+    useReadStageQuery,
     useUpdateStageMutation,
 } from '../stagesApi'
 
@@ -58,7 +58,7 @@ describe('stagesApi', () => {
 
     it('reads a stage by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadStageByIdQuery('stage1')
+            useReadStageQuery('stage1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -102,7 +102,7 @@ describe('stagesApi', () => {
 
     it('handles 404 error when stage is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadStageByIdQuery('999')
+            useReadStageQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

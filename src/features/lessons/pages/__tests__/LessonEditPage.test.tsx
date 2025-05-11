@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockLesson } from '../../__mocks__/lessonsApi'
-import { useEditLessonMutation, useGetLessonByIdQuery } from '../../lessonsApi'
+import { useUpdateLessonMutation, useReadLessonQuery } from '../../lessonsApi'
 import { LessonEditPage } from '../LessonEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -22,13 +22,13 @@ describe('LessonEditPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useEditLessonMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateLessonMutation as Mock).mockReturnValue([
             mockEditLesson,
         ])
 
         mockEditLesson.mockReturnValue({ unwrap: mockUnwrap })
 
-        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadLessonQuery as Mock).mockReturnValue({
             data: mockLesson,
         })
     })

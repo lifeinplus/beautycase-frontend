@@ -1,9 +1,9 @@
 import { GalleryPage } from '../../../components/gallery/GalleryPage'
 import { ImageCard } from '../../../components/gallery/ImageCard'
-import { useGetProductsQuery } from '../productsApi'
+import { useReadProductsQuery } from '../productsApi'
 
 export const ProductGalleryPage = () => {
-    const { data: products, isLoading, error } = useGetProductsQuery()
+    const { data: products, isLoading, error } = useReadProductsQuery()
 
     return (
         <GalleryPage

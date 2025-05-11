@@ -12,10 +12,12 @@ const storesApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Store'],
         }),
+
         readStores: builder.query<Store[], void>({
             query: () => '/stores',
             providesTags: ['Store'],
         }),
+
         updateStore: builder.mutation<Store, Store>({
             query: ({ _id, ...body }) => ({
                 url: `/stores/${_id}`,
@@ -24,6 +26,7 @@ const storesApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Store'],
         }),
+
         deleteStore: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stores/${id}`,

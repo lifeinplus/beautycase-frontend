@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
 import { mockMakeupBags } from '../../../makeupBags/__mocks__/makeupBagsApi'
-import { useGetMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
 import { mockStages } from '../../__mocks__/stagesApi'
 import { useReadStagesQuery } from '../../stagesApi'
 import { StageSelectionPage } from '../StageSelectionPage'
@@ -31,7 +31,7 @@ describe('StageSelectionPage', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
 

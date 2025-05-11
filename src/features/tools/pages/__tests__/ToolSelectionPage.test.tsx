@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { mockTools } from '../../__mocks__/toolsApi'
-import { useGetToolsQuery } from '../../toolsApi'
+import { useReadToolsQuery } from '../../toolsApi'
 import { ToolSelectionPage } from '../ToolSelectionPage'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import userEvent from '@testing-library/user-event'
@@ -25,7 +25,7 @@ describe('ToolSelectionPage', () => {
     }
 
     beforeEach(() => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: mockTools,
             isLoading: false,
             error: null,
@@ -35,7 +35,7 @@ describe('ToolSelectionPage', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -48,7 +48,7 @@ describe('ToolSelectionPage', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,

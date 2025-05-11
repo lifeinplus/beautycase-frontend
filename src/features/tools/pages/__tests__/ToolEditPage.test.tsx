@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockTool } from '../../__mocks__/toolsApi'
-import { useEditToolMutation, useGetToolByIdQuery } from '../../toolsApi'
+import { useUpdateToolMutation, useReadToolQuery } from '../../toolsApi'
 import { ToolEditPage } from '../ToolEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -22,12 +22,12 @@ describe('ToolEditPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useEditToolMutation as Mock).mockReturnValue([mockEditTool])
+        vi.mocked(useUpdateToolMutation as Mock).mockReturnValue([mockEditTool])
 
         mockEditTool.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolQuery as Mock).mockReturnValue({
             data: mockTool,
         })
     })

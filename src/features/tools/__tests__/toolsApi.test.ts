@@ -4,16 +4,16 @@ import { act, waitFor } from '@testing-library/react'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApi'
 import {
-    useAddToolMutation,
+    useCreateToolMutation,
     useDeleteToolMutation,
-    useEditToolMutation,
-    useGetToolByIdQuery,
-    useGetToolsQuery,
+    useUpdateToolMutation,
+    useReadToolQuery,
+    useReadToolsQuery,
 } from '../toolsApi'
 
 describe('toolsApi', () => {
     it('fetches all tools successfully', async () => {
-        const { result } = renderHookWithProvider(() => useGetToolsQuery())
+        const { result } = renderHookWithProvider(() => useReadToolsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -24,7 +24,7 @@ describe('toolsApi', () => {
 
     it('fetches a single tool successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetToolByIdQuery(mockTool._id!)
+            useReadToolQuery(mockTool._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -35,7 +35,7 @@ describe('toolsApi', () => {
     })
 
     it('adds a new tool successfully', async () => {
-        const { result } = renderHookWithProvider(() => useAddToolMutation())
+        const { result } = renderHookWithProvider(() => useCreateToolMutation())
 
         const [addTool] = result.current
 
@@ -46,7 +46,7 @@ describe('toolsApi', () => {
     })
 
     it('edits a tool successfully', async () => {
-        const { result } = renderHookWithProvider(() => useEditToolMutation())
+        const { result } = renderHookWithProvider(() => useUpdateToolMutation())
 
         const [editTool] = result.current
 
@@ -76,9 +76,7 @@ describe('toolsApi', () => {
     })
 
     it('handles 404 error when tool is not found', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useGetToolByIdQuery('999')
-        )
+        const { result } = renderHookWithProvider(() => useReadToolQuery('999'))
 
         expect(result.current.isLoading).toBe(true)
 

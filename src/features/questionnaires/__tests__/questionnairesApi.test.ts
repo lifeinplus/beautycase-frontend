@@ -10,15 +10,15 @@ import {
     mockQuestionnaires,
 } from '../__mocks__/questionnairesApi'
 import {
-    useAddQuestionnaireMutation,
-    useGetQuestionnairesQuery,
-    useGetQuestionnaireByIdQuery,
+    useCreateQuestionnaireMutation,
+    useReadQuestionnairesQuery,
+    useReadQuestionnaireQuery,
 } from '../questionnairesApi'
 
 describe('questionnairesApi', () => {
     it('creates a new questionnaire', async () => {
         const { result } = renderHookWithProvider(() =>
-            useAddQuestionnaireMutation()
+            useCreateQuestionnaireMutation()
         )
 
         const [createQuestionnaire] = result.current
@@ -32,7 +32,7 @@ describe('questionnairesApi', () => {
 
     it('reads all questionnaires', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetQuestionnairesQuery()
+            useReadQuestionnairesQuery()
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -46,7 +46,7 @@ describe('questionnairesApi', () => {
 
     it('reads a questionnaire by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetQuestionnaireByIdQuery(mockQuestionnaire._id!)
+            useReadQuestionnaireQuery(mockQuestionnaire._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -59,7 +59,7 @@ describe('questionnairesApi', () => {
 
     it('returns error on failed questionnaire creation', async () => {
         server.use(
-            http.post('api/questionnaires/one', () => {
+            http.post('api/questionnaires', () => {
                 return HttpResponse.json(
                     { message: 'Invalid Data' },
                     { status: 400 }
@@ -68,7 +68,7 @@ describe('questionnairesApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useAddQuestionnaireMutation()
+            useCreateQuestionnaireMutation()
         )
 
         const [addQuestionnaire] = result.current
@@ -85,7 +85,7 @@ describe('questionnairesApi', () => {
 
     it('handles 404 error when questionnaire is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetQuestionnaireByIdQuery('999')
+            useReadQuestionnaireQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

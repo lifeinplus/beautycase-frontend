@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
-import { useDeleteToolMutation, useGetToolByIdQuery } from '../toolsApi'
+import { useDeleteToolMutation, useReadToolQuery } from '../toolsApi'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useGetToolByIdQuery(id!)
+    const { data, isLoading, error } = useReadToolQuery(id!)
     const [deleteTool] = useDeleteToolMutation()
 
     return (

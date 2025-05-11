@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ToolForm } from '../components/ToolForm'
-import { useEditToolMutation, useGetToolByIdQuery } from '../toolsApi'
+import { useUpdateToolMutation, useReadToolQuery } from '../toolsApi'
 import type { Tool } from '../types'
 
 export const ToolEditPage = () => {
@@ -16,8 +16,8 @@ export const ToolEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editTool] = useEditToolMutation()
-    const { data } = useGetToolByIdQuery(id!)
+    const [editTool] = useUpdateToolMutation()
+    const { data } = useReadToolQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {

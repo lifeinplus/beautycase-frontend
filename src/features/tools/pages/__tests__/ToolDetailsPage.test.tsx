@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockTool } from '../../__mocks__/toolsApi'
-import { useDeleteToolMutation, useGetToolByIdQuery } from '../../toolsApi'
+import { useDeleteToolMutation, useReadToolQuery } from '../../toolsApi'
 import { ToolDetailsPage } from '../ToolDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
@@ -13,7 +13,7 @@ describe('ToolDetailsPage', () => {
     const mockDeleteTool = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolQuery as Mock).mockReturnValue({
             data: mockTool,
             isLoading: false,
             error: null,

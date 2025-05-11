@@ -28,13 +28,13 @@ export const mockUserResult: UserResult = {
     ],
 }
 
-export const mockUseGetUserByIdQuery = vi.fn()
+export const mockUseReadUserQuery = vi.fn()
 
-export const useGetUsersQuery = vi.fn()
-export const useGetUserByIdQuery = () => mockUseGetUserByIdQuery()
+export const useReadUsersQuery = vi.fn()
+export const useReadUserQuery = () => mockUseReadUserQuery()
 
 const usersHandlers = [
-    http.get('api/users/all', async () => HttpResponse.json(mockUsers)),
+    http.get('api/users', async () => HttpResponse.json(mockUsers)),
 
     http.get('api/users/:id', async ({ params }) => {
         return mockUserResult.user._id === params.id

@@ -43,7 +43,7 @@ export const mockStages: Stage[] = [
 
 export const useCreateStageMutation = vi.fn()
 export const useDuplicateStageMutation = vi.fn()
-export const useReadStageByIdQuery = vi.fn()
+export const useReadStageQuery = vi.fn()
 export const useReadStagesQuery = vi.fn()
 export const useUpdateStageMutation = vi.fn()
 export const useDeleteStageMutation = vi.fn()

@@ -5,27 +5,29 @@ import { Questionnaire } from './types'
 
 const questionnairesApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        addQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
+        createQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
             query: (data) => ({
-                url: '/questionnaires/one',
+                url: '/questionnaires',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Questionnaire'],
         }),
-        getQuestionnaireById: builder.query<Questionnaire, string>({
+
+        readQuestionnaire: builder.query<Questionnaire, string>({
             query: (id) => `/questionnaires/${id}`,
             providesTags: ['Questionnaire'],
         }),
-        getQuestionnaires: builder.query<Questionnaire[], void>({
-            query: () => '/questionnaires/all',
+
+        readQuestionnaires: builder.query<Questionnaire[], void>({
+            query: () => '/questionnaires',
             providesTags: ['Questionnaire'],
         }),
     }),
 })
 
 export const {
-    useAddQuestionnaireMutation,
-    useGetQuestionnaireByIdQuery,
-    useGetQuestionnairesQuery,
+    useCreateQuestionnaireMutation,
+    useReadQuestionnaireQuery,
+    useReadQuestionnairesQuery,
 } = questionnairesApi

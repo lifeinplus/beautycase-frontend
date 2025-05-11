@@ -10,7 +10,7 @@ import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagMutation,
-    useGetMakeupBagByIdQuery,
+    useReadMakeupBagQuery,
 } from '../../makeupBagsApi'
 import { MakeupBagPage } from '../MakeupBagPage'
 
@@ -41,7 +41,7 @@ describe('MakeupBagPage', () => {
             return null
         })
 
-        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagQuery as Mock).mockReturnValue({
             data: mockMakeupBag,
             isLoading: false,
             error: null,

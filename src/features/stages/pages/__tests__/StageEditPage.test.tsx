@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockStage } from '../../__mocks__/stagesApi'
-import { useReadStageByIdQuery, useUpdateStageMutation } from '../../stagesApi'
+import { useReadStageQuery, useUpdateStageMutation } from '../../stagesApi'
 import { StageEditPage } from '../StageEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -29,7 +29,7 @@ describe('StageEditPage', () => {
         mockEditStage.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: mockStage,
         })
     })

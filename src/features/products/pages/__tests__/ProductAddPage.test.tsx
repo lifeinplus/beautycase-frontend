@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockProduct, mockProductCreate } from '../../__mocks__/productsApi'
-import { useAddProductMutation } from '../../productsApi'
+import { useCreateProductMutation } from '../../productsApi'
 import { ProductAddPage } from '../ProductAddPage'
 
 vi.mock('../../../../app/hooks')
@@ -22,7 +22,7 @@ describe('ProductAddPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddProductMutation as Mock).mockReturnValue([
+        vi.mocked(useCreateProductMutation as Mock).mockReturnValue([
             mockAddProduct,
         ])
 

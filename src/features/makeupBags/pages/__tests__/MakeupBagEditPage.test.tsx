@@ -9,8 +9,8 @@ import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
-    useEditMakeupBagMutation,
-    useGetMakeupBagByIdQuery,
+    useUpdateMakeupBagMutation,
+    useReadMakeupBagQuery,
 } from '../../makeupBagsApi'
 import { MakeupBagEditPage } from '../MakeupBagEditPage'
 
@@ -25,14 +25,14 @@ describe('MakeupBagEditPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useEditMakeupBagMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateMakeupBagMutation as Mock).mockReturnValue([
             mockEditMakeupBag,
         ])
 
         mockEditMakeupBag.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagQuery as Mock).mockReturnValue({
             data: mockMakeupBag,
         })
     })

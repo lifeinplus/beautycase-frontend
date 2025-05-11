@@ -10,16 +10,18 @@ import {
     mockLessons,
 } from '../__mocks__/lessonsApi'
 import {
-    useAddLessonMutation,
+    useCreateLessonMutation,
     useDeleteLessonMutation,
-    useEditLessonMutation,
-    useGetLessonByIdQuery,
-    useGetLessonsQuery,
+    useUpdateLessonMutation,
+    useReadLessonQuery,
+    useReadLessonsQuery,
 } from '../lessonsApi'
 
 describe('lessonsApi', () => {
     it('creates a new lesson', async () => {
-        const { result } = renderHookWithProvider(() => useAddLessonMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateLessonMutation()
+        )
 
         const [addLesson] = result.current
 
@@ -31,7 +33,7 @@ describe('lessonsApi', () => {
     })
 
     it('reads all lessons', async () => {
-        const { result } = renderHookWithProvider(() => useGetLessonsQuery())
+        const { result } = renderHookWithProvider(() => useReadLessonsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -44,7 +46,7 @@ describe('lessonsApi', () => {
 
     it('reads a lesson by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetLessonByIdQuery('lesson1')
+            useReadLessonQuery('lesson1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -56,7 +58,9 @@ describe('lessonsApi', () => {
     })
 
     it('updates a lesson', async () => {
-        const { result } = renderHookWithProvider(() => useEditLessonMutation())
+        const { result } = renderHookWithProvider(() =>
+            useUpdateLessonMutation()
+        )
 
         const [editLesson] = result.current
 
@@ -91,12 +95,14 @@ describe('lessonsApi', () => {
 
     it('returns 400 error on failed lesson creation', async () => {
         server.use(
-            http.post('api/lessons/one', () =>
+            http.post('api/lessons', () =>
                 HttpResponse.json({ message: 'Invalid Data' }, { status: 400 })
             )
         )
 
-        const { result } = renderHookWithProvider(() => useAddLessonMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateLessonMutation()
+        )
 
         const [addLesson] = result.current
 
@@ -131,7 +137,7 @@ describe('lessonsApi', () => {
 
     it('returns 404 error when lesson is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetLessonByIdQuery('999')
+            useReadLessonQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockTools } from '../../__mocks__/toolsApi'
-import { useGetToolsQuery } from '../../toolsApi'
+import { useReadToolsQuery } from '../../toolsApi'
 import { ToolsGalleryPage } from '../ToolsGalleryPage'
 
 vi.mock('../../../../components/gallery/GalleryPage')
@@ -11,7 +11,7 @@ vi.mock('../../toolsApi')
 
 describe('ToolsGalleryPage', () => {
     beforeEach(() => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: mockTools,
             isLoading: false,
             error: null,

@@ -6,7 +6,7 @@ import type { Product } from '../../products/types'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
-    useReadStageByIdQuery,
+    useReadStageQuery,
 } from '../stagesApi'
 
 export const StageDetailsPage = () => {
@@ -14,7 +14,7 @@ export const StageDetailsPage = () => {
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useReadStageByIdQuery(id!)
+    const { data, isLoading, error } = useReadStageQuery(id!)
     const [deleteStage] = useDeleteStageMutation()
     const [duplicateStage] = useDuplicateStageMutation()
 

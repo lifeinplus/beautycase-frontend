@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockMakeupBags } from '../../__mocks__/makeupBagsApi'
-import { useGetMakeupBagsQuery } from '../../makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../../makeupBagsApi'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
 vi.mock('../../../../app/hooks')
@@ -27,7 +27,7 @@ describe('MakeupBagListPage', () => {
             return null
         })
 
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
             isLoading: false,
             error: null,

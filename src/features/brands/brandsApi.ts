@@ -12,10 +12,12 @@ const brandsApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Brand'],
         }),
+
         readBrands: builder.query<Brand[], void>({
             query: () => '/brands',
             providesTags: ['Brand'],
         }),
+
         updateBrand: builder.mutation<Brand, Brand>({
             query: ({ _id, ...body }) => ({
                 url: `/brands/${_id}`,
@@ -24,6 +26,7 @@ const brandsApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Brand'],
         }),
+
         deleteBrand: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/brands/${id}`,

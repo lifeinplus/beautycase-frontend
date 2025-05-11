@@ -5,42 +5,22 @@ import type { Product } from './types'
 
 const productsApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        addProduct: builder.mutation<MutationResult, Product>({
+        createProduct: builder.mutation<MutationResult, Product>({
             query: (data) => ({
-                url: '/products/one',
+                url: '/products',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Product'],
         }),
 
-        deleteProduct: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/products/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
-        }),
-
-        editProduct: builder.mutation<Product, { id: string; body: Product }>({
-            query: (data) => ({
-                url: `/products/${data.id}`,
-                method: 'PUT',
-                body: cleanObject(data.body),
-            }),
-            invalidatesTags: (_result, _error, data) => [
-                { type: 'Product', id: data.id },
-                { type: 'Product', id: 'LIST' },
-            ],
-        }),
-
-        getProductById: builder.query<Product, string>({
+        readProduct: builder.query<Product, string>({
             query: (id) => `/products/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Product', id }],
         }),
 
-        getProducts: builder.query<Product[], void>({
-            query: () => '/products/all',
+        readProducts: builder.query<Product[], void>({
+            query: () => '/products',
             providesTags: (result) =>
                 result
                     ? [
@@ -52,13 +32,35 @@ const productsApi = api.injectEndpoints({
                       ]
                     : [{ type: 'Product', id: 'LIST' }],
         }),
+
+        updateProduct: builder.mutation<Product, { id: string; body: Product }>(
+            {
+                query: (data) => ({
+                    url: `/products/${data.id}`,
+                    method: 'PUT',
+                    body: cleanObject(data.body),
+                }),
+                invalidatesTags: (_result, _error, data) => [
+                    { type: 'Product', id: data.id },
+                    { type: 'Product', id: 'LIST' },
+                ],
+            }
+        ),
+
+        deleteProduct: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/products/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
+        }),
     }),
 })
 
 export const {
-    useAddProductMutation,
+    useCreateProductMutation,
+    useReadProductQuery,
+    useReadProductsQuery,
+    useUpdateProductMutation,
     useDeleteProductMutation,
-    useEditProductMutation,
-    useGetProductByIdQuery,
-    useGetProductsQuery,
 } = productsApi

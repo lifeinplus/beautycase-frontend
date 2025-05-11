@@ -39,16 +39,16 @@ export const mockProducts: Product[] = [
     },
 ]
 
-export const useAddProductMutation = vi.fn()
+export const useCreateProductMutation = vi.fn()
 export const useDeleteProductMutation = vi.fn()
-export const useEditProductMutation = vi.fn()
-export const useGetProductByIdQuery = vi.fn()
-export const useGetProductsQuery = vi.fn()
+export const useUpdateProductMutation = vi.fn()
+export const useReadProductQuery = vi.fn()
+export const useReadProductsQuery = vi.fn()
 
 const productsHandlers = [
-    http.post('api/products/one', () => HttpResponse.json(mockProductCreate)),
+    http.post('api/products', () => HttpResponse.json(mockProductCreate)),
 
-    http.get('api/products/all', () => HttpResponse.json(mockProducts)),
+    http.get('api/products', () => HttpResponse.json(mockProducts)),
 
     http.get('api/products/:id', ({ params }) => {
         const product = mockProducts.find((p) => p._id === params.id)

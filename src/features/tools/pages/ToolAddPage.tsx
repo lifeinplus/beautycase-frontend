@@ -5,14 +5,14 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { ToolForm } from '../components/ToolForm'
-import { useAddToolMutation } from '../toolsApi'
+import { useCreateToolMutation } from '../toolsApi'
 import type { Tool } from '../types'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addTool] = useAddToolMutation()
+    const [addTool] = useCreateToolMutation()
 
     const handleAddTool = async (tool: Tool) => {
         try {

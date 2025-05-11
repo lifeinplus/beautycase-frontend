@@ -4,22 +4,35 @@ import type { MakeupBag } from './types'
 
 const makeupBagsApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        addMakeupBag: builder.mutation<MutationResult, Partial<MakeupBag>>({
+        createMakeupBag: builder.mutation<MutationResult, Partial<MakeupBag>>({
             query: (data) => ({
-                url: '/makeup-bags/one',
+                url: '/makeup-bags',
                 method: 'POST',
                 body: data,
             }),
             invalidatesTags: ['MakeupBag'],
         }),
-        deleteMakeupBag: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/makeup-bags/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'MakeupBag', id: 'LIST' }],
+
+        readMakeupBag: builder.query<MakeupBag, string>({
+            query: (id) => `/makeup-bags/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'MakeupBag', id }],
         }),
-        editMakeupBag: builder.mutation<
+
+        readMakeupBags: builder.query<MakeupBag[], void>({
+            query: () => '/makeup-bags',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'MakeupBag' as const,
+                              id: _id,
+                          })),
+                          { type: 'MakeupBag', id: 'LIST' },
+                      ]
+                    : [{ type: 'MakeupBag', id: 'LIST' }],
+        }),
+
+        updateMakeupBag: builder.mutation<
             MakeupBag,
             { id: string } & Partial<MakeupBag>
         >({
@@ -38,30 +51,21 @@ const makeupBagsApi = api.injectEndpoints({
                 { type: 'MakeupBag', id: 'LIST' },
             ],
         }),
-        getMakeupBagById: builder.query<MakeupBag, string>({
-            query: (id) => `/makeup-bags/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'MakeupBag', id }],
-        }),
-        getMakeupBags: builder.query<MakeupBag[], void>({
-            query: () => '/makeup-bags/all',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ _id }) => ({
-                              type: 'MakeupBag' as const,
-                              id: _id,
-                          })),
-                          { type: 'MakeupBag', id: 'LIST' },
-                      ]
-                    : [{ type: 'MakeupBag', id: 'LIST' }],
+
+        deleteMakeupBag: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/makeup-bags/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'MakeupBag', id: 'LIST' }],
         }),
     }),
 })
 
 export const {
-    useAddMakeupBagMutation,
+    useCreateMakeupBagMutation,
+    useReadMakeupBagQuery,
+    useReadMakeupBagsQuery,
+    useUpdateMakeupBagMutation,
     useDeleteMakeupBagMutation,
-    useEditMakeupBagMutation,
-    useGetMakeupBagByIdQuery,
-    useGetMakeupBagsQuery,
 } = makeupBagsApi

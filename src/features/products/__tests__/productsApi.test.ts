@@ -10,16 +10,18 @@ import {
     mockProducts,
 } from '../__mocks__/productsApi'
 import {
-    useAddProductMutation,
+    useCreateProductMutation,
+    useReadProductQuery,
+    useReadProductsQuery,
+    useUpdateProductMutation,
     useDeleteProductMutation,
-    useEditProductMutation,
-    useGetProductByIdQuery,
-    useGetProductsQuery,
 } from '../productsApi'
 
 describe('productsApi', () => {
     it('creates a new product', async () => {
-        const { result } = renderHookWithProvider(() => useAddProductMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateProductMutation()
+        )
 
         const [addProduct] = result.current
 
@@ -30,7 +32,7 @@ describe('productsApi', () => {
     })
 
     it('reads all products', async () => {
-        const { result } = renderHookWithProvider(() => useGetProductsQuery())
+        const { result } = renderHookWithProvider(() => useReadProductsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -43,7 +45,7 @@ describe('productsApi', () => {
 
     it('reads a product by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetProductByIdQuery('product1')
+            useReadProductQuery('product1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -56,7 +58,7 @@ describe('productsApi', () => {
 
     it('updates a product', async () => {
         const { result } = renderHookWithProvider(() =>
-            useEditProductMutation()
+            useUpdateProductMutation()
         )
 
         const [editProduct] = result.current
@@ -92,12 +94,14 @@ describe('productsApi', () => {
 
     it('returns 400 error on failed product creation', async () => {
         server.use(
-            http.post('api/products/one', () =>
+            http.post('api/products', () =>
                 HttpResponse.json({ message: 'Invalid Data' }, { status: 400 })
             )
         )
 
-        const { result } = renderHookWithProvider(() => useAddProductMutation())
+        const { result } = renderHookWithProvider(() =>
+            useCreateProductMutation()
+        )
 
         const [addProduct] = result.current
 
@@ -132,7 +136,7 @@ describe('productsApi', () => {
 
     it('returns 404 error when product is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetProductByIdQuery('999')
+            useReadProductQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

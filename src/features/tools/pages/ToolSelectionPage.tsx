@@ -7,14 +7,14 @@ import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { Image } from '../../../components/ui/Image'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useGetToolsQuery } from '../toolsApi'
+import { useReadToolsQuery } from '../toolsApi'
 
 export const ToolSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: tools, isLoading, error } = useGetToolsQuery()
+    const { data: tools, isLoading, error } = useReadToolsQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.toolIds || []

@@ -4,7 +4,7 @@ import type { Lesson } from './types'
 
 const lessonsApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        addLesson: builder.mutation<MutationResult, Partial<Lesson>>({
+        createLesson: builder.mutation<MutationResult, Partial<Lesson>>({
             query: ({
                 title,
                 shortDescription,
@@ -12,7 +12,7 @@ const lessonsApi = api.injectEndpoints({
                 fullDescription,
                 productIds,
             }) => ({
-                url: '/lessons/one',
+                url: '/lessons',
                 method: 'POST',
                 body: {
                     title,
@@ -24,14 +24,30 @@ const lessonsApi = api.injectEndpoints({
             }),
             invalidatesTags: ['Lesson'],
         }),
-        deleteLesson: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/lessons/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Lesson', id: 'LIST' }],
+
+        readLesson: builder.query<Lesson, string>({
+            query: (id) => `/lessons/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Lesson', id }],
         }),
-        editLesson: builder.mutation<Lesson, { id: string } & Partial<Lesson>>({
+
+        readLessons: builder.query<Lesson[], void>({
+            query: () => '/lessons',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Lesson' as const,
+                              id: _id,
+                          })),
+                          { type: 'Lesson', id: 'LIST' },
+                      ]
+                    : [{ type: 'Lesson', id: 'LIST' }],
+        }),
+
+        updateLesson: builder.mutation<
+            Lesson,
+            { id: string } & Partial<Lesson>
+        >({
             query: ({
                 id,
                 fullDescription,
@@ -55,30 +71,21 @@ const lessonsApi = api.injectEndpoints({
                 { type: 'Lesson', id: 'LIST' },
             ],
         }),
-        getLessonById: builder.query<Lesson, string>({
-            query: (id) => `/lessons/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Lesson', id }],
-        }),
-        getLessons: builder.query<Lesson[], void>({
-            query: () => '/lessons/all',
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ _id }) => ({
-                              type: 'Lesson' as const,
-                              id: _id,
-                          })),
-                          { type: 'Lesson', id: 'LIST' },
-                      ]
-                    : [{ type: 'Lesson', id: 'LIST' }],
+
+        deleteLesson: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/lessons/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Lesson', id: 'LIST' }],
         }),
     }),
 })
 
 export const {
-    useAddLessonMutation,
-    useEditLessonMutation,
-    useGetLessonByIdQuery,
-    useGetLessonsQuery,
+    useCreateLessonMutation,
+    useReadLessonQuery,
+    useReadLessonsQuery,
+    useUpdateLessonMutation,
     useDeleteLessonMutation,
 } = lessonsApi

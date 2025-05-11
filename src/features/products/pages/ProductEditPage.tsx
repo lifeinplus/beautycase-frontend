@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ProductForm } from '../components/ProductForm'
-import { useEditProductMutation, useGetProductByIdQuery } from '../productsApi'
+import { useUpdateProductMutation, useReadProductQuery } from '../productsApi'
 import type { Product } from '../types'
 
 export const ProductEditPage = () => {
@@ -16,8 +16,8 @@ export const ProductEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editProduct] = useEditProductMutation()
-    const { data } = useGetProductByIdQuery(id!)
+    const [editProduct] = useUpdateProductMutation()
+    const { data } = useReadProductQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {

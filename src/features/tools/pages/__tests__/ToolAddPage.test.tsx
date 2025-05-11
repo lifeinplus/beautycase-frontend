@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockTool, mockToolCreate } from '../../__mocks__/toolsApi'
-import { useAddToolMutation } from '../../toolsApi'
+import { useCreateToolMutation } from '../../toolsApi'
 import { ToolAddPage } from '../ToolAddPage'
 
 vi.mock('../../../../app/hooks')
@@ -22,7 +22,7 @@ describe('ToolAddPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddToolMutation as Mock).mockReturnValue([mockAddTool])
+        vi.mocked(useCreateToolMutation as Mock).mockReturnValue([mockAddTool])
 
         mockAddTool.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue(mockToolCreate)

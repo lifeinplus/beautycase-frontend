@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockLesson, mockLessonCreate } from '../../__mocks__/lessonsApi'
-import { useAddLessonMutation } from '../../lessonsApi'
+import { useCreateLessonMutation } from '../../lessonsApi'
 import { LessonAddPage } from '../LessonAddPage'
 
 vi.mock('../../../../app/hooks')
@@ -22,7 +22,9 @@ describe('LessonAddPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddLessonMutation as Mock).mockReturnValue([mockAddLesson])
+        vi.mocked(useCreateLessonMutation as Mock).mockReturnValue([
+            mockAddLesson,
+        ])
 
         mockAddLesson.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue(mockLessonCreate)

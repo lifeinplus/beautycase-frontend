@@ -22,7 +22,7 @@ const stagesApi = api.injectEndpoints({
             invalidatesTags: ['Stage'],
         }),
 
-        readStageById: builder.query<Stage, string>({
+        readStage: builder.query<Stage, string>({
             query: (id) => `/stages/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
         }),
@@ -66,7 +66,7 @@ const stagesApi = api.injectEndpoints({
 export const {
     useCreateStageMutation,
     useDuplicateStageMutation,
-    useReadStageByIdQuery,
+    useReadStageQuery,
     useReadStagesQuery,
     useUpdateStageMutation,
     useDeleteStageMutation,

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 
 import { mockQuestionnaires } from '../../__mocks__/questionnairesApi'
-import { useGetQuestionnairesQuery } from '../../questionnairesApi'
+import { useReadQuestionnairesQuery } from '../../questionnairesApi'
 import { QuestionnaireListPage } from '../QuestionnaireListPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -15,7 +15,7 @@ vi.mock('../../questionnairesApi')
 
 describe('QuestionnaireListPage', () => {
     beforeEach(() => {
-        vi.mocked(useGetQuestionnairesQuery as Mock).mockReturnValue({
+        vi.mocked(useReadQuestionnairesQuery as Mock).mockReturnValue({
             data: mockQuestionnaires,
             isLoading: false,
             error: null,

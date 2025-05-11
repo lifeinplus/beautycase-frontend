@@ -41,18 +41,18 @@ export const mockLessons: Lesson[] = [
     },
 ]
 
-export const useAddLessonMutation = vi.fn()
-export const useGetLessonByIdQuery = vi.fn()
-export const useGetLessonsQuery = vi.fn()
-export const useEditLessonMutation = vi.fn()
+export const useCreateLessonMutation = vi.fn()
+export const useReadLessonQuery = vi.fn()
+export const useReadLessonsQuery = vi.fn()
+export const useUpdateLessonMutation = vi.fn()
 export const useDeleteLessonMutation = vi.fn()
 
 const lessonsHandlers = [
-    http.post('api/lessons/one', () => {
+    http.post('api/lessons', () => {
         return HttpResponse.json(mockLessonCreate)
     }),
 
-    http.get('api/lessons/all', () => HttpResponse.json(mockLessons)),
+    http.get('api/lessons', () => HttpResponse.json(mockLessons)),
 
     http.get('api/lessons/:id', ({ params }) => {
         const lesson = mockLessons.find((p) => p._id === params.id)

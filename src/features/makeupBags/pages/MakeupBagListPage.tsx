@@ -13,7 +13,7 @@ import { selectRole, selectUsername } from '../../auth/authSlice'
 import { clearFormData } from '../../form/formSlice'
 import { MakeupBagMobileView } from '../components/MakeupBagMobileView'
 import { MakeupBagTable } from '../components/MakeupBagTable'
-import { useGetMakeupBagsQuery } from '../makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../makeupBagsApi'
 
 const ACTIONS = {
     add: {
@@ -41,7 +41,7 @@ export const MakeupBagListPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const { data, isLoading, error } = useGetMakeupBagsQuery()
+    const { data, isLoading, error } = useReadMakeupBagsQuery()
 
     useEffect(() => {
         dispatch(clearFormData())

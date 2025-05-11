@@ -7,7 +7,7 @@ import { mockStage } from '../../__mocks__/stagesApi'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
-    useReadStageByIdQuery,
+    useReadStageQuery,
 } from '../../stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
@@ -20,7 +20,7 @@ describe('StageDetailsPage', () => {
     const mockDuplicateStage = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: mockStage,
             isLoading: false,
             error: null,
@@ -48,7 +48,7 @@ describe('StageDetailsPage', () => {
     })
 
     it('does not render steps section when steps do not exist', () => {
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: { ...mockStage, steps: [] },
             isLoading: false,
             error: null,

@@ -5,42 +5,22 @@ import type { Tool } from './types'
 
 const toolsApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        addTool: builder.mutation<MutationResult, Tool>({
+        createTool: builder.mutation<MutationResult, Tool>({
             query: (data) => ({
-                url: '/tools/one',
+                url: '/tools',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Tool'],
         }),
 
-        deleteTool: builder.mutation<QueryResult, string>({
-            query: (id) => ({
-                url: `/tools/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
-        }),
-
-        editTool: builder.mutation<Tool, { id: string; body: Tool }>({
-            query: (data) => ({
-                url: `/tools/${data.id}`,
-                method: 'PUT',
-                body: cleanObject(data.body),
-            }),
-            invalidatesTags: (_result, _error, tool) => [
-                { type: 'Tool', id: tool.id },
-                { type: 'Tool', id: 'LIST' },
-            ],
-        }),
-
-        getToolById: builder.query<Tool, string>({
+        readTool: builder.query<Tool, string>({
             query: (id) => `/tools/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Tool', id }],
         }),
 
-        getTools: builder.query<Tool[], void>({
-            query: () => '/tools/all',
+        readTools: builder.query<Tool[], void>({
+            query: () => '/tools',
             providesTags: (result) =>
                 result
                     ? [
@@ -52,13 +32,33 @@ const toolsApi = api.injectEndpoints({
                       ]
                     : [{ type: 'Tool', id: 'LIST' }],
         }),
+
+        updateTool: builder.mutation<Tool, { id: string; body: Tool }>({
+            query: (data) => ({
+                url: `/tools/${data.id}`,
+                method: 'PUT',
+                body: cleanObject(data.body),
+            }),
+            invalidatesTags: (_result, _error, tool) => [
+                { type: 'Tool', id: tool.id },
+                { type: 'Tool', id: 'LIST' },
+            ],
+        }),
+
+        deleteTool: builder.mutation<QueryResult, string>({
+            query: (id) => ({
+                url: `/tools/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: () => [{ type: 'Tool', id: 'LIST' }],
+        }),
     }),
 })
 
 export const {
-    useAddToolMutation,
+    useCreateToolMutation,
+    useReadToolQuery,
+    useReadToolsQuery,
+    useUpdateToolMutation,
     useDeleteToolMutation,
-    useEditToolMutation,
-    useGetToolByIdQuery,
-    useGetToolsQuery,
 } = toolsApi

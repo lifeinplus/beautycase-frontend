@@ -3,10 +3,10 @@ import type { Category } from './types'
 
 const categoriesApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getCategories: builder.query<Category[], void>({
-            query: () => '/categories/all',
+        readCategories: builder.query<Category[], void>({
+            query: () => '/categories',
         }),
     }),
 })
 
-export const { useGetCategoriesQuery } = categoriesApi
+export const { useReadCategoriesQuery } = categoriesApi

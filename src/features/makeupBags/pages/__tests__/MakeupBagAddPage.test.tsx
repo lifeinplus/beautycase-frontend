@@ -11,7 +11,7 @@ import {
     mockMakeupBag,
     mockMakeupBagCreate,
 } from '../../__mocks__/makeupBagsApi'
-import { useAddMakeupBagMutation } from '../../makeupBagsApi'
+import { useCreateMakeupBagMutation } from '../../makeupBagsApi'
 import { MakeupBagAddPage } from '../MakeupBagAddPage'
 
 vi.mock('../../../../app/hooks')
@@ -24,7 +24,7 @@ describe('MakeupBagAddPage', () => {
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddMakeupBagMutation as Mock).mockReturnValue([
+        vi.mocked(useCreateMakeupBagMutation as Mock).mockReturnValue([
             mockAddMakeupBag,
         ])
 

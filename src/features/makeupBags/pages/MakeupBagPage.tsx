@@ -23,7 +23,7 @@ import { Stages } from '../../stages/components/Stages'
 import { Tools } from '../../tools/components/Tools'
 import {
     useDeleteMakeupBagMutation,
-    useGetMakeupBagByIdQuery,
+    useReadMakeupBagQuery,
 } from '../makeupBagsApi'
 
 const ACTIONS = {
@@ -71,7 +71,7 @@ export const MakeupBagPage = () => {
 
     const [deleteMakeupBag] = useDeleteMakeupBagMutation()
 
-    const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
+    const { data, isLoading, error } = useReadMakeupBagQuery(id!)
 
     const categoryName = data?.category?.name || 'Косметичка'
     const stages = data?.stages || []

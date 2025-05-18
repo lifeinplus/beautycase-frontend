@@ -2,8 +2,8 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockProducts } from '../../__mocks__/productApiSlice'
-import { useGetProductsQuery } from '../../productApiSlice'
+import { mockProducts } from '../../__mocks__/productsApi'
+import { useReadProductsQuery } from '../../productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import userEvent from '@testing-library/user-event'
@@ -17,7 +17,7 @@ vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../form/formSlice')
-vi.mock('../../productApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductSelectionPage', () => {
     const mockFormData = {
@@ -25,7 +25,7 @@ describe('ProductSelectionPage', () => {
     }
 
     beforeEach(() => {
-        vi.mocked(useGetProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadProductsQuery as Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             error: null,
@@ -35,7 +35,7 @@ describe('ProductSelectionPage', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadProductsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -48,7 +48,7 @@ describe('ProductSelectionPage', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadProductsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,

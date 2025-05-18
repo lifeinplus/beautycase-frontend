@@ -7,22 +7,24 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockLesson, mockLessonCreate } from '../../__mocks__/lessonsApiSlice'
-import { useAddLessonMutation } from '../../lessonsApiSlice'
+import { mockLesson, mockLessonCreate } from '../../__mocks__/lessonsApi'
+import { useCreateLessonMutation } from '../../lessonsApi'
 import { LessonAddPage } from '../LessonAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/LessonForm')
-vi.mock('../../lessonsApiSlice')
+vi.mock('../../lessonsApi')
 
 describe('LessonAddPage', () => {
     const mockAddLesson = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddLessonMutation as Mock).mockReturnValue([mockAddLesson])
+        vi.mocked(useCreateLessonMutation as Mock).mockReturnValue([
+            mockAddLesson,
+        ])
 
         mockAddLesson.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue(mockLessonCreate)

@@ -9,16 +9,13 @@ import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
-import {
-    useCreateStoreMutation,
-    useUpdateStoreMutation,
-} from '../../storesApiSlice'
+import { useCreateStoreMutation, useUpdateStoreMutation } from '../../storesApi'
 import { StoreForm } from '../StoreForm'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../storesApiSlice')
+vi.mock('../../storesApi')
 
 describe('StoreForm', () => {
     const mockRef = { current: { focusInput: vi.fn() } as FormRef }

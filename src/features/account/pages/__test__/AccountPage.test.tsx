@@ -8,9 +8,9 @@ import {
 } from '../../../../tests/mocks/wrappers'
 import { selectUserId } from '../../../auth/authSlice'
 import {
-    mockUseGetUserByIdQuery,
+    mockUseReadUserQuery,
     mockUserResult,
-} from '../../../users/__mocks__/usersApiSlice'
+} from '../../../users/__mocks__/usersApi'
 import { AccountPage } from '../AccountPage'
 
 vi.mock('../../../../app/hooks')
@@ -18,7 +18,7 @@ vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
-vi.mock('../../../users/usersApiSlice')
+vi.mock('../../../users/usersApi')
 
 describe('AccountPage', () => {
     beforeEach(() => {
@@ -26,7 +26,7 @@ describe('AccountPage', () => {
             if (selector === selectUserId) return 'user123'
             return null
         })
-        mockUseGetUserByIdQuery.mockReturnValue({
+        mockUseReadUserQuery.mockReturnValue({
             data: mockUserResult,
             isLoading: false,
             error: null,
@@ -34,7 +34,7 @@ describe('AccountPage', () => {
     })
 
     it('renders loading state correctly', () => {
-        mockUseGetUserByIdQuery.mockReturnValue({
+        mockUseReadUserQuery.mockReturnValue({
             data: null,
             isLoading: true,
             error: null,
@@ -89,7 +89,7 @@ describe('AccountPage', () => {
     })
 
     it('handles empty makeup bags', () => {
-        mockUseGetUserByIdQuery.mockReturnValue({
+        mockUseReadUserQuery.mockReturnValue({
             data: { ...mockUserResult, makeupBags: [] },
             isLoading: false,
             error: null,
@@ -111,7 +111,7 @@ describe('AccountPage', () => {
     })
 
     it('handles error state', () => {
-        mockUseGetUserByIdQuery.mockReturnValue({
+        mockUseReadUserQuery.mockReturnValue({
             data: null,
             isLoading: false,
             error: 'User not found',

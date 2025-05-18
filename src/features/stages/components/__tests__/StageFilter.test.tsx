@@ -1,21 +1,22 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import {
     mockMakeupBag,
     mockMakeupBags,
-} from '../../../makeupBags/__mocks__/makeupBagsApiSlice'
-import { useGetMakeupBagsQuery } from '../../../makeupBags/makeupBagsApiSlice'
-import { mockStage, mockStages } from '../../__mocks__/stagesApiSlice'
+} from '../../../makeupBags/__mocks__/makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { mockStage, mockStages } from '../../__mocks__/stagesApi'
 import { StageFilter } from '../StageFilter'
 
-vi.mock('../../../makeupBags/makeupBagsApiSlice')
+vi.mock('../../../makeupBags/makeupBagsApi')
 
 describe('StageFilter', () => {
     const mockOnFilterChange = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
     })
@@ -41,7 +42,7 @@ describe('StageFilter', () => {
     })
 
     it('handles empty makeup bags list correctly', () => {
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: [],
         })
 
@@ -59,7 +60,9 @@ describe('StageFilter', () => {
         expect(mockOnFilterChange).not.toHaveBeenCalled()
     })
 
-    it('filters stages correctly when a makeup bag is selected', () => {
+    it('filters stages correctly when a makeup bag is selected', async () => {
+        const user = userEvent.setup()
+
         render(
             <StageFilter
                 onFilterChange={mockOnFilterChange}
@@ -70,7 +73,7 @@ describe('StageFilter', () => {
         mockOnFilterChange.mockReset()
 
         const select = screen.getByRole('combobox')
-        fireEvent.change(select, { target: { value: 'makeupBag1' } })
+        await user.selectOptions(select, 'makeupBag1')
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1)
         expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage])

@@ -7,32 +7,32 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockProduct } from '../../__mocks__/productApiSlice'
+import { mockProduct } from '../../__mocks__/productsApi'
 import {
-    useEditProductMutation,
-    useGetProductByIdQuery,
-} from '../../productApiSlice'
+    useUpdateProductMutation,
+    useReadProductQuery,
+} from '../../productsApi'
 import { ProductEditPage } from '../ProductEditPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/ProductForm')
-vi.mock('../../productApiSlice')
+vi.mock('../../productsApi')
 
 describe('ProductEditPage', () => {
     const mockEditProduct = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useEditProductMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateProductMutation as Mock).mockReturnValue([
             mockEditProduct,
         ])
 
         mockEditProduct.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadProductQuery as Mock).mockReturnValue({
             data: mockProduct,
         })
     })

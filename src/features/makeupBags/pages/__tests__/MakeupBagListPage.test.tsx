@@ -5,8 +5,8 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockMakeupBags } from '../../__mocks__/makeupBagsApiSlice'
-import { useGetMakeupBagsQuery } from '../../makeupBagsApiSlice'
+import { mockMakeupBags } from '../../__mocks__/makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../../makeupBagsApi'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
 vi.mock('../../../../app/hooks')
@@ -17,7 +17,7 @@ vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 vi.mock('../../components/MakeupBagMobileView')
 vi.mock('../../components/MakeupBagTable')
-vi.mock('../../makeupBagsApiSlice')
+vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagListPage', () => {
     beforeEach(() => {
@@ -27,7 +27,7 @@ describe('MakeupBagListPage', () => {
             return null
         })
 
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
             isLoading: false,
             error: null,

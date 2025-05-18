@@ -5,23 +5,20 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
-import { mockLesson } from '../../__mocks__/lessonsApiSlice'
-import {
-    useDeleteLessonMutation,
-    useGetLessonByIdQuery,
-} from '../../lessonsApiSlice'
+import { mockLesson } from '../../__mocks__/lessonsApi'
+import { useDeleteLessonMutation, useReadLessonQuery } from '../../lessonsApi'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../utils/youtube')
-vi.mock('../../lessonsApiSlice')
+vi.mock('../../lessonsApi')
 
 describe('LessonDetailsPage', () => {
     const mockDeleteLesson = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadLessonQuery as Mock).mockReturnValue({
             data: mockLesson,
             isLoading: false,
             error: null,

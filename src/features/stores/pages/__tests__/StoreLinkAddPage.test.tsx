@@ -6,14 +6,14 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
-import { useReadStoresQuery } from '../../storesApiSlice'
+import { useReadStoresQuery } from '../../storesApi'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
-vi.mock('../../storesApiSlice')
+vi.mock('../../storesApi')
 
 describe('StoreLinkAddPage', () => {
     const mockStoreLink = {

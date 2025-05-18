@@ -1,4 +1,4 @@
-import { mockTool } from '../../__mocks__/toolsApiSlice'
+import { mockTool } from '../../__mocks__/toolsApi'
 import { type ToolFormProps } from '../ToolForm'
 
 export const ToolForm = ({ title, onSubmit }: ToolFormProps) => (

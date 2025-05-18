@@ -13,7 +13,7 @@ import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useReadStoresQuery } from '../storesApiSlice'
+import { useReadStoresQuery } from '../storesApi'
 import type { StoreLink } from '../types'
 
 export const StoreLinkAddPage = () => {

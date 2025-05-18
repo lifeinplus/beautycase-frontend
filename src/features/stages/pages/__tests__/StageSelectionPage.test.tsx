@@ -6,10 +6,10 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
-import { mockMakeupBags } from '../../../makeupBags/__mocks__/makeupBagsApiSlice'
-import { useGetMakeupBagsQuery } from '../../../makeupBags/makeupBagsApiSlice'
-import { mockStages } from '../../__mocks__/stagesApiSlice'
-import { useReadStagesQuery } from '../../stagesApiSlice'
+import { mockMakeupBags } from '../../../makeupBags/__mocks__/makeupBagsApi'
+import { useReadMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { mockStages } from '../../__mocks__/stagesApi'
+import { useReadStagesQuery } from '../../stagesApi'
 import { StageSelectionPage } from '../StageSelectionPage'
 
 vi.mock('../../../../app/hooks')
@@ -19,8 +19,8 @@ vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../form/formSlice')
-vi.mock('../../../makeupBags/makeupBagsApiSlice')
-vi.mock('../../stagesApiSlice')
+vi.mock('../../../makeupBags/makeupBagsApi')
+vi.mock('../../stagesApi')
 
 describe('StageSelectionPage', () => {
     const mockFormData = {
@@ -31,7 +31,7 @@ describe('StageSelectionPage', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
-        vi.mocked(useGetMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
 

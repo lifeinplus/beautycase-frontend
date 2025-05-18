@@ -7,14 +7,11 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import {
-    type AuthResultRegister,
-    useRegisterUserMutation,
-} from '../../authApiSlice'
+import { type AuthResultRegister, useRegisterUserMutation } from '../../authApi'
 import { RegisterPage } from '../RegisterPage'
 
 vi.mock('../../../../utils/errorUtils')
-vi.mock('../../authApiSlice')
+vi.mock('../../authApi')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 

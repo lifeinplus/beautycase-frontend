@@ -7,18 +7,15 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockStage } from '../../__mocks__/stagesApiSlice'
-import {
-    useReadStageByIdQuery,
-    useUpdateStageMutation,
-} from '../../stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
+import { useReadStageQuery, useUpdateStageMutation } from '../../stagesApi'
 import { StageEditPage } from '../StageEditPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/StageForm')
-vi.mock('../../stagesApiSlice')
+vi.mock('../../stagesApi')
 
 describe('StageEditPage', () => {
     const mockEditStage = vi.fn()
@@ -32,7 +29,7 @@ describe('StageEditPage', () => {
         mockEditStage.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: mockStage,
         })
     })

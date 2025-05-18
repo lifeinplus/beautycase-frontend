@@ -15,7 +15,7 @@ import { TextareaSection } from '../../form/components/TextareaSection'
 import { options } from '../options'
 import type { Questionnaire } from '../types'
 import { questionnaireSchema } from '../validations'
-import { useAddQuestionnaireMutation } from '../questionnaireApiSlice'
+import { useCreateQuestionnaireMutation } from '../questionnairesApi'
 import { questions } from '../utils'
 
 export const QuestionnairePage = () => {
@@ -33,7 +33,7 @@ export const QuestionnairePage = () => {
         resolver: yupResolver(questionnaireSchema),
     })
 
-    const [addQuestionnaire] = useAddQuestionnaireMutation()
+    const [addQuestionnaire] = useCreateQuestionnaireMutation()
 
     const onSubmit = async (data: Questionnaire) => {
         try {

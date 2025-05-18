@@ -6,23 +6,23 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockCategories } from '../../../categories/__mocks__/categoriesApiSlice'
-import { useGetCategoriesQuery } from '../../../categories/categoriesApiSlice'
+import { mockCategories } from '../../../categories/__mocks__/categoriesApi'
+import { useReadCategoriesQuery } from '../../../categories/categoriesApi'
 import { setFormData } from '../../../form/formSlice'
-import { mockUsers } from '../../../users/__mocks__/usersApiSlice'
-import { useGetUsersQuery } from '../../../users/usersApiSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApiSlice'
+import { mockUsers } from '../../../users/__mocks__/usersApi'
+import { useReadUsersQuery } from '../../../users/usersApi'
+import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
-vi.mock('../../../categories/categoriesApiSlice')
+vi.mock('../../../categories/categoriesApi')
 vi.mock('../../../form/components/ButtonNavigateSection')
 vi.mock('../../../form/components/SelectSection')
 vi.mock('../../../form/formSlice')
-vi.mock('../../../users/usersApiSlice')
+vi.mock('../../../users/usersApi')
 
 describe('MakeupBagForm', () => {
     const mockTitle = 'Test Title'
@@ -30,11 +30,11 @@ describe('MakeupBagForm', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag)
 
-        vi.mocked(useGetCategoriesQuery as Mock).mockReturnValue({
+        vi.mocked(useReadCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,
         })
 
-        vi.mocked(useGetUsersQuery as Mock).mockReturnValue({
+        vi.mocked(useReadUsersQuery as Mock).mockReturnValue({
             data: mockUsers,
         })
     })

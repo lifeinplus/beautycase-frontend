@@ -7,32 +7,32 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApiSlice'
+import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
-    useEditMakeupBagMutation,
-    useGetMakeupBagByIdQuery,
-} from '../../makeupBagsApiSlice'
+    useUpdateMakeupBagMutation,
+    useReadMakeupBagQuery,
+} from '../../makeupBagsApi'
 import { MakeupBagEditPage } from '../MakeupBagEditPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/MakeupBagForm')
-vi.mock('../../makeupBagsApiSlice')
+vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagEditPage', () => {
     const mockEditMakeupBag = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useEditMakeupBagMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateMakeupBagMutation as Mock).mockReturnValue([
             mockEditMakeupBag,
         ])
 
         mockEditMakeupBag.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadMakeupBagQuery as Mock).mockReturnValue({
             data: mockMakeupBag,
         })
     })

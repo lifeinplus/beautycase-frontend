@@ -1,4 +1,4 @@
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApiSlice'
+import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import { type MakeupBagFormProps } from '../MakeupBagForm'
 
 export const MakeupBagForm = ({ title, onSubmit }: MakeupBagFormProps) => (

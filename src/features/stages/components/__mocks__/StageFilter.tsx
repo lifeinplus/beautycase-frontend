@@ -1,4 +1,4 @@
-import { mockStage } from '../../__mocks__/stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
 import { type StageFilterProps } from '../StageFilter'
 
 export const StageFilter = ({ onFilterChange }: StageFilterProps) => (

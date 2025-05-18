@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
-import { mockLesson } from '../__mocks__/lessonsApiSlice'
+import { mockLesson } from '../__mocks__/lessonsApi'
 import { lessonSchema } from '../validations'
 
 describe('Lesson Schema Validation', () => {

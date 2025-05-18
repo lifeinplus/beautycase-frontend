@@ -2,8 +2,8 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
 import { useAppSelector } from '../../../../app/hooks'
-import { mockTools } from '../../__mocks__/toolsApiSlice'
-import { useGetToolsQuery } from '../../toolsApiSlice'
+import { mockTools } from '../../__mocks__/toolsApi'
+import { useReadToolsQuery } from '../../toolsApi'
 import { ToolSelectionPage } from '../ToolSelectionPage'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import userEvent from '@testing-library/user-event'
@@ -17,7 +17,7 @@ vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../form/formSlice')
-vi.mock('../../toolsApiSlice')
+vi.mock('../../toolsApi')
 
 describe('ToolSelectionPage', () => {
     const mockFormData = {
@@ -25,7 +25,7 @@ describe('ToolSelectionPage', () => {
     }
 
     beforeEach(() => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: mockTools,
             isLoading: false,
             error: null,
@@ -35,7 +35,7 @@ describe('ToolSelectionPage', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -48,7 +48,7 @@ describe('ToolSelectionPage', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useReadToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,

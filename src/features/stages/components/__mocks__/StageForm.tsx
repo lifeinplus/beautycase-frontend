@@ -1,4 +1,4 @@
-import { mockStage } from '../../__mocks__/stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
 import { type StageFormProps } from '../StageForm'
 
 export const StageForm = ({ title, onSubmit }: StageFormProps) => (

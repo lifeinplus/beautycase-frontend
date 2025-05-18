@@ -3,17 +3,14 @@ import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
 import { getYouTubeEmbedUrl } from '../../../utils/youtube'
 import type { Product } from '../../products/types'
-import {
-    useDeleteLessonMutation,
-    useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
+import { useDeleteLessonMutation, useReadLessonQuery } from '../lessonsApi'
 
 export const LessonDetailsPage = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useGetLessonByIdQuery(id!)
+    const { data, isLoading, error } = useReadLessonQuery(id!)
     const [deleteLesson] = useDeleteLessonMutation()
 
     const handleProduct = (id?: string) => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import { mockTool } from '../__mocks__/toolsApiSlice'
+import { mockTool } from '../__mocks__/toolsApi'
 import { toolSchema } from '../validations'
 
 describe('toolSchema validation', () => {

@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
-import { mockStage } from '../../__mocks__/stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
 import { StageForm } from '../StageForm'
 
 vi.mock('../../../../app/hooks')

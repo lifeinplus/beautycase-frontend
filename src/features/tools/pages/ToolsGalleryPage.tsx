@@ -1,9 +1,9 @@
 import { GalleryPage } from '../../../components/gallery/GalleryPage'
 import { ImageCard } from '../../../components/gallery/ImageCard'
-import { useGetToolsQuery } from '../toolsApiSlice'
+import { useReadToolsQuery } from '../toolsApi'
 
 export const ToolsGalleryPage = () => {
-    const { data: tools, isLoading, error } = useGetToolsQuery()
+    const { data: tools, isLoading, error } = useReadToolsQuery()
 
     return (
         <GalleryPage

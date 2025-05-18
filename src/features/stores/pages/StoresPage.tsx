@@ -16,7 +16,7 @@ import type { FormRef } from '../../form/types'
 import { StoreForm } from '../components/StoreForm'
 import { StoresMobileView } from '../components/StoresMobileView'
 import { StoresTable } from '../components/StoresTable'
-import { useDeleteStoreMutation, useReadStoresQuery } from '../storesApiSlice'
+import { useDeleteStoreMutation, useReadStoresQuery } from '../storesApi'
 import type { Store } from '../types'
 
 export const StoresPage = () => {

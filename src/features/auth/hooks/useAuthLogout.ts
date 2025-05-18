@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { useLogoutUserMutation } from '../authApiSlice'
+import { useLogoutUserMutation } from '../authApi'
 import { logout } from '../authSlice'
 
 export const useAuthLogout = (redirectPath: string = '/') => {

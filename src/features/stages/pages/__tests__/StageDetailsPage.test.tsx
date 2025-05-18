@@ -3,24 +3,24 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockStage } from '../../__mocks__/stagesApiSlice'
+import { mockStage } from '../../__mocks__/stagesApi'
 import {
     useDeleteStageMutation,
     useDuplicateStageMutation,
-    useReadStageByIdQuery,
-} from '../../stagesApiSlice'
+    useReadStageQuery,
+} from '../../stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
 vi.mock('../../../../components/ui/Image')
-vi.mock('../../stagesApiSlice')
+vi.mock('../../stagesApi')
 
 describe('StageDetailsPage', () => {
     const mockDeleteStage = vi.fn()
     const mockDuplicateStage = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: mockStage,
             isLoading: false,
             error: null,
@@ -48,7 +48,7 @@ describe('StageDetailsPage', () => {
     })
 
     it('does not render steps section when steps do not exist', () => {
-        vi.mocked(useReadStageByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
             data: { ...mockStage, steps: [] },
             isLoading: false,
             error: null,

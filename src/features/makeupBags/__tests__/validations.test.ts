@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
-import { mockMakeupBag } from '../__mocks__/makeupBagsApiSlice'
+import { mockMakeupBag } from '../__mocks__/makeupBagsApi'
 import { makeupBagSchema } from '../validations'
 
 describe('makeupBagSchema validation', () => {

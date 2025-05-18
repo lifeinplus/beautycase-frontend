@@ -3,15 +3,12 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
-import {
-    useDeleteProductMutation,
-    useGetProductByIdQuery,
-} from '../productApiSlice'
+import { useDeleteProductMutation, useReadProductQuery } from '../productsApi'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useGetProductByIdQuery(id!)
+    const { data, isLoading, error } = useReadProductQuery(id!)
     const [deleteProduct] = useDeleteProductMutation()
 
     return (

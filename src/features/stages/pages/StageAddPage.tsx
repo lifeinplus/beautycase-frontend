@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { StageForm } from '../components/StageForm'
-import { useCreateStageMutation } from '../stagesApiSlice'
+import { useCreateStageMutation } from '../stagesApi'
 import type { Stage } from '../types'
 
 export const StageAddPage = () => {

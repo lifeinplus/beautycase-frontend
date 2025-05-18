@@ -3,8 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockQuestionnaire } from '../../__mocks__/questionnaireApiSlice'
-import { useGetQuestionnaireByIdQuery } from '../../questionnaireApiSlice'
+import { mockQuestionnaire } from '../../__mocks__/questionnairesApi'
+import { useReadQuestionnaireQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -14,11 +14,11 @@ vi.mock('../../../../components/Hero')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../../utils/date')
 vi.mock('../../components/QuestionnaireResult')
-vi.mock('../../questionnaireApiSlice')
+vi.mock('../../questionnairesApi')
 
 describe('QuestionnaireResultPage', () => {
     beforeEach(() => {
-        vi.mocked(useGetQuestionnaireByIdQuery as Mock).mockReturnValue({
+        vi.mocked(useReadQuestionnaireQuery as Mock).mockReturnValue({
             data: mockQuestionnaire,
             isLoading: false,
             error: null,

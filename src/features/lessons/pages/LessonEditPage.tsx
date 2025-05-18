@@ -6,10 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { LessonForm } from '../components/LessonForm'
-import {
-    useEditLessonMutation,
-    useGetLessonByIdQuery,
-} from '../lessonsApiSlice'
+import { useUpdateLessonMutation, useReadLessonQuery } from '../lessonsApi'
 import type { Lesson } from '../types'
 
 export const LessonEditPage = () => {
@@ -19,8 +16,8 @@ export const LessonEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editLesson] = useEditLessonMutation()
-    const { data } = useGetLessonByIdQuery(id!)
+    const [editLesson] = useUpdateLessonMutation()
+    const { data } = useReadLessonQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {

@@ -10,21 +10,21 @@ import { clearFormData } from '../../../form/formSlice'
 import {
     mockMakeupBag,
     mockMakeupBagCreate,
-} from '../../__mocks__/makeupBagsApiSlice'
-import { useAddMakeupBagMutation } from '../../makeupBagsApiSlice'
+} from '../../__mocks__/makeupBagsApi'
+import { useCreateMakeupBagMutation } from '../../makeupBagsApi'
 import { MakeupBagAddPage } from '../MakeupBagAddPage'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../utils/errorUtils')
 vi.mock('../../components/MakeupBagForm')
-vi.mock('../../makeupBagsApiSlice')
+vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagAddPage', () => {
     const mockAddMakeupBag = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useAddMakeupBagMutation as Mock).mockReturnValue([
+        vi.mocked(useCreateMakeupBagMutation as Mock).mockReturnValue([
             mockAddMakeupBag,
         ])
 

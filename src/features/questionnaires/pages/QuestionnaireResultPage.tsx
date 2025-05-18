@@ -8,13 +8,13 @@ import { Hero } from '../../../components/Hero'
 import { TopPanel } from '../../../components/TopPanel'
 import { formatDate } from '../../../utils/date'
 import { QuestionnaireResult } from '../components/QuestionnaireResult'
-import { useGetQuestionnaireByIdQuery } from '../questionnaireApiSlice'
+import { useReadQuestionnaireQuery } from '../questionnairesApi'
 
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
 
-    const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)
+    const { data, isLoading, error } = useReadQuestionnaireQuery(id!)
 
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 

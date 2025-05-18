@@ -5,14 +5,14 @@ import { useAppDispatch } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { LessonForm } from '../components/LessonForm'
-import { useAddLessonMutation } from '../lessonsApiSlice'
+import { useCreateLessonMutation } from '../lessonsApi'
 import type { Lesson } from '../types'
 
 export const LessonAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addLesson] = useAddLessonMutation()
+    const [addLesson] = useCreateLessonMutation()
 
     const handleAddLesson = async (lesson: Lesson) => {
         try {

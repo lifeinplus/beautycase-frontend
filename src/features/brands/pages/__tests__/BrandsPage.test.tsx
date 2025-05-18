@@ -7,10 +7,7 @@ import toast from 'react-hot-toast'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
-import {
-    useReadBrandsQuery,
-    useDeleteBrandMutation,
-} from '../../brandsApiSlice'
+import { useReadBrandsQuery, useDeleteBrandMutation } from '../../brandsApi'
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
@@ -26,7 +23,7 @@ vi.mock('../../../form/formSlice')
 vi.mock('../../components/BrandForm')
 vi.mock('../../components/BrandsMobileView')
 vi.mock('../../components/BrandsTable')
-vi.mock('../../brandsApiSlice')
+vi.mock('../../brandsApi')
 
 describe('BrandsPage', () => {
     const mockBrands: Brand[] = [

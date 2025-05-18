@@ -6,17 +6,17 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockBrands } from '../../../brands/__mocks__/brandsApiSlice'
-import { useReadBrandsQuery } from '../../../brands/brandsApiSlice'
+import { mockBrands } from '../../../brands/__mocks__/brandsApi'
+import { useReadBrandsQuery } from '../../../brands/brandsApi'
 import { setFormData } from '../../../form/formSlice'
-import { mockTool } from '../../__mocks__/toolsApiSlice'
+import { mockTool } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
 vi.mock('../../../../components/navigation/NavigationButton')
 vi.mock('../../../../components/TopPanel')
-vi.mock('../../../brands/brandsApiSlice')
+vi.mock('../../../brands/brandsApi')
 vi.mock('../../../form/components/ButtonNavigateSection')
 vi.mock('../../../form/components/ImageUrlSection')
 vi.mock('../../../form/components/InputSection')

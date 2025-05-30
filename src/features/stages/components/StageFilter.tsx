@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 
-import { useReadMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
 import type { Stage } from '../types'
 
 export interface StageFilterProps {
@@ -13,7 +13,7 @@ export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
     const [selectedMakeupBagId, setSelectedMakeupBagId] =
         useState('noMakeupBag')
 
-    const { data: makeupBags = [] } = useReadMakeupBagsQuery()
+    const { data: makeupBags = [] } = useGetAllMakeupBagsQuery()
 
     useEffect(() => {
         if (!makeupBags.length) return

@@ -7,10 +7,10 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockCategories } from '../../../categories/__mocks__/categoriesApi'
-import { useReadCategoriesQuery } from '../../../categories/categoriesApi'
+import { useGetAllCategoriesQuery } from '../../../categories/categoriesApi'
 import { setFormData } from '../../../form/formSlice'
 import { mockUsers } from '../../../users/__mocks__/usersApi'
-import { useReadUsersQuery } from '../../../users/usersApi'
+import { useGetAllUsersQuery } from '../../../users/usersApi'
 import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagForm } from '../MakeupBagForm'
 
@@ -30,11 +30,11 @@ describe('MakeupBagForm', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag)
 
-        vi.mocked(useReadCategoriesQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,
         })
 
-        vi.mocked(useReadUsersQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({
             data: mockUsers,
         })
     })

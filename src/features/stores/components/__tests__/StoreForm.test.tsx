@@ -9,8 +9,12 @@ import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
-import { useCreateStoreMutation, useUpdateStoreMutation } from '../../storesApi'
+import {
+    useCreateStoreMutation,
+    useUpdateStoreByIdMutation,
+} from '../../storesApi'
 import { StoreForm } from '../StoreForm'
+import { mockStore } from '../../__mocks__/storesApi'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
@@ -23,7 +27,7 @@ describe('StoreForm', () => {
     const mockCreateStore = vi.fn()
     const mockCreateUnwrap = vi.fn()
 
-    const mockUpdateStore = vi.fn()
+    const mockUpdateStoreById = vi.fn()
     const mockUpdateUnwrap = vi.fn()
 
     beforeEach(() => {
@@ -37,12 +41,12 @@ describe('StoreForm', () => {
         mockCreateStore.mockReturnValue({ unwrap: mockCreateUnwrap })
         mockCreateUnwrap.mockResolvedValue({})
 
-        vi.mocked(useUpdateStoreMutation as Mock).mockReturnValue([
-            mockUpdateStore,
+        vi.mocked(useUpdateStoreByIdMutation as Mock).mockReturnValue([
+            mockUpdateStoreById,
             { isLoading: false },
         ])
 
-        mockUpdateStore.mockReturnValue({ unwrap: mockUpdateUnwrap })
+        mockUpdateStoreById.mockReturnValue({ unwrap: mockUpdateUnwrap })
         mockUpdateUnwrap.mockResolvedValue({})
     })
 
@@ -90,6 +94,8 @@ describe('StoreForm', () => {
     it('calls updateStore when update button is clicked', async () => {
         const user = userEvent.setup()
 
+        const { _id, ...store } = mockStore
+
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',
             name: 'Test Store',
@@ -101,13 +107,14 @@ describe('StoreForm', () => {
         const updateButton = screen.getByRole('button')
 
         await user.clear(input)
-        await user.type(input, 'Updated Store')
+        await user.type(input, store.name)
         await user.click(updateButton)
 
-        expect(mockUpdateStore).toHaveBeenCalledWith({
-            _id: '123',
-            name: 'Updated Store',
+        expect(mockUpdateStoreById).toHaveBeenCalledWith({
+            id: '123',
+            store,
         })
+
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
@@ -157,7 +164,7 @@ describe('StoreForm', () => {
         await user.type(input, 'New Store')
         await user.click(addButton)
 
-        expect(mockUpdateStore).toHaveBeenCalled()
+        expect(mockUpdateStoreById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

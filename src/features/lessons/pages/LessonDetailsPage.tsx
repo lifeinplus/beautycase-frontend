@@ -3,15 +3,18 @@ import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
 import { getYouTubeEmbedUrl } from '../../../utils/youtube'
 import type { Product } from '../../products/types'
-import { useDeleteLessonMutation, useReadLessonQuery } from '../lessonsApi'
+import {
+    useDeleteLessonByIdMutation,
+    useGetLessonByIdQuery,
+} from '../lessonsApi'
 
 export const LessonDetailsPage = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useReadLessonQuery(id!)
-    const [deleteLesson] = useDeleteLessonMutation()
+    const { data, isLoading, error } = useGetLessonByIdQuery(id!)
+    const [deleteLessonById] = useDeleteLessonByIdMutation()
 
     const handleProduct = (id?: string) => {
         navigate(`/products/${id}`, {
@@ -30,7 +33,7 @@ export const LessonDetailsPage = () => {
             title={data?.title}
             subtitle={data?.shortDescription}
             description={data?.fullDescription}
-            deleteItem={deleteLesson}
+            deleteItem={deleteLessonById}
             mediaContent={
                 <div className="lesson-video-container">
                     {embedUrl ? (

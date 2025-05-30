@@ -14,7 +14,7 @@ const stagesApi = api.injectEndpoints({
             invalidatesTags: ['Stage'],
         }),
 
-        duplicateStage: builder.mutation<MutationResult, string>({
+        duplicateStageById: builder.mutation<MutationResult, string>({
             query: (id) => ({
                 url: `/stages/duplicate/${id}`,
                 method: 'POST',
@@ -22,12 +22,7 @@ const stagesApi = api.injectEndpoints({
             invalidatesTags: ['Stage'],
         }),
 
-        readStage: builder.query<Stage, string>({
-            query: (id) => `/stages/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
-        }),
-
-        readStages: builder.query<Stage[], void>({
+        getAllStages: builder.query<Stage[], void>({
             query: () => '/stages',
             providesTags: (result) =>
                 result
@@ -41,19 +36,24 @@ const stagesApi = api.injectEndpoints({
                     : [{ type: 'Stage', id: 'LIST' }],
         }),
 
-        updateStage: builder.mutation<Stage, Stage>({
-            query: ({ _id, ...body }) => ({
-                url: `/stages/${_id}`,
+        getStageById: builder.query<Stage, string>({
+            query: (id) => `/stages/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
+        }),
+
+        updateStageById: builder.mutation<Stage, { id: string; stage: Stage }>({
+            query: ({ id, stage }) => ({
+                url: `/stages/${id}`,
                 method: 'PUT',
-                body: cleanObject(body),
+                body: cleanObject(stage),
             }),
-            invalidatesTags: (_result, _error, stage) => [
-                { type: 'Stage', id: stage._id },
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Stage', id: id },
                 { type: 'Stage', id: 'LIST' },
             ],
         }),
 
-        deleteStage: builder.mutation<QueryResult, string>({
+        deleteStageById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stages/${id}`,
                 method: 'DELETE',
@@ -65,9 +65,9 @@ const stagesApi = api.injectEndpoints({
 
 export const {
     useCreateStageMutation,
-    useDuplicateStageMutation,
-    useReadStageQuery,
-    useReadStagesQuery,
-    useUpdateStageMutation,
-    useDeleteStageMutation,
+    useDuplicateStageByIdMutation,
+    useGetAllStagesQuery,
+    useGetStageByIdQuery,
+    useUpdateStageByIdMutation,
+    useDeleteStageByIdMutation,
 } = stagesApi

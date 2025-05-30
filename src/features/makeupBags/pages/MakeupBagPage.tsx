@@ -22,8 +22,8 @@ import { clearFormData } from '../../form/formSlice'
 import { Stages } from '../../stages/components/Stages'
 import { Tools } from '../../tools/components/Tools'
 import {
-    useDeleteMakeupBagMutation,
-    useReadMakeupBagQuery,
+    useDeleteMakeupBagByIdMutation,
+    useGetMakeupBagByIdQuery,
 } from '../makeupBagsApi'
 
 const ACTIONS = {
@@ -69,9 +69,9 @@ export const MakeupBagPage = () => {
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const [deleteMakeupBag] = useDeleteMakeupBagMutation()
+    const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
 
-    const { data, isLoading, error } = useReadMakeupBagQuery(id!)
+    const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
     const categoryName = data?.category?.name || 'Косметичка'
     const stages = data?.stages || []
@@ -102,7 +102,7 @@ export const MakeupBagPage = () => {
     const handleDelete = async () => {
         if (!id) return
         try {
-            await deleteMakeupBag(id).unwrap()
+            await deleteMakeupBagById(id).unwrap()
             toast.success('Косметичка удалена')
             navigate(redirectPath)
         } catch (err) {

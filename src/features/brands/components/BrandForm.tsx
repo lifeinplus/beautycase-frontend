@@ -12,7 +12,10 @@ import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-import { useCreateBrandMutation, useUpdateBrandMutation } from '../brandsApi'
+import {
+    useCreateBrandMutation,
+    useUpdateBrandByIdMutation,
+} from '../brandsApi'
 import type { Brand } from '../types'
 import { brandSchema } from '../validations'
 
@@ -51,7 +54,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
     }, [isSubmitSuccessful, reset])
 
     const [createBrand] = useCreateBrandMutation()
-    const [updateBrand] = useUpdateBrandMutation()
+    const [updateBrandById] = useUpdateBrandByIdMutation()
 
     const handleAddBrand = async (data: Brand) => {
         try {
@@ -64,8 +67,10 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
     }
 
     const handleUpdateBrand = async (data: Brand) => {
+        const { _id, ...brand } = data
+
         try {
-            await updateBrand(data).unwrap()
+            await updateBrandById({ id: _id!, brand }).unwrap()
             dispatch(clearFormData())
         } catch (error) {
             console.error(error)

@@ -7,7 +7,10 @@ import toast from 'react-hot-toast'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
-import { useReadBrandsQuery, useDeleteBrandMutation } from '../../brandsApi'
+import {
+    useGetAllBrandsQuery,
+    useDeleteBrandByIdMutation,
+} from '../../brandsApi'
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
@@ -31,20 +34,20 @@ describe('BrandsPage', () => {
         { _id: 'brand2', name: 'Brand B' },
     ]
 
-    const mockDeleteBrand = vi.fn()
+    const mockDeleteBrandById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useNavigate).mockReturnValue(mockNavigate)
 
-        vi.mocked(useDeleteBrandMutation as Mock).mockReturnValue([
-            mockDeleteBrand,
+        vi.mocked(useDeleteBrandByIdMutation as Mock).mockReturnValue([
+            mockDeleteBrandById,
         ])
 
-        mockDeleteBrand.mockReturnValue({ unwrap: mockUnwrap })
+        mockDeleteBrandById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadBrandsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllBrandsQuery as Mock).mockReturnValue({
             data: mockBrands,
             isLoading: false,
             error: null,
@@ -116,7 +119,7 @@ describe('BrandsPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
+        expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
         expect(toast.success).toHaveBeenCalledWith('Бренд удалён')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
@@ -143,7 +146,7 @@ describe('BrandsPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteBrand).toHaveBeenCalledWith('brand1')
+        expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

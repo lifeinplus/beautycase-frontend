@@ -8,7 +8,10 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockLesson } from '../../__mocks__/lessonsApi'
-import { useUpdateLessonMutation, useReadLessonQuery } from '../../lessonsApi'
+import {
+    useUpdateLessonByIdMutation,
+    useGetLessonByIdQuery,
+} from '../../lessonsApi'
 import { LessonEditPage } from '../LessonEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -18,17 +21,17 @@ vi.mock('../../components/LessonForm')
 vi.mock('../../lessonsApi')
 
 describe('LessonEditPage', () => {
-    const mockEditLesson = vi.fn()
+    const mockUpdateLessonById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateLessonMutation as Mock).mockReturnValue([
-            mockEditLesson,
+        vi.mocked(useUpdateLessonByIdMutation as Mock).mockReturnValue([
+            mockUpdateLessonById,
         ])
 
-        mockEditLesson.mockReturnValue({ unwrap: mockUnwrap })
+        mockUpdateLessonById.mockReturnValue({ unwrap: mockUnwrap })
 
-        vi.mocked(useReadLessonQuery as Mock).mockReturnValue({
+        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
             data: mockLesson,
         })
     })
@@ -51,9 +54,9 @@ describe('LessonEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditLesson).toHaveBeenCalledWith({
+        expect(mockUpdateLessonById).toHaveBeenCalledWith({
             id: '123',
-            ...mockLesson,
+            lesson: mockLesson,
         })
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -74,7 +77,7 @@ describe('LessonEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditLesson).toHaveBeenCalled()
+        expect(mockUpdateLessonById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
         expect(mockNavigate).not.toHaveBeenCalled()

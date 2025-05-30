@@ -7,9 +7,9 @@ import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockBrand, mockBrandCreate, mockBrands } from '../__mocks__/brandsApi'
 import {
     useCreateBrandMutation,
-    useDeleteBrandMutation,
-    useReadBrandsQuery,
-    useUpdateBrandMutation,
+    useDeleteBrandByIdMutation,
+    useGetAllBrandsQuery,
+    useUpdateBrandByIdMutation,
 } from '../brandsApi'
 
 describe('brandsApi', () => {
@@ -26,8 +26,8 @@ describe('brandsApi', () => {
         })
     })
 
-    it('reads all brands', async () => {
-        const { result } = renderHookWithProvider(() => useReadBrandsQuery())
+    it('gets all brands', async () => {
+        const { result } = renderHookWithProvider(() => useGetAllBrandsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -40,13 +40,16 @@ describe('brandsApi', () => {
 
     it('updates a brand', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateBrandMutation()
+            useUpdateBrandByIdMutation()
         )
 
-        const [editBrand] = result.current
+        const [updateBrandById] = result.current
 
         await act(async () => {
-            const response = await editBrand(mockBrand).unwrap()
+            const response = await updateBrandById({
+                id: mockBrand._id!,
+                brand: mockBrand,
+            }).unwrap()
 
             expect(response).toMatchObject({
                 id: mockBrand._id!,
@@ -57,7 +60,7 @@ describe('brandsApi', () => {
 
     it('deletes a brand', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteBrandMutation()
+            useDeleteBrandByIdMutation()
         )
 
         const [deleteBrand] = result.current
@@ -102,7 +105,7 @@ describe('brandsApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useDeleteBrandMutation()
+            useDeleteBrandByIdMutation()
         )
 
         const [deleteBrand] = result.current

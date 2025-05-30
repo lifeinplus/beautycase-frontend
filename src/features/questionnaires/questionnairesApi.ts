@@ -14,13 +14,13 @@ const questionnairesApi = api.injectEndpoints({
             invalidatesTags: ['Questionnaire'],
         }),
 
-        readQuestionnaire: builder.query<Questionnaire, string>({
-            query: (id) => `/questionnaires/${id}`,
+        getAllQuestionnaires: builder.query<Questionnaire[], void>({
+            query: () => '/questionnaires',
             providesTags: ['Questionnaire'],
         }),
 
-        readQuestionnaires: builder.query<Questionnaire[], void>({
-            query: () => '/questionnaires',
+        getQuestionnaireById: builder.query<Questionnaire, string>({
+            query: (id) => `/questionnaires/${id}`,
             providesTags: ['Questionnaire'],
         }),
     }),
@@ -28,6 +28,6 @@ const questionnairesApi = api.injectEndpoints({
 
 export const {
     useCreateQuestionnaireMutation,
-    useReadQuestionnaireQuery,
-    useReadQuestionnairesQuery,
+    useGetAllQuestionnairesQuery,
+    useGetQuestionnaireByIdQuery,
 } = questionnairesApi

@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { selectUserId } from '../../auth/authSlice'
 import type { User, UserResult } from '../../users/types'
-import { useReadUserQuery } from '../../users/usersApi'
+import { useGetUserByIdQuery } from '../../users/usersApi'
 
 interface Field {
     label: string
@@ -99,7 +99,7 @@ const renderContent = (data: UserResult | undefined) => {
 export const AccountPage = () => {
     const userId = useAppSelector(selectUserId)
 
-    const { data, isLoading, error } = useReadUserQuery(userId || '')
+    const { data, isLoading, error } = useGetUserByIdQuery(userId || '')
 
     return (
         <article className="page">

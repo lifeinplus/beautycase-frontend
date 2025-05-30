@@ -12,7 +12,10 @@ import { Button } from '../../../components/ui/Button'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-import { useCreateStoreMutation, useUpdateStoreMutation } from '../storesApi'
+import {
+    useCreateStoreMutation,
+    useUpdateStoreByIdMutation,
+} from '../storesApi'
 import type { Store } from '../types'
 import { storeSchema } from '../validations'
 
@@ -51,7 +54,7 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
     }, [isSubmitSuccessful, reset])
 
     const [createStore] = useCreateStoreMutation()
-    const [updateStore] = useUpdateStoreMutation()
+    const [updateStoreById] = useUpdateStoreByIdMutation()
 
     const handleAddStore = async (data: Store) => {
         try {
@@ -64,8 +67,10 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
     }
 
     const handleUpdateStore = async (data: Store) => {
+        const { _id, ...store } = data
+
         try {
-            await updateStore(data).unwrap()
+            await updateStoreById({ id: _id!, store }).unwrap()
             dispatch(clearFormData())
         } catch (error) {
             console.error(error)

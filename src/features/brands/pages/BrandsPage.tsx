@@ -13,7 +13,7 @@ import { ModalDelete } from '../../../components/ui/ModalDelete'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, setFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
-import { useDeleteBrandMutation, useReadBrandsQuery } from '../brandsApi'
+import { useDeleteBrandByIdMutation, useGetAllBrandsQuery } from '../brandsApi'
 import { BrandForm } from '../components/BrandForm'
 import { BrandsMobileView } from '../components/BrandsMobileView'
 import { BrandsTable } from '../components/BrandsTable'
@@ -27,8 +27,8 @@ export const BrandsPage = () => {
     const [brand, setBrand] = useState<Brand>()
 
     const dispatch = useAppDispatch()
-    const { data, isLoading, error } = useReadBrandsQuery()
-    const [deleteBrand] = useDeleteBrandMutation()
+    const { data, isLoading, error } = useGetAllBrandsQuery()
+    const [deleteBrandById] = useDeleteBrandByIdMutation()
 
     const handleBack = () => {
         navigate('/reference_lists')
@@ -43,7 +43,7 @@ export const BrandsPage = () => {
         if (!brand?._id) return
 
         try {
-            await deleteBrand(brand._id).unwrap()
+            await deleteBrandById(brand._id).unwrap()
             toast.success('Бренд удалён')
             dispatch(clearFormData())
         } catch (err) {

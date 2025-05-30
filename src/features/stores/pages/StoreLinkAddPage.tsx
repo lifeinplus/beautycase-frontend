@@ -13,7 +13,7 @@ import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useReadStoresQuery } from '../storesApi'
+import { useGetAllStoresQuery } from '../storesApi'
 import type { StoreLink } from '../types'
 
 export const StoreLinkAddPage = () => {
@@ -21,7 +21,7 @@ export const StoreLinkAddPage = () => {
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: stores } = useReadStoresQuery()
+    const { data: stores } = useGetAllStoresQuery()
 
     const emptyStoreLink: StoreLink = { _id: '', link: '', name: '' }
 

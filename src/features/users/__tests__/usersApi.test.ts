@@ -3,11 +3,11 @@ import { describe, expect, it } from 'vitest'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockUserResult, mockUsers } from '../__mocks__/usersApi'
-import { useReadUserQuery, useReadUsersQuery } from '../usersApi'
+import { useGetUserByIdQuery, useGetAllUsersQuery } from '../usersApi'
 
 describe('usersApi', () => {
     it('fetches all users successfully', async () => {
-        const { result } = renderHookWithProvider(() => useReadUsersQuery())
+        const { result } = renderHookWithProvider(() => useGetAllUsersQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -18,7 +18,7 @@ describe('usersApi', () => {
 
     it('fetches a single user successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadUserQuery('user1')
+            useGetUserByIdQuery('user1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -29,7 +29,9 @@ describe('usersApi', () => {
     })
 
     it('handles 404 error when user is not found', async () => {
-        const { result } = renderHookWithProvider(() => useReadUserQuery('999'))
+        const { result } = renderHookWithProvider(() =>
+            useGetUserByIdQuery('999')
+        )
 
         expect(result.current.isLoading).toBe(true)
 

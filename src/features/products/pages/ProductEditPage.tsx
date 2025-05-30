@@ -6,7 +6,10 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ProductForm } from '../components/ProductForm'
-import { useUpdateProductMutation, useReadProductQuery } from '../productsApi'
+import {
+    useUpdateProductByIdMutation,
+    useGetProductByIdQuery,
+} from '../productsApi'
 import type { Product } from '../types'
 
 export const ProductEditPage = () => {
@@ -16,8 +19,8 @@ export const ProductEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editProduct] = useUpdateProductMutation()
-    const { data } = useReadProductQuery(id!)
+    const [updateProductById] = useUpdateProductByIdMutation()
+    const { data } = useGetProductByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -36,7 +39,7 @@ export const ProductEditPage = () => {
 
     const handleEditProduct = async (product: Product) => {
         try {
-            await editProduct({ id: id!, body: product }).unwrap()
+            await updateProductById({ id: id!, product }).unwrap()
             dispatch(clearFormData())
             navigate(`/products/${id}`)
         } catch (error) {

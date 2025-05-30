@@ -14,12 +14,7 @@ const toolsApi = api.injectEndpoints({
             invalidatesTags: ['Tool'],
         }),
 
-        readTool: builder.query<Tool, string>({
-            query: (id) => `/tools/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Tool', id }],
-        }),
-
-        readTools: builder.query<Tool[], void>({
+        getAllTools: builder.query<Tool[], void>({
             query: () => '/tools',
             providesTags: (result) =>
                 result
@@ -33,19 +28,24 @@ const toolsApi = api.injectEndpoints({
                     : [{ type: 'Tool', id: 'LIST' }],
         }),
 
-        updateTool: builder.mutation<Tool, { id: string; body: Tool }>({
-            query: (data) => ({
-                url: `/tools/${data.id}`,
+        getToolById: builder.query<Tool, string>({
+            query: (id) => `/tools/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Tool', id }],
+        }),
+
+        updateToolById: builder.mutation<Tool, { id: string; tool: Tool }>({
+            query: ({ id, tool }) => ({
+                url: `/tools/${id}`,
                 method: 'PUT',
-                body: cleanObject(data.body),
+                body: cleanObject(tool),
             }),
-            invalidatesTags: (_result, _error, tool) => [
-                { type: 'Tool', id: tool.id },
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Tool', id: id },
                 { type: 'Tool', id: 'LIST' },
             ],
         }),
 
-        deleteTool: builder.mutation<QueryResult, string>({
+        deleteToolById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/tools/${id}`,
                 method: 'DELETE',
@@ -57,8 +57,8 @@ const toolsApi = api.injectEndpoints({
 
 export const {
     useCreateToolMutation,
-    useReadToolQuery,
-    useReadToolsQuery,
-    useUpdateToolMutation,
-    useDeleteToolMutation,
+    useGetAllToolsQuery,
+    useGetToolByIdQuery,
+    useUpdateToolByIdMutation,
+    useDeleteToolByIdMutation,
 } = toolsApi

@@ -15,9 +15,9 @@ export const mockStore: Store = { _id: '1', name: 'Brush' }
 export const mockStores: Store[] = [mockStore, { _id: '2', name: 'Sponge' }]
 
 export const useCreateStoreMutation = vi.fn()
-export const useReadStoresQuery = vi.fn()
-export const useUpdateStoreMutation = vi.fn()
-export const useDeleteStoreMutation = vi.fn()
+export const useGetAllStoresQuery = vi.fn()
+export const useUpdateStoreByIdMutation = vi.fn()
+export const useDeleteStoreByIdMutation = vi.fn()
 
 const storesHandlers = [
     http.post('api/stores', () => HttpResponse.json(mockStoreCreate)),

@@ -4,10 +4,10 @@ import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { QuestionnaireMobileView } from '../components/QuestionnaireMobileView'
 import { QuestionnaireTable } from '../components/QuestionnaireTable'
-import { useReadQuestionnairesQuery } from '../questionnairesApi'
+import { useGetAllQuestionnairesQuery } from '../questionnairesApi'
 
 export const QuestionnaireListPage = () => {
-    const { data, isLoading, error } = useReadQuestionnairesQuery()
+    const { data, isLoading, error } = useGetAllQuestionnairesQuery()
 
     return (
         <article>

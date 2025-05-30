@@ -11,10 +11,10 @@ import {
 } from '../__mocks__/lessonsApi'
 import {
     useCreateLessonMutation,
-    useDeleteLessonMutation,
-    useUpdateLessonMutation,
-    useReadLessonQuery,
-    useReadLessonsQuery,
+    useDeleteLessonByIdMutation,
+    useUpdateLessonByIdMutation,
+    useGetLessonByIdQuery,
+    useGetAllLessonsQuery,
 } from '../lessonsApi'
 
 describe('lessonsApi', () => {
@@ -32,8 +32,8 @@ describe('lessonsApi', () => {
         })
     })
 
-    it('reads all lessons', async () => {
-        const { result } = renderHookWithProvider(() => useReadLessonsQuery())
+    it('gets all lessons', async () => {
+        const { result } = renderHookWithProvider(() => useGetAllLessonsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -44,9 +44,9 @@ describe('lessonsApi', () => {
         expect(result.current.data?.[0]._id).toBe(mockLesson._id)
     })
 
-    it('reads a lesson by id', async () => {
+    it('gets a lesson by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadLessonQuery('lesson1')
+            useGetLessonByIdQuery('lesson1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -59,15 +59,15 @@ describe('lessonsApi', () => {
 
     it('updates a lesson', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateLessonMutation()
+            useUpdateLessonByIdMutation()
         )
 
-        const [editLesson] = result.current
+        const [updateLessonById] = result.current
 
         await act(async () => {
-            const response = await editLesson({
-                id: 'lesson1',
-                ...mockLesson,
+            const response = await updateLessonById({
+                id: mockLesson._id!,
+                lesson: mockLesson,
             }).unwrap()
 
             expect(response).toMatchObject({
@@ -79,7 +79,7 @@ describe('lessonsApi', () => {
 
     it('deletes a lesson', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteLessonMutation()
+            useDeleteLessonByIdMutation()
         )
 
         const [deleteLesson] = result.current
@@ -124,7 +124,7 @@ describe('lessonsApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useDeleteLessonMutation()
+            useDeleteLessonByIdMutation()
         )
 
         const [deleteLesson] = result.current
@@ -137,7 +137,7 @@ describe('lessonsApi', () => {
 
     it('returns 404 error when lesson is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadLessonQuery('999')
+            useGetLessonByIdQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

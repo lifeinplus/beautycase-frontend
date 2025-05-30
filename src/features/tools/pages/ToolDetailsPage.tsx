@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
-import { useDeleteToolMutation, useReadToolQuery } from '../toolsApi'
+import { useDeleteToolByIdMutation, useGetToolByIdQuery } from '../toolsApi'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useReadToolQuery(id!)
-    const [deleteTool] = useDeleteToolMutation()
+    const { data, isLoading, error } = useGetToolByIdQuery(id!)
+    const [deleteToolById] = useDeleteToolByIdMutation()
 
     return (
         <DetailsPage
@@ -19,7 +19,7 @@ export const ToolDetailsPage = () => {
             redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteItem={deleteTool}
+            deleteItem={deleteToolById}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">

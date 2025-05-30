@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
-import { useDeleteProductMutation, useReadProductQuery } from '../productsApi'
+import {
+    useDeleteProductByIdMutation,
+    useGetProductByIdQuery,
+} from '../productsApi'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useReadProductQuery(id!)
-    const [deleteProduct] = useDeleteProductMutation()
+    const { data, isLoading, error } = useGetProductByIdQuery(id!)
+    const [deleteProductById] = useDeleteProductByIdMutation()
 
     return (
         <DetailsPage
@@ -19,7 +22,7 @@ export const ProductDetailsPage = () => {
             redirectPath="/products"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteItem={deleteProduct}
+            deleteItem={deleteProductById}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">

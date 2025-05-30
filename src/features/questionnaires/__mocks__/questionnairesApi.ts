@@ -68,8 +68,8 @@ export const mockQuestionnaires: Questionnaire[] = [
 ]
 
 export const useCreateQuestionnaireMutation = vi.fn()
-export const useReadQuestionnaireQuery = vi.fn()
-export const useReadQuestionnairesQuery = vi.fn()
+export const useGetAllQuestionnairesQuery = vi.fn()
+export const useGetQuestionnaireByIdQuery = vi.fn()
 
 const questionnairesHandlers = [
     http.post('api/questionnaires', () =>

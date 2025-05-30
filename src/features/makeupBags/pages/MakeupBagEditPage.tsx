@@ -7,8 +7,8 @@ import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { MakeupBagForm } from '../components/MakeupBagForm'
 import {
-    useUpdateMakeupBagMutation,
-    useReadMakeupBagQuery,
+    useUpdateMakeupBagByIdMutation,
+    useGetMakeupBagByIdQuery,
 } from '../makeupBagsApi'
 import type { MakeupBag } from '../types'
 
@@ -19,8 +19,8 @@ export const MakeupBagEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editMakeupBag] = useUpdateMakeupBagMutation()
-    const { data } = useReadMakeupBagQuery(id!)
+    const [updateMakeupBagById] = useUpdateMakeupBagByIdMutation()
+    const { data } = useGetMakeupBagByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -37,11 +37,7 @@ export const MakeupBagEditPage = () => {
 
     const handleEditMakeupBag = async (makeupBag: MakeupBag) => {
         try {
-            await editMakeupBag({
-                id: id!,
-                ...makeupBag,
-            }).unwrap()
-
+            await updateMakeupBagById({ id: id!, makeupBag }).unwrap()
             dispatch(clearFormData())
             navigate(`/makeup_bags/${id}`)
         } catch (error) {

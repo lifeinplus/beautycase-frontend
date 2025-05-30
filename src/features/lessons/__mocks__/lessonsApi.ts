@@ -42,10 +42,10 @@ export const mockLessons: Lesson[] = [
 ]
 
 export const useCreateLessonMutation = vi.fn()
-export const useReadLessonQuery = vi.fn()
-export const useReadLessonsQuery = vi.fn()
-export const useUpdateLessonMutation = vi.fn()
-export const useDeleteLessonMutation = vi.fn()
+export const useGetAllLessonsQuery = vi.fn()
+export const useGetLessonByIdQuery = vi.fn()
+export const useUpdateLessonByIdMutation = vi.fn()
+export const useDeleteLessonByIdMutation = vi.fn()
 
 const lessonsHandlers = [
     http.post('api/lessons', () => {

@@ -16,7 +16,7 @@ import type { FormRef } from '../../form/types'
 import { StoreForm } from '../components/StoreForm'
 import { StoresMobileView } from '../components/StoresMobileView'
 import { StoresTable } from '../components/StoresTable'
-import { useDeleteStoreMutation, useReadStoresQuery } from '../storesApi'
+import { useDeleteStoreByIdMutation, useGetAllStoresQuery } from '../storesApi'
 import type { Store } from '../types'
 
 export const StoresPage = () => {
@@ -27,8 +27,8 @@ export const StoresPage = () => {
     const [store, setStore] = useState<Store>()
 
     const dispatch = useAppDispatch()
-    const { data, isLoading, error } = useReadStoresQuery()
-    const [deleteStore] = useDeleteStoreMutation()
+    const { data, isLoading, error } = useGetAllStoresQuery()
+    const [deleteStoreById] = useDeleteStoreByIdMutation()
 
     const handleBack = () => {
         navigate('/reference_lists')
@@ -43,7 +43,7 @@ export const StoresPage = () => {
         if (!store?._id) return
 
         try {
-            await deleteStore(store._id).unwrap()
+            await deleteStoreById(store._id).unwrap()
             toast.success('Магазин удалён')
             dispatch(clearFormData())
         } catch (err) {

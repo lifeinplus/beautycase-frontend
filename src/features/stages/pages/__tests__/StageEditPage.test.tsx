@@ -8,7 +8,10 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockStage } from '../../__mocks__/stagesApi'
-import { useReadStageQuery, useUpdateStageMutation } from '../../stagesApi'
+import {
+    useGetStageByIdQuery,
+    useUpdateStageByIdMutation,
+} from '../../stagesApi'
 import { StageEditPage } from '../StageEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -18,18 +21,18 @@ vi.mock('../../components/StageForm')
 vi.mock('../../stagesApi')
 
 describe('StageEditPage', () => {
-    const mockEditStage = vi.fn()
+    const mockUpdateStageById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateStageMutation as Mock).mockReturnValue([
-            mockEditStage,
+        vi.mocked(useUpdateStageByIdMutation as Mock).mockReturnValue([
+            mockUpdateStageById,
         ])
 
-        mockEditStage.mockReturnValue({ unwrap: mockUnwrap })
+        mockUpdateStageById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadStageQuery as Mock).mockReturnValue({
+        vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
             data: mockStage,
         })
     })
@@ -52,10 +55,12 @@ describe('StageEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditStage).toHaveBeenCalledWith({
-            ...mockStage,
-            _id: '123',
-            stepsText: undefined,
+        expect(mockUpdateStageById).toHaveBeenCalledWith({
+            id: '123',
+            stage: {
+                ...mockStage,
+                stepsText: undefined,
+            },
         })
 
         expect(mockUnwrap).toHaveBeenCalled()
@@ -77,7 +82,7 @@ describe('StageEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditStage).toHaveBeenCalled()
+        expect(mockUpdateStageById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

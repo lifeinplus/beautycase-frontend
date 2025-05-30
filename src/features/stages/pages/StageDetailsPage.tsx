@@ -4,9 +4,9 @@ import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
 import type { Product } from '../../products/types'
 import {
-    useDeleteStageMutation,
-    useDuplicateStageMutation,
-    useReadStageQuery,
+    useDeleteStageByIdMutation,
+    useDuplicateStageByIdMutation,
+    useGetStageByIdQuery,
 } from '../stagesApi'
 
 export const StageDetailsPage = () => {
@@ -14,9 +14,9 @@ export const StageDetailsPage = () => {
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
 
-    const { data, isLoading, error } = useReadStageQuery(id!)
-    const [deleteStage] = useDeleteStageMutation()
-    const [duplicateStage] = useDuplicateStageMutation()
+    const { data, isLoading, error } = useGetStageByIdQuery(id!)
+    const [deleteStageById] = useDeleteStageByIdMutation()
+    const [duplicateStageById] = useDuplicateStageByIdMutation()
 
     const handleProduct = (id?: string) => {
         navigate(`/products/${id}`, {
@@ -33,8 +33,8 @@ export const StageDetailsPage = () => {
             title={data?.title}
             subtitle={data?.subtitle}
             description={data?.steps?.reduce((p, c) => p + c, '')}
-            deleteItem={deleteStage}
-            duplicateItem={duplicateStage}
+            deleteItem={deleteStageById}
+            duplicateItem={duplicateStageById}
             showDuplicate={true}
             mediaContent={
                 <section className="content-image">

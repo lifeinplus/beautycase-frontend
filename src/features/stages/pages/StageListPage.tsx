@@ -14,7 +14,7 @@ import { clearFormData } from '../../form/formSlice'
 import { StageFilter } from '../components/StageFilter'
 import { StageMobileView } from '../components/StageMobileView'
 import { StageTable } from '../components/StageTable'
-import { useReadStagesQuery } from '../stagesApi'
+import { useGetAllStagesQuery } from '../stagesApi'
 import type { Stage } from '../types'
 
 const ACTIONS = {
@@ -45,7 +45,7 @@ export const StageListPage = () => {
 
     const [filteredStages, setFilteredStages] = useState<Stage[]>([])
 
-    const { data: stages = [], isLoading, error } = useReadStagesQuery()
+    const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())

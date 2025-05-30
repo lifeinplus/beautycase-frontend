@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockCategories } from '../__mocks__/categoriesApi'
-import { useReadCategoriesQuery } from '../categoriesApi'
+import { useGetAllCategoriesQuery } from '../categoriesApi'
 
 describe('categoriesApi', () => {
-    it('reads all categories', async () => {
+    it('gets all categories', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadCategoriesQuery()
+            useGetAllCategoriesQuery()
         )
 
         expect(result.current.isLoading).toBe(true)

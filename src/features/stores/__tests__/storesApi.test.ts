@@ -5,9 +5,9 @@ import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockStore, mockStoreCreate, mockStores } from '../__mocks__/storesApi'
 import {
     useCreateStoreMutation,
-    useDeleteStoreMutation,
-    useUpdateStoreMutation,
-    useReadStoresQuery,
+    useDeleteStoreByIdMutation,
+    useUpdateStoreByIdMutation,
+    useGetAllStoresQuery,
 } from '../storesApi'
 
 describe('storesApi', () => {
@@ -24,8 +24,8 @@ describe('storesApi', () => {
         })
     })
 
-    it('reads all stores successfully', async () => {
-        const { result } = renderHookWithProvider(() => useReadStoresQuery())
+    it('gets all stores successfully', async () => {
+        const { result } = renderHookWithProvider(() => useGetAllStoresQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -36,13 +36,16 @@ describe('storesApi', () => {
 
     it('updates a store successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateStoreMutation()
+            useUpdateStoreByIdMutation()
         )
 
-        const [updateStore] = result.current
+        const [updateStoreById] = result.current
 
         await act(async () => {
-            const response = await updateStore(mockStore).unwrap()
+            const response = await updateStoreById({
+                id: mockStore._id!,
+                store: mockStore,
+            }).unwrap()
 
             expect(response).toMatchObject({
                 id: mockStore._id!,
@@ -53,7 +56,7 @@ describe('storesApi', () => {
 
     it('deletes a store successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteStoreMutation()
+            useDeleteStoreByIdMutation()
         )
 
         const [deleteStore] = result.current

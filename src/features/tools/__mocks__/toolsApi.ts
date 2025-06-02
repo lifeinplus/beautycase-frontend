@@ -6,7 +6,6 @@ import type { Tool } from '../types'
 
 export const mockToolCreate: MutationResult = {
     id: 'tool3',
-    count: 1,
     message: 'Tool added successfully',
 }
 

@@ -6,7 +6,6 @@ import type { Brand } from '../types'
 
 export const mockBrandCreate: MutationResult = {
     id: 'brand3',
-    count: 1,
     message: 'Brand created successfully',
 }
 

@@ -6,7 +6,6 @@ import type { Lesson } from '../types'
 
 export const mockLessonCreate: MutationResult = {
     id: 'lesson3',
-    count: 1,
     message: 'Lesson created successfully',
 }
 

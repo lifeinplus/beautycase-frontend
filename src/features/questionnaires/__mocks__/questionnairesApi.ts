@@ -6,7 +6,6 @@ import type { Questionnaire } from '../types'
 
 export const mockQuestionnaireCreated: MutationResult = {
     id: 'questionnaire3',
-    count: 1,
     message: 'Questionnaire created successfully',
 }
 

@@ -8,7 +8,6 @@ import type { MakeupBag } from '../types'
 
 export const mockMakeupBagCreate: MutationResult = {
     id: 'makeupBag3',
-    count: 1,
     message: 'MakeupBag created successfully',
 }
 

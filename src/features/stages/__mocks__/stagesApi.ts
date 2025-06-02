@@ -7,13 +7,11 @@ import type { Stage } from '../types'
 
 export const mockStageCreate: MutationResult = {
     id: 'stage3',
-    count: 1,
     message: 'Stage created successfully',
 }
 
 export const mockStageDuplicate: MutationResult = {
     id: 'stage1-copy',
-    count: 1,
     message: 'Stage duplicated successfully',
 }
 

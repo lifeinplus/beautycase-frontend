@@ -6,7 +6,6 @@ import type { Store } from '../types'
 
 export const mockStoreCreate: MutationResult = {
     id: 'store3',
-    count: 1,
     message: 'Store created successfully',
 }
 

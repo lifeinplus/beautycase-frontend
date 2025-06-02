@@ -1,9 +1,9 @@
 import { GalleryPage } from '../../../components/gallery/GalleryPage'
 import { VideoCard } from '../../../components/gallery/VideoCard'
-import { useReadLessonsQuery } from '../lessonsApi'
+import { useGetAllLessonsQuery } from '../lessonsApi'
 
 export const LessonsGalleryPage = () => {
-    const { data: lessons, isLoading, error } = useReadLessonsQuery()
+    const { data: lessons, isLoading, error } = useGetAllLessonsQuery()
 
     return (
         <GalleryPage

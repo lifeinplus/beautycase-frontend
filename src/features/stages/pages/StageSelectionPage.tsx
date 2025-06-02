@@ -9,8 +9,8 @@ import { Image } from '../../../components/ui/Image'
 import { TopPanel } from '../../../components/TopPanel'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useReadMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
-import { useReadStagesQuery } from '../stagesApi'
+import { useGetAllMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
+import { useGetAllStagesQuery } from '../stagesApi'
 import type { Stage } from '../types'
 
 export const StageSelectionPage = () => {
@@ -21,8 +21,8 @@ export const StageSelectionPage = () => {
 
     const [filteredStages, setFilteredStages] = useState<Stage[]>([])
 
-    const { data: makeupBags = [] } = useReadMakeupBagsQuery()
-    const { data: stages = [], isLoading, error } = useReadStagesQuery()
+    const { data: makeupBags = [] } = useGetAllMakeupBagsQuery()
+    const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
 
     useEffect(() => {
         const otherMakeupBags = makeupBags.filter(

@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockBrands } from '../../../brands/__mocks__/brandsApi'
-import { useReadBrandsQuery } from '../../../brands/brandsApi'
+import { useGetAllBrandsQuery } from '../../../brands/brandsApi'
 import { setFormData } from '../../../form/formSlice'
 import { mockTool } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
@@ -30,7 +30,7 @@ describe('ToolForm', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockTool)
 
-        vi.mocked(useReadBrandsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllBrandsQuery as Mock).mockReturnValue({
             data: mockBrands,
         })
     })

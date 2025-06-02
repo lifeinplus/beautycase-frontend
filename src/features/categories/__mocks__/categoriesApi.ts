@@ -18,7 +18,7 @@ export const mockCategories: Category[] = [
     },
 ]
 
-export const useReadCategoriesQuery = vi.fn()
+export const useGetAllCategoriesQuery = vi.fn()
 
 const categoriesHandlers = [
     http.get('api/categories', () => HttpResponse.json(mockCategories)),

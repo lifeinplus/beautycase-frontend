@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockStage, mockStages } from '../../__mocks__/stagesApi'
-import { useReadStagesQuery } from '../../stagesApi'
+import { useGetAllStagesQuery } from '../../stagesApi'
 import { StageListPage } from '../StageListPage'
 
 vi.mock('../../../../app/hooks')
@@ -31,7 +31,7 @@ describe('StageListPage', () => {
             return null
         })
 
-        vi.mocked(useReadStagesQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllStagesQuery as Mock).mockReturnValue({
             data: mockStages,
             isLoading: false,
             error: null,

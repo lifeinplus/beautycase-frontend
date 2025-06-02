@@ -11,10 +11,10 @@ import {
 } from '../__mocks__/makeupBagsApi'
 import {
     useCreateMakeupBagMutation,
-    useDeleteMakeupBagMutation,
-    useUpdateMakeupBagMutation,
-    useReadMakeupBagQuery,
-    useReadMakeupBagsQuery,
+    useDeleteMakeupBagByIdMutation,
+    useUpdateMakeupBagByIdMutation,
+    useGetMakeupBagByIdQuery,
+    useGetAllMakeupBagsQuery,
 } from '../makeupBagsApi'
 
 describe('makeupBagsApi', () => {
@@ -31,9 +31,9 @@ describe('makeupBagsApi', () => {
         })
     })
 
-    it('reads all makeupBags', async () => {
+    it('gets all makeupBags', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadMakeupBagsQuery()
+            useGetAllMakeupBagsQuery()
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -45,9 +45,9 @@ describe('makeupBagsApi', () => {
         expect(result.current.data?.[0]._id).toBe(mockMakeupBag._id)
     })
 
-    it('reads a makeupBag by id', async () => {
+    it('gets a makeupBag by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadMakeupBagQuery(mockMakeupBag._id!)
+            useGetMakeupBagByIdQuery(mockMakeupBag._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -60,15 +60,15 @@ describe('makeupBagsApi', () => {
 
     it('updates a makeupBag', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateMakeupBagMutation()
+            useUpdateMakeupBagByIdMutation()
         )
 
-        const [editMakeupBag] = result.current
+        const [updateMakeupBagById] = result.current
 
         await act(async () => {
-            const response = await editMakeupBag({
+            const response = await updateMakeupBagById({
                 id: mockMakeupBag._id!,
-                ...mockMakeupBag,
+                makeupBag: mockMakeupBag,
             }).unwrap()
 
             expect(response).toMatchObject({
@@ -80,7 +80,7 @@ describe('makeupBagsApi', () => {
 
     it('deletes a makeupBag', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteMakeupBagMutation()
+            useDeleteMakeupBagByIdMutation()
         )
 
         const [deleteMakeupBag] = result.current
@@ -115,7 +115,7 @@ describe('makeupBagsApi', () => {
 
     it('returns error when makeup bag is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadMakeupBagQuery('999')
+            useGetMakeupBagByIdQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -137,7 +137,7 @@ describe('makeupBagsApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useDeleteMakeupBagMutation()
+            useDeleteMakeupBagByIdMutation()
         )
 
         const [deleteMakeupBag] = result.current

@@ -8,14 +8,14 @@ import { NavigationButton } from '../../../components/navigation/NavigationButto
 import { Image } from '../../../components/ui/Image'
 import { TopPanel } from '../../../components/TopPanel'
 import { selectFormData, setFormData } from '../../form/formSlice'
-import { useReadProductsQuery } from '../productsApi'
+import { useGetAllProductsQuery } from '../productsApi'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
-    const { data: products, isLoading, error } = useReadProductsQuery()
+    const { data: products, isLoading, error } = useGetAllProductsQuery()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.productIds || []

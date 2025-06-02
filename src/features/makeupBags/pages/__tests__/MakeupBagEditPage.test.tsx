@@ -9,8 +9,8 @@ import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
-    useUpdateMakeupBagMutation,
-    useReadMakeupBagQuery,
+    useUpdateMakeupBagByIdMutation,
+    useGetMakeupBagByIdQuery,
 } from '../../makeupBagsApi'
 import { MakeupBagEditPage } from '../MakeupBagEditPage'
 
@@ -21,18 +21,18 @@ vi.mock('../../components/MakeupBagForm')
 vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagEditPage', () => {
-    const mockEditMakeupBag = vi.fn()
+    const mockUpdateMakeupBagById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateMakeupBagMutation as Mock).mockReturnValue([
-            mockEditMakeupBag,
+        vi.mocked(useUpdateMakeupBagByIdMutation as Mock).mockReturnValue([
+            mockUpdateMakeupBagById,
         ])
 
-        mockEditMakeupBag.mockReturnValue({ unwrap: mockUnwrap })
+        mockUpdateMakeupBagById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadMakeupBagQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
             data: mockMakeupBag,
         })
     })
@@ -55,9 +55,9 @@ describe('MakeupBagEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditMakeupBag).toHaveBeenCalledWith({
+        expect(mockUpdateMakeupBagById).toHaveBeenCalledWith({
             id: '123',
-            ...mockMakeupBag,
+            makeupBag: mockMakeupBag,
         })
 
         expect(mockUnwrap).toHaveBeenCalled()
@@ -79,7 +79,7 @@ describe('MakeupBagEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditMakeupBag).toHaveBeenCalled()
+        expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

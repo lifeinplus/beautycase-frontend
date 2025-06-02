@@ -3,14 +3,14 @@ import type { User, UserResult } from './types'
 
 const usersApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        readUser: builder.query<UserResult, string>({
-            query: (id) => `/users/${id}`,
+        getAllUsers: builder.query<User[], void>({
+            query: () => '/users',
         }),
 
-        readUsers: builder.query<User[], void>({
-            query: () => '/users',
+        getUserById: builder.query<UserResult, string>({
+            query: (id) => `/users/${id}`,
         }),
     }),
 })
 
-export const { useReadUserQuery, useReadUsersQuery } = usersApi
+export const { useGetAllUsersQuery, useGetUserByIdQuery } = usersApi

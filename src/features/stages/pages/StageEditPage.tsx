@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { StageForm } from '../components/StageForm'
-import { useReadStageQuery, useUpdateStageMutation } from '../stagesApi'
+import { useGetStageByIdQuery, useUpdateStageByIdMutation } from '../stagesApi'
 import type { Stage } from '../types'
 
 export const StageEditPage = () => {
@@ -15,8 +15,8 @@ export const StageEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [editStage] = useUpdateStageMutation()
-    const { data } = useReadStageQuery(id!)
+    const [updateStageById] = useUpdateStageByIdMutation()
+    const { data } = useGetStageByIdQuery(id!)
 
     useEffect(() => {
         if (data && !isDirty) {
@@ -39,10 +39,9 @@ export const StageEditPage = () => {
         const steps = stepsText ? stepsText?.split('\n\n') : undefined
 
         try {
-            await editStage({
-                ...newStage,
-                _id: id,
-                steps,
+            await updateStageById({
+                id: id!,
+                stage: { ...newStage, steps },
             }).unwrap()
 
             dispatch(clearFormData())

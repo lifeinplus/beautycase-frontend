@@ -3,8 +3,8 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockProduct } from '../../__mocks__/productsApi'
 import {
-    useDeleteProductMutation,
-    useReadProductQuery,
+    useDeleteProductByIdMutation,
+    useGetProductByIdQuery,
 } from '../../productsApi'
 import { ProductDetailsPage } from '../ProductDetailsPage'
 
@@ -16,13 +16,13 @@ describe('ProductDetailsPage', () => {
     const mockDeleteProduct = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useReadProductQuery as Mock).mockReturnValue({
+        vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
             data: mockProduct,
             isLoading: false,
             error: null,
         })
 
-        vi.mocked(useDeleteProductMutation as Mock).mockReturnValue([
+        vi.mocked(useDeleteProductByIdMutation as Mock).mockReturnValue([
             mockDeleteProduct,
         ])
     })

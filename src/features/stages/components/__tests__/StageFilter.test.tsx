@@ -6,7 +6,7 @@ import {
     mockMakeupBag,
     mockMakeupBags,
 } from '../../../makeupBags/__mocks__/makeupBagsApi'
-import { useReadMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
 import { mockStage, mockStages } from '../../__mocks__/stagesApi'
 import { StageFilter } from '../StageFilter'
 
@@ -16,7 +16,7 @@ describe('StageFilter', () => {
     const mockOnFilterChange = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
     })
@@ -42,7 +42,7 @@ describe('StageFilter', () => {
     })
 
     it('handles empty makeup bags list correctly', () => {
-        vi.mocked(useReadMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
             data: [],
         })
 

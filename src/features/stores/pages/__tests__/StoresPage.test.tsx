@@ -7,7 +7,10 @@ import toast from 'react-hot-toast'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
-import { useReadStoresQuery, useDeleteStoreMutation } from '../../storesApi'
+import {
+    useGetAllStoresQuery,
+    useDeleteStoreByIdMutation,
+} from '../../storesApi'
 import type { Store } from '../../types'
 import { StoresPage } from '../StoresPage'
 
@@ -31,20 +34,20 @@ describe('StoresPage', () => {
         { _id: '2', name: 'Store B' },
     ]
 
-    const mockDeleteStore = vi.fn()
+    const mockDeleteStoreById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useNavigate).mockReturnValue(mockNavigate)
 
-        vi.mocked(useDeleteStoreMutation as Mock).mockReturnValue([
-            mockDeleteStore,
+        vi.mocked(useDeleteStoreByIdMutation as Mock).mockReturnValue([
+            mockDeleteStoreById,
         ])
 
-        mockDeleteStore.mockReturnValue({ unwrap: mockUnwrap })
+        mockDeleteStoreById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadStoresQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllStoresQuery as Mock).mockReturnValue({
             data: mockStores,
             isLoading: false,
             error: null,
@@ -106,7 +109,7 @@ describe('StoresPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteStore).toHaveBeenCalledWith('1')
+        expect(mockDeleteStoreById).toHaveBeenCalledWith('1')
         expect(toast.success).toHaveBeenCalledWith('Магазин удалён')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
@@ -133,7 +136,7 @@ describe('StoresPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteStore).toHaveBeenCalledWith('1')
+        expect(mockDeleteStoreById).toHaveBeenCalledWith('1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

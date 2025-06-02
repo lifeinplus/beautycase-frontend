@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockTool } from '../../__mocks__/toolsApi'
-import { useUpdateToolMutation, useReadToolQuery } from '../../toolsApi'
+import { useUpdateToolByIdMutation, useGetToolByIdQuery } from '../../toolsApi'
 import { ToolEditPage } from '../ToolEditPage'
 
 vi.mock('../../../../app/hooks')
@@ -18,16 +18,18 @@ vi.mock('../../components/ToolForm')
 vi.mock('../../toolsApi')
 
 describe('ToolEditPage', () => {
-    const mockEditTool = vi.fn()
+    const mockUpdateToolById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateToolMutation as Mock).mockReturnValue([mockEditTool])
+        vi.mocked(useUpdateToolByIdMutation as Mock).mockReturnValue([
+            mockUpdateToolById,
+        ])
 
-        mockEditTool.mockReturnValue({ unwrap: mockUnwrap })
+        mockUpdateToolById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
-        vi.mocked(useReadToolQuery as Mock).mockReturnValue({
+        vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
             data: mockTool,
         })
     })
@@ -50,9 +52,9 @@ describe('ToolEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditTool).toHaveBeenCalledWith({
+        expect(mockUpdateToolById).toHaveBeenCalledWith({
             id: '123',
-            body: mockTool,
+            tool: mockTool,
         })
 
         expect(mockUnwrap).toHaveBeenCalled()
@@ -74,7 +76,7 @@ describe('ToolEditPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockEditTool).toHaveBeenCalled()
+        expect(mockUpdateToolById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

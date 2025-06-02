@@ -11,8 +11,8 @@ import {
 } from '../__mocks__/questionnairesApi'
 import {
     useCreateQuestionnaireMutation,
-    useReadQuestionnairesQuery,
-    useReadQuestionnaireQuery,
+    useGetAllQuestionnairesQuery,
+    useGetQuestionnaireByIdQuery,
 } from '../questionnairesApi'
 
 describe('questionnairesApi', () => {
@@ -30,9 +30,9 @@ describe('questionnairesApi', () => {
         })
     })
 
-    it('reads all questionnaires', async () => {
+    it('gets all questionnaires', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadQuestionnairesQuery()
+            useGetAllQuestionnairesQuery()
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -44,9 +44,9 @@ describe('questionnairesApi', () => {
         expect(result.current.data?.[0]._id).toBe(mockQuestionnaire._id)
     })
 
-    it('reads a questionnaire by id', async () => {
+    it('gets a questionnaire by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadQuestionnaireQuery(mockQuestionnaire._id!)
+            useGetQuestionnaireByIdQuery(mockQuestionnaire._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -85,7 +85,7 @@ describe('questionnairesApi', () => {
 
     it('handles 404 error when questionnaire is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadQuestionnaireQuery('999')
+            useGetQuestionnaireByIdQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

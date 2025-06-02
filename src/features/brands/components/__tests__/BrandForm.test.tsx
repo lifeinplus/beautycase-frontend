@@ -9,8 +9,12 @@ import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
-import { useCreateBrandMutation, useUpdateBrandMutation } from '../../brandsApi'
+import {
+    useCreateBrandMutation,
+    useUpdateBrandByIdMutation,
+} from '../../brandsApi'
 import { BrandForm } from '../BrandForm'
+import { mockBrand } from '../../__mocks__/brandsApi'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
@@ -23,7 +27,7 @@ describe('BrandForm', () => {
     const mockCreateBrand = vi.fn()
     const mockCreateUnwrap = vi.fn()
 
-    const mockUpdateBrand = vi.fn()
+    const mockUpdateBrandById = vi.fn()
     const mockUpdateUnwrap = vi.fn()
 
     beforeEach(() => {
@@ -37,12 +41,12 @@ describe('BrandForm', () => {
         mockCreateBrand.mockReturnValue({ unwrap: mockCreateUnwrap })
         mockCreateUnwrap.mockResolvedValue({})
 
-        vi.mocked(useUpdateBrandMutation as Mock).mockReturnValue([
-            mockUpdateBrand,
+        vi.mocked(useUpdateBrandByIdMutation as Mock).mockReturnValue([
+            mockUpdateBrandById,
             { isLoading: false },
         ])
 
-        mockUpdateBrand.mockReturnValue({ unwrap: mockUpdateUnwrap })
+        mockUpdateBrandById.mockReturnValue({ unwrap: mockUpdateUnwrap })
         mockUpdateUnwrap.mockResolvedValue({})
     })
 
@@ -90,6 +94,8 @@ describe('BrandForm', () => {
     it('calls updateBrand when update button is clicked', async () => {
         const user = userEvent.setup()
 
+        const { _id, ...brand } = mockBrand
+
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',
             name: 'Test Brand',
@@ -101,12 +107,12 @@ describe('BrandForm', () => {
         const button = screen.getByTestId('mocked-button')
 
         await user.clear(input)
-        await user.type(input, 'Updated Brand')
+        await user.type(input, brand.name)
         await user.click(button)
 
-        expect(mockUpdateBrand).toHaveBeenCalledWith({
-            _id: '123',
-            name: 'Updated Brand',
+        expect(mockUpdateBrandById).toHaveBeenCalledWith({
+            id: '123',
+            brand,
         })
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -158,7 +164,7 @@ describe('BrandForm', () => {
         await user.type(input, 'New Brand')
         await user.click(button)
 
-        expect(mockUpdateBrand).toHaveBeenCalled()
+        expect(mockUpdateBrandById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

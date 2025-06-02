@@ -13,21 +13,21 @@ const brandsApi = api.injectEndpoints({
             invalidatesTags: ['Brand'],
         }),
 
-        readBrands: builder.query<Brand[], void>({
+        getAllBrands: builder.query<Brand[], void>({
             query: () => '/brands',
             providesTags: ['Brand'],
         }),
 
-        updateBrand: builder.mutation<Brand, Brand>({
-            query: ({ _id, ...body }) => ({
-                url: `/brands/${_id}`,
+        updateBrandById: builder.mutation<Brand, { id: string; brand: Brand }>({
+            query: ({ id, brand }) => ({
+                url: `/brands/${id}`,
                 method: 'PUT',
-                body: body,
+                body: brand,
             }),
             invalidatesTags: ['Brand'],
         }),
 
-        deleteBrand: builder.mutation<QueryResult, string>({
+        deleteBrandById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/brands/${id}`,
                 method: 'DELETE',
@@ -39,7 +39,7 @@ const brandsApi = api.injectEndpoints({
 
 export const {
     useCreateBrandMutation,
-    useReadBrandsQuery,
-    useUpdateBrandMutation,
-    useDeleteBrandMutation,
+    useGetAllBrandsQuery,
+    useUpdateBrandByIdMutation,
+    useDeleteBrandByIdMutation,
 } = brandsApi

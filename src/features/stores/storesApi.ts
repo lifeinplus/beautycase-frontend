@@ -13,21 +13,21 @@ const storesApi = api.injectEndpoints({
             invalidatesTags: ['Store'],
         }),
 
-        readStores: builder.query<Store[], void>({
+        getAllStores: builder.query<Store[], void>({
             query: () => '/stores',
             providesTags: ['Store'],
         }),
 
-        updateStore: builder.mutation<Store, Store>({
-            query: ({ _id, ...body }) => ({
-                url: `/stores/${_id}`,
+        updateStoreById: builder.mutation<Store, { id: string; store: Store }>({
+            query: ({ id, store }) => ({
+                url: `/stores/${id}`,
                 method: 'PUT',
-                body: body,
+                body: store,
             }),
             invalidatesTags: ['Store'],
         }),
 
-        deleteStore: builder.mutation<QueryResult, string>({
+        deleteStoreById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stores/${id}`,
                 method: 'DELETE',
@@ -39,7 +39,7 @@ const storesApi = api.injectEndpoints({
 
 export const {
     useCreateStoreMutation,
-    useReadStoresQuery,
-    useUpdateStoreMutation,
-    useDeleteStoreMutation,
+    useGetAllStoresQuery,
+    useUpdateStoreByIdMutation,
+    useDeleteStoreByIdMutation,
 } = storesApi

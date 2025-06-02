@@ -6,7 +6,10 @@ import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
 import { mockLesson } from '../../__mocks__/lessonsApi'
-import { useDeleteLessonMutation, useReadLessonQuery } from '../../lessonsApi'
+import {
+    useDeleteLessonByIdMutation,
+    useGetLessonByIdQuery,
+} from '../../lessonsApi'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('../../../../components/pages/DetailsPage')
@@ -18,13 +21,13 @@ describe('LessonDetailsPage', () => {
     const mockDeleteLesson = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useReadLessonQuery as Mock).mockReturnValue({
+        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
             data: mockLesson,
             isLoading: false,
             error: null,
         })
 
-        vi.mocked(useDeleteLessonMutation as Mock).mockReturnValue([
+        vi.mocked(useDeleteLessonByIdMutation as Mock).mockReturnValue([
             mockDeleteLesson,
         ])
 

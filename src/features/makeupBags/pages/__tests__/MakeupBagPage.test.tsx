@@ -9,8 +9,8 @@ import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
 import {
-    useDeleteMakeupBagMutation,
-    useReadMakeupBagQuery,
+    useDeleteMakeupBagByIdMutation,
+    useGetMakeupBagByIdQuery,
 } from '../../makeupBagsApi'
 import { MakeupBagPage } from '../MakeupBagPage'
 
@@ -31,7 +31,7 @@ vi.mock('../../../tools/components/Tools')
 vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagPage', () => {
-    const mockDeleteMakeupBag = vi.fn()
+    const mockDeleteMakeupBagById = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
@@ -41,17 +41,17 @@ describe('MakeupBagPage', () => {
             return null
         })
 
-        vi.mocked(useReadMakeupBagQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
             data: mockMakeupBag,
             isLoading: false,
             error: null,
         })
 
-        vi.mocked(useDeleteMakeupBagMutation as Mock).mockReturnValue([
-            mockDeleteMakeupBag,
+        vi.mocked(useDeleteMakeupBagByIdMutation as Mock).mockReturnValue([
+            mockDeleteMakeupBagById,
         ])
 
-        mockDeleteMakeupBag.mockReturnValue({ unwrap: mockUnwrap })
+        mockDeleteMakeupBagById.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
     })
 
@@ -98,7 +98,7 @@ describe('MakeupBagPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteMakeupBag).toHaveBeenCalledWith('123')
+        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
         expect(toast.success).toHaveBeenCalledWith('Косметичка удалена')
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
     })
@@ -124,7 +124,7 @@ describe('MakeupBagPage', () => {
 
         await user.click(modalDeleteConfirm)
 
-        expect(mockDeleteMakeupBag).toHaveBeenCalledWith('123')
+        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

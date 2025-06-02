@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockQuestionnaire } from '../../__mocks__/questionnairesApi'
-import { useReadQuestionnaireQuery } from '../../questionnairesApi'
+import { useGetQuestionnaireByIdQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -18,7 +18,7 @@ vi.mock('../../questionnairesApi')
 
 describe('QuestionnaireResultPage', () => {
     beforeEach(() => {
-        vi.mocked(useReadQuestionnaireQuery as Mock).mockReturnValue({
+        vi.mocked(useGetQuestionnaireByIdQuery as Mock).mockReturnValue({
             data: mockQuestionnaire,
             isLoading: false,
             error: null,

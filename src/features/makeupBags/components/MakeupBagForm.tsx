@@ -8,12 +8,12 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
-import { useReadCategoriesQuery } from '../../categories/categoriesApi'
+import { useGetAllCategoriesQuery } from '../../categories/categoriesApi'
 import { SelectSection } from '../../form/components/SelectSection'
 import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import type { SelectOption } from '../../form/types'
-import { useReadUsersQuery } from '../../users/usersApi'
+import { useGetAllUsersQuery } from '../../users/usersApi'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
@@ -43,8 +43,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
         reset(formData)
     }, [formData])
 
-    const { data: categories = [] } = useReadCategoriesQuery()
-    const { data: users = [] } = useReadUsersQuery()
+    const { data: categories = [] } = useGetAllCategoriesQuery()
+    const { data: users = [] } = useGetAllUsersQuery()
 
     const categoryOptions = categories.map(
         (c): SelectOption => ({

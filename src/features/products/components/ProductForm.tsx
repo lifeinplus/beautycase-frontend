@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { TopPanel } from '../../../components/TopPanel'
-import { useReadBrandsQuery } from '../../brands/brandsApi'
+import { useGetAllBrandsQuery } from '../../brands/brandsApi'
 import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
 import { ImageUrlSection } from '../../form/components/ImageUrlSection'
 import { InputSection } from '../../form/components/InputSection'
@@ -46,7 +46,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         reset(formData)
     }, [formData])
 
-    const { data: brands } = useReadBrandsQuery()
+    const { data: brands } = useGetAllBrandsQuery()
 
     const brandOptions: SelectOption[] | undefined = brands?.map((b) => ({
         text: b.name,

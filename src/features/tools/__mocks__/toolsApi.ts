@@ -46,10 +46,10 @@ export const mockTools: Tool[] = [
 ]
 
 export const useCreateToolMutation = vi.fn()
-export const useDeleteToolMutation = vi.fn()
-export const useUpdateToolMutation = vi.fn()
-export const useReadToolQuery = vi.fn()
-export const useReadToolsQuery = vi.fn()
+export const useGetAllToolsQuery = vi.fn()
+export const useGetToolByIdQuery = vi.fn()
+export const useDeleteToolByIdMutation = vi.fn()
+export const useUpdateToolByIdMutation = vi.fn()
 
 const toolsHandlers = [
     http.post('api/tools', () => HttpResponse.json(mockToolCreate)),

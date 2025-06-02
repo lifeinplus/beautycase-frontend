@@ -14,12 +14,7 @@ const productsApi = api.injectEndpoints({
             invalidatesTags: ['Product'],
         }),
 
-        readProduct: builder.query<Product, string>({
-            query: (id) => `/products/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
-        }),
-
-        readProducts: builder.query<Product[], void>({
+        getAllProducts: builder.query<Product[], void>({
             query: () => '/products',
             providesTags: (result) =>
                 result
@@ -33,21 +28,27 @@ const productsApi = api.injectEndpoints({
                     : [{ type: 'Product', id: 'LIST' }],
         }),
 
-        updateProduct: builder.mutation<Product, { id: string; body: Product }>(
-            {
-                query: (data) => ({
-                    url: `/products/${data.id}`,
-                    method: 'PUT',
-                    body: cleanObject(data.body),
-                }),
-                invalidatesTags: (_result, _error, data) => [
-                    { type: 'Product', id: data.id },
-                    { type: 'Product', id: 'LIST' },
-                ],
-            }
-        ),
+        getProductById: builder.query<Product, string>({
+            query: (id) => `/products/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
+        }),
 
-        deleteProduct: builder.mutation<QueryResult, string>({
+        updateProductById: builder.mutation<
+            Product,
+            { id: string; product: Product }
+        >({
+            query: ({ id, product }) => ({
+                url: `/products/${id}`,
+                method: 'PUT',
+                body: cleanObject(product),
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Product', id: id },
+                { type: 'Product', id: 'LIST' },
+            ],
+        }),
+
+        deleteProductById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/products/${id}`,
                 method: 'DELETE',
@@ -59,8 +60,8 @@ const productsApi = api.injectEndpoints({
 
 export const {
     useCreateProductMutation,
-    useReadProductQuery,
-    useReadProductsQuery,
-    useUpdateProductMutation,
-    useDeleteProductMutation,
+    useGetAllProductsQuery,
+    useGetProductByIdQuery,
+    useUpdateProductByIdMutation,
+    useDeleteProductByIdMutation,
 } = productsApi

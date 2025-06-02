@@ -24,9 +24,9 @@ export const mockBrands: Brand[] = [
 ]
 
 export const useCreateBrandMutation = vi.fn()
-export const useReadBrandsQuery = vi.fn()
-export const useUpdateBrandMutation = vi.fn()
-export const useDeleteBrandMutation = vi.fn()
+export const useGetAllBrandsQuery = vi.fn()
+export const useUpdateBrandByIdMutation = vi.fn()
+export const useDeleteBrandByIdMutation = vi.fn()
 
 const brandsHandlers = [
     http.post('api/brands', () => HttpResponse.json(mockBrandCreate)),

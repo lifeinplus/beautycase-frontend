@@ -40,10 +40,10 @@ export const mockProducts: Product[] = [
 ]
 
 export const useCreateProductMutation = vi.fn()
-export const useDeleteProductMutation = vi.fn()
-export const useUpdateProductMutation = vi.fn()
-export const useReadProductQuery = vi.fn()
-export const useReadProductsQuery = vi.fn()
+export const useGetAllProductsQuery = vi.fn()
+export const useGetProductByIdQuery = vi.fn()
+export const useUpdateProductByIdMutation = vi.fn()
+export const useDeleteProductByIdMutation = vi.fn()
 
 const productsHandlers = [
     http.post('api/products', () => HttpResponse.json(mockProductCreate)),

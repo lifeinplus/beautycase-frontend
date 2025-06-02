@@ -11,10 +11,10 @@ import {
 } from '../__mocks__/productsApi'
 import {
     useCreateProductMutation,
-    useReadProductQuery,
-    useReadProductsQuery,
-    useUpdateProductMutation,
-    useDeleteProductMutation,
+    useGetProductByIdQuery,
+    useGetAllProductsQuery,
+    useUpdateProductByIdMutation,
+    useDeleteProductByIdMutation,
 } from '../productsApi'
 
 describe('productsApi', () => {
@@ -31,8 +31,10 @@ describe('productsApi', () => {
         })
     })
 
-    it('reads all products', async () => {
-        const { result } = renderHookWithProvider(() => useReadProductsQuery())
+    it('gets all products', async () => {
+        const { result } = renderHookWithProvider(() =>
+            useGetAllProductsQuery()
+        )
 
         expect(result.current.isLoading).toBe(true)
 
@@ -43,9 +45,9 @@ describe('productsApi', () => {
         expect(result.current.data?.[0]._id).toBe(mockProduct._id)
     })
 
-    it('reads a product by id', async () => {
+    it('gets a product by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadProductQuery('product1')
+            useGetProductByIdQuery('product1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -58,15 +60,15 @@ describe('productsApi', () => {
 
     it('updates a product', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateProductMutation()
+            useUpdateProductByIdMutation()
         )
 
-        const [editProduct] = result.current
+        const [updateProductById] = result.current
 
         await act(async () => {
-            const response = await editProduct({
-                id: 'product1',
-                body: mockProduct,
+            const response = await updateProductById({
+                id: mockProduct._id!,
+                product: mockProduct,
             }).unwrap()
 
             expect(response).toMatchObject({
@@ -78,7 +80,7 @@ describe('productsApi', () => {
 
     it('deletes a product', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteProductMutation()
+            useDeleteProductByIdMutation()
         )
 
         const [deleteProduct] = result.current
@@ -123,7 +125,7 @@ describe('productsApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useDeleteProductMutation()
+            useDeleteProductByIdMutation()
         )
 
         const [deleteProduct] = result.current
@@ -136,7 +138,7 @@ describe('productsApi', () => {
 
     it('returns 404 error when product is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadProductQuery('999')
+            useGetProductByIdQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

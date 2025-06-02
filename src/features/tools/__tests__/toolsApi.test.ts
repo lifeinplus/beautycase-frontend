@@ -5,15 +5,15 @@ import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { mockTool, mockToolCreate, mockTools } from '../__mocks__/toolsApi'
 import {
     useCreateToolMutation,
-    useDeleteToolMutation,
-    useUpdateToolMutation,
-    useReadToolQuery,
-    useReadToolsQuery,
+    useDeleteToolByIdMutation,
+    useUpdateToolByIdMutation,
+    useGetToolByIdQuery,
+    useGetAllToolsQuery,
 } from '../toolsApi'
 
 describe('toolsApi', () => {
     it('fetches all tools successfully', async () => {
-        const { result } = renderHookWithProvider(() => useReadToolsQuery())
+        const { result } = renderHookWithProvider(() => useGetAllToolsQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -24,7 +24,7 @@ describe('toolsApi', () => {
 
     it('fetches a single tool successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadToolQuery(mockTool._id!)
+            useGetToolByIdQuery(mockTool._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -46,14 +46,16 @@ describe('toolsApi', () => {
     })
 
     it('edits a tool successfully', async () => {
-        const { result } = renderHookWithProvider(() => useUpdateToolMutation())
+        const { result } = renderHookWithProvider(() =>
+            useUpdateToolByIdMutation()
+        )
 
-        const [editTool] = result.current
+        const [updateToolById] = result.current
 
         await act(async () => {
-            const response = await editTool({
+            const response = await updateToolById({
                 id: mockTool._id!,
-                body: mockTool,
+                tool: mockTool,
             }).unwrap()
 
             expect(response).toMatchObject({
@@ -64,7 +66,9 @@ describe('toolsApi', () => {
     })
 
     it('deletes a tool successfully', async () => {
-        const { result } = renderHookWithProvider(() => useDeleteToolMutation())
+        const { result } = renderHookWithProvider(() =>
+            useDeleteToolByIdMutation()
+        )
 
         const [deleteTool] = result.current
 
@@ -76,7 +80,9 @@ describe('toolsApi', () => {
     })
 
     it('handles 404 error when tool is not found', async () => {
-        const { result } = renderHookWithProvider(() => useReadToolQuery('999'))
+        const { result } = renderHookWithProvider(() =>
+            useGetToolByIdQuery('999')
+        )
 
         expect(result.current.isLoading).toBe(true)
 

@@ -10,11 +10,11 @@ import {
 } from '../__mocks__/stagesApi'
 import {
     useCreateStageMutation,
-    useDeleteStageMutation,
-    useDuplicateStageMutation,
-    useReadStagesQuery,
-    useReadStageQuery,
-    useUpdateStageMutation,
+    useDeleteStageByIdMutation,
+    useDuplicateStageByIdMutation,
+    useGetAllStagesQuery,
+    useGetStageByIdQuery,
+    useUpdateStageByIdMutation,
 } from '../stagesApi'
 
 describe('stagesApi', () => {
@@ -33,7 +33,7 @@ describe('stagesApi', () => {
 
     it('duplicates a stage', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDuplicateStageMutation()
+            useDuplicateStageByIdMutation()
         )
 
         const [duplicateStage] = result.current
@@ -44,8 +44,8 @@ describe('stagesApi', () => {
         })
     })
 
-    it('reads all stages', async () => {
-        const { result } = renderHookWithProvider(() => useReadStagesQuery())
+    it('gets all stages', async () => {
+        const { result } = renderHookWithProvider(() => useGetAllStagesQuery())
 
         expect(result.current.isLoading).toBe(true)
 
@@ -56,9 +56,9 @@ describe('stagesApi', () => {
         expect(result.current.data?.[0].title).toBe('Base Makeup')
     })
 
-    it('reads a stage by id', async () => {
+    it('gets a stage by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadStageQuery('stage1')
+            useGetStageByIdQuery('stage1')
         )
 
         expect(result.current.isLoading).toBe(true)
@@ -71,13 +71,16 @@ describe('stagesApi', () => {
 
     it('updates a stage', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUpdateStageMutation()
+            useUpdateStageByIdMutation()
         )
 
-        const [updateStage] = result.current
+        const [updateStageById] = result.current
 
         await act(async () => {
-            const response = await updateStage(mockStage).unwrap()
+            const response = await updateStageById({
+                id: mockStage._id!,
+                stage: mockStage,
+            }).unwrap()
 
             expect(response).toMatchObject({
                 id: mockStage._id!,
@@ -88,7 +91,7 @@ describe('stagesApi', () => {
 
     it('deletes a stage', async () => {
         const { result } = renderHookWithProvider(() =>
-            useDeleteStageMutation()
+            useDeleteStageByIdMutation()
         )
 
         const [deleteStage] = result.current
@@ -102,7 +105,7 @@ describe('stagesApi', () => {
 
     it('handles 404 error when stage is not found', async () => {
         const { result } = renderHookWithProvider(() =>
-            useReadStageQuery('999')
+            useGetStageByIdQuery('999')
         )
 
         expect(result.current.isLoading).toBe(true)

@@ -13,7 +13,7 @@ import {
 import toast from 'react-hot-toast'
 
 import { getErrorMessage } from '../../../utils/errorUtils'
-import { useUploadImageTempMutation } from '../../uploads/uploadsApi'
+import { useUploadTempImageByFileMutation } from '../../uploads/uploadsApi'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 
@@ -50,7 +50,7 @@ export const ImageTextSection = <T extends FieldValues>({
     value = '',
     valueUrl = '',
 }: ImageTextSectionProps<T>) => {
-    const [uploadImageTemp] = useUploadImageTempMutation()
+    const [uploadImageTemp] = useUploadTempImageByFileMutation()
 
     const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]

@@ -13,7 +13,7 @@ import {
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Questionnaire } from '../../../questionnaires/types'
 import { mockUploadResult } from '../../../uploads/__mocks__/uploadsApi'
-import { useUploadImageTempMutation } from '../../../uploads/uploadsApi'
+import { useUploadTempImageByFileMutation } from '../../../uploads/uploadsApi'
 import {
     ImageTextSection,
     type ImageTextSectionProps,
@@ -37,15 +37,15 @@ describe('ImageTextSection', () => {
         setValue: mockSetValue,
     }
 
-    const mockUploadImageTemp = vi.fn()
+    const mockUploadTempImageByFile = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUploadImageTempMutation as Mock).mockReturnValue([
-            mockUploadImageTemp,
+        vi.mocked(useUploadTempImageByFileMutation as Mock).mockReturnValue([
+            mockUploadTempImageByFile,
         ])
 
-        mockUploadImageTemp.mockReturnValue({ unwrap: mockUnwrap })
+        mockUploadTempImageByFile.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue(mockUploadResult)
     })
 
@@ -96,7 +96,7 @@ describe('ImageTextSection', () => {
             fireEvent.change(input, { target: { files: [mockFile] } })
         )
 
-        expect(mockUploadImageTemp).toHaveBeenCalledTimes(1)
+        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
         expect(mockSetValue).toHaveBeenCalledWith(
             'makeupBag',
             '[приложено фото]'
@@ -122,7 +122,7 @@ describe('ImageTextSection', () => {
             fireEvent.change(input, { target: { files: [mockFile] } })
         )
 
-        expect(mockUploadImageTemp).toHaveBeenCalledTimes(1)
+        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
 
         expect(mockSetValue).not.toHaveBeenCalled()
         expect(mockClearErrors).not.toHaveBeenCalled()
@@ -142,7 +142,7 @@ describe('ImageTextSection', () => {
 
         await waitFor(() => fireEvent.change(input, { target: { files: [] } }))
 
-        expect(mockUploadImageTemp).not.toHaveBeenCalled()
+        expect(mockUploadTempImageByFile).not.toHaveBeenCalled()
         expect(mockSetValue).not.toHaveBeenCalled()
     })
 

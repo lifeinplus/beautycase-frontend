@@ -13,7 +13,10 @@ import {
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Product } from '../../../products/types'
 import { mockUploadResult } from '../../../uploads/__mocks__/uploadsApi'
-import { useUploadImageTempMutation } from '../../../uploads/uploadsApi'
+import {
+    useUploadTempImageByFileMutation,
+    useUploadTempImageByUrlMutation,
+} from '../../../uploads/uploadsApi'
 import { ImageUrlSection, type ImageUrlSectionProps } from '../ImageUrlSection'
 
 vi.mock('../../../../utils/errorUtils')
@@ -31,16 +34,26 @@ describe('ImageUrlSection', () => {
         setValue: mockSetValue,
     }
 
-    const mockUploadImageTemp = vi.fn()
-    const mockUnwrap = vi.fn()
+    const mockUploadTempImageByFile = vi.fn()
+    const mockUnwrapByFile = vi.fn()
+
+    const mockUploadTempImageByUrl = vi.fn()
+    const mockUnwrapByUrl = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUploadImageTempMutation as Mock).mockReturnValue([
-            mockUploadImageTemp,
+        vi.mocked(useUploadTempImageByFileMutation as Mock).mockReturnValue([
+            mockUploadTempImageByFile,
         ])
 
-        mockUploadImageTemp.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue(mockUploadResult)
+        mockUploadTempImageByFile.mockReturnValue({ unwrap: mockUnwrapByFile })
+        mockUnwrapByFile.mockResolvedValue(mockUploadResult)
+
+        vi.mocked(useUploadTempImageByUrlMutation as Mock).mockReturnValue([
+            mockUploadTempImageByUrl,
+        ])
+
+        mockUploadTempImageByUrl.mockReturnValue({ unwrap: mockUnwrapByUrl })
+        mockUnwrapByUrl.mockResolvedValue(mockUploadResult)
     })
 
     it('renders with required props', () => {
@@ -89,7 +102,7 @@ describe('ImageUrlSection', () => {
             fireEvent.change(input, { target: { files: [mockFile] } })
         )
 
-        expect(mockUploadImageTemp).toHaveBeenCalledTimes(1)
+        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
         expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockUrl)
         expect(mockClearErrors).toHaveBeenCalledWith('imageUrl')
     })
@@ -99,7 +112,7 @@ describe('ImageUrlSection', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        mockUnwrap.mockRejectedValue(mockError)
+        mockUnwrapByFile.mockRejectedValue(mockError)
 
         render(<ImageUrlSection {...mockProps} />)
 
@@ -111,7 +124,7 @@ describe('ImageUrlSection', () => {
             fireEvent.change(input, { target: { files: [mockFile] } })
         )
 
-        expect(mockUploadImageTemp).toHaveBeenCalledTimes(1)
+        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
 
         expect(mockSetValue).not.toHaveBeenCalled()
         expect(mockClearErrors).not.toHaveBeenCalled()
@@ -131,7 +144,7 @@ describe('ImageUrlSection', () => {
 
         await waitFor(() => fireEvent.change(input, { target: { files: [] } }))
 
-        expect(mockUploadImageTemp).not.toHaveBeenCalled()
+        expect(mockUploadTempImageByFile).not.toHaveBeenCalled()
         expect(mockSetValue).not.toHaveBeenCalled()
     })
 })

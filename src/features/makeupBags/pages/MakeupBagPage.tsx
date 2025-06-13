@@ -1,5 +1,6 @@
 import {
     ArrowLeftIcon,
+    DocumentArrowDownIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/react/24/outline'
@@ -21,6 +22,7 @@ import { selectRole, selectUsername } from '../../auth/authSlice'
 import { clearFormData } from '../../form/formSlice'
 import { Stages } from '../../stages/components/Stages'
 import { Tools } from '../../tools/components/Tools'
+import { usePDFExport } from '../hooks/usePDFExport'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
@@ -30,6 +32,10 @@ const ACTIONS = {
     back: {
         icon: <ArrowLeftIcon className="h-6 w-6" />,
         label: 'Назад',
+    },
+    export: {
+        icon: <DocumentArrowDownIcon className="h-6 w-6" />,
+        label: 'PDF',
     },
     edit: {
         icon: <PencilSquareIcon className="h-6 w-6" />,
@@ -52,6 +58,7 @@ interface ActionItem {
 
 const ACTION_ITEMS: ActionItem[] = [
     { id: 'back', className: 'nav-btn-back' },
+    { id: 'export', auth: false },
     { id: 'edit', auth: true, roles: ['admin', 'mua'] },
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
@@ -69,6 +76,8 @@ export const MakeupBagPage = () => {
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
+    const { exportToPDF, error: exportError, clearError } = usePDFExport()
+
     const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
@@ -81,20 +90,42 @@ export const MakeupBagPage = () => {
         dispatch(clearFormData())
     }, [dispatch])
 
+    useEffect(() => {
+        if (exportError) {
+            toast.error(exportError)
+            clearError()
+        }
+    }, [exportError, clearError])
+
+    const handleExportToPDF = async () => {
+        if (!data) {
+            toast.error('Нет данных для экспорта')
+            return
+        }
+
+        const filename = `${categoryName.toLowerCase().replace(/\s+/g, '-')}.pdf`
+
+        const result = await exportToPDF(
+            {
+                category: data.category,
+                stages: data.stages,
+                tools: data.tools,
+            },
+            filename
+        )
+
+        if (result.success) {
+            toast.success('PDF успешно создан')
+        }
+    }
+
     const actionHandlers = {
         back: () =>
             navigate(state?.fromPathname || redirectPath, {
                 replace: true,
                 state: { scrollId: id },
             }),
-        stages: () =>
-            document
-                .getElementById('stages')
-                ?.scrollIntoView({ behavior: 'smooth' }),
-        tools: () =>
-            document
-                .getElementById('tools')
-                ?.scrollIntoView({ behavior: 'smooth' }),
+        export: handleExportToPDF,
         edit: () => navigate(`${redirectPath}/edit/${id}`),
         delete: () => setIsModalDeleteOpen(true),
     }

@@ -5,12 +5,12 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import { type DataMessageError } from '../../../utils/errorUtils'
-import { useUploadImageTempMutation } from '../uploadsApi'
+import { useUploadTempImageByFileMutation } from '../uploadsApi'
 
 describe('uploadsApi', () => {
     it('uploads an image successfully', async () => {
         const { result } = renderHookWithProvider(() =>
-            useUploadImageTempMutation()
+            useUploadTempImageByFileMutation()
         )
 
         const [uploadImageTemp] = result.current
@@ -33,7 +33,7 @@ describe('uploadsApi', () => {
 
     it('handles API error', async () => {
         server.use(
-            http.post('api/uploads/image-temp', async () => {
+            http.post('api/uploads/temp-image-file', async () => {
                 return HttpResponse.json(
                     { message: 'Upload failed' },
                     { status: 500 }
@@ -42,7 +42,7 @@ describe('uploadsApi', () => {
         )
 
         const { result } = renderHookWithProvider(() =>
-            useUploadImageTempMutation()
+            useUploadTempImageByFileMutation()
         )
 
         const [uploadImageTemp] = result.current

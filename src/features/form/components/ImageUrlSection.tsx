@@ -1,6 +1,6 @@
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
-import { ChangeEvent, ClipboardEvent, useEffect, useState } from 'react'
+import { ChangeEvent, ClipboardEvent, useEffect, useRef, useState } from 'react'
 import {
     type FieldError,
     type FieldValues,
@@ -45,6 +45,8 @@ export const ImageUrlSection = <T extends FieldValues>({
     required = false,
     value = '',
 }: ImageUrlSectionProps<T>) => {
+    const uploadRef = useRef<HTMLInputElement>(null)
+
     const [imageUrl, setImageUrl] = useState<string>()
     const [isUploading, setIsUploading] = useState(false)
 
@@ -75,6 +77,7 @@ export const ImageUrlSection = <T extends FieldValues>({
 
         if (!file) return
 
+        setValue(name, '' as PathValue<T, Path<T>>)
         setIsUploading(true)
 
         try {
@@ -121,7 +124,13 @@ export const ImageUrlSection = <T extends FieldValues>({
 
     const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {
         e.preventDefault()
+
         const pastedText = e.clipboardData.getData('text')
+        setImageUrl('')
+
+        if (uploadRef.current) {
+            uploadRef.current.value = ''
+        }
 
         if (pastedText && isValidUrl(pastedText) && isImageUrl(pastedText)) {
             const target = e.target as HTMLTextAreaElement
@@ -156,6 +165,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                         )}
                         disabled={isUploading}
                         onChange={handleUploadByFile}
+                        ref={uploadRef}
                         type="file"
                     />
                 </label>
@@ -180,13 +190,15 @@ export const ImageUrlSection = <T extends FieldValues>({
                         <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-rose-500"></div>
                     </div>
                 )}
+
+                {description && (
+                    <p className="form-description">{description}</p>
+                )}
+
+                {error && <p className="form-error">{error.message}</p>}
+
+                {imageUrl && <ImagePreview url={imageUrl} />}
             </div>
-
-            {description && <p className="form-description">{description}</p>}
-
-            {error && <p className="form-error">{error.message}</p>}
-
-            {imageUrl && <ImagePreview url={imageUrl} />}
         </div>
     )
 }

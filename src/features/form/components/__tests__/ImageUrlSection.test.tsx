@@ -124,9 +124,10 @@ describe('ImageUrlSection', () => {
             fireEvent.change(input, { target: { files: [mockFile] } })
         )
 
-        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
+        expect(mockSetValue).toHaveBeenCalledOnce()
+        expect(mockSetValue).toHaveBeenCalledWith('imageUrl', '')
 
-        expect(mockSetValue).not.toHaveBeenCalled()
+        expect(mockUploadTempImageByFile).toHaveBeenCalledOnce()
         expect(mockClearErrors).not.toHaveBeenCalled()
 
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

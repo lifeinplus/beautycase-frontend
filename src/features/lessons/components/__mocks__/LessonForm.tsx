@@ -1,4 +1,4 @@
-import { mockLesson } from '../../__mocks__/lessonsApi'
+import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import { type LessonFormProps } from '../LessonForm'
 
 export const LessonForm = ({ title, onSubmit }: LessonFormProps) => (
@@ -6,7 +6,7 @@ export const LessonForm = ({ title, onSubmit }: LessonFormProps) => (
         <h1>{title}</h1>
         <button
             data-testid="mocked-submit-button"
-            onClick={() => onSubmit(mockLesson)}
+            onClick={() => onSubmit(mockLesson1)}
         >
             Submit
         </button>

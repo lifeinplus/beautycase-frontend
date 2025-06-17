@@ -14,7 +14,7 @@ import {
     useUpdateStoreByIdMutation,
 } from '../../storesApi'
 import { StoreForm } from '../StoreForm'
-import { mockStore } from '../../__mocks__/storesApi'
+import { mockStore1 } from '../../__mocks__/storesApi'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
@@ -94,7 +94,7 @@ describe('StoreForm', () => {
     it('calls updateStore when update button is clicked', async () => {
         const user = userEvent.setup()
 
-        const { _id, ...store } = mockStore
+        const { _id, ...store } = mockStore1
 
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',

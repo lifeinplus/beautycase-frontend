@@ -2,7 +2,7 @@ import { act, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import { mockStore, mockStoreCreate, mockStores } from '../__mocks__/storesApi'
+import { mockStore1, mockStoreCreate, mockStores } from '../__mocks__/storesApi'
 import {
     useCreateStoreMutation,
     useDeleteStoreByIdMutation,
@@ -19,7 +19,7 @@ describe('storesApi', () => {
         const [createStore] = result.current
 
         await act(async () => {
-            const response = await createStore(mockStore).unwrap()
+            const response = await createStore(mockStore1).unwrap()
             expect(response).toMatchObject(mockStoreCreate)
         })
     })
@@ -43,12 +43,12 @@ describe('storesApi', () => {
 
         await act(async () => {
             const response = await updateStoreById({
-                id: mockStore._id!,
-                store: mockStore,
+                id: mockStore1._id!,
+                store: mockStore1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockStore._id!,
+                id: mockStore1._id!,
                 message: 'Store updated successfully',
             })
         })
@@ -62,7 +62,7 @@ describe('storesApi', () => {
         const [deleteStore] = result.current
 
         await act(async () => {
-            const response = await deleteStore(mockStore._id!).unwrap()
+            const response = await deleteStore(mockStore1._id!).unwrap()
 
             expect(response).toEqual({ message: 'Store deleted successfully' })
         })

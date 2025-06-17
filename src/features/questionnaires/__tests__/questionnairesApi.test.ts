@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
-    mockQuestionnaire,
+    mockQuestionnaire1,
     mockQuestionnaireCreated,
     mockQuestionnaires,
 } from '../__mocks__/questionnairesApi'
@@ -25,7 +25,7 @@ describe('questionnairesApi', () => {
 
         await act(async () => {
             const response =
-                await createQuestionnaire(mockQuestionnaire).unwrap()
+                await createQuestionnaire(mockQuestionnaire1).unwrap()
             expect(response).toMatchObject(mockQuestionnaireCreated)
         })
     })
@@ -41,20 +41,20 @@ describe('questionnairesApi', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockQuestionnaires)
-        expect(result.current.data?.[0]._id).toBe(mockQuestionnaire._id)
+        expect(result.current.data?.[0]._id).toBe(mockQuestionnaire1._id)
     })
 
     it('gets a questionnaire by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetQuestionnaireByIdQuery(mockQuestionnaire._id!)
+            useGetQuestionnaireByIdQuery(mockQuestionnaire1._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockQuestionnaire)
-        expect(result.current.data?._id).toBe(mockQuestionnaire._id)
+        expect(result.current.data).toEqual(mockQuestionnaire1)
+        expect(result.current.data?._id).toBe(mockQuestionnaire1._id)
     })
 
     it('returns error on failed questionnaire creation', async () => {
@@ -75,7 +75,7 @@ describe('questionnairesApi', () => {
 
         await act(async () => {
             const response = addQuestionnaire({
-                ...mockQuestionnaire,
+                ...mockQuestionnaire1,
                 name: '',
             }).unwrap()
 

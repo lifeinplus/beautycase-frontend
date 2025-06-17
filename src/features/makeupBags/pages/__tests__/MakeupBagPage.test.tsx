@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
@@ -47,7 +47,7 @@ describe('MakeupBagPage', () => {
         })
 
         vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
-            data: mockMakeupBag,
+            data: mockMakeupBag1,
             isLoading: false,
             error: null,
         })
@@ -98,7 +98,7 @@ describe('MakeupBagPage', () => {
         it('exports to PDF successfully', async () => {
             const user = userEvent.setup()
 
-            const mockFilename = `${mockMakeupBag.category?.name.replace(/\s+/g, '-')}-${mockMakeupBag.client?.username}.pdf`
+            const mockFilename = `${mockMakeupBag1.category?.name.replace(/\s+/g, '-')}-${mockMakeupBag1.client?.username}.pdf`
 
             mockExportToPDF.mockResolvedValue({ success: true })
 
@@ -109,9 +109,9 @@ describe('MakeupBagPage', () => {
 
             expect(mockExportToPDF).toHaveBeenCalledWith(
                 {
-                    category: mockMakeupBag.category,
-                    stages: mockMakeupBag.stages,
-                    tools: mockMakeupBag.tools,
+                    category: mockMakeupBag1.category,
+                    stages: mockMakeupBag1.stages,
+                    tools: mockMakeupBag1.tools,
                 },
                 mockFilename
             )

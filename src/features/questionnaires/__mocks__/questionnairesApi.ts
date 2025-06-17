@@ -48,7 +48,7 @@ export const mockQuestionnaireFull: Questionnaire = {
     skinType: 'combination',
 }
 
-export const mockQuestionnaire: Questionnaire = {
+export const mockQuestionnaire1: Questionnaire = {
     _id: 'questionnaire1',
     name: 'Client 1',
     instagram: '@client1',
@@ -57,13 +57,15 @@ export const mockQuestionnaire: Questionnaire = {
     makeupBag: 'Brush',
 }
 
+export const mockQuestionnaire2: Questionnaire = {
+    _id: 'questionnaire2',
+    name: 'Client 2',
+    makeupBag: 'Sponge',
+}
+
 export const mockQuestionnaires: Questionnaire[] = [
-    mockQuestionnaire,
-    {
-        _id: 'questionnaire2',
-        name: 'Client 2',
-        makeupBag: 'Sponge',
-    },
+    mockQuestionnaire1,
+    mockQuestionnaire2,
 ]
 
 export const useCreateQuestionnaireMutation = vi.fn()

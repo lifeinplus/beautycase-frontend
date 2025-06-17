@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
 import type { MutationResult } from '../../../types/api'
-import { mockProduct } from '../../products/__mocks__/productsApi'
+import { mockProduct1 } from '../../products/__mocks__/productsApi'
 import type { Stage } from '../types'
 
 export const mockStageCreate: MutationResult = {
@@ -15,7 +15,7 @@ export const mockStageDuplicate: MutationResult = {
     message: 'Stage duplicated successfully',
 }
 
-export const mockStage: Stage = {
+export const mockStage1: Stage = {
     _id: 'stage1',
     title: 'Base Makeup',
     subtitle: 'Applying foundation and concealer',
@@ -23,21 +23,20 @@ export const mockStage: Stage = {
     comment: 'Test Comment 1',
     steps: ['Step 1.1', 'Step 1.2', 'Step 1.3'],
     stepsText: 'Step 1.1\n\nStep 1.2\n\nStep 1.3',
-    products: [mockProduct],
+    products: [mockProduct1],
     productIds: ['111', '222'],
 }
 
-export const mockStages: Stage[] = [
-    mockStage,
-    {
-        _id: 'stage2',
-        title: 'Eye Makeup',
-        subtitle: 'Applying eyeshadow and eyeliner',
-        imageUrl: 'https://example.com/image2.jpg',
-        steps: ['Step 2.1', 'Step 2.2'],
-        productIds: ['333', '444'],
-    },
-]
+export const mockStage2: Stage = {
+    _id: 'stage2',
+    title: 'Eye Makeup',
+    subtitle: 'Applying eyeshadow and eyeliner',
+    imageUrl: 'https://example.com/image2.jpg',
+    steps: ['Step 2.1', 'Step 2.2'],
+    productIds: ['333', '444'],
+}
+
+export const mockStages: Stage[] = [mockStage1, mockStage2]
 
 export const useCreateStageMutation = vi.fn()
 export const useDuplicateStageByIdMutation = vi.fn()

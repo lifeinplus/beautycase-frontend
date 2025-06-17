@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockStage } from '../../__mocks__/stagesApi'
+import { mockStage1 } from '../../__mocks__/stagesApi'
 import {
     useGetStageByIdQuery,
     useUpdateStageByIdMutation,
@@ -33,7 +33,7 @@ describe('StageEditPage', () => {
         mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
-            data: mockStage,
+            data: mockStage1,
         })
     })
 
@@ -58,7 +58,7 @@ describe('StageEditPage', () => {
         expect(mockUpdateStageById).toHaveBeenCalledWith({
             id: '123',
             stage: {
-                ...mockStage,
+                ...mockStage1,
                 stepsText: undefined,
             },
         })

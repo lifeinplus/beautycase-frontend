@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import { mockBrand, mockBrandCreate, mockBrands } from '../__mocks__/brandsApi'
+import { mockBrand1, mockBrandCreate, mockBrands } from '../__mocks__/brandsApi'
 import {
     useCreateBrandMutation,
     useDeleteBrandByIdMutation,
@@ -21,7 +21,7 @@ describe('brandsApi', () => {
         const [addBrand] = result.current
 
         await act(async () => {
-            const response = await addBrand(mockBrand).unwrap()
+            const response = await addBrand(mockBrand1).unwrap()
             expect(response).toMatchObject(mockBrandCreate)
         })
     })
@@ -35,7 +35,7 @@ describe('brandsApi', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockBrands)
-        expect(result.current.data?.[0]._id).toBe(mockBrand._id)
+        expect(result.current.data?.[0]._id).toBe(mockBrand1._id)
     })
 
     it('updates a brand', async () => {
@@ -47,12 +47,12 @@ describe('brandsApi', () => {
 
         await act(async () => {
             const response = await updateBrandById({
-                id: mockBrand._id!,
-                brand: mockBrand,
+                id: mockBrand1._id!,
+                brand: mockBrand1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockBrand._id!,
+                id: mockBrand1._id!,
                 message: 'Brand updated successfully',
             })
         })
@@ -88,7 +88,7 @@ describe('brandsApi', () => {
         const [createBrand] = result.current
 
         await act(async () => {
-            const response = createBrand({ ...mockBrand, name: '' }).unwrap()
+            const response = createBrand({ ...mockBrand1, name: '' }).unwrap()
 
             await expect(response).rejects.toThrow()
         })

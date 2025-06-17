@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockQuestionnaire } from '../../__mocks__/questionnairesApi'
+import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { useGetQuestionnaireByIdQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
@@ -19,7 +19,7 @@ vi.mock('../../questionnairesApi')
 describe('QuestionnaireResultPage', () => {
     beforeEach(() => {
         vi.mocked(useGetQuestionnaireByIdQuery as Mock).mockReturnValue({
-            data: mockQuestionnaire,
+            data: mockQuestionnaire1,
             isLoading: false,
             error: null,
         })
@@ -33,7 +33,7 @@ describe('QuestionnaireResultPage', () => {
         const questionnaireResult = screen.getByTestId(
             'mocked-questionnaire-result'
         )
-        const name = screen.getByText(mockQuestionnaire.name)
+        const name = screen.getByText(mockQuestionnaire1.name)
         const navBar = screen.getByTestId('mocked-nav-bar')
         const navButton = screen.getByTestId('mocked-nav-button-Назад')
 

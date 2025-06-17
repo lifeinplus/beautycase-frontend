@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import config from '../../../../config'
 import cloudinary from '../../../../utils/cloudinary'
-import { mockQuestionnaire } from '../../__mocks__/questionnairesApi'
+import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { QuestionnaireResult } from '../QuestionnaireResult'
 
 vi.mock('../../../../config')
@@ -11,7 +11,7 @@ vi.mock('../../../../utils/cloudinary')
 
 describe('QuestionnaireResult', () => {
     it('renders all fields correctly', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire} />)
+        render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
         expect(screen.getByText('Имя')).toBeInTheDocument()
         expect(screen.getByText('Instagram')).toBeInTheDocument()
@@ -22,7 +22,7 @@ describe('QuestionnaireResult', () => {
     })
 
     it('displays "Не указано" for undefined values', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire} />)
+        render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
         const notSpecifiedElements = screen.getAllByText('Не указано')
         expect(notSpecifiedElements.length).toBe(19 - 6)
@@ -34,7 +34,7 @@ describe('QuestionnaireResult', () => {
         render(
             <QuestionnaireResult
                 data={{
-                    ...mockQuestionnaire,
+                    ...mockQuestionnaire1,
                     makeupBagPhotoId: mockMakeupBagPhotoId,
                 }}
             />
@@ -45,7 +45,7 @@ describe('QuestionnaireResult', () => {
     })
 
     it('uses default image when makeupBagPhotoId is not provided', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire} />)
+        render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
         expect(cloudinary.image).toHaveBeenCalledWith(
             config.cloudinary.defaultThumbnailName
@@ -61,7 +61,7 @@ describe('QuestionnaireResult', () => {
 
         render(
             <QuestionnaireResult
-                data={{ ...mockQuestionnaire, problems: mockData }}
+                data={{ ...mockQuestionnaire1, problems: mockData }}
             />
         )
 

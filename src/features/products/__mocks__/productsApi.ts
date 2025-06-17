@@ -9,7 +9,7 @@ export const mockProductCreate: MutationResult = {
     message: 'Product created successfully',
 }
 
-export const mockProduct: Product = {
+export const mockProduct1: Product = {
     _id: 'product1',
     brand: { _id: 'brand1', name: 'Brand 1' },
     brandId: 'brand1',
@@ -26,17 +26,16 @@ export const mockProduct: Product = {
     ],
 }
 
-export const mockProducts: Product[] = [
-    mockProduct,
-    {
-        _id: 'product2',
-        brandId: 'brand2',
-        name: 'Product 2',
-        imageUrl: 'https://example.com/lipstick.jpg',
-        comment: '',
-        storeLinks: [],
-    },
-]
+export const mockProduct2: Product = {
+    _id: 'product2',
+    brandId: 'brand2',
+    name: 'Product 2',
+    imageUrl: 'https://example.com/lipstick.jpg',
+    comment: '',
+    storeLinks: [],
+}
+
+export const mockProducts: Product[] = [mockProduct1, mockProduct2]
 
 export const useCreateProductMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()

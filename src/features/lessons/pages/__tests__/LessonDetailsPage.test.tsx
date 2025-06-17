@@ -5,7 +5,7 @@ import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { mockUrlYouTube } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
-import { mockLesson } from '../../__mocks__/lessonsApi'
+import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
@@ -22,7 +22,7 @@ describe('LessonDetailsPage', () => {
 
     beforeEach(() => {
         vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
-            data: mockLesson,
+            data: mockLesson1,
             isLoading: false,
             error: null,
         })
@@ -37,9 +37,9 @@ describe('LessonDetailsPage', () => {
     it('renders lesson details', async () => {
         render(<LessonDetailsPage />)
 
-        const title = screen.getByText(mockLesson.title)
-        const subtitle = screen.getByText(mockLesson.shortDescription)
-        const description = screen.getByText(mockLesson.fullDescription)
+        const title = screen.getByText(mockLesson1.title)
+        const subtitle = screen.getByText(mockLesson1.shortDescription)
+        const description = screen.getByText(mockLesson1.fullDescription)
 
         expect(title).toBeInTheDocument()
         expect(subtitle).toBeInTheDocument()

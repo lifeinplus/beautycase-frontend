@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockLesson } from '../../__mocks__/lessonsApi'
+import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import {
     useUpdateLessonByIdMutation,
     useGetLessonByIdQuery,
@@ -32,7 +32,7 @@ describe('LessonEditPage', () => {
         mockUpdateLessonById.mockReturnValue({ unwrap: mockUnwrap })
 
         vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
-            data: mockLesson,
+            data: mockLesson1,
         })
     })
 
@@ -56,7 +56,7 @@ describe('LessonEditPage', () => {
 
         expect(mockUpdateLessonById).toHaveBeenCalledWith({
             id: '123',
-            lesson: mockLesson,
+            lesson: mockLesson1,
         })
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())

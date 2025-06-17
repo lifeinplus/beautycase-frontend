@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
-    mockStage,
+    mockStage1,
     mockStageCreate,
     mockStageDuplicate,
     mockStages,
@@ -26,7 +26,7 @@ describe('stagesApi', () => {
         const [createStage] = result.current
 
         await act(async () => {
-            const response = await createStage(mockStage).unwrap()
+            const response = await createStage(mockStage1).unwrap()
             expect(response).toMatchObject(mockStageCreate)
         })
     })
@@ -65,7 +65,7 @@ describe('stagesApi', () => {
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockStage)
+        expect(result.current.data).toEqual(mockStage1)
         expect(result.current.data?.title).toBe('Base Makeup')
     })
 
@@ -78,12 +78,12 @@ describe('stagesApi', () => {
 
         await act(async () => {
             const response = await updateStageById({
-                id: mockStage._id!,
-                stage: mockStage,
+                id: mockStage1._id!,
+                stage: mockStage1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockStage._id!,
+                id: mockStage1._id!,
                 message: 'Stage updated successfully',
             })
         })

@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
-    mockLesson,
+    mockLesson1,
     mockLessonCreate,
     mockLessons,
 } from '../__mocks__/lessonsApi'
@@ -26,7 +26,7 @@ describe('lessonsApi', () => {
         const [addLesson] = result.current
 
         await act(async () => {
-            const response = await addLesson(mockLesson).unwrap()
+            const response = await addLesson(mockLesson1).unwrap()
 
             expect(response).toMatchObject(mockLessonCreate)
         })
@@ -41,7 +41,7 @@ describe('lessonsApi', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockLessons)
-        expect(result.current.data?.[0]._id).toBe(mockLesson._id)
+        expect(result.current.data?.[0]._id).toBe(mockLesson1._id)
     })
 
     it('gets a lesson by id', async () => {
@@ -53,8 +53,8 @@ describe('lessonsApi', () => {
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockLesson)
-        expect(result.current.data?._id).toBe(mockLesson._id)
+        expect(result.current.data).toEqual(mockLesson1)
+        expect(result.current.data?._id).toBe(mockLesson1._id)
     })
 
     it('updates a lesson', async () => {
@@ -66,12 +66,12 @@ describe('lessonsApi', () => {
 
         await act(async () => {
             const response = await updateLessonById({
-                id: mockLesson._id!,
-                lesson: mockLesson,
+                id: mockLesson1._id!,
+                lesson: mockLesson1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockLesson._id!,
+                id: mockLesson1._id!,
                 message: 'Lesson updated successfully',
             })
         })
@@ -107,7 +107,7 @@ describe('lessonsApi', () => {
         const [addLesson] = result.current
 
         await act(async () => {
-            const response = addLesson({ ...mockLesson, title: '' }).unwrap()
+            const response = addLesson({ ...mockLesson1, title: '' }).unwrap()
 
             await expect(response).rejects.toThrow()
         })

@@ -10,8 +10,8 @@ import {
     afterAll,
 } from 'vitest'
 
-import { mockStages } from '../../../stages/__mocks__/stagesApi.ts'
-import { mockTools } from '../../../tools/__mocks__/toolsApi.ts'
+import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi.ts'
+import { mockMakeupBagPDFData } from '../../__mocks__/makeupBagsApi.ts'
 import { usePDFExport } from '../usePDFExport'
 
 vi.mock('@react-pdf/renderer', () => ({
@@ -38,12 +38,6 @@ describe('usePDFExport', () => {
         toBlob: vi.fn(),
     }
 
-    const mockMakeupBagData = {
-        category: { name: 'Daily Makeup' },
-        stages: mockStages,
-        tools: mockTools,
-    }
-
     const spyConsole = vi.spyOn(console, 'error')
 
     beforeAll(() => {
@@ -65,7 +59,7 @@ describe('usePDFExport', () => {
             const { result } = renderHook(() => usePDFExport())
 
             const exportResult =
-                await result.current.exportToPDF(mockMakeupBagData)
+                await result.current.exportToPDF(mockMakeupBagPDFData)
 
             expect(exportResult.success).toBe(true)
             expect(exportResult.error).toBeUndefined()
@@ -79,7 +73,7 @@ describe('usePDFExport', () => {
 
             await act(async () => {
                 await result.current.exportToPDF({
-                    category: mockMakeupBagData.category,
+                    category: mockCategory1,
                     stages: [],
                     tools: [],
                 })
@@ -94,7 +88,7 @@ describe('usePDFExport', () => {
             mockPdfInstance.toBlob.mockRejectedValue('String error')
 
             await act(async () => {
-                await result.current.exportToPDF(mockMakeupBagData)
+                await result.current.exportToPDF(mockMakeupBagPDFData)
             })
 
             expect(result.current.error).toBe('Ошибка при создании PDF')

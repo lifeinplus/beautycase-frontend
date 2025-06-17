@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockStage } from '../../__mocks__/stagesApi'
+import { mockStage1 } from '../../__mocks__/stagesApi'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
@@ -21,7 +21,7 @@ describe('StageDetailsPage', () => {
 
     beforeEach(() => {
         vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
-            data: mockStage,
+            data: mockStage1,
             isLoading: false,
             error: null,
         })
@@ -38,9 +38,9 @@ describe('StageDetailsPage', () => {
     it('renders stage details', async () => {
         render(<StageDetailsPage />)
 
-        const title = screen.getByText(mockStage.title)
-        const subtitle = screen.getByText(mockStage.subtitle)
-        const descriptionContent = screen.getByText(mockStage.comment!)
+        const title = screen.getByText(mockStage1.title)
+        const subtitle = screen.getByText(mockStage1.subtitle)
+        const descriptionContent = screen.getByText(mockStage1.comment!)
 
         expect(title).toBeInTheDocument()
         expect(subtitle).toBeInTheDocument()
@@ -49,7 +49,7 @@ describe('StageDetailsPage', () => {
 
     it('does not render steps section when steps do not exist', () => {
         vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
-            data: { ...mockStage, steps: [] },
+            data: { ...mockStage1, steps: [] },
             isLoading: false,
             error: null,
         })

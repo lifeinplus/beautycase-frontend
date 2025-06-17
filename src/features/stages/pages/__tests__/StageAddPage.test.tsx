@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockStage, mockStageCreate } from '../../__mocks__/stagesApi'
+import { mockStage1, mockStageCreate } from '../../__mocks__/stagesApi'
 import { useCreateStageMutation } from '../../stagesApi'
 import { StageAddPage } from '../StageAddPage'
 
@@ -42,7 +42,7 @@ describe('StageAddPage', () => {
 
     it('calls addStage and navigates on successful submission', async () => {
         const user = userEvent.setup()
-        const { stepsText, ...restStage } = mockStage
+        const { stepsText, ...restStage } = mockStage1
 
         render(<StageAddPage />)
 

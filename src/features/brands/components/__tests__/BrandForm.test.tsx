@@ -14,7 +14,7 @@ import {
     useUpdateBrandByIdMutation,
 } from '../../brandsApi'
 import { BrandForm } from '../BrandForm'
-import { mockBrand } from '../../__mocks__/brandsApi'
+import { mockBrand1 } from '../../__mocks__/brandsApi'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/ui/Button')
@@ -94,7 +94,7 @@ describe('BrandForm', () => {
     it('calls updateBrand when update button is clicked', async () => {
         const user = userEvent.setup()
 
-        const { _id, ...brand } = mockBrand
+        const { _id, ...brand } = mockBrand1
 
         vi.mocked(useAppSelector).mockReturnValue({
             _id: '123',

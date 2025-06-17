@@ -1,18 +1,18 @@
 import { describe, it, expect } from 'vitest'
 import { ValidationError } from 'yup'
 
-import { mockMakeupBag } from '../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../__mocks__/makeupBagsApi'
 import { makeupBagSchema } from '../validations'
 
 describe('makeupBagSchema validation', () => {
     it('should validate when all required fields are present and valid', async () => {
-        const data = { ...mockMakeupBag }
+        const data = { ...mockMakeupBag1 }
         await expect(makeupBagSchema.validate(data)).resolves.toEqual(data)
     })
 
     it('should validate with minimum array lengths', async () => {
         const data = {
-            ...mockMakeupBag,
+            ...mockMakeupBag1,
             stageIds: ['stage-1'],
             toolIds: ['tool-1'],
         }
@@ -21,56 +21,56 @@ describe('makeupBagSchema validation', () => {
     })
 
     it('should reject when categoryId is missing', async () => {
-        const data = { ...mockMakeupBag, categoryId: undefined }
+        const data = { ...mockMakeupBag1, categoryId: undefined }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите категорию'
         )
     })
 
     it('should reject when categoryId is empty', async () => {
-        const data = { ...mockMakeupBag, categoryId: '' }
+        const data = { ...mockMakeupBag1, categoryId: '' }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите категорию'
         )
     })
 
     it('should reject when clientId is missing', async () => {
-        const data = { ...mockMakeupBag, clientId: undefined }
+        const data = { ...mockMakeupBag1, clientId: undefined }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите клиента'
         )
     })
 
     it('should reject when clientId is empty', async () => {
-        const data = { ...mockMakeupBag, clientId: '' }
+        const data = { ...mockMakeupBag1, clientId: '' }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите клиента'
         )
     })
 
     it('should reject when stageIds is missing', async () => {
-        const data = { ...mockMakeupBag, stageIds: undefined }
+        const data = { ...mockMakeupBag1, stageIds: undefined }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите этапы'
         )
     })
 
     it('should reject when stageIds is an empty array', async () => {
-        const data = { ...mockMakeupBag, stageIds: [] }
+        const data = { ...mockMakeupBag1, stageIds: [] }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите этапы'
         )
     })
 
     it('should reject when toolIds is missing', async () => {
-        const data = { ...mockMakeupBag, toolIds: undefined }
+        const data = { ...mockMakeupBag1, toolIds: undefined }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите инструменты'
         )
     })
 
     it('should reject when toolIds is an empty array', async () => {
-        const data = { ...mockMakeupBag, toolIds: [] }
+        const data = { ...mockMakeupBag1, toolIds: [] }
         await expect(makeupBagSchema.validate(data)).rejects.toThrowError(
             'Выберите инструменты'
         )

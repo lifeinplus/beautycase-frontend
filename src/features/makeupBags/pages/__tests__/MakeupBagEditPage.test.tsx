@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import {
     useUpdateMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
@@ -33,7 +33,7 @@ describe('MakeupBagEditPage', () => {
         mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
-            data: mockMakeupBag,
+            data: mockMakeupBag1,
         })
     })
 
@@ -57,7 +57,7 @@ describe('MakeupBagEditPage', () => {
 
         expect(mockUpdateMakeupBagById).toHaveBeenCalledWith({
             id: '123',
-            makeupBag: mockMakeupBag,
+            makeupBag: mockMakeupBag1,
         })
 
         expect(mockUnwrap).toHaveBeenCalled()

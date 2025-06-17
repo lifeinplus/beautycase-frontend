@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
-    mockProduct,
+    mockProduct1,
     mockProductCreate,
     mockProducts,
 } from '../__mocks__/productsApi'
@@ -26,7 +26,7 @@ describe('productsApi', () => {
         const [addProduct] = result.current
 
         await act(async () => {
-            const response = await addProduct(mockProduct).unwrap()
+            const response = await addProduct(mockProduct1).unwrap()
             expect(response).toMatchObject(mockProductCreate)
         })
     })
@@ -42,7 +42,7 @@ describe('productsApi', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockProducts)
-        expect(result.current.data?.[0]._id).toBe(mockProduct._id)
+        expect(result.current.data?.[0]._id).toBe(mockProduct1._id)
     })
 
     it('gets a product by id', async () => {
@@ -54,8 +54,8 @@ describe('productsApi', () => {
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockProduct)
-        expect(result.current.data?._id).toBe(mockProduct._id)
+        expect(result.current.data).toEqual(mockProduct1)
+        expect(result.current.data?._id).toBe(mockProduct1._id)
     })
 
     it('updates a product', async () => {
@@ -67,12 +67,12 @@ describe('productsApi', () => {
 
         await act(async () => {
             const response = await updateProductById({
-                id: mockProduct._id!,
-                product: mockProduct,
+                id: mockProduct1._id!,
+                product: mockProduct1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockProduct._id!,
+                id: mockProduct1._id!,
                 message: 'Product updated successfully',
             })
         })
@@ -108,7 +108,7 @@ describe('productsApi', () => {
         const [addProduct] = result.current
 
         await act(async () => {
-            const response = addProduct({ ...mockProduct, name: '' }).unwrap()
+            const response = addProduct({ ...mockProduct1, name: '' }).unwrap()
 
             await expect(response).rejects.toThrow()
         })

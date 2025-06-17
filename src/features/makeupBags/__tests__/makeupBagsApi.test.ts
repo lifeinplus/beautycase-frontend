@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
 import {
-    mockMakeupBag,
+    mockMakeupBag1,
     mockMakeupBagCreate,
     mockMakeupBags,
 } from '../__mocks__/makeupBagsApi'
@@ -26,7 +26,7 @@ describe('makeupBagsApi', () => {
         const [addMakeupBag] = result.current
 
         await act(async () => {
-            const response = await addMakeupBag(mockMakeupBag).unwrap()
+            const response = await addMakeupBag(mockMakeupBag1).unwrap()
             expect(response).toMatchObject(mockMakeupBagCreate)
         })
     })
@@ -42,20 +42,20 @@ describe('makeupBagsApi', () => {
 
         expect(result.current.data).toHaveLength(2)
         expect(result.current.data).toEqual(mockMakeupBags)
-        expect(result.current.data?.[0]._id).toBe(mockMakeupBag._id)
+        expect(result.current.data?.[0]._id).toBe(mockMakeupBag1._id)
     })
 
     it('gets a makeupBag by id', async () => {
         const { result } = renderHookWithProvider(() =>
-            useGetMakeupBagByIdQuery(mockMakeupBag._id!)
+            useGetMakeupBagByIdQuery(mockMakeupBag1._id!)
         )
 
         expect(result.current.isLoading).toBe(true)
 
         await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toEqual(mockMakeupBag)
-        expect(result.current.data?._id).toBe(mockMakeupBag._id)
+        expect(result.current.data).toEqual(mockMakeupBag1)
+        expect(result.current.data?._id).toBe(mockMakeupBag1._id)
     })
 
     it('updates a makeupBag', async () => {
@@ -67,12 +67,12 @@ describe('makeupBagsApi', () => {
 
         await act(async () => {
             const response = await updateMakeupBagById({
-                id: mockMakeupBag._id!,
-                makeupBag: mockMakeupBag,
+                id: mockMakeupBag1._id!,
+                makeupBag: mockMakeupBag1,
             }).unwrap()
 
             expect(response).toMatchObject({
-                id: mockMakeupBag._id!,
+                id: mockMakeupBag1._id!,
                 message: 'MakeupBag updated successfully',
             })
         })
@@ -108,7 +108,7 @@ describe('makeupBagsApi', () => {
         const [addMakeupBag] = result.current
 
         await act(async () => {
-            const response = addMakeupBag(mockMakeupBag).unwrap()
+            const response = addMakeupBag(mockMakeupBag1).unwrap()
             await expect(response).rejects.toThrow()
         })
     })

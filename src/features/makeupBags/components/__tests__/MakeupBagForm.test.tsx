@@ -11,7 +11,7 @@ import { useGetAllCategoriesQuery } from '../../../categories/categoriesApi'
 import { setFormData } from '../../../form/formSlice'
 import { mockUsers } from '../../../users/__mocks__/usersApi'
 import { useGetAllUsersQuery } from '../../../users/usersApi'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../app/hooks')
@@ -28,7 +28,7 @@ describe('MakeupBagForm', () => {
     const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag)
+        vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag1)
 
         vi.mocked(useGetAllCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,

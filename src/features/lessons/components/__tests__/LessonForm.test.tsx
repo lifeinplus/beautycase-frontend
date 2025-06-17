@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
-import { mockLesson } from '../../__mocks__/lessonsApi'
+import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import { LessonForm } from '../LessonForm'
 
 vi.mock('../../../../app/hooks')
@@ -22,7 +22,7 @@ describe('LessonForm', () => {
     const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(mockLesson)
+        vi.mocked(useAppSelector).mockReturnValue(mockLesson1)
     })
 
     it('renders all required form fields', () => {

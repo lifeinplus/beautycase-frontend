@@ -1,4 +1,4 @@
-import { mockTool } from '../../__mocks__/toolsApi'
+import { mockTool1 } from '../../__mocks__/toolsApi'
 import { type ToolFormProps } from '../ToolForm'
 
 export const ToolForm = ({ title, onSubmit }: ToolFormProps) => (
@@ -6,7 +6,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => (
         <h2>{title}</h2>
         <button
             data-testid="mocked-submit-button"
-            onClick={() => onSubmit(mockTool)}
+            onClick={() => onSubmit(mockTool1)}
         >
             Submit
         </button>

@@ -8,8 +8,7 @@ import {
     Font,
 } from '@react-pdf/renderer'
 
-import type { Stage } from '../../stages/types'
-import type { Tool } from '../../tools/types'
+import type { MakeupBagData } from '../types'
 
 Font.register({
     family: 'Roboto',
@@ -195,14 +194,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
 })
-
-interface MakeupBagData {
-    category?: {
-        name: string
-    }
-    stages?: Stage[]
-    tools?: Tool[]
-}
 
 interface MakeupBagPDFProps {
     data: MakeupBagData

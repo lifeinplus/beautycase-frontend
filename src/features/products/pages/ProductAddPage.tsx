@@ -12,11 +12,11 @@ export const ProductAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addProduct] = useCreateProductMutation()
+    const [createProduct] = useCreateProductMutation()
 
     const handleAddProduct = async (product: Product) => {
         try {
-            const response = await addProduct(product).unwrap()
+            const response = await createProduct(product).unwrap()
             dispatch(clearFormData())
             navigate(`/products/${response.id}`)
         } catch (error) {

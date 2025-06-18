@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockUrlYouTube } from '../../../../tests/mocks/form'
+import { mockYouTubeUrl } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { getYouTubeEmbedUrl } from '../../../../utils/youtube'
 import { mockLesson1 } from '../../__mocks__/lessonsApi'
@@ -31,7 +31,7 @@ describe('LessonDetailsPage', () => {
             mockDeleteLesson,
         ])
 
-        vi.mocked(getYouTubeEmbedUrl).mockReturnValue(mockUrlYouTube)
+        vi.mocked(getYouTubeEmbedUrl).mockReturnValue(mockYouTubeUrl)
     })
 
     it('renders lesson details', async () => {

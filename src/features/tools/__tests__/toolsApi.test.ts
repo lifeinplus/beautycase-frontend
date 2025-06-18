@@ -12,82 +12,98 @@ import {
 } from '../toolsApi'
 
 describe('toolsApi', () => {
-    it('fetches all tools successfully', async () => {
-        const { result } = renderHookWithProvider(() => useGetAllToolsQuery())
+    describe('createTool', () => {
+        it('adds a new tool successfully', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useCreateToolMutation()
+            )
 
-        expect(result.current.isLoading).toBe(true)
+            const [createTool] = result.current
 
-        await waitFor(() => expect(result.current.isSuccess).toBe(true))
-
-        expect(result.current.data).toEqual(mockTools)
-    })
-
-    it('fetches a single tool successfully', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useGetToolByIdQuery(mockTool1._id!)
-        )
-
-        expect(result.current.isLoading).toBe(true)
-
-        await waitFor(() => expect(result.current.isSuccess).toBe(true))
-
-        expect(result.current.data).toEqual(mockTool1)
-    })
-
-    it('adds a new tool successfully', async () => {
-        const { result } = renderHookWithProvider(() => useCreateToolMutation())
-
-        const [addTool] = result.current
-
-        await act(async () => {
-            const response = await addTool(mockTool1).unwrap()
-            expect(response).toMatchObject(mockToolCreate)
-        })
-    })
-
-    it('edits a tool successfully', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useUpdateToolByIdMutation()
-        )
-
-        const [updateToolById] = result.current
-
-        await act(async () => {
-            const response = await updateToolById({
-                id: mockTool1._id!,
-                tool: mockTool1,
-            }).unwrap()
-
-            expect(response).toMatchObject({
-                id: mockTool1._id!,
-                message: 'Tool successfully changed',
+            await act(async () => {
+                const response = await createTool(mockTool1).unwrap()
+                expect(response).toMatchObject(mockToolCreate)
             })
         })
     })
 
-    it('deletes a tool successfully', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useDeleteToolByIdMutation()
-        )
+    describe('getAllTools', () => {
+        it('fetches all tools successfully', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useGetAllToolsQuery()
+            )
 
-        const [deleteTool] = result.current
+            expect(result.current.isLoading).toBe(true)
 
-        await act(async () => {
-            const response = await deleteTool(mockTool1._id!).unwrap()
+            await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-            expect(response).toEqual({ message: 'Tool successfully deleted' })
+            expect(result.current.data).toEqual(mockTools)
         })
     })
 
-    it('handles 404 error when tool is not found', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useGetToolByIdQuery('999')
-        )
+    describe('getToolById', () => {
+        it('fetches a single tool successfully', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useGetToolByIdQuery(mockTool1._id!)
+            )
 
-        expect(result.current.isLoading).toBe(true)
+            expect(result.current.isLoading).toBe(true)
 
-        await waitFor(() => expect(result.current.isError).toBe(true))
+            await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.error).toBeDefined()
+            expect(result.current.data).toEqual(mockTool1)
+        })
+
+        it('handles 404 error when tool is not found', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useGetToolByIdQuery('999')
+            )
+
+            expect(result.current.isLoading).toBe(true)
+
+            await waitFor(() => expect(result.current.isError).toBe(true))
+
+            expect(result.current.error).toBeDefined()
+        })
+    })
+
+    describe('updateToolById', () => {
+        it('edits a tool successfully', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useUpdateToolByIdMutation()
+            )
+
+            const [updateToolById] = result.current
+
+            await act(async () => {
+                const response = await updateToolById({
+                    id: mockTool1._id!,
+                    tool: mockTool1,
+                }).unwrap()
+
+                expect(response).toMatchObject({
+                    id: mockTool1._id!,
+                    message: 'Tool successfully changed',
+                })
+            })
+        })
+    })
+
+    describe('deleteToolById', () => {
+        it('deletes a tool successfully', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useDeleteToolByIdMutation()
+            )
+
+            const [deleteTool] = result.current
+
+            await act(async () => {
+                const response = await deleteTool(mockTool1._id!).unwrap()
+
+                expect(response).toEqual({
+                    message: 'Tool successfully deleted',
+                })
+            })
+        })
     })
 })

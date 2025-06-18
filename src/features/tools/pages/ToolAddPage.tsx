@@ -12,11 +12,11 @@ export const ToolAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addTool] = useCreateToolMutation()
+    const [createTool] = useCreateToolMutation()
 
     const handleAddTool = async (tool: Tool) => {
         try {
-            const response = await addTool(tool).unwrap()
+            const response = await createTool(tool).unwrap()
             dispatch(clearFormData())
             navigate(`/tools/${response.id}`)
         } catch (error) {

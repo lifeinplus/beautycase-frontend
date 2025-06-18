@@ -12,11 +12,11 @@ export const LessonAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addLesson] = useCreateLessonMutation()
+    const [createLesson] = useCreateLessonMutation()
 
     const handleAddLesson = async (lesson: Lesson) => {
         try {
-            const response = await addLesson(lesson).unwrap()
+            const response = await createLesson(lesson).unwrap()
             dispatch(clearFormData())
             navigate(`/lessons/${response.id}`)
         } catch (error) {

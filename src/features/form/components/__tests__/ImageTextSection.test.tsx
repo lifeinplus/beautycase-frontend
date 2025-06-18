@@ -8,7 +8,7 @@ import {
     mockFile,
     mockRegister,
     mockSetValue,
-    mockUrl,
+    mockImageUrl1,
 } from '../../../../tests/mocks/form'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Questionnaire } from '../../../questionnaires/types'
@@ -75,14 +75,14 @@ describe('ImageTextSection', () => {
     })
 
     it('renders image preview if valueUrl is present', () => {
-        render(<ImageTextSection {...mockProps} valueUrl={mockUrl} />)
+        render(<ImageTextSection {...mockProps} valueUrl={mockImageUrl1} />)
 
         const image = screen.getByTestId(
             'mocked-image-preview'
         ) as HTMLImageElement
 
         expect(image).toBeInTheDocument()
-        expect(image.src).toBe(mockUrl)
+        expect(image.src).toBe(mockImageUrl1)
     })
 
     it('handles file upload successfully', async () => {
@@ -101,7 +101,10 @@ describe('ImageTextSection', () => {
             'makeupBag',
             '[приложено фото]'
         )
-        expect(mockSetValue).toHaveBeenCalledWith('makeupBagPhotoUrl', mockUrl)
+        expect(mockSetValue).toHaveBeenCalledWith(
+            'makeupBagPhotoUrl',
+            mockImageUrl1
+        )
         expect(mockClearErrors).toHaveBeenCalledWith('makeupBag')
     })
 

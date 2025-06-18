@@ -12,14 +12,14 @@ export const StageAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addStage] = useCreateStageMutation()
+    const [createStage] = useCreateStageMutation()
 
     const handleAddStage = async (stage: Stage) => {
         const { stepsText, ...newStage } = stage
         const steps = stepsText ? stepsText?.split('\n\n') : undefined
 
         try {
-            const response = await addStage({
+            const response = await createStage({
                 ...newStage,
                 steps,
             }).unwrap()

@@ -17,7 +17,7 @@ import {
     mockFile,
     mockRegister,
     mockSetValue,
-    mockUrl,
+    mockImageUrl1,
 } from '../../../../tests/mocks/form'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Product } from '../../../products/types'
@@ -100,13 +100,13 @@ describe('ImageUrlSection', () => {
     })
 
     it('renders image preview if value is provided', () => {
-        render(<ImageUrlSection {...mockProps} value={mockUrl} />)
+        render(<ImageUrlSection {...mockProps} value={mockImageUrl1} />)
 
         const image = screen.getByTestId(
             'mocked-image-preview'
         ) as HTMLImageElement
 
-        expect(image.src).toBe(mockUrl)
+        expect(image.src).toBe(mockImageUrl1)
     })
 
     describe('File Upload', () => {
@@ -122,7 +122,7 @@ describe('ImageUrlSection', () => {
             )
 
             expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
-            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockUrl)
+            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockImageUrl1)
             expect(mockClearErrors).toHaveBeenCalledWith('imageUrl')
         })
 
@@ -169,7 +169,7 @@ describe('ImageUrlSection', () => {
 
             const pasteEvent = {
                 clipboardData: {
-                    getData: () => mockUrl,
+                    getData: () => mockImageUrl1,
                 },
             } as unknown as ClipboardEvent
 
@@ -177,10 +177,10 @@ describe('ImageUrlSection', () => {
 
             expect(mockUploadTempImageByUrl).toHaveBeenCalledWith({
                 folder: 'products',
-                imageUrl: mockUrl,
+                imageUrl: mockImageUrl1,
             })
 
-            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockUrl)
+            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockImageUrl1)
         })
 
         it('does not upload when pasted URL is invalid', async () => {
@@ -208,7 +208,7 @@ describe('ImageUrlSection', () => {
 
             const pasteEvent = {
                 clipboardData: {
-                    getData: () => mockUrl,
+                    getData: () => mockImageUrl1,
                 },
             } as unknown as ClipboardEvent
 

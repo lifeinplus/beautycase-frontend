@@ -38,10 +38,10 @@ describe('usePDFExport', () => {
         toBlob: vi.fn(),
     }
 
-    const spyConsole = vi.spyOn(console, 'error')
+    const spyConsoleError = vi.spyOn(console, 'error')
 
     beforeAll(() => {
-        spyConsole.mockImplementation(() => {})
+        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -51,7 +51,7 @@ describe('usePDFExport', () => {
     })
 
     afterAll(() => {
-        spyConsole.mockRestore()
+        spyConsoleError.mockRestore()
     })
 
     describe('exportToPDF', () => {

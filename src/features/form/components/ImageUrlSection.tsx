@@ -99,10 +99,6 @@ export const ImageUrlSection = <T extends FieldValues>({
     }
 
     const handleUploadByUrl = async (imageUrl: string) => {
-        if (!isValidUrl(imageUrl) || !isImageUrl(imageUrl)) {
-            return
-        }
-
         setIsUploading(true)
 
         try {

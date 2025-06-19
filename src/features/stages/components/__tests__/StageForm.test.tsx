@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockOnSubmit } from '../../../../tests/mocks/form'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { setFormData } from '../../../form/formSlice'
-import { mockStage } from '../../__mocks__/stagesApi'
+import { mockStage1 } from '../../__mocks__/stagesApi'
 import { StageForm } from '../StageForm'
 
 vi.mock('../../../../app/hooks')
@@ -24,7 +24,7 @@ describe('StageForm', () => {
     const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(mockStage)
+        vi.mocked(useAppSelector).mockReturnValue(mockStage1)
     })
 
     it('renders all required form fields', () => {

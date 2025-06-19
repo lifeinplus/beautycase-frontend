@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import { useAppSelector } from '../../../../app/hooks'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockStage, mockStages } from '../../__mocks__/stagesApi'
+import { mockStage1, mockStages } from '../../__mocks__/stagesApi'
 import { useGetAllStagesQuery } from '../../stagesApi'
 import { StageListPage } from '../StageListPage'
 
@@ -85,6 +85,6 @@ describe('StageListPage', () => {
         await user.click(filterButton)
 
         const stageTable = screen.getByTestId('mocked-stage-table')
-        expect(stageTable.textContent).toContain(mockStage.title)
+        expect(stageTable.textContent).toContain(mockStage1.title)
     })
 })

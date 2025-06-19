@@ -1,4 +1,4 @@
-import { mockStage } from '../../__mocks__/stagesApi'
+import { mockStage1 } from '../../__mocks__/stagesApi'
 import { type StageFormProps } from '../StageForm'
 
 export const StageForm = ({ title, onSubmit }: StageFormProps) => (
@@ -6,7 +6,7 @@ export const StageForm = ({ title, onSubmit }: StageFormProps) => (
         <h2>{title}</h2>
         <button
             data-testid="mocked-submit-button"
-            onClick={() => onSubmit(mockStage)}
+            onClick={() => onSubmit(mockStage1)}
         >
             Submit
         </button>

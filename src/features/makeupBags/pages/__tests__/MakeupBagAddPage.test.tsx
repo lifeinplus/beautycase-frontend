@@ -8,7 +8,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import {
-    mockMakeupBag,
+    mockMakeupBag1,
     mockMakeupBagCreate,
 } from '../../__mocks__/makeupBagsApi'
 import { useCreateMakeupBagMutation } from '../../makeupBagsApi'
@@ -50,7 +50,7 @@ describe('MakeupBagAddPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag)
+        expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags/makeupBag3')

@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockProduct, mockProductCreate } from '../../__mocks__/productsApi'
+import { mockProduct1, mockProductCreate } from '../../__mocks__/productsApi'
 import { useCreateProductMutation } from '../../productsApi'
 import { ProductAddPage } from '../ProductAddPage'
 
@@ -48,7 +48,7 @@ describe('ProductAddPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockAddProduct).toHaveBeenCalledWith(mockProduct)
+        expect(mockAddProduct).toHaveBeenCalledWith(mockProduct1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/products/product3')

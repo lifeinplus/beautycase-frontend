@@ -9,7 +9,7 @@ import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockBrands } from '../../../brands/__mocks__/brandsApi'
 import { useGetAllBrandsQuery } from '../../../brands/brandsApi'
 import { setFormData } from '../../../form/formSlice'
-import { mockTool } from '../../__mocks__/toolsApi'
+import { mockTool1 } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
 
 vi.mock('../../../../app/hooks')
@@ -28,7 +28,7 @@ describe('ToolForm', () => {
     const mockTitle = 'Test Title'
 
     beforeEach(() => {
-        vi.mocked(useAppSelector).mockReturnValue(mockTool)
+        vi.mocked(useAppSelector).mockReturnValue(mockTool1)
 
         vi.mocked(useGetAllBrandsQuery as Mock).mockReturnValue({
             data: mockBrands,

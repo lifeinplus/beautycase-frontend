@@ -9,7 +9,7 @@ export const mockLessonCreate: MutationResult = {
     message: 'Lesson created successfully',
 }
 
-export const mockLesson: Lesson = {
+export const mockLesson1: Lesson = {
     _id: 'lesson1',
     title: 'Makeup Basics',
     shortDescription: 'Introduction to Makeup fundamentals',
@@ -28,17 +28,16 @@ export const mockLesson: Lesson = {
     ],
 }
 
-export const mockLessons: Lesson[] = [
-    mockLesson,
-    {
-        _id: 'lesson2',
-        title: 'Lesson 2',
-        shortDescription: 'Short Desc 2',
-        fullDescription: 'Full Desc 2',
-        videoUrl: 'https://video.com/2',
-        productIds: [],
-    },
-]
+export const mockLesson2: Lesson = {
+    _id: 'lesson2',
+    title: 'Lesson 2',
+    shortDescription: 'Short Desc 2',
+    fullDescription: 'Full Desc 2',
+    videoUrl: 'https://video.com/2',
+    productIds: [],
+}
+
+export const mockLessons: Lesson[] = [mockLesson1, mockLesson2]
 
 export const useCreateLessonMutation = vi.fn()
 export const useGetAllLessonsQuery = vi.fn()

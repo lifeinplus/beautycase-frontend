@@ -1,4 +1,4 @@
-import { mockProduct } from '../../__mocks__/productsApi'
+import { mockProduct1 } from '../../__mocks__/productsApi'
 import { type ProductFormProps } from '../ProductForm'
 
 export const ProductForm = ({ title, onSubmit }: ProductFormProps) => (
@@ -6,7 +6,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => (
         <h2>{title}</h2>
         <button
             data-testid="mocked-submit-button"
-            onClick={() => onSubmit(mockProduct)}
+            onClick={() => onSubmit(mockProduct1)}
         >
             Submit
         </button>

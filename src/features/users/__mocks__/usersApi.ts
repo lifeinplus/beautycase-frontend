@@ -3,19 +3,22 @@ import { vi } from 'vitest'
 
 import type { User, UserResult } from '../types'
 
-export const mockUser: User = {
+export const mockUser1: User = {
     _id: 'user1',
     role: 'admin',
     username: 'Admin',
 }
 
-export const mockUsers: User[] = [
-    mockUser,
-    { _id: 'user2', role: 'mua', username: 'Inna' },
-]
+export const mockUser2: User = {
+    _id: 'user2',
+    role: 'mua',
+    username: 'Inna',
+}
+
+export const mockUsers: User[] = [mockUser1, mockUser2]
 
 export const mockUserResult: UserResult = {
-    user: mockUser,
+    user: mockUser1,
     makeupBags: [
         {
             _id: 'makeupBag1',

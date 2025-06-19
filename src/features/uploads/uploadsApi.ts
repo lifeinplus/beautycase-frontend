@@ -1,8 +1,8 @@
 import { api } from '../api/api'
 
 export interface UploadTempImageUrlRequest {
-    imageUrl: string
     folder: 'products' | 'stages' | 'tools'
+    imageUrl: string
 }
 
 export interface UploadImageResponse {

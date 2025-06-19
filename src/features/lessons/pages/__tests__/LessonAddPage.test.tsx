@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockLesson, mockLessonCreate } from '../../__mocks__/lessonsApi'
+import { mockLesson1, mockLessonCreate } from '../../__mocks__/lessonsApi'
 import { useCreateLessonMutation } from '../../lessonsApi'
 import { LessonAddPage } from '../LessonAddPage'
 
@@ -45,7 +45,7 @@ describe('LessonAddPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockAddLesson).toHaveBeenCalledWith(mockLesson)
+        expect(mockAddLesson).toHaveBeenCalledWith(mockLesson1)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/lessons/lesson3')
     })

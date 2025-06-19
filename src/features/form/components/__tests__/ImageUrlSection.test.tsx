@@ -1,6 +1,15 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import {
+    describe,
+    it,
+    expect,
+    vi,
+    beforeEach,
+    Mock,
+    beforeAll,
+    afterAll,
+} from 'vitest'
 
 import {
     mockClearErrors,
@@ -8,7 +17,7 @@ import {
     mockFile,
     mockRegister,
     mockSetValue,
-    mockUrl,
+    mockImageUrl1,
 } from '../../../../tests/mocks/form'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import type { Product } from '../../../products/types'
@@ -40,6 +49,12 @@ describe('ImageUrlSection', () => {
     const mockUploadTempImageByUrl = vi.fn()
     const mockUnwrapByUrl = vi.fn()
 
+    const spyConsoleError = vi.spyOn(console, 'error')
+
+    beforeAll(() => {
+        spyConsoleError.mockImplementation(() => {})
+    })
+
     beforeEach(() => {
         vi.mocked(useUploadTempImageByFileMutation as Mock).mockReturnValue([
             mockUploadTempImageByFile,
@@ -56,6 +71,10 @@ describe('ImageUrlSection', () => {
         mockUnwrapByUrl.mockResolvedValue(mockUploadResult)
     })
 
+    afterAll(() => {
+        spyConsoleError.mockRestore()
+    })
+
     it('renders with required props', () => {
         render(<ImageUrlSection {...mockProps} />)
 
@@ -68,9 +87,9 @@ describe('ImageUrlSection', () => {
 
         render(<ImageUrlSection {...mockProps} description={mockDescription} />)
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(
+            'form-description'
+        )
     })
 
     it('renders error message', () => {
@@ -81,70 +100,123 @@ describe('ImageUrlSection', () => {
     })
 
     it('renders image preview if value is provided', () => {
-        render(<ImageUrlSection {...mockProps} value={mockUrl} />)
+        render(<ImageUrlSection {...mockProps} value={mockImageUrl1} />)
 
         const image = screen.getByTestId(
             'mocked-image-preview'
         ) as HTMLImageElement
 
-        expect(image).toBeInTheDocument()
-        expect(image.src).toBe(mockUrl)
+        expect(image.src).toBe(mockImageUrl1)
     })
 
-    it('handles file upload successfully', async () => {
-        render(<ImageUrlSection {...mockProps} />)
+    describe('File Upload', () => {
+        it('uploads file successfully', async () => {
+            render(<ImageUrlSection {...mockProps} />)
 
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            const input = screen.getByLabelText('', {
+                selector: 'input[type="file"]',
+            })
+
+            await waitFor(() =>
+                fireEvent.change(input, { target: { files: [mockFile] } })
+            )
+
+            expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
+            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockImageUrl1)
+            expect(mockClearErrors).toHaveBeenCalledWith('imageUrl')
         })
 
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
+        it('handles file upload error', async () => {
+            mockUnwrapByFile.mockRejectedValue(mockError)
 
-        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
-        expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockUrl)
-        expect(mockClearErrors).toHaveBeenCalledWith('imageUrl')
+            render(<ImageUrlSection {...mockProps} />)
+
+            const input = screen.getByLabelText('', {
+                selector: 'input[type="file"]',
+            })
+
+            await waitFor(() =>
+                fireEvent.change(input, { target: { files: [mockFile] } })
+            )
+
+            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', '')
+            expect(mockUploadTempImageByFile).toHaveBeenCalledOnce()
+            expect(mockClearErrors).not.toHaveBeenCalled()
+            expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        })
+
+        it('does nothing when file is empty', async () => {
+            render(<ImageUrlSection {...mockProps} />)
+
+            const input = screen.getByLabelText('', {
+                selector: 'input[type="file"]',
+            })
+
+            await waitFor(() =>
+                fireEvent.change(input, { target: { files: [] } })
+            )
+
+            expect(mockUploadTempImageByFile).not.toHaveBeenCalled()
+            expect(mockSetValue).not.toHaveBeenCalled()
+        })
     })
 
-    it('handles upload error', async () => {
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
+    describe('URL Paste Handling', () => {
+        it('uploads image by pasted url', async () => {
+            render(<ImageUrlSection {...mockProps} />)
 
-        mockUnwrapByFile.mockRejectedValue(mockError)
+            const textarea = screen.getByPlaceholderText('Image Url')
 
-        render(<ImageUrlSection {...mockProps} />)
+            const pasteEvent = {
+                clipboardData: {
+                    getData: () => mockImageUrl1,
+                },
+            } as unknown as ClipboardEvent
 
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            await waitFor(() => fireEvent.paste(textarea, pasteEvent))
+
+            expect(mockUploadTempImageByUrl).toHaveBeenCalledWith({
+                folder: 'products',
+                imageUrl: mockImageUrl1,
+            })
+
+            expect(mockSetValue).toHaveBeenCalledWith('imageUrl', mockImageUrl1)
         })
 
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
+        it('does not upload when pasted URL is invalid', async () => {
+            render(<ImageUrlSection {...mockProps} />)
 
-        expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
+            const textarea = screen.getByPlaceholderText('Image Url')
 
-        expect(mockSetValue).not.toHaveBeenCalled()
-        expect(mockClearErrors).not.toHaveBeenCalled()
+            const pasteEvent = {
+                clipboardData: {
+                    getData: () => 'invalid_url',
+                },
+            } as unknown as ClipboardEvent
 
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+            await waitFor(() => fireEvent.paste(textarea, pasteEvent))
 
-        mockConsoleError.mockRestore()
-    })
-
-    it('does nothing when no file is selected', async () => {
-        render(<ImageUrlSection {...mockProps} />)
-
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            expect(mockUploadTempImageByUrl).not.toHaveBeenCalled()
         })
 
-        await waitFor(() => fireEvent.change(input, { target: { files: [] } }))
+        it('handles URL upload error on paste', async () => {
+            mockUnwrapByUrl.mockRejectedValue(mockError)
 
-        expect(mockUploadTempImageByFile).not.toHaveBeenCalled()
-        expect(mockSetValue).not.toHaveBeenCalled()
+            render(<ImageUrlSection {...mockProps} />)
+
+            const textarea = screen.getByRole('textbox')
+
+            const pasteEvent = {
+                clipboardData: {
+                    getData: () => mockImageUrl1,
+                },
+            } as unknown as ClipboardEvent
+
+            await waitFor(() => fireEvent.paste(textarea, pasteEvent))
+
+            expect(mockUploadTempImageByUrl).toHaveBeenCalledOnce()
+            expect(mockClearErrors).not.toHaveBeenCalled()
+            expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        })
     })
 })

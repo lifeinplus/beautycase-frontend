@@ -8,8 +8,9 @@ export const mockFieldError: FieldError = {
 
 export const mockFile = new File(['image'], 'image.png', { type: 'image/png' })
 
-export const mockUrl = 'https://example.com/image.jpg'
-export const mockUrlYouTube = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+export const mockImageUrl1 = 'https://example.com/image1.jpg'
+export const mockImageUrl2 = 'https://example.com/image2.jpg'
+export const mockYouTubeUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 
 export const mockClearErrors = vi.fn()
 export const mockOnSubmit = vi.fn()

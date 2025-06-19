@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockStage, mockStages } from '../../__mocks__/stagesApi'
+import { mockStage1, mockStages } from '../../__mocks__/stagesApi'
 import { StageTable } from '../StageTable'
 
 vi.mock('../../../../components/table/Table')
@@ -27,8 +27,8 @@ describe('StageTable', () => {
         expect(dates).toHaveLength(2)
         expect(time).toHaveLength(2)
 
-        const title = screen.getByText(mockStage.title)
-        const subtitle = screen.getByText(mockStage.subtitle)
+        const title = screen.getByText(mockStage1.title)
+        const subtitle = screen.getByText(mockStage1.subtitle)
 
         expect(title).toBeInTheDocument()
         expect(subtitle).toBeInTheDocument()

@@ -5,8 +5,8 @@ import {
     mockFieldError,
     mockRegister,
     mockRegisterVideo,
-    mockUrl,
-    mockUrlYouTube,
+    mockImageUrl1,
+    mockYouTubeUrl,
 } from '../../../../tests/mocks/form'
 import { TextareaSection, type TextareaSectionProps } from '../TextareaSection'
 
@@ -51,14 +51,14 @@ describe('TextareaSection', () => {
     })
 
     it('renders image preview if preview and value are provided', () => {
-        render(<TextareaSection {...mockProps} preview value={mockUrl} />)
+        render(<TextareaSection {...mockProps} preview value={mockImageUrl1} />)
 
         const image = screen.getByTestId(
             'mocked-image-preview'
         ) as HTMLImageElement
 
         expect(image).toBeInTheDocument()
-        expect(image.src).toBe(mockUrl)
+        expect(image.src).toBe(mockImageUrl1)
     })
 
     it('renders YouTube thumbnail if preview is enabled and register name is videoUrl', () => {
@@ -67,7 +67,7 @@ describe('TextareaSection', () => {
                 {...mockProps}
                 preview
                 register={mockRegisterVideo}
-                value={mockUrlYouTube}
+                value={mockYouTubeUrl}
             />
         )
 

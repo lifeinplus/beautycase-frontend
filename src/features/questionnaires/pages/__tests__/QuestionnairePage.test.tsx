@@ -5,7 +5,7 @@ import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
 
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { mockQuestionnaire } from '../../__mocks__/questionnairesApi'
+import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { useCreateQuestionnaireMutation } from '../../questionnairesApi'
 import { questions } from '../../utils'
 import { QuestionnairePage } from '../QuestionnairePage'
@@ -73,13 +73,13 @@ describe('QuestionnairePage', () => {
         const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
         const button = screen.getByText('Отправить')
 
-        await user.type(name, mockQuestionnaire.name)
-        await user.type(makeupBag, mockQuestionnaire.makeupBag)
+        await user.type(name, mockQuestionnaire1.name)
+        await user.type(makeupBag, mockQuestionnaire1.makeupBag)
         await user.click(button)
 
         expect(mockAddQuestionnaire).toHaveBeenCalledWith({
-            name: mockQuestionnaire.name,
-            makeupBag: mockQuestionnaire.makeupBag,
+            name: mockQuestionnaire1.name,
+            makeupBag: mockQuestionnaire1.makeupBag,
         })
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/confirmation')
@@ -100,8 +100,8 @@ describe('QuestionnairePage', () => {
         const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
         const button = screen.getByText('Отправить')
 
-        await user.type(name, mockQuestionnaire.name)
-        await user.type(makeupBag, mockQuestionnaire.makeupBag)
+        await user.type(name, mockQuestionnaire1.name)
+        await user.type(makeupBag, mockQuestionnaire1.makeupBag)
         await user.click(button)
 
         expect(mockAddQuestionnaire).toHaveBeenCalled()

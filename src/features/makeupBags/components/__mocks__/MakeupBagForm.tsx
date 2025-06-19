@@ -1,4 +1,4 @@
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import { type MakeupBagFormProps } from '../MakeupBagForm'
 
 export const MakeupBagForm = ({ title, onSubmit }: MakeupBagFormProps) => (
@@ -6,7 +6,7 @@ export const MakeupBagForm = ({ title, onSubmit }: MakeupBagFormProps) => (
         <h2>{title}</h2>
         <button
             data-testid="mocked-submit-button"
-            onClick={() => onSubmit(mockMakeupBag)}
+            onClick={() => onSubmit(mockMakeupBag1)}
         >
             Submit
         </button>

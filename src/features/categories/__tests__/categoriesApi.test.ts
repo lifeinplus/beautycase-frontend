@@ -6,17 +6,19 @@ import { mockCategories } from '../__mocks__/categoriesApi'
 import { useGetAllCategoriesQuery } from '../categoriesApi'
 
 describe('categoriesApi', () => {
-    it('gets all categories', async () => {
-        const { result } = renderHookWithProvider(() =>
-            useGetAllCategoriesQuery()
-        )
+    describe('getAllCategories', () => {
+        it('gets all categories', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useGetAllCategoriesQuery()
+            )
 
-        expect(result.current.isLoading).toBe(true)
+            expect(result.current.isLoading).toBe(true)
 
-        await waitFor(() => expect(result.current.isSuccess).toBe(true))
+            await waitFor(() => expect(result.current.isSuccess).toBe(true))
 
-        expect(result.current.data).toHaveLength(2)
-        expect(result.current.data).toEqual(mockCategories)
-        expect(result.current.data?.[0]._id).toBe(mockCategories[0]._id)
+            expect(result.current.data).toHaveLength(2)
+            expect(result.current.data).toEqual(mockCategories)
+            expect(result.current.data?.[0]._id).toBe(mockCategories[0]._id)
+        })
     })
 })

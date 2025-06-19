@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockProduct } from '../../__mocks__/productsApi'
+import { mockProduct1 } from '../../__mocks__/productsApi'
 import {
     useUpdateProductByIdMutation,
     useGetProductByIdQuery,
@@ -33,7 +33,7 @@ describe('ProductEditPage', () => {
         mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
-            data: mockProduct,
+            data: mockProduct1,
         })
     })
 
@@ -57,7 +57,7 @@ describe('ProductEditPage', () => {
 
         expect(mockUpdateProductById).toHaveBeenCalledWith({
             id: '123',
-            product: mockProduct,
+            product: mockProduct1,
         })
 
         expect(mockUnwrap).toHaveBeenCalled()

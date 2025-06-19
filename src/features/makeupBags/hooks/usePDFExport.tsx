@@ -1,17 +1,8 @@
 import { pdf } from '@react-pdf/renderer'
 import { useState } from 'react'
 
-import type { Stage } from '../../stages/types'
-import type { Tool } from '../../tools/types'
 import MakeupBagPDF from '../components/MakeupBagPDF'
-
-interface MakeupBagData {
-    category?: {
-        name: string
-    }
-    stages?: Stage[]
-    tools?: Tool[]
-}
+import type { MakeupBagData } from '../types'
 
 interface ExportResult {
     success: boolean

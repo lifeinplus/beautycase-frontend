@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import {
-    mockMakeupBag,
+    mockMakeupBag1,
     mockMakeupBags,
 } from '../../../makeupBags/__mocks__/makeupBagsApi'
 import { useGetAllMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
-import { mockStage, mockStages } from '../../__mocks__/stagesApi'
+import { mockStage1, mockStages } from '../../__mocks__/stagesApi'
 import { StageFilter } from '../StageFilter'
 
 vi.mock('../../../makeupBags/makeupBagsApi')
@@ -22,8 +22,8 @@ describe('StageFilter', () => {
     })
 
     it('renders select dropdown with makeup bag options', () => {
-        const category = mockMakeupBag.category?.name
-        const client = mockMakeupBag.client?.username
+        const category = mockMakeupBag1.category?.name
+        const client = mockMakeupBag1.client?.username
 
         render(
             <StageFilter
@@ -76,6 +76,6 @@ describe('StageFilter', () => {
         await user.selectOptions(select, 'makeupBag1')
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1)
-        expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage])
+        expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage1])
     })
 })

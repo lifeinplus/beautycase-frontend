@@ -15,3 +15,11 @@ export interface MakeupBag {
     tools?: Tool[]
     toolIds: string[]
 }
+
+export interface MakeupBagData {
+    category?: {
+        name: string
+    }
+    stages?: Stage[]
+    tools?: Tool[]
+}

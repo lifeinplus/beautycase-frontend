@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockTool } from '../../__mocks__/toolsApi'
+import { mockTool1 } from '../../__mocks__/toolsApi'
 import { useUpdateToolByIdMutation, useGetToolByIdQuery } from '../../toolsApi'
 import { ToolEditPage } from '../ToolEditPage'
 
@@ -30,7 +30,7 @@ describe('ToolEditPage', () => {
         mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
-            data: mockTool,
+            data: mockTool1,
         })
     })
 
@@ -54,7 +54,7 @@ describe('ToolEditPage', () => {
 
         expect(mockUpdateToolById).toHaveBeenCalledWith({
             id: '123',
-            tool: mockTool,
+            tool: mockTool1,
         })
 
         expect(mockUnwrap).toHaveBeenCalled()

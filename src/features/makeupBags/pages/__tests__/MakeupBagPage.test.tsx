@@ -7,12 +7,13 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { mockMakeupBag } from '../../__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
 } from '../../makeupBagsApi'
 import { MakeupBagPage } from '../MakeupBagPage'
+import { usePDFExport } from '../../hooks/usePDFExport'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -28,11 +29,15 @@ vi.mock('../../../auth/authSlice')
 vi.mock('../../../form/formSlice')
 vi.mock('../../../stages/components/Stages')
 vi.mock('../../../tools/components/Tools')
+vi.mock('../../hooks/usePDFExport')
 vi.mock('../../makeupBagsApi')
 
 describe('MakeupBagPage', () => {
     const mockDeleteMakeupBagById = vi.fn()
-    const mockUnwrap = vi.fn()
+    const mockDeleteUnwrap = vi.fn()
+
+    const mockExportToPDF = vi.fn()
+    const mockClearError = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
@@ -42,7 +47,7 @@ describe('MakeupBagPage', () => {
         })
 
         vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
-            data: mockMakeupBag,
+            data: mockMakeupBag1,
             isLoading: false,
             error: null,
         })
@@ -51,8 +56,14 @@ describe('MakeupBagPage', () => {
             mockDeleteMakeupBagById,
         ])
 
-        mockDeleteMakeupBagById.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue({})
+        mockDeleteMakeupBagById.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDeleteUnwrap.mockResolvedValue({})
+
+        vi.mocked(usePDFExport as any).mockReturnValue({
+            exportToPDF: mockExportToPDF,
+            error: null,
+            clearError: mockClearError,
+        })
     })
 
     it('renders the page with correct data', () => {
@@ -83,51 +94,110 @@ describe('MakeupBagPage', () => {
         })
     })
 
-    it('should delete makeup bag when confirm is clicked', async () => {
-        const user = userEvent.setup()
+    describe('PDF Export', () => {
+        it('exports to PDF successfully', async () => {
+            const user = userEvent.setup()
 
-        render(<MakeupBagPage />)
+            const mockFilename = `${mockMakeupBag1.category?.name.replace(/\s+/g, '-')}-${mockMakeupBag1.client?.username}.pdf`
 
-        const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
+            mockExportToPDF.mockResolvedValue({ success: true })
 
-        await user.click(deleteButton)
+            render(<MakeupBagPage />)
 
-        const modalDeleteConfirm = screen.getByTestId(
-            'mocked-modal-delete-confirm'
-        )
+            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
+            await user.click(exportButton)
 
-        await user.click(modalDeleteConfirm)
+            expect(mockExportToPDF).toHaveBeenCalledWith(
+                {
+                    category: mockMakeupBag1.category,
+                    stages: mockMakeupBag1.stages,
+                    tools: mockMakeupBag1.tools,
+                },
+                mockFilename
+            )
+        })
 
-        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
-        expect(toast.success).toHaveBeenCalledWith('Косметичка удалена')
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
+        it('shows error toast if data is missing', async () => {
+            const user = userEvent.setup()
+
+            vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
+                data: undefined,
+                isLoading: false,
+                error: null,
+            })
+
+            render(<MakeupBagPage />)
+
+            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
+            await user.click(exportButton)
+
+            expect(toast.error).toHaveBeenCalledWith('Нет данных для экспорта')
+            expect(mockExportToPDF).not.toHaveBeenCalled()
+        })
+
+        it('shows export error toast and clears error', async () => {
+            const mockErrorMessage = 'Export failed'
+
+            vi.mocked(usePDFExport as any).mockReturnValue({
+                exportToPDF: mockExportToPDF,
+                error: mockErrorMessage,
+                clearError: mockClearError,
+            })
+
+            render(<MakeupBagPage />)
+
+            expect(toast.error).toHaveBeenCalledWith(mockErrorMessage)
+            expect(mockClearError).toHaveBeenCalled()
+        })
     })
 
-    it('shows error toast if delete fails', async () => {
-        const user = userEvent.setup()
+    describe('Delete Functionality', () => {
+        it('should delete makeup bag when confirm is clicked', async () => {
+            const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
+            render(<MakeupBagPage />)
 
-        mockUnwrap.mockRejectedValue(mockError)
+            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
 
-        render(<MakeupBagPage />)
+            await user.click(deleteButton)
 
-        const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
+            const modalDeleteConfirm = screen.getByTestId(
+                'mocked-modal-delete-confirm'
+            )
 
-        await user.click(deleteButton)
+            await user.click(modalDeleteConfirm)
 
-        const modalDeleteConfirm = screen.getByTestId(
-            'mocked-modal-delete-confirm'
-        )
+            expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
+            expect(toast.success).toHaveBeenCalledWith('Косметичка удалена')
+            expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
+        })
 
-        await user.click(modalDeleteConfirm)
+        it('shows error toast if delete fails', async () => {
+            const user = userEvent.setup()
 
-        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+            const mockConsoleError = vi
+                .spyOn(console, 'error')
+                .mockImplementation(() => {})
 
-        mockConsoleError.mockRestore()
+            mockDeleteUnwrap.mockRejectedValue(mockError)
+
+            render(<MakeupBagPage />)
+
+            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
+
+            await user.click(deleteButton)
+
+            const modalDeleteConfirm = screen.getByTestId(
+                'mocked-modal-delete-confirm'
+            )
+
+            await user.click(modalDeleteConfirm)
+
+            expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
+            expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+            expect(toast.error).toHaveBeenCalledWith(mockError.message)
+
+            mockConsoleError.mockRestore()
+        })
     })
 })

@@ -7,7 +7,7 @@ import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
-import { mockTool, mockToolCreate } from '../../__mocks__/toolsApi'
+import { mockTool1, mockToolCreate } from '../../__mocks__/toolsApi'
 import { useCreateToolMutation } from '../../toolsApi'
 import { ToolAddPage } from '../ToolAddPage'
 
@@ -46,7 +46,7 @@ describe('ToolAddPage', () => {
         const button = screen.getByTestId('mocked-submit-button')
         await user.click(button)
 
-        expect(mockAddTool).toHaveBeenCalledWith(mockTool)
+        expect(mockAddTool).toHaveBeenCalledWith(mockTool1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/tools/tool3')

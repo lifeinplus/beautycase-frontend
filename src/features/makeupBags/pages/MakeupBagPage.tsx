@@ -83,6 +83,7 @@ export const MakeupBagPage = () => {
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
     const categoryName = data?.category?.name || 'Косметичка'
+    const clientName = data?.client?.username
     const stages = data?.stages || []
     const tools = data?.tools || []
 
@@ -103,9 +104,9 @@ export const MakeupBagPage = () => {
             return
         }
 
-        const filename = `${categoryName.toLowerCase().replace(/\s+/g, '-')}.pdf`
+        const filename = `${categoryName.replace(/\s+/g, '-')}-${clientName}.pdf`
 
-        const result = await exportToPDF(
+        await exportToPDF(
             {
                 category: data.category,
                 stages: data.stages,
@@ -113,10 +114,6 @@ export const MakeupBagPage = () => {
             },
             filename
         )
-
-        if (result.success) {
-            toast.success('PDF успешно создан')
-        }
     }
 
     const actionHandlers = {

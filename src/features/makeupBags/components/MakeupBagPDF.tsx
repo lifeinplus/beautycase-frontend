@@ -8,8 +8,7 @@ import {
     Font,
 } from '@react-pdf/renderer'
 
-import type { Stage } from '../../stages/types'
-import type { Tool } from '../../tools/types'
+import type { MakeupBagData } from '../types'
 
 Font.register({
     family: 'Roboto',
@@ -27,29 +26,35 @@ Font.register({
 
 const styles = StyleSheet.create({
     page: {
-        flexDirection: 'column',
         backgroundColor: '#ffffff',
-        paddingTop: 30,
-        paddingBottom: 65,
-        paddingHorizontal: 30,
+        flexDirection: 'column',
         fontFamily: 'Roboto',
+        paddingBottom: 60,
+        paddingHorizontal: 30,
+        paddingTop: 30,
     },
 
     pageNumber: {
-        position: 'absolute',
-        fontSize: 12,
+        color: 'grey',
         bottom: 25,
+        fontSize: 12,
         left: 0,
+        position: 'absolute',
         right: 0,
         textAlign: 'center',
-        color: 'grey',
+    },
+
+    text: {
+        fontSize: 14,
+        margin: 12,
+        textAlign: 'justify',
     },
 
     header: {
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 30,
         textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 
     headerTitle: {
@@ -59,16 +64,15 @@ const styles = StyleSheet.create({
     },
 
     headerSubtitle: {
-        fontSize: 14,
         color: '#334155',
-        marginBottom: 20,
+        fontSize: 18,
     },
 
     headerImage: {
-        width: '100%',
-        objectFit: 'cover',
-        marginBottom: 15,
         borderRadius: 4,
+        marginBottom: 15,
+        objectFit: 'cover',
+        width: '70%',
     },
 
     sectionTitle: {
@@ -76,13 +80,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 15,
         textAlign: 'center',
-    },
-
-    stageContainer: {
-        marginBottom: 30,
-        padding: 15,
-        backgroundColor: '#f3f4f6',
-        borderRadius: 8,
     },
 
     stageTitle: {
@@ -93,25 +90,25 @@ const styles = StyleSheet.create({
     },
 
     stageSubtitle: {
-        fontSize: 16,
         color: '#334155',
+        fontSize: 16,
         marginBottom: 20,
         textAlign: 'center',
     },
 
     stageImage: {
-        height: 300,
-        objectFit: 'cover',
-        marginBottom: 10,
         borderRadius: 4,
+        height: 300,
+        marginBottom: 10,
         marginHorizontal: 100,
+        objectFit: 'cover',
     },
 
     stepsTitle: {
+        color: '#2c3e50',
         fontSize: 12,
         fontWeight: 'bold',
         marginBottom: 8,
-        color: '#2c3e50',
     },
 
     stepsList: {
@@ -119,45 +116,40 @@ const styles = StyleSheet.create({
     },
 
     stepItem: {
+        color: '#34495e',
         fontSize: 12,
         marginBottom: 4,
-        color: '#34495e',
     },
 
     productsGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 10,
+        marginBottom: 30,
     },
 
     productCard: {
-        width: '48%',
-        marginBottom: 15,
-        padding: 8,
-        backgroundColor: '#ffffff',
-        borderRadius: 4,
         alignItems: 'center',
+        marginTop: 15,
+        width: '50%',
     },
 
     productImage: {
-        width: '50%',
-        height: 100,
-        objectFit: 'cover',
-        marginBottom: 6,
         borderRadius: 3,
+        height: 100,
+        marginBottom: 6,
     },
 
     productName: {
-        fontSize: 12,
-        textAlign: 'center',
         color: '#2c3e50',
+        fontSize: 12,
         marginBottom: 3,
+        textAlign: 'center',
     },
 
     productBrand: {
-        fontSize: 10,
         color: '#334155',
+        fontSize: 10,
         textAlign: 'center',
     },
 
@@ -165,63 +157,43 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginTop: 10,
     },
 
     toolCard: {
-        width: '48%',
-        marginBottom: 15,
-        padding: 8,
-        backgroundColor: '#ffffff',
-        borderRadius: 4,
         alignItems: 'center',
+        marginBottom: 15,
+        width: '50%',
     },
 
     toolImage: {
-        width: '50%',
-        height: 150,
-        objectFit: 'cover',
-        marginBottom: 6,
         borderRadius: 3,
+        height: 100,
+        marginBottom: 6,
     },
 
     toolName: {
-        fontSize: 12,
-        textAlign: 'center',
         color: '#2c3e50',
+        fontSize: 12,
         marginTop: 3,
+        textAlign: 'center',
     },
 
     toolBrand: {
-        fontSize: 10,
         color: '#334155',
+        fontSize: 10,
         textAlign: 'center',
-    },
-
-    text: {
-        margin: 12,
-        fontSize: 14,
-        textAlign: 'justify',
     },
 
     pageFooter: {
-        position: 'absolute',
         bottom: 30,
+        color: '#bdc3c7',
+        fontSize: 8,
         left: 30,
         right: 30,
         textAlign: 'center',
-        fontSize: 8,
-        color: '#bdc3c7',
+        position: 'absolute',
     },
 })
-
-interface MakeupBagData {
-    category?: {
-        name: string
-    }
-    stages?: Stage[]
-    tools?: Tool[]
-}
 
 interface MakeupBagPDFProps {
     data: MakeupBagData
@@ -234,15 +206,15 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
 
     const renderStages = () =>
         stages.map((stage, index) => (
-            <View key={index} style={styles.stageContainer} break={index > 0}>
-                <Text style={styles.stageTitle}>{stage.title}</Text>
-
-                <Text style={styles.stageSubtitle}>{stage.subtitle}</Text>
-
-                <Image style={styles.stageImage} src={stage.imageUrl} />
+            <View key={index}>
+                <View wrap={false}>
+                    <Text style={styles.stageTitle}>{stage.title}</Text>
+                    <Text style={styles.stageSubtitle}>{stage.subtitle}</Text>
+                    <Image style={styles.stageImage} src={stage.imageUrl} />
+                </View>
 
                 {stage.steps && stage.steps.length > 0 && (
-                    <View style={styles.stepsList}>
+                    <View style={styles.stepsList} wrap={false}>
                         <Text style={styles.stepsTitle}>Шаги:</Text>
 
                         {stage.steps.map((step, stepIndex) => (
@@ -254,9 +226,13 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
                 )}
 
                 {stage.products && stage.products.length > 0 && (
-                    <View style={styles.productsGrid} break>
+                    <View style={styles.productsGrid}>
                         {stage.products.map((product, productIndex) => (
-                            <View key={productIndex} style={styles.productCard}>
+                            <View
+                                key={productIndex}
+                                style={styles.productCard}
+                                wrap={false}
+                            >
                                 <Image
                                     style={styles.productImage}
                                     src={product.imageUrl}
@@ -278,21 +254,65 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
             </View>
         ))
 
-    const renderTools = () => (
-        <View style={styles.toolsGrid}>
-            {tools.map((tool, index) => (
-                <View key={index} style={styles.toolCard}>
-                    <Image style={styles.toolImage} src={tool.imageUrl} />
+    const renderTools = () => {
+        // Split tools into two groups for layout purposes
+        const firstTools = tools.length > 2 ? tools.slice(0, 2) : tools
+        const restTools = tools.length > 2 ? tools.slice(2) : []
 
-                    <Text style={styles.toolName}>{tool.name}</Text>
+        return (
+            <>
+                <View wrap={false}>
+                    <Text style={styles.sectionTitle}>Инструменты</Text>
 
-                    {tool.brand?.name && (
-                        <Text style={styles.toolBrand}>{tool.brand.name}</Text>
-                    )}
+                    <View style={styles.toolsGrid}>
+                        {firstTools.map((tool, index) => (
+                            <View
+                                key={tool._id ? tool._id : `tool-${index}`}
+                                style={styles.toolCard}
+                                wrap={false}
+                            >
+                                <Image
+                                    style={styles.toolImage}
+                                    src={tool.imageUrl}
+                                />
+
+                                <Text style={styles.toolName}>{tool.name}</Text>
+
+                                {tool.brand?.name && (
+                                    <Text style={styles.toolBrand}>
+                                        {tool.brand.name}
+                                    </Text>
+                                )}
+                            </View>
+                        ))}
+                    </View>
                 </View>
-            ))}
-        </View>
-    )
+
+                <View style={styles.toolsGrid}>
+                    {restTools.map((tool, index) => (
+                        <View
+                            key={tool._id ? tool._id : `tool-rest-${index}`}
+                            style={styles.toolCard}
+                            wrap={false}
+                        >
+                            <Image
+                                style={styles.toolImage}
+                                src={tool.imageUrl}
+                            />
+
+                            <Text style={styles.toolName}>{tool.name}</Text>
+
+                            {tool.brand?.name && (
+                                <Text style={styles.toolBrand}>
+                                    {tool.brand.name}
+                                </Text>
+                            )}
+                        </View>
+                    ))}
+                </View>
+            </>
+        )
+    }
 
     return (
         <Document>
@@ -302,27 +322,11 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
                     <Text style={styles.headerSubtitle}>
                         Индивидуальный подбор продуктов
                     </Text>
-                    <Image
-                        style={styles.headerImage}
-                        src={
-                            'https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png'
-                        }
-                    />
                 </View>
 
-                {stages.length > 0 && (
-                    <View break>
-                        <Text style={styles.sectionTitle}>Этапы</Text>
-                        {renderStages()}
-                    </View>
-                )}
+                {stages.length && renderStages()}
 
-                {tools.length > 0 && (
-                    <View break>
-                        <Text style={styles.sectionTitle}>Инструменты</Text>
-                        {renderTools()}
-                    </View>
-                )}
+                {tools.length && renderTools()}
 
                 <View style={styles.header} break>
                     <Text style={styles.headerTitle}>
@@ -333,6 +337,12 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
                         какому-либо ещё макияжу, обращайтесь по телефону: +381
                         62 9446 904 (Сербия) Буду рада помочь)
                     </Text>
+                    <Image
+                        style={styles.headerImage}
+                        src={
+                            'https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png'
+                        }
+                    />
                     <Text style={styles.text}>
                         Мои услуги: все виды макияжа, укладки, причёски,
                         обучение, подарочные сертификаты

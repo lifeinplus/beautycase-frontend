@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockProduct } from '../../__mocks__/productsApi'
+import { mockProduct1 } from '../../__mocks__/productsApi'
 import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
@@ -17,7 +17,7 @@ describe('ProductDetailsPage', () => {
 
     beforeEach(() => {
         vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
-            data: mockProduct,
+            data: mockProduct1,
             isLoading: false,
             error: null,
         })
@@ -30,8 +30,8 @@ describe('ProductDetailsPage', () => {
     it('renders product details', async () => {
         render(<ProductDetailsPage />)
 
-        const title = screen.getByText(mockProduct.name)
-        const subtitle = screen.getByText(mockProduct.brand?.name!)
+        const title = screen.getByText(mockProduct1.name)
+        const subtitle = screen.getByText(mockProduct1.brand?.name!)
 
         expect(title).toBeInTheDocument()
         expect(subtitle).toBeInTheDocument()

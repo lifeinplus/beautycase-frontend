@@ -33,11 +33,11 @@ export const QuestionnairePage = () => {
         resolver: yupResolver(questionnaireSchema),
     })
 
-    const [addQuestionnaire] = useCreateQuestionnaireMutation()
+    const [createQuestionnaire] = useCreateQuestionnaireMutation()
 
     const onSubmit = async (data: Questionnaire) => {
         try {
-            await addQuestionnaire(data).unwrap()
+            await createQuestionnaire(data).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {

@@ -9,7 +9,7 @@ export const mockToolCreate: MutationResult = {
     message: 'Tool added successfully',
 }
 
-export const mockTool: Tool = {
+export const mockTool1: Tool = {
     _id: 'tool1',
     name: 'Tool 1',
     brand: { _id: 'brand1', name: 'Brand 1' },
@@ -19,30 +19,46 @@ export const mockTool: Tool = {
     comment: 'Perfect',
     storeLinks: [
         {
-            _id: '111',
+            _id: 'store1',
             name: 'ManlyPRO',
-            link: 'https://example.com/111',
+            link: 'https://example.com/1',
         },
     ],
 }
 
-export const mockTools: Tool[] = [
-    mockTool,
-    {
-        _id: 'tool2',
-        name: 'Tool 2',
-        brandId: 'brand2',
-        imageUrl: 'https://example.com/2.webp',
-        comment: 'Best',
-        storeLinks: [
-            {
-                _id: '222',
-                name: 'ManlyPRO',
-                link: 'https://example.com/222',
-            },
-        ],
-    },
-]
+export const mockTool2: Tool = {
+    _id: 'tool2',
+    name: 'Tool 2',
+    brand: { _id: 'brand2', name: 'Brand 2' },
+    brandId: 'brand2',
+    imageUrl: 'https://example.com/2.webp',
+    comment: 'Best',
+    storeLinks: [
+        {
+            _id: 'store2',
+            name: 'ManlyPRO',
+            link: 'https://example.com/2',
+        },
+    ],
+}
+
+export const mockTool3: Tool = {
+    _id: 'tool3',
+    name: 'Tool 3',
+    brand: { _id: 'brand3', name: 'Brand 3' },
+    brandId: 'brand3',
+    imageUrl: 'https://example.com/3.webp',
+    comment: 'Best',
+    storeLinks: [
+        {
+            _id: 'store3',
+            name: 'ManlyPRO',
+            link: 'https://example.com/3',
+        },
+    ],
+}
+
+export const mockTools: Tool[] = [mockTool1, mockTool2, mockTool3]
 
 export const useCreateToolMutation = vi.fn()
 export const useGetAllToolsQuery = vi.fn()

@@ -12,11 +12,11 @@ export const MakeupBagAddPage = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [addMakeupBag] = useCreateMakeupBagMutation()
+    const [createMakeupBag] = useCreateMakeupBagMutation()
 
     const handleAddMakeupBag = async (makeupBag: MakeupBag) => {
         try {
-            const response = await addMakeupBag(makeupBag).unwrap()
+            const response = await createMakeupBag(makeupBag).unwrap()
             dispatch(clearFormData())
             navigate(`/makeup_bags/${response.id}`)
         } catch (error) {

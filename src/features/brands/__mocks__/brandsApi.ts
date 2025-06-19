@@ -9,18 +9,17 @@ export const mockBrandCreate: MutationResult = {
     message: 'Brand created successfully',
 }
 
-export const mockBrand: Brand = {
+export const mockBrand1: Brand = {
     _id: 'brand1',
     name: 'Brand 1',
 }
 
-export const mockBrands: Brand[] = [
-    mockBrand,
-    {
-        _id: 'brand2',
-        name: 'Brand 2',
-    },
-]
+export const mockBrand2: Brand = {
+    _id: 'brand2',
+    name: 'Brand 2',
+}
+
+export const mockBrands: Brand[] = [mockBrand1, mockBrand2]
 
 export const useCreateBrandMutation = vi.fn()
 export const useGetAllBrandsQuery = vi.fn()

@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
+
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { useRegisterUserMutation } from '../authApi'
 
 export const RegisterPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('auth')
 
     const usernameRef = useRef<HTMLInputElement>(null)
 
@@ -56,13 +59,13 @@ export const RegisterPage = () => {
                             ref={usernameRef}
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Имя пользователя"
+                            placeholder={t('username')}
                         />
                         <label
                             htmlFor="username"
                             className="absolute start-2 top-1 transform text-xs text-neutral-400 transition-all peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs dark:text-neutral-400"
                         >
-                            Имя пользователя
+                            {t('username')}
                         </label>
                     </div>
                 </div>
@@ -73,13 +76,13 @@ export const RegisterPage = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Пароль"
+                        placeholder={t('password')}
                     />
                     <label
                         htmlFor="password"
                         className="absolute start-2 top-1 transform text-xs text-neutral-400 transition-all peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs dark:text-neutral-400"
                     >
-                        Пароль
+                        {t('password')}
                     </label>
                 </div>
 
@@ -89,13 +92,13 @@ export const RegisterPage = () => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="Подтвердить пароль"
+                        placeholder={t('confirmPassword')}
                     />
                     <label
                         htmlFor="password"
                         className="absolute start-2 top-1 transform text-xs text-neutral-400 transition-all peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs dark:text-neutral-400"
                     >
-                        Подтвердить пароль
+                        {t('confirmPassword')}
                     </label>
                 </div>
 
@@ -105,18 +108,18 @@ export const RegisterPage = () => {
                         className="flex w-full justify-center rounded-lg bg-rose-500 px-4 py-1.5 text-sm font-semibold text-white hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose-700"
                         disabled={isLoading}
                     >
-                        {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
+                        {isLoading ? t('registerLoading') : t('register')}
                     </button>
                 </div>
 
                 <div className="mt-10 sm:mb-5">
                     <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
-                        У вас уже есть аккаунт?{' '}
+                        {'registerQuestion'}{' '}
                         <Link
                             className="font-semibold text-rose-500 hover:text-rose-400 focus-visible:outline-rose-700"
                             to="/login"
                         >
-                            Войти
+                            {t('login')}
                         </Link>
                     </p>
                 </div>

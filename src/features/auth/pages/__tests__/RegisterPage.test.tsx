@@ -58,14 +58,13 @@ describe('RegisterPage', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
         const title = screen.getByText('Beautycase')
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const confirmPassword =
-            screen.getByPlaceholderText('Подтвердить пароль')
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
         const submit = screen.getByRole('button', {
-            name: /Зарегистрироваться/i,
+            name: 'register',
         })
-        const link = screen.getByRole('link', { name: /Войти/i })
+        const link = screen.getByRole('link', { name: 'login' })
 
         expect(title).toBeInTheDocument()
         expect(username).toBeInTheDocument()
@@ -80,10 +79,9 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const confirmPassword =
-            screen.getByPlaceholderText('Подтвердить пароль')
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
 
         await user.type(username, mockParams.username)
         await user.type(password, mockParams.password)
@@ -99,12 +97,11 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const confirmPassword =
-            screen.getByPlaceholderText('Подтвердить пароль')
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
         const submit = screen.getByRole('button', {
-            name: 'Зарегистрироваться',
+            name: 'register',
         })
 
         await user.type(username, mockParams.username)
@@ -129,12 +126,11 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const confirmPassword =
-            screen.getByPlaceholderText('Подтвердить пароль')
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
         const submit = screen.getByRole('button', {
-            name: 'Зарегистрироваться',
+            name: 'register',
         })
 
         await user.type(username, mockParams.username)
@@ -158,9 +154,9 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const submit = screen.getByRole('button', { name: /Регистрация/i })
+        const submit = screen.getByRole('button', { name: 'registerLoading' })
         expect(submit).toBeDisabled()
-        expect(submit).toHaveTextContent('Регистрация...')
+        expect(submit).toHaveTextContent('registerLoading')
     })
 
     it('navigates to login page when login link is clicked', async () => {
@@ -168,7 +164,7 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const link = screen.getByRole('link', { name: /войти/i })
+        const link = screen.getByRole('link', { name: 'login' })
         await user.click(link)
 
         const page = screen.getByTestId('mocked-login-page')

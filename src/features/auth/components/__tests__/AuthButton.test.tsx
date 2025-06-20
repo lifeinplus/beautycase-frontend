@@ -27,12 +27,12 @@ describe('AuthButton', () => {
         expect(
             screen.getByTestId('mocked-arrow-right-end-on-rectangle-icon')
         ).toBeInTheDocument()
-        expect(screen.getByText('Войти')).toBeInTheDocument()
+        expect(screen.getByText('login')).toBeInTheDocument()
 
         expect(
             screen.queryByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).not.toBeInTheDocument()
-        expect(screen.queryByText('Выйти')).not.toBeInTheDocument()
+        expect(screen.queryByText('logout')).not.toBeInTheDocument()
     })
 
     it('renders logout button when user is logged in', () => {
@@ -45,12 +45,12 @@ describe('AuthButton', () => {
         expect(
             screen.getByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).toBeInTheDocument()
-        expect(screen.getByText('Выйти')).toBeInTheDocument()
+        expect(screen.getByText('logout')).toBeInTheDocument()
 
         expect(
             screen.queryByTestId('arrow-right-end-on-rectangle-icon')
         ).not.toBeInTheDocument()
-        expect(screen.queryByText('Войти')).not.toBeInTheDocument()
+        expect(screen.queryByText('login')).not.toBeInTheDocument()
     })
 
     it('navigates to login page when login button is clicked', async () => {
@@ -92,7 +92,7 @@ describe('AuthButton', () => {
 
         render(<AuthButton />)
 
-        const textElement = screen.getByText('Войти')
+        const textElement = screen.getByText('login')
         expect(textElement).toHaveClass('hidden')
         expect(textElement).toHaveClass('lg:inline')
     })

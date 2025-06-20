@@ -12,13 +12,9 @@ describe('UnauthorizedPage', () => {
     it('renders required components', () => {
         renderWithProviders(<UnauthorizedPage />)
 
-        const header = screen.getByTestId('mocked-header')
-        const headline = screen.getByTestId('mocked-hero')
-        const navBar = screen.getByTestId('mocked-nav-bar')
-
-        expect(header).toBeInTheDocument()
-        expect(headline).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
     })
 
     it('has correct page structure', () => {

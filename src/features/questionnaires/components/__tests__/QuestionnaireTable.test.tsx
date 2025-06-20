@@ -12,7 +12,13 @@ describe('QuestionnaireTable', () => {
     it('renders the table headers correctly', () => {
         render(<QuestionnaireTable questionnaires={mockQuestionnaires} />)
 
-        const headers = ['Дата', 'Время', 'Имя клиента', 'Возраст', 'Город']
+        const headers = [
+            'table.date',
+            'table.time',
+            'table.clientName',
+            'table.age',
+            'table.city',
+        ]
 
         headers.forEach((header) =>
             expect(screen.getByText(header)).toBeInTheDocument()

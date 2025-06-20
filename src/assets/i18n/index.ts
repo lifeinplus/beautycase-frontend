@@ -15,7 +15,7 @@ i18n.use(LanguageDetector)
         interpolation: {
             escapeValue: false,
         },
-        ns: ['questionnaire'],
+        ns: ['navigation'],
         supportedLngs: ['ru', 'en'],
     })
 

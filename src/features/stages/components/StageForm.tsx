@@ -70,7 +70,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <InputSection
-                            error={errors.title}
+                            error={errors.title?.message}
                             label="Заголовок"
                             register={register('title')}
                             required={true}

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
+import type { UseFormRegisterReturn } from 'react-hook-form'
 
 import { Label } from './Label'
 
@@ -8,7 +8,7 @@ export interface InputSectionProps {
     register: UseFormRegisterReturn
     type: string
     description?: string
-    error?: FieldError
+    error?: string
     required?: boolean
 }
 
@@ -32,6 +32,6 @@ export const InputSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error">{error.message}</p>}
+        {error && <p className="form-error">{error}</p>}
     </div>
 )

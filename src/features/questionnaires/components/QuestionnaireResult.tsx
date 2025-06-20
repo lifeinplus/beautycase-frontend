@@ -1,6 +1,7 @@
 import { AdvancedImage } from '@cloudinary/react'
 import { scale } from '@cloudinary/url-gen/actions/resize'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import config from '../../../config'
 import cloudinary from '../../../utils/cloudinary'
@@ -35,6 +36,8 @@ const fields: (keyof Questionnaire)[] = [
 ]
 
 export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
+    const { t } = useTranslation(['questionnaire'])
+
     const renderImage = (value?: string): ReactNode => {
         const publicID = value || config.cloudinary.defaultThumbnailName
         const cldImg = cloudinary
@@ -63,10 +66,10 @@ export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
 
         return (
             result
-                .map((r) => options?.find((o) => o.value === r)?.label)
+                .map((r) => t(options?.find((o) => o.value === r)?.label || ''))
                 .join(' • ') ||
             value?.toString() ||
-            'Не указано'
+            t('notSpecified')
         )
     }
 
@@ -75,7 +78,7 @@ export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
             <dl className="dl">
                 {fields.map((f) => (
                     <div key={f} className="dl-grid">
-                        <dt className="dt">{questions[f]?.label}</dt>
+                        <dt className="dt">{t(questions[f]?.label)}</dt>
                         <dd className="dd">
                             {f === 'makeupBagPhotoId'
                                 ? renderImage(data?.[f])

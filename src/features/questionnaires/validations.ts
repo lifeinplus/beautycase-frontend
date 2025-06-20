@@ -28,9 +28,9 @@ export const questionnaireSchema = object({
         .optional()
         .default(undefined),
     instagram: string().transform(transformEmpty),
-    makeupBag: string().required('Укажите, что сейчас есть в косметичке'),
+    makeupBag: string().required('validations.makeupBag'),
     makeupTime: string().transform(transformEmpty),
-    name: string().required('Укажите ваше имя'),
+    name: string().required('validations.name'),
     oilyShine: string().transform(transformEmpty),
     peeling: string().transform(transformEmpty),
     pores: string().transform(transformEmpty),

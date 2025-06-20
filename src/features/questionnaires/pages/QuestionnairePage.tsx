@@ -14,9 +14,9 @@ import { ImageTextSection } from '../../form/components/ImageTextSection'
 import { RadioButtonSection } from '../../form/components/RadioButtonSection'
 import { TextareaSection } from '../../form/components/TextareaSection'
 import { options } from '../options'
+import { useCreateQuestionnaireMutation } from '../questionnairesApi'
 import type { Questionnaire } from '../types'
 import { questionnaireSchema } from '../validations'
-import { useCreateQuestionnaireMutation } from '../questionnairesApi'
 import { questions } from '../utils'
 
 export const QuestionnairePage = () => {
@@ -72,7 +72,7 @@ export const QuestionnairePage = () => {
                             </p>
 
                             <InputSection
-                                error={errors.name}
+                                error={t(errors.name?.message || '')}
                                 label={t(questions.name.label)}
                                 register={register('name')}
                                 required={true}
@@ -109,7 +109,7 @@ export const QuestionnairePage = () => {
                                     questions.makeupBag.description || ''
                                 )}
                                 folder="questionnaires"
-                                error={errors.makeupBag}
+                                error={t(errors.makeupBag?.message || '')}
                                 label={t(questions.makeupBag.label)}
                                 labelUrl={t(questions.makeupBagPhotoUrl.label)}
                                 name={'makeupBag'}

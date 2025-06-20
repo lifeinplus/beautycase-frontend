@@ -28,21 +28,15 @@ describe('QuestionnaireResultPage', () => {
     it('renders questionnaire data', () => {
         render(<QuestionnaireResultPage />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
-        const questionnaireResult = screen.getByTestId(
-            'mocked-questionnaire-result'
-        )
-        const name = screen.getByText(mockQuestionnaire1.name)
-        const navBar = screen.getByTestId('mocked-nav-bar')
-        const navButton = screen.getByTestId('mocked-nav-button-Назад')
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
 
-        expect(topPanel).toBeInTheDocument()
-        expect(dataWrapper).toBeInTheDocument()
-        expect(questionnaireResult).toBeInTheDocument()
-        expect(name).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
-        expect(navButton).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-questionnaire-result')
+        ).toBeInTheDocument()
+
+        expect(screen.getByText(mockQuestionnaire1.name)).toBeInTheDocument()
     })
 
     it('should navigate back when back button is clicked', async () => {

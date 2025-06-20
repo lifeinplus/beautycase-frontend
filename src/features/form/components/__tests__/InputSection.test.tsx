@@ -35,7 +35,7 @@ describe('InputSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        render(<InputSection {...mockProps} error={mockFieldError} />)
+        render(<InputSection {...mockProps} error={mockFieldError.message} />)
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

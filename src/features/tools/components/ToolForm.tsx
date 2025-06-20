@@ -110,7 +110,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <InputSection
-                            error={errors.number}
+                            error={errors.number?.message}
                             label={'Номер'}
                             register={register('number')}
                             type={'text'}

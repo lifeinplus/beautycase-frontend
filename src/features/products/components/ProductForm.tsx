@@ -109,7 +109,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <InputSection
-                            error={errors.shade}
+                            error={errors.shade?.message}
                             label={'Оттенок'}
                             register={register('shade')}
                             type={'text'}

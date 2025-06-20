@@ -32,13 +32,13 @@ export const options: Options = {
     brushes: [
         {
             id: 'brushes-yes',
-            label: 'Да',
+            label: 'questions.brushes.options.yes',
             name: 'brushes',
             value: 'yes',
         },
         {
             id: 'brushes-no',
-            label: 'Нет',
+            label: 'questions.brushes.options.no',
             name: 'brushes',
             value: 'no',
         },
@@ -46,19 +46,19 @@ export const options: Options = {
     budget: [
         {
             id: 'budget-up-to-150',
-            label: 'До 150 евро',
+            label: 'questions.budget.options.150',
             name: 'budget',
             value: '150',
         },
         {
             id: 'budget-150-250',
-            label: '150-250 евро',
+            label: 'questions.budget.options.150-250',
             name: 'budget',
             value: '150-250',
         },
         {
             id: 'budget-more-than-250',
-            label: 'Более 250 евро',
+            label: 'questions.budget.options.250',
             name: 'budget',
             value: '250',
         },
@@ -66,46 +66,46 @@ export const options: Options = {
     desiredSkills: [
         {
             id: 'desired-skill-delicate',
-            label: 'Нежный',
+            label: 'questions.desiredSkills.options.delicate',
             name: 'desiredSkills.delicate',
         },
         {
             id: 'desired-skill-evening',
-            label: 'Вечерний',
+            label: 'questions.desiredSkills.options.evening',
             name: 'desiredSkills.evening',
         },
         {
             id: 'desired-skill-bright',
-            label: 'Яркий',
+            label: 'questions.desiredSkills.options.bright',
             name: 'desiredSkills.bright',
         },
         {
             id: 'desired-skill-office',
-            label: 'Офисный вариант',
+            label: 'questions.desiredSkills.options.office',
             name: 'desiredSkills.office',
         },
         {
             id: 'desired-skill-filming',
-            label: 'Для фото/видео съёмок',
+            label: 'questions.desiredSkills.options.filming',
             name: 'desiredSkills.filming',
         },
     ],
     makeupTime: [
         {
             id: 'makeup-time-up-to-15-min',
-            label: 'До 15 минут',
+            label: 'questions.makeupTime.options.15',
             name: 'makeupTime',
             value: '15',
         },
         {
             id: 'makeup-time-15-30-min',
-            label: '15-30 минут',
+            label: 'questions.makeupTime.options.15-30',
             name: 'makeupTime',
             value: '15-30',
         },
         {
             id: 'makeup-time-30-60-min',
-            label: '30-60 минут',
+            label: 'questions.makeupTime.options.30-60',
             name: 'makeupTime',
             value: '30-60',
         },
@@ -113,13 +113,13 @@ export const options: Options = {
     oilyShine: [
         {
             id: 'oily-shine-yes',
-            label: 'Да',
+            label: 'questions.oilyShine.options.yes',
             name: 'oilyShine',
             value: 'yes',
         },
         {
             id: 'oily-shine-no',
-            label: 'Нет',
+            label: 'questions.oilyShine.options.no',
             name: 'oilyShine',
             value: 'no',
         },
@@ -127,13 +127,13 @@ export const options: Options = {
     peeling: [
         {
             id: 'peeling-yes',
-            label: 'Да',
+            label: 'questions.peeling.options.yes',
             name: 'peeling',
             value: 'yes',
         },
         {
             id: 'peeling-no',
-            label: 'Нет',
+            label: 'questions.peeling.options.no',
             name: 'peeling',
             value: 'no',
         },
@@ -141,13 +141,13 @@ export const options: Options = {
     pores: [
         {
             id: 'pores-yes',
-            label: 'Да',
+            label: 'questions.pores.options.yes',
             name: 'pores',
             value: 'yes',
         },
         {
             id: 'pores-no',
-            label: 'Нет',
+            label: 'questions.pores.options.no',
             name: 'pores',
             value: 'no',
         },
@@ -155,85 +155,85 @@ export const options: Options = {
     problems: [
         {
             id: 'problem-eyeshadow-crease',
-            label: 'Скатываются тени',
+            label: 'questions.problems.options.eyeshadowCrease',
             name: 'problems.eyeshadowCrease',
         },
         {
             id: 'problem-mascara-smudge',
-            label: 'Отпечатывается тушь',
+            label: 'questions.problems.options.mascaraSmudge',
             name: 'problems.mascaraSmudge',
         },
         {
             id: 'problem-foundation-pores',
-            label: 'Тон проваливается в поры',
+            label: 'questions.problems.options.foundationPores',
             name: 'problems.foundationPores',
         },
         {
             id: 'problem-foundation-stay',
-            label: 'Тон плохо держится',
+            label: 'questions.problems.options.foundationStay',
             name: 'problems.foundationStay',
         },
         {
             id: 'problem-sculpting',
-            label: 'Не умею делать скульптурирование',
+            label: 'questions.problems.options.sculpting',
             name: 'problems.sculpting',
         },
         {
             id: 'problem-eyeshadow-match',
-            label: 'Не знаю, какие тени подходят под мой цвет глаз',
+            label: 'questions.problems.options.eyeshadowMatch',
             name: 'problems.eyeshadowMatch',
         },
     ],
     procedures: [
         {
             id: 'procedure-lash-extensions',
-            label: 'Наращивание ресниц',
+            label: 'questions.procedures.options.lashExtensions',
             name: 'procedures.lashExtensions',
         },
         {
             id: 'procedure-brow-correction',
-            label: 'Коррекция и покраска бровей',
+            label: 'questions.procedures.options.browCorrection',
             name: 'procedures.browCorrection',
         },
         {
             id: 'procedure-lash-lamination',
-            label: 'Ламинирование, покраска ресниц',
+            label: 'questions.procedures.options.lashLamination',
             name: 'procedures.lashLamination',
         },
         {
             id: 'procedure-none',
-            label: 'Не делаю',
+            label: 'questions.procedures.options.none',
             name: 'procedures.none',
         },
     ],
     referral: [
         {
             id: 'referral-instagram',
-            label: 'Instagram',
+            label: 'questions.referral.options.instagram',
             name: 'referral',
             value: 'instagram',
         },
         {
             id: 'referral-youtube',
-            label: 'YouTube',
+            label: 'questions.referral.options.youtube',
             name: 'referral',
             value: 'youtube',
         },
         {
             id: 'referral-personal',
-            label: 'Личное знакомство',
+            label: 'questions.referral.options.personal',
             name: 'referral',
             value: 'personal',
         },
         {
             id: 'referral-recommendation',
-            label: 'По рекомендации',
+            label: 'questions.referral.options.recommendation',
             name: 'referral',
             value: 'recommendation',
         },
         {
             id: 'referral-other',
-            label: 'Другое',
+            label: 'questions.referral.options.other',
             name: 'referral',
             value: 'other',
         },
@@ -241,31 +241,31 @@ export const options: Options = {
     skinTypes: [
         {
             id: 'skin-type-dry',
-            label: 'Сухая',
+            label: 'questions.skinType.options.dry',
             name: 'skinType',
             value: 'dry',
         },
         {
             id: 'skin-type-normal',
-            label: 'Нормальная',
+            label: 'questions.skinType.options.normal',
             name: 'skinType',
             value: 'normal',
         },
         {
             id: 'skin-type-combination',
-            label: 'Комбинированная',
+            label: 'questions.skinType.options.combination',
             name: 'skinType',
             value: 'combination',
         },
         {
             id: 'skin-type-oily',
-            label: 'Жирная',
+            label: 'questions.skinType.options.oily',
             name: 'skinType',
             value: 'oily',
         },
         {
             id: 'skin-type-sensitive',
-            label: 'Чувствительная',
+            label: 'questions.skinType.options.sensitive',
             name: 'skinType',
             value: 'sensitive',
         },

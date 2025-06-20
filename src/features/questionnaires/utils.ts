@@ -12,267 +12,266 @@ interface Questions {
 
 export const questions: Questions = {
     name: {
-        label: 'Имя',
+        label: 'questions.name.label',
     },
     instagram: {
-        label: 'Instagram',
-        description: 'Псевдоним в Instagram',
+        label: 'questions.instagram.label',
+        description: 'questions.instagram.description',
     },
     city: {
-        label: 'Город',
-        description: 'Город проживания',
+        label: 'questions.city.label',
+        description: 'questions.city.description',
     },
     age: {
-        label: 'Возраст',
+        label: 'questions.age.label',
     },
     makeupBag: {
-        label: 'Содержимое косметички',
-        description: 'Опишите свою косметичку и/или приложите фото',
+        label: 'questions.makeupBag.label',
+        description: 'questions.makeupBag.description',
     },
     makeupBagPhotoId: {
-        label: 'Фото косметички',
+        label: 'questions.makeupBagPhotoId.label',
     },
     makeupBagPhotoUrl: {
-        label: 'Ссылка на изображение косметички',
+        label: 'questions.makeupBagPhotoUrl.label',
     },
     procedures: {
-        label: 'Процедуры',
-        description:
-            'Делаете ли какие-то из этих процедур на постоянной основе?',
+        label: 'questions.procedures.label',
+        description: 'questions.procedures.description',
         options: [
             {
-                label: 'Наращивание ресниц',
+                label: 'questions.procedures.options.lashExtensions',
                 value: 'lashExtensions',
             },
             {
-                label: 'Коррекция и покраска бровей',
+                label: 'questions.procedures.options.browCorrection',
                 value: 'browCorrection',
             },
             {
-                label: 'Ламинирование, покраска ресниц',
+                label: 'questions.procedures.options.lashLamination',
                 value: 'lashLamination',
             },
             {
-                label: 'Не делаю',
+                label: 'questions.procedures.options.none',
                 value: 'none',
             },
         ],
     },
     skinType: {
-        label: 'Тип кожи',
+        label: 'questions.skinType.label',
         options: [
             {
-                label: 'Сухая',
+                label: 'questions.skinType.options.dry',
                 value: 'dry',
             },
             {
-                label: 'Нормальная',
+                label: 'questions.skinType.options.normal',
                 value: 'normal',
             },
             {
-                label: 'Комбинированная',
+                label: 'questions.skinType.options.combination',
                 value: 'combination',
             },
             {
-                label: 'Жирная',
+                label: 'questions.skinType.options.oily',
                 value: 'oily',
             },
             {
-                label: 'Чувствительная',
+                label: 'questions.skinType.options.sensitive',
                 value: 'sensitive',
             },
         ],
     },
     allergies: {
-        label: 'Аллергии',
-        description: 'Есть ли аллергии? На что, если есть?',
+        label: 'questions.allergies.label',
+        description: 'questions.allergies.description',
     },
     peeling: {
-        label: 'Шелушения',
-        description: 'Бывают ли шелушения?',
+        label: 'questions.peeling.label',
+        description: 'questions.peeling.description',
         options: [
             {
-                label: 'Да',
+                label: 'questions.peeling.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'questions.peeling.options.no',
                 value: 'no',
             },
         ],
     },
     pores: {
-        label: 'Поры',
-        description: 'Заметны ли поры?',
+        label: 'questions.pores.label',
+        description: 'questions.pores.description',
         options: [
             {
-                label: 'Да',
+                label: 'questions.pores.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'questions.pores.options.no',
                 value: 'no',
             },
         ],
     },
     oilyShine: {
-        label: 'Жирный блеск',
-        description: 'Появляется ли жирный блеск в течение дня?',
+        label: 'questions.oilyShine.label',
+        description: 'questions.oilyShine.description',
         options: [
             {
-                label: 'Да',
+                label: 'questions.oilyShine.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'questions.oilyShine.options.no',
                 value: 'no',
             },
         ],
     },
     currentSkills: {
-        label: 'Текущие навыки',
-        description: 'Что уже умеете? Какие виды макияжа делаете сейчас?',
+        label: 'questions.currentSkills.label',
+        description: 'questions.currentSkills.description',
     },
     desiredSkills: {
-        label: 'Желаемые навыки',
-        description: 'Какие виды макияжа хотите научиться делать в будущем?',
+        label: 'questions.desiredSkills.label',
+        description: 'questions.desiredSkills.description',
         options: [
             {
-                label: 'Нежный',
+                label: 'questions.desiredSkills.options.delicate',
                 value: 'delicate',
             },
             {
-                label: 'Вечерний',
+                label: 'questions.desiredSkills.options.evening',
                 value: 'evening',
             },
             {
-                label: 'Яркий',
+                label: 'questions.desiredSkills.options.bright',
                 value: 'bright',
             },
             {
-                label: 'Офисный вариант',
+                label: 'questions.desiredSkills.options.office',
                 value: 'office',
             },
             {
-                label: 'Для фото/видео съёмок',
+                label: 'questions.desiredSkills.options.filming',
                 value: 'filming',
             },
         ],
     },
     makeupTime: {
-        label: 'Время на макияж',
-        description: 'Сколько времени чаще всего выделяете на макияж?',
+        label: 'questions.makeupTime.label',
+        description: 'questions.makeupTime.description',
         options: [
             {
-                label: 'До 15 минут',
+                label: 'questions.makeupTime.options.15',
                 value: '15',
             },
             {
-                label: '15-30 минут',
+                label: 'questions.makeupTime.options.15-30',
                 value: '15-30',
             },
             {
-                label: '30-60 минут',
+                label: 'questions.makeupTime.options.30-60',
                 value: '30-60',
             },
         ],
     },
     budget: {
-        label: 'Бюджет',
-        description: 'Какой бюджет закладываете на косметичку?',
+        label: 'questions.budget.label',
+        description: 'questions.budget.description',
         options: [
             {
-                label: 'До 50 евро',
+                label: 'questions.budget.options.50',
                 value: '50',
             },
             {
-                label: 'До 150 евро',
+                label: 'questions.budget.options.150',
                 value: '150',
             },
             {
-                label: '50-100 евро',
+                label: 'questions.budget.options.50-100',
                 value: '50-100',
             },
             {
-                label: '150-250 евро',
+                label: 'questions.budget.options.150-250',
                 value: '150-250',
             },
             {
-                label: 'Более 100 евро',
+                label: 'questions.budget.options.100',
                 value: '100',
             },
             {
-                label: 'Более 250 евро',
+                label: 'questions.budget.options.250',
                 value: '250',
             },
         ],
     },
     brushes: {
-        label: 'Подбор кистей',
-        description: 'Нужен ли подбор кистей?',
+        label: 'questions.brushes.label',
+        description: 'questions.brushes.description',
         options: [
             {
-                label: 'Да',
+                label: 'questions.brushes.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'questions.brushes.options.no',
                 value: 'no',
             },
         ],
     },
     problems: {
-        label: 'Проблемы при макияже',
-        description: 'С какими проблемами сталкивались при выполнении макияжа?',
+        label: 'questions.problems.label',
+        description: 'questions.problems.description',
         options: [
             {
-                label: 'Скатываются тени',
+                label: 'questions.problems.options.eyeshadowCrease',
                 value: 'eyeshadowCrease',
             },
             {
-                label: 'Отпечатывается тушь',
+                label: 'questions.problems.options.mascaraSmudge',
                 value: 'mascaraSmudge',
             },
             {
-                label: 'Тон проваливается в поры',
+                label: 'questions.problems.options.foundationPores',
                 value: 'foundationPores',
             },
             {
-                label: 'Тон плохо держится',
+                label: 'questions.problems.options.foundationStay',
                 value: 'foundationStay',
             },
             {
-                label: 'Не умею делать скульптурирование',
+                label: 'questions.problems.options.sculpting',
                 value: 'sculpting',
             },
             {
-                label: 'Не знаю, какие тени подходят под мой цвет глаз',
+                label: 'questions.problems.options.eyeshadowMatch',
                 value: 'eyeshadowMatch',
             },
         ],
     },
     referral: {
-        label: 'Источник',
-        description: 'Откуда узнали про меня?',
+        label: 'questions.referral.label',
+        description: 'questions.referral.description',
         options: [
             {
-                label: 'Instagram',
+                label: 'questions.referral.options.instagram',
                 value: 'instagram',
             },
             {
-                label: 'YouTube',
+                label: 'questions.referral.options.youtube',
                 value: 'youtube',
             },
             {
-                label: 'Личное знакомство',
+                label: 'questions.referral.options.personal',
                 value: 'personal',
             },
             {
-                label: 'По рекомендации',
+                label: 'questions.referral.options.recommendation',
                 value: 'recommendation',
             },
             {
-                label: 'Другое',
+                label: 'questions.referral.options.other',
                 value: 'other',
             },
         ],

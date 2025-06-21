@@ -14,42 +14,42 @@ describe('Lesson Schema Validation', () => {
     it('should fail when title is missing', async () => {
         const data = { ...mockLesson1, title: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Укажите заголовок урока'
+            'validations.title'
         )
     })
 
     it('should fail when shortDescription is missing', async () => {
         const data = { ...mockLesson1, shortDescription: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Укажите краткое описание'
+            'validations.shortDescription'
         )
     })
 
     it('should fail when videoUrl is missing', async () => {
         const data = { ...mockLesson1, videoUrl: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Укажите ссылку на видео'
+            'validations.videoUrl'
         )
     })
 
     it('should fail when fullDescription is missing', async () => {
         const data = { ...mockLesson1, fullDescription: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Укажите полное описание'
+            'validations.fullDescription'
         )
     })
 
     it('should fail when productIds is missing', async () => {
         const data = { ...mockLesson1, productIds: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Выберите продукты'
+            'validations.products.required'
         )
     })
 
     it('should fail when productIds array is empty', async () => {
         const data = { ...mockLesson1, productIds: [] }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'Выберите продукты'
+            'validations.products.min'
         )
     })
 
@@ -61,8 +61,10 @@ describe('Lesson Schema Validation', () => {
         } catch (error) {
             const validationError = error as ValidationError
 
-            expect(validationError.errors).toContain('Укажите заголовок урока')
-            expect(validationError.errors).toContain('Выберите продукты')
+            expect(validationError.errors).toContain('validations.title')
+            expect(validationError.errors).toContain(
+                'validations.products.required'
+            )
             expect(validationError.errors.length).toBeGreaterThan(1)
         }
     })

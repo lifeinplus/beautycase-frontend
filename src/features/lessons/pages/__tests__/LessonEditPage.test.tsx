@@ -40,7 +40,7 @@ describe('LessonEditPage', () => {
         render(<LessonEditPage />)
 
         const form = screen.getByTestId('mocked-lesson-form')
-        const title = screen.getByText('Редактировать урок')
+        const title = screen.getByText('edit.title')
 
         expect(form).toBeInTheDocument()
         expect(title).toBeInTheDocument()

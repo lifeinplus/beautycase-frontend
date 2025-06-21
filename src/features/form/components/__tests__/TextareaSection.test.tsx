@@ -41,7 +41,9 @@ describe('TextareaSection', () => {
     })
 
     it('renders error message and border-error class if error is provided', () => {
-        render(<TextareaSection {...mockProps} error={mockFieldError} />)
+        render(
+            <TextareaSection {...mockProps} error={mockFieldError.message} />
+        )
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

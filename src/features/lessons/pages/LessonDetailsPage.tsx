@@ -1,4 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
 import { DetailsPage } from '../../../components/pages/DetailsPage'
 import { Image } from '../../../components/ui/Image'
 import { getYouTubeEmbedUrl } from '../../../utils/youtube'
@@ -12,6 +14,7 @@ export const LessonDetailsPage = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
+    const { t } = useTranslation('lesson')
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
     const [deleteLessonById] = useDeleteLessonByIdMutation()
@@ -28,7 +31,7 @@ export const LessonDetailsPage = () => {
         <DetailsPage
             isLoading={isLoading}
             error={error}
-            topPanelTitle="Урок"
+            topPanelTitle={t('details.title')}
             redirectPath="/lessons"
             title={data?.title}
             subtitle={data?.shortDescription}

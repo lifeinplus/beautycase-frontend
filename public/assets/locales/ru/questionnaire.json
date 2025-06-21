@@ -23,7 +23,9 @@
         "name": "Укажите ваше имя"
     },
     "questions": {
-        "name": { "label": "Имя" },
+        "name": {
+            "label": "Имя"
+        },
         "instagram": {
             "label": "Instagram",
             "description": "Псевдоним в Instagram"

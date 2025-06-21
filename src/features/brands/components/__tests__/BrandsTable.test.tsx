@@ -27,8 +27,8 @@ describe('BrandsTable', () => {
             />
         )
 
-        expect(screen.getByText('Бренд')).toBeInTheDocument()
-        expect(screen.getByText('Действия')).toBeInTheDocument()
+        expect(screen.getByText('table.brandName')).toBeInTheDocument()
+        expect(screen.getByText('table.actions')).toBeInTheDocument()
     })
 
     it('renders all brand items correctly', () => {

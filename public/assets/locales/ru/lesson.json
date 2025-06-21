@@ -1,0 +1,33 @@
+{
+    "add": {
+        "title": "Добавить урок"
+    },
+    "details": {
+        "title": "Урок"
+    },
+    "edit": {
+        "title": "Редактировать урок"
+    },
+    "gallery": {
+        "title": "Уроки"
+    },
+    "form": {
+        "title": "Заголовок",
+        "shortDescription": "Краткое описание",
+        "videoUrl": "Ссылка на видео",
+        "fullDescription": "Полное описание",
+        "products": "Продукты",
+        "select": "Выбрать",
+        "selected": "Выбрано"
+    },
+    "validations": {
+        "title": "Укажите заголовок урока",
+        "shortDescription": "Укажите краткое описание",
+        "videoUrl": "Укажите ссылку на видео",
+        "fullDescription": "Укажите полное описание",
+        "products": {
+            "min": "Минимум 1 продукт",
+            "required": "Выберите продукты"
+        }
+    }
+}

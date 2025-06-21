@@ -1,5 +1,6 @@
 import classNames from 'classnames'
-import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
+import type { UseFormRegisterReturn } from 'react-hook-form'
+
 import { getYouTubeThumbnail } from '../../../utils/youtube'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
@@ -8,7 +9,7 @@ export interface TextareaSectionProps {
     label: string
     register: UseFormRegisterReturn
     description?: string
-    error?: FieldError
+    error?: string
     preview?: boolean
     required?: boolean
     rows?: number
@@ -51,6 +52,6 @@ export const TextareaSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error">{error.message}</p>}
+        {error && <p className="form-error">{error}</p>}
     </div>
 )

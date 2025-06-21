@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -15,6 +16,7 @@ import type { Lesson } from '../types'
 export const LessonEditPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
+    const { t } = useTranslation('lesson')
 
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
@@ -47,7 +49,5 @@ export const LessonEditPage = () => {
         }
     }
 
-    return (
-        <LessonForm title={'Редактировать урок'} onSubmit={handleEditLesson} />
-    )
+    return <LessonForm title={t('edit.title')} onSubmit={handleEditLesson} />
 }

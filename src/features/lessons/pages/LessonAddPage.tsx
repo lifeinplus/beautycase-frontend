@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -10,6 +11,7 @@ import type { Lesson } from '../types'
 
 export const LessonAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('lesson')
 
     const dispatch = useAppDispatch()
     const [createLesson] = useCreateLessonMutation()
@@ -25,5 +27,5 @@ export const LessonAddPage = () => {
         }
     }
 
-    return <LessonForm title={'Добавить урок'} onSubmit={handleAddLesson} />
+    return <LessonForm title={t('add.title')} onSubmit={handleAddLesson} />
 }

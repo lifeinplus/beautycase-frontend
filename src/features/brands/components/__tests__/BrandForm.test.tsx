@@ -58,7 +58,7 @@ describe('BrandForm', () => {
 
         renderWithProviders(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         const button = screen.getByTestId('mocked-button')
 
         expect(input).toBeInTheDocument()
@@ -68,7 +68,7 @@ describe('BrandForm', () => {
     it('focuses input when focusInput method is called', () => {
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         vi.spyOn(input, 'focus')
 
         mockRef.current.focusInput()
@@ -81,7 +81,7 @@ describe('BrandForm', () => {
 
         renderWithProviders(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
@@ -103,7 +103,7 @@ describe('BrandForm', () => {
 
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         const button = screen.getByTestId('mocked-button')
 
         await user.clear(input)
@@ -129,7 +129,7 @@ describe('BrandForm', () => {
 
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
@@ -158,7 +158,7 @@ describe('BrandForm', () => {
 
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Бренд')
+        const input = screen.getByPlaceholderText('form.brand.label')
         const button = screen.getByTestId('mocked-button')
 
         await user.type(input, 'New Brand')
@@ -179,7 +179,7 @@ describe('BrandForm', () => {
         const button = screen.getByTestId('mocked-button')
         await user.click(button)
 
-        const error = screen.getByText('Укажите название бренда')
+        const error = screen.getByText('validations.name')
         expect(error).toBeInTheDocument()
         expect(error).toHaveClass('form-error')
     })

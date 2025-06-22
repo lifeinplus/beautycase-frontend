@@ -63,7 +63,7 @@ describe('MakeupBagListPage', () => {
 
         render(<MakeupBagListPage />)
 
-        const button = screen.getByRole('button', { name: /Добавить/i })
+        const button = screen.getByRole('button', { name: 'actions.add' })
         await user.click(button)
 
         expect(button).toBeInTheDocument()

@@ -1,10 +1,12 @@
 import { array, object, string } from 'yup'
 
 export const makeupBagSchema = object({
-    categoryId: string().required('Выберите категорию'),
-    clientId: string().required('Выберите клиента'),
-    stageIds: array().min(1, 'Выберите этапы').required('Выберите этапы'),
+    categoryId: string().required('validations.category'),
+    clientId: string().required('validations.client'),
+    stageIds: array()
+        .min(1, 'validations.stages.min')
+        .required('validations.stages.required'),
     toolIds: array()
-        .min(1, 'Выберите инструменты')
-        .required('Выберите инструменты'),
+        .min(1, 'validations.tools.min')
+        .required('validations.tools.required'),
 })

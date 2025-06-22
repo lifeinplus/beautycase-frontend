@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -10,6 +11,7 @@ import type { MakeupBag } from '../types'
 
 export const MakeupBagAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('makeupBag')
 
     const dispatch = useAppDispatch()
     const [createMakeupBag] = useCreateMakeupBagMutation()
@@ -26,9 +28,6 @@ export const MakeupBagAddPage = () => {
     }
 
     return (
-        <MakeupBagForm
-            title={'Добавить косметичку'}
-            onSubmit={handleAddMakeupBag}
-        />
+        <MakeupBagForm title={t('titles.add')} onSubmit={handleAddMakeupBag} />
     )
 }

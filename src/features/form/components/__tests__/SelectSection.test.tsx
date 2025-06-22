@@ -49,7 +49,7 @@ describe('SelectSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        render(<SelectSection {...mockProps} error={mockFieldError} />)
+        render(<SelectSection {...mockProps} error={mockFieldError.message} />)
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

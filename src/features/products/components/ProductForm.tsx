@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -80,7 +80,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
-                            error={errors.brandId}
+                            error={errors.brandId?.message}
                             label={'Бренд'}
                             options={brandOptions}
                             register={register('brandId')}
@@ -89,7 +89,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.name}
+                            error={errors.name?.message}
                             label={'Название'}
                             register={register('name')}
                             required={true}
@@ -116,7 +116,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.comment}
+                            error={errors.comment?.message}
                             label={'Комментарий'}
                             register={register('comment')}
                             required={true}
@@ -124,7 +124,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.storeLinks as FieldError}
+                            error={errors.storeLinks?.message}
                             label={'Ссылки на продукт'}
                             onNavigate={handleNavigate}
                             required={true}

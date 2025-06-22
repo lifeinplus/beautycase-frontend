@@ -104,7 +104,9 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
+            const exportButton = screen.getByTestId(
+                'mocked-nav-button-actions.export'
+            )
             await user.click(exportButton)
 
             expect(mockExportToPDF).toHaveBeenCalledWith(
@@ -128,10 +130,12 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
+            const exportButton = screen.getByTestId(
+                'mocked-nav-button-actions.export'
+            )
             await user.click(exportButton)
 
-            expect(toast.error).toHaveBeenCalledWith('Нет данных для экспорта')
+            expect(toast.error).toHaveBeenCalledWith('toastNoExportData')
             expect(mockExportToPDF).not.toHaveBeenCalled()
         })
 
@@ -157,7 +161,9 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
+            const deleteButton = screen.getByTestId(
+                'mocked-nav-button-actions.delete'
+            )
 
             await user.click(deleteButton)
 
@@ -168,7 +174,7 @@ describe('MakeupBagPage', () => {
             await user.click(modalDeleteConfirm)
 
             expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
-            expect(toast.success).toHaveBeenCalledWith('Косметичка удалена')
+            expect(toast.success).toHaveBeenCalledWith('toastDelete')
             expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
         })
 
@@ -183,7 +189,9 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
+            const deleteButton = screen.getByTestId(
+                'mocked-nav-button-actions.delete'
+            )
 
             await user.click(deleteButton)
 

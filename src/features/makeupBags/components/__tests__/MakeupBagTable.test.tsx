@@ -12,25 +12,23 @@ describe('MakeupBagTable', () => {
     it('renders the table headers correctly', () => {
         render(<MakeupBagTable makeupBags={mockMakeupBags} />)
 
-        expect(screen.getByText('Дата')).toBeInTheDocument()
-        expect(screen.getByText('Время')).toBeInTheDocument()
-        expect(screen.getByText('Категория')).toBeInTheDocument()
-        expect(screen.getByText('Клиент')).toBeInTheDocument()
+        const columns = [
+            'table.date',
+            'table.time',
+            'table.category',
+            'table.clientName',
+        ]
+
+        columns.forEach((c) => expect(screen.getByText(c)).toBeInTheDocument())
     })
 
     it('renders the table data correctly', () => {
         render(<MakeupBagTable makeupBags={mockMakeupBags} />)
 
-        const dates = screen.getAllByText('2025.04.10')
-        const time = screen.getAllByText('14:30')
+        expect(screen.getAllByText('2025.04.10')).toHaveLength(2)
+        expect(screen.getAllByText('14:30')).toHaveLength(2)
 
-        expect(dates).toHaveLength(2)
-        expect(time).toHaveLength(2)
-
-        const category = screen.getByText('Test Category 1')
-        const client = screen.getByText('Test Client 1')
-
-        expect(category).toBeInTheDocument()
-        expect(client).toBeInTheDocument()
+        expect(screen.getByText('Test Category 1')).toBeInTheDocument()
+        expect(screen.getByText('Test Client 1')).toBeInTheDocument()
     })
 })

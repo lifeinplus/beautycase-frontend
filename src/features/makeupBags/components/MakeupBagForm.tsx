@@ -1,7 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { type FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -25,6 +26,7 @@ export interface MakeupBagFormProps {
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const navigate = useNavigate()
     const { id } = useParams()
+    const { t } = useTranslation('makeupBag')
 
     const {
         register,
@@ -63,8 +65,13 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const stageIds = watch('stageIds')
     const toolIds = watch('toolIds')
 
-    const stagesText = stageIds ? `Выбрано: ${stageIds.length}` : 'Выбрать'
-    const toolsText = toolIds ? `Выбрано: ${toolIds.length}` : 'Выбрать'
+    const stagesText = stageIds
+        ? `${t('fields.selected')}: ${stageIds.length}`
+        : t('fields.select')
+
+    const toolsText = toolIds
+        ? `${t('fields.selected')}: ${toolIds.length}`
+        : t('fields.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -87,8 +94,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
-                            error={errors.categoryId}
-                            label="Категория"
+                            error={t(errors.categoryId?.message || '')}
+                            label={t('fields.category')}
                             options={categoryOptions}
                             register={register('categoryId')}
                             required={true}
@@ -96,8 +103,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                         />
 
                         <SelectSection
-                            error={errors.clientId}
-                            label="Клиент"
+                            error={t(errors.clientId?.message || '')}
+                            label={t('fields.client')}
                             options={clientOptions}
                             register={register('clientId')}
                             required={true}
@@ -105,8 +112,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.stageIds as FieldError}
-                            label="Этапы"
+                            error={t(errors.stageIds?.message || '')}
+                            label={t('fields.stages')}
                             onNavigate={() =>
                                 handleNavigate('/stages/selection')
                             }
@@ -115,8 +122,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.toolIds as FieldError}
-                            label="Инструменты"
+                            error={t(errors.toolIds?.message || '')}
+                            label={t('fields.tools')}
                             onNavigate={() =>
                                 handleNavigate('/tools/selection')
                             }
@@ -130,13 +137,13 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

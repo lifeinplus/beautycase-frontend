@@ -1,5 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -18,7 +19,7 @@ import { useGetAllMakeupBagsQuery } from '../makeupBagsApi'
 const ACTIONS = {
     add: {
         icon: <PlusIcon className="h-6 w-6" />,
-        label: 'Добавить',
+        label: 'actions.add',
     },
 } as const
 
@@ -36,6 +37,7 @@ const ACTION_ITEMS: ActionItem[] = [
 
 export const MakeupBagListPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('makeupBag')
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -56,7 +58,7 @@ export const MakeupBagListPage = () => {
     ).map(({ id }) => ({
         key: id,
         icon: ACTIONS[id].icon,
-        label: ACTIONS[id].label,
+        label: t(ACTIONS[id].label),
         onClick: actionHandlers[id],
     }))
 
@@ -66,13 +68,13 @@ export const MakeupBagListPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <Hero headline="Косметички" />
+                    <Hero headline={t('hero.headline')} />
 
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Косметички не найдены"
+                        emptyMessage={t('emptyMessageList')}
                     >
                         <>
                             <MakeupBagMobileView makeupBags={data} />

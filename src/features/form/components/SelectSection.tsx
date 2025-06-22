@@ -1,14 +1,14 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { type FieldError, type UseFormRegisterReturn } from 'react-hook-form'
+import type { UseFormRegisterReturn } from 'react-hook-form'
 
-import { Label } from './Label'
 import type { SelectOption } from '../types'
+import { Label } from './Label'
 
 export interface SelectSectionProps {
     label: string
     register: UseFormRegisterReturn
     description?: string
-    error?: FieldError
+    error?: string
     options?: SelectOption[]
     required?: boolean
     value?: string
@@ -46,6 +46,6 @@ export const SelectSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error">{error.message}</p>}
+        {error && <p className="form-error">{error}</p>}
     </div>
 )

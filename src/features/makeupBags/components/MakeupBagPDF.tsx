@@ -7,6 +7,7 @@ import {
     Image,
     Font,
 } from '@react-pdf/renderer'
+import { TFunction } from 'i18next'
 
 import type { MakeupBagData } from '../types'
 
@@ -197,10 +198,11 @@ const styles = StyleSheet.create({
 
 interface MakeupBagPDFProps {
     data: MakeupBagData
+    t: TFunction<'makeupBag'>
 }
 
-const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
-    const categoryName = data?.category?.name || 'Косметичка'
+const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
+    const categoryName = data?.category?.name || t('pdf.fallbackCategory')
     const stages = data?.stages || []
     const tools = data?.tools || []
 
@@ -215,7 +217,7 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
 
                 {stage.steps && stage.steps.length > 0 && (
                     <View style={styles.stepsList} wrap={false}>
-                        <Text style={styles.stepsTitle}>Шаги:</Text>
+                        <Text style={styles.stepsTitle}>{t('pdf.steps')}:</Text>
 
                         {stage.steps.map((step, stepIndex) => (
                             <Text key={stepIndex} style={styles.stepItem}>
@@ -262,7 +264,7 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
         return (
             <>
                 <View wrap={false}>
-                    <Text style={styles.sectionTitle}>Инструменты</Text>
+                    <Text style={styles.sectionTitle}>{t('pdf.tools')}</Text>
 
                     <View style={styles.toolsGrid}>
                         {firstTools.map((tool, index) => (
@@ -320,7 +322,7 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>{categoryName}</Text>
                     <Text style={styles.headerSubtitle}>
-                        Индивидуальный подбор продуктов
+                        {t('pdf.subtitle')}
                     </Text>
                 </View>
 
@@ -329,24 +331,15 @@ const MakeupBagPDF = ({ data }: MakeupBagPDFProps) => {
                 {tools.length && renderTools()}
 
                 <View style={styles.header} break>
-                    <Text style={styles.headerTitle}>
-                        Спасибо, что выбрали меня!
-                    </Text>
-                    <Text style={styles.text}>
-                        Если остались вопросы по косметике или необходим урок по
-                        какому-либо ещё макияжу, обращайтесь по телефону: +381
-                        62 9446 904 (Сербия) Буду рада помочь)
-                    </Text>
+                    <Text style={styles.headerTitle}>{t('pdf.thanks')}</Text>
+                    <Text style={styles.text}>{t('pdf.phone')}</Text>
                     <Image
                         style={styles.headerImage}
                         src={
                             'https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png'
                         }
                     />
-                    <Text style={styles.text}>
-                        Мои услуги: все виды макияжа, укладки, причёски,
-                        обучение, подарочные сертификаты
-                    </Text>
+                    <Text style={styles.text}>{t('pdf.services')}</Text>
                 </View>
 
                 <Text

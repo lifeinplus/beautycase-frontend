@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -78,7 +78,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.subtitle}
+                            error={errors.subtitle?.message}
                             label="Подзаголовок"
                             register={register('subtitle')}
                             required={true}
@@ -111,7 +111,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.productIds as FieldError}
+                            error={errors.productIds?.message}
                             label="Продукты"
                             onNavigate={handleNavigate}
                             required={true}

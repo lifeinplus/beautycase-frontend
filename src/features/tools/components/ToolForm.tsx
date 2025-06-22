@@ -1,7 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -27,6 +28,7 @@ export interface ToolFormProps {
 
 export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
     const navigate = useNavigate()
+    const { t } = useTranslation('tool')
 
     const {
         clearErrors,
@@ -81,7 +83,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
-                            error={errors.brandId}
+                            error={t(errors.brandId?.message || '')}
                             label={'Бренд'}
                             options={brandOptions}
                             register={register('brandId')}
@@ -90,7 +92,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.name}
+                            error={t(errors.name?.message || '')}
                             label={'Название'}
                             register={register('name')}
                             required={true}
@@ -117,7 +119,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.comment}
+                            error={t(errors.comment?.message || '')}
                             label={'Комментарий'}
                             register={register('comment')}
                             required={true}
@@ -125,7 +127,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.storeLinks as FieldError}
+                            error={t(errors.storeLinks?.message || '')}
                             label={'Ссылки на инструмент'}
                             onNavigate={handleNavigate}
                             required={true}

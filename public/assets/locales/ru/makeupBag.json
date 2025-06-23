@@ -10,12 +10,36 @@
     "emptyMessageList": "Косметички не найдены",
     "fallbackCategory": "Косметичка",
     "fields": {
-        "category": "Категория",
-        "client": "Клиент",
-        "stages": "Этапы",
-        "tools": "Инструменты",
-        "select": "Выбрать",
-        "selected": "Выбрано"
+        "category": {
+            "label": "Категория",
+            "errors": {
+                "required": "Выберите категорию"
+            }
+        },
+        "client": {
+            "label": "Клиент",
+            "errors": {
+                "required": "Выберите клиента"
+            }
+        },
+        "stages": {
+            "label": "Этапы",
+            "errors": {
+                "min": "Минимум 1 этап",
+                "required": "Выберите этапы"
+            },
+            "select": "Выбрать",
+            "selected": "Выбрано"
+        },
+        "tools": {
+            "label": "Инструменты",
+            "errors": {
+                "min": "Минимум 1 инструмент",
+                "required": "Выберите инструменты"
+            },
+            "select": "Выбрать",
+            "selected": "Выбрано"
+        }
     },
     "hero": {
         "headline": "Косметички",
@@ -43,17 +67,5 @@
     },
     "toastDelete": "Косметичка удалена",
     "toastExportError": "Ошибка при создании PDF",
-    "toastNoExportData": "Нет данных для экспорта",
-    "validations": {
-        "category": "Выберите категорию",
-        "client": "Выберите клиента",
-        "stages": {
-            "min": "Минимум 1 этап",
-            "required": "Выберите этапы"
-        },
-        "tools": {
-            "min": "Минимум 1 инструмент",
-            "required": "Выберите инструменты"
-        }
-    }
+    "toastNoExportData": "Нет данных для экспорта"
 }

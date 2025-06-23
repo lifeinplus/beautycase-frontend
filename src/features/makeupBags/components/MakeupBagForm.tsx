@@ -66,12 +66,12 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const toolIds = watch('toolIds')
 
     const stagesText = stageIds
-        ? `${t('fields.selected')}: ${stageIds.length}`
-        : t('fields.select')
+        ? `${t('fields.stages.selected')}: ${stageIds.length}`
+        : t('fields.stages.select')
 
     const toolsText = toolIds
-        ? `${t('fields.selected')}: ${toolIds.length}`
-        : t('fields.select')
+        ? `${t('fields.tools.selected')}: ${toolIds.length}`
+        : t('fields.tools.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -95,7 +95,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
                             error={t(errors.categoryId?.message || '')}
-                            label={t('fields.category')}
+                            label={t('fields.category.label')}
                             options={categoryOptions}
                             register={register('categoryId')}
                             required={true}
@@ -104,7 +104,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
                         <SelectSection
                             error={t(errors.clientId?.message || '')}
-                            label={t('fields.client')}
+                            label={t('fields.client.label')}
                             options={clientOptions}
                             register={register('clientId')}
                             required={true}
@@ -113,7 +113,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
                         <ButtonNavigateSection
                             error={t(errors.stageIds?.message || '')}
-                            label={t('fields.stages')}
+                            label={t('fields.stages.label')}
                             onNavigate={() =>
                                 handleNavigate('/stages/selection')
                             }
@@ -123,7 +123,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
                         <ButtonNavigateSection
                             error={t(errors.toolIds?.message || '')}
-                            label={t('fields.tools')}
+                            label={t('fields.tools.label')}
                             onNavigate={() =>
                                 handleNavigate('/tools/selection')
                             }

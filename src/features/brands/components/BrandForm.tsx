@@ -88,7 +88,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                 <input
                     {...restName}
                     className="form-input flex-grow"
-                    placeholder={t('form.brand.label')}
+                    placeholder={t('fields.name.label')}
                     ref={(e) => {
                         refName(e)
                         inputRef.current = e

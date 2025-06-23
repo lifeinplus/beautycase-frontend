@@ -14,42 +14,42 @@ describe('Lesson Schema Validation', () => {
     it('should fail when title is missing', async () => {
         const data = { ...mockLesson1, title: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.title'
+            'fields.title.errors.required'
         )
     })
 
     it('should fail when shortDescription is missing', async () => {
         const data = { ...mockLesson1, shortDescription: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.shortDescription'
+            'fields.shortDescription.errors.required'
         )
     })
 
     it('should fail when videoUrl is missing', async () => {
         const data = { ...mockLesson1, videoUrl: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.videoUrl'
+            'fields.videoUrl.errors.required'
         )
     })
 
     it('should fail when fullDescription is missing', async () => {
         const data = { ...mockLesson1, fullDescription: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.fullDescription'
+            'fields.fullDescription.errors.required'
         )
     })
 
     it('should fail when productIds is missing', async () => {
         const data = { ...mockLesson1, productIds: undefined }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.products.required'
+            'fields.products.errors.required'
         )
     })
 
     it('should fail when productIds array is empty', async () => {
         const data = { ...mockLesson1, productIds: [] }
         await expect(lessonSchema.validate(data)).rejects.toThrow(
-            'validations.products.min'
+            'fields.products.errors.min'
         )
     })
 
@@ -61,9 +61,11 @@ describe('Lesson Schema Validation', () => {
         } catch (error) {
             const validationError = error as ValidationError
 
-            expect(validationError.errors).toContain('validations.title')
             expect(validationError.errors).toContain(
-                'validations.products.required'
+                'fields.title.errors.required'
+            )
+            expect(validationError.errors).toContain(
+                'fields.products.errors.required'
             )
             expect(validationError.errors.length).toBeGreaterThan(1)
         }

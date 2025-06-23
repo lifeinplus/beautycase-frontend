@@ -11,23 +11,39 @@
     "gallery": {
         "title": "Уроки"
     },
-    "form": {
-        "title": "Заголовок",
-        "shortDescription": "Краткое описание",
-        "videoUrl": "Ссылка на видео",
-        "fullDescription": "Полное описание",
-        "products": "Продукты",
-        "select": "Выбрать",
-        "selected": "Выбрано"
-    },
-    "validations": {
-        "title": "Укажите заголовок урока",
-        "shortDescription": "Укажите краткое описание",
-        "videoUrl": "Укажите ссылку на видео",
-        "fullDescription": "Укажите полное описание",
+    "fields": {
+        "title": {
+            "label": "Заголовок",
+            "errors": {
+                "required": "Укажите заголовок урока"
+            }
+        },
+        "shortDescription": {
+            "label": "Краткое описание",
+            "errors": {
+                "required": "Укажите краткое описание"
+            }
+        },
+        "videoUrl": {
+            "label": "Ссылка на видео",
+            "errors": {
+                "required": "Укажите ссылку на видео"
+            }
+        },
+        "fullDescription": {
+            "label": "Полное описание",
+            "errors": {
+                "required": "Укажите полное описание"
+            }
+        },
         "products": {
-            "min": "Минимум 1 продукт",
-            "required": "Выберите продукты"
+            "label": "Продукты",
+            "select": "Выбрать",
+            "selected": "Выбрано",
+            "errors": {
+                "required": "Выберите продукты",
+                "min": "Минимум 1 продукт"
+            }
         }
     }
 }

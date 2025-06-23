@@ -29,10 +29,10 @@ describe('LessonForm', () => {
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const placeholders = [
-            'form.title',
-            'form.shortDescription',
-            'form.videoUrl',
-            'form.fullDescription',
+            'fields.title.label',
+            'fields.shortDescription.label',
+            'fields.videoUrl.label',
+            'fields.fullDescription.label',
         ]
 
         placeholders.forEach((p) =>
@@ -40,7 +40,7 @@ describe('LessonForm', () => {
         )
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByText('form.products')).toBeInTheDocument()
+        expect(screen.getByText('fields.products.label')).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -71,6 +71,6 @@ describe('LessonForm', () => {
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const button = screen.getByTestId('mocked-button-navigate-section')
-        expect(button).toHaveTextContent('form.selected: 3')
+        expect(button).toHaveTextContent('fields.products.selected: 3')
     })
 })

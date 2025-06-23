@@ -1,14 +1,13 @@
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent, ClipboardEvent, useEffect, useRef, useState } from 'react'
-import {
-    type FieldError,
-    type FieldValues,
-    type Path,
-    type PathValue,
-    type UseFormClearErrors,
-    type UseFormRegisterReturn,
-    type UseFormSetValue,
+import type {
+    FieldValues,
+    Path,
+    PathValue,
+    UseFormClearErrors,
+    UseFormRegisterReturn,
+    UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -28,7 +27,7 @@ export interface ImageUrlSectionProps<T extends FieldValues> {
     register: UseFormRegisterReturn
     setValue: UseFormSetValue<T>
     description?: string
-    error?: FieldError
+    error?: string
     required?: boolean
     value?: string
 }
@@ -191,7 +190,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     <p className="form-description">{description}</p>
                 )}
 
-                {error && <p className="form-error">{error.message}</p>}
+                {error && <p className="form-error">{error}</p>}
 
                 {imageUrl && <ImagePreview url={imageUrl} />}
             </div>

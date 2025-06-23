@@ -44,8 +44,8 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const productIds = watch('productIds')
 
     const productsText = productIds
-        ? `${t('form.selected')}: ${productIds.length}`
-        : t('form.select')
+        ? `${t('fields.products.selected')}: ${productIds.length}`
+        : t('fields.products.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -69,7 +69,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <TextareaSection
                             error={t(errors.title?.message || '')}
-                            label={t('form.title')}
+                            label={t('fields.title.label')}
                             register={register('title')}
                             required={true}
                             value={watch('title')}
@@ -77,7 +77,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
                         <TextareaSection
                             error={t(errors.shortDescription?.message || '')}
-                            label={t('form.shortDescription')}
+                            label={t('fields.shortDescription.label')}
                             register={register('shortDescription')}
                             required={true}
                             value={watch('shortDescription')}
@@ -85,7 +85,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
                         <TextareaSection
                             error={t(errors.videoUrl?.message || '')}
-                            label={t('form.videoUrl')}
+                            label={t('fields.videoUrl.label')}
                             preview={true}
                             register={register('videoUrl')}
                             required={true}
@@ -94,7 +94,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
                         <TextareaSection
                             error={t(errors.fullDescription?.message || '')}
-                            label={t('form.fullDescription')}
+                            label={t('fields.fullDescription.label')}
                             register={register('fullDescription')}
                             required={true}
                             rows={4}
@@ -103,7 +103,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
                         <ButtonNavigateSection
                             error={t(errors.productIds?.message || '')}
-                            label={t('form.products')}
+                            label={t('fields.products.label')}
                             onNavigate={() =>
                                 handleNavigate('/products/selection')
                             }
@@ -117,13 +117,13 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('form.navigation:back')}
+                    text={t('navigation:back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text={t('form.navigation:save')}
+                    text={t('navigation:save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

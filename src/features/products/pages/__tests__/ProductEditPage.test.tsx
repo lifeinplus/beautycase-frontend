@@ -40,11 +40,8 @@ describe('ProductEditPage', () => {
     it('renders the ProductForm with title', () => {
         render(<ProductEditPage />)
 
-        const form = screen.getByTestId('mocked-product-form')
-        const title = screen.getByText('Редактировать продукт')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-product-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.edit')).toBeInTheDocument()
     })
 
     it('handles form submission successfully', async () => {

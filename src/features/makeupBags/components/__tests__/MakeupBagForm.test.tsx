@@ -43,10 +43,10 @@ describe('MakeupBagForm', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const fields = [
-            'fields.category',
-            'fields.client',
-            'fields.stages',
-            'fields.tools',
+            'fields.category.label',
+            'fields.client.label',
+            'fields.stages.label',
+            'fields.tools.label',
         ]
 
         fields.forEach((f) => expect(screen.getByText(f)).toBeInTheDocument())
@@ -70,7 +70,9 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: 'fields.tools' })
+        const button = screen.getByRole('button', {
+            name: 'fields.tools.label',
+        })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -83,7 +85,9 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: 'fields.stages' })
+        const button = screen.getByRole('button', {
+            name: 'fields.stages.label',
+        })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -94,8 +98,8 @@ describe('MakeupBagForm', () => {
     it('displays the correct number of selected stages and tools', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const stagesText = screen.getByText('fields.selected: 2')
-        const toolsText = screen.getByText('fields.selected: 3')
+        const stagesText = screen.getByText('fields.stages.selected: 2')
+        const toolsText = screen.getByText('fields.tools.selected: 3')
 
         expect(stagesText).toBeInTheDocument()
         expect(toolsText).toBeInTheDocument()

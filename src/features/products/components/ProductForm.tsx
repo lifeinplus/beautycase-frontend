@@ -2,6 +2,7 @@ import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -26,6 +27,7 @@ export interface ProductFormProps {
 
 export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const navigate = useNavigate()
+    const { t } = useTranslation('product')
 
     const {
         clearErrors,
@@ -56,8 +58,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
     const storeLinks = watch('storeLinks')
 
     const linksText = storeLinks
-        ? `Добавлено: ${storeLinks.length}`
-        : 'Добавить'
+        ? `${t('fields.storeLinks.selected')}: ${storeLinks.length}`
+        : t('fields.storeLinks.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -80,8 +82,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
-                            error={errors.brandId?.message}
-                            label={'Бренд'}
+                            error={t(errors.brandId?.message || '')}
+                            label={t('fields.brand.label')}
                             options={brandOptions}
                             register={register('brandId')}
                             required={true}
@@ -89,8 +91,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.name?.message}
-                            label={'Название'}
+                            error={t(errors.name?.message || '')}
+                            label={t('fields.name.label')}
                             register={register('name')}
                             required={true}
                             value={watch('name')}
@@ -99,8 +101,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         <ImageUrlSection
                             clearErrors={clearErrors}
                             folder="products"
-                            error={errors.imageUrl}
-                            label={'Ссылка на изображение'}
+                            error={t(errors.imageUrl?.message || '')}
+                            label={t('fields.imageUrl.label')}
                             name={'imageUrl'}
                             register={register('imageUrl')}
                             required={true}
@@ -109,23 +111,23 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         />
 
                         <InputSection
-                            error={errors.shade?.message}
-                            label={'Оттенок'}
+                            error={t(errors.shade?.message || '')}
+                            label={t('fields.shade.label')}
                             register={register('shade')}
                             type={'text'}
                         />
 
                         <TextareaSection
-                            error={errors.comment?.message}
-                            label={'Комментарий'}
+                            error={t(errors.comment?.message || '')}
+                            label={t('fields.comment.label')}
                             register={register('comment')}
                             required={true}
                             value={watch('comment')}
                         />
 
                         <ButtonNavigateSection
-                            error={errors.storeLinks?.message}
-                            label={'Ссылки на продукт'}
+                            error={t(errors.storeLinks?.message || '')}
+                            label={t('fields.storeLinks.label')}
                             onNavigate={handleNavigate}
                             required={true}
                             text={linksText}
@@ -137,13 +139,13 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

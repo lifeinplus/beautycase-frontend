@@ -9,17 +9,17 @@
         "ariaLabel": "Кнопка изменить бренд"
     },
     "emptyMessageList": "Бренды не найдены",
-    "form": {
-        "brand": {
-            "label": "Бренд"
+    "fields": {
+        "name": {
+            "label": "Бренд",
+            "errors": {
+                "required": "Укажите название бренда"
+            }
         }
     },
     "table": {
         "brandName": "Бренд",
         "actions": "Действия"
     },
-    "toastDelete": "Бренд удалён",
-    "validations": {
-        "name": "Укажите название бренда"
-    }
+    "toastDelete": "Бренд удалён"
 }

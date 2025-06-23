@@ -1,4 +1,5 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
@@ -10,6 +11,7 @@ import {
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
+    const { t } = useTranslation('product')
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
     const [deleteProductById] = useDeleteProductByIdMutation()
@@ -18,7 +20,7 @@ export const ProductDetailsPage = () => {
         <DetailsPage
             isLoading={isLoading}
             error={error}
-            topPanelTitle="Продукт"
+            topPanelTitle={t('titles.details')}
             redirectPath="/products"
             title={data?.name}
             subtitle={data?.brand?.name}
@@ -34,7 +36,7 @@ export const ProductDetailsPage = () => {
                 <>
                     {data?.shade && (
                         <section className="content-description">
-                            <p>{`Оттенок: ${data?.shade}`}</p>
+                            <p>{`${t('shade')}: ${data?.shade}`}</p>
                         </section>
                     )}
                     {data?.comment && (
@@ -47,7 +49,7 @@ export const ProductDetailsPage = () => {
             additionalContent={
                 data?.storeLinks?.length !== 0 && (
                     <section className="content-description">
-                        <p className="mb-3 font-bold">Ссылки на товар</p>
+                        <p className="mb-3 font-bold">{t('links')}</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.storeLinks?.map((l, i) => (
                                 <a

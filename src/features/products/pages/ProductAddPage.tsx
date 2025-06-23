@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -10,6 +11,7 @@ import type { Product } from '../types'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()
     const [createProduct] = useCreateProductMutation()
@@ -25,7 +27,5 @@ export const ProductAddPage = () => {
         }
     }
 
-    return (
-        <ProductForm title={'Добавить продукт'} onSubmit={handleAddProduct} />
-    )
+    return <ProductForm title={t('titles.add')} onSubmit={handleAddProduct} />
 }

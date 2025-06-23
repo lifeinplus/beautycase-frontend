@@ -14,9 +14,9 @@ describe('QuestionnaireResult', () => {
     it('renders all fields correctly', () => {
         render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
-        expect(mockT).toHaveBeenCalledWith('questions.name.label')
-        expect(mockT).toHaveBeenCalledWith('questions.instagram.label')
-        expect(mockT).toHaveBeenCalledWith('questions.city.label')
+        expect(mockT).toHaveBeenCalledWith('fields.name.label')
+        expect(mockT).toHaveBeenCalledWith('fields.instagram.label')
+        expect(mockT).toHaveBeenCalledWith('fields.city.label')
 
         expect(screen.getByText('Client 1')).toBeInTheDocument()
         expect(screen.getByText('City 1')).toBeInTheDocument()
@@ -68,7 +68,7 @@ describe('QuestionnaireResult', () => {
             />
         )
 
-        expect(screen.getByText('questions.problems.label')).toBeInTheDocument()
+        expect(screen.getByText('fields.problems.label')).toBeInTheDocument()
 
         const problems = screen.getByText(/eyeshadowCrease.*foundationPores/i)
         expect(problems).toBeInTheDocument()

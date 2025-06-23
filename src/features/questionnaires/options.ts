@@ -32,13 +32,13 @@ export const options: Options = {
     brushes: [
         {
             id: 'brushes-yes',
-            label: 'questions.brushes.options.yes',
+            label: 'fields.brushes.options.yes',
             name: 'brushes',
             value: 'yes',
         },
         {
             id: 'brushes-no',
-            label: 'questions.brushes.options.no',
+            label: 'fields.brushes.options.no',
             name: 'brushes',
             value: 'no',
         },
@@ -46,19 +46,19 @@ export const options: Options = {
     budget: [
         {
             id: 'budget-up-to-150',
-            label: 'questions.budget.options.150',
+            label: 'fields.budget.options.150',
             name: 'budget',
             value: '150',
         },
         {
             id: 'budget-150-250',
-            label: 'questions.budget.options.150-250',
+            label: 'fields.budget.options.150-250',
             name: 'budget',
             value: '150-250',
         },
         {
             id: 'budget-more-than-250',
-            label: 'questions.budget.options.250',
+            label: 'fields.budget.options.250',
             name: 'budget',
             value: '250',
         },
@@ -66,46 +66,46 @@ export const options: Options = {
     desiredSkills: [
         {
             id: 'desired-skill-delicate',
-            label: 'questions.desiredSkills.options.delicate',
+            label: 'fields.desiredSkills.options.delicate',
             name: 'desiredSkills.delicate',
         },
         {
             id: 'desired-skill-evening',
-            label: 'questions.desiredSkills.options.evening',
+            label: 'fields.desiredSkills.options.evening',
             name: 'desiredSkills.evening',
         },
         {
             id: 'desired-skill-bright',
-            label: 'questions.desiredSkills.options.bright',
+            label: 'fields.desiredSkills.options.bright',
             name: 'desiredSkills.bright',
         },
         {
             id: 'desired-skill-office',
-            label: 'questions.desiredSkills.options.office',
+            label: 'fields.desiredSkills.options.office',
             name: 'desiredSkills.office',
         },
         {
             id: 'desired-skill-filming',
-            label: 'questions.desiredSkills.options.filming',
+            label: 'fields.desiredSkills.options.filming',
             name: 'desiredSkills.filming',
         },
     ],
     makeupTime: [
         {
             id: 'makeup-time-up-to-15-min',
-            label: 'questions.makeupTime.options.15',
+            label: 'fields.makeupTime.options.15',
             name: 'makeupTime',
             value: '15',
         },
         {
             id: 'makeup-time-15-30-min',
-            label: 'questions.makeupTime.options.15-30',
+            label: 'fields.makeupTime.options.15-30',
             name: 'makeupTime',
             value: '15-30',
         },
         {
             id: 'makeup-time-30-60-min',
-            label: 'questions.makeupTime.options.30-60',
+            label: 'fields.makeupTime.options.30-60',
             name: 'makeupTime',
             value: '30-60',
         },
@@ -113,13 +113,13 @@ export const options: Options = {
     oilyShine: [
         {
             id: 'oily-shine-yes',
-            label: 'questions.oilyShine.options.yes',
+            label: 'fields.oilyShine.options.yes',
             name: 'oilyShine',
             value: 'yes',
         },
         {
             id: 'oily-shine-no',
-            label: 'questions.oilyShine.options.no',
+            label: 'fields.oilyShine.options.no',
             name: 'oilyShine',
             value: 'no',
         },
@@ -127,13 +127,13 @@ export const options: Options = {
     peeling: [
         {
             id: 'peeling-yes',
-            label: 'questions.peeling.options.yes',
+            label: 'fields.peeling.options.yes',
             name: 'peeling',
             value: 'yes',
         },
         {
             id: 'peeling-no',
-            label: 'questions.peeling.options.no',
+            label: 'fields.peeling.options.no',
             name: 'peeling',
             value: 'no',
         },
@@ -141,13 +141,13 @@ export const options: Options = {
     pores: [
         {
             id: 'pores-yes',
-            label: 'questions.pores.options.yes',
+            label: 'fields.pores.options.yes',
             name: 'pores',
             value: 'yes',
         },
         {
             id: 'pores-no',
-            label: 'questions.pores.options.no',
+            label: 'fields.pores.options.no',
             name: 'pores',
             value: 'no',
         },
@@ -155,85 +155,85 @@ export const options: Options = {
     problems: [
         {
             id: 'problem-eyeshadow-crease',
-            label: 'questions.problems.options.eyeshadowCrease',
+            label: 'fields.problems.options.eyeshadowCrease',
             name: 'problems.eyeshadowCrease',
         },
         {
             id: 'problem-mascara-smudge',
-            label: 'questions.problems.options.mascaraSmudge',
+            label: 'fields.problems.options.mascaraSmudge',
             name: 'problems.mascaraSmudge',
         },
         {
             id: 'problem-foundation-pores',
-            label: 'questions.problems.options.foundationPores',
+            label: 'fields.problems.options.foundationPores',
             name: 'problems.foundationPores',
         },
         {
             id: 'problem-foundation-stay',
-            label: 'questions.problems.options.foundationStay',
+            label: 'fields.problems.options.foundationStay',
             name: 'problems.foundationStay',
         },
         {
             id: 'problem-sculpting',
-            label: 'questions.problems.options.sculpting',
+            label: 'fields.problems.options.sculpting',
             name: 'problems.sculpting',
         },
         {
             id: 'problem-eyeshadow-match',
-            label: 'questions.problems.options.eyeshadowMatch',
+            label: 'fields.problems.options.eyeshadowMatch',
             name: 'problems.eyeshadowMatch',
         },
     ],
     procedures: [
         {
             id: 'procedure-lash-extensions',
-            label: 'questions.procedures.options.lashExtensions',
+            label: 'fields.procedures.options.lashExtensions',
             name: 'procedures.lashExtensions',
         },
         {
             id: 'procedure-brow-correction',
-            label: 'questions.procedures.options.browCorrection',
+            label: 'fields.procedures.options.browCorrection',
             name: 'procedures.browCorrection',
         },
         {
             id: 'procedure-lash-lamination',
-            label: 'questions.procedures.options.lashLamination',
+            label: 'fields.procedures.options.lashLamination',
             name: 'procedures.lashLamination',
         },
         {
             id: 'procedure-none',
-            label: 'questions.procedures.options.none',
+            label: 'fields.procedures.options.none',
             name: 'procedures.none',
         },
     ],
     referral: [
         {
             id: 'referral-instagram',
-            label: 'questions.referral.options.instagram',
+            label: 'fields.referral.options.instagram',
             name: 'referral',
             value: 'instagram',
         },
         {
             id: 'referral-youtube',
-            label: 'questions.referral.options.youtube',
+            label: 'fields.referral.options.youtube',
             name: 'referral',
             value: 'youtube',
         },
         {
             id: 'referral-personal',
-            label: 'questions.referral.options.personal',
+            label: 'fields.referral.options.personal',
             name: 'referral',
             value: 'personal',
         },
         {
             id: 'referral-recommendation',
-            label: 'questions.referral.options.recommendation',
+            label: 'fields.referral.options.recommendation',
             name: 'referral',
             value: 'recommendation',
         },
         {
             id: 'referral-other',
-            label: 'questions.referral.options.other',
+            label: 'fields.referral.options.other',
             name: 'referral',
             value: 'other',
         },
@@ -241,31 +241,31 @@ export const options: Options = {
     skinTypes: [
         {
             id: 'skin-type-dry',
-            label: 'questions.skinType.options.dry',
+            label: 'fields.skinType.options.dry',
             name: 'skinType',
             value: 'dry',
         },
         {
             id: 'skin-type-normal',
-            label: 'questions.skinType.options.normal',
+            label: 'fields.skinType.options.normal',
             name: 'skinType',
             value: 'normal',
         },
         {
             id: 'skin-type-combination',
-            label: 'questions.skinType.options.combination',
+            label: 'fields.skinType.options.combination',
             name: 'skinType',
             value: 'combination',
         },
         {
             id: 'skin-type-oily',
-            label: 'questions.skinType.options.oily',
+            label: 'fields.skinType.options.oily',
             name: 'skinType',
             value: 'oily',
         },
         {
             id: 'skin-type-sensitive',
-            label: 'questions.skinType.options.sensitive',
+            label: 'fields.skinType.options.sensitive',
             name: 'skinType',
             value: 'sensitive',
         },

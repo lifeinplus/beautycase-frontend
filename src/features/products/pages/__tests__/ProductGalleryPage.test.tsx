@@ -21,13 +21,9 @@ describe('ProductGalleryPage', () => {
     it('renders list of products when data is available', () => {
         render(<ProductGalleryPage />)
 
-        const galleryPage = screen.getByTestId('mocked-gallery-page')
-        const title = screen.getByText('Продукты')
-        const mediaContent = screen.getByTestId('mocked-media-content')
-
-        expect(galleryPage).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
-        expect(mediaContent).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
+        expect(screen.getByText('titles.gallery')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockProducts.forEach((product) => {
             const imageCard = screen.getByTestId(

@@ -43,7 +43,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const loading = screen.getByText('Loading...')
+        const loading = screen.getByText('Загрузка...')
         expect(loading).toBeInTheDocument()
     })
 
@@ -56,7 +56,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const error = screen.getByText('Error loading products')
+        const error = screen.getByText('An unknown error occurred')
         expect(error).toBeInTheDocument()
     })
 
@@ -106,7 +106,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const button = screen.getByTestId('mocked-nav-button-Сохранить')
+        const button = screen.getByTestId('mocked-nav-button-navigation:save')
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(

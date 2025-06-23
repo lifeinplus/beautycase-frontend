@@ -12,266 +12,266 @@ interface Questions {
 
 export const questions: Questions = {
     name: {
-        label: 'questions.name.label',
+        label: 'fields.name.label',
     },
     instagram: {
-        label: 'questions.instagram.label',
-        description: 'questions.instagram.description',
+        label: 'fields.instagram.label',
+        description: 'fields.instagram.description',
     },
     city: {
-        label: 'questions.city.label',
-        description: 'questions.city.description',
+        label: 'fields.city.label',
+        description: 'fields.city.description',
     },
     age: {
-        label: 'questions.age.label',
+        label: 'fields.age.label',
     },
     makeupBag: {
-        label: 'questions.makeupBag.label',
-        description: 'questions.makeupBag.description',
+        label: 'fields.makeupBag.label',
+        description: 'fields.makeupBag.description',
     },
     makeupBagPhotoId: {
-        label: 'questions.makeupBagPhotoId.label',
+        label: 'fields.makeupBagPhotoId.label',
     },
     makeupBagPhotoUrl: {
-        label: 'questions.makeupBagPhotoUrl.label',
+        label: 'fields.makeupBagPhotoUrl.label',
     },
     procedures: {
-        label: 'questions.procedures.label',
-        description: 'questions.procedures.description',
+        label: 'fields.procedures.label',
+        description: 'fields.procedures.description',
         options: [
             {
-                label: 'questions.procedures.options.lashExtensions',
+                label: 'fields.procedures.options.lashExtensions',
                 value: 'lashExtensions',
             },
             {
-                label: 'questions.procedures.options.browCorrection',
+                label: 'fields.procedures.options.browCorrection',
                 value: 'browCorrection',
             },
             {
-                label: 'questions.procedures.options.lashLamination',
+                label: 'fields.procedures.options.lashLamination',
                 value: 'lashLamination',
             },
             {
-                label: 'questions.procedures.options.none',
+                label: 'fields.procedures.options.none',
                 value: 'none',
             },
         ],
     },
     skinType: {
-        label: 'questions.skinType.label',
+        label: 'fields.skinType.label',
         options: [
             {
-                label: 'questions.skinType.options.dry',
+                label: 'fields.skinType.options.dry',
                 value: 'dry',
             },
             {
-                label: 'questions.skinType.options.normal',
+                label: 'fields.skinType.options.normal',
                 value: 'normal',
             },
             {
-                label: 'questions.skinType.options.combination',
+                label: 'fields.skinType.options.combination',
                 value: 'combination',
             },
             {
-                label: 'questions.skinType.options.oily',
+                label: 'fields.skinType.options.oily',
                 value: 'oily',
             },
             {
-                label: 'questions.skinType.options.sensitive',
+                label: 'fields.skinType.options.sensitive',
                 value: 'sensitive',
             },
         ],
     },
     allergies: {
-        label: 'questions.allergies.label',
-        description: 'questions.allergies.description',
+        label: 'fields.allergies.label',
+        description: 'fields.allergies.description',
     },
     peeling: {
-        label: 'questions.peeling.label',
-        description: 'questions.peeling.description',
+        label: 'fields.peeling.label',
+        description: 'fields.peeling.description',
         options: [
             {
-                label: 'questions.peeling.options.yes',
+                label: 'fields.peeling.options.yes',
                 value: 'yes',
             },
             {
-                label: 'questions.peeling.options.no',
+                label: 'fields.peeling.options.no',
                 value: 'no',
             },
         ],
     },
     pores: {
-        label: 'questions.pores.label',
-        description: 'questions.pores.description',
+        label: 'fields.pores.label',
+        description: 'fields.pores.description',
         options: [
             {
-                label: 'questions.pores.options.yes',
+                label: 'fields.pores.options.yes',
                 value: 'yes',
             },
             {
-                label: 'questions.pores.options.no',
+                label: 'fields.pores.options.no',
                 value: 'no',
             },
         ],
     },
     oilyShine: {
-        label: 'questions.oilyShine.label',
-        description: 'questions.oilyShine.description',
+        label: 'fields.oilyShine.label',
+        description: 'fields.oilyShine.description',
         options: [
             {
-                label: 'questions.oilyShine.options.yes',
+                label: 'fields.oilyShine.options.yes',
                 value: 'yes',
             },
             {
-                label: 'questions.oilyShine.options.no',
+                label: 'fields.oilyShine.options.no',
                 value: 'no',
             },
         ],
     },
     currentSkills: {
-        label: 'questions.currentSkills.label',
-        description: 'questions.currentSkills.description',
+        label: 'fields.currentSkills.label',
+        description: 'fields.currentSkills.description',
     },
     desiredSkills: {
-        label: 'questions.desiredSkills.label',
-        description: 'questions.desiredSkills.description',
+        label: 'fields.desiredSkills.label',
+        description: 'fields.desiredSkills.description',
         options: [
             {
-                label: 'questions.desiredSkills.options.delicate',
+                label: 'fields.desiredSkills.options.delicate',
                 value: 'delicate',
             },
             {
-                label: 'questions.desiredSkills.options.evening',
+                label: 'fields.desiredSkills.options.evening',
                 value: 'evening',
             },
             {
-                label: 'questions.desiredSkills.options.bright',
+                label: 'fields.desiredSkills.options.bright',
                 value: 'bright',
             },
             {
-                label: 'questions.desiredSkills.options.office',
+                label: 'fields.desiredSkills.options.office',
                 value: 'office',
             },
             {
-                label: 'questions.desiredSkills.options.filming',
+                label: 'fields.desiredSkills.options.filming',
                 value: 'filming',
             },
         ],
     },
     makeupTime: {
-        label: 'questions.makeupTime.label',
-        description: 'questions.makeupTime.description',
+        label: 'fields.makeupTime.label',
+        description: 'fields.makeupTime.description',
         options: [
             {
-                label: 'questions.makeupTime.options.15',
+                label: 'fields.makeupTime.options.15',
                 value: '15',
             },
             {
-                label: 'questions.makeupTime.options.15-30',
+                label: 'fields.makeupTime.options.15-30',
                 value: '15-30',
             },
             {
-                label: 'questions.makeupTime.options.30-60',
+                label: 'fields.makeupTime.options.30-60',
                 value: '30-60',
             },
         ],
     },
     budget: {
-        label: 'questions.budget.label',
-        description: 'questions.budget.description',
+        label: 'fields.budget.label',
+        description: 'fields.budget.description',
         options: [
             {
-                label: 'questions.budget.options.50',
+                label: 'fields.budget.options.50',
                 value: '50',
             },
             {
-                label: 'questions.budget.options.150',
+                label: 'fields.budget.options.150',
                 value: '150',
             },
             {
-                label: 'questions.budget.options.50-100',
+                label: 'fields.budget.options.50-100',
                 value: '50-100',
             },
             {
-                label: 'questions.budget.options.150-250',
+                label: 'fields.budget.options.150-250',
                 value: '150-250',
             },
             {
-                label: 'questions.budget.options.100',
+                label: 'fields.budget.options.100',
                 value: '100',
             },
             {
-                label: 'questions.budget.options.250',
+                label: 'fields.budget.options.250',
                 value: '250',
             },
         ],
     },
     brushes: {
-        label: 'questions.brushes.label',
-        description: 'questions.brushes.description',
+        label: 'fields.brushes.label',
+        description: 'fields.brushes.description',
         options: [
             {
-                label: 'questions.brushes.options.yes',
+                label: 'fields.brushes.options.yes',
                 value: 'yes',
             },
             {
-                label: 'questions.brushes.options.no',
+                label: 'fields.brushes.options.no',
                 value: 'no',
             },
         ],
     },
     problems: {
-        label: 'questions.problems.label',
-        description: 'questions.problems.description',
+        label: 'fields.problems.label',
+        description: 'fields.problems.description',
         options: [
             {
-                label: 'questions.problems.options.eyeshadowCrease',
+                label: 'fields.problems.options.eyeshadowCrease',
                 value: 'eyeshadowCrease',
             },
             {
-                label: 'questions.problems.options.mascaraSmudge',
+                label: 'fields.problems.options.mascaraSmudge',
                 value: 'mascaraSmudge',
             },
             {
-                label: 'questions.problems.options.foundationPores',
+                label: 'fields.problems.options.foundationPores',
                 value: 'foundationPores',
             },
             {
-                label: 'questions.problems.options.foundationStay',
+                label: 'fields.problems.options.foundationStay',
                 value: 'foundationStay',
             },
             {
-                label: 'questions.problems.options.sculpting',
+                label: 'fields.problems.options.sculpting',
                 value: 'sculpting',
             },
             {
-                label: 'questions.problems.options.eyeshadowMatch',
+                label: 'fields.problems.options.eyeshadowMatch',
                 value: 'eyeshadowMatch',
             },
         ],
     },
     referral: {
-        label: 'questions.referral.label',
-        description: 'questions.referral.description',
+        label: 'fields.referral.label',
+        description: 'fields.referral.description',
         options: [
             {
-                label: 'questions.referral.options.instagram',
+                label: 'fields.referral.options.instagram',
                 value: 'instagram',
             },
             {
-                label: 'questions.referral.options.youtube',
+                label: 'fields.referral.options.youtube',
                 value: 'youtube',
             },
             {
-                label: 'questions.referral.options.personal',
+                label: 'fields.referral.options.personal',
                 value: 'personal',
             },
             {
-                label: 'questions.referral.options.recommendation',
+                label: 'fields.referral.options.recommendation',
                 value: 'recommendation',
             },
             {
-                label: 'questions.referral.options.other',
+                label: 'fields.referral.options.other',
                 value: 'other',
             },
         ],

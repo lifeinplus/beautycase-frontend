@@ -18,13 +18,12 @@
         "age": "Возраст",
         "city": "Город"
     },
-    "validations": {
-        "makeupBag": "Укажите, что сейчас есть в косметичке",
-        "name": "Укажите ваше имя"
-    },
-    "questions": {
+    "fields": {
         "name": {
-            "label": "Имя"
+            "label": "Имя",
+            "errors": {
+                "required": "Укажите ваше имя"
+            }
         },
         "instagram": {
             "label": "Instagram",
@@ -39,7 +38,10 @@
         },
         "makeupBag": {
             "label": "Содержимое косметички",
-            "description": "Опишите свою косметичку и/или приложите фото"
+            "description": "Опишите свою косметичку и/или приложите фото",
+            "errors": {
+                "required": "Укажите, что сейчас есть в косметичке"
+            }
         },
         "makeupBagPhotoId": {
             "label": "Фото косметички"

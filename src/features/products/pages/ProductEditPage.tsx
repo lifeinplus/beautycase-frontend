@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -15,6 +16,7 @@ import type { Product } from '../types'
 export const ProductEditPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
@@ -48,10 +50,5 @@ export const ProductEditPage = () => {
         }
     }
 
-    return (
-        <ProductForm
-            title={'Редактировать продукт'}
-            onSubmit={handleEditProduct}
-        />
-    )
+    return <ProductForm title={t('titles.edit')} onSubmit={handleEditProduct} />
 }

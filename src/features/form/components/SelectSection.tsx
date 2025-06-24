@@ -1,5 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import type { UseFormRegisterReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 
 import type { SelectOption } from '../types'
 import { Label } from './Label'
@@ -22,30 +23,34 @@ export const SelectSection = ({
     options,
     required,
     value = '',
-}: SelectSectionProps) => (
-    <div>
-        <Label required={required} text={label}>
-            <div className="grid">
-                <ChevronDownIcon className="form-select-icon" />
-                <select
-                    {...register}
-                    className={`form-select ${error ? 'border-error' : ''}`}
-                    value={value}
-                >
-                    <option value="" disabled>
-                        Выбрать
-                    </option>
-                    {options?.map((o) => (
-                        <option key={o.value} value={o.value}>
-                            {o.text}
+}: SelectSectionProps) => {
+    const { t } = useTranslation('form')
+
+    return (
+        <div>
+            <Label required={required} text={label}>
+                <div className="grid">
+                    <ChevronDownIcon className="form-select-icon" />
+                    <select
+                        {...register}
+                        className={`form-select ${error ? 'border-error' : ''}`}
+                        value={value}
+                    >
+                        <option value="" disabled>
+                            {t('select')}
                         </option>
-                    ))}
-                </select>
-            </div>
-        </Label>
+                        {options?.map((o) => (
+                            <option key={o.value} value={o.value}>
+                                {o.text}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </Label>
 
-        {description && <p className="form-description">{description}</p>}
+            {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error">{error}</p>}
-    </div>
-)
+            {error && <p className="form-error">{error}</p>}
+        </div>
+    )
+}

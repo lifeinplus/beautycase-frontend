@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
@@ -6,9 +8,11 @@ import { ReferenceListsTable } from '../components/ReferenceListsTable'
 import type { ReferenceList } from '../types'
 
 export const ReferenceListsPage = () => {
+    const { t } = useTranslation('referenceList')
+
     const data: ReferenceList[] = [
-        { id: 'brands', name: 'Бренды' },
-        { id: 'stores', name: 'Магазины' },
+        { id: 'brands', name: t('names.brands') },
+        { id: 'stores', name: t('names.stores') },
     ]
 
     return (
@@ -17,7 +21,7 @@ export const ReferenceListsPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <Hero headline="Справочники" />
+                    <Hero headline={t('hero.headline')} />
                     <ReferenceListsMobileView data={data} />
                     <ReferenceListsTable data={data} />
                 </article>

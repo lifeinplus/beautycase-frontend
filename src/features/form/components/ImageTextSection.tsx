@@ -15,6 +15,7 @@ import { getErrorMessage } from '../../../utils/errorUtils'
 import { useUploadTempImageByFileMutation } from '../../uploads/uploadsApi'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
+import { useTranslation } from 'react-i18next'
 
 export interface ImageTextSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
@@ -49,6 +50,8 @@ export const ImageTextSection = <T extends FieldValues>({
     value = '',
     valueUrl = '',
 }: ImageTextSectionProps<T>) => {
+    const { t } = useTranslation('form')
+
     const [uploadImageTemp] = useUploadTempImageByFileMutation()
 
     const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +60,7 @@ export const ImageTextSection = <T extends FieldValues>({
         if (!file) return
 
         function fallbackText(value: string) {
-            const text = '[приложено фото]'
+            const text = `[${t('photoAttached')}]`
             return value ? value : text
         }
 

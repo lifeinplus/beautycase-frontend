@@ -23,13 +23,7 @@ export const QuestionnaireTable = ({
         { label: t('table.city'), className: 'text-left' },
     ]
 
-    const cellClasses = [
-        'text-center',
-        'text-center',
-        'text-left',
-        'text-right',
-        'text-left',
-    ]
+    const cellClasses = headers.map((h) => h.className)
 
     return (
         <Table

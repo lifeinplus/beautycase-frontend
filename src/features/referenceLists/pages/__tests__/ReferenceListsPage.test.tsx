@@ -13,25 +13,20 @@ describe('ReferenceListsPage', () => {
     it('renders the component with correct structure', () => {
         render(<ReferenceListsPage />)
 
-        const header = screen.getByTestId('mocked-header')
-        const hero = screen.getByTestId('mocked-hero')
-        const navBar = screen.getByTestId('mocked-nav-bar')
-
-        expect(header).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {
         render(<ReferenceListsPage />)
 
-        const mobileView = screen.getByTestId(
-            'mocked-reference-lists-mobile-view'
-        )
+        expect(
+            screen.getByTestId('mocked-reference-lists-mobile-view')
+        ).toBeInTheDocument()
 
-        const table = screen.getByTestId('mocked-reference-lists-table')
-
-        expect(mobileView).toBeInTheDocument()
-        expect(table).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-reference-lists-table')
+        ).toBeInTheDocument()
     })
 })

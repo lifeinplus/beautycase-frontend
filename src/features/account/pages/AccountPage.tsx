@@ -1,5 +1,6 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
@@ -8,7 +9,7 @@ import { DataWrapper } from '../../../components/DataWrapper'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { selectUserId } from '../../auth/authSlice'
-import type { User, UserResult } from '../../users/types'
+import type { User } from '../../users/types'
 import { useGetUserByIdQuery } from '../../users/usersApi'
 
 interface Field {
@@ -18,24 +19,26 @@ interface Field {
     emptyMessage?: string
 }
 
-const renderContent = (data: UserResult | undefined) => {
+export const AccountPage = () => {
     const { pathname } = useLocation()
+    const { t } = useTranslation('account')
 
-    if (!data) return
+    const userId = useAppSelector(selectUserId)
 
-    const { makeupBags, user } = data
+    const { data, isLoading, error } = useGetUserByIdQuery(userId || '')
+    const { makeupBags, user } = data || {}
 
     const fields: Field[] = [
         {
-            label: 'Имя пользователя',
+            label: 'fields.username.label',
             sysname: 'username',
         },
         {
-            label: 'Роль',
+            label: 'fields.role.label',
             sysname: 'role',
         },
         {
-            label: 'Косметички',
+            label: 'fields.beautyBags.label',
             sysname: 'beautyBags',
             content: makeupBags?.length && (
                 <ul
@@ -64,42 +67,21 @@ const renderContent = (data: UserResult | undefined) => {
                                     to={`/makeup_bags/${bag._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
-                                    Открыть
+                                    {t('fields.beautyBags.link')}
                                 </Link>
                             </div>
                         </li>
                     ))}
                 </ul>
             ),
-            emptyMessage: 'У вас нет доступных косметичек',
+            emptyMessage: t('fields.beautyBags.emptyMessage'),
         },
         {
-            label: 'Уроки',
+            label: 'fields.lessons.label',
             sysname: 'lessons',
-            emptyMessage: 'У вас нет доступных уроков',
+            emptyMessage: t('fields.lessons.emptyMessage'),
         },
     ]
-
-    return (
-        <div className="dl-container">
-            <dl className="dl">
-                {fields.map((f) => (
-                    <div key={f.sysname} className="dl-grid">
-                        <dt className="dt">{f.label}</dt>
-                        <dd className="dd">
-                            {user[f.sysname] || f.content || f.emptyMessage}
-                        </dd>
-                    </div>
-                ))}
-            </dl>
-        </div>
-    )
-}
-
-export const AccountPage = () => {
-    const userId = useAppSelector(selectUserId)
-
-    const { data, isLoading, error } = useGetUserByIdQuery(userId || '')
 
     return (
         <article className="page">
@@ -108,17 +90,35 @@ export const AccountPage = () => {
             <main className="page-content">
                 <article className="content-container">
                     <Hero
-                        headline="Личный кабинет"
-                        byline="Сведения о вас и доступный контент"
+                        headline={t('hero.headline')}
+                        byline={t('hero.byline')}
                     />
 
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Пользователь не найден"
+                        emptyMessage={t('emptyMessage')}
                     >
-                        {renderContent(data)}
+                        {
+                            <div className="dl-container">
+                                <dl className="dl">
+                                    {fields.map((f) => (
+                                        <div
+                                            key={f.sysname}
+                                            className="dl-grid"
+                                        >
+                                            <dt className="dt">{t(f.label)}</dt>
+                                            <dd className="dd">
+                                                {(user && user[f.sysname]) ||
+                                                    f.content ||
+                                                    f.emptyMessage}
+                                            </dd>
+                                        </div>
+                                    ))}
+                                </dl>
+                            </div>
+                        }
                     </DataWrapper>
                 </article>
             </main>

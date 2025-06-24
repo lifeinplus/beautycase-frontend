@@ -10,6 +10,7 @@ import type {
     UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 import { getErrorMessage } from '../../../utils/errorUtils'
 import {
@@ -45,6 +46,7 @@ export const ImageUrlSection = <T extends FieldValues>({
     value = '',
 }: ImageUrlSectionProps<T>) => {
     const uploadRef = useRef<HTMLInputElement>(null)
+    const { t } = useTranslation('form')
 
     const [imageUrl, setImageUrl] = useState<string>()
     const [isUploading, setIsUploading] = useState(false)
@@ -177,7 +179,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     )}
                     disabled={isUploading}
                     onPaste={handlePaste}
-                    placeholder={isUploading ? 'Загрузка...' : label}
+                    placeholder={isUploading ? t('uploading') : label}
                 />
 
                 {isUploading && (

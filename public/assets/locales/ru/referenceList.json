@@ -1,0 +1,12 @@
+{
+    "hero": {
+        "headline": "Справочники"
+    },
+    "names": {
+        "brands": "Бренды",
+        "stores": "Магазины"
+    },
+    "table": {
+        "referenceList": "Справочник"
+    }
+}

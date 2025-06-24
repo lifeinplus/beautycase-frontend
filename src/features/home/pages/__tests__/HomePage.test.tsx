@@ -22,15 +22,9 @@ describe('HomePage', () => {
     it('renders title, logo and motto', () => {
         renderWithRouter(<HomePage />)
 
-        const title = screen.getByText('Добро пожаловать в')
-        const logo = screen.getByText('Beautycase')
-        const motto = screen.getByText(
-            'Все ваши инструменты и продукты для макияжа в одном месте.'
-        )
-
-        expect(title).toBeInTheDocument()
-        expect(logo).toBeInTheDocument()
-        expect(motto).toBeInTheDocument()
+        expect(screen.getByText('title')).toBeInTheDocument()
+        expect(screen.getByText('Beautycase')).toBeInTheDocument()
+        expect(screen.getByText('motto')).toBeInTheDocument()
     })
 
     it('should display login and register links when user is not logged in', () => {
@@ -38,22 +32,24 @@ describe('HomePage', () => {
 
         renderWithRouter(<HomePage />)
 
-        const login = screen.getByRole('link', { name: 'Войти' })
-        const register = screen.getByRole('link', {
-            name: 'зарегистрироваться',
-        })
+        expect(
+            screen.getByRole('link', { name: 'link.login' })
+        ).toBeInTheDocument()
 
-        expect(login).toBeInTheDocument()
-        expect(register).toBeInTheDocument()
+        expect(
+            screen.getByRole('link', {
+                name: 'link.register',
+            })
+        ).toBeInTheDocument()
     })
 
     it('should display logout button when user is logged in', () => {
         renderWithRouter(<HomePage />)
 
-        const text = screen.getByText(/Выполнен вход/i)
-        const button = screen.getByRole('button', { name: 'Выйти' })
+        expect(screen.getByText(/auth.loggedIn/i)).toBeInTheDocument()
 
-        expect(text).toBeInTheDocument()
-        expect(button).toBeInTheDocument()
+        expect(
+            screen.getByRole('button', { name: 'auth.logout' })
+        ).toBeInTheDocument()
     })
 })

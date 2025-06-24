@@ -32,7 +32,7 @@ describe('SelectSection', () => {
         render(<SelectSection {...mockProps} />)
 
         expect(screen.getByRole('combobox')).toBeInTheDocument()
-        expect(screen.getByText('Выбрать')).toBeInTheDocument()
+        expect(screen.getByText('select')).toBeInTheDocument()
         expect(screen.getByText('Option 1')).toBeInTheDocument()
         expect(screen.getByText('Option 2')).toBeInTheDocument()
         expect(screen.getByText('Option 3')).toBeInTheDocument()

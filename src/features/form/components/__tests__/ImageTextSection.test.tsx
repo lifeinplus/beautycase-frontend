@@ -101,7 +101,7 @@ describe('ImageTextSection', () => {
         expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
         expect(mockSetValue).toHaveBeenCalledWith(
             'makeupBag',
-            '[приложено фото]'
+            '[photoAttached]'
         )
         expect(mockSetValue).toHaveBeenCalledWith(
             'makeupBagPhotoUrl',

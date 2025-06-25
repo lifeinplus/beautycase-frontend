@@ -15,7 +15,7 @@ i18n.use(LanguageDetector)
         interpolation: {
             escapeValue: false,
         },
-        ns: ['navigation'],
+        ns: ['auth', 'navigation', 'theme'],
         supportedLngs: ['ru', 'en'],
     })
 

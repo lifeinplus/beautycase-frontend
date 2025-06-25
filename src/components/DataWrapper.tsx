@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { getErrorMessage } from '../utils/errorUtils'
 import { LoadingOrError } from './LoadingOrError'
 
@@ -16,8 +18,10 @@ export const DataWrapper = <T,>({
     children,
     emptyMessage,
 }: DataWrapperProps<T>) => {
+    const { t } = useTranslation('component')
+
     if (isLoading) {
-        return <LoadingOrError message="Загрузка..." />
+        return <LoadingOrError message={t('loading')} />
     }
 
     if (error) {

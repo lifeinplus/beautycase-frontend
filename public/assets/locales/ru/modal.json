@@ -1,4 +1,24 @@
 {
-    "deleteTitle": "Удалить?",
-    "deleteDescription": "Вы действительно хотите удалить {{name}}?"
+    "delete": {
+        "title": "Удалить?",
+        "description": "Вы действительно хотите удалить {{name}}?"
+    },
+    "duplicate": {
+        "title": "Дублировать?",
+        "description": "Вы действительно хотите дублировать {{name}}?"
+    },
+    "buttons": {
+        "cancel": {
+            "text": "Отмена",
+            "ariaLabel": "Кнопка отмена"
+        },
+        "delete": {
+            "text": "Удалить",
+            "ariaLabel": "Кнопка удалить"
+        },
+        "duplicate": {
+            "text": "Дублировать",
+            "ariaLabel": "Кнопка дублировать"
+        }
+    }
 }

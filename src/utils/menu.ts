@@ -24,54 +24,54 @@ export const canAccess = (
 
 export const menuItems: MenuItem[] = [
     {
-        label: 'Анкета',
+        label: 'menu.questionnaire',
         path: '/questionnaire',
     },
     {
         auth: true,
-        label: 'Анкеты',
+        label: 'menu.questionnaires',
         path: '/questionnaires',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Косметички',
+        label: 'menu.makeupBags',
         path: '/makeup_bags',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Этапы',
+        label: 'menu.stages',
         path: '/stages',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Продукты',
+        label: 'menu.products',
         path: '/products',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Инструменты',
+        label: 'menu.tools',
         path: '/tools',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Уроки',
+        label: 'menu.lessons',
         path: '/lessons',
         roles: ['admin', 'mua'],
     },
     {
         auth: true,
-        label: 'Справочники',
+        label: 'menu.referenceLists',
         path: '/reference_lists',
         roles: ['admin'],
     },
     {
         auth: true,
-        label: 'Личный кабинет',
+        label: 'menu.account',
         path: '/account',
     },
 ]

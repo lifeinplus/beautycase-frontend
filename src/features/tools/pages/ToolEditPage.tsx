@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -12,6 +13,7 @@ import type { Tool } from '../types'
 export const ToolEditPage = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+    const { t } = useTranslation('tool')
 
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
@@ -45,10 +47,5 @@ export const ToolEditPage = () => {
         }
     }
 
-    return (
-        <ToolForm
-            title={'Редактировать инструмент'}
-            onSubmit={handleEditTool}
-        />
-    )
+    return <ToolForm title={t('titles.edit')} onSubmit={handleEditTool} />
 }

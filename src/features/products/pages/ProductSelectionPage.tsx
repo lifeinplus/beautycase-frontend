@@ -7,10 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { Image } from '../../../components/ui/Image'
+import { DataWrapper } from '../../../components/DataWrapper'
 import { TopPanel } from '../../../components/TopPanel'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import { useGetAllProductsQuery } from '../productsApi'
-import { DataWrapper } from '../../../components/DataWrapper'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()
@@ -109,13 +109,13 @@ export const ProductSelectionPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:back')}
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text={t('navigation:save')}
+                    text={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
             </AdaptiveNavBar>

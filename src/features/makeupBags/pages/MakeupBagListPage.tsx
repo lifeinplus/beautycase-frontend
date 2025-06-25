@@ -37,7 +37,7 @@ const ACTION_ITEMS: ActionItem[] = [
 
 export const MakeupBagListPage = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation('makeupBag')
+    const { t } = useTranslation(['makeupBag'])
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -58,7 +58,7 @@ export const MakeupBagListPage = () => {
     ).map(({ id }) => ({
         key: id,
         icon: ACTIONS[id].icon,
-        label: t(ACTIONS[id].label),
+        label: t(`navigation:${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 

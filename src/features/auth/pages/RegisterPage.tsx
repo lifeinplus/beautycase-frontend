@@ -114,7 +114,7 @@ export const RegisterPage = () => {
 
                 <div className="mt-10 sm:mb-5">
                     <p className="text-center text-sm text-neutral-500 dark:text-neutral-400">
-                        {'registerQuestion'}{' '}
+                        {t('registerQuestion')}{' '}
                         <Link
                             className="font-semibold text-rose-500 hover:text-rose-400 focus-visible:outline-rose-700"
                             to="/login"

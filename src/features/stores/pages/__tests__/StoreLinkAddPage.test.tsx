@@ -156,7 +156,7 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         const backButton = screen.getByRole('button', {
-            name: 'navigation:back',
+            name: 'navigation:actions.back',
         })
         await user.click(backButton)
 
@@ -177,7 +177,7 @@ describe('StoreLinkAddPage', () => {
         await user.type(linkInput, 'https://example.com')
 
         const saveButton = screen.getByRole('button', {
-            name: 'navigation:save',
+            name: 'navigation:actions.save',
         })
         await user.click(saveButton)
 

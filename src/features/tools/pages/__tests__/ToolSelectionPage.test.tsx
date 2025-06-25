@@ -1,15 +1,15 @@
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
+import userEvent from '@testing-library/user-event'
 import { render, screen } from '@testing-library/react'
+import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { setFormData } from '../../../form/formSlice'
 import { mockTools } from '../../__mocks__/toolsApi'
 import { useGetAllToolsQuery } from '../../toolsApi'
 import { ToolSelectionPage } from '../ToolSelectionPage'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import userEvent from '@testing-library/user-event'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { setFormData } from '../../../form/formSlice'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -43,8 +43,7 @@ describe('ToolSelectionPage', () => {
 
         render(<ToolSelectionPage />)
 
-        const loading = screen.getByText('Loading...')
-        expect(loading).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -56,7 +55,7 @@ describe('ToolSelectionPage', () => {
 
         render(<ToolSelectionPage />)
 
-        const error = screen.getByText('Error loading tools')
+        const error = screen.getByText('An unknown error occurred')
         expect(error).toBeInTheDocument()
     })
 
@@ -106,7 +105,9 @@ describe('ToolSelectionPage', () => {
 
         render(<ToolSelectionPage />)
 
-        const button = screen.getByTestId('mocked-nav-button-Сохранить')
+        const button = screen.getByTestId(
+            'mocked-nav-button-navigation:actions.save'
+        )
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(

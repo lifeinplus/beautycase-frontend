@@ -43,7 +43,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const loading = screen.getByText('Загрузка...')
+        const loading = screen.getByText('loading')
         expect(loading).toBeInTheDocument()
     })
 
@@ -106,7 +106,9 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const button = screen.getByTestId('mocked-nav-button-navigation:save')
+        const button = screen.getByTestId(
+            'mocked-nav-button-navigation:actions.save'
+        )
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(

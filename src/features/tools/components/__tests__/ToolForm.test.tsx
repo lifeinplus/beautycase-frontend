@@ -38,24 +38,23 @@ describe('ToolForm', () => {
     it('renders all required form fields', () => {
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        expect(topPanel).toBeInTheDocument()
+        const testIds = [
+            'mocked-top-panel',
+            'mocked-select-section',
+            'mocked-image-url-section',
+            'mocked-input-section',
+            'mocked-button-navigate-section',
+        ]
 
-        const selectSection = screen.getByTestId('mocked-select-section')
-        const name = screen.getByPlaceholderText('Название')
-        const imageUrlSection = screen.getByTestId('mocked-image-url-section')
-        const inputSection = screen.getByTestId('mocked-input-section')
-        const comment = screen.getByPlaceholderText('Комментарий')
-        const buttonNavigateSection = screen.getByTestId(
-            'mocked-button-navigate-section'
+        testIds.forEach((id) =>
+            expect(screen.getByTestId(id)).toBeInTheDocument()
         )
 
-        expect(selectSection).toBeInTheDocument()
-        expect(name).toBeInTheDocument()
-        expect(imageUrlSection).toBeInTheDocument()
-        expect(inputSection).toBeInTheDocument()
-        expect(comment).toBeInTheDocument()
-        expect(buttonNavigateSection).toBeInTheDocument()
+        const placeholders = ['fields.name.label', 'fields.comment.label']
+
+        placeholders.forEach((p) =>
+            expect(screen.getByPlaceholderText(p)).toBeInTheDocument()
+        )
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -85,7 +84,7 @@ describe('ToolForm', () => {
     it('displays the correct number of added store links', () => {
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const stagesText = screen.getByText('Добавлено: 1')
+        const stagesText = screen.getByText('fields.storeLinks.selected: 1')
         expect(stagesText).toBeInTheDocument()
     })
 })

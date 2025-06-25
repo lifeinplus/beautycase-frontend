@@ -6,7 +6,9 @@ import {
 } from '@heroicons/react/24/outline'
 import { ReactNode, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { selectRole, selectUsername } from '../../features/auth/authSlice'
 import { clearFormData } from '../../features/form/formSlice'
@@ -22,19 +24,19 @@ import { ModalDuplicate } from '../ui/ModalDuplicate'
 const ACTIONS = {
     back: {
         icon: <ArrowLeftIcon className="h-6 w-6" />,
-        label: 'Назад',
+        label: 'actions.back',
     },
     edit: {
         icon: <PencilSquareIcon className="h-6 w-6" />,
-        label: 'Редактировать',
+        label: 'actions.edit',
     },
     duplicate: {
         icon: <DocumentDuplicateIcon className="h-6 w-6" />,
-        label: 'Дублировать',
+        label: 'actions.duplicate',
     },
     delete: {
         icon: <TrashIcon className="h-6 w-6" />,
-        label: 'Удалить',
+        label: 'actions.delete',
     },
 } as const
 
@@ -86,7 +88,7 @@ export const DetailsPage = ({
     error,
     topPanelTitle,
     redirectPath,
-    title = 'Заголовок',
+    title,
     subtitle,
     description,
     deleteItem,
@@ -99,6 +101,7 @@ export const DetailsPage = ({
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
+    const { t } = useTranslation('component')
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -126,7 +129,7 @@ export const DetailsPage = ({
         if (!id) return
         try {
             await deleteItem(id).unwrap()
-            toast.success(`${title} удалён`)
+            toast.success(t('toast.delete', { value: title }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -140,7 +143,7 @@ export const DetailsPage = ({
         if (!id) return
         try {
             await duplicateItem(id).unwrap()
-            toast.success(`${title} дублирован`)
+            toast.success(t('toast.duplicate', { value: title }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -154,7 +157,7 @@ export const DetailsPage = ({
             key: id,
             className,
             icon: ACTIONS[id].icon,
-            label: ACTIONS[id].label,
+            label: t(`navigation:${ACTIONS[id].label}`),
             onClick: actionHandlers[id],
         }))
 
@@ -168,7 +171,9 @@ export const DetailsPage = ({
                         isLoading={isLoading}
                         error={error}
                         data={title}
-                        emptyMessage={`${topPanelTitle} не найден`}
+                        emptyMessage={t('emptyMessage', {
+                            value: topPanelTitle,
+                        })}
                     >
                         <>
                             <section className="title-container">
@@ -208,16 +213,16 @@ export const DetailsPage = ({
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title="Удалить?"
-                description={`Вы действительно хотите удалить ${title}?`}
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', { name: title })}
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalDeleteOpen(false)}
             />
 
             <ModalDuplicate
                 isOpen={isModalDuplicateOpen}
-                title="Дублировать?"
-                description={`Вы действительно хотите дублировать ${title}?`}
+                title={t('modal:duplicate.title')}
+                description={t('modal:duplicate.description', { name: title })}
                 onConfirm={handleDuplicate}
                 onCancel={() => setIsModalDuplicateOpen(false)}
             />

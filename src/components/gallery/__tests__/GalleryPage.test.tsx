@@ -53,7 +53,7 @@ describe('GalleryPage', () => {
         const hero = screen.getByTestId('mocked-hero')
         const mediaContent = screen.getByTestId('mocked-media-content')
         const navBar = screen.getByTestId('mocked-nav-bar')
-        const navButton = screen.getByTestId('mocked-nav-button-Добавить')
+        const navButton = screen.getByTestId('mocked-nav-button-actions.add')
 
         expect(header).toBeInTheDocument()
         expect(hero).toBeInTheDocument()
@@ -89,7 +89,7 @@ describe('GalleryPage', () => {
     it('renders navigation buttons for actions that user can access', () => {
         renderWithProviders(<GalleryPage {...mockProps} />)
 
-        const button = screen.getByRole('button', { name: 'Добавить' })
+        const button = screen.getByRole('button', { name: 'actions.add' })
         expect(button).toBeInTheDocument()
     })
 
@@ -98,7 +98,7 @@ describe('GalleryPage', () => {
 
         renderWithProviders(<GalleryPage {...mockProps} />)
 
-        const button = screen.getByRole('button', { name: 'Добавить' })
+        const button = screen.getByRole('button', { name: 'actions.add' })
         await user.click(button)
 
         expect(mockNavigate).toHaveBeenCalledWith('/gallery/add')

@@ -39,7 +39,7 @@ const ACTION_ITEMS: ActionItem[] = [
 
 export const StageListPage = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation('stage')
+    const { t } = useTranslation(['stage', 'component'])
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -62,7 +62,7 @@ export const StageListPage = () => {
     ).map(({ id }) => ({
         key: id,
         icon: ACTIONS[id].icon,
-        label: t(ACTIONS[id].label),
+        label: t(`navigation:${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 

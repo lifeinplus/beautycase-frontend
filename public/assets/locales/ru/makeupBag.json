@@ -1,11 +1,4 @@
 {
-    "actions": {
-        "add": "Добавить",
-        "back": "Назад",
-        "export": "PDF",
-        "edit": "Редактировать",
-        "delete": "Удалить"
-    },
     "emptyMessage": "Косметичка не найдена",
     "emptyMessageList": "Косметички не найдены",
     "fallbackCategory": "Косметичка",
@@ -65,7 +58,9 @@
         "details": "Косметичка",
         "edit": "Редактировать косметичку"
     },
-    "toastDelete": "Косметичка удалена",
-    "toastExportError": "Ошибка при создании PDF",
-    "toastNoExportData": "Нет данных для экспорта"
+    "toast": {
+        "delete": "Косметичка удалена",
+        "exportError": "Ошибка при создании PDF",
+        "noExportData": "Нет данных для экспорта"
+    }
 }

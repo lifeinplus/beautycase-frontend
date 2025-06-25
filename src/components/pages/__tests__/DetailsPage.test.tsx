@@ -89,22 +89,22 @@ describe('DetailsPage', () => {
     it('renders navigation buttons for actions that user can access', () => {
         render(<DetailsPage {...mockProps} />)
 
-        const btnBack = screen.getByRole('button', { name: 'Назад' })
-        const btnEdit = screen.getByRole('button', { name: 'Редактировать' })
-        const btnDelete = screen.getByRole('button', { name: 'Удалить' })
+        const buttons = [
+            'navigation:actions.back',
+            'navigation:actions.edit',
+            'navigation:actions.delete',
+        ]
 
-        expect(btnBack).toBeInTheDocument()
-        expect(btnEdit).toBeInTheDocument()
-        expect(btnDelete).toBeInTheDocument()
+        buttons.forEach((b) =>
+            expect(screen.getByRole('button', { name: b })).toBeInTheDocument()
+        )
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<DetailsPage {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: 'Назад' })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /back/ }))
 
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath, {
             replace: true,
@@ -116,9 +116,7 @@ describe('DetailsPage', () => {
         const user = userEvent.setup()
 
         render(<DetailsPage {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: 'Редактировать' })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /edit/ }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/edit/123')
     })
@@ -126,32 +124,27 @@ describe('DetailsPage', () => {
     it('does not render duplicate button when showDuplicate is false', () => {
         render(<DetailsPage {...mockProps} showDuplicate={false} />)
 
-        const button = screen.queryByRole('button', { name: 'Дублировать' })
-        expect(button).not.toBeInTheDocument()
+        expect(
+            screen.queryByRole('button', { name: /duplicate/ })
+        ).not.toBeInTheDocument()
     })
 
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<DetailsPage {...mockProps} showDuplicate />)
+        await user.click(screen.getByRole('button', { name: /duplicate/ }))
 
-        const button = screen.getByRole('button', { name: 'Дублировать' })
-        await user.click(button)
-
-        const modal = screen.getByTestId('mocked-modal-duplicate')
-        expect(modal).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-modal-duplicate')).toBeInTheDocument()
     })
 
     it('opens delete modal when delete button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<DetailsPage {...mockProps} />)
+        await user.click(screen.getByRole('button', { name: /delete/ }))
 
-        const button = screen.getByRole('button', { name: 'Удалить' })
-        await user.click(button)
-
-        const modal = screen.getByTestId('mocked-modal-delete')
-        expect(modal).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-modal-delete')).toBeInTheDocument()
     })
 
     it('handles successful item duplication', async () => {
@@ -159,16 +152,11 @@ describe('DetailsPage', () => {
 
         render(<DetailsPage {...mockProps} showDuplicate />)
 
-        const button = screen.getByRole('button', { name: 'Дублировать' })
-        await user.click(button)
-
-        const buttonModal = screen.getByTestId('mocked-modal-duplicate-confirm')
-        await user.click(buttonModal)
+        await user.click(screen.getByRole('button', { name: /duplicate/ }))
+        await user.click(screen.getByTestId('mocked-modal-duplicate-confirm'))
 
         expect(mockDuplicateItem).toHaveBeenCalledWith('123')
-        expect(toast.success).toHaveBeenCalledWith(
-            `${mockProps.title} дублирован`
-        )
+        expect(toast.success).toHaveBeenCalledWith('toast.duplicate')
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath)
     })
 
@@ -183,11 +171,8 @@ describe('DetailsPage', () => {
 
         render(<DetailsPage {...mockProps} showDuplicate />)
 
-        const button = screen.getByRole('button', { name: 'Дублировать' })
-        await user.click(button)
-
-        const buttonModal = screen.getByTestId('mocked-modal-duplicate-confirm')
-        await user.click(buttonModal)
+        await user.click(screen.getByRole('button', { name: /duplicate/ }))
+        await user.click(screen.getByTestId('mocked-modal-duplicate-confirm'))
 
         expect(mockDuplicateItem).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -201,14 +186,11 @@ describe('DetailsPage', () => {
 
         render(<DetailsPage {...mockProps} />)
 
-        const button = screen.getByRole('button', { name: 'Удалить' })
-        await user.click(button)
-
-        const buttonModal = screen.getByTestId('mocked-modal-delete-confirm')
-        await user.click(buttonModal)
+        await user.click(screen.getByRole('button', { name: /delete/ }))
+        await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
 
         expect(mockDeleteItem).toHaveBeenCalledWith('123')
-        expect(toast.success).toHaveBeenCalledWith(`${mockProps.title} удалён`)
+        expect(toast.success).toHaveBeenCalledWith('toast.delete')
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath)
     })
 
@@ -223,11 +205,8 @@ describe('DetailsPage', () => {
 
         render(<DetailsPage {...mockProps} />)
 
-        const button = screen.getByRole('button', { name: 'Удалить' })
-        await user.click(button)
-
-        const buttonModal = screen.getByTestId('mocked-modal-delete-confirm')
-        await user.click(buttonModal)
+        await user.click(screen.getByRole('button', { name: /delete/ }))
+        await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
 
         expect(mockDeleteItem).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

@@ -34,7 +34,7 @@ export const usePDFExport = (): UsePDFExportReturn => {
             setError(null)
 
             if (!data || (!data.stages?.length && !data.tools?.length)) {
-                throw new Error(t('toastNoExportData'))
+                throw new Error(t('toast.noExportData'))
             }
 
             const blob = await pdf(<MakeupBagPDF data={data} t={t} />).toBlob()
@@ -53,9 +53,9 @@ export const usePDFExport = (): UsePDFExportReturn => {
 
             return { success: true }
         } catch (error) {
-            console.error(t('toastExportError'), error)
+            console.error(t('toast.exportError'), error)
             const errorMessage =
-                error instanceof Error ? error.message : t('toastExportError')
+                error instanceof Error ? error.message : t('toast.exportError')
             setError(errorMessage)
             return { success: false, error: errorMessage }
         } finally {

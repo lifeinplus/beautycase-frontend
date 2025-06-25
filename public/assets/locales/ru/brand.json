@@ -21,5 +21,7 @@
         "brandName": "Бренд",
         "actions": "Действия"
     },
-    "toastDelete": "Бренд удалён"
+    "toast": {
+        "delete": "Бренд удалён"
+    }
 }

@@ -10,7 +10,9 @@ import {
     UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
+
 import { useAppSelector } from '../../app/hooks'
 import { selectRole, selectUsername } from '../../features/auth/authSlice'
 import { AuthButton } from '../../features/auth/components/AuthButton'
@@ -25,6 +27,7 @@ export interface AdaptiveNavBarProps {
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
+    const { t } = useTranslation()
 
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
@@ -82,7 +85,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                             }
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
-                            text={item.label}
+                            text={t(`navigation:${item.label}`)}
                         />
                     ))}
             </div>

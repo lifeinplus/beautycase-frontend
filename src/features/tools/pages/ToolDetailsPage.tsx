@@ -1,4 +1,5 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
@@ -7,6 +8,7 @@ import { useDeleteToolByIdMutation, useGetToolByIdQuery } from '../toolsApi'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
+    const { t } = useTranslation('tool')
 
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
     const [deleteToolById] = useDeleteToolByIdMutation()
@@ -15,7 +17,7 @@ export const ToolDetailsPage = () => {
         <DetailsPage
             isLoading={isLoading}
             error={error}
-            topPanelTitle="Инструмент"
+            topPanelTitle={t('titles.details')}
             redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brand?.name}
@@ -31,7 +33,7 @@ export const ToolDetailsPage = () => {
                 <>
                     {data?.number && (
                         <section className="content-description">
-                            <p>{`Номер: ${data?.number}`}</p>
+                            <p>{`${t('number')}: ${data?.number}`}</p>
                         </section>
                     )}
                     {data?.comment && (
@@ -44,7 +46,7 @@ export const ToolDetailsPage = () => {
             additionalContent={
                 data?.storeLinks?.length !== 0 && (
                     <section className="content-description">
-                        <p className="mb-3 font-bold">Ссылки на товар</p>
+                        <p className="mb-3 font-bold">{t('links')}</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.storeLinks?.map((l, i) => (
                                 <a

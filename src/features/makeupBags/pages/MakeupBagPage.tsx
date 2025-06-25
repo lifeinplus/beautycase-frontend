@@ -68,7 +68,13 @@ export const MakeupBagPage = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['makeupBag', 'modal'])
+    const { t } = useTranslation([
+        'makeupBag',
+        'modal',
+        'component',
+        'stage',
+        'tool',
+    ])
 
     const redirectPath = '/makeup_bags'
 
@@ -101,7 +107,7 @@ export const MakeupBagPage = () => {
 
     const handleExportToPDF = async () => {
         if (!data) {
-            toast.error(t('toastNoExportData'))
+            toast.error(t('toast.noExportData'))
             return
         }
 
@@ -132,7 +138,7 @@ export const MakeupBagPage = () => {
         if (!id) return
         try {
             await deleteMakeupBagById(id).unwrap()
-            toast.success(t('toastDelete'))
+            toast.success(t('toast.delete'))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -148,7 +154,7 @@ export const MakeupBagPage = () => {
         key: id,
         className,
         icon: ACTIONS[id].icon,
-        label: ACTIONS[id].label,
+        label: t(`navigation:${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 
@@ -199,8 +205,8 @@ export const MakeupBagPage = () => {
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title={t('modal:deleteTitle')}
-                description={t('modal:deleteDescription', {
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', {
                     name: categoryName,
                 })}
                 onConfirm={handleDelete}

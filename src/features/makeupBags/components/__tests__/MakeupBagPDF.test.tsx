@@ -88,6 +88,7 @@ describe('MakeupBagPDF', () => {
 
             expect(getByTestId('mocked-pdf-document')).toBeInTheDocument()
             expect(getByTestId('mocked-pdf-page')).toBeInTheDocument()
+
             expect(getByTestId('mocked-pdf-page')).toHaveAttribute(
                 'data-size',
                 'A4'
@@ -101,16 +102,13 @@ describe('MakeupBagPDF', () => {
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
-            const headerTitle = textElements.find(
-                (el) => el.textContent === mockCategory1.name
-            )
+            expect(
+                textElements.find((el) => el.textContent === mockCategory1.name)
+            ).toBeInTheDocument()
 
-            const headerSubtitle = textElements.find(
-                (el) => el.textContent === 'pdf.subtitle'
-            )
-
-            expect(headerTitle).toBeInTheDocument()
-            expect(headerSubtitle).toBeInTheDocument()
+            expect(
+                textElements.find((el) => el.textContent === 'pdf.subtitle')
+            ).toBeInTheDocument()
         })
 
         it('should render page numbers', () => {
@@ -120,12 +118,9 @@ describe('MakeupBagPDF', () => {
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
-            const pageNumber = textElements.find(
-                (el) => el.textContent === '1 / 1'
-            )
-
-            expect(pageNumber).toBeInTheDocument()
-            expect(pageNumber).toHaveAttribute('data-fixed', 'true')
+            expect(
+                textElements.find((el) => el.textContent === '1 / 1')
+            ).toHaveAttribute('data-fixed', 'true')
         })
     })
 
@@ -268,7 +263,7 @@ describe('MakeupBagPDF', () => {
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'Инструменты')
+                textElements.some((el) => el.textContent === 'pdf.tools')
             ).toBe(false)
         })
     })

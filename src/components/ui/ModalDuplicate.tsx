@@ -1,4 +1,5 @@
 import { MouseEvent, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface ModalDuplicateProps {
     description: string
@@ -16,6 +17,7 @@ export const ModalDuplicate = ({
     title,
 }: ModalDuplicateProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation('modal')
 
     useEffect(() => {
         if (isOpen) {
@@ -42,18 +44,18 @@ export const ModalDuplicate = ({
                 </div>
                 <div className="modal-btn-group">
                     <button
-                        aria-label="Modal duplicate button"
+                        aria-label={t('buttons.duplicate.ariaLabel')}
                         onClick={onConfirm}
                         className="modal-btn modal-btn-warning"
                     >
-                        Дублировать
+                        {t('buttons.duplicate.text')}
                     </button>
                     <button
-                        aria-label="Modal cancel button"
+                        aria-label={t('buttons.cancel.ariaLabel')}
                         onClick={onCancel}
                         className="modal-btn modal-btn-bottom"
                     >
-                        Отмена
+                        {t('buttons.cancel.text')}
                     </button>
                 </div>
             </div>

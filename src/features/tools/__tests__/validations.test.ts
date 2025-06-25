@@ -12,28 +12,28 @@ describe('toolSchema validation', () => {
     it('should fail when brandId is missing', async () => {
         const data = { ...mockTool1, brandId: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Выберите бренд'
+            'fields.brand.errors.required'
         )
     })
 
     it('should fail when name is missing', async () => {
         const data = { ...mockTool1, name: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Укажите название инструмента'
+            'fields.name.errors.required'
         )
     })
 
     it('should fail when imageUrl is missing', async () => {
         const data = { ...mockTool1, imageUrl: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Укажите ссылку на изображение'
+            'fields.imageUrl.errors.required'
         )
     })
 
     it('should fail when imageUrl is not a valid URL', async () => {
         const data = { ...mockTool1, imageUrl: 'invalid-url' }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Введите корректный URL'
+            'fields.imageUrl.errors.url'
         )
     })
 
@@ -48,21 +48,21 @@ describe('toolSchema validation', () => {
     it('should fail when comment is missing', async () => {
         const data = { ...mockTool1, comment: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Укажите комментарий'
+            'fields.comment.errors.required'
         )
     })
 
     it('should fail when storeLinks is missing', async () => {
         const data = { ...mockTool1, storeLinks: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Добавьте ссылки на инструмент'
+            'fields.storeLinks.errors.required'
         )
     })
 
     it('should fail when storeLinks is empty', async () => {
         const data = { ...mockTool1, storeLinks: [] }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'Добавьте ссылки на инструмент'
+            'fields.storeLinks.errors.min'
         )
     })
 })

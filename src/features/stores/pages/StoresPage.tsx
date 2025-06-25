@@ -46,7 +46,7 @@ export const StoresPage = () => {
 
         try {
             await deleteStoreById(store._id).unwrap()
-            toast.success(t('toastDelete'))
+            toast.success(t('toast.delete'))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)
@@ -100,7 +100,7 @@ export const StoresPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:back')}
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
@@ -108,8 +108,8 @@ export const StoresPage = () => {
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title={t('modal:deleteTitle')}
-                description={t('modal:deleteDescription', {
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', {
                     name: store?.name,
                 })}
                 onConfirm={handleDeleteConfirm}

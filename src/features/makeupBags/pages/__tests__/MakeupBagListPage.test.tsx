@@ -37,36 +37,34 @@ describe('MakeupBagListPage', () => {
     it('renders the component with correct structure', () => {
         render(<MakeupBagListPage />)
 
-        const header = screen.getByTestId('mocked-header')
-        const hero = screen.getByTestId('mocked-hero')
-        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
-        const navBar = screen.getByTestId('mocked-nav-bar')
+        const ids = [
+            'mocked-header',
+            'mocked-hero',
+            'mocked-data-wrapper',
+            'mocked-nav-bar',
+        ]
 
-        expect(header).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(dataWrapper).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
 
     it('renders page components and list views', () => {
         render(<MakeupBagListPage />)
 
-        const mobileView = screen.getByTestId('mocked-makeup-bag-mobile-view')
-        const table = screen.getByTestId('mocked-makeup-bag-table')
+        expect(
+            screen.getByTestId('mocked-makeup-bag-mobile-view')
+        ).toBeInTheDocument()
 
-        expect(mobileView).toBeInTheDocument()
-        expect(table).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-makeup-bag-table')
+        ).toBeInTheDocument()
     })
 
     it('navigates to add page when add button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<MakeupBagListPage />)
+        await user.click(screen.getByRole('button', { name: /add/ }))
 
-        const button = screen.getByRole('button', { name: 'actions.add' })
-        await user.click(button)
-
-        expect(button).toBeInTheDocument()
         expect(mockNavigate).toHaveBeenCalledWith('add')
     })
 })

@@ -39,40 +39,33 @@ describe('StageListPage', () => {
     })
 
     it('renders the component with correct structure', () => {
+        const ids = [
+            'mocked-header',
+            'mocked-hero',
+            'mocked-stage-filter',
+            'mocked-data-wrapper',
+            'mocked-nav-bar',
+        ]
+
         render(<StageListPage />)
 
-        const header = screen.getByTestId('mocked-header')
-        const hero = screen.getByTestId('mocked-hero')
-        const stageFilter = screen.getByTestId('mocked-stage-filter')
-        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
-        const navBar = screen.getByTestId('mocked-nav-bar')
-
-        expect(header).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(stageFilter).toBeInTheDocument()
-        expect(dataWrapper).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
 
     it('renders page components and list views', () => {
+        const ids = ['mocked-stage-mobile-view', 'mocked-stage-table']
+
         render(<StageListPage />)
 
-        const mobileView = screen.getByTestId('mocked-stage-mobile-view')
-        const table = screen.getByTestId('mocked-stage-table')
-
-        expect(mobileView).toBeInTheDocument()
-        expect(table).toBeInTheDocument()
+        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
 
     it('navigates to add page when add button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<StageListPage />)
+        await user.click(screen.getByRole('button', { name: /add/ }))
 
-        const button = screen.getByRole('button', { name: 'actions.add' })
-        await user.click(button)
-
-        expect(button).toBeInTheDocument()
         expect(mockNavigate).toHaveBeenCalledWith('add')
     })
 
@@ -80,9 +73,7 @@ describe('StageListPage', () => {
         const user = userEvent.setup()
 
         render(<StageListPage />)
-
-        const filterButton = screen.getByTestId('mocked-filter-button')
-        await user.click(filterButton)
+        await user.click(screen.getByTestId('mocked-filter-button'))
 
         const stageTable = screen.getByTestId('mocked-stage-table')
         expect(stageTable.textContent).toContain(mockStage1.title)

@@ -1,7 +1,4 @@
 {
-    "actions": {
-        "add": "Добавить"
-    },
     "emptyMessageList": "Этапы не найдены",
     "fields": {
         "title": {

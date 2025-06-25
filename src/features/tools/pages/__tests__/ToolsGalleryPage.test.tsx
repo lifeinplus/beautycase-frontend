@@ -21,24 +21,17 @@ describe('ToolsGalleryPage', () => {
     it('renders list of tools when data is available', () => {
         render(<ToolsGalleryPage />)
 
-        const galleryPage = screen.getByTestId('mocked-gallery-page')
-        const title = screen.getByText('Инструменты')
-        const mediaContent = screen.getByTestId('mocked-media-content')
-
-        expect(galleryPage).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
-        expect(mediaContent).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
+        expect(screen.getByText('titles.gallery')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockTools.forEach((tool) => {
-            const imageCard = screen.getByTestId(
-                `mocked-image-card-${tool._id}`
-            )
-            const title = screen.getByText(tool.name)
-            const path = screen.getByText(`/tools/${tool._id}`)
+            expect(
+                screen.getByTestId(`mocked-image-card-${tool._id}`)
+            ).toBeInTheDocument()
 
-            expect(imageCard).toBeInTheDocument()
-            expect(title).toBeInTheDocument()
-            expect(path).toBeInTheDocument()
+            expect(screen.getByText(tool.name)).toBeInTheDocument()
+            expect(screen.getByText(`/tools/${tool._id}`)).toBeInTheDocument()
         })
     })
 })

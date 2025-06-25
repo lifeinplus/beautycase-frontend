@@ -79,7 +79,7 @@ describe('usePDFExport', () => {
                 })
             })
 
-            expect(result.current.error).toBe('toastNoExportData')
+            expect(result.current.error).toBe('toast.noExportData')
         })
 
         it('should handle non-Error exceptions', async () => {
@@ -91,7 +91,7 @@ describe('usePDFExport', () => {
                 await result.current.exportToPDF(mockMakeupBagPDFData)
             })
 
-            expect(result.current.error).toBe('toastExportError')
+            expect(result.current.error).toBe('toast.exportError')
         })
     })
 
@@ -103,7 +103,7 @@ describe('usePDFExport', () => {
                 await result.current.exportToPDF({})
             })
 
-            expect(result.current.error).toBe('toastNoExportData')
+            expect(result.current.error).toBe('toast.noExportData')
 
             act(() => {
                 result.current.clearError()

@@ -117,7 +117,9 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
                 )}
             </div>
 
-            {errors.name && <p className="form-error">{errors.name.message}</p>}
+            {errors.name && (
+                <p className="form-error">{t(errors.name.message || '')}</p>
+            )}
         </form>
     )
 })

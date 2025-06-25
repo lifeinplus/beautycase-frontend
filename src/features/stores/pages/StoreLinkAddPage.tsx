@@ -184,13 +184,13 @@ export const StoreLinkAddPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:back')}
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text={t('navigation:save')}
+                    text={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
             </AdaptiveNavBar>

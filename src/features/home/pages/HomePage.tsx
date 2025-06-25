@@ -30,7 +30,7 @@ export const HomePage = () => {
                             <HomeButton
                                 key={index}
                                 to={item.path}
-                                label={item.label}
+                                label={t(`navigation:${item.label}`)}
                             />
                         ))}
                 </div>

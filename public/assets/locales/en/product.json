@@ -1,0 +1,54 @@
+{
+    "emptyMessageList": "No beauty cases found",
+    "error": "Error loading products",
+    "fields": {
+        "brand": {
+            "label": "Brand",
+            "errors": {
+                "required": "Select a brand"
+            }
+        },
+        "name": {
+            "label": "Name",
+            "errors": {
+                "required": "Enter the product name"
+            }
+        },
+        "imageUrl": {
+            "label": "Image URL",
+            "errors": {
+                "required": "Enter the image URL",
+                "url": "Enter a valid URL"
+            }
+        },
+        "shade": {
+            "label": "Shade"
+        },
+        "comment": {
+            "label": "Comment",
+            "errors": {
+                "required": "Enter a comment"
+            }
+        },
+        "storeLinks": {
+            "label": "Product links",
+            "errors": {
+                "required": "Add product links",
+                "min": "At least 1 product link"
+            },
+            "select": "Add",
+            "selected": "Added"
+        }
+    },
+    "links": "Product links",
+    "loading": "Loading...",
+    "shade": "Shade",
+    "titles": {
+        "add": "Add product",
+        "details": "Product",
+        "edit": "Edit product",
+        "gallery": "Products",
+        "gallerySubtitle": "Micellar water, toners, foundations, and creams",
+        "selection": "Select products"
+    }
+}

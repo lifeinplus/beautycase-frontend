@@ -1,0 +1,52 @@
+{
+    "fields": {
+        "brand": {
+            "label": "Brand",
+            "errors": {
+                "required": "Select a brand"
+            }
+        },
+        "name": {
+            "label": "Name",
+            "errors": {
+                "required": "Enter the tool name"
+            }
+        },
+        "imageUrl": {
+            "label": "Image URL",
+            "errors": {
+                "url": "Enter a valid URL",
+                "required": "Enter the image URL"
+            }
+        },
+        "number": {
+            "label": "Number"
+        },
+        "comment": {
+            "label": "Comment",
+            "errors": {
+                "required": "Enter a comment"
+            }
+        },
+        "storeLinks": {
+            "label": "Tool links",
+            "errors": {
+                "required": "Add tool links",
+                "min": "At least 1 tool"
+            },
+            "select": "Add",
+            "selected": "Added"
+        }
+    },
+    "links": "Tool links",
+    "number": "Number",
+    "titles": {
+        "add": "Add tool",
+        "details": "Tool",
+        "edit": "Edit tool",
+        "gallery": "Tools",
+        "gallerySubtitle": "Brushes and sponges",
+        "list": "Tools",
+        "selection": "Select tools"
+    }
+}

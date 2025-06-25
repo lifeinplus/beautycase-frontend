@@ -4,6 +4,18 @@
     @apply sm:h-full sm:w-auto sm:flex-col sm:border-e sm:border-t-0 sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open;
 }
 
+.nav-logo-container {
+    @apply mt-3 hidden flex-col pb-10 pe-3 ps-4 pt-3 sm:flex;
+}
+
+.nav-logo {
+    @apply font-logo text-2xl font-bold;
+}
+
+.nav-btn-container {
+    @apply w-full flex-row justify-evenly sm:flex-col sm:justify-start;
+}
+
 .nav-btn {
     @apply flex rounded-lg p-3;
     @apply hover:bg-neutral-100 dark:hover:bg-neutral-800;

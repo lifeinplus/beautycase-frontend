@@ -1,0 +1,66 @@
+{
+    "emptyMessage": "Makeup bag not found",
+    "emptyMessageList": "Makeup bags not found",
+    "fallbackCategory": "Makeup bag",
+    "fields": {
+        "category": {
+            "label": "Category",
+            "errors": {
+                "required": "Select a category"
+            }
+        },
+        "client": {
+            "label": "Client",
+            "errors": {
+                "required": "Select a client"
+            }
+        },
+        "stages": {
+            "label": "Stages",
+            "errors": {
+                "min": "At least 1 stage",
+                "required": "Select stages"
+            },
+            "select": "Select",
+            "selected": "Selected"
+        },
+        "tools": {
+            "label": "Tools",
+            "errors": {
+                "min": "At least 1 tool",
+                "required": "Select tools"
+            },
+            "select": "Select",
+            "selected": "Selected"
+        }
+    },
+    "hero": {
+        "headline": "Makeup Bags",
+        "byline": "Personalized product selection"
+    },
+    "pdf": {
+        "subtitle": "Personalized product selection",
+        "fallbackCategory": "Makeup bag",
+        "steps": "Steps",
+        "tools": "Tools",
+        "thanks": "Thank you for choosing me!",
+        "phone": "If you have any questions about cosmetics or need a lesson on any other makeup, contact me at: +381 62 9446 904 (Serbia) I will be happy to help)",
+        "services": "My services: all types of makeup, styling, hairstyles, training, gift certificates"
+    },
+    "table": {
+        "date": "Date",
+        "time": "Time",
+        "category": "Category",
+        "clientName": "Client"
+    },
+    "titles": {
+        "add": "Add makeup bag",
+        "details": "Makeup bag",
+        "edit": "Edit makeup bag"
+    },
+    "toast": {
+        "delete": "Makeup bag deleted",
+        "exportError": "Error creating PDF",
+        "noExportData": "No data to export"
+    }
+}

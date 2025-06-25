@@ -1,0 +1,168 @@
+{
+    "hero": {
+        "headline": "Questionnaire",
+        "headlineList": "Questionnaires",
+        "headlineResult": "Questionnaire Results",
+        "byline": "Personalized makeup bag selection",
+        "content": "Hello! Thank you for choosing my service. In order for me to select exactly what you need, please answer a few questions."
+    },
+    "emptyMessage": "Questionnaire not found",
+    "emptyMessageList": "No questionnaires found",
+    "notSpecified": "Not specified",
+    "requiredField": "* Required field",
+    "submit": "Submit",
+    "table": {
+        "date": "Date",
+        "time": "Time",
+        "clientName": "Client name",
+        "age": "Age",
+        "city": "City"
+    },
+    "fields": {
+        "name": {
+            "label": "Name",
+            "errors": {
+                "required": "Please enter your name"
+            }
+        },
+        "instagram": {
+            "label": "Instagram",
+            "description": "Instagram handle"
+        },
+        "city": {
+            "label": "City",
+            "description": "City of residence"
+        },
+        "age": {
+            "label": "Age"
+        },
+        "makeupBag": {
+            "label": "Makeup bag contents",
+            "description": "Describe your makeup bag and/or attach a photo",
+            "errors": {
+                "required": "Please specify what is currently in your makeup bag"
+            }
+        },
+        "makeupBagPhotoId": {
+            "label": "Makeup bag photo"
+        },
+        "makeupBagPhotoUrl": {
+            "label": "Makeup bag image URL"
+        },
+        "procedures": {
+            "label": "Procedures",
+            "description": "Do you regularly do any of these procedures?",
+            "options": {
+                "lashExtensions": "Eyelash extensions",
+                "browCorrection": "Brow correction and tinting",
+                "lashLamination": "Lash lamination, tinting",
+                "none": "None"
+            }
+        },
+        "skinType": {
+            "label": "Skin type",
+            "options": {
+                "dry": "Dry",
+                "normal": "Normal",
+                "combination": "Combination",
+                "oily": "Oily",
+                "sensitive": "Sensitive"
+            }
+        },
+        "allergies": {
+            "label": "Allergies",
+            "description": "Do you have any allergies? If yes, to what?"
+        },
+        "peeling": {
+            "label": "Peeling",
+            "description": "Do you experience peeling?",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        "pores": {
+            "label": "Pores",
+            "description": "Are your pores noticeable?",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        "oilyShine": {
+            "label": "Oily shine",
+            "description": "Does oily shine appear during the day?",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        "currentSkills": {
+            "label": "Current skills",
+            "description": "What can you already do? What types of makeup do you do now?"
+        },
+        "desiredSkills": {
+            "label": "Desired skills",
+            "description": "What types of makeup would you like to learn in the future?",
+            "options": {
+                "delicate": "Delicate",
+                "evening": "Evening",
+                "bright": "Bright",
+                "office": "Office look",
+                "filming": "For photo/video shoots"
+            }
+        },
+        "makeupTime": {
+            "label": "Time for makeup",
+            "description": "How much time do you usually spend on makeup?",
+            "options": {
+                "15": "Up to 15 minutes",
+                "15-30": "15-30 minutes",
+                "30-60": "30-60 minutes"
+            }
+        },
+        "budget": {
+            "label": "Budget",
+            "description": "What budget do you plan for your makeup bag?",
+            "options": {
+                "50": "Up to 50 euros",
+                "150": "Up to 150 euros",
+                "50-100": "50-100 euros",
+                "150-250": "150-250 euros",
+                "100": "More than 100 euros",
+                "250": "More than 250 euros"
+            }
+        },
+        "brushes": {
+            "label": "Brush selection",
+            "description": "Do you need help selecting brushes?",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        "problems": {
+            "label": "Makeup problems",
+            "description": "What problems have you encountered when doing makeup?",
+            "options": {
+                "eyeshadowCrease": "Eyeshadow creases",
+                "mascaraSmudge": "Mascara smudges",
+                "foundationPores": "Foundation settles into pores",
+                "foundationStay": "Foundation doesn't last",
+                "sculpting": "Don't know how to do sculpting",
+                "eyeshadowMatch": "Don't know which eyeshadows suit my eye color"
+            }
+        },
+        "referral": {
+            "label": "Source",
+            "description": "How did you hear about me?",
+            "options": {
+                "instagram": "Instagram",
+                "youtube": "YouTube",
+                "personal": "Personal acquaintance",
+                "recommendation": "By recommendation",
+                "other": "Other"
+            }
+        }
+    }
+}

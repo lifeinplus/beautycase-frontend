@@ -12,6 +12,7 @@ import { AdaptiveNavBar } from '../AdaptiveNavBar'
 vi.mock('../../../app/hooks')
 vi.mock('../../../features/auth/components/AuthButton')
 vi.mock('../../../features/theme/ThemeToggler')
+vi.mock('../../LanguageSwitcher')
 vi.mock('../NavigationButton')
 
 describe('AdaptiveNavBar', () => {

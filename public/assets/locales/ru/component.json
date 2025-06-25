@@ -11,5 +11,9 @@
     "toast": {
         "delete": "{{title}} удалён",
         "duplicate": "{{title}} дублирован"
+    },
+    "language": {
+        "ariaLabel": "Кнопка переключения языка",
+        "label": "Русский"
     }
 }

@@ -1,0 +1,38 @@
+{
+    "buttonAdd": {
+        "ariaLabel": "Add link button"
+    },
+    "buttonDelete": {
+        "ariaLabel": "Delete link button"
+    },
+    "buttonEdit": {
+        "ariaLabel": "Edit link button"
+    },
+    "emptyMessageList": "No stores found",
+    "fields": {
+        "name": {
+            "label": "Store",
+            "errors": {
+                "required": "Please enter the store name"
+            }
+        },
+        "link": {
+            "label": "Link",
+            "ariaLabel": "Field to enter the link"
+        },
+        "stores": {
+            "label": "Select"
+        }
+    },
+    "table": {
+        "store": "Store",
+        "actions": "Actions"
+    },
+    "titles": {
+        "add": "Add links",
+        "list": "Stores"
+    },
+    "toast": {
+        "delete": "Store deleted"
+    }
+}

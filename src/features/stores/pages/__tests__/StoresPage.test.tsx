@@ -110,7 +110,7 @@ describe('StoresPage', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteStoreById).toHaveBeenCalledWith('1')
-        expect(toast.success).toHaveBeenCalledWith('Магазин удалён')
+        expect(toast.success).toHaveBeenCalledWith('toastDelete')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
     })

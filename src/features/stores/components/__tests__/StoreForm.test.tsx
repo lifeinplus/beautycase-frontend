@@ -58,17 +58,17 @@ describe('StoreForm', () => {
 
         renderWithProviders(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
-        const button = screen.getByRole('button')
+        expect(
+            screen.getByPlaceholderText('fields.name.label')
+        ).toBeInTheDocument()
 
-        expect(input).toBeInTheDocument()
-        expect(button).toBeInTheDocument()
+        expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
     it('focuses input when focusInput method is called', () => {
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
+        const input = screen.getByPlaceholderText('fields.name.label')
         vi.spyOn(input, 'focus')
 
         mockRef.current.focusInput()
@@ -81,7 +81,7 @@ describe('StoreForm', () => {
 
         renderWithProviders(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
+        const input = screen.getByPlaceholderText('fields.name.label')
         const addButton = screen.getByRole('button')
 
         await user.type(input, 'New Store')
@@ -103,7 +103,7 @@ describe('StoreForm', () => {
 
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
+        const input = screen.getByPlaceholderText('fields.name.label')
         const updateButton = screen.getByRole('button')
 
         await user.clear(input)
@@ -129,7 +129,7 @@ describe('StoreForm', () => {
 
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
+        const input = screen.getByPlaceholderText('fields.name.label')
         const addButton = screen.getByRole('button')
 
         await user.type(input, 'New Store')
@@ -158,7 +158,7 @@ describe('StoreForm', () => {
 
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('Магазин')
+        const input = screen.getByPlaceholderText('fields.name.label')
         const addButton = screen.getByRole('button')
 
         await user.type(input, 'New Store')
@@ -179,7 +179,7 @@ describe('StoreForm', () => {
         const button = screen.getByTestId('mocked-button')
         await user.click(button)
 
-        const error = screen.getByText('Укажите название магазина')
+        const error = screen.getByText('fields.name.errors.required')
         expect(error).toBeInTheDocument()
         expect(error).toHaveClass('form-error')
     })

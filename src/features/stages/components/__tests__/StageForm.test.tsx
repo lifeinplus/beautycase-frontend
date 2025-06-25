@@ -30,24 +30,26 @@ describe('StageForm', () => {
     it('renders all required form fields', () => {
         render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        expect(topPanel).toBeInTheDocument()
+        const testIds = [
+            'mocked-top-panel',
+            'mocked-image-url-section',
+            'mocked-button-navigate-section',
+        ]
 
-        const title = screen.getByPlaceholderText('Заголовок')
-        const subtitle = screen.getByPlaceholderText('Подзаголовок')
-        const imageUrlSection = screen.getByTestId('mocked-image-url-section')
-        const comment = screen.getByPlaceholderText('Комментарий')
-        const steps = screen.getByPlaceholderText('Шаги')
-        const buttonNavigateSection = screen.getByTestId(
-            'mocked-button-navigate-section'
+        testIds.forEach((id) =>
+            expect(screen.getByTestId(id)).toBeInTheDocument()
         )
 
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
-        expect(imageUrlSection).toBeInTheDocument()
-        expect(comment).toBeInTheDocument()
-        expect(steps).toBeInTheDocument()
-        expect(buttonNavigateSection).toBeInTheDocument()
+        const placeholders = [
+            'fields.title.label',
+            'fields.subtitle.label',
+            'fields.comment.label',
+            'fields.stepsText.label',
+        ]
+
+        placeholders.forEach((p) =>
+            expect(screen.getByPlaceholderText(p)).toBeInTheDocument()
+        )
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -77,7 +79,8 @@ describe('StageForm', () => {
     it('displays the correct number of added store links', () => {
         render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const stagesText = screen.getByText('Выбрано: 2')
-        expect(stagesText).toBeInTheDocument()
+        expect(
+            screen.getByText('fields.products.selected: 2')
+        ).toBeInTheDocument()
     })
 })

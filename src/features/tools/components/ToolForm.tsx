@@ -102,7 +102,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         <ImageUrlSection
                             clearErrors={clearErrors}
                             folder="tools"
-                            error={errors.imageUrl}
+                            error={errors.imageUrl?.message}
                             label="Ссылка на изображение"
                             name="imageUrl"
                             register={register('imageUrl')}

@@ -1,5 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -20,7 +21,7 @@ import type { Stage } from '../types'
 const ACTIONS = {
     add: {
         icon: <PlusIcon className="h-6 w-6" />,
-        label: 'Добавить',
+        label: 'actions.add',
     },
 } as const
 
@@ -38,6 +39,7 @@ const ACTION_ITEMS: ActionItem[] = [
 
 export const StageListPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('stage')
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -60,7 +62,7 @@ export const StageListPage = () => {
     ).map(({ id }) => ({
         key: id,
         icon: ACTIONS[id].icon,
-        label: ACTIONS[id].label,
+        label: t(ACTIONS[id].label),
         onClick: actionHandlers[id],
     }))
 
@@ -74,7 +76,7 @@ export const StageListPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <Hero headline="Этапы" />
+                    <Hero headline={t('titles.list')} />
 
                     <StageFilter
                         onFilterChange={handleFilterChange}
@@ -85,7 +87,7 @@ export const StageListPage = () => {
                         isLoading={isLoading}
                         error={error}
                         data={filteredStages}
-                        emptyMessage="Этапы не найдены"
+                        emptyMessage={t('emptyMessageList')}
                     >
                         <>
                             <StageMobileView stages={filteredStages} />

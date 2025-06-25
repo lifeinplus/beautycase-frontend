@@ -11,7 +11,10 @@ describe('Stages', () => {
     it('renders the component with heading', () => {
         render(<Stages stages={mockStages} />)
 
-        const heading = screen.getByRole('heading', { name: 'Этапы', level: 2 })
+        const heading = screen.getByRole('heading', {
+            name: 'titles.list',
+            level: 2,
+        })
         expect(heading).toBeInTheDocument()
     })
 
@@ -67,7 +70,10 @@ describe('Stages', () => {
     it('does not render anything when stages are undefined', () => {
         render(<Stages stages={undefined} />)
 
-        const heading = screen.getByRole('heading', { name: 'Этапы', level: 2 })
+        const heading = screen.getByRole('heading', {
+            name: 'titles.list',
+            level: 2,
+        })
         expect(heading).toBeInTheDocument()
 
         const image = screen.queryByTestId('mocked-image')

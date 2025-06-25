@@ -12,10 +12,10 @@ describe('StageTable', () => {
     it('renders the table headers correctly', () => {
         render(<StageTable stages={mockStages} />)
 
-        expect(screen.getByText('Дата')).toBeInTheDocument()
-        expect(screen.getByText('Время')).toBeInTheDocument()
-        expect(screen.getByText('Заголовок')).toBeInTheDocument()
-        expect(screen.getByText('Подзаголовок')).toBeInTheDocument()
+        expect(screen.getByText('table.date')).toBeInTheDocument()
+        expect(screen.getByText('table.time')).toBeInTheDocument()
+        expect(screen.getByText('table.title')).toBeInTheDocument()
+        expect(screen.getByText('table.subtitle')).toBeInTheDocument()
     })
 
     it('renders the table data correctly', () => {

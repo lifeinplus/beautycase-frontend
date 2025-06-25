@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
 import type { Header } from '../../../types/table'
@@ -8,15 +10,17 @@ export interface StageTableProps {
     stages?: Stage[]
 }
 
-const headers: Header[] = [
-    { label: 'Дата', className: 'text-center' },
-    { label: 'Время', className: 'text-center' },
-    { label: 'Заголовок', className: 'text-left' },
-    { label: 'Подзаголовок', className: 'text-left' },
-]
-
 export const StageTable = ({ stages }: StageTableProps) => {
-    const cellClasses = ['text-center', 'text-center', 'text-left', 'text-left']
+    const { t } = useTranslation('stage')
+
+    const headers: Header[] = [
+        { label: t('table.date'), className: 'text-center' },
+        { label: t('table.time'), className: 'text-center' },
+        { label: t('table.title'), className: 'text-left' },
+        { label: t('table.subtitle'), className: 'text-left' },
+    ]
+
+    const cellClasses = headers.map((h) => h.className)
 
     return (
         <Table

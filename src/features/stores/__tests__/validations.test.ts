@@ -17,14 +17,14 @@ describe('storeSchema validation', () => {
     it('should fail when name is missing', async () => {
         const data = { ...mockStore1, name: undefined }
         await expect(storeSchema.validate(data)).rejects.toThrow(
-            'Укажите название магазина'
+            'fields.name.errors.required'
         )
     })
 
     it('should fail when name is an empty string', async () => {
         const data = { ...mockStore1, name: '' }
         await expect(storeSchema.validate(data)).rejects.toThrow(
-            'Укажите название магазина'
+            'fields.name.errors.required'
         )
     })
 

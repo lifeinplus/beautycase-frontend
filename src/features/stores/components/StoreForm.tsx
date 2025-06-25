@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { Button } from '../../../components/ui/Button'
@@ -21,6 +22,7 @@ import { storeSchema } from '../validations'
 
 export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
+    const { t } = useTranslation('store')
 
     useImperativeHandle(ref, () => ({
         focusInput: () => {
@@ -86,7 +88,7 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
                 <input
                     {...restName}
                     className="form-input flex-grow"
-                    placeholder="Магазин"
+                    placeholder={t('fields.name.label')}
                     ref={(e) => {
                         refName(e)
                         inputRef.current = e

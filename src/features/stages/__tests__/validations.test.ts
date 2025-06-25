@@ -12,35 +12,35 @@ describe('stageSchema validation', () => {
     it('should fail when title is missing', async () => {
         const data = { ...mockStage1, title: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'Укажите заголовок этапа'
+            'fields.title.errors.required'
         )
     })
 
     it('should fail when subtitle is missing', async () => {
         const data = { ...mockStage1, subtitle: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'Укажите подзаголовок этапа'
+            'fields.subtitle.errors.required'
         )
     })
 
     it('should fail when imageUrl is missing', async () => {
         const data = { ...mockStage1, imageUrl: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'Укажите ссылку на изображение'
+            'fields.imageUrl.errors.required'
         )
     })
 
     it('should fail when productIds is missing', async () => {
         const data = { ...mockStage1, productIds: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'Выберите продукты'
+            'fields.products.errors.required'
         )
     })
 
     it('should fail when productIds is empty', async () => {
         const data = { ...mockStage1, productIds: [] }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'Выберите продукты'
+            'fields.products.errors.min'
         )
     })
 })

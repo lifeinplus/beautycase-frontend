@@ -1,5 +1,6 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -15,6 +16,7 @@ import type { Stage } from '../types'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('stage')
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
@@ -42,8 +44,6 @@ export const StageSelectionPage = () => {
             initialIds.map((id: string, index: number) => [id, index + 1])
         )
     })
-
-    const title = 'Выбрать этапы'
 
     const toggleOrderedIds = (id: string) => {
         setOrderedIds((prev) => {
@@ -79,19 +79,21 @@ export const StageSelectionPage = () => {
 
     return (
         <article className="page">
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="content-container">
                     <section className="gallery-header">
-                        <h1 className="gallery-title">{title}</h1>
+                        <h1 className="gallery-title">
+                            {t('titles.selection')}
+                        </h1>
                     </section>
 
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
                         data={filteredStages}
-                        emptyMessage="Этапы не найден"
+                        emptyMessage={t('emptyMessageList')}
                     >
                         <section className="gallery-container-stages">
                             {filteredStages.map(
@@ -143,13 +145,13 @@ export const StageSelectionPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:save')}
                     onClick={handleSave}
                 />
             </AdaptiveNavBar>

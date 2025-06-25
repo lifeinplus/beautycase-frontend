@@ -1,0 +1,36 @@
+{
+    "buttonAdd": {
+        "ariaLabel": "Кнопка добавить ссылку"
+    },
+    "buttonDelete": {
+        "ariaLabel": "Кнопка удалить ссылку"
+    },
+    "buttonEdit": {
+        "ariaLabel": "Кнопка изменить ссылку"
+    },
+    "emptyMessageList": "Магазины не найдены",
+    "fields": {
+        "name": {
+            "label": "Магазин",
+            "errors": {
+                "required": "Укажите название магазина"
+            }
+        },
+        "link": {
+            "label": "Ссылка",
+            "ariaLabel": "Поле для указания ссылки"
+        },
+        "stores": {
+            "label": "Выбрать"
+        }
+    },
+    "table": {
+        "store": "Магазин",
+        "actions": "Действия"
+    },
+    "titles": {
+        "add": "Добавить ссылки",
+        "list": "Магазины"
+    },
+    "toastDelete": "Магазин удалён"
+}

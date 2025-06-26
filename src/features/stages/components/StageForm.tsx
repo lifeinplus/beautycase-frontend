@@ -1,7 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -23,6 +24,7 @@ export interface StageFormProps {
 
 export const StageForm = ({ onSubmit, title }: StageFormProps) => {
     const navigate = useNavigate()
+    const { t } = useTranslation('stage')
 
     const {
         clearErrors,
@@ -46,8 +48,8 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
     const productIds = watch('productIds')
 
     const productsText = productIds
-        ? `Выбрано: ${productIds.length}`
-        : 'Выбрать'
+        ? `${t('fields.products.selected')}: ${productIds.length}`
+        : t('fields.products.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -70,16 +72,16 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <InputSection
-                            error={errors.title}
-                            label="Заголовок"
+                            error={t(errors.title?.message || '')}
+                            label={t('fields.title.label')}
                             register={register('title')}
                             required={true}
                             type="text"
                         />
 
                         <TextareaSection
-                            error={errors.subtitle}
-                            label="Подзаголовок"
+                            error={t(errors.subtitle?.message || '')}
+                            label={t('fields.subtitle.label')}
                             register={register('subtitle')}
                             required={true}
                             value={watch('subtitle')}
@@ -88,8 +90,8 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         <ImageUrlSection
                             clearErrors={clearErrors}
                             folder="stages"
-                            error={errors.imageUrl}
-                            label="Ссылка на изображение"
+                            error={t(errors.imageUrl?.message || '')}
+                            label={t('fields.imageUrl.label')}
                             name="imageUrl"
                             register={register('imageUrl')}
                             required={true}
@@ -98,21 +100,21 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         />
 
                         <TextareaSection
-                            label={'Комментарий'}
+                            label={t('fields.comment.label')}
                             register={register('comment')}
                             value={watch('comment')}
                         />
 
                         <TextareaSection
-                            label="Шаги"
+                            label={t('fields.stepsText.label')}
                             register={register('stepsText')}
                             rows={10}
                             value={watch('stepsText')}
                         />
 
                         <ButtonNavigateSection
-                            error={errors.productIds as FieldError}
-                            label="Продукты"
+                            error={t(errors.productIds?.message || '')}
+                            label={t('fields.products.label')}
                             onNavigate={handleNavigate}
                             required={true}
                             text={productsText}
@@ -124,13 +126,13 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

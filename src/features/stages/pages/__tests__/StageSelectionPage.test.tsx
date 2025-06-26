@@ -43,18 +43,16 @@ describe('StageSelectionPage', () => {
     })
 
     it('renders the page with title', () => {
-        const mockTitle = 'Выбрать этапы'
-
         render(<StageSelectionPage />)
 
         const title1 = screen.getByRole('heading', {
             level: 1,
-            name: mockTitle,
+            name: 'titles.selection',
         })
 
         const title2 = screen.getByRole('heading', {
             level: 2,
-            name: mockTitle,
+            name: 'titles.selection',
         })
 
         expect(title1).toBeInTheDocument()
@@ -107,7 +105,9 @@ describe('StageSelectionPage', () => {
 
         render(<StageSelectionPage />)
 
-        const button = screen.getByTestId('mocked-nav-button-Сохранить')
+        const button = screen.getByTestId(
+            'mocked-nav-button-navigation:actions.save'
+        )
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(

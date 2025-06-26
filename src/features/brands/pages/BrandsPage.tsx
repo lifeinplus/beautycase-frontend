@@ -1,6 +1,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -22,6 +23,7 @@ import type { Brand } from '../types'
 export const BrandsPage = () => {
     const navigate = useNavigate()
     const brandFormRef = useRef<FormRef | null>(null)
+    const { t } = useTranslation(['brand', 'modal'])
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [brand, setBrand] = useState<Brand>()
@@ -44,7 +46,7 @@ export const BrandsPage = () => {
 
         try {
             await deleteBrandById(brand._id).unwrap()
-            toast.success('Бренд удалён')
+            toast.success(t('toast.delete'))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)
@@ -61,12 +63,12 @@ export const BrandsPage = () => {
 
     return (
         <article>
-            <TopPanel title="Бренды" onBack={handleBack} />
+            <TopPanel title={t('hero.headline')} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="content-container">
                     <div className="hidden sm:block">
-                        <Hero headline="Бренды" />
+                        <Hero headline={t('hero.headline')} />
                     </div>
 
                     <BrandForm ref={brandFormRef} />
@@ -75,7 +77,7 @@ export const BrandsPage = () => {
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Бренды не найдены"
+                        emptyMessage={t('emptyMessageList')}
                     >
                         {data && (
                             <>
@@ -98,7 +100,7 @@ export const BrandsPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
@@ -106,8 +108,10 @@ export const BrandsPage = () => {
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title="Удалить?"
-                description={`Вы действительно хотите удалить ${brand?.name}?`}
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', {
+                    name: brand?.name,
+                })}
                 onConfirm={handleDeleteConfirm}
                 onCancel={() => setIsModalDeleteOpen(false)}
             />

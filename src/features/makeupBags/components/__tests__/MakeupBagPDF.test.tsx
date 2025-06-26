@@ -2,6 +2,7 @@ import { render } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { describe, it, expect, vi } from 'vitest'
 
+import { mockT } from '../../../../tests/mocks/translation'
 import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi'
 import { mockStage1, mockStage2 } from '../../../stages/__mocks__/stagesApi'
 import { mockTool1, mockTool2 } from '../../../tools/__mocks__/toolsApi'
@@ -82,11 +83,12 @@ describe('MakeupBagPDF', () => {
     describe('Component Rendering', () => {
         it('should render PDF document with basic structure', () => {
             const { getByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             expect(getByTestId('mocked-pdf-document')).toBeInTheDocument()
             expect(getByTestId('mocked-pdf-page')).toBeInTheDocument()
+
             expect(getByTestId('mocked-pdf-page')).toHaveAttribute(
                 'data-size',
                 'A4'
@@ -95,43 +97,37 @@ describe('MakeupBagPDF', () => {
 
         it('should render header with category name and subtitle', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
-            const headerTitle = textElements.find(
-                (el) => el.textContent === mockCategory1.name
-            )
+            expect(
+                textElements.find((el) => el.textContent === mockCategory1.name)
+            ).toBeInTheDocument()
 
-            const headerSubtitle = textElements.find(
-                (el) => el.textContent === 'Индивидуальный подбор продуктов'
-            )
-
-            expect(headerTitle).toBeInTheDocument()
-            expect(headerSubtitle).toBeInTheDocument()
+            expect(
+                textElements.find((el) => el.textContent === 'pdf.subtitle')
+            ).toBeInTheDocument()
         })
 
         it('should render page numbers', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
-            const pageNumber = textElements.find(
-                (el) => el.textContent === '1 / 1'
-            )
-
-            expect(pageNumber).toBeInTheDocument()
-            expect(pageNumber).toHaveAttribute('data-fixed', 'true')
+            expect(
+                textElements.find((el) => el.textContent === '1 / 1')
+            ).toHaveAttribute('data-fixed', 'true')
         })
     })
 
     describe('Stages Rendering', () => {
         it('should render all stages with titles', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
@@ -147,7 +143,7 @@ describe('MakeupBagPDF', () => {
 
         it('should render stage images', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const images = getAllByTestId('mocked-pdf-image')
@@ -167,19 +163,19 @@ describe('MakeupBagPDF', () => {
     describe('Tools Rendering', () => {
         it('should render tools section title', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'Инструменты')
+                textElements.some((el) => el.textContent === 'pdf.tools')
             ).toBe(true)
         })
 
         it('should render all tools with names', () => {
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={mockMakeupBagPDFData} />
+                <MakeupBagPDF data={mockMakeupBagPDFData} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
@@ -197,6 +193,7 @@ describe('MakeupBagPDF', () => {
             const { getAllByTestId } = render(
                 <MakeupBagPDF
                     data={{ ...mockMakeupBagPDFData, tools: [mockTool1] }}
+                    t={mockT}
                 />
             )
 
@@ -220,13 +217,15 @@ describe('MakeupBagPDF', () => {
             }
 
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={dataWithoutCategory} />
+                <MakeupBagPDF data={dataWithoutCategory} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'Косметичка')
+                textElements.some(
+                    (el) => el.textContent === 'pdf.fallbackCategory'
+                )
             ).toBe(true)
         })
 
@@ -237,7 +236,7 @@ describe('MakeupBagPDF', () => {
             }
 
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={dataWithoutStages} />
+                <MakeupBagPDF data={dataWithoutStages} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
@@ -258,13 +257,13 @@ describe('MakeupBagPDF', () => {
             }
 
             const { getAllByTestId } = render(
-                <MakeupBagPDF data={dataWithoutTools} />
+                <MakeupBagPDF data={dataWithoutTools} t={mockT} />
             )
 
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'Инструменты')
+                textElements.some((el) => el.textContent === 'pdf.tools')
             ).toBe(false)
         })
     })

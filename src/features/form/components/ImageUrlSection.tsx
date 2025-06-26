@@ -1,16 +1,16 @@
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent, ClipboardEvent, useEffect, useRef, useState } from 'react'
-import {
-    type FieldError,
-    type FieldValues,
-    type Path,
-    type PathValue,
-    type UseFormClearErrors,
-    type UseFormRegisterReturn,
-    type UseFormSetValue,
+import type {
+    FieldValues,
+    Path,
+    PathValue,
+    UseFormClearErrors,
+    UseFormRegisterReturn,
+    UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 import { getErrorMessage } from '../../../utils/errorUtils'
 import {
@@ -28,7 +28,7 @@ export interface ImageUrlSectionProps<T extends FieldValues> {
     register: UseFormRegisterReturn
     setValue: UseFormSetValue<T>
     description?: string
-    error?: FieldError
+    error?: string
     required?: boolean
     value?: string
 }
@@ -46,6 +46,7 @@ export const ImageUrlSection = <T extends FieldValues>({
     value = '',
 }: ImageUrlSectionProps<T>) => {
     const uploadRef = useRef<HTMLInputElement>(null)
+    const { t } = useTranslation('form')
 
     const [imageUrl, setImageUrl] = useState<string>()
     const [isUploading, setIsUploading] = useState(false)
@@ -178,7 +179,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     )}
                     disabled={isUploading}
                     onPaste={handlePaste}
-                    placeholder={isUploading ? 'Загрузка...' : label}
+                    placeholder={isUploading ? t('uploading') : label}
                 />
 
                 {isUploading && (
@@ -191,7 +192,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     <p className="form-description">{description}</p>
                 )}
 
-                {error && <p className="form-error">{error.message}</p>}
+                {error && <p className="form-error">{error}</p>}
 
                 {imageUrl && <ImagePreview url={imageUrl} />}
             </div>

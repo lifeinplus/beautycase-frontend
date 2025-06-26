@@ -1,0 +1,56 @@
+{
+    "add": {
+        "title": "Add lesson"
+    },
+    "details": {
+        "title": "Lesson"
+    },
+    "edit": {
+        "title": "Edit lesson"
+    },
+    "gallery": {
+        "title": "Lessons"
+    },
+    "fields": {
+        "title": {
+            "label": "Title",
+            "errors": {
+                "required": "Please enter the lesson title"
+            }
+        },
+        "shortDescription": {
+            "label": "Short description",
+            "errors": {
+                "required": "Please enter a short description",
+                "min": "At least 10 characters"
+            }
+        },
+        "videoUrl": {
+            "label": "Video URL",
+            "errors": {
+                "required": "Please enter the video URL"
+            }
+        },
+        "fullDescription": {
+            "label": "Full description",
+            "errors": {
+                "required": "Please enter the full description",
+                "min": "At least 20 characters"
+            }
+        },
+        "products": {
+            "label": "Products",
+            "select": "Select",
+            "selected": "Selected",
+            "errors": {
+                "required": "Please select products",
+                "min": "At least 1 product"
+            }
+        },
+        "clients": {
+            "label": "Clients",
+            "select": "Select",
+            "selected": "Selected"
+        }
+    }
+}

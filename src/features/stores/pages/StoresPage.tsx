@@ -1,6 +1,7 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -22,6 +23,7 @@ import type { Store } from '../types'
 export const StoresPage = () => {
     const navigate = useNavigate()
     const storeFormRef = useRef<FormRef | null>(null)
+    const { t } = useTranslation('store')
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [store, setStore] = useState<Store>()
@@ -44,7 +46,7 @@ export const StoresPage = () => {
 
         try {
             await deleteStoreById(store._id).unwrap()
-            toast.success('Магазин удалён')
+            toast.success(t('toast.delete'))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)
@@ -61,12 +63,12 @@ export const StoresPage = () => {
 
     return (
         <article>
-            <TopPanel title="Магазины" onBack={handleBack} />
+            <TopPanel title={t('titles.list')} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="content-container">
                     <div className="hidden sm:block">
-                        <Hero headline="Магазины" />
+                        <Hero headline={t('titles.list')} />
                     </div>
 
                     <StoreForm ref={storeFormRef} />
@@ -75,7 +77,7 @@ export const StoresPage = () => {
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Магазины не найдены"
+                        emptyMessage={t('emptyMessageList')}
                     >
                         {data && (
                             <>
@@ -98,7 +100,7 @@ export const StoresPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
@@ -106,8 +108,10 @@ export const StoresPage = () => {
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title="Удалить?"
-                description={`Вы действительно хотите удалить ${store?.name}?`}
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', {
+                    name: store?.name,
+                })}
                 onConfirm={handleDeleteConfirm}
                 onCancel={() => setIsModalDeleteOpen(false)}
             />

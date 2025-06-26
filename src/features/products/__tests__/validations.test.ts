@@ -23,70 +23,70 @@ describe('productSchema validation', () => {
     it('should reject when brandId is missing', async () => {
         const data = { ...mockProduct1, brandId: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Выберите бренд'
+            'fields.brand.errors.required'
         )
     })
 
     it('should reject when brandId is empty', async () => {
         const data = { ...mockProduct1, brandId: '' }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Выберите бренд'
+            'fields.brand.errors.required'
         )
     })
 
     it('should reject when name is missing', async () => {
         const data = { ...mockProduct1, name: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Укажите название продукта'
+            'fields.name.errors.required'
         )
     })
 
     it('should reject when name is empty', async () => {
         const data = { ...mockProduct1, name: '' }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Укажите название продукта'
+            'fields.name.errors.required'
         )
     })
 
     it('should reject when imageUrl is missing', async () => {
         const data = { ...mockProduct1, imageUrl: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Укажите ссылку на изображение'
+            'fields.imageUrl.errors.required'
         )
     })
 
     it('should reject when imageUrl is not a valid URL', async () => {
         const data = { ...mockProduct1, imageUrl: 'not-a-url' }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Введите корректный URL'
+            'fields.imageUrl.errors.url'
         )
     })
 
     it('should reject when comment is missing', async () => {
         const data = { ...mockProduct1, comment: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Укажите комментарий'
+            'fields.comment.errors.required'
         )
     })
 
     it('should reject when comment is empty', async () => {
         const data = { ...mockProduct1, comment: '' }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Укажите комментарий'
+            'fields.comment.errors.required'
         )
     })
 
     it('should reject when storeLinks is missing', async () => {
         const data = { ...mockProduct1, storeLinks: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Добавьте ссылки на продукт'
+            'fields.storeLinks.errors.required'
         )
     })
 
     it('should reject when storeLinks is an empty array', async () => {
         const data = { mockProduct: mockProduct1, storeLinks: [] }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'Добавьте ссылки на продукт'
+            'fields.storeLinks.errors.min'
         )
     })
 
@@ -98,16 +98,20 @@ describe('productSchema validation', () => {
             expect(true).toBe(false) // If validation doesn't throw, fail the test
         } catch (error) {
             const validationError = error as ValidationError
-            expect(validationError.errors).toContain('Выберите бренд')
             expect(validationError.errors).toContain(
-                'Укажите название продукта'
+                'fields.brand.errors.required'
             )
             expect(validationError.errors).toContain(
-                'Укажите ссылку на изображение'
+                'fields.name.errors.required'
             )
-            expect(validationError.errors).toContain('Укажите комментарий')
             expect(validationError.errors).toContain(
-                'Добавьте ссылки на продукт'
+                'fields.imageUrl.errors.required'
+            )
+            expect(validationError.errors).toContain(
+                'fields.comment.errors.required'
+            )
+            expect(validationError.errors).toContain(
+                'fields.storeLinks.errors.required'
             )
         }
     })

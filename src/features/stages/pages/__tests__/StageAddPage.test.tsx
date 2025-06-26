@@ -33,11 +33,8 @@ describe('StageAddPage', () => {
     it('renders the StageForm with correct title', () => {
         render(<StageAddPage />)
 
-        const form = screen.getByTestId('mocked-stage-form')
-        const title = screen.getByText('Добавить этап')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stage-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
     it('calls addStage and navigates on successful submission', async () => {

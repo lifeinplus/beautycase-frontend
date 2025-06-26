@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { DetailsPage } from '../../../components/pages/DetailsPage'
@@ -13,6 +14,7 @@ export const StageDetailsPage = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
+    const { t } = useTranslation('stage')
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
     const [deleteStageById] = useDeleteStageByIdMutation()
@@ -28,7 +30,7 @@ export const StageDetailsPage = () => {
         <DetailsPage
             isLoading={isLoading}
             error={error}
-            topPanelTitle="Этап"
+            topPanelTitle={t('titles.details')}
             redirectPath="/stages"
             title={data?.title}
             subtitle={data?.subtitle}
@@ -52,7 +54,9 @@ export const StageDetailsPage = () => {
                     )}
                     {data?.steps?.length ? (
                         <section className="content-description">
-                            <p className="my-2 font-bold sm:text-left">Шаги</p>
+                            <p className="my-2 font-bold sm:text-left">
+                                {t('steps')}
+                            </p>
                             <ul className="ms-5 list-outside list-decimal">
                                 {data.steps.map(
                                     (step: string, index: number) => (

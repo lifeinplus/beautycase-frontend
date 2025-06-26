@@ -32,7 +32,7 @@ describe('ToolAddPage', () => {
         render(<ToolAddPage />)
 
         const form = screen.getByTestId('mocked-tool-form')
-        const title = screen.getByText('Добавить инструмент')
+        const title = screen.getByText('titles.add')
 
         expect(form).toBeInTheDocument()
         expect(title).toBeInTheDocument()

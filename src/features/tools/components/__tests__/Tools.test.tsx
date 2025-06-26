@@ -11,7 +11,7 @@ describe('Tools', () => {
         render(<Tools tools={mockTools} />)
 
         const heading = screen.getByRole('heading', {
-            name: 'Инструменты',
+            name: 'titles.list',
             level: 2,
         })
 

@@ -1,0 +1,27 @@
+{
+    "hero": {
+        "headline": "Brands"
+    },
+    "buttonDelete": {
+        "ariaLabel": "Delete brand button"
+    },
+    "buttonEdit": {
+        "ariaLabel": "Edit brand button"
+    },
+    "emptyMessageList": "No brands found",
+    "fields": {
+        "name": {
+            "label": "Brand",
+            "errors": {
+                "required": "Please enter the brand name"
+            }
+        }
+    },
+    "table": {
+        "brandName": "Brand",
+        "actions": "Actions"
+    },
+    "toast": {
+        "delete": "Brand deleted"
+    }
+}

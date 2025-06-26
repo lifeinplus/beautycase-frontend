@@ -39,24 +39,24 @@ describe('QuestionnairePage', () => {
         render(<QuestionnairePage />)
 
         const placeholders = [
-            'Имя',
-            'Instagram',
-            'Город',
-            'Возраст',
-            'Содержимое косметички',
-            'Процедуры',
-            'Тип кожи',
-            'Аллергии',
-            'Шелушения',
-            'Поры',
-            'Жирный блеск',
-            'Текущие навыки',
-            'Желаемые навыки',
-            'Время на макияж',
-            'Бюджет',
-            'Подбор кистей',
-            'Проблемы при макияже',
-            'Источник',
+            'fields.name.label',
+            'fields.instagram.label',
+            'fields.city.label',
+            'fields.age.label',
+            'fields.makeupBag.label',
+            'fields.procedures.label',
+            'fields.skinType.label',
+            'fields.allergies.label',
+            'fields.peeling.label',
+            'fields.pores.label',
+            'fields.oilyShine.label',
+            'fields.currentSkills.label',
+            'fields.desiredSkills.label',
+            'fields.makeupTime.label',
+            'fields.budget.label',
+            'fields.brushes.label',
+            'fields.problems.label',
+            'fields.referral.label',
         ]
 
         placeholders.forEach((placeholder) => {
@@ -71,7 +71,7 @@ describe('QuestionnairePage', () => {
 
         const name = screen.getByPlaceholderText(questions.name.label)
         const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
-        const button = screen.getByText('Отправить')
+        const button = screen.getByText('submit')
 
         await user.type(name, mockQuestionnaire1.name)
         await user.type(makeupBag, mockQuestionnaire1.makeupBag)
@@ -98,7 +98,7 @@ describe('QuestionnairePage', () => {
 
         const name = screen.getByPlaceholderText(questions.name.label)
         const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
-        const button = screen.getByText('Отправить')
+        const button = screen.getByText('submit')
 
         await user.type(name, mockQuestionnaire1.name)
         await user.type(makeupBag, mockQuestionnaire1.makeupBag)

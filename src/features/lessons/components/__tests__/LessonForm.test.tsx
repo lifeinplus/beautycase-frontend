@@ -28,19 +28,19 @@ describe('LessonForm', () => {
     it('renders all required form fields', () => {
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        const title = screen.getByPlaceholderText('Заголовок')
-        const shortDescription = screen.getByPlaceholderText('Краткое описание')
-        const videoUrl = screen.getByPlaceholderText('Ссылка на видео')
-        const fullDescription = screen.getByPlaceholderText('Полное описание')
-        const products = screen.getByText('Продукты')
+        const placeholders = [
+            'fields.title.label',
+            'fields.shortDescription.label',
+            'fields.videoUrl.label',
+            'fields.fullDescription.label',
+        ]
 
-        expect(topPanel).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
-        expect(shortDescription).toBeInTheDocument()
-        expect(videoUrl).toBeInTheDocument()
-        expect(fullDescription).toBeInTheDocument()
-        expect(products).toBeInTheDocument()
+        placeholders.forEach((p) =>
+            expect(screen.getByPlaceholderText(p)).toBeInTheDocument()
+        )
+
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByText('fields.products.label')).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -71,6 +71,6 @@ describe('LessonForm', () => {
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
         const button = screen.getByTestId('mocked-button-navigate-section')
-        expect(button).toHaveTextContent('Выбрано: 3')
+        expect(button).toHaveTextContent('fields.products.selected: 3')
     })
 })

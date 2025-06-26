@@ -2,7 +2,8 @@ import { render, screen, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 
-import { ModalDuplicate, type ModalDuplicateProps } from '../ModalDuplicate'
+import { ModalDuplicate } from '../ModalDuplicate'
+import type { ModalDuplicateProps } from '../ModalDuplicate'
 
 describe('ModalDuplicate', () => {
     const mockProps: ModalDuplicateProps = {
@@ -31,17 +32,15 @@ describe('ModalDuplicate', () => {
 
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
         expect(screen.getByText(mockProps.description)).toBeInTheDocument()
-        expect(screen.getByText('Дублировать')).toBeInTheDocument()
-        expect(screen.getByText('Отмена')).toBeInTheDocument()
+        expect(screen.getByText('buttons.duplicate.text')).toBeInTheDocument()
+        expect(screen.getByText('buttons.cancel.text')).toBeInTheDocument()
     })
 
     it('calls onConfirm when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<ModalDuplicate {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: /duplicate/i })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /duplicate/i }))
 
         expect(mockProps.onConfirm).toHaveBeenCalledTimes(1)
     })
@@ -50,9 +49,7 @@ describe('ModalDuplicate', () => {
         const user = userEvent.setup()
 
         render(<ModalDuplicate {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: /cancel/i })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /cancel/i }))
 
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
@@ -61,9 +58,7 @@ describe('ModalDuplicate', () => {
         const user = userEvent.setup()
 
         render(<ModalDuplicate {...mockProps} />)
-
-        const modal = document.querySelector('.modal')!
-        await user.click(modal)
+        await user.click(document.querySelector('.modal')!)
 
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
@@ -72,9 +67,7 @@ describe('ModalDuplicate', () => {
         const user = userEvent.setup()
 
         render(<ModalDuplicate {...mockProps} />)
-
-        const container = document.querySelector('.modal-container')!
-        await user.click(container)
+        await user.click(document.querySelector('.modal-container')!)
 
         expect(mockProps.onCancel).not.toHaveBeenCalled()
     })

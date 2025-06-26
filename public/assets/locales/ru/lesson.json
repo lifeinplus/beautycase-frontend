@@ -1,0 +1,56 @@
+{
+    "add": {
+        "title": "Добавить урок"
+    },
+    "details": {
+        "title": "Урок"
+    },
+    "edit": {
+        "title": "Редактировать урок"
+    },
+    "gallery": {
+        "title": "Уроки"
+    },
+    "fields": {
+        "title": {
+            "label": "Заголовок",
+            "errors": {
+                "required": "Укажите заголовок урока"
+            }
+        },
+        "shortDescription": {
+            "label": "Краткое описание",
+            "errors": {
+                "required": "Укажите краткое описание",
+                "min": "Минимум 10 символов"
+            }
+        },
+        "videoUrl": {
+            "label": "Ссылка на видео",
+            "errors": {
+                "required": "Укажите ссылку на видео"
+            }
+        },
+        "fullDescription": {
+            "label": "Полное описание",
+            "errors": {
+                "required": "Укажите полное описание",
+                "min": "Минимум 20 символов"
+            }
+        },
+        "products": {
+            "label": "Продукты",
+            "select": "Выбрать",
+            "selected": "Выбрано",
+            "errors": {
+                "required": "Выберите продукты",
+                "min": "Минимум 1 продукт"
+            }
+        },
+        "clients": {
+            "label": "Клиенты",
+            "select": "Выбрать",
+            "selected": "Выбрано"
+        }
+    }
+}

@@ -1,14 +1,14 @@
 import { array, object, string } from 'yup'
 
 export const productSchema = object({
-    brandId: string().required('Выберите бренд'),
-    name: string().required('Укажите название продукта'),
+    brandId: string().required('fields.brand.errors.required'),
+    name: string().required('fields.name.errors.required'),
     imageUrl: string()
-        .url('Введите корректный URL')
-        .required('Укажите ссылку на изображение'),
+        .url('fields.imageUrl.errors.url')
+        .required('fields.imageUrl.errors.required'),
     shade: string().optional(),
-    comment: string().required('Укажите комментарий'),
+    comment: string().required('fields.comment.errors.required'),
     storeLinks: array()
-        .min(1, 'Добавьте ссылки на продукт')
-        .required('Добавьте ссылки на продукт'),
+        .min(1, 'fields.storeLinks.errors.min')
+        .required('fields.storeLinks.errors.required'),
 })

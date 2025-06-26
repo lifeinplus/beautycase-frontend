@@ -1,7 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -9,7 +10,6 @@ import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { TopPanel } from '../../../components/TopPanel'
 import { useGetAllBrandsQuery } from '../../brands/brandsApi'
-
 import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
 import { ImageUrlSection } from '../../form/components/ImageUrlSection'
 import { InputSection } from '../../form/components/InputSection'
@@ -27,6 +27,7 @@ export interface ToolFormProps {
 
 export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
     const navigate = useNavigate()
+    const { t } = useTranslation('tool')
 
     const {
         clearErrors,
@@ -57,8 +58,8 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
     const storeLinks = watch('storeLinks')
 
     const linksText = storeLinks
-        ? `Добавлено: ${storeLinks.length}`
-        : 'Добавить'
+        ? `${t('fields.storeLinks.selected')}: ${storeLinks.length}`
+        : t('fields.storeLinks.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -81,8 +82,8 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <SelectSection
-                            error={errors.brandId}
-                            label={'Бренд'}
+                            error={t(errors.brandId?.message || '')}
+                            label={t('fields.brand.label')}
                             options={brandOptions}
                             register={register('brandId')}
                             required={true}
@@ -90,8 +91,8 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.name}
-                            label={'Название'}
+                            error={t(errors.name?.message || '')}
+                            label={t('fields.name.label')}
                             register={register('name')}
                             required={true}
                             value={watch('name')}
@@ -100,8 +101,8 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         <ImageUrlSection
                             clearErrors={clearErrors}
                             folder="tools"
-                            error={errors.imageUrl}
-                            label="Ссылка на изображение"
+                            error={t(errors.imageUrl?.message || '')}
+                            label={t('fields.imageUrl.label')}
                             name="imageUrl"
                             register={register('imageUrl')}
                             required={true}
@@ -110,23 +111,22 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                         />
 
                         <InputSection
-                            error={errors.number}
-                            label={'Номер'}
+                            label={t('fields.number.label')}
                             register={register('number')}
                             type={'text'}
                         />
 
                         <TextareaSection
-                            error={errors.comment}
-                            label={'Комментарий'}
+                            error={t(errors.comment?.message || '')}
+                            label={t('fields.comment.label')}
                             register={register('comment')}
                             required={true}
                             value={watch('comment')}
                         />
 
                         <ButtonNavigateSection
-                            error={errors.storeLinks as FieldError}
-                            label={'Ссылки на инструмент'}
+                            error={t(errors.storeLinks?.message || '')}
+                            label={t('fields.storeLinks.label')}
                             onNavigate={handleNavigate}
                             required={true}
                             text={linksText}
@@ -138,13 +138,13 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

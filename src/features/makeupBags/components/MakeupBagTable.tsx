@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
 import type { Header } from '../../../types/table'
@@ -8,14 +9,16 @@ export interface MakeupBagTableProps {
     makeupBags?: MakeupBag[]
 }
 
-const headers: Header[] = [
-    { label: 'Дата', className: 'text-center' },
-    { label: 'Время', className: 'text-center' },
-    { label: 'Категория', className: 'text-left' },
-    { label: 'Клиент', className: 'text-left' },
-]
-
 export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
+    const { t } = useTranslation('makeupBag')
+
+    const headers: Header[] = [
+        { label: t('table.date'), className: 'text-center' },
+        { label: t('table.time'), className: 'text-center' },
+        { label: t('table.category'), className: 'text-left' },
+        { label: t('table.clientName'), className: 'text-left' },
+    ]
+
     const cellClasses = headers.map((h) => h.className)
 
     return (

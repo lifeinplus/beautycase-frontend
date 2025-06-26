@@ -66,23 +66,26 @@ describe('AccountPage', () => {
     it('renders user data correctly', () => {
         renderWithProviderAndRouter(<AccountPage />)
 
-        expect(screen.getByText('Имя пользователя')).toBeInTheDocument()
+        expect(screen.getByText('fields.username.label')).toBeInTheDocument()
         expect(
             screen.getByText(mockUserResult.user.username)
         ).toBeInTheDocument()
 
-        expect(screen.getByText('Роль')).toBeInTheDocument()
+        expect(screen.getByText('fields.role.label')).toBeInTheDocument()
         expect(screen.getByText(mockUserResult.user.role)).toBeInTheDocument()
     })
 
     it('renders makeup bags section with a link', () => {
         renderWithProviderAndRouter(<AccountPage />)
 
-        expect(screen.getByText('Косметички')).toBeInTheDocument()
+        expect(screen.getByText('fields.beautyBags.label')).toBeInTheDocument()
         expect(screen.getByText('Daily Makeup')).toBeInTheDocument()
         expect(screen.getByText('Evening Makeup')).toBeInTheDocument()
 
-        const links = screen.getAllByRole('link', { name: 'Открыть' })
+        const links = screen.getAllByRole('link', {
+            name: 'fields.beautyBags.link',
+        })
+
         expect(links).toHaveLength(2)
         expect(links[0]).toHaveAttribute('href', '/makeup_bags/makeupBag1')
         expect(links[1]).toHaveAttribute('href', '/makeup_bags/makeupBag2')
@@ -98,7 +101,7 @@ describe('AccountPage', () => {
         renderWithProviders(<AccountPage />)
 
         expect(
-            screen.getByText('У вас нет доступных косметичек')
+            screen.getByText('fields.beautyBags.emptyMessage')
         ).toBeInTheDocument()
     })
 
@@ -106,7 +109,7 @@ describe('AccountPage', () => {
         renderWithProviderAndRouter(<AccountPage />)
 
         expect(
-            screen.getByText('У вас нет доступных уроков')
+            screen.getByText('fields.lessons.emptyMessage')
         ).toBeInTheDocument()
     })
 

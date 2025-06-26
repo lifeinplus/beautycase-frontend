@@ -1,4 +1,5 @@
 import { MouseEvent, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface ModalDeleteProps {
     description: string
@@ -16,6 +17,7 @@ export const ModalDelete = ({
     title,
 }: ModalDeleteProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation('modal')
 
     useEffect(() => {
         if (isOpen) {
@@ -42,18 +44,18 @@ export const ModalDelete = ({
                 </div>
                 <div className="modal-btn-group">
                     <button
-                        aria-label="Modal delete button"
+                        aria-label={t('buttons.delete.ariaLabel')}
                         onClick={onConfirm}
                         className="modal-btn modal-btn-danger"
                     >
-                        Удалить
+                        {t('buttons.delete.text')}
                     </button>
                     <button
-                        aria-label="Modal cancel button"
+                        aria-label={t('buttons.cancel.ariaLabel')}
                         onClick={onCancel}
                         className="modal-btn modal-btn-bottom"
                     >
-                        Отмена
+                        {t('buttons.cancel.text')}
                     </button>
                 </div>
             </div>

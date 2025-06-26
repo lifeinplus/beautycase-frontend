@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -15,6 +16,7 @@ import type { MakeupBag } from '../types'
 export const MakeupBagEditPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
+    const { t } = useTranslation('makeupBag')
 
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
@@ -48,7 +50,7 @@ export const MakeupBagEditPage = () => {
 
     return (
         <MakeupBagForm
-            title={'Редактировать косметичку'}
+            title={t('titles.edit')}
             onSubmit={handleEditMakeupBag}
         />
     )

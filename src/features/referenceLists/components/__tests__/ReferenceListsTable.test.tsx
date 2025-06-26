@@ -9,18 +9,18 @@ vi.mock('../../../../components/table/TableRow')
 
 describe('ReferenceListsTable', () => {
     const data: ReferenceList[] = [
-        { id: 'brands', name: 'Бренды' },
-        { id: 'stores', name: 'Магазины' },
+        { id: 'brands', name: 'Brands' },
+        { id: 'stores', name: 'Stores' },
     ]
 
     it('renders the table headers correctly', () => {
         render(<ReferenceListsTable data={data} />)
-        expect(screen.getByText('Справочник')).toBeInTheDocument()
+        expect(screen.getByText('table.referenceList')).toBeInTheDocument()
     })
 
     it('renders the table data correctly', () => {
         render(<ReferenceListsTable data={data} />)
-        expect(screen.getByText('Бренды')).toBeInTheDocument()
-        expect(screen.getByText('Магазины')).toBeInTheDocument()
+        expect(screen.getByText('Brands')).toBeInTheDocument()
+        expect(screen.getByText('Stores')).toBeInTheDocument()
     })
 })

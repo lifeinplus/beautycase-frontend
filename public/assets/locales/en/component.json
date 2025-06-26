@@ -1,0 +1,19 @@
+{
+    "emptyMessage": "{{value}} not found",
+    "footer": {
+        "thanks": "Thank you for choosing me!",
+        "questions": "If you have any questions about cosmetics or need a lesson on any other makeup, contact me by phone",
+        "help": "I will be happy to help)",
+        "services": "My services: all types of makeup, styling, hairstyles, training, gift certificates",
+        "country": "Serbia"
+    },
+    "loading": "Loading...",
+    "toast": {
+        "delete": "{{title}} deleted",
+        "duplicate": "{{title}} duplicated"
+    },
+    "language": {
+        "ariaLabel": "Switch language button",
+        "label": "English"
+    }
+}

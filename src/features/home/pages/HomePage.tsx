@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+
 import { useAppSelector } from '../../../app/hooks'
 import { canAccess, menuItems } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
@@ -6,6 +8,7 @@ import { useAuthLogout } from '../../auth/hooks/useAuthLogout'
 import { HomeButton } from '../components/HomeButton'
 
 export const HomePage = () => {
+    const { t } = useTranslation('home')
     const handleLogout = useAuthLogout()
 
     const role = useAppSelector(selectRole)
@@ -15,12 +18,9 @@ export const HomePage = () => {
         <div className="home">
             <div className="home-container">
                 <div className="text-center">
-                    <h1 className="home-title">Добро пожаловать в</h1>
+                    <h1 className="home-title">{t('title')}</h1>
                     <h2 className="home-logo">Beautycase</h2>
-                    <p className="home-motto">
-                        Все ваши инструменты и продукты для макияжа в одном
-                        месте.
-                    </p>
+                    <p className="home-motto">{t('motto')}</p>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-4">
@@ -30,7 +30,7 @@ export const HomePage = () => {
                             <HomeButton
                                 key={index}
                                 to={item.path}
-                                label={item.label}
+                                label={t(`navigation:${item.label}`)}
                             />
                         ))}
                 </div>
@@ -39,23 +39,23 @@ export const HomePage = () => {
                     <p className="home-auth">
                         {username ? (
                             <>
-                                Выполнен вход: {username} (
+                                {t('auth.loggedIn')}: {username} (
                                 <button
                                     className="home-link"
                                     onClick={handleLogout}
                                 >
-                                    Выйти
+                                    {t('auth.logout')}
                                 </button>
                                 )
                             </>
                         ) : (
                             <>
                                 <Link className="home-link" to="/login">
-                                    Войти
+                                    {t('link.login')}
                                 </Link>{' '}
-                                или{' '}
+                                {t('link.or')}{' '}
                                 <Link className="home-link" to="/register">
-                                    зарегистрироваться
+                                    {t('link.register')}
                                 </Link>
                             </>
                         )}

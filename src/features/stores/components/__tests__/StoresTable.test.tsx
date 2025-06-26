@@ -27,8 +27,8 @@ describe('StoresTable', () => {
             />
         )
 
-        expect(screen.getByText('Магазин')).toBeInTheDocument()
-        expect(screen.getByText('Действия')).toBeInTheDocument()
+        expect(screen.getByText('table.store')).toBeInTheDocument()
+        expect(screen.getByText('table.actions')).toBeInTheDocument()
     })
 
     it('renders all store items correctly', () => {

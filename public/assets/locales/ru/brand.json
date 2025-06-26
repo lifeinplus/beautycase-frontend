@@ -1,0 +1,27 @@
+{
+    "hero": {
+        "headline": "Бренды"
+    },
+    "buttonDelete": {
+        "ariaLabel": "Кнопка удалить бренд"
+    },
+    "buttonEdit": {
+        "ariaLabel": "Кнопка изменить бренд"
+    },
+    "emptyMessageList": "Бренды не найдены",
+    "fields": {
+        "name": {
+            "label": "Бренд",
+            "errors": {
+                "required": "Укажите название бренда"
+            }
+        }
+    },
+    "table": {
+        "brandName": "Бренд",
+        "actions": "Действия"
+    },
+    "toast": {
+        "delete": "Бренд удалён"
+    }
+}

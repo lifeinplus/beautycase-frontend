@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -10,6 +11,7 @@ import type { Tool } from '../types'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('tool')
 
     const dispatch = useAppDispatch()
     const [createTool] = useCreateToolMutation()
@@ -25,5 +27,5 @@ export const ToolAddPage = () => {
         }
     }
 
-    return <ToolForm title={'Добавить инструмент'} onSubmit={handleAddTool} />
+    return <ToolForm title={t('titles.add')} onSubmit={handleAddTool} />
 }

@@ -6,6 +6,7 @@ import {
     PlusCircleIcon,
 } from '@heroicons/react/24/outline'
 import { ChangeEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -18,6 +19,7 @@ import type { StoreLink } from '../types'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('store')
 
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
@@ -30,8 +32,6 @@ export const StoreLinkAddPage = () => {
             ? formData.storeLinks
             : [emptyStoreLink]),
     ])
-
-    const title = 'Добавить ссылки'
 
     const handleChangeStore = (
         e: ChangeEvent<HTMLSelectElement>,
@@ -88,12 +88,12 @@ export const StoreLinkAddPage = () => {
 
     return (
         <article className="page">
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={t('titles.add')} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="content-container">
                     <section className="gallery-header">
-                        <h1 className="gallery-title">{title}</h1>
+                        <h1 className="gallery-title">{t('titles.add')}</h1>
                     </section>
 
                     <form onSubmit={handleSave} className="form px-0 pt-6">
@@ -116,7 +116,7 @@ export const StoreLinkAddPage = () => {
                                             value={_id}
                                         >
                                             <option value="" disabled>
-                                                Выбрать
+                                                {t('fields.stores.label')}
                                             </option>
                                             {stores?.map((s) => (
                                                 <option
@@ -135,24 +135,28 @@ export const StoreLinkAddPage = () => {
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
                                             }
-                                            placeholder="Ссылка"
+                                            placeholder={t('fields.link.label')}
                                             required={true}
                                             value={link}
                                         />
                                         <input
-                                            aria-label="Link Input"
+                                            aria-label={t(
+                                                'fields.link.ariaLabel'
+                                            )}
                                             className="form-input hidden sm:block"
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
                                             }
-                                            placeholder="Ссылка"
+                                            placeholder={t('fields.link.label')}
                                             type="url"
                                             value={link}
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
                                         <button
-                                            aria-label="Delete Button"
+                                            aria-label={t(
+                                                'buttonDelete.ariaLabel'
+                                            )}
                                             className="form-button"
                                             onClick={() => handleDelete(index)}
                                             type="button"
@@ -165,7 +169,7 @@ export const StoreLinkAddPage = () => {
                         })}
                         <div className="px-3">
                             <button
-                                aria-label="Add Button"
+                                aria-label={t('buttonAdd.ariaLabel')}
                                 className="form-button"
                                 onClick={handleAdd}
                                 type="button"
@@ -180,13 +184,13 @@ export const StoreLinkAddPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
             </AdaptiveNavBar>

@@ -1,14 +1,18 @@
+import { useTranslation } from 'react-i18next'
+
 import { GalleryPage } from '../../../components/gallery/GalleryPage'
 import { VideoCard } from '../../../components/gallery/VideoCard'
 import { useGetAllLessonsQuery } from '../lessonsApi'
 
 export const LessonsGalleryPage = () => {
+    const { t } = useTranslation('lesson')
+
     const { data: lessons, isLoading, error } = useGetAllLessonsQuery()
 
     return (
         <GalleryPage
             redirectPath="/lessons"
-            title="Уроки"
+            title={t('gallery.title')}
             isLoading={isLoading}
             error={error}
             mediaContent={

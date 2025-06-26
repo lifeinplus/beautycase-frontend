@@ -10,12 +10,15 @@ import {
     UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
+
 import { useAppSelector } from '../../app/hooks'
 import { selectRole, selectUsername } from '../../features/auth/authSlice'
 import { AuthButton } from '../../features/auth/components/AuthButton'
 import { ThemeToggler } from '../../features/theme/ThemeToggler'
 import { canAccess, menuItems } from '../../utils/menu'
+import { LanguageSwitcher } from '../LanguageSwitcher'
 import { NavigationButton } from './NavigationButton'
 
 export interface AdaptiveNavBarProps {
@@ -25,6 +28,7 @@ export interface AdaptiveNavBarProps {
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
+    const { t } = useTranslation()
 
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
@@ -62,8 +66,8 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
 
     return (
         <aside className="adaptive-nav-bar">
-            <div className="mt-3 hidden flex-col pb-10 pe-3 ps-4 pt-3 sm:flex">
-                <h2 className="font-logo text-2xl font-bold">
+            <div className="nav-logo-container">
+                <h2 className="nav-logo">
                     <a href="/">
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>
@@ -71,7 +75,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                 </h2>
             </div>
 
-            <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
+            <div className="nav-btn-container hidden sm:flex">
                 {navItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
@@ -82,22 +86,19 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                             }
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
-                            text={item.label}
+                            text={t(`navigation:${item.label}`)}
                         />
                     ))}
             </div>
 
-            <div className="flex w-full grow flex-row justify-evenly sm:my-8 sm:flex-col sm:justify-start">
+            <div className="nav-btn-container flex grow sm:my-10">
                 {children}
             </div>
 
             <div className="hidden sm:inline">
-                <div>
-                    <ThemeToggler />
-                </div>
-                <div>
-                    <AuthButton />
-                </div>
+                <LanguageSwitcher />
+                <ThemeToggler />
+                <AuthButton />
             </div>
         </aside>
     )

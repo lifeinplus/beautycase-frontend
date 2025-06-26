@@ -1,0 +1,22 @@
+{
+    "actions": {
+        "add": "Add",
+        "back": "Back",
+        "edit": "Edit",
+        "delete": "Delete",
+        "duplicate": "Duplicate",
+        "export": "PDF",
+        "save": "Save"
+    },
+    "menu": {
+        "account": "Account",
+        "lessons": "Lessons",
+        "makeupBags": "Makeup Bags",
+        "products": "Products",
+        "questionnaire": "Questionnaire",
+        "questionnaires": "Questionnaires",
+        "referenceLists": "Reference Lists",
+        "stages": "Stages",
+        "tools": "Tools"
+    }
+}

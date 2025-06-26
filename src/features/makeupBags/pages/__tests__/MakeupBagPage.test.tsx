@@ -69,24 +69,21 @@ describe('MakeupBagPage', () => {
     it('renders the page with correct data', () => {
         render(<MakeupBagPage />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        const hero = screen.getByTestId('mocked-hero')
-        const stages = screen.getByTestId('mocked-stages')
-        const tools = screen.getByTestId('mocked-tools')
+        const ids = [
+            'mocked-top-panel',
+            'mocked-hero',
+            'mocked-stages',
+            'mocked-tools',
+        ]
 
-        expect(topPanel).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(stages).toBeInTheDocument()
-        expect(tools).toBeInTheDocument()
+        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
 
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<MakeupBagPage />)
-
-        const button = screen.getByTestId('mocked-back-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags', {
             replace: true,
@@ -103,9 +100,7 @@ describe('MakeupBagPage', () => {
             mockExportToPDF.mockResolvedValue({ success: true })
 
             render(<MakeupBagPage />)
-
-            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
-            await user.click(exportButton)
+            await user.click(screen.getByRole('button', { name: /export/ }))
 
             expect(mockExportToPDF).toHaveBeenCalledWith(
                 {
@@ -127,11 +122,9 @@ describe('MakeupBagPage', () => {
             })
 
             render(<MakeupBagPage />)
+            await user.click(screen.getByRole('button', { name: /export/ }))
 
-            const exportButton = screen.getByTestId('mocked-nav-button-PDF')
-            await user.click(exportButton)
-
-            expect(toast.error).toHaveBeenCalledWith('Нет данных для экспорта')
+            expect(toast.error).toHaveBeenCalledWith('toast.noExportData')
             expect(mockExportToPDF).not.toHaveBeenCalled()
         })
 
@@ -157,18 +150,11 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
-
-            await user.click(deleteButton)
-
-            const modalDeleteConfirm = screen.getByTestId(
-                'mocked-modal-delete-confirm'
-            )
-
-            await user.click(modalDeleteConfirm)
+            await user.click(screen.getByRole('button', { name: /delete/i }))
+            await user.click(screen.getByRole('button', { name: /confirm/i }))
 
             expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
-            expect(toast.success).toHaveBeenCalledWith('Косметичка удалена')
+            expect(toast.success).toHaveBeenCalledWith('toast.delete')
             expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
         })
 
@@ -183,15 +169,8 @@ describe('MakeupBagPage', () => {
 
             render(<MakeupBagPage />)
 
-            const deleteButton = screen.getByTestId('mocked-nav-button-Удалить')
-
-            await user.click(deleteButton)
-
-            const modalDeleteConfirm = screen.getByTestId(
-                'mocked-modal-delete-confirm'
-            )
-
-            await user.click(modalDeleteConfirm)
+            await user.click(screen.getByRole('button', { name: /delete/i }))
+            await user.click(screen.getByRole('button', { name: /confirm/i }))
 
             expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
             expect(mockConsoleError).toHaveBeenCalledWith(mockError)

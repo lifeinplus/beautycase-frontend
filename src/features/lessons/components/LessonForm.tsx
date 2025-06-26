@@ -1,7 +1,8 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { type FieldError, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -21,6 +22,7 @@ export interface LessonFormProps {
 
 export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const navigate = useNavigate()
+    const { t } = useTranslation('lesson')
 
     const {
         register,
@@ -42,8 +44,8 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     const productIds = watch('productIds')
 
     const productsText = productIds
-        ? `Выбрано: ${productIds.length}`
-        : 'Выбрать'
+        ? `${t('fields.products.selected')}: ${productIds.length}`
+        : t('fields.products.select')
 
     const handleBack = () => {
         navigate(-1)
@@ -66,24 +68,24 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
                     <form className="form" onSubmit={handleSubmit(onSubmit)}>
                         <TextareaSection
-                            error={errors.title}
-                            label="Заголовок"
+                            error={t(errors.title?.message || '')}
+                            label={t('fields.title.label')}
                             register={register('title')}
                             required={true}
                             value={watch('title')}
                         />
 
                         <TextareaSection
-                            error={errors.shortDescription}
-                            label="Краткое описание"
+                            error={t(errors.shortDescription?.message || '')}
+                            label={t('fields.shortDescription.label')}
                             register={register('shortDescription')}
                             required={true}
                             value={watch('shortDescription')}
                         />
 
                         <TextareaSection
-                            error={errors.videoUrl}
-                            label="Ссылка на видео"
+                            error={t(errors.videoUrl?.message || '')}
+                            label={t('fields.videoUrl.label')}
                             preview={true}
                             register={register('videoUrl')}
                             required={true}
@@ -91,8 +93,8 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                         />
 
                         <TextareaSection
-                            error={errors.fullDescription}
-                            label="Полное описание"
+                            error={t(errors.fullDescription?.message || '')}
+                            label={t('fields.fullDescription.label')}
                             register={register('fullDescription')}
                             required={true}
                             rows={4}
@@ -100,8 +102,8 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                         />
 
                         <ButtonNavigateSection
-                            error={errors.productIds as FieldError}
-                            label="Продукты"
+                            error={t(errors.productIds?.message || '')}
+                            label={t('fields.products.label')}
                             onNavigate={() =>
                                 handleNavigate('/products/selection')
                             }
@@ -115,13 +117,13 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavigationButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text="Сохранить"
+                    text={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
             </AdaptiveNavBar>

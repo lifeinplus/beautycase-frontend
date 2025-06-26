@@ -1,0 +1,24 @@
+{
+    "emptyMessage": "User not found",
+    "hero": {
+        "headline": "Account",
+        "byline": "Information about you and available content"
+    },
+    "fields": {
+        "username": {
+            "label": "Username"
+        },
+        "role": {
+            "label": "Role"
+        },
+        "beautyBags": {
+            "label": "Beauty Bags",
+            "emptyMessage": "You have no available beauty bags",
+            "link": "Open"
+        },
+        "lessons": {
+            "label": "Lessons",
+            "emptyMessage": "You have no available lessons"
+        }
+    }
+}

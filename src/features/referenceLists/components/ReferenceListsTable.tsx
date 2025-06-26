@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
 import type { Header } from '../../../types/table'
@@ -7,9 +9,13 @@ export interface ReferenceListsTableProps {
     data?: ReferenceList[]
 }
 
-const headers: Header[] = [{ label: 'Справочник', className: 'text-left' }]
-
 export const ReferenceListsTable = ({ data }: ReferenceListsTableProps) => {
+    const { t } = useTranslation('referenceList')
+
+    const headers: Header[] = [
+        { label: t('table.referenceList'), className: 'text-left' },
+    ]
+
     const cellClasses = headers.map((h) => h.className)
 
     return (

@@ -22,7 +22,7 @@ describe('LessonsGalleryPage', () => {
         render(<LessonsGalleryPage />)
 
         expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
-        expect(screen.getByText('Уроки')).toBeInTheDocument()
+        expect(screen.getByText('gallery.title')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockLessons.forEach((lesson) => {

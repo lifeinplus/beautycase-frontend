@@ -32,7 +32,7 @@ describe('SelectSection', () => {
         render(<SelectSection {...mockProps} />)
 
         expect(screen.getByRole('combobox')).toBeInTheDocument()
-        expect(screen.getByText('Выбрать')).toBeInTheDocument()
+        expect(screen.getByText('select')).toBeInTheDocument()
         expect(screen.getByText('Option 1')).toBeInTheDocument()
         expect(screen.getByText('Option 2')).toBeInTheDocument()
         expect(screen.getByText('Option 3')).toBeInTheDocument()
@@ -49,7 +49,7 @@ describe('SelectSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        render(<SelectSection {...mockProps} error={mockFieldError} />)
+        render(<SelectSection {...mockProps} error={mockFieldError.message} />)
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

@@ -5,6 +5,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -21,6 +22,7 @@ import { brandSchema } from '../validations'
 
 export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
+    const { t } = useTranslation('brand')
 
     useImperativeHandle(ref, () => ({
         focusInput: () => {
@@ -86,7 +88,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                 <input
                     {...restName}
                     className="form-input flex-grow"
-                    placeholder="Бренд"
+                    placeholder={t('fields.name.label')}
                     ref={(e) => {
                         refName(e)
                         inputRef.current = e
@@ -115,7 +117,9 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                 )}
             </div>
 
-            {errors.name && <p className="form-error">{errors.name.message}</p>}
+            {errors.name && (
+                <p className="form-error">{t(errors.name.message || '')}</p>
+            )}
         </form>
     )
 })

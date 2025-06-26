@@ -1,11 +1,15 @@
 import { array, object, string } from 'yup'
 
 export const lessonSchema = object({
-    title: string().required('Укажите заголовок урока'),
-    shortDescription: string().required('Укажите краткое описание'),
-    videoUrl: string().required('Укажите ссылку на видео'),
-    fullDescription: string().required('Укажите полное описание'),
+    title: string().required('fields.title.errors.required'),
+    shortDescription: string()
+        .required('fields.shortDescription.errors.required')
+        .min(10, 'fields.shortDescription.errors.min'),
+    videoUrl: string().required('fields.videoUrl.errors.required'),
+    fullDescription: string()
+        .required('fields.fullDescription.errors.required')
+        .min(20, 'fields.fullDescription.errors.min'),
     productIds: array()
-        .min(1, 'Выберите продукты')
-        .required('Выберите продукты'),
+        .min(1, 'fields.products.errors.min')
+        .required('fields.products.errors.required'),
 })

@@ -38,24 +38,26 @@ describe('ProductForm', () => {
     it('renders all required form fields', () => {
         render(<ProductForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        expect(topPanel).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
-        const selectSection = screen.getByTestId('mocked-select-section')
-        const name = screen.getByPlaceholderText('Название')
-        const imageUrlSection = screen.getByTestId('mocked-image-url-section')
-        const inputSection = screen.getByTestId('mocked-input-section')
-        const comment = screen.getByPlaceholderText('Комментарий')
-        const buttonNavigateSection = screen.getByTestId(
-            'mocked-button-navigate-section'
+        const brand = screen.getByTestId('mocked-select-section')
+        expect(brand).toBeInTheDocument()
+
+        const placeholders = [
+            'fields.name.label',
+            'fields.shade.label',
+            'fields.comment.label',
+        ]
+
+        placeholders.forEach((p) =>
+            expect(screen.getByPlaceholderText(p)).toBeInTheDocument()
         )
 
-        expect(selectSection).toBeInTheDocument()
-        expect(name).toBeInTheDocument()
-        expect(imageUrlSection).toBeInTheDocument()
-        expect(inputSection).toBeInTheDocument()
-        expect(comment).toBeInTheDocument()
-        expect(buttonNavigateSection).toBeInTheDocument()
+        const image = screen.getByTestId('mocked-image-url-section')
+        expect(image).toBeInTheDocument()
+
+        const storeLinks = screen.getByTestId('mocked-button-navigate-section')
+        expect(storeLinks).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -85,7 +87,7 @@ describe('ProductForm', () => {
     it('displays the correct number of added store links', () => {
         render(<ProductForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const stagesText = screen.getByText('Добавлено: 1')
+        const stagesText = screen.getByText('fields.storeLinks.selected: 1')
         expect(stagesText).toBeInTheDocument()
     })
 })

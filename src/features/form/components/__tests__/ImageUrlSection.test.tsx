@@ -93,7 +93,9 @@ describe('ImageUrlSection', () => {
     })
 
     it('renders error message', () => {
-        render(<ImageUrlSection {...mockProps} error={mockFieldError} />)
+        render(
+            <ImageUrlSection {...mockProps} error={mockFieldError.message} />
+        )
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

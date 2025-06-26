@@ -1,0 +1,12 @@
+{
+    "hero": {
+        "headline": "Reference Lists"
+    },
+    "names": {
+        "brands": "Brands",
+        "stores": "Stores"
+    },
+    "table": {
+        "referenceList": "Reference List"
+    }
+}

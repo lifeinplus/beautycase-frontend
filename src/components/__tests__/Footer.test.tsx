@@ -7,7 +7,6 @@ describe('Footer', () => {
         const { container } = render(<Footer />)
 
         const footer = container.querySelector('footer')
-        expect(footer).toBeInTheDocument()
         expect(footer).toHaveAttribute('id', 'footer')
         expect(footer).toHaveClass('page-footer')
 
@@ -36,8 +35,7 @@ describe('Footer', () => {
         render(<Footer />)
 
         const heading = screen.getByRole('heading', { level: 4 })
-        expect(heading).toBeInTheDocument()
-        expect(heading).toHaveTextContent('Спасибо, что выбрали меня!')
+        expect(heading).toHaveTextContent('footer.thanks')
         expect(heading).toHaveClass('font-heading', 'text-lg')
     })
 
@@ -45,9 +43,8 @@ describe('Footer', () => {
         render(<Footer />)
 
         const phoneLink = screen.getByRole('link')
-        expect(phoneLink).toBeInTheDocument()
         expect(phoneLink).toHaveAttribute('href', 'tel:+381629446904')
-        expect(phoneLink).toHaveTextContent('+381 62 9446 904 (Сербия)')
+        expect(phoneLink).toHaveTextContent('+381 62 9446 904 (footer.country)')
         expect(phoneLink).toHaveClass(
             'text-rose-500',
             'hover:underline',
@@ -55,19 +52,14 @@ describe('Footer', () => {
             'dark:text-rose-400'
         )
 
-        const contactSection = screen.getByText(/Если остались вопросы/)
+        const contactSection = screen.getByText(/questions/)
         expect(contactSection).toContainElement(phoneLink)
-        expect(contactSection).toHaveTextContent('Буду рада помочь)')
+        expect(contactSection).toHaveTextContent('footer.help')
     })
 
     it('displays the services information correctly', () => {
         render(<Footer />)
-
-        const servicesText = screen.getByText(/Мои услуги:/)
-        expect(servicesText).toBeInTheDocument()
-        expect(servicesText).toHaveTextContent(
-            'Мои услуги: все виды макияжа, укладки, причёски, обучение, подарочные сертификаты'
-        )
+        expect(screen.getByText('footer.services')).toBeInTheDocument()
     })
 
     it('displays the copyright information correctly', () => {

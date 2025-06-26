@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next'
+
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 
 export const UnauthorizedPage = () => {
+    const { t } = useTranslation('confirmation')
+
     return (
         <article>
             <Header />
@@ -10,8 +14,8 @@ export const UnauthorizedPage = () => {
             <main className="page-content">
                 <article className="content-container">
                     <Hero
-                        headline="Доступ запрещен"
-                        byline="У вас нет разрешения на просмотр этой страницы"
+                        headline={t('hero.headline')}
+                        byline={t('hero.byline')}
                     />
                 </article>
             </main>

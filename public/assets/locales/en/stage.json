@@ -1,0 +1,54 @@
+{
+    "emptyMessageList": "No stages found",
+    "fields": {
+        "title": {
+            "label": "Title",
+            "errors": {
+                "required": "Please specify the stage title"
+            }
+        },
+        "subtitle": {
+            "label": "Subtitle",
+            "errors": {
+                "required": "Please specify the stage subtitle",
+                "min": "At least 10 characters"
+            }
+        },
+        "imageUrl": {
+            "label": "Image URL",
+            "errors": {
+                "required": "Please provide an image URL"
+            }
+        },
+        "comment": {
+            "label": "Comment"
+        },
+        "stepsText": {
+            "label": "Steps"
+        },
+        "products": {
+            "label": "Products",
+            "errors": {
+                "required": "Please select products",
+                "min": "At least 1 product"
+            },
+            "select": "Select",
+            "selected": "Selected"
+        }
+    },
+    "noMakeupBag": "No makeup bag",
+    "steps": "Steps",
+    "table": {
+        "date": "Date",
+        "time": "Time",
+        "title": "Title",
+        "subtitle": "Subtitle"
+    },
+    "titles": {
+        "add": "Add stage",
+        "details": "Stage",
+        "edit": "Edit stage",
+        "list": "Stages",
+        "selection": "Select stages"
+    }
+}

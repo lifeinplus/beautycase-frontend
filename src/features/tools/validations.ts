@@ -1,14 +1,14 @@
 import { array, object, string } from 'yup'
 
 export const toolSchema = object({
-    brandId: string().required('Выберите бренд'),
-    name: string().required('Укажите название инструмента'),
+    brandId: string().required('fields.brand.errors.required'),
+    name: string().required('fields.name.errors.required'),
     imageUrl: string()
-        .url('Введите корректный URL')
-        .required('Укажите ссылку на изображение'),
+        .url('fields.imageUrl.errors.url')
+        .required('fields.imageUrl.errors.required'),
     number: string().optional(),
-    comment: string().required('Укажите комментарий'),
+    comment: string().required('fields.comment.errors.required'),
     storeLinks: array()
-        .min(1, 'Добавьте ссылки на инструмент')
-        .required('Добавьте ссылки на инструмент'),
+        .min(1, 'fields.storeLinks.errors.min')
+        .required('fields.storeLinks.errors.required'),
 })

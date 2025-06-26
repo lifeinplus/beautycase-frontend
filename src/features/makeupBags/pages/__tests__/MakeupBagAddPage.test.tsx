@@ -35,11 +35,8 @@ describe('MakeupBagAddPage', () => {
     it('renders the MakeupBagForm with correct title', () => {
         render(<MakeupBagAddPage />)
 
-        const form = screen.getByTestId('mocked-makeup-bag-form')
-        const title = screen.getByText('Добавить косметичку')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-makeup-bag-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
     it('calls addMakeupBag and navigates on successful submission', async () => {

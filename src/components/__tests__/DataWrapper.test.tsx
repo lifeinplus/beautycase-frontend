@@ -31,7 +31,7 @@ describe('DataWrapper', () => {
         )
 
         const loadingOrError = screen.getByTestId('mocked-loading-or-error')
-        const loadingElement = screen.getByText('Загрузка...')
+        const loadingElement = screen.getByText('loading')
         const childrenElement = screen.queryByTestId('children-content')
 
         expect(loadingOrError).toBeInTheDocument()
@@ -140,7 +140,7 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const loadingElement = screen.getByText('Загрузка...')
+        const loadingElement = screen.getByText('loading')
         expect(loadingElement).toBeInTheDocument()
 
         expect(getErrorMessage).not.toHaveBeenCalled()

@@ -20,6 +20,7 @@ const icons = {
     DocumentDuplicateIcon: mockIcon('document-duplicate-icon'),
     EllipsisHorizontalCircleIcon: mockIcon('ellipsis-horizontal-circle-icon'),
     FilmIcon: mockIcon('film-icon'),
+    LanguageIcon: mockIcon('language-icon'),
     ListBulletIcon: mockIcon('list-bullet-icon'),
     MinusCircleIcon: mockIcon('minus-circle-icon'),
     MoonIcon: mockIcon('moon-icon'),

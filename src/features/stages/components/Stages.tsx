@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { Image } from '../../../components/ui/Image'
 import { GoodsGrid } from '../../../components/GoodsGrid'
 import type { Stage } from '../types'
@@ -7,10 +9,12 @@ export interface StagesProps {
 }
 
 export const Stages = ({ stages }: StagesProps) => {
+    const { t } = useTranslation('stage')
+
     return (
         <section id="stages" className="scroll-mt-header sm:scroll-mt-0">
             <h2 className="mb-6 pt-10 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl">
-                Этапы
+                {t('titles.list')}
             </h2>
 
             {stages?.map((stage, index) => (
@@ -28,7 +32,9 @@ export const Stages = ({ stages }: StagesProps) => {
                     </section>
 
                     <section className="px-4">
-                        <p className="my-2 font-bold sm:text-left">Шаги</p>
+                        <p className="my-2 font-bold sm:text-left">
+                            {t('steps')}
+                        </p>
                         <ul className="ms-5 list-outside list-decimal">
                             {stage.steps?.map((step: string, index: number) => (
                                 <li key={index}>{step}</li>

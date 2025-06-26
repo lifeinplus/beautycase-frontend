@@ -12,267 +12,266 @@ interface Questions {
 
 export const questions: Questions = {
     name: {
-        label: 'Имя',
+        label: 'fields.name.label',
     },
     instagram: {
-        label: 'Instagram',
-        description: 'Псевдоним в Instagram',
+        label: 'fields.instagram.label',
+        description: 'fields.instagram.description',
     },
     city: {
-        label: 'Город',
-        description: 'Город проживания',
+        label: 'fields.city.label',
+        description: 'fields.city.description',
     },
     age: {
-        label: 'Возраст',
+        label: 'fields.age.label',
     },
     makeupBag: {
-        label: 'Содержимое косметички',
-        description: 'Опишите свою косметичку и/или приложите фото',
+        label: 'fields.makeupBag.label',
+        description: 'fields.makeupBag.description',
     },
     makeupBagPhotoId: {
-        label: 'Фото косметички',
+        label: 'fields.makeupBagPhotoId.label',
     },
     makeupBagPhotoUrl: {
-        label: 'Ссылка на изображение косметички',
+        label: 'fields.makeupBagPhotoUrl.label',
     },
     procedures: {
-        label: 'Процедуры',
-        description:
-            'Делаете ли какие-то из этих процедур на постоянной основе?',
+        label: 'fields.procedures.label',
+        description: 'fields.procedures.description',
         options: [
             {
-                label: 'Наращивание ресниц',
+                label: 'fields.procedures.options.lashExtensions',
                 value: 'lashExtensions',
             },
             {
-                label: 'Коррекция и покраска бровей',
+                label: 'fields.procedures.options.browCorrection',
                 value: 'browCorrection',
             },
             {
-                label: 'Ламинирование, покраска ресниц',
+                label: 'fields.procedures.options.lashLamination',
                 value: 'lashLamination',
             },
             {
-                label: 'Не делаю',
+                label: 'fields.procedures.options.none',
                 value: 'none',
             },
         ],
     },
     skinType: {
-        label: 'Тип кожи',
+        label: 'fields.skinType.label',
         options: [
             {
-                label: 'Сухая',
+                label: 'fields.skinType.options.dry',
                 value: 'dry',
             },
             {
-                label: 'Нормальная',
+                label: 'fields.skinType.options.normal',
                 value: 'normal',
             },
             {
-                label: 'Комбинированная',
+                label: 'fields.skinType.options.combination',
                 value: 'combination',
             },
             {
-                label: 'Жирная',
+                label: 'fields.skinType.options.oily',
                 value: 'oily',
             },
             {
-                label: 'Чувствительная',
+                label: 'fields.skinType.options.sensitive',
                 value: 'sensitive',
             },
         ],
     },
     allergies: {
-        label: 'Аллергии',
-        description: 'Есть ли аллергии? На что, если есть?',
+        label: 'fields.allergies.label',
+        description: 'fields.allergies.description',
     },
     peeling: {
-        label: 'Шелушения',
-        description: 'Бывают ли шелушения?',
+        label: 'fields.peeling.label',
+        description: 'fields.peeling.description',
         options: [
             {
-                label: 'Да',
+                label: 'fields.peeling.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'fields.peeling.options.no',
                 value: 'no',
             },
         ],
     },
     pores: {
-        label: 'Поры',
-        description: 'Заметны ли поры?',
+        label: 'fields.pores.label',
+        description: 'fields.pores.description',
         options: [
             {
-                label: 'Да',
+                label: 'fields.pores.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'fields.pores.options.no',
                 value: 'no',
             },
         ],
     },
     oilyShine: {
-        label: 'Жирный блеск',
-        description: 'Появляется ли жирный блеск в течение дня?',
+        label: 'fields.oilyShine.label',
+        description: 'fields.oilyShine.description',
         options: [
             {
-                label: 'Да',
+                label: 'fields.oilyShine.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'fields.oilyShine.options.no',
                 value: 'no',
             },
         ],
     },
     currentSkills: {
-        label: 'Текущие навыки',
-        description: 'Что уже умеете? Какие виды макияжа делаете сейчас?',
+        label: 'fields.currentSkills.label',
+        description: 'fields.currentSkills.description',
     },
     desiredSkills: {
-        label: 'Желаемые навыки',
-        description: 'Какие виды макияжа хотите научиться делать в будущем?',
+        label: 'fields.desiredSkills.label',
+        description: 'fields.desiredSkills.description',
         options: [
             {
-                label: 'Нежный',
+                label: 'fields.desiredSkills.options.delicate',
                 value: 'delicate',
             },
             {
-                label: 'Вечерний',
+                label: 'fields.desiredSkills.options.evening',
                 value: 'evening',
             },
             {
-                label: 'Яркий',
+                label: 'fields.desiredSkills.options.bright',
                 value: 'bright',
             },
             {
-                label: 'Офисный вариант',
+                label: 'fields.desiredSkills.options.office',
                 value: 'office',
             },
             {
-                label: 'Для фото/видео съёмок',
+                label: 'fields.desiredSkills.options.filming',
                 value: 'filming',
             },
         ],
     },
     makeupTime: {
-        label: 'Время на макияж',
-        description: 'Сколько времени чаще всего выделяете на макияж?',
+        label: 'fields.makeupTime.label',
+        description: 'fields.makeupTime.description',
         options: [
             {
-                label: 'До 15 минут',
+                label: 'fields.makeupTime.options.15',
                 value: '15',
             },
             {
-                label: '15-30 минут',
+                label: 'fields.makeupTime.options.15-30',
                 value: '15-30',
             },
             {
-                label: '30-60 минут',
+                label: 'fields.makeupTime.options.30-60',
                 value: '30-60',
             },
         ],
     },
     budget: {
-        label: 'Бюджет',
-        description: 'Какой бюджет закладываете на косметичку?',
+        label: 'fields.budget.label',
+        description: 'fields.budget.description',
         options: [
             {
-                label: 'До 50 евро',
+                label: 'fields.budget.options.50',
                 value: '50',
             },
             {
-                label: 'До 150 евро',
+                label: 'fields.budget.options.150',
                 value: '150',
             },
             {
-                label: '50-100 евро',
+                label: 'fields.budget.options.50-100',
                 value: '50-100',
             },
             {
-                label: '150-250 евро',
+                label: 'fields.budget.options.150-250',
                 value: '150-250',
             },
             {
-                label: 'Более 100 евро',
+                label: 'fields.budget.options.100',
                 value: '100',
             },
             {
-                label: 'Более 250 евро',
+                label: 'fields.budget.options.250',
                 value: '250',
             },
         ],
     },
     brushes: {
-        label: 'Подбор кистей',
-        description: 'Нужен ли подбор кистей?',
+        label: 'fields.brushes.label',
+        description: 'fields.brushes.description',
         options: [
             {
-                label: 'Да',
+                label: 'fields.brushes.options.yes',
                 value: 'yes',
             },
             {
-                label: 'Нет',
+                label: 'fields.brushes.options.no',
                 value: 'no',
             },
         ],
     },
     problems: {
-        label: 'Проблемы при макияже',
-        description: 'С какими проблемами сталкивались при выполнении макияжа?',
+        label: 'fields.problems.label',
+        description: 'fields.problems.description',
         options: [
             {
-                label: 'Скатываются тени',
+                label: 'fields.problems.options.eyeshadowCrease',
                 value: 'eyeshadowCrease',
             },
             {
-                label: 'Отпечатывается тушь',
+                label: 'fields.problems.options.mascaraSmudge',
                 value: 'mascaraSmudge',
             },
             {
-                label: 'Тон проваливается в поры',
+                label: 'fields.problems.options.foundationPores',
                 value: 'foundationPores',
             },
             {
-                label: 'Тон плохо держится',
+                label: 'fields.problems.options.foundationStay',
                 value: 'foundationStay',
             },
             {
-                label: 'Не умею делать скульптурирование',
+                label: 'fields.problems.options.sculpting',
                 value: 'sculpting',
             },
             {
-                label: 'Не знаю, какие тени подходят под мой цвет глаз',
+                label: 'fields.problems.options.eyeshadowMatch',
                 value: 'eyeshadowMatch',
             },
         ],
     },
     referral: {
-        label: 'Источник',
-        description: 'Откуда узнали про меня?',
+        label: 'fields.referral.label',
+        description: 'fields.referral.description',
         options: [
             {
-                label: 'Instagram',
+                label: 'fields.referral.options.instagram',
                 value: 'instagram',
             },
             {
-                label: 'YouTube',
+                label: 'fields.referral.options.youtube',
                 value: 'youtube',
             },
             {
-                label: 'Личное знакомство',
+                label: 'fields.referral.options.personal',
                 value: 'personal',
             },
             {
-                label: 'По рекомендации',
+                label: 'fields.referral.options.recommendation',
                 value: 'recommendation',
             },
             {
-                label: 'Другое',
+                label: 'fields.referral.options.other',
                 value: 'other',
             },
         ],

@@ -102,9 +102,8 @@ describe('Questionnaire validation schema', () => {
             name: undefined,
         }
 
-        await expect(
-            questionnaireSchema.validate(invalidData)
-        ).rejects.toThrowError('Укажите ваше имя')
+        const result = questionnaireSchema.validate(invalidData)
+        await expect(result).rejects.toThrowError('fields.name.errors.required')
     })
 
     it('should reject when makeupBag is missing', async () => {
@@ -113,9 +112,10 @@ describe('Questionnaire validation schema', () => {
             makeupBag: undefined,
         }
 
-        await expect(
-            questionnaireSchema.validate(invalidData)
-        ).rejects.toThrowError('Укажите, что сейчас есть в косметичке')
+        const result = questionnaireSchema.validate(invalidData)
+        await expect(result).rejects.toThrowError(
+            'fields.makeupBag.errors.required'
+        )
     })
 
     it('should reject when required fields are missing', async () => {
@@ -130,9 +130,11 @@ describe('Questionnaire validation schema', () => {
         } catch (error) {
             const validationError = error as ValidationError
             expect(validationError.errors).toContain(
-                'Укажите, что сейчас есть в косметичке'
+                'fields.makeupBag.errors.required'
             )
-            expect(validationError.errors).toContain('Укажите ваше имя')
+            expect(validationError.errors).toContain(
+                'fields.name.errors.required'
+            )
         }
     })
 

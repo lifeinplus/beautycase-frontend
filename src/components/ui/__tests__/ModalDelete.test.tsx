@@ -31,17 +31,15 @@ describe('ModalDelete', () => {
 
         expect(screen.getByText(mockProps.title)).toBeInTheDocument()
         expect(screen.getByText(mockProps.description)).toBeInTheDocument()
-        expect(screen.getByText('Удалить')).toBeInTheDocument()
-        expect(screen.getByText('Отмена')).toBeInTheDocument()
+        expect(screen.getByText('buttons.delete.text')).toBeInTheDocument()
+        expect(screen.getByText('buttons.cancel.text')).toBeInTheDocument()
     })
 
     it('calls onConfirm when delete button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<ModalDelete {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: /delete/i })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /delete/i }))
 
         expect(mockProps.onConfirm).toHaveBeenCalledTimes(1)
     })
@@ -50,9 +48,7 @@ describe('ModalDelete', () => {
         const user = userEvent.setup()
 
         render(<ModalDelete {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: /cancel/i })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: /cancel/i }))
 
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
@@ -61,9 +57,7 @@ describe('ModalDelete', () => {
         const user = userEvent.setup()
 
         render(<ModalDelete {...mockProps} />)
-
-        const modal = document.querySelector('.modal')!
-        await user.click(modal)
+        await user.click(document.querySelector('.modal')!)
 
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })
@@ -72,9 +66,7 @@ describe('ModalDelete', () => {
         const user = userEvent.setup()
 
         render(<ModalDelete {...mockProps} />)
-
-        const container = document.querySelector('.modal-container')
-        await user.click(container!)
+        await user.click(document.querySelector('.modal-container')!)
 
         expect(mockProps.onCancel).not.toHaveBeenCalled()
     })

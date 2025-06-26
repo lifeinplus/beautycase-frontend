@@ -33,11 +33,8 @@ describe('ProductAddPage', () => {
     it('renders the ProductForm with correct title', () => {
         render(<ProductAddPage />)
 
-        const form = screen.getByTestId('mocked-product-form')
-        const title = screen.getByText('Добавить продукт')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-product-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
     it('calls addProduct and navigates on successful submission', async () => {

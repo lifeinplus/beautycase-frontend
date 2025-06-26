@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
@@ -13,13 +14,14 @@ import { ImageTextSection } from '../../form/components/ImageTextSection'
 import { RadioButtonSection } from '../../form/components/RadioButtonSection'
 import { TextareaSection } from '../../form/components/TextareaSection'
 import { options } from '../options'
+import { useCreateQuestionnaireMutation } from '../questionnairesApi'
 import type { Questionnaire } from '../types'
 import { questionnaireSchema } from '../validations'
-import { useCreateQuestionnaireMutation } from '../questionnairesApi'
 import { questions } from '../utils'
 
 export const QuestionnairePage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('questionnaire')
 
     const {
         clearErrors,
@@ -53,10 +55,10 @@ export const QuestionnairePage = () => {
             <main className="page-content">
                 <article className="content-container">
                     <Hero
-                        headline="Анкета"
-                        byline="Индивидуальный подбор косметички"
+                        headline={t('hero.headline')}
+                        byline={t('hero.byline')}
                         imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1734995126/Questionnaire_cqv0mc.jpg"
-                        content="Привет! Спасибо за выбор моей услуги. Для того, чтобы я могла максимально точно подобрать то, что нужно именно вам, прошу ответить на некоторые вопросы."
+                        content={t('hero.content')}
                     />
 
                     <form
@@ -66,44 +68,50 @@ export const QuestionnairePage = () => {
                     >
                         <article className="px-3">
                             <p className="text-error text-sm">
-                                * Обязательно для заполнения
+                                {t('requiredField')}
                             </p>
 
                             <InputSection
-                                error={errors.name}
-                                label={questions.name.label}
+                                error={t(errors.name?.message || '')}
+                                label={t(questions.name.label)}
                                 register={register('name')}
                                 required={true}
                                 type="text"
                             />
 
                             <InputSection
-                                description={questions.instagram.description}
-                                label={questions.instagram.label}
+                                description={t(
+                                    questions.instagram.description || ''
+                                )}
+                                label={t(questions.instagram.label)}
                                 register={register('instagram')}
                                 type="text"
                             />
 
                             <InputSection
-                                description={questions.city.description}
-                                label={questions.city.label}
+                                description={t(
+                                    questions.city.description || ''
+                                )}
+                                label={t(questions.city.label)}
                                 register={register('city')}
                                 type="text"
                             />
 
                             <InputSection
-                                label={questions.age.label}
+                                label={t(questions.age.label)}
                                 register={register('age')}
                                 type="number"
                             />
 
                             <ImageTextSection
                                 clearErrors={clearErrors}
-                                description={questions.makeupBag.description}
+                                description={t(
+                                    questions.makeupBag.description || ''
+                                )}
                                 folder="questionnaires"
-                                error={errors.makeupBag}
-                                label={questions.makeupBag.label}
-                                labelUrl={questions.makeupBagPhotoUrl.label}
+                                error={t(errors.makeupBag?.message || '')}
+                                label={t(questions.makeupBag.label)}
+                                labelUrl={t(questions.makeupBagPhotoUrl.label)}
                                 name={'makeupBag'}
                                 nameUrl={'makeupBagPhotoUrl'}
                                 register={register('makeupBag')}
@@ -115,97 +123,117 @@ export const QuestionnairePage = () => {
                             />
 
                             <CheckboxSection
-                                description={questions.procedures.description}
-                                label={questions.procedures.label}
+                                description={t(
+                                    questions.procedures.description || ''
+                                )}
+                                label={t(questions.procedures.label)}
                                 options={options.procedures}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                label={questions.skinType.label}
+                                label={t(questions.skinType.label)}
                                 options={options.skinTypes}
                                 register={register}
                             />
 
                             <TextareaSection
-                                description={questions.allergies.description}
-                                label={questions.allergies.label}
+                                description={t(
+                                    questions.allergies.description || ''
+                                )}
+                                label={t(questions.allergies.label)}
                                 register={register('allergies')}
                             />
 
                             <RadioButtonSection
-                                description={questions.peeling.description}
+                                description={t(
+                                    questions.peeling.description || ''
+                                )}
                                 horizontal={true}
-                                label={questions.peeling.label}
+                                label={t(questions.peeling.label)}
                                 options={options.peeling}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.pores.description}
+                                description={t(
+                                    questions.pores.description || ''
+                                )}
                                 horizontal={true}
-                                label={questions.pores.label}
+                                label={t(questions.pores.label)}
                                 options={options.pores}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.oilyShine.description}
+                                description={t(
+                                    questions.oilyShine.description || ''
+                                )}
                                 horizontal={true}
-                                label={questions.oilyShine.label}
+                                label={t(questions.oilyShine.label)}
                                 options={options.oilyShine}
                                 register={register}
                             />
 
                             <TextareaSection
-                                description={
-                                    questions.currentSkills.description
-                                }
-                                label={questions.currentSkills.label}
+                                description={t(
+                                    questions.currentSkills.description || ''
+                                )}
+                                label={t(questions.currentSkills.label)}
                                 register={register('currentSkills')}
                             />
 
                             <CheckboxSection
-                                description={
-                                    questions.desiredSkills.description
-                                }
-                                label={questions.desiredSkills.label}
+                                description={t(
+                                    questions.desiredSkills.description || ''
+                                )}
+                                label={t(questions.desiredSkills.label)}
                                 options={options.desiredSkills}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.makeupTime.description}
-                                label={questions.makeupTime.label}
+                                description={t(
+                                    questions.makeupTime.description || ''
+                                )}
+                                label={t(questions.makeupTime.label)}
                                 options={options.makeupTime}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.budget.description}
-                                label={questions.budget.label}
+                                description={t(
+                                    questions.budget.description || ''
+                                )}
+                                label={t(questions.budget.label)}
                                 options={options.budget}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.brushes.description}
+                                description={t(
+                                    questions.brushes.description || ''
+                                )}
                                 horizontal={true}
-                                label={questions.brushes.label}
+                                label={t(questions.brushes.label)}
                                 options={options.brushes}
                                 register={register}
                             />
 
                             <CheckboxSection
-                                description={questions.problems.description}
-                                label={questions.problems.label}
+                                description={t(
+                                    questions.problems.description || ''
+                                )}
+                                label={t(questions.problems.label)}
                                 options={options.problems}
                                 register={register}
                             />
 
                             <RadioButtonSection
-                                description={questions.referral.description}
-                                label={questions.referral.label}
+                                description={t(
+                                    questions.referral.description || ''
+                                )}
+                                label={t(questions.referral.label)}
                                 options={options.referral}
                                 register={register}
                             />
@@ -213,7 +241,7 @@ export const QuestionnairePage = () => {
 
                         <section className="button-section">
                             <button className="button" type="submit">
-                                Отправить
+                                {t('submit')}
                             </button>
                         </section>
                     </form>

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
 import type { Header } from '../../../types/table'
@@ -8,24 +10,20 @@ export interface QuestionnaireTableProps {
     questionnaires?: Questionnaire[]
 }
 
-const headers: Header[] = [
-    { label: 'Дата', className: 'text-center' },
-    { label: 'Время', className: 'text-center' },
-    { label: 'Имя клиента', className: 'text-left' },
-    { label: 'Возраст', className: 'text-right' },
-    { label: 'Город', className: 'text-left' },
-]
-
 export const QuestionnaireTable = ({
     questionnaires,
 }: QuestionnaireTableProps) => {
-    const cellClasses = [
-        'text-center',
-        'text-center',
-        'text-left',
-        'text-right',
-        'text-left',
+    const { t } = useTranslation('questionnaire')
+
+    const headers: Header[] = [
+        { label: t('table.date'), className: 'text-center' },
+        { label: t('table.time'), className: 'text-center' },
+        { label: t('table.clientName'), className: 'text-left' },
+        { label: t('table.age'), className: 'text-right' },
+        { label: t('table.city'), className: 'text-left' },
     ]
+
+    const cellClasses = headers.map((h) => h.className)
 
     return (
         <Table

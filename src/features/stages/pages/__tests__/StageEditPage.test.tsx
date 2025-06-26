@@ -40,11 +40,8 @@ describe('StageEditPage', () => {
     it('renders the StageForm with title', () => {
         render(<StageEditPage />)
 
-        const form = screen.getByTestId('mocked-stage-form')
-        const title = screen.getByText('Редактировать этап')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stage-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.edit')).toBeInTheDocument()
     })
 
     it('handles form submission successfully', async () => {

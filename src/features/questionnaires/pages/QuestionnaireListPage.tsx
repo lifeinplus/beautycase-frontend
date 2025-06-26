@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Header } from '../../../components/Header'
@@ -7,6 +9,7 @@ import { QuestionnaireTable } from '../components/QuestionnaireTable'
 import { useGetAllQuestionnairesQuery } from '../questionnairesApi'
 
 export const QuestionnaireListPage = () => {
+    const { t } = useTranslation('questionnaire')
     const { data, isLoading, error } = useGetAllQuestionnairesQuery()
 
     return (
@@ -15,13 +18,13 @@ export const QuestionnaireListPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <Hero headline="Анкеты" />
+                    <Hero headline={t('hero.headlineList')} />
 
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Анкеты не найдены"
+                        emptyMessage={t('hero.emptyMessageList')}
                     >
                         <>
                             <QuestionnaireMobileView questionnaires={data} />

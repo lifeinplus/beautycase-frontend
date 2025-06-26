@@ -41,7 +41,12 @@ describe('ButtonNavigateSection', () => {
     })
 
     it('renders error message and applies error class', () => {
-        render(<ButtonNavigateSection {...mockProps} error={mockFieldError} />)
+        render(
+            <ButtonNavigateSection
+                {...mockProps}
+                error={mockFieldError.message}
+            />
+        )
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()

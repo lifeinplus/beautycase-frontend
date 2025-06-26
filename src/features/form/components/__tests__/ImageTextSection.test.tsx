@@ -68,7 +68,9 @@ describe('ImageTextSection', () => {
     })
 
     it('renders error message', () => {
-        render(<ImageTextSection {...mockProps} error={mockFieldError} />)
+        render(
+            <ImageTextSection {...mockProps} error={mockFieldError.message} />
+        )
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
@@ -99,7 +101,7 @@ describe('ImageTextSection', () => {
         expect(mockUploadTempImageByFile).toHaveBeenCalledTimes(1)
         expect(mockSetValue).toHaveBeenCalledWith(
             'makeupBag',
-            '[приложено фото]'
+            '[photoAttached]'
         )
         expect(mockSetValue).toHaveBeenCalledWith(
             'makeupBagPhotoUrl',

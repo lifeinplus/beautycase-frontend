@@ -42,18 +42,16 @@ describe('MakeupBagForm', () => {
     it('renders all required form fields', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        expect(topPanel).toBeInTheDocument()
+        const fields = [
+            'fields.category.label',
+            'fields.client.label',
+            'fields.stages.label',
+            'fields.tools.label',
+        ]
 
-        const category = screen.getByText('Категория')
-        const client = screen.getByText('Клиент')
-        const stages = screen.getByText('Этапы')
-        const tools = screen.getByText('Инструменты')
+        fields.forEach((f) => expect(screen.getByText(f)).toBeInTheDocument())
 
-        expect(category).toBeInTheDocument()
-        expect(client).toBeInTheDocument()
-        expect(stages).toBeInTheDocument()
-        expect(tools).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -72,7 +70,9 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: 'Инструменты' })
+        const button = screen.getByRole('button', {
+            name: 'fields.tools.label',
+        })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -85,7 +85,9 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', { name: 'Этапы' })
+        const button = screen.getByRole('button', {
+            name: 'fields.stages.label',
+        })
         await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalled()
@@ -96,8 +98,8 @@ describe('MakeupBagForm', () => {
     it('displays the correct number of selected stages and tools', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const stagesText = screen.getByText('Выбрано: 2')
-        const toolsText = screen.getByText('Выбрано: 3')
+        const stagesText = screen.getByText('fields.stages.selected: 2')
+        const toolsText = screen.getByText('fields.tools.selected: 3')
 
         expect(stagesText).toBeInTheDocument()
         expect(toolsText).toBeInTheDocument()

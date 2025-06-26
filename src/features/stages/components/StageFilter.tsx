@@ -1,5 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useGetAllMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
 import type { Stage } from '../types'
@@ -10,6 +11,8 @@ export interface StageFilterProps {
 }
 
 export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
+    const { t } = useTranslation('stage')
+
     const [selectedMakeupBagId, setSelectedMakeupBagId] =
         useState('noMakeupBag')
 
@@ -47,7 +50,7 @@ export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
                 onChange={(e) => setSelectedMakeupBagId(e.target.value)}
                 value={selectedMakeupBagId}
             >
-                <option value="noMakeupBag">Без косметички</option>
+                <option value="noMakeupBag">{t('noMakeupBag')}</option>
                 {makeupBags.map(({ _id, category, client }) => (
                     <option key={_id} value={_id}>
                         {`${category?.name} - ${client?.username}`}

@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
@@ -31,19 +32,19 @@ import {
 const ACTIONS = {
     back: {
         icon: <ArrowLeftIcon className="h-6 w-6" />,
-        label: 'Назад',
+        label: 'actions.back',
     },
     export: {
         icon: <DocumentArrowDownIcon className="h-6 w-6" />,
-        label: 'PDF',
+        label: 'actions.export',
     },
     edit: {
         icon: <PencilSquareIcon className="h-6 w-6" />,
-        label: 'Редактировать',
+        label: 'actions.edit',
     },
     delete: {
         icon: <TrashIcon className="h-6 w-6" />,
-        label: 'Удалить',
+        label: 'actions.delete',
     },
 } as const
 
@@ -67,6 +68,13 @@ export const MakeupBagPage = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
+    const { t } = useTranslation([
+        'makeupBag',
+        'modal',
+        'component',
+        'stage',
+        'tool',
+    ])
 
     const redirectPath = '/makeup_bags'
 
@@ -79,10 +87,9 @@ export const MakeupBagPage = () => {
     const { exportToPDF, error: exportError, clearError } = usePDFExport()
 
     const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
-
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
-    const categoryName = data?.category?.name || 'Косметичка'
+    const categoryName = data?.category?.name || t('pdf.fallbackCategory')
     const clientName = data?.client?.username
     const stages = data?.stages || []
     const tools = data?.tools || []
@@ -100,7 +107,7 @@ export const MakeupBagPage = () => {
 
     const handleExportToPDF = async () => {
         if (!data) {
-            toast.error('Нет данных для экспорта')
+            toast.error(t('toast.noExportData'))
             return
         }
 
@@ -131,7 +138,7 @@ export const MakeupBagPage = () => {
         if (!id) return
         try {
             await deleteMakeupBagById(id).unwrap()
-            toast.success('Косметичка удалена')
+            toast.success(t('toast.delete'))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -147,19 +154,22 @@ export const MakeupBagPage = () => {
         key: id,
         className,
         icon: ACTIONS[id].icon,
-        label: ACTIONS[id].label,
+        label: t(`navigation:${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 
     return (
         <article className="page">
-            <TopPanel title="Косметичка" onBack={actionHandlers.back} />
+            <TopPanel
+                title={t('titles.details')}
+                onBack={actionHandlers.back}
+            />
 
             <main className="page-content">
                 <article className="content-container">
                     <Hero
                         headline={categoryName}
-                        byline="Индивидуальный подбор продуктов"
+                        byline={t('hero.byline')}
                         imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png"
                     />
 
@@ -167,7 +177,7 @@ export const MakeupBagPage = () => {
                         isLoading={isLoading}
                         error={error}
                         data={[...stages, ...tools]}
-                        emptyMessage="Косметичка не найдена"
+                        emptyMessage={t('emptyMessage')}
                     >
                         <>
                             <Stages stages={stages} />
@@ -186,7 +196,7 @@ export const MakeupBagPage = () => {
                             key={key}
                             className={className}
                             icon={icon}
-                            text={label}
+                            text={t(label)}
                             onClick={onClick}
                         />
                     )
@@ -195,8 +205,10 @@ export const MakeupBagPage = () => {
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}
-                title="Удалить?"
-                description={`Вы действительно хотите удалить эту косметичку?`}
+                title={t('modal:delete.title')}
+                description={t('modal:delete.description', {
+                    name: categoryName,
+                })}
                 onConfirm={handleDelete}
                 onCancel={() => setIsModalDeleteOpen(false)}
             />

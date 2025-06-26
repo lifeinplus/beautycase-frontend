@@ -11,12 +11,8 @@ describe('ConfirmationPage', () => {
     it('renders components correctly', () => {
         render(<ConfirmationPage />)
 
-        const header = screen.getByTestId('mocked-header')
-        const hero = screen.getByTestId('mocked-header')
-        const navBar = screen.getByTestId('mocked-nav-bar')
-
-        expect(header).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
     })
 })

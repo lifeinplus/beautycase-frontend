@@ -1,0 +1,22 @@
+{
+    "actions": {
+        "add": "Добавить",
+        "back": "Назад",
+        "edit": "Редактировать",
+        "delete": "Удалить",
+        "duplicate": "Дублировать",
+        "export": "PDF",
+        "save": "Сохранить"
+    },
+    "menu": {
+        "account": "Личный кабинет",
+        "lessons": "Уроки",
+        "makeupBags": "Косметички",
+        "products": "Продукты",
+        "questionnaire": "Анкета",
+        "questionnaires": "Анкеты",
+        "referenceLists": "Справочники",
+        "stages": "Этапы",
+        "tools": "Инструменты"
+    }
+}

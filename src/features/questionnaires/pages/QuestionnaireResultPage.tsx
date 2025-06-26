@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
@@ -13,6 +14,7 @@ import { useGetQuestionnaireByIdQuery } from '../questionnairesApi'
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
+    const { t } = useTranslation(['questionnaire'])
 
     const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)
 
@@ -24,12 +26,15 @@ export const QuestionnaireResultPage = () => {
 
     return (
         <article>
-            <TopPanel title="Результаты анкеты" onBack={handleBack} />
+            <TopPanel title={t('hero.headlineResult')} onBack={handleBack} />
 
             <main className="page-content">
                 <article className="content-container">
                     <div className="hidden sm:block">
-                        <Hero headline="Результаты анкеты" byline={createdAt} />
+                        <Hero
+                            headline={t('hero.headlineResult')}
+                            byline={createdAt}
+                        />
                     </div>
 
                     <div className="sm:hidden">
@@ -40,7 +45,7 @@ export const QuestionnaireResultPage = () => {
                         isLoading={isLoading}
                         error={error}
                         data={data}
-                        emptyMessage="Анкета не найдена"
+                        emptyMessage={t('emptyMessage')}
                     >
                         {data && <QuestionnaireResult data={data} />}
                     </DataWrapper>
@@ -50,7 +55,7 @@ export const QuestionnaireResultPage = () => {
             <AdaptiveNavBar>
                 <NavigationButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text="Назад"
+                    text={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />

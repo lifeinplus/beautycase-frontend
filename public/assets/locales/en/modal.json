@@ -1,0 +1,24 @@
+{
+    "delete": {
+        "title": "Delete?",
+        "description": "Are you sure you want to delete {{name}}?"
+    },
+    "duplicate": {
+        "title": "Duplicate?",
+        "description": "Are you sure you want to duplicate {{name}}?"
+    },
+    "buttons": {
+        "cancel": {
+            "text": "Cancel",
+            "ariaLabel": "Cancel button"
+        },
+        "delete": {
+            "text": "Delete",
+            "ariaLabel": "Delete button"
+        },
+        "duplicate": {
+            "text": "Duplicate",
+            "ariaLabel": "Duplicate button"
+        }
+    }
+}

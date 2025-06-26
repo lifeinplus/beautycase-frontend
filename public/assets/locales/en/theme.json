@@ -1,0 +1,10 @@
+{
+    "buttonDarkMode": {
+        "ariaLabel": "Dark mode button"
+    },
+    "buttonLightMode": {
+        "ariaLabel": "Light mode button"
+    },
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode"
+}

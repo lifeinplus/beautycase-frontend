@@ -1,15 +1,19 @@
+import { useTranslation } from 'react-i18next'
+
 import { GalleryPage } from '../../../components/gallery/GalleryPage'
 import { ImageCard } from '../../../components/gallery/ImageCard'
 import { useGetAllProductsQuery } from '../productsApi'
 
 export const ProductGalleryPage = () => {
+    const { t } = useTranslation('product')
+
     const { data: products, isLoading, error } = useGetAllProductsQuery()
 
     return (
         <GalleryPage
             redirectPath="/products"
-            title="Продукты"
-            subtitle="Мицеллярная вода, тоники, тональные основы и крема"
+            title={t('titles.gallery')}
+            subtitle={t('titles.gallerySubtitle')}
             isLoading={isLoading}
             error={error}
             mediaContent={

@@ -1,5 +1,4 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import { type FieldError } from 'react-hook-form'
 
 import { Label } from './Label'
 
@@ -8,7 +7,7 @@ export interface ButtonNavigateSectionProps {
     onNavigate: () => void
     text: string
     description?: string
-    error?: FieldError
+    error?: string
     required?: boolean
 }
 
@@ -35,7 +34,7 @@ export const ButtonNavigateSection = ({
 
             {description && <p className="form-description">{description}</p>}
 
-            {error && <p className="form-error">{error.message}</p>}
+            {error && <p className="form-error">{error}</p>}
         </div>
     )
 }

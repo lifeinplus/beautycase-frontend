@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 import config from '../../../../config'
+import { mockT } from '../../../../tests/mocks/translation'
 import cloudinary from '../../../../utils/cloudinary'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { QuestionnaireResult } from '../QuestionnaireResult'
@@ -13,18 +14,20 @@ describe('QuestionnaireResult', () => {
     it('renders all fields correctly', () => {
         render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
-        expect(screen.getByText('Имя')).toBeInTheDocument()
-        expect(screen.getByText('Instagram')).toBeInTheDocument()
+        expect(mockT).toHaveBeenCalledWith('fields.name.label')
+        expect(mockT).toHaveBeenCalledWith('fields.instagram.label')
+        expect(mockT).toHaveBeenCalledWith('fields.city.label')
+
         expect(screen.getByText('Client 1')).toBeInTheDocument()
         expect(screen.getByText('City 1')).toBeInTheDocument()
         expect(screen.getByText('@client1')).toBeInTheDocument()
         expect(screen.getByText('30')).toBeInTheDocument()
     })
 
-    it('displays "Не указано" for undefined values', () => {
+    it('displays fallback for undefined values', () => {
         render(<QuestionnaireResult data={mockQuestionnaire1} />)
 
-        const notSpecifiedElements = screen.getAllByText('Не указано')
+        const notSpecifiedElements = screen.getAllByText('notSpecified')
         expect(notSpecifiedElements.length).toBe(19 - 6)
     })
 
@@ -65,9 +68,9 @@ describe('QuestionnaireResult', () => {
             />
         )
 
-        const problemsElement = screen.getByText(/тени.*тон/i)
+        expect(screen.getByText('fields.problems.label')).toBeInTheDocument()
 
-        expect(screen.getByText(/Проблемы/i)).toBeInTheDocument()
-        expect(problemsElement).toBeInTheDocument()
+        const problems = screen.getByText(/eyeshadowCrease.*foundationPores/i)
+        expect(problems).toBeInTheDocument()
     })
 })

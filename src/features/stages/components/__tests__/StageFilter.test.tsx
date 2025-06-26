@@ -32,13 +32,9 @@ describe('StageFilter', () => {
             />
         )
 
-        const combobox = screen.getByRole('combobox')
-        const noMakeupBag = screen.getByText('Без косметички')
-        const makeupBag = screen.getByText(`${category} - ${client}`)
-
-        expect(combobox).toBeInTheDocument()
-        expect(noMakeupBag).toBeInTheDocument()
-        expect(makeupBag).toBeInTheDocument()
+        expect(screen.getByRole('combobox')).toBeInTheDocument()
+        expect(screen.getByText('noMakeupBag')).toBeInTheDocument()
+        expect(screen.getByText(`${category} - ${client}`)).toBeInTheDocument()
     })
 
     it('handles empty makeup bags list correctly', () => {

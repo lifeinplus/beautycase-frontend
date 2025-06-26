@@ -61,7 +61,7 @@ describe('StageDetailsPage', () => {
         )
 
         expect(descriptionContent).toBeInTheDocument()
-        expect(descriptionContent.textContent).not.toContain('Шаги')
+        expect(descriptionContent.textContent).not.toContain('steps')
     })
 
     it('navigates to product details when product is clicked', async () => {

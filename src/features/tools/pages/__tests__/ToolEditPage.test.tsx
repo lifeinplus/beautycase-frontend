@@ -37,11 +37,8 @@ describe('ToolEditPage', () => {
     it('renders the ToolForm with title', () => {
         render(<ToolEditPage />)
 
-        const form = screen.getByTestId('mocked-tool-form')
-        const title = screen.getByText('Редактировать инструмент')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-tool-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.edit')).toBeInTheDocument()
     })
 
     it('handles form submission successfully', async () => {

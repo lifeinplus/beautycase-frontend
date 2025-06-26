@@ -1,14 +1,13 @@
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent } from 'react'
-import {
-    type FieldError,
-    type FieldValues,
-    type Path,
-    type PathValue,
-    type UseFormClearErrors,
-    type UseFormRegisterReturn,
-    type UseFormSetValue,
+import type {
+    FieldValues,
+    Path,
+    PathValue,
+    UseFormClearErrors,
+    UseFormRegisterReturn,
+    UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -16,6 +15,7 @@ import { getErrorMessage } from '../../../utils/errorUtils'
 import { useUploadTempImageByFileMutation } from '../../uploads/uploadsApi'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
+import { useTranslation } from 'react-i18next'
 
 export interface ImageTextSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
@@ -28,7 +28,7 @@ export interface ImageTextSectionProps<T extends FieldValues> {
     registerUrl: UseFormRegisterReturn
     setValue: UseFormSetValue<T>
     description?: string
-    error?: FieldError
+    error?: string
     required?: boolean
     value?: string
     valueUrl?: string
@@ -50,6 +50,8 @@ export const ImageTextSection = <T extends FieldValues>({
     value = '',
     valueUrl = '',
 }: ImageTextSectionProps<T>) => {
+    const { t } = useTranslation('form')
+
     const [uploadImageTemp] = useUploadTempImageByFileMutation()
 
     const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +60,7 @@ export const ImageTextSection = <T extends FieldValues>({
         if (!file) return
 
         function fallbackText(value: string) {
-            const text = '[приложено фото]'
+            const text = `[${t('photoAttached')}]`
             return value ? value : text
         }
 
@@ -121,7 +123,7 @@ export const ImageTextSection = <T extends FieldValues>({
 
             {description && <p className="form-description">{description}</p>}
 
-            {error && <p className="form-error">{error.message}</p>}
+            {error && <p className="form-error">{error}</p>}
 
             {valueUrl && <ImagePreview url={valueUrl} />}
         </div>

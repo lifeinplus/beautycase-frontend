@@ -13,14 +13,14 @@ describe('Brand Schema Validation', () => {
     it('should fail when name is missing', async () => {
         const data = { ...mockBrand1, name: undefined }
         await expect(brandSchema.validate(data)).rejects.toThrow(
-            'Укажите название бренда'
+            'fields.name.errors.required'
         )
     })
 
     it('should fail when name is empty', async () => {
         const data = { ...mockBrand1, name: '' }
         await expect(brandSchema.validate(data)).rejects.toThrow(
-            'Укажите название бренда'
+            'fields.name.errors.required'
         )
     })
 })

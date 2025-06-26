@@ -50,10 +50,10 @@ describe('LoginPage', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
         const title = screen.getByText('Beautycase')
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const submit = screen.getByRole('button', { name: /войти/i })
-        const link = screen.getByText(/зарегистрироваться/i)
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const submit = screen.getByRole('button', { name: 'login' })
+        const link = screen.getByText('register')
 
         expect(title).toBeInTheDocument()
         expect(username).toBeInTheDocument()
@@ -64,7 +64,7 @@ describe('LoginPage', () => {
 
     it('focuses username input on mount', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
-        const username = screen.getByPlaceholderText('Имя пользователя')
+        const username = screen.getByPlaceholderText('username')
         expect(document.activeElement).toBe(username)
     })
 
@@ -73,8 +73,8 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
 
         await user.type(username, mockLoginParams.username)
         await user.type(password, mockLoginParams.password)
@@ -88,9 +88,9 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const submit = screen.getByRole('button', { name: /войти/i })
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const submit = screen.getByRole('button', { name: 'login' })
 
         await user.type(username, mockLoginParams.username)
         await user.type(password, mockLoginParams.password)
@@ -116,9 +116,9 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('Имя пользователя')
-        const password = screen.getByPlaceholderText('Пароль')
-        const submit = screen.getByRole('button', { name: /войти/i })
+        const username = screen.getByPlaceholderText('username')
+        const password = screen.getByPlaceholderText('password')
+        const submit = screen.getByRole('button', { name: 'login' })
 
         await user.type(username, mockLoginParams.username)
         await user.type(password, 'wrongpassword')
@@ -140,9 +140,9 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const submit = screen.getByRole('button', { name: /вход.../i })
+        const submit = screen.getByRole('button', { name: 'loginLoading' })
         expect(submit).toBeDisabled()
-        expect(submit).toHaveTextContent('Вход...')
+        expect(submit).toHaveTextContent('loginLoading')
     })
 
     it('navigates to register page when register link is clicked', async () => {
@@ -150,7 +150,7 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const link = screen.getByRole('link', { name: /зарегистрироваться/i })
+        const link = screen.getByRole('link', { name: 'register' })
         await user.click(link)
 
         expect(screen.getByTestId('mocked-register-page')).toBeInTheDocument()

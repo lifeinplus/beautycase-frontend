@@ -56,8 +56,10 @@ describe('StoreLinkAddPage', () => {
     it('renders initial empty store link form', () => {
         render(<StoreLinkAddPage />)
 
-        expect(screen.getByText('Выбрать')).toBeInTheDocument()
-        expect(screen.getAllByPlaceholderText('Ссылка').length).toBe(2)
+        expect(screen.getByText('fields.stores.label')).toBeInTheDocument()
+        expect(screen.getAllByPlaceholderText('fields.link.label').length).toBe(
+            2
+        )
     })
 
     it('initializes with existing store links from form data', async () => {
@@ -68,7 +70,7 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         const linkInput = screen.getByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         }) as HTMLInputElement
 
         expect(linkInput.value).toBe('https://store1.com')
@@ -79,11 +81,13 @@ describe('StoreLinkAddPage', () => {
 
         render(<StoreLinkAddPage />)
 
-        const addButton = screen.getByRole('button', { name: 'Add Button' })
+        const addButton = screen.getByRole('button', {
+            name: 'buttonAdd.ariaLabel',
+        })
         await user.click(addButton)
 
         const linkInputs = screen.getAllByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         })
 
         expect(linkInputs.length).toBe(2)
@@ -97,20 +101,20 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         let linkInputs = screen.getAllByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         })
 
         expect(linkInputs.length).toBe(2)
 
         const deleteButtons = screen.getAllByRole('button', {
-            name: 'Delete Button',
+            name: 'buttonDelete.ariaLabel',
         })
 
         const deleteStore1 = deleteButtons[0]
         await user.click(deleteStore1)
 
         linkInputs = screen.getAllByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         })
 
         expect(linkInputs.length).toBe(1)
@@ -138,7 +142,7 @@ describe('StoreLinkAddPage', () => {
         render(<StoreLinkAddPage />)
 
         const linkInput = screen.getByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         }) as HTMLInputElement
 
         await user.type(linkInput, 'https://example.com')
@@ -151,7 +155,9 @@ describe('StoreLinkAddPage', () => {
 
         render(<StoreLinkAddPage />)
 
-        const backButton = screen.getByRole('button', { name: 'Назад' })
+        const backButton = screen.getByRole('button', {
+            name: 'navigation:actions.back',
+        })
         await user.click(backButton)
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -166,11 +172,13 @@ describe('StoreLinkAddPage', () => {
         await user.selectOptions(select, 'store1')
 
         const linkInput = screen.getByRole('textbox', {
-            name: 'Link Input',
+            name: 'fields.link.ariaLabel',
         }) as HTMLInputElement
         await user.type(linkInput, 'https://example.com')
 
-        const saveButton = screen.getByRole('button', { name: 'Сохранить' })
+        const saveButton = screen.getByRole('button', {
+            name: 'navigation:actions.save',
+        })
         await user.click(saveButton)
 
         expect(mockDispatch).toHaveBeenCalledWith(

@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
@@ -10,6 +11,7 @@ import type { Stage } from '../types'
 
 export const StageAddPage = () => {
     const navigate = useNavigate()
+    const { t } = useTranslation('stage')
 
     const dispatch = useAppDispatch()
     const [createStage] = useCreateStageMutation()
@@ -31,5 +33,5 @@ export const StageAddPage = () => {
         }
     }
 
-    return <StageForm title={'Добавить этап'} onSubmit={handleAddStage} />
+    return <StageForm title={t('titles.add')} onSubmit={handleAddStage} />
 }

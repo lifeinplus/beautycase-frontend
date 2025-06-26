@@ -18,7 +18,8 @@
         },
         "lessons": {
             "label": "Lessons",
-            "emptyMessage": "You have no available lessons"
+            "emptyMessage": "You have no available lessons",
+            "link": "Open"
         }
     }
 }

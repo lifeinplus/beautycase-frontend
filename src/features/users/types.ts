@@ -11,7 +11,13 @@ export interface UserMakeupBag {
     category: { name: string }
 }
 
+export interface UserLesson {
+    _id: string
+    title: string
+}
+
 export interface UserResult {
     user: User
     makeupBags?: UserMakeupBag[]
+    lessons?: UserLesson[]
 }

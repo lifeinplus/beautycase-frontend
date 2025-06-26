@@ -1,16 +1,4 @@
 {
-    "add": {
-        "title": "Add lesson"
-    },
-    "details": {
-        "title": "Lesson"
-    },
-    "edit": {
-        "title": "Edit lesson"
-    },
-    "gallery": {
-        "title": "Lessons"
-    },
     "fields": {
         "title": {
             "label": "Title",
@@ -52,5 +40,11 @@
             "select": "Select",
             "selected": "Selected"
         }
+    },
+    "titles": {
+        "add": "Add lesson",
+        "details": "Lesson",
+        "edit": "Edit lesson",
+        "gallery": "Lessons"
     }
 }

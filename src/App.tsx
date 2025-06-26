@@ -44,6 +44,7 @@ import { ToolDetailsPage } from './features/tools/pages/ToolDetailsPage'
 import { ToolEditPage } from './features/tools/pages/ToolEditPage'
 import { ToolsGalleryPage } from './features/tools/pages/ToolsGalleryPage'
 import { ToolSelectionPage } from './features/tools/pages/ToolSelectionPage'
+import { UserSelectionPage } from './features/users/pages/UserSelectionPage'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -106,9 +107,15 @@ const App = () => {
                                 }
                             >
                                 <Route path="add" element={<LessonAddPage />} />
+
                                 <Route
                                     path="edit/:id"
                                     element={<LessonEditPage />}
+                                />
+
+                                <Route
+                                    path="edit/:id/clients"
+                                    element={<UserSelectionPage />}
                                 />
                             </Route>
                         </Route>

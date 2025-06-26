@@ -6,6 +6,10 @@
     @apply mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 px-3 md:grid-cols-2;
 }
 
+.gallery-container-clients {
+    @apply mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 px-3 md:grid-cols-2;
+}
+
 .gallery-container-video {
     @apply mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 md:grid-cols-2;
 }

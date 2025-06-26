@@ -12,7 +12,7 @@ export const LessonsGalleryPage = () => {
     return (
         <GalleryPage
             redirectPath="/lessons"
-            title={t('gallery.title')}
+            title={t('titles.gallery')}
             isLoading={isLoading}
             error={error}
             mediaContent={

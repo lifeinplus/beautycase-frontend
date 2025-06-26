@@ -24,10 +24,19 @@
     @apply border-white;
 }
 
+.img-order-center {
+    @apply absolute h-6 w-6 rounded-full border-2 shadow-lg;
+    @apply border-white;
+}
+
 .img-order-default {
     @apply bg-transparent text-gray-400;
 }
 
 .img-order-selected {
     @apply bg-rose-500 text-white;
+}
+
+.img-selected {
+    @apply absolute h-3.5 w-3.5 rounded-full bg-rose-500 text-white;
 }

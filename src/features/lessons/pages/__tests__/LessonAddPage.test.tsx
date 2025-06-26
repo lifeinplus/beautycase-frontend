@@ -34,7 +34,7 @@ describe('LessonAddPage', () => {
         render(<LessonAddPage />)
 
         expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
-        expect(screen.getByText('add.title')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
     it('submits lesson and navigates on success', async () => {

@@ -39,7 +39,15 @@ export const MakeupBagEditPage = () => {
 
     const handleEditMakeupBag = async (makeupBag: MakeupBag) => {
         try {
-            await updateMakeupBagById({ id: id!, makeupBag }).unwrap()
+            await updateMakeupBagById({
+                id: id!,
+                makeupBag: {
+                    categoryId: makeupBag.categoryId,
+                    clientId: makeupBag.clientId,
+                    stageIds: makeupBag.stageIds,
+                    toolIds: makeupBag.toolIds,
+                },
+            }).unwrap()
             dispatch(clearFormData())
             navigate(`/makeup_bags/${id}`)
         } catch (error) {

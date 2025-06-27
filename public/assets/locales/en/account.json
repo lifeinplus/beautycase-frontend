@@ -11,9 +11,9 @@
         "role": {
             "label": "Role"
         },
-        "beautyBags": {
-            "label": "Beauty Bags",
-            "emptyMessage": "You have no available beauty bags",
+        "makeupBags": {
+            "label": "Makeup Bags",
+            "emptyMessage": "You have no available makeup bags",
             "link": "Open"
         },
         "lessons": {

@@ -61,9 +61,7 @@ describe('ToolForm', () => {
         const user = userEvent.setup()
 
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByTestId('mocked-back-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -72,9 +70,7 @@ describe('ToolForm', () => {
         const user = userEvent.setup()
 
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByTestId('mocked-button-navigate-section')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button-navigate-section'))
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()

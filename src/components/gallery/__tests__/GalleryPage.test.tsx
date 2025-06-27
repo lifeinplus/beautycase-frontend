@@ -97,9 +97,7 @@ describe('GalleryPage', () => {
         const user = userEvent.setup()
 
         renderWithProviders(<GalleryPage {...mockProps} />)
-
-        const button = screen.getByRole('button', { name: 'actions.add' })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: 'actions.add' }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/gallery/add')
     })

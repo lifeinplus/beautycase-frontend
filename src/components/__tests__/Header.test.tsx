@@ -32,9 +32,9 @@ describe('Header', () => {
     it('displays the logo with correct text and styling', () => {
         render(<Header />)
 
-        const headingElement = screen.getByRole('heading', { level: 1 })
-        expect(headingElement).toBeInTheDocument()
-        expect(headingElement).toHaveClass('font-logo', 'text-2xl', 'font-bold')
+        expect(screen.getByRole('heading', { level: 1 })).toHaveClass(
+            'nav-logo'
+        )
 
         const logoLink = screen.getByRole('link', { name: /beautycase/i })
         expect(logoLink).toBeInTheDocument()

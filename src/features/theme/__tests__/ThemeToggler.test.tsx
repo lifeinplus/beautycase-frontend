@@ -45,9 +45,7 @@ describe('ThemeToggler', () => {
         vi.mocked(useAppSelector).mockReturnValue(false)
 
         render(<ThemeToggler />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockDispatch).toHaveBeenCalledWith(toggleTheme())
     })
@@ -57,9 +55,7 @@ describe('ThemeToggler', () => {
         vi.mocked(useAppSelector).mockReturnValue(false)
 
         render(<ThemeToggler />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         const toggle = document.documentElement.classList.toggle
         expect(toggle).toHaveBeenCalledWith('dark', true)
@@ -70,9 +66,7 @@ describe('ThemeToggler', () => {
         vi.mocked(useAppSelector).mockReturnValue(true)
 
         render(<ThemeToggler />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(localStorage.setItem).toHaveBeenCalledWith('darkMode', 'false')
     })

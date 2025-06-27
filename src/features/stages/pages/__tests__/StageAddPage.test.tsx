@@ -42,9 +42,7 @@ describe('StageAddPage', () => {
         const { stepsText, ...restStage } = mockStage1
 
         render(<StageAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddStage).toHaveBeenCalledWith(restStage)
         expect(mockUnwrap).toHaveBeenCalled()
@@ -62,9 +60,7 @@ describe('StageAddPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<StageAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddStage).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

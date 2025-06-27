@@ -11,7 +11,7 @@
         "role": {
             "label": "Роль"
         },
-        "beautyBags": {
+        "makeupBags": {
             "label": "Косметички",
             "emptyMessage": "У вас нет доступных косметичек",
             "link": "Открыть"

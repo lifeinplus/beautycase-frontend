@@ -59,9 +59,7 @@ describe('ButtonNavigateSection', () => {
         const user = userEvent.setup()
 
         render(<ButtonNavigateSection {...mockProps} />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockProps.onNavigate).toHaveBeenCalledTimes(1)
     })

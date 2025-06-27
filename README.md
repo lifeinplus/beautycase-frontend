@@ -10,7 +10,7 @@ This repository contains the frontend of the Beautycase web application, designe
 -   **User Authentication** – Secure login and registration functionality.
 -   **Product Recommendations** – Display and manage recommended beauty products.
 -   **Lessons Gallery** – Browse and watch video lessons with detailed descriptions and linked materials.
--   **Admin Panel** – Manage brands, stores, and beauty bags.
+-   **Admin Panel** – Manage brands, stores, and makeup bags.
 -   **File Uploads** – Store and manage images using **Cloudinary**.
 
 ## Technology Stack

@@ -25,7 +25,7 @@ export const AccountPage = () => {
 
     const userId = useAppSelector(selectUserId)
 
-    const { data, isLoading, error } = useGetUserByIdQuery(userId || '')
+    const { data, isLoading, error } = useGetUserByIdQuery(userId!)
     const { user, makeupBags, lessons } = data || {}
 
     const fields: Field[] = [
@@ -38,9 +38,9 @@ export const AccountPage = () => {
             label: 'fields.role.label',
         },
         {
-            sysname: 'beautyBags',
-            label: 'fields.beautyBags.label',
-            emptyMessage: t('fields.beautyBags.emptyMessage'),
+            sysname: 'makeupBags',
+            label: 'fields.makeupBags.label',
+            emptyMessage: t('fields.makeupBags.emptyMessage'),
             content: makeupBags?.length && (
                 <ul
                     role="list"
@@ -68,7 +68,7 @@ export const AccountPage = () => {
                                     to={`/makeup_bags/${bag._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
-                                    {t('fields.beautyBags.link')}
+                                    {t('fields.makeupBags.link')}
                                 </Link>
                             </div>
                         </li>

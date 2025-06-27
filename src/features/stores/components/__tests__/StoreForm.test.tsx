@@ -175,9 +175,7 @@ describe('StoreForm', () => {
         const user = userEvent.setup()
 
         render(<StoreForm ref={mockRef} />)
-
-        const button = screen.getByTestId('mocked-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button'))
 
         const error = screen.getByText('fields.name.errors.required')
         expect(error).toBeInTheDocument()

@@ -31,9 +31,7 @@ describe('TopPanel', () => {
         const user = userEvent.setup()
 
         render(<TopPanel title={mockTitle} />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -43,9 +41,7 @@ describe('TopPanel', () => {
         const mockOnBack = vi.fn()
 
         render(<TopPanel title={mockTitle} onBack={mockOnBack} />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockOnBack).toHaveBeenCalledTimes(1)
         expect(mockNavigate).not.toHaveBeenCalled()

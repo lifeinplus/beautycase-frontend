@@ -69,18 +69,23 @@ describe('QuestionnairePage', () => {
 
         render(<QuestionnairePage />)
 
-        const name = screen.getByPlaceholderText(questions.name.label)
-        const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
-        const button = screen.getByText('submit')
+        await user.type(
+            screen.getByPlaceholderText(questions.name.label),
+            mockQuestionnaire1.name
+        )
 
-        await user.type(name, mockQuestionnaire1.name)
-        await user.type(makeupBag, mockQuestionnaire1.makeupBag)
-        await user.click(button)
+        await user.type(
+            screen.getByPlaceholderText(questions.makeupBag.label),
+            mockQuestionnaire1.makeupBag
+        )
+
+        await user.click(screen.getByText('submit'))
 
         expect(mockAddQuestionnaire).toHaveBeenCalledWith({
             name: mockQuestionnaire1.name,
             makeupBag: mockQuestionnaire1.makeupBag,
         })
+
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/confirmation')
     })
@@ -96,13 +101,17 @@ describe('QuestionnairePage', () => {
 
         render(<QuestionnairePage />)
 
-        const name = screen.getByPlaceholderText(questions.name.label)
-        const makeupBag = screen.getByPlaceholderText(questions.makeupBag.label)
-        const button = screen.getByText('submit')
+        await user.type(
+            screen.getByPlaceholderText(questions.name.label),
+            mockQuestionnaire1.name
+        )
 
-        await user.type(name, mockQuestionnaire1.name)
-        await user.type(makeupBag, mockQuestionnaire1.makeupBag)
-        await user.click(button)
+        await user.type(
+            screen.getByPlaceholderText(questions.makeupBag.label),
+            mockQuestionnaire1.makeupBag
+        )
+
+        await user.click(screen.getByText('submit'))
 
         expect(mockAddQuestionnaire).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

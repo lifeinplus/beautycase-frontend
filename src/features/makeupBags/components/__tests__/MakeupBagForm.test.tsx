@@ -58,9 +58,7 @@ describe('MakeupBagForm', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByTestId('mocked-back-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -70,10 +68,11 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', {
-            name: 'fields.tools.label',
-        })
-        await user.click(button)
+        await user.click(
+            screen.getByRole('button', {
+                name: 'fields.tools.label',
+            })
+        )
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
@@ -85,10 +84,11 @@ describe('MakeupBagForm', () => {
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByRole('button', {
-            name: 'fields.stages.label',
-        })
-        await user.click(button)
+        await user.click(
+            screen.getByRole('button', {
+                name: 'fields.stages.label',
+            })
+        )
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()

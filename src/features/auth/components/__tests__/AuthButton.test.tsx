@@ -58,9 +58,7 @@ describe('AuthButton', () => {
         vi.mocked(useAppSelector).mockReturnValue(null)
 
         render(<AuthButton />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
@@ -70,9 +68,7 @@ describe('AuthButton', () => {
         vi.mocked(useAppSelector).mockReturnValue('testuser')
 
         render(<AuthButton />)
-
-        const button = screen.getByRole('button')
-        await user.click(button)
+        await user.click(screen.getByRole('button'))
 
         expect(mockHandleLogout).toHaveBeenCalledTimes(1)
     })

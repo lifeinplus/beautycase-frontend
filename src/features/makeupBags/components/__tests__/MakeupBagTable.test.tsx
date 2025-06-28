@@ -28,7 +28,7 @@ describe('MakeupBagTable', () => {
         expect(screen.getAllByText('2025.04.10')).toHaveLength(2)
         expect(screen.getAllByText('14:30')).toHaveLength(2)
 
-        expect(screen.getByText('Test Category 1')).toBeInTheDocument()
+        expect(screen.getByText('categories.basic.short')).toBeInTheDocument()
         expect(screen.getByText('Test Client 1')).toBeInTheDocument()
     })
 })

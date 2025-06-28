@@ -17,9 +17,7 @@ export interface MakeupBag {
 }
 
 export interface MakeupBagData {
-    category?: {
-        name: string
-    }
+    category?: Pick<Category, 'name'>
     stages?: Stage[]
     tools?: Tool[]
 }

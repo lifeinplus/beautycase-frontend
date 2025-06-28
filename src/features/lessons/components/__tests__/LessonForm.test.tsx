@@ -62,7 +62,7 @@ describe('LessonForm', () => {
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/products/selection')
+        expect(mockNavigate).toHaveBeenCalledWith('products')
     })
 
     it('displays the correct number of selected products', () => {

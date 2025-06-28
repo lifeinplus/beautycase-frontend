@@ -5,14 +5,14 @@ import type { Category } from '../types'
 
 export const mockCategory1: Category = {
     _id: 'category1',
-    name: 'Category 1',
-    type: 'test_type',
+    name: 'basic',
+    type: 'makeup_bag',
 }
 
 export const mockCategory2: Category = {
     _id: 'category2',
-    name: 'Category 2',
-    type: 'test_type',
+    name: 'luxury',
+    type: 'makeup_bag',
 }
 
 export const mockCategories: Category[] = [mockCategory1, mockCategory2]

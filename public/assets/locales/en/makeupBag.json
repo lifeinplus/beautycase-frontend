@@ -1,4 +1,14 @@
 {
+    "categories": {
+        "basic": {
+            "short": "Basic",
+            "full": "Basic Makeup Bag"
+        },
+        "luxury": {
+            "short": "Luxury",
+            "full": "Luxury Makeup Bag"
+        }
+    },
     "emptyMessage": "Makeup bag not found",
     "emptyMessageList": "Makeup bags not found",
     "fallbackCategory": "Makeup Bag",

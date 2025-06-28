@@ -76,7 +76,7 @@ describe('MakeupBagForm', () => {
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/tools/selection')
+        expect(mockNavigate).toHaveBeenCalledWith('tools')
     })
 
     it('navigates to stages selection and saves form data', async () => {
@@ -92,7 +92,7 @@ describe('MakeupBagForm', () => {
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/stages/selection')
+        expect(mockNavigate).toHaveBeenCalledWith('stages')
     })
 
     it('displays the correct number of selected stages and tools', () => {

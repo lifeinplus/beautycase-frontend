@@ -80,15 +80,20 @@ describe('AccountPage', () => {
     })
 
     it('renders makeup bags section with a link', () => {
+        const { name: name1 } = mockUserMakeupBag1.category
+        const { name: name2 } = mockUserMakeupBag2.category
+
         renderWithProviderAndRouter(<AccountPage />)
 
-        const matchers = [
-            'fields.makeupBags.label',
-            mockUserMakeupBag1.category.name,
-            mockUserMakeupBag2.category.name,
-        ]
+        expect(screen.getByText('fields.makeupBags.label')).toBeInTheDocument()
 
-        matchers.forEach((m) => expect(screen.getByText(m)).toBeInTheDocument())
+        expect(
+            screen.getByText(`makeupBag:categories.${name1}.full`)
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText(`makeupBag:categories.${name2}.full`)
+        ).toBeInTheDocument()
 
         const links = screen.getAllByRole('link', {
             name: 'fields.makeupBags.link',

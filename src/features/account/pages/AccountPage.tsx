@@ -21,7 +21,7 @@ interface Field {
 
 export const AccountPage = () => {
     const { pathname } = useLocation()
-    const { t } = useTranslation('account')
+    const { t } = useTranslation(['account', 'makeupBag'])
 
     const userId = useAppSelector(selectUserId)
 
@@ -58,7 +58,9 @@ export const AccountPage = () => {
                                 />
                                 <div className="ml-4 flex min-w-0 flex-1 gap-2">
                                     <span className="truncate font-medium">
-                                        {bag.category?.name}
+                                        {t(
+                                            `makeupBag:categories.${bag.category?.name}.full`
+                                        )}
                                     </span>
                                 </div>
                             </div>

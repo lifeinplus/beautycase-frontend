@@ -1,4 +1,14 @@
 {
+    "categories": {
+        "basic": {
+            "short": "Базовая",
+            "full": "Базовая косметичка"
+        },
+        "luxury": {
+            "short": "Люксовая",
+            "full": "Люксовая косметичка"
+        }
+    },
     "emptyMessage": "Косметичка не найдена",
     "emptyMessageList": "Косметички не найдены",
     "fallbackCategory": "Косметичка",

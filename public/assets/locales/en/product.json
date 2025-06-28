@@ -31,7 +31,7 @@
             }
         },
         "storeLinks": {
-            "label": "Product links",
+            "label": "Product Links",
             "errors": {
                 "required": "Add product links",
                 "min": "At least 1 product link"
@@ -40,15 +40,15 @@
             "selected": "Added"
         }
     },
-    "links": "Product links",
+    "links": "Product Links",
     "loading": "Loading...",
     "shade": "Shade",
     "titles": {
-        "add": "Add product",
+        "add": "Add Product",
         "details": "Product",
-        "edit": "Edit product",
+        "edit": "Edit Product",
         "gallery": "Products",
         "gallerySubtitle": "Micellar water, toners, foundations, and creams",
-        "selection": "Select products"
+        "selection": "Select Products"
     }
 }

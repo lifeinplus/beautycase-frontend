@@ -1,7 +1,7 @@
 {
     "emptyMessage": "Makeup bag not found",
     "emptyMessageList": "Makeup bags not found",
-    "fallbackCategory": "Makeup bag",
+    "fallbackCategory": "Makeup Bag",
     "fields": {
         "category": {
             "label": "Category",
@@ -36,11 +36,11 @@
     },
     "hero": {
         "headline": "Makeup Bags",
-        "byline": "Personalized product selection"
+        "byline": "Personalized Product Selection"
     },
     "pdf": {
-        "subtitle": "Personalized product selection",
-        "fallbackCategory": "Makeup bag",
+        "subtitle": "Personalized Product Selection",
+        "fallbackCategory": "Makeup Bag",
         "steps": "Steps",
         "tools": "Tools",
         "thanks": "Thank you for choosing me!",
@@ -54,9 +54,9 @@
         "clientName": "Client"
     },
     "titles": {
-        "add": "Add makeup bag",
-        "details": "Makeup bag",
-        "edit": "Edit makeup bag"
+        "add": "Add Makeup Bag",
+        "details": "Makeup Bag",
+        "edit": "Edit Makeup Bag"
     },
     "toast": {
         "delete": "Makeup bag deleted",

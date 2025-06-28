@@ -5,6 +5,6 @@
     "buttonLightMode": {
         "ariaLabel": "Light mode button"
     },
-    "darkMode": "Dark mode",
-    "lightMode": "Light mode"
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
 }

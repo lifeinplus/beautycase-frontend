@@ -1,6 +1,6 @@
 {
     "title": "Welcome to",
-    "motto": "All your makeup tools and products in one place.",
+    "motto": "All Your Makeup Tools and Products in One Place",
     "auth": {
         "loggedIn": "Logged in",
         "logout": "Log out"
@@ -8,6 +8,6 @@
     "link": {
         "login": "Log in",
         "or": "or",
-        "register": "register"
+        "register": "Register"
     }
 }

@@ -110,9 +110,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                         <ButtonNavigateSection
                             error={t(errors.productIds?.message || '')}
                             label={t('fields.products.label')}
-                            onNavigate={() =>
-                                handleNavigate('/products/selection')
-                            }
+                            onNavigate={() => handleNavigate('products')}
                             required={true}
                             text={productsText}
                         />

@@ -7,7 +7,7 @@
             }
         },
         "shortDescription": {
-            "label": "Short description",
+            "label": "Short Description",
             "errors": {
                 "required": "Please enter a short description",
                 "min": "At least 10 characters"
@@ -20,7 +20,7 @@
             }
         },
         "fullDescription": {
-            "label": "Full description",
+            "label": "Full Description",
             "errors": {
                 "required": "Please enter the full description",
                 "min": "At least 20 characters"
@@ -42,9 +42,9 @@
         }
     },
     "titles": {
-        "add": "Add lesson",
+        "add": "Add Lesson",
         "details": "Lesson",
-        "edit": "Edit lesson",
+        "edit": "Edit Lesson",
         "gallery": "Lessons"
     }
 }

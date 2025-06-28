@@ -57,7 +57,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
 
     const handleNavigate = () => {
         dispatch(setFormData(watch()))
-        navigate('/products/selection')
+        navigate('products')
     }
 
     return (

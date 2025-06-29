@@ -34,16 +34,14 @@ describe('LessonAddPage', () => {
         render(<LessonAddPage />)
 
         expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
-        expect(screen.getByText('add.title')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
     it('submits lesson and navigates on success', async () => {
         const user = userEvent.setup()
 
         render(<LessonAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddLesson).toHaveBeenCalledWith(mockLesson1)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -60,9 +58,7 @@ describe('LessonAddPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<LessonAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddLesson).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

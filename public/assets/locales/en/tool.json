@@ -29,7 +29,7 @@
             }
         },
         "storeLinks": {
-            "label": "Tool links",
+            "label": "Tool Links",
             "errors": {
                 "required": "Add tool links",
                 "min": "At least 1 tool"
@@ -38,15 +38,15 @@
             "selected": "Added"
         }
     },
-    "links": "Tool links",
+    "links": "Tool Links",
     "number": "Number",
     "titles": {
-        "add": "Add tool",
+        "add": "Add Tool",
         "details": "Tool",
-        "edit": "Edit tool",
+        "edit": "Edit Tool",
         "gallery": "Tools",
-        "gallerySubtitle": "Brushes and sponges",
+        "gallerySubtitle": "Brushes and Sponges",
         "list": "Tools",
-        "selection": "Select tools"
+        "selection": "Select Tools"
     }
 }

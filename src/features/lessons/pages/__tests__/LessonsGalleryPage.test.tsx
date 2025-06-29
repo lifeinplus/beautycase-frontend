@@ -22,19 +22,19 @@ describe('LessonsGalleryPage', () => {
         render(<LessonsGalleryPage />)
 
         expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
-        expect(screen.getByText('gallery.title')).toBeInTheDocument()
+        expect(screen.getByText('titles.gallery')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockLessons.forEach((lesson) => {
-            const videoCard = screen.getByTestId(
-                `mocked-video-card-${lesson._id}`
-            )
-            const title = screen.getByText(lesson.title)
-            const path = screen.getByText(`/lessons/${lesson._id}`)
+            expect(
+                screen.getByTestId(`mocked-video-card-${lesson._id}`)
+            ).toBeInTheDocument()
 
-            expect(videoCard).toBeInTheDocument()
-            expect(title).toBeInTheDocument()
-            expect(path).toBeInTheDocument()
+            expect(screen.getByText(lesson.title)).toBeInTheDocument()
+
+            expect(
+                screen.getByText(`/lessons/${lesson._id}`)
+            ).toBeInTheDocument()
         })
     })
 })

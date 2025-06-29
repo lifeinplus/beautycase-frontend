@@ -44,6 +44,7 @@ import { ToolDetailsPage } from './features/tools/pages/ToolDetailsPage'
 import { ToolEditPage } from './features/tools/pages/ToolEditPage'
 import { ToolsGalleryPage } from './features/tools/pages/ToolsGalleryPage'
 import { ToolSelectionPage } from './features/tools/pages/ToolSelectionPage'
+import { UserSelectionPage } from './features/users/pages/UserSelectionPage'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)
@@ -94,8 +95,6 @@ const App = () => {
                         <Route path="/account" element={<AccountPage />} />
 
                         <Route path="/lessons">
-                            <Route index element={<LessonsGalleryPage />} />
-
                             <Route path=":id" element={<LessonDetailsPage />} />
 
                             <Route
@@ -105,10 +104,23 @@ const App = () => {
                                     />
                                 }
                             >
+                                <Route index element={<LessonsGalleryPage />} />
+
                                 <Route path="add" element={<LessonAddPage />} />
+
                                 <Route
                                     path="edit/:id"
                                     element={<LessonEditPage />}
+                                />
+
+                                <Route
+                                    path="edit/:id/clients"
+                                    element={<UserSelectionPage />}
+                                />
+
+                                <Route
+                                    path="edit/:id/products"
+                                    element={<ProductSelectionPage />}
                                 />
                             </Route>
                         </Route>
@@ -124,13 +136,25 @@ const App = () => {
                                 }
                             >
                                 <Route index element={<MakeupBagListPage />} />
+
                                 <Route
                                     path="add"
                                     element={<MakeupBagAddPage />}
                                 />
+
                                 <Route
                                     path="edit/:id"
                                     element={<MakeupBagEditPage />}
+                                />
+
+                                <Route
+                                    path="edit/:id/stages"
+                                    element={<StageSelectionPage />}
+                                />
+
+                                <Route
+                                    path="edit/:id/tools"
+                                    element={<ToolSelectionPage />}
                                 />
                             </Route>
                         </Route>
@@ -149,17 +173,15 @@ const App = () => {
                                 }
                             >
                                 <Route index element={<ProductGalleryPage />} />
+
                                 <Route
                                     path="add"
                                     element={<ProductAddPage />}
                                 />
+
                                 <Route
                                     path="edit/:id"
                                     element={<ProductEditPage />}
-                                />
-                                <Route
-                                    path="selection"
-                                    element={<ProductSelectionPage />}
                                 />
                             </Route>
                         </Route>
@@ -176,6 +198,7 @@ const App = () => {
                                     index
                                     element={<QuestionnaireListPage />}
                                 />
+
                                 <Route
                                     path=":id"
                                     element={<QuestionnaireResultPage />}
@@ -218,8 +241,8 @@ const App = () => {
                                 />
 
                                 <Route
-                                    path="selection"
-                                    element={<StageSelectionPage />}
+                                    path="edit/:id/products"
+                                    element={<ProductSelectionPage />}
                                 />
                             </Route>
                         </Route>
@@ -250,14 +273,12 @@ const App = () => {
                                 }
                             >
                                 <Route index element={<ToolsGalleryPage />} />
+
                                 <Route path="add" element={<ToolAddPage />} />
+
                                 <Route
                                     path="edit/:id"
                                     element={<ToolEditPage />}
-                                />
-                                <Route
-                                    path="selection"
-                                    element={<ToolSelectionPage />}
                                 />
                             </Route>
                         </Route>

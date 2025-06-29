@@ -48,9 +48,7 @@ describe('StageEditPage', () => {
         const user = userEvent.setup()
 
         render(<StageEditPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateStageById).toHaveBeenCalledWith({
             id: '123',
@@ -75,9 +73,7 @@ describe('StageEditPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<StageEditPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateStageById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

@@ -33,6 +33,7 @@ export const LessonEditPage = () => {
                     videoUrl: data.videoUrl,
                     fullDescription: data.fullDescription,
                     productIds: data.products?.map((p) => p._id!),
+                    clientIds: data.clientIds,
                 })
             )
         }
@@ -49,5 +50,5 @@ export const LessonEditPage = () => {
         }
     }
 
-    return <LessonForm title={t('edit.title')} onSubmit={handleEditLesson} />
+    return <LessonForm title={t('titles.edit')} onSubmit={handleEditLesson} />
 }

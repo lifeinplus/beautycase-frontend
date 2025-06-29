@@ -58,9 +58,7 @@ describe('Button', () => {
         const user = userEvent.setup()
 
         render(<Button onClick={handleClick}>Click Handler</Button>)
-
-        const button = screen.getByRole('button', { name: 'Click Handler' })
-        await user.click(button)
+        await user.click(screen.getByRole('button', { name: 'Click Handler' }))
 
         expect(handleClick).toHaveBeenCalledTimes(1)
     })

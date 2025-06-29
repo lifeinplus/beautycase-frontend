@@ -17,6 +17,7 @@ import { Footer } from '../../../components/Footer'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
 import { NavigationButton } from '../../../components/navigation/NavigationButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
+import config from '../../../config'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { canAccess } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
@@ -24,6 +25,7 @@ import { clearFormData } from '../../form/formSlice'
 import { Stages } from '../../stages/components/Stages'
 import { Tools } from '../../tools/components/Tools'
 import { usePDFExport } from '../hooks/usePDFExport'
+import { generatePdfFilename } from '../utils/generatePdfFilename'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
@@ -89,8 +91,8 @@ export const MakeupBagPage = () => {
     const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
 
-    const categoryName = data?.category?.name || t('pdf.fallbackCategory')
-    const clientName = data?.client?.username
+    const categoryName = t(`categories.${data?.category?.name}.full`)
+    const clientName = data?.client?.username || ''
     const stages = data?.stages || []
     const tools = data?.tools || []
 
@@ -111,7 +113,7 @@ export const MakeupBagPage = () => {
             return
         }
 
-        const filename = `${categoryName.replace(/\s+/g, '-')}-${clientName}.pdf`
+        const filename = generatePdfFilename(categoryName, clientName)
 
         await exportToPDF(
             {
@@ -167,12 +169,6 @@ export const MakeupBagPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <Hero
-                        headline={categoryName}
-                        byline={t('hero.byline')}
-                        imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png"
-                    />
-
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
@@ -180,6 +176,11 @@ export const MakeupBagPage = () => {
                         emptyMessage={t('emptyMessage')}
                     >
                         <>
+                            <Hero
+                                headline={categoryName}
+                                byline={t('hero.byline')}
+                                imgUrl={config.cloudinary.makeupBagHero}
+                            />
                             <Stages stages={stages} />
                             <Tools tools={tools} />
                         </>
@@ -187,7 +188,7 @@ export const MakeupBagPage = () => {
                 </article>
             </main>
 
-            <Footer />
+            {!isLoading && !error && <Footer />}
 
             <AdaptiveNavBar>
                 {visibleActions.map(

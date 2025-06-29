@@ -47,9 +47,7 @@ describe('LessonForm', () => {
         const user = userEvent.setup()
 
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const button = screen.getByTestId('mocked-back-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -59,18 +57,19 @@ describe('LessonForm', () => {
 
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByTestId('mocked-button-navigate-section')
-        await user.click(button)
+        const buttons = screen.getAllByTestId('mocked-button-navigate-section')
+        await user.click(buttons[0])
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/products/selection')
+        expect(mockNavigate).toHaveBeenCalledWith('products')
     })
 
     it('displays the correct number of selected products', () => {
         render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const button = screen.getByTestId('mocked-button-navigate-section')
-        expect(button).toHaveTextContent('fields.products.selected: 3')
+        const buttons = screen.getAllByTestId('mocked-button-navigate-section')
+        expect(buttons[0]).toHaveTextContent('fields.products.selected: 3')
+        expect(buttons[1]).toHaveTextContent('fields.clients.select')
     })
 })

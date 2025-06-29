@@ -21,7 +21,7 @@ export const mockMakeupBagPDFData: MakeupBagData = {
 export const mockMakeupBag1: MakeupBag = {
     _id: 'makeupBag1',
     createdAt: '2025-04-10T10:00:00Z',
-    category: { _id: 'category1', name: 'Test Category 1' },
+    category: mockCategory1,
     categoryId: 'category1',
     client: { _id: 'client1', username: 'Test Client 1' },
     clientId: 'client1',

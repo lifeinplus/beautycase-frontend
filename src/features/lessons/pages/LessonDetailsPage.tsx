@@ -31,7 +31,7 @@ export const LessonDetailsPage = () => {
         <DetailsPage
             isLoading={isLoading}
             error={error}
-            topPanelTitle={t('details.title')}
+            topPanelTitle={t('titles.details')}
             redirectPath="/lessons"
             title={data?.title}
             subtitle={data?.shortDescription}

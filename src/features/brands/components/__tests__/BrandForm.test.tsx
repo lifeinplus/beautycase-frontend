@@ -81,11 +81,12 @@ describe('BrandForm', () => {
 
         renderWithProviders(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Brand'
+        )
 
-        await user.type(input, 'New Brand')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button'))
 
         expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -104,11 +105,10 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
-
         await user.clear(input)
         await user.type(input, brand.name)
-        await user.click(button)
+
+        await user.click(screen.getByTestId('mocked-button'))
 
         expect(mockUpdateBrandById).toHaveBeenCalledWith({
             id: '123',
@@ -129,11 +129,12 @@ describe('BrandForm', () => {
 
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Brand'
+        )
 
-        await user.type(input, 'New Brand')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button'))
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -158,11 +159,12 @@ describe('BrandForm', () => {
 
         render(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Brand'
+        )
 
-        await user.type(input, 'New Brand')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button'))
 
         expect(mockUpdateBrandById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -175,9 +177,7 @@ describe('BrandForm', () => {
         const user = userEvent.setup()
 
         render(<BrandForm ref={mockRef} />)
-
-        const button = screen.getByTestId('mocked-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-button'))
 
         const error = screen.getByText('fields.name.errors.required')
         expect(error).toBeInTheDocument()

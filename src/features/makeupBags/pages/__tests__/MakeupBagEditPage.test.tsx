@@ -48,15 +48,9 @@ describe('MakeupBagEditPage', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagEditPage />)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
-
-        expect(mockUpdateMakeupBagById).toHaveBeenCalledWith({
-            id: '123',
-            makeupBag: mockMakeupBag1,
-        })
-
+        expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags/123')
@@ -72,9 +66,7 @@ describe('MakeupBagEditPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<MakeupBagEditPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

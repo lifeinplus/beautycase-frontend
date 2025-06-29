@@ -103,11 +103,15 @@ describe('MakeupBagPDF', () => {
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.find((el) => el.textContent === mockCategory1.name)
+                textElements.find(
+                    (el) =>
+                        el.textContent ===
+                        `categories.${mockCategory1.name}.full`
+                )
             ).toBeInTheDocument()
 
             expect(
-                textElements.find((el) => el.textContent === 'pdf.subtitle')
+                textElements.find((el) => el.textContent === 'hero.byline')
             ).toBeInTheDocument()
         })
 
@@ -169,7 +173,7 @@ describe('MakeupBagPDF', () => {
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'pdf.tools')
+                textElements.some((el) => el.textContent === 'tool:titles.list')
             ).toBe(true)
         })
 
@@ -210,25 +214,6 @@ describe('MakeupBagPDF', () => {
     })
 
     describe('Edge Cases', () => {
-        it('should handle missing category name gracefully', () => {
-            const dataWithoutCategory = {
-                ...mockMakeupBagPDFData,
-                category: undefined,
-            }
-
-            const { getAllByTestId } = render(
-                <MakeupBagPDF data={dataWithoutCategory} t={mockT} />
-            )
-
-            const textElements = getAllByTestId('mocked-pdf-text')
-
-            expect(
-                textElements.some(
-                    (el) => el.textContent === 'pdf.fallbackCategory'
-                )
-            ).toBe(true)
-        })
-
         it('should handle empty stages array', () => {
             const dataWithoutStages = {
                 ...mockMakeupBagPDFData,
@@ -242,7 +227,11 @@ describe('MakeupBagPDF', () => {
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === mockCategory1.name)
+                textElements.some(
+                    (el) =>
+                        el.textContent ===
+                        `categories.${mockCategory1.name}.full`
+                )
             ).toBe(true)
 
             expect(
@@ -263,7 +252,7 @@ describe('MakeupBagPDF', () => {
             const textElements = getAllByTestId('mocked-pdf-text')
 
             expect(
-                textElements.some((el) => el.textContent === 'pdf.tools')
+                textElements.some((el) => el.textContent === 'tool:titles.list')
             ).toBe(false)
         })
     })

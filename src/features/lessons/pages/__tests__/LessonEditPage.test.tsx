@@ -39,11 +39,8 @@ describe('LessonEditPage', () => {
     it('renders the LessonForm with title', () => {
         render(<LessonEditPage />)
 
-        const form = screen.getByTestId('mocked-lesson-form')
-        const title = screen.getByText('edit.title')
-
-        expect(form).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
+        expect(screen.getByText('titles.edit')).toBeInTheDocument()
     })
 
     it('submits lesson and navigates on success', async () => {
@@ -51,8 +48,7 @@ describe('LessonEditPage', () => {
 
         render(<LessonEditPage />)
 
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateLessonById).toHaveBeenCalledWith({
             id: '123',
@@ -74,8 +70,7 @@ describe('LessonEditPage', () => {
 
         render(<LessonEditPage />)
 
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateLessonById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

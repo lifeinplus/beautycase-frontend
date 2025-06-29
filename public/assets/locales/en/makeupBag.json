@@ -1,7 +1,16 @@
 {
-    "emptyMessage": "Makeup bag not found",
-    "emptyMessageList": "Makeup bags not found",
-    "fallbackCategory": "Makeup bag",
+    "categories": {
+        "basic": {
+            "short": "Basic",
+            "full": "Basic Makeup Bag"
+        },
+        "luxury": {
+            "short": "Luxury",
+            "full": "Luxury Makeup Bag"
+        }
+    },
+    "emptyMessage": "No makeup bag found",
+    "emptyMessageList": "No makeup bags found",
     "fields": {
         "category": {
             "label": "Category",
@@ -36,16 +45,7 @@
     },
     "hero": {
         "headline": "Makeup Bags",
-        "byline": "Personalized product selection"
-    },
-    "pdf": {
-        "subtitle": "Personalized product selection",
-        "fallbackCategory": "Makeup bag",
-        "steps": "Steps",
-        "tools": "Tools",
-        "thanks": "Thank you for choosing me!",
-        "phone": "If you have any questions about cosmetics or need a lesson on any other makeup, contact me at: +381 62 9446 904 (Serbia) I will be happy to help)",
-        "services": "My services: all types of makeup, styling, hairstyles, training, gift certificates"
+        "byline": "Personalized Product Selection"
     },
     "table": {
         "date": "Date",
@@ -54,9 +54,9 @@
         "clientName": "Client"
     },
     "titles": {
-        "add": "Add makeup bag",
-        "details": "Makeup bag",
-        "edit": "Edit makeup bag"
+        "add": "Add Makeup Bag",
+        "details": "Makeup Bag",
+        "edit": "Edit Makeup Bag"
     },
     "toast": {
         "delete": "Makeup bag deleted",

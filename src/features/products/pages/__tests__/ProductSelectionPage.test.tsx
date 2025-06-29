@@ -1,15 +1,15 @@
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
+import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
+import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { setFormData } from '../../../form/formSlice'
 import { mockProducts } from '../../__mocks__/productsApi'
 import { useGetAllProductsQuery } from '../../productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import userEvent from '@testing-library/user-event'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { setFormData } from '../../../form/formSlice'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -43,8 +43,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const loading = screen.getByText('loading')
-        expect(loading).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -56,23 +55,17 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const error = screen.getByText('An unknown error occurred')
-        expect(error).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders product items', () => {
         render(<ProductSelectionPage />)
-
-        const product1 = screen.getByAltText('Product 1')
-        const product2 = screen.getByAltText('Product 2')
-
-        expect(product1).toBeInTheDocument()
-        expect(product2).toBeInTheDocument()
+        expect(screen.getByAltText('Product 1')).toBeInTheDocument()
+        expect(screen.getByAltText('Product 2')).toBeInTheDocument()
     })
 
     it('toggles product selection on click', async () => {
         const user = userEvent.setup()
-
         render(<ProductSelectionPage />)
 
         const imgContainers = screen
@@ -80,19 +73,16 @@ describe('ProductSelectionPage', () => {
             .map((img) => img.parentElement)
 
         await user.click(imgContainers[0]!)
-
         const selected = document.querySelectorAll('.img-order-selected')
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
-
         const finalSelected = document.querySelectorAll('.img-order-selected')
         expect(finalSelected.length).toBe(1)
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
-
         render(<ProductSelectionPage />)
 
         const backButton = screen.getByTestId('mocked-back-button')
@@ -106,10 +96,9 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const button = screen.getByTestId(
-            'mocked-nav-button-navigation:actions.save'
+        await user.click(
+            screen.getByTestId('mocked-nav-button-navigation:actions.save')
         )
-        await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

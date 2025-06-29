@@ -41,9 +41,7 @@ describe('ProductAddPage', () => {
         const user = userEvent.setup()
 
         render(<ProductAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddProduct).toHaveBeenCalledWith(mockProduct1)
         expect(mockUnwrap).toHaveBeenCalled()
@@ -61,9 +59,7 @@ describe('ProductAddPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ProductAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddProduct).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

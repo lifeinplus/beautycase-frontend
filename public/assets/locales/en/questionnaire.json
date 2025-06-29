@@ -3,7 +3,7 @@
         "headline": "Questionnaire",
         "headlineList": "Questionnaires",
         "headlineResult": "Questionnaire Results",
-        "byline": "Personalized makeup bag selection",
+        "byline": "Personalized Makeup Bag Selection",
         "content": "Hello! Thank you for choosing my service. In order for me to select exactly what you need, please answer a few questions."
     },
     "emptyMessage": "Questionnaire not found",
@@ -14,7 +14,7 @@
     "table": {
         "date": "Date",
         "time": "Time",
-        "clientName": "Client name",
+        "clientName": "Client Name",
         "age": "Age",
         "city": "City"
     },
@@ -37,17 +37,17 @@
             "label": "Age"
         },
         "makeupBag": {
-            "label": "Makeup bag contents",
+            "label": "Makeup Bag Contents",
             "description": "Describe your makeup bag and/or attach a photo",
             "errors": {
                 "required": "Please specify what is currently in your makeup bag"
             }
         },
         "makeupBagPhotoId": {
-            "label": "Makeup bag photo"
+            "label": "Makeup Bag Photo"
         },
         "makeupBagPhotoUrl": {
-            "label": "Makeup bag image URL"
+            "label": "Makeup Bag Image URL"
         },
         "procedures": {
             "label": "Procedures",
@@ -60,7 +60,7 @@
             }
         },
         "skinType": {
-            "label": "Skin type",
+            "label": "Skin Type",
             "options": {
                 "dry": "Dry",
                 "normal": "Normal",
@@ -90,7 +90,7 @@
             }
         },
         "oilyShine": {
-            "label": "Oily shine",
+            "label": "Oily Shine",
             "description": "Does oily shine appear during the day?",
             "options": {
                 "yes": "Yes",
@@ -98,11 +98,11 @@
             }
         },
         "currentSkills": {
-            "label": "Current skills",
+            "label": "Current Skills",
             "description": "What can you already do? What types of makeup do you do now?"
         },
         "desiredSkills": {
-            "label": "Desired skills",
+            "label": "Desired Skills",
             "description": "What types of makeup would you like to learn in the future?",
             "options": {
                 "delicate": "Delicate",
@@ -113,7 +113,7 @@
             }
         },
         "makeupTime": {
-            "label": "Time for makeup",
+            "label": "Time for Makeup",
             "description": "How much time do you usually spend on makeup?",
             "options": {
                 "15": "Up to 15 minutes",
@@ -134,7 +134,7 @@
             }
         },
         "brushes": {
-            "label": "Brush selection",
+            "label": "Brush Selection",
             "description": "Do you need help selecting brushes?",
             "options": {
                 "yes": "Yes",
@@ -142,7 +142,7 @@
             }
         },
         "problems": {
-            "label": "Makeup problems",
+            "label": "Makeup Problems",
             "description": "What problems have you encountered when doing makeup?",
             "options": {
                 "eyeshadowCrease": "Eyeshadow creases",

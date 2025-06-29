@@ -45,10 +45,10 @@
         "subtitle": "Subtitle"
     },
     "titles": {
-        "add": "Add stage",
+        "add": "Add Stage",
         "details": "Stage",
-        "edit": "Edit stage",
+        "edit": "Edit Stage",
         "list": "Stages",
-        "selection": "Select stages"
+        "selection": "Select Stages"
     }
 }

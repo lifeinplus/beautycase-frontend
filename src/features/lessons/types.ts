@@ -8,4 +8,5 @@ export interface Lesson {
     fullDescription: string
     products?: Product[]
     productIds: string[]
+    clientIds?: string[]
 }

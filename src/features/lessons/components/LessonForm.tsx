@@ -47,6 +47,12 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
         ? `${t('fields.products.selected')}: ${productIds.length}`
         : t('fields.products.select')
 
+    const clientIds = watch('clientIds')
+
+    const clientsText = clientIds
+        ? `${t('fields.clients.selected')}: ${clientIds.length}`
+        : t('fields.clients.select')
+
     const handleBack = () => {
         navigate(-1)
     }
@@ -104,11 +110,15 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                         <ButtonNavigateSection
                             error={t(errors.productIds?.message || '')}
                             label={t('fields.products.label')}
-                            onNavigate={() =>
-                                handleNavigate('/products/selection')
-                            }
+                            onNavigate={() => handleNavigate('products')}
                             required={true}
                             text={productsText}
+                        />
+
+                        <ButtonNavigateSection
+                            label={t('fields.clients.label')}
+                            onNavigate={() => handleNavigate('clients')}
+                            text={clientsText}
                         />
                     </form>
                 </article>

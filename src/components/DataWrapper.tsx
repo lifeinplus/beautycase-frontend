@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-import { getErrorMessage } from '../utils/errorUtils'
 import { LoadingOrError } from './LoadingOrError'
 
 export interface DataWrapperProps<T> {
@@ -25,7 +24,7 @@ export const DataWrapper = <T,>({
     }
 
     if (error) {
-        return <LoadingOrError message={getErrorMessage(error)} />
+        return <LoadingOrError message={emptyMessage} />
     }
 
     if (!data || (Array.isArray(data) && data.length === 0)) {

@@ -42,9 +42,7 @@ describe('ToolAddPage', () => {
         const user = userEvent.setup()
 
         render(<ToolAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddTool).toHaveBeenCalledWith(mockTool1)
         expect(mockUnwrap).toHaveBeenCalled()
@@ -62,9 +60,7 @@ describe('ToolAddPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ToolAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddTool).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

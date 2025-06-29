@@ -22,7 +22,7 @@ describe('StageFilter', () => {
     })
 
     it('renders select dropdown with makeup bag options', () => {
-        const category = mockMakeupBag1.category?.name
+        const category = `makeupBag:categories.${mockMakeupBag1.category?.name}.short`
         const client = mockMakeupBag1.client?.username
 
         render(

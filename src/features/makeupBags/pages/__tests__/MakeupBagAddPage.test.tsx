@@ -43,9 +43,7 @@ describe('MakeupBagAddPage', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag1)
         expect(mockUnwrap).toHaveBeenCalled()
@@ -63,9 +61,7 @@ describe('MakeupBagAddPage', () => {
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<MakeupBagAddPage />)
-
-        const button = screen.getByTestId('mocked-submit-button')
-        await user.click(button)
+        await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddMakeupBag).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

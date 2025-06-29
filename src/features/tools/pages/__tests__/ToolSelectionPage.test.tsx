@@ -55,8 +55,7 @@ describe('ToolSelectionPage', () => {
 
         render(<ToolSelectionPage />)
 
-        const error = screen.getByText('An unknown error occurred')
-        expect(error).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders tool items', () => {
@@ -105,10 +104,9 @@ describe('ToolSelectionPage', () => {
 
         render(<ToolSelectionPage />)
 
-        const button = screen.getByTestId(
-            'mocked-nav-button-navigation:actions.save'
+        await user.click(
+            screen.getByTestId('mocked-nav-button-navigation:actions.save')
         )
-        await user.click(button)
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

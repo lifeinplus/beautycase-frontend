@@ -9,16 +9,22 @@
             "label": "Username"
         },
         "role": {
-            "label": "Role"
+            "label": "Role",
+            "types": {
+                "admin": "Administrator",
+                "client": "Client",
+                "mua": "Makeup Artist"
+            }
         },
-        "beautyBags": {
-            "label": "Beauty Bags",
-            "emptyMessage": "You have no available beauty bags",
+        "makeupBags": {
+            "label": "Makeup Bags",
+            "emptyMessage": "You have no available makeup bags",
             "link": "Open"
         },
         "lessons": {
             "label": "Lessons",
-            "emptyMessage": "You have no available lessons"
+            "emptyMessage": "You have no available lessons",
+            "link": "Open"
         }
     }
 }

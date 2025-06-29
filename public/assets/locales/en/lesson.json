@@ -1,16 +1,4 @@
 {
-    "add": {
-        "title": "Add lesson"
-    },
-    "details": {
-        "title": "Lesson"
-    },
-    "edit": {
-        "title": "Edit lesson"
-    },
-    "gallery": {
-        "title": "Lessons"
-    },
     "fields": {
         "title": {
             "label": "Title",
@@ -19,7 +7,7 @@
             }
         },
         "shortDescription": {
-            "label": "Short description",
+            "label": "Short Description",
             "errors": {
                 "required": "Please enter a short description",
                 "min": "At least 10 characters"
@@ -32,7 +20,7 @@
             }
         },
         "fullDescription": {
-            "label": "Full description",
+            "label": "Full Description",
             "errors": {
                 "required": "Please enter the full description",
                 "min": "At least 20 characters"
@@ -52,5 +40,11 @@
             "select": "Select",
             "selected": "Selected"
         }
+    },
+    "titles": {
+        "add": "Add Lesson",
+        "details": "Lesson",
+        "edit": "Edit Lesson",
+        "gallery": "Lessons"
     }
 }

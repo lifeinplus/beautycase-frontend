@@ -33,8 +33,12 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const isActive = (path: string) =>
-        location.pathname.split('/').some((p) => p === path.split('/').join(''))
+    const isActive = (path: string) => {
+        return (
+            location.pathname === path ||
+            location.pathname.startsWith(path + '/')
+        )
+    }
 
     const icons: { [key: string]: ReactNode } = {
         '/questionnaire': <ClipboardIcon className="h-6 w-6" />,

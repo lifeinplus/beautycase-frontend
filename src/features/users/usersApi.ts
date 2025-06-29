@@ -7,7 +7,7 @@ const usersApi = api.injectEndpoints({
             query: () => '/users',
         }),
 
-        getUserById: builder.query<UserResult, string>({
+        getUserById: builder.query<UserResult, string | undefined>({
             query: (id) => `/users/${id}`,
         }),
     }),

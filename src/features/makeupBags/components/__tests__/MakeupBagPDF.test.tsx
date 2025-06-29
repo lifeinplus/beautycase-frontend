@@ -220,11 +220,9 @@ describe('MakeupBagPDF', () => {
                 stages: undefined,
             }
 
-            const { getAllByTestId, debug } = render(
+            const { getAllByTestId } = render(
                 <MakeupBagPDF data={dataWithoutStages} t={mockT} />
             )
-
-            debug()
 
             const textElements = getAllByTestId('mocked-pdf-text')
 

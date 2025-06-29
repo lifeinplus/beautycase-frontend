@@ -9,7 +9,12 @@
             "label": "Username"
         },
         "role": {
-            "label": "Role"
+            "label": "Role",
+            "types": {
+                "admin": "Administrator",
+                "client": "Client",
+                "mua": "Makeup Artist"
+            }
         },
         "makeupBags": {
             "label": "Makeup Bags",

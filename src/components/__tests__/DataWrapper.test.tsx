@@ -51,13 +51,8 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
-
-        const errorElement = screen.getByText(mockError.message)
-        expect(errorElement).toBeInTheDocument()
-
-        const childrenElement = screen.queryByTestId('children-content')
-        expect(childrenElement).not.toBeInTheDocument()
+        expect(screen.getByText(mockEmptyMessage)).toBeInTheDocument()
+        expect(screen.queryByTestId('children-content')).not.toBeInTheDocument()
     })
 
     it('renders empty message when data is undefined', () => {
@@ -158,8 +153,6 @@ describe('DataWrapper', () => {
             </DataWrapper>
         )
 
-        const errorElement = screen.getByText(mockError.message)
-        expect(errorElement).toBeInTheDocument()
-        expect(getErrorMessage).toHaveBeenCalledWith(mockError)
+        expect(screen.getByText(mockEmptyMessage)).toBeInTheDocument()
     })
 })

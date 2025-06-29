@@ -1,3 +1,5 @@
+import type { Category } from '../categories/types'
+
 export interface User {
     _id: string
     role: string
@@ -8,7 +10,7 @@ export interface User {
 
 export interface UserMakeupBag {
     _id: string
-    category: { name: string }
+    category: Pick<Category, 'name'>
 }
 
 export interface UserLesson {

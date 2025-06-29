@@ -9,9 +9,8 @@
             "full": "Luxury Makeup Bag"
         }
     },
-    "emptyMessage": "Makeup bag not found",
-    "emptyMessageList": "Makeup bags not found",
-    "fallbackCategory": "Makeup Bag",
+    "emptyMessage": "No makeup bag found",
+    "emptyMessageList": "No makeup bags found",
     "fields": {
         "category": {
             "label": "Category",
@@ -47,15 +46,6 @@
     "hero": {
         "headline": "Makeup Bags",
         "byline": "Personalized Product Selection"
-    },
-    "pdf": {
-        "subtitle": "Personalized Product Selection",
-        "fallbackCategory": "Makeup Bag",
-        "steps": "Steps",
-        "tools": "Tools",
-        "thanks": "Thank you for choosing me!",
-        "phone": "If you have any questions about cosmetics or need a lesson on any other makeup, contact me at: +381 62 9446 904 (Serbia) I will be happy to help)",
-        "services": "My services: all types of makeup, styling, hairstyles, training, gift certificates"
     },
     "table": {
         "date": "Date",

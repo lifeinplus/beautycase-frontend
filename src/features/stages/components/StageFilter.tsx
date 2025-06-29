@@ -11,7 +11,7 @@ export interface StageFilterProps {
 }
 
 export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
-    const { t } = useTranslation('stage')
+    const { t } = useTranslation(['stage', 'makeupBag'])
 
     const [selectedMakeupBagId, setSelectedMakeupBagId] =
         useState('noMakeupBag')
@@ -53,7 +53,7 @@ export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
                 <option value="noMakeupBag">{t('noMakeupBag')}</option>
                 {makeupBags.map(({ _id, category, client }) => (
                     <option key={_id} value={_id}>
-                        {`${category?.name} - ${client?.username}`}
+                        {`${t(`makeupBag:categories.${category?.name}.short`)} - ${client?.username}`}
                     </option>
                 ))}
             </select>

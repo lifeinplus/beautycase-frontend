@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event'
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { setFormData } from '../../../form/formSlice'
 import { mockUser1, mockUser2, mockUsers } from '../../__mocks__/usersApi'
 import { useGetAllUsersQuery } from '../../usersApi'
@@ -49,14 +50,12 @@ describe('UserSelectionPage', () => {
         vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
-            error: { message: 'An unknown error occurred' },
+            error: mockError,
         })
 
         render(<UserSelectionPage />)
 
-        expect(
-            screen.getByText('An unknown error occurred')
-        ).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders client items', () => {

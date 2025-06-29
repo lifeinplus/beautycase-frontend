@@ -7,6 +7,7 @@ import { useAppSelector } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
+import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi'
 import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagByIdMutation,
@@ -14,6 +15,7 @@ import {
 } from '../../makeupBagsApi'
 import { MakeupBagPage } from '../MakeupBagPage'
 import { usePDFExport } from '../../hooks/usePDFExport'
+import { generatePdfFilename } from '../../utils/generatePdfFilename'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
@@ -95,7 +97,9 @@ describe('MakeupBagPage', () => {
         it('exports to PDF successfully', async () => {
             const user = userEvent.setup()
 
-            const mockFilename = `${mockMakeupBag1.category?.name.replace(/\s+/g, '-')}-${mockMakeupBag1.client?.username}.pdf`
+            const category = `categories.${mockCategory1.name}.full`
+            const client = mockMakeupBag1.client?.username || ''
+            const mockFilename = generatePdfFilename(category, client)
 
             mockExportToPDF.mockResolvedValue({ success: true })
 

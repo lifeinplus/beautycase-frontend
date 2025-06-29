@@ -13,14 +13,17 @@ export const Footer = () => {
 
             <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:flex-row sm:justify-between">
                 <p>
-                    {t('footer.questions')}:{' '}
+                    <span>{t('footer.questions')}:</span>{' '}
                     <a
                         href="tel:+381629446904"
                         className="text-rose-500 hover:underline hover:decoration-wavy dark:text-rose-400"
                     >
-                        +381 62 9446 904 ({t('footer.country')})
+                        {t('footer.phone')}
                     </a>{' '}
-                    {t('footer.help')}
+                    <span className="text-rose-500 dark:text-rose-400">
+                        ({t('footer.country')})
+                    </span>{' '}
+                    <span>{t('footer.help')}</span>
                 </p>
                 <p>{t('footer.services')}</p>
             </section>

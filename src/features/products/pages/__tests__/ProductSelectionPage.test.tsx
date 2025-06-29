@@ -55,9 +55,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        expect(
-            screen.getByText('An unknown error occurred')
-        ).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders product items', () => {

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
+
 import { Footer } from '../Footer'
 
 describe('Footer', () => {
@@ -42,19 +43,19 @@ describe('Footer', () => {
     it('displays the contact information correctly', () => {
         render(<Footer />)
 
-        const phoneLink = screen.getByRole('link')
-        expect(phoneLink).toHaveAttribute('href', 'tel:+381629446904')
-        expect(phoneLink).toHaveTextContent('+381 62 9446 904 (footer.country)')
-        expect(phoneLink).toHaveClass(
+        const phone = screen.getByRole('link')
+        expect(phone).toHaveAttribute('href', 'tel:+381629446904')
+        expect(phone).toHaveTextContent('footer.phone')
+        expect(phone).toHaveClass(
             'text-rose-500',
             'hover:underline',
             'hover:decoration-wavy',
             'dark:text-rose-400'
         )
 
-        const contactSection = screen.getByText(/questions/)
-        expect(contactSection).toContainElement(phoneLink)
-        expect(contactSection).toHaveTextContent('footer.help')
+        expect(screen.getByText(/questions/)).toBeInTheDocument()
+        expect(screen.getByText(/country/)).toBeInTheDocument()
+        expect(screen.getByText(/help/)).toBeInTheDocument()
     })
 
     it('displays the services information correctly', () => {

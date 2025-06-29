@@ -9,17 +9,18 @@ import {
 } from '@react-pdf/renderer'
 import { TFunction } from 'i18next'
 
+import config from '../../../config'
 import type { MakeupBagData } from '../types'
 
 Font.register({
     family: 'Roboto',
     fonts: [
         {
-            src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf',
+            src: config.fonts.robotoRegular,
             fontWeight: 'normal',
         },
         {
-            src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf',
+            src: config.fonts.robotoBold,
             fontWeight: 'bold',
         },
     ],
@@ -202,7 +203,7 @@ interface MakeupBagPDFProps {
 }
 
 const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
-    const categoryName = data?.category?.name || t('pdf.fallbackCategory')
+    const categoryName = t(`categories.${data?.category?.name}.full`)
     const stages = data?.stages || []
     const tools = data?.tools || []
 
@@ -217,7 +218,9 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
 
                 {stage.steps && stage.steps.length > 0 && (
                     <View style={styles.stepsList} wrap={false}>
-                        <Text style={styles.stepsTitle}>{t('pdf.steps')}:</Text>
+                        <Text style={styles.stepsTitle}>
+                            {t('stage:steps')}:
+                        </Text>
 
                         {stage.steps.map((step, stepIndex) => (
                             <Text key={stepIndex} style={styles.stepItem}>
@@ -264,7 +267,9 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
         return (
             <>
                 <View wrap={false}>
-                    <Text style={styles.sectionTitle}>{t('pdf.tools')}</Text>
+                    <Text style={styles.sectionTitle}>
+                        {t('tool:titles.list')}
+                    </Text>
 
                     <View style={styles.toolsGrid}>
                         {firstTools.map((tool, index) => (
@@ -322,7 +327,7 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
                 <View style={styles.header}>
                     <Text style={styles.headerTitle}>{categoryName}</Text>
                     <Text style={styles.headerSubtitle}>
-                        {t('pdf.subtitle')}
+                        {t('hero.byline')}
                     </Text>
                 </View>
 
@@ -331,15 +336,22 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
                 {tools.length && renderTools()}
 
                 <View style={styles.header} break>
-                    <Text style={styles.headerTitle}>{t('pdf.thanks')}</Text>
-                    <Text style={styles.text}>{t('pdf.phone')}</Text>
+                    <Text style={styles.headerTitle}>
+                        {t('component:footer.thanks')}
+                    </Text>
+
+                    <Text
+                        style={styles.text}
+                    >{`${t('component:footer.questions')}: ${t('component:footer.phone')} (${t('component:footer.country')}) ${t('component:footer.help')}`}</Text>
+
                     <Image
                         style={styles.headerImage}
-                        src={
-                            'https://res.cloudinary.com/beautycase/image/upload/v1732162378/title_gm1yla.png'
-                        }
+                        src={config.cloudinary.makeupBagHero}
                     />
-                    <Text style={styles.text}>{t('pdf.services')}</Text>
+
+                    <Text style={styles.text}>
+                        {t('component:footer.services')}
+                    </Text>
                 </View>
 
                 <Text

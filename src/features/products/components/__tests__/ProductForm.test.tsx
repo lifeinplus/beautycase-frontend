@@ -77,7 +77,7 @@ describe('ProductForm', () => {
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/stores/links/add')
+        expect(mockNavigate).toHaveBeenCalledWith('links')
     })
 
     it('displays the correct number of added store links', () => {

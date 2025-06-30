@@ -67,7 +67,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
     const handleNavigate = () => {
         dispatch(setFormData(watch()))
-        navigate('/stores/links/add')
+        navigate('links')
     }
 
     return (

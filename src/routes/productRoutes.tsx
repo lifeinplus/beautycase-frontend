@@ -5,6 +5,7 @@ import { ProductDetailsPage } from '../features/products/pages/ProductDetailsPag
 import { ProductGalleryPage } from '../features/products/pages/ProductGalleryPage'
 import { ProductAddPage } from '../features/products/pages/ProductAddPage'
 import { ProductEditPage } from '../features/products/pages/ProductEditPage'
+import { StoreLinkAddPage } from '../features/stores/pages/StoreLinkAddPage'
 
 export const productRoutes = [
     <Route key="products" path="/products">
@@ -12,7 +13,9 @@ export const productRoutes = [
         <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
             <Route index element={<ProductGalleryPage />} />
             <Route path="add" element={<ProductAddPage />} />
+            <Route path="add/links" element={<StoreLinkAddPage />} />
             <Route path="edit/:id" element={<ProductEditPage />} />
+            <Route path="edit/:id/links" element={<StoreLinkAddPage />} />
         </Route>
     </Route>,
 ]

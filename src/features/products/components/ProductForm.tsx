@@ -67,7 +67,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
 
     const handleNavigate = () => {
         dispatch(setFormData(watch()))
-        navigate('/stores/links/add')
+        navigate('links')
     }
 
     return (

@@ -8,7 +8,7 @@ import { useGetQuestionnaireByIdQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
-vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/navigation/NavButton')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Hero')
 vi.mock('../../../../components/TopPanel')

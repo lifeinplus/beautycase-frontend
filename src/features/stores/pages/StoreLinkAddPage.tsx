@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import { useGetAllStoresQuery } from '../storesApi'
 import type { StoreLink } from '../types'
@@ -182,15 +182,15 @@ export const StoreLinkAddPage = () => {
             </main>
 
             <AdaptiveNavBar>
-                <NavigationButton
+                <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:actions.back')}
+                    label={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
-                <NavigationButton
+                <NavButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text={t('navigation:actions.save')}
+                    label={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
             </AdaptiveNavBar>

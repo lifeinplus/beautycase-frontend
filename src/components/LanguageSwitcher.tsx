@@ -1,6 +1,8 @@
 import { LanguageIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 
+import { NavButton } from './navigation/NavButton'
+
 export const LanguageSwitcher = () => {
     const { i18n, t } = useTranslation('component')
 
@@ -13,13 +15,11 @@ export const LanguageSwitcher = () => {
     }
 
     return (
-        <button
-            aria-label={t('language.ariaLabel')}
-            className="nav-btn nav-btn-common focus-outline"
+        <NavButton
+            ariaLabel={t('language.ariaLabel')}
+            icon={<LanguageIcon className="h-6 w-6" />}
+            label={t('language.label')}
             onClick={toggleLanguage}
-        >
-            <LanguageIcon className="h-6 w-6" />
-            <span className="hidden lg:inline">{t('language.label')}</span>
-        </button>
+        />
     )
 }

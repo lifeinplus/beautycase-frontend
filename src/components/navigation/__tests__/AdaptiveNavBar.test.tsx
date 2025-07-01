@@ -12,8 +12,10 @@ import { AdaptiveNavBar } from '../AdaptiveNavBar'
 vi.mock('../../../app/hooks')
 vi.mock('../../../features/auth/components/AuthButton')
 vi.mock('../../../features/theme/ThemeToggler')
+vi.mock('../../ui/LogoLink')
+vi.mock('../../AppInfo')
 vi.mock('../../LanguageSwitcher')
-vi.mock('../NavigationButton')
+vi.mock('../NavButton')
 
 describe('AdaptiveNavBar', () => {
     beforeEach(() => {
@@ -40,9 +42,9 @@ describe('AdaptiveNavBar', () => {
         renderWithProviders(<AdaptiveNavBar />)
 
         const buttons = [
-            'navigation:menu.questionnaire',
-            'navigation:menu.makeupBags',
-            'navigation:menu.account',
+            'menu.questionnaire',
+            'menu.makeupBags',
+            'menu.account',
         ]
 
         buttons.forEach((b) =>

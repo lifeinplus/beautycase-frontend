@@ -11,17 +11,17 @@ import {
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-import packageJson from '../../../package.json'
 import { useAppSelector } from '../../app/hooks'
 import { selectRole, selectUsername } from '../../features/auth/authSlice'
 import { AuthButton } from '../../features/auth/components/AuthButton'
 import { ThemeToggler } from '../../features/theme/ThemeToggler'
 import { canAccess, menuItems } from '../../utils/menu'
 import { LogoLink } from '../ui/LogoLink'
+import AppInfo from '../AppInfo'
 import { LanguageSwitcher } from '../LanguageSwitcher'
-import { NavigationButton } from './NavigationButton'
+import { NavButton } from './NavButton'
 
 export interface AdaptiveNavBarProps {
     children?: ReactNode
@@ -85,12 +85,12 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                 {navItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
-                        <NavigationButton
+                        <NavButton
                             key={index}
                             className={isActive(item.path) ? 'link-color' : ''}
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
-                            text={t(item.label)}
+                            label={t(item.label)}
                         />
                     ))}
             </div>
@@ -103,20 +103,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />
-                <section className="mx-auto hidden px-4 pt-4 text-xs text-neutral-500 dark:text-neutral-400 lg:flex lg:flex-col lg:gap-2">
-                    <p>
-                        <Link
-                            className="link-color focus-outline hover-outline"
-                            to="/"
-                        >
-                            Beautycase
-                        </Link>{' '}
-                        — {t('home:motto').toLocaleLowerCase()}
-                    </p>
-                    <p>
-                        {t('build')} {packageJson.version}
-                    </p>
-                </section>
+                <AppInfo />
             </div>
         </aside>
     )

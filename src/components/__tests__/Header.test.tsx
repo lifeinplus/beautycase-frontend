@@ -3,6 +3,9 @@ import { describe, it, expect, vi } from 'vitest'
 import { Header } from '../Header'
 
 vi.mock('../../features/auth/components/AuthButton')
+vi.mock('../../features/theme/ThemeToggler')
+vi.mock('../ui/LogoLink')
+vi.mock('../LanguageSwitcher')
 
 describe('Header', () => {
     it('renders the header with correct structure', () => {
@@ -46,21 +49,17 @@ describe('Header', () => {
         render(<Header />)
 
         const authButton = screen.getByTestId('mocked-auth-button')
-        expect(authButton).toBeInTheDocument()
         expect(authButton).toHaveTextContent('Sign In')
-
-        const authButtonContainer = authButton.parentElement
-        expect(authButtonContainer).toHaveClass('sm:hidden')
+        expect(authButton.parentElement).toHaveClass('flex')
     })
 
     it('applies responsive classes correctly', () => {
         const { container } = render(<Header />)
 
-        const navElement = container.querySelector('nav')
-        expect(navElement).toHaveClass('sm:hidden')
+        expect(container.querySelector('nav')).toHaveClass('sm:hidden')
 
-        const authButtonContainer =
+        expect(
             screen.getByTestId('mocked-auth-button').parentElement
-        expect(authButtonContainer).toHaveClass('sm:hidden')
+        ).toHaveClass('flex')
     })
 })

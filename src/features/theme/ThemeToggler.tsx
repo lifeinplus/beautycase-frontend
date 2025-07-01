@@ -1,8 +1,9 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
+import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { NavButton } from '../../components/navigation/NavButton'
 import { selectDarkMode, toggleTheme } from './themeSlice'
-import { useTranslation } from 'react-i18next'
 
 export function ThemeToggler() {
     const { t } = useTranslation('theme')
@@ -17,23 +18,18 @@ export function ThemeToggler() {
         localStorage.setItem('darkMode', String(newTheme))
     }
 
-    return darkMode ? (
-        <button
-            aria-label={t('buttonDarkMode')}
-            className="nav-btn nav-btn-common focus-outline"
+    return (
+        <NavButton
+            icon={
+                darkMode ? (
+                    <MoonIcon className="h-6 w-6" />
+                ) : (
+                    <SunIcon className="h-6 w-6" />
+                )
+            }
+            label={darkMode ? t('darkMode') : t('lightMode')}
+            ariaLabel={darkMode ? t('buttonDarkMode') : t('buttonLightMode')}
             onClick={handleThemeToggle}
-        >
-            <MoonIcon className="h-6 w-6" />
-            <span className="hidden lg:inline">{t('darkMode')}</span>
-        </button>
-    ) : (
-        <button
-            aria-label={t('buttonLightMode')}
-            className="nav-btn nav-btn-common focus-outline"
-            onClick={handleThemeToggle}
-        >
-            <SunIcon className="h-6 w-6" />
-            <span className="hidden lg:inline">{t('lightMode')}</span>
-        </button>
+        />
     )
 }

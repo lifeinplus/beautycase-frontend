@@ -15,7 +15,7 @@ import { Hero } from '../../../components/Hero'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Footer } from '../../../components/Footer'
 import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
 import config from '../../../config'
 import { getErrorMessage } from '../../../utils/errorUtils'
@@ -193,11 +193,11 @@ export const MakeupBagPage = () => {
             <AdaptiveNavBar>
                 {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
-                        <NavigationButton
+                        <NavButton
                             key={key}
                             className={className}
                             icon={icon}
-                            text={t(label)}
+                            label={t(label)}
                             onClick={onClick}
                         />
                     )

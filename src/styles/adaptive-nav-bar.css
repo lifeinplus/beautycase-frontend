@@ -25,7 +25,3 @@
 .nav-btn-back {
     @apply hidden sm:flex;
 }
-
-.nav-btn-common {
-    @apply py-2.5 ps-3;
-}

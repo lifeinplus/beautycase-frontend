@@ -80,7 +80,6 @@ describe('AuthButton', () => {
 
         const button = screen.getByRole('button')
         expect(button).toHaveClass('nav-btn')
-        expect(button).toHaveClass('nav-btn-common')
     })
 
     it('applies correct responsive classes to the text', () => {

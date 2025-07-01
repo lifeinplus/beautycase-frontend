@@ -11,7 +11,7 @@ import { canAccess } from '../../utils/menu'
 import { Header } from '../Header'
 import { Hero } from '../Hero'
 import { AdaptiveNavBar } from '../navigation/AdaptiveNavBar'
-import { NavigationButton } from '../navigation/NavigationButton'
+import { NavButton } from '../navigation/NavButton'
 
 const ACTIONS = {
     add: {
@@ -93,10 +93,10 @@ export const GalleryPage = ({
 
             <AdaptiveNavBar>
                 {visibleActions.map(({ key, icon, label, onClick }) => (
-                    <NavigationButton
+                    <NavButton
                         key={key}
                         icon={icon}
-                        text={label}
+                        label={label}
                         onClick={onClick}
                     />
                 ))}

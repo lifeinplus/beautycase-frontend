@@ -16,7 +16,7 @@ import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../app/hooks')
 vi.mock('../../../../components/navigation/AdaptiveNavBar')
-vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/navigation/NavButton')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../categories/categoriesApi')
 vi.mock('../../../form/components/ButtonNavigateSection')

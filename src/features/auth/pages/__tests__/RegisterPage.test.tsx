@@ -7,7 +7,8 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { type AuthResultRegister, useRegisterUserMutation } from '../../authApi'
+import { useRegisterUserMutation } from '../../authApi'
+import type { AuthResultRegister } from '../../types'
 import { RegisterPage } from '../RegisterPage'
 
 vi.mock('../../../../utils/errorUtils')
@@ -57,21 +58,22 @@ describe('RegisterPage', () => {
     it('renders the registration form correctly', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const title = screen.getByText('Beautycase')
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
-        const submit = screen.getByRole('button', {
-            name: 'register',
-        })
-        const link = screen.getByRole('link', { name: 'login' })
-
-        expect(title).toBeInTheDocument()
-        expect(username).toBeInTheDocument()
-        expect(password).toBeInTheDocument()
-        expect(confirmPassword).toBeInTheDocument()
-        expect(submit).toBeInTheDocument()
-        expect(link).toBeInTheDocument()
+        expect(screen.getByText('Beautycase')).toBeInTheDocument()
+        expect(
+            screen.getByPlaceholderText('fields.username.label')
+        ).toBeInTheDocument()
+        expect(
+            screen.getByPlaceholderText('fields.password.label')
+        ).toBeInTheDocument()
+        expect(
+            screen.getByPlaceholderText('fields.confirmPassword.label')
+        ).toBeInTheDocument()
+        expect(
+            screen.getByRole('button', {
+                name: 'register',
+            })
+        ).toBeInTheDocument()
+        expect(screen.getByRole('link', { name: 'login' })).toBeInTheDocument()
     })
 
     it('allows user to type in the fields', async () => {
@@ -79,9 +81,11 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
+        const username = screen.getByPlaceholderText('fields.username.label')
+        const password = screen.getByPlaceholderText('fields.password.label')
+        const confirmPassword = screen.getByPlaceholderText(
+            'fields.confirmPassword.label'
+        )
 
         await user.type(username, mockParams.username)
         await user.type(password, mockParams.password)
@@ -97,18 +101,26 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
-        const submit = screen.getByRole('button', {
-            name: 'register',
-        })
+        await user.type(
+            screen.getByPlaceholderText('fields.username.label'),
+            mockParams.username
+        )
 
-        await user.type(username, mockParams.username)
-        await user.type(password, mockParams.password)
-        await user.type(confirmPassword, mockParams.confirmPassword)
+        await user.type(
+            screen.getByPlaceholderText('fields.password.label'),
+            mockParams.password
+        )
 
-        await user.click(submit)
+        await user.type(
+            screen.getByPlaceholderText('fields.confirmPassword.label'),
+            mockParams.confirmPassword
+        )
+
+        await user.click(
+            screen.getByRole('button', {
+                name: 'register',
+            })
+        )
 
         expect(mockRegisterUser).toHaveBeenCalledWith(mockParams)
         expect(toast.success).toHaveBeenCalledWith(expect.any(String))
@@ -126,18 +138,26 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const confirmPassword = screen.getByPlaceholderText('confirmPassword')
-        const submit = screen.getByRole('button', {
-            name: 'register',
-        })
+        await user.type(
+            screen.getByPlaceholderText('fields.username.label'),
+            mockParams.username
+        )
 
-        await user.type(username, mockParams.username)
-        await user.type(password, mockParams.password)
-        await user.type(confirmPassword, mockParams.confirmPassword)
+        await user.type(
+            screen.getByPlaceholderText('fields.password.label'),
+            mockParams.password
+        )
 
-        await user.click(submit)
+        await user.type(
+            screen.getByPlaceholderText('fields.confirmPassword.label'),
+            mockParams.confirmPassword
+        )
+
+        await user.click(
+            screen.getByRole('button', {
+                name: 'register',
+            })
+        )
 
         expect(mockRegisterUser).toHaveBeenCalledTimes(1)
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -154,9 +174,7 @@ describe('RegisterPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const submit = screen.getByRole('button', { name: 'registerLoading' })
-        expect(submit).toBeDisabled()
-        expect(submit).toHaveTextContent('registerLoading')
+        expect(screen.getByRole('button')).toBeDisabled()
     })
 
     it('navigates to login page when login link is clicked', async () => {

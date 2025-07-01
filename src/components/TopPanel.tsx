@@ -17,12 +17,12 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
         <nav className="panel-top">
             <div className="flex items-center justify-between px-4 py-2.5">
                 <button
-                    className="panel-top__button"
+                    className="panel-top-btn focus-outline"
                     onClick={onBack || handleBack}
                 >
                     <ChevronLeftIcon className="h-6 w-6" />
                 </button>
-                <h2 aria-label="Top Panel Title" className="panel-top__title">
+                <h2 aria-label="Top Panel Title" className="panel-top-title">
                     {title}
                 </h2>
                 <div className="w-8"></div>

@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -35,7 +36,8 @@ export const QuestionnairePage = () => {
         resolver: yupResolver(questionnaireSchema),
     })
 
-    const [createQuestionnaire] = useCreateQuestionnaireMutation()
+    const [createQuestionnaire, { isLoading }] =
+        useCreateQuestionnaireMutation()
 
     const onSubmit = async (data: Questionnaire) => {
         try {
@@ -239,9 +241,20 @@ export const QuestionnairePage = () => {
                             />
                         </article>
 
-                        <section className="button-section">
-                            <button className="button" type="submit">
-                                {t('submit')}
+                        <section className="btn-section">
+                            <button
+                                className={classNames(
+                                    'btn focus-outline sm:w-36',
+                                    isLoading && 'btn-loading'
+                                )}
+                                disabled={isLoading}
+                                type="submit"
+                            >
+                                {isLoading ? (
+                                    <div className="btn-pulse" />
+                                ) : (
+                                    t('submit')
+                                )}
                             </button>
                         </section>
                     </form>

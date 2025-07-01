@@ -62,7 +62,7 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                             </div>
                             <div className="ml-4 shrink-0">
                                 <Link
-                                    className="font-medium text-rose-400 hover:text-rose-600"
+                                    className="link-color focus-outline font-medium hover:text-rose-600"
                                     to={`/makeup_bags/${bag._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
@@ -101,7 +101,7 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                             </div>
                             <div className="ml-4 shrink-0">
                                 <Link
-                                    className="font-medium text-rose-400 hover:text-rose-600"
+                                    className="link-color focus-outline font-medium hover:text-rose-600"
                                     to={`/lessons/${lesson._id}`}
                                     state={{ fromPathname: pathname }}
                                 >

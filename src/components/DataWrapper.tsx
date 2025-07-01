@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { LoadingOrError } from './LoadingOrError'
@@ -6,7 +7,7 @@ export interface DataWrapperProps<T> {
     isLoading: boolean
     error: unknown
     data: T | T[] | undefined
-    children?: JSX.Element
+    children?: ReactNode
     emptyMessage: string
 }
 

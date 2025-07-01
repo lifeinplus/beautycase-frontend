@@ -17,13 +17,9 @@
 }
 
 .nav-btn {
-    @apply flex rounded-lg p-3;
+    @apply m-2 flex rounded-lg p-1;
+    @apply sm:m-0 sm:my-1 sm:p-3 lg:gap-4;
     @apply hover:bg-neutral-100 dark:hover:bg-neutral-800;
-    @apply sm:my-1 sm:p-3 lg:gap-4;
-}
-
-.nav-btn-active {
-    @apply text-rose-400;
 }
 
 .nav-btn-back {

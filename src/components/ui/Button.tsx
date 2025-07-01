@@ -15,9 +15,9 @@ export const Button = ({
     ...props
 }: ButtonProps) => {
     const variants = {
-        success: 'btn-success',
-        danger: 'btn-danger',
-        warning: 'btn-warning',
+        success: 'text-success',
+        danger: 'text-danger',
+        warning: 'text-warning',
     }
 
     return (

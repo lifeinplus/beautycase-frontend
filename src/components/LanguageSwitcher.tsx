@@ -15,8 +15,8 @@ export const LanguageSwitcher = () => {
     return (
         <button
             aria-label={t('language.ariaLabel')}
+            className="nav-btn nav-btn-common focus-outline"
             onClick={toggleLanguage}
-            className="nav-btn nav-btn-common"
         >
             <LanguageIcon className="h-6 w-6" />
             <span className="hidden lg:inline">{t('language.label')}</span>

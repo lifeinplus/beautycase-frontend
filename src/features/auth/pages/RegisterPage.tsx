@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { LogoLink } from '../../../components/ui/LogoLink'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { useRegisterUserMutation } from '../authApi'
 import type { AuthQueryRegister } from '../types'
@@ -55,9 +56,7 @@ export const RegisterPage = () => {
             <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="auth-logo-container">
                     <h1 className="auth-logo">
-                        <Link className="auth-logo-link" to="/">
-                            Beautycase
-                        </Link>
+                        <LogoLink />
                     </h1>
                 </div>
 
@@ -137,13 +136,13 @@ export const RegisterPage = () => {
                     <button
                         type="submit"
                         className={classNames(
-                            'auth-submit',
-                            isLoading && 'auth-submit-loading'
+                            'btn focus-outline',
+                            isLoading && 'btn-loading'
                         )}
                         disabled={isLoading}
                     >
                         {isLoading ? (
-                            <div className="auth-spinner" />
+                            <div className="btn-pulse" />
                         ) : (
                             t('register')
                         )}
@@ -153,7 +152,10 @@ export const RegisterPage = () => {
                 <div className="auth-question-container">
                     <p className="auth-question">
                         {t('registerQuestion')}{' '}
-                        <Link className="auth-question-link" to="/login">
+                        <Link
+                            className="link-color focus-outline font-semibold"
+                            to="/login"
+                        >
                             {t('login')}
                         </Link>
                     </p>

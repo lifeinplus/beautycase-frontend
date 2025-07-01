@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-import packageJson from '../../package.json'
-
 export const Footer = () => {
     const { t } = useTranslation('component')
 
@@ -16,20 +14,14 @@ export const Footer = () => {
                     <span>{t('footer.questions')}:</span>{' '}
                     <a
                         href="tel:+381629446904"
-                        className="text-rose-500 hover:underline hover:decoration-wavy dark:text-rose-400"
+                        className="focus-outline hover-outline link-color"
                     >
                         {t('footer.phone')}
                     </a>{' '}
-                    <span className="text-rose-500 dark:text-rose-400">
-                        ({t('footer.country')})
-                    </span>{' '}
+                    <span className="link-color">({t('footer.country')})</span>{' '}
                     <span>{t('footer.help')}</span>
                 </p>
                 <p>{t('footer.services')}</p>
-            </section>
-
-            <section className="mx-auto max-w-4xl p-4">
-                <p>&copy; Beautycase {packageJson.version}</p>
             </section>
         </footer>
     )

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
+import { LogoLink } from '../../../components/ui/LogoLink'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { useLoginUserMutation } from '../authApi'
 import { setCredentials } from '../authSlice'
@@ -57,9 +58,7 @@ export const LoginPage = () => {
             <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="auth-logo-container">
                     <h1 className="auth-logo">
-                        <Link className="auth-logo-link" to="/">
-                            Beautycase
-                        </Link>
+                        <LogoLink />
                     </h1>
                 </div>
 
@@ -114,15 +113,15 @@ export const LoginPage = () => {
 
                     <div className="auth-submit-container">
                         <button
-                            type="submit"
                             className={classNames(
-                                'auth-submit',
-                                isLoading && 'auth-submit-loading'
+                                'btn focus-outline',
+                                isLoading && 'btn-loading'
                             )}
                             disabled={isLoading}
+                            type="submit"
                         >
                             {isLoading ? (
-                                <div className="auth-spinner" />
+                                <div className="btn-pulse" />
                             ) : (
                                 t('login')
                             )}
@@ -133,7 +132,10 @@ export const LoginPage = () => {
                 <div className="auth-question-container">
                     <p className="auth-question">
                         {t('loginQuestion')}{' '}
-                        <Link className="auth-question-link" to="/register">
+                        <Link
+                            className="link-color focus-outline font-semibold"
+                            to="/register"
+                        >
                             {t('register')}
                         </Link>
                     </p>

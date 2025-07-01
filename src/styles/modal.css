@@ -29,11 +29,3 @@
 .modal-btn-bottom {
     @apply rounded-b-xl text-black dark:text-white;
 }
-
-.modal-btn-danger {
-    @apply text-rose-500;
-}
-
-.modal-btn-warning {
-    @apply text-amber-500;
-}

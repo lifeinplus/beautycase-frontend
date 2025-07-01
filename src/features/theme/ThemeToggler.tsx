@@ -20,7 +20,7 @@ export function ThemeToggler() {
     return darkMode ? (
         <button
             aria-label={t('buttonDarkMode')}
-            className="nav-btn nav-btn-common"
+            className="nav-btn nav-btn-common focus-outline"
             onClick={handleThemeToggle}
         >
             <MoonIcon className="h-6 w-6" />
@@ -29,7 +29,7 @@ export function ThemeToggler() {
     ) : (
         <button
             aria-label={t('buttonLightMode')}
-            className="nav-btn nav-btn-common"
+            className="nav-btn nav-btn-common focus-outline"
             onClick={handleThemeToggle}
         >
             <SunIcon className="h-6 w-6" />

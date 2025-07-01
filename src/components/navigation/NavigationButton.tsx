@@ -13,7 +13,7 @@ export const NavigationButton = ({
     onClick,
     text,
 }: NavigationButtonProps) => (
-    <button className={`nav-btn ${className}`} onClick={onClick}>
+    <button className={`nav-btn focus-outline ${className}`} onClick={onClick}>
         {icon}
         <span className="hidden lg:inline">{text}</span>
     </button>

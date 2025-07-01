@@ -11,13 +11,15 @@ import {
 } from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import packageJson from '../../../package.json'
 import { useAppSelector } from '../../app/hooks'
 import { selectRole, selectUsername } from '../../features/auth/authSlice'
 import { AuthButton } from '../../features/auth/components/AuthButton'
 import { ThemeToggler } from '../../features/theme/ThemeToggler'
 import { canAccess, menuItems } from '../../utils/menu'
+import { LogoLink } from '../ui/LogoLink'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { NavigationButton } from './NavigationButton'
 
@@ -28,7 +30,7 @@ export interface AdaptiveNavBarProps {
 export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
-    const { t } = useTranslation()
+    const { t } = useTranslation(['navigation', 'home'])
 
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
@@ -72,10 +74,10 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
         <aside className="adaptive-nav-bar">
             <div className="nav-logo-container">
                 <h2 className="nav-logo">
-                    <a href="/">
+                    <LogoLink>
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>
-                    </a>
+                    </LogoLink>
                 </h2>
             </div>
 
@@ -85,12 +87,10 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                     .map((item, index) => (
                         <NavigationButton
                             key={index}
-                            className={
-                                isActive(item.path) ? 'nav-btn-active' : ''
-                            }
+                            className={isActive(item.path) ? 'link-color' : ''}
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
-                            text={t(`navigation:${item.label}`)}
+                            text={t(item.label)}
                         />
                     ))}
             </div>
@@ -103,6 +103,20 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />
+                <section className="mx-auto hidden px-4 pt-4 text-xs text-neutral-500 dark:text-neutral-400 lg:flex lg:flex-col lg:gap-2">
+                    <p>
+                        <Link
+                            className="link-color focus-outline hover-outline"
+                            to="/"
+                        >
+                            Beautycase
+                        </Link>{' '}
+                        — {t('home:motto').toLocaleLowerCase()}
+                    </p>
+                    <p>
+                        {t('build')} {packageJson.version}
+                    </p>
+                </section>
             </div>
         </aside>
     )

@@ -161,7 +161,7 @@ export const StoreLinkAddPage = () => {
                                             onClick={() => handleDelete(index)}
                                             type="button"
                                         >
-                                            <MinusCircleIcon className="h-6 w-6 text-rose-600 dark:text-rose-400" />
+                                            <MinusCircleIcon className="link-color h-6 w-6" />
                                         </button>
                                     </div>
                                 </div>

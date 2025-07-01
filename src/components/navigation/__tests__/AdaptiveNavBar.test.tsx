@@ -77,11 +77,11 @@ describe('AdaptiveNavBar', () => {
 
         expect(
             screen.getByRole('button', { name: /questionnaires/i })
-        ).toHaveClass('nav-btn-active')
+        ).toHaveClass('link-color')
 
         expect(
             screen.getByRole('button', { name: /makeupBags/i })
-        ).not.toHaveClass('nav-btn-active')
+        ).not.toHaveClass('link-color')
     })
 
     it('navigates when clicking a navigation button', async () => {

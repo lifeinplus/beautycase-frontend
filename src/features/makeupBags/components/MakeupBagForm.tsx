@@ -50,7 +50,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
     const categoryOptions = categories.map(
         (c): SelectOption => ({
-            text: c.name,
+            text: t(`categories.${c.name}.full`),
             value: c._id,
         })
     )

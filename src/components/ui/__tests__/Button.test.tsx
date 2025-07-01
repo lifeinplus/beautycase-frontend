@@ -14,7 +14,7 @@ describe('Button', () => {
         expect(button).toBeInTheDocument()
         expect(button).toHaveAttribute('type', 'button')
         expect(button).toHaveClass('btn-base')
-        expect(button).toHaveClass('btn-success')
+        expect(button).toHaveClass('text-success')
     })
 
     it('merges additional className prop correctly', () => {
@@ -23,7 +23,7 @@ describe('Button', () => {
         const button = screen.getByRole('button', { name: 'Custom Button' })
 
         expect(button).toHaveClass('btn-base')
-        expect(button).toHaveClass('btn-success')
+        expect(button).toHaveClass('text-success')
         expect(button).toHaveClass('custom-class')
     })
 
@@ -32,9 +32,9 @@ describe('Button', () => {
 
         const button = screen.getByRole('button', { name: 'Delete' })
 
-        expect(button).toHaveClass('btn-danger')
-        expect(button).not.toHaveClass('btn-success')
-        expect(button).not.toHaveClass('btn-warning')
+        expect(button).toHaveClass('text-danger')
+        expect(button).not.toHaveClass('text-success')
+        expect(button).not.toHaveClass('text-warning')
     })
 
     it('applies the warning variant class correctly', () => {
@@ -42,9 +42,9 @@ describe('Button', () => {
 
         const button = screen.getByRole('button', { name: 'Warning' })
 
-        expect(button).toHaveClass('btn-warning')
-        expect(button).not.toHaveClass('btn-success')
-        expect(button).not.toHaveClass('btn-danger')
+        expect(button).toHaveClass('text-warning')
+        expect(button).not.toHaveClass('text-success')
+        expect(button).not.toHaveClass('text-danger')
     })
 
     it('renders with correct type when specified', () => {

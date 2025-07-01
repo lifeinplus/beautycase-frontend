@@ -23,7 +23,7 @@ export const AuthButton = () => {
     return username ? (
         <button
             aria-label="Logout"
-            className="nav-btn nav-btn-common"
+            className="nav-btn nav-btn-common focus-outline"
             onClick={handleLogout}
         >
             <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
@@ -32,7 +32,7 @@ export const AuthButton = () => {
     ) : (
         <button
             aria-label="Login"
-            className="nav-btn nav-btn-common"
+            className="nav-btn nav-btn-common focus-outline"
             onClick={handleLogin}
         >
             <ArrowRightEndOnRectangleIcon className="h-6 w-6" />

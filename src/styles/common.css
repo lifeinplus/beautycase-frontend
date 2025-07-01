@@ -1,0 +1,11 @@
+.focus-outline {
+    @apply focus-visible:rounded focus-visible:outline-dashed focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-500 dark:focus-visible:outline-rose-700;
+}
+
+.hover-outline {
+    @apply hover:rounded hover:outline-dashed hover:outline-4 hover:outline-offset-4 hover:outline-rose-500 dark:hover:outline-rose-700;
+}
+
+.link-color {
+    @apply text-rose-500 dark:text-rose-400;
+}

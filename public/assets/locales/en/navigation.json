@@ -18,5 +18,6 @@
         "referenceLists": "Reference Lists",
         "stages": "Stages",
         "tools": "Tools"
-    }
+    },
+    "build": "Build"
 }

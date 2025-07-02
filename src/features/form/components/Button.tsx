@@ -2,12 +2,14 @@ import { ButtonHTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    ariaLabel?: string
     children: ReactNode
     type?: 'button' | 'submit' | 'reset'
     variant?: 'success' | 'danger' | 'warning'
 }
 
 export const Button = ({
+    ariaLabel,
     children,
     className,
     type = 'button',
@@ -19,11 +21,13 @@ export const Button = ({
         danger: 'text-danger',
         warning: 'text-warning',
     }
+    console.log(111)
 
     return (
         <button
             {...props}
-            className={classNames('btn-base', variants[variant], className)}
+            aria-label={ariaLabel}
+            className={classNames('form-button', variants[variant], className)}
             type={type}
         >
             {children}

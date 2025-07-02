@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
 import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
+import { Button } from '../../form/components/Button'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import { useGetAllStoresQuery } from '../storesApi'
 import type { StoreLink } from '../types'
@@ -153,29 +154,31 @@ export const StoreLinkAddPage = () => {
                                         />
                                     </div>
                                     <div className="sm:col-span-2">
-                                        <button
-                                            aria-label={t(
+                                        <Button
+                                            ariaLabel={t(
                                                 'buttonDelete.ariaLabel'
                                             )}
-                                            className="form-button"
+                                            className="w-full"
                                             onClick={() => handleDelete(index)}
                                             type="button"
+                                            variant="danger"
                                         >
-                                            <MinusCircleIcon className="text-danger h-6 w-6" />
-                                        </button>
+                                            <MinusCircleIcon className="h-6 w-6" />
+                                        </Button>
                                     </div>
                                 </div>
                             )
                         })}
                         <div className="px-3">
-                            <button
-                                aria-label={t('buttonAdd.ariaLabel')}
-                                className="form-button"
+                            <Button
+                                ariaLabel={t('buttonAdd.ariaLabel')}
+                                className="w-full"
                                 onClick={handleAdd}
                                 type="button"
+                                variant="success"
                             >
-                                <PlusCircleIcon className="h-6 w-6 text-lime-600 dark:text-lime-400" />
-                            </button>
+                                <PlusCircleIcon className="h-6 w-6" />
+                            </Button>
                         </div>
                     </form>
                 </article>

@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { ButtonSubmit } from '../../../components/ui/ButtonSubmit'
 import { LogoLink } from '../../../components/ui/LogoLink'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { useRegisterUserMutation } from '../authApi'
@@ -80,9 +81,9 @@ export const RegisterPage = () => {
                             {t('fields.username.label')}
                         </label>
 
-                        {errors.username && (
+                        {errors.username?.message && (
                             <p className="form-error text-danger">
-                                {t(errors.username.message || '')}
+                                {t(errors.username.message)}
                             </p>
                         )}
                     </div>
@@ -103,9 +104,9 @@ export const RegisterPage = () => {
                         {t('fields.password.label')}
                     </label>
 
-                    {errors.password && (
+                    {errors.password?.message && (
                         <p className="form-error text-danger">
-                            {t(errors.password.message || '')}
+                            {t(errors.password.message)}
                         </p>
                     )}
                 </div>
@@ -125,28 +126,18 @@ export const RegisterPage = () => {
                         {t('fields.confirmPassword.label')}
                     </label>
 
-                    {errors.confirmPassword && (
+                    {errors.confirmPassword?.message && (
                         <p className="form-error text-danger">
-                            {t(errors.confirmPassword.message || '')}
+                            {t(errors.confirmPassword.message)}
                         </p>
                     )}
                 </div>
 
                 <div className="auth-submit-container">
-                    <button
-                        type="submit"
-                        className={classNames(
-                            'btn focus-outline',
-                            isLoading && 'btn-loading'
-                        )}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <div className="btn-pulse" />
-                        ) : (
-                            t('register')
-                        )}
-                    </button>
+                    <ButtonSubmit
+                        isLoading={isLoading}
+                        label={isLoading ? t('regstering') : t('register')}
+                    />
                 </div>
 
                 <div className="auth-question-container">

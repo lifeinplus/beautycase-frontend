@@ -79,7 +79,7 @@ describe('QuestionnairePage', () => {
             mockQuestionnaire1.makeupBag
         )
 
-        await user.click(screen.getByText('submit'))
+        await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockAddQuestionnaire).toHaveBeenCalledWith({
             name: mockQuestionnaire1.name,
@@ -111,7 +111,7 @@ describe('QuestionnairePage', () => {
             mockQuestionnaire1.makeupBag
         )
 
-        await user.click(screen.getByText('submit'))
+        await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockAddQuestionnaire).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

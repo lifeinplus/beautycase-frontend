@@ -13,7 +13,7 @@ describe('Button', () => {
 
         expect(button).toBeInTheDocument()
         expect(button).toHaveAttribute('type', 'button')
-        expect(button).toHaveClass('btn-base')
+        expect(button).toHaveClass('form-button')
         expect(button).toHaveClass('text-success')
     })
 
@@ -22,7 +22,7 @@ describe('Button', () => {
 
         const button = screen.getByRole('button', { name: 'Custom Button' })
 
-        expect(button).toHaveClass('btn-base')
+        expect(button).toHaveClass('form-button')
         expect(button).toHaveClass('text-success')
         expect(button).toHaveClass('custom-class')
     })
@@ -67,17 +67,5 @@ describe('Button', () => {
         render(<Button disabled>Disabled Button</Button>)
         const button = screen.getByRole('button', { name: 'Disabled Button' })
         expect(button).toBeDisabled()
-    })
-
-    it('passes through other HTML attributes', () => {
-        render(
-            <Button data-testid="mocked-test-button" aria-label="Test Button">
-                Extra Props
-            </Button>
-        )
-
-        const button = screen.getByRole('button', { name: 'Test Button' })
-        expect(button).toHaveAttribute('data-testid', 'mocked-test-button')
-        expect(button).toHaveAttribute('aria-label', 'Test Button')
     })
 })

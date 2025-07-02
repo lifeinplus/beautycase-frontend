@@ -50,15 +50,19 @@ describe('LoginPage', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
         expect(screen.getByText('Beautycase')).toBeInTheDocument()
+
         expect(
             screen.getByPlaceholderText('fields.username.label')
         ).toBeInTheDocument()
+
         expect(
             screen.getByPlaceholderText('fields.password.label')
         ).toBeInTheDocument()
+
         expect(
             screen.getByRole('button', { name: 'login' })
         ).toBeInTheDocument()
+
         expect(screen.getByText('register')).toBeInTheDocument()
     })
 
@@ -109,6 +113,21 @@ describe('LoginPage', () => {
 
         expect(mockDispatch).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
+    })
+
+    it('shows validation errors when fields are empty', async () => {
+        const user = userEvent.setup()
+        renderWithRouter(<MockRoutes />, initialEntries)
+
+        await user.click(screen.getByRole('button', { name: 'login' }))
+
+        expect(
+            await screen.findByText('fields.username.errors.required')
+        ).toBeInTheDocument()
+
+        expect(
+            await screen.findByText('fields.password.errors.required')
+        ).toBeInTheDocument()
     })
 
     it('handles login error', async () => {

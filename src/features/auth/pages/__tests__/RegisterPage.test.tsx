@@ -127,6 +127,25 @@ describe('RegisterPage', () => {
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
 
+    it('shows validation errors when fields are empty', async () => {
+        const user = userEvent.setup()
+        renderWithRouter(<MockRoutes />, initialEntries)
+
+        await user.click(screen.getByRole('button', { name: 'register' }))
+
+        expect(
+            await screen.findByText('fields.username.errors.required')
+        ).toBeInTheDocument()
+
+        expect(
+            await screen.findByText('fields.password.errors.required')
+        ).toBeInTheDocument()
+
+        expect(
+            await screen.findByText('fields.confirmPassword.errors.required')
+        ).toBeInTheDocument()
+    })
+
     it('handles registration error', async () => {
         const user = userEvent.setup()
 

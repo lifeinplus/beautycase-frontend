@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { NavBar } from '../../../components/navigation/NavBar'
+import { ButtonSubmit } from '../../../components/ui/ButtonSubmit'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { getErrorMessage } from '../../../utils/errorUtils'
@@ -242,20 +243,11 @@ export const QuestionnairePage = () => {
                         </article>
 
                         <section className="btn-section">
-                            <button
-                                className={classNames(
-                                    'btn focus-outline sm:w-36',
-                                    isLoading && 'btn-loading'
-                                )}
-                                disabled={isLoading}
-                                type="submit"
-                            >
-                                {isLoading ? (
-                                    <div className="btn-pulse" />
-                                ) : (
-                                    t('submit')
-                                )}
-                            </button>
+                            <ButtonSubmit
+                                className={classNames('sm:w-44')}
+                                isLoading={isLoading}
+                                label={isLoading ? t('sending') : t('send')}
+                            />
                         </section>
                     </form>
                 </article>

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
+import { ButtonSubmit } from '../../../components/ui/ButtonSubmit'
 import { LogoLink } from '../../../components/ui/LogoLink'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { useLoginUserMutation } from '../authApi'
@@ -82,9 +83,9 @@ export const LoginPage = () => {
                             {t('fields.username.label')}
                         </label>
 
-                        {errors.username && (
+                        {errors.username?.message && (
                             <p className="form-error text-danger">
-                                {t(errors.username.message || '')}
+                                {t(errors.username.message)}
                             </p>
                         )}
                     </div>
@@ -104,28 +105,18 @@ export const LoginPage = () => {
                             {t('fields.password.label')}
                         </label>
 
-                        {errors.password && (
+                        {errors.password?.message && (
                             <p className="form-error text-danger">
-                                {t(errors.password.message || '')}
+                                {t(errors.password.message)}
                             </p>
                         )}
                     </div>
 
                     <div className="auth-submit-container">
-                        <button
-                            className={classNames(
-                                'btn focus-outline',
-                                isLoading && 'btn-loading'
-                            )}
-                            disabled={isLoading}
-                            type="submit"
-                        >
-                            {isLoading ? (
-                                <div className="btn-pulse" />
-                            ) : (
-                                t('login')
-                            )}
-                        </button>
+                        <ButtonSubmit
+                            isLoading={isLoading}
+                            label={isLoading ? t('loggingIn') : t('login')}
+                        />
                     </div>
                 </div>
 

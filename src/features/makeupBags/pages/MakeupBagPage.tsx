@@ -17,6 +17,7 @@ import { Footer } from '../../../components/Footer'
 import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
+import { SpinnerButton } from '../../../components/SpinnerButton'
 import config from '../../../config'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { canAccess } from '../../../utils/menu'
@@ -166,12 +167,11 @@ export const MakeupBagPage = () => {
     }
 
     const getActionIcon = (actionId: ActionId) => {
-        if (actionId === 'export' && isExporting) {
-            return (
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            )
-        }
-        return ACTIONS[actionId].icon
+        return actionId === 'export' && isExporting ? (
+            <SpinnerButton />
+        ) : (
+            ACTIONS[actionId].icon
+        )
     }
 
     const getActionLabel = (actionId: ActionId) => {

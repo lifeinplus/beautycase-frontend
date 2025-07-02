@@ -61,6 +61,7 @@
     "toast": {
         "delete": "Косметичка удалена",
         "exportError": "Ошибка при создании PDF",
+        "exportSuccess": "PDF успешно создан",
         "noExportData": "Нет данных для экспорта"
     }
 }

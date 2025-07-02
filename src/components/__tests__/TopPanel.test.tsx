@@ -13,7 +13,7 @@ describe('TopPanel', () => {
 
         const title = screen.getByText(mockTitle)
         expect(title).toBeInTheDocument()
-        expect(title).toHaveClass('panel-top__title')
+        expect(title).toHaveClass('panel-top-title')
     })
 
     it('renders back button with chevron icon', () => {
@@ -24,7 +24,7 @@ describe('TopPanel', () => {
 
         const button = screen.getByRole('button')
         expect(button).toBeInTheDocument()
-        expect(button).toHaveClass('panel-top__button')
+        expect(button).toHaveClass('panel-top-btn')
     })
 
     it('navigates back when default back button is clicked', async () => {

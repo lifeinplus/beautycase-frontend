@@ -17,8 +17,8 @@ import { StoreForm } from '../StoreForm'
 import { mockStore1 } from '../../__mocks__/storesApi'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/ui/Button')
 vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../form/components/Button')
 vi.mock('../../storesApi')
 
 describe('StoreForm', () => {

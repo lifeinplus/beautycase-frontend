@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Table } from '../../../components/table/Table'
 import { TableRow } from '../../../components/table/TableRow'
-import { Button } from '../../../components/ui/Button'
+import { Button } from '../../form/components/Button'
 import type { Header } from '../../../types/table'
 import type { Brand } from '../types'
 

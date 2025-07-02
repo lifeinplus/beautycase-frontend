@@ -7,7 +7,7 @@ import { BrandsTable } from '../BrandsTable'
 
 vi.mock('../../../../components/table/Table')
 vi.mock('../../../../components/table/TableRow')
-vi.mock('../../../../components/ui/Button')
+vi.mock('../../../form/components/Button')
 
 describe('BrandsTable', () => {
     const mockBrands: Brand[] = [

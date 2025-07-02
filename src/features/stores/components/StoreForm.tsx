@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { Button } from '../../../components/ui/Button'
+import { Button } from '../../form/components/Button'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
@@ -118,7 +118,9 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
             </div>
 
             {errors.name && (
-                <p className="form-error">{t(errors.name.message || '')}</p>
+                <p className="form-error text-danger">
+                    {t(errors.name.message || '')}
+                </p>
             )}
         </form>
     )

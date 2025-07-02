@@ -6,8 +6,8 @@ import type {
     AuthQueryRegister,
     AuthResultLogin,
     AuthResultRegister,
-} from '../authApi'
-import type { AuthState } from '../authSlice'
+    AuthState,
+} from '../types'
 
 export const mockLoginParams = {
     username: 'testuser',

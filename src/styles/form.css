@@ -7,7 +7,7 @@
 }
 
 .form-error {
-    @apply mt-2 text-sm text-rose-500 dark:text-rose-400;
+    @apply mt-2 text-sm;
 }
 
 .form-questionnaire {
@@ -41,21 +41,19 @@
 }
 
 .form-button {
-    @apply flex w-full place-content-center rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply inline-flex items-center justify-center px-4 py-2.5;
     @apply bg-white dark:bg-black;
-    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
+    @apply rounded-xl border border-neutral-200 dark:border-neutral-700;
+    @apply focus:border-black focus:outline-none dark:focus:border-white;
 }
 
 .form-button-navigate {
-    @apply flex w-full items-center justify-between rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply flex w-full items-center justify-between px-4 py-2.5;
     @apply bg-white dark:bg-black;
-    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
+    @apply rounded-xl border border-neutral-200 dark:border-neutral-700;
+    @apply focus:border-black focus:outline-none dark:focus:border-white;
 }
 
 .border-error {
     @apply border-rose-500 dark:border-rose-400;
-}
-
-.text-error {
-    @apply text-rose-500 dark:text-rose-400;
 }

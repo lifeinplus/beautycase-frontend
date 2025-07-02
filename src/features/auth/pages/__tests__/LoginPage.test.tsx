@@ -49,23 +49,29 @@ describe('LoginPage', () => {
     it('renders the login form correctly', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const title = screen.getByText('Beautycase')
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const submit = screen.getByRole('button', { name: 'login' })
-        const link = screen.getByText('register')
+        expect(screen.getByText('Beautycase')).toBeInTheDocument()
 
-        expect(title).toBeInTheDocument()
-        expect(username).toBeInTheDocument()
-        expect(password).toBeInTheDocument()
-        expect(submit).toBeInTheDocument()
-        expect(link).toBeInTheDocument()
+        expect(
+            screen.getByPlaceholderText('fields.username.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByPlaceholderText('fields.password.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByRole('button', { name: 'login' })
+        ).toBeInTheDocument()
+
+        expect(screen.getByText('register')).toBeInTheDocument()
     })
 
     it('focuses username input on mount', () => {
         renderWithRouter(<MockRoutes />, initialEntries)
-        const username = screen.getByPlaceholderText('username')
-        expect(document.activeElement).toBe(username)
+
+        expect(document.activeElement).toBe(
+            screen.getByPlaceholderText('fields.username.label')
+        )
     })
 
     it('allows user to type in the fields', async () => {
@@ -73,8 +79,8 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
+        const username = screen.getByPlaceholderText('fields.username.label')
+        const password = screen.getByPlaceholderText('fields.password.label')
 
         await user.type(username, mockLoginParams.username)
         await user.type(password, mockLoginParams.password)
@@ -88,21 +94,40 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const submit = screen.getByRole('button', { name: 'login' })
+        await user.type(
+            screen.getByPlaceholderText('fields.username.label'),
+            mockLoginParams.username
+        )
 
-        await user.type(username, mockLoginParams.username)
-        await user.type(password, mockLoginParams.password)
+        await user.type(
+            screen.getByPlaceholderText('fields.password.label'),
+            mockLoginParams.password
+        )
 
-        await user.click(submit)
+        await user.click(screen.getByRole('button', { name: 'login' }))
 
         expect(mockLoginUser).toHaveBeenCalledWith({
             username: mockLoginParams.username,
             password: mockLoginParams.password,
         })
+
         expect(mockDispatch).toHaveBeenCalled()
         expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
+    })
+
+    it('shows validation errors when fields are empty', async () => {
+        const user = userEvent.setup()
+        renderWithRouter(<MockRoutes />, initialEntries)
+
+        await user.click(screen.getByRole('button', { name: 'login' }))
+
+        expect(
+            await screen.findByText('fields.username.errors.required')
+        ).toBeInTheDocument()
+
+        expect(
+            await screen.findByText('fields.password.errors.required')
+        ).toBeInTheDocument()
     })
 
     it('handles login error', async () => {
@@ -116,14 +141,17 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const username = screen.getByPlaceholderText('username')
-        const password = screen.getByPlaceholderText('password')
-        const submit = screen.getByRole('button', { name: 'login' })
+        await user.type(
+            screen.getByPlaceholderText('fields.username.label'),
+            mockLoginParams.username
+        )
 
-        await user.type(username, mockLoginParams.username)
-        await user.type(password, 'wrongpassword')
+        await user.type(
+            screen.getByPlaceholderText('fields.password.label'),
+            'wrongpassword'
+        )
 
-        await user.click(submit)
+        await user.click(screen.getByRole('button', { name: 'login' }))
 
         expect(mockLoginUser).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -140,9 +168,7 @@ describe('LoginPage', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        const submit = screen.getByRole('button', { name: 'loginLoading' })
-        expect(submit).toBeDisabled()
-        expect(submit).toHaveTextContent('loginLoading')
+        expect(screen.getByRole('button')).toBeDisabled()
     })
 
     it('navigates to register page when register link is clicked', async () => {

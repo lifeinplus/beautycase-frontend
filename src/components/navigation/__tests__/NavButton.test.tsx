@@ -2,31 +2,28 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import {
-    NavigationButton,
-    type NavigationButtonProps,
-} from '../NavigationButton'
+import { NavButton, type NavButtonProps } from '../NavButton'
 
-describe('NavigationButton', () => {
+describe('NavButton', () => {
     const MockIcon = () => <svg data-testid="mocked-icon" />
 
     const mockOnClick = vi.fn()
 
-    const mockProps: NavigationButtonProps = {
+    const mockProps: NavButtonProps = {
         icon: <MockIcon />,
         onClick: mockOnClick,
-        text: 'Test Text',
+        label: 'Test Text',
     }
 
     it('renders the button with text and icon', () => {
-        render(<NavigationButton {...mockProps} />)
+        render(<NavButton {...mockProps} />)
 
-        expect(screen.getByText(mockProps.text)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
         expect(screen.getByTestId('mocked-icon')).toBeInTheDocument()
     })
 
     it('applies custom className', () => {
-        render(<NavigationButton {...mockProps} className="custom-class" />)
+        render(<NavButton {...mockProps} className="custom-class" />)
 
         const button = screen.getByRole('button')
 
@@ -35,7 +32,7 @@ describe('NavigationButton', () => {
     })
 
     it('renders with default className', () => {
-        render(<NavigationButton {...mockProps} />)
+        render(<NavButton {...mockProps} />)
 
         const button = screen.getByRole('button')
 
@@ -46,16 +43,16 @@ describe('NavigationButton', () => {
     it('calls onClick when clicked', async () => {
         const user = userEvent.setup()
 
-        render(<NavigationButton {...mockProps} />)
+        render(<NavButton {...mockProps} />)
         await user.click(screen.getByRole('button'))
 
         expect(mockOnClick).toHaveBeenCalledTimes(1)
     })
 
     it('renders the text with proper responsive classes', () => {
-        render(<NavigationButton {...mockProps} />)
+        render(<NavButton {...mockProps} />)
 
-        const text = screen.getByText(mockProps.text)
+        const text = screen.getByText(mockProps.label)
 
         expect(text).toBeInTheDocument()
         expect(text).toHaveClass('hidden')

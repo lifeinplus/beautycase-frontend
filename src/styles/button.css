@@ -1,28 +1,14 @@
-.button {
-    @apply flex w-full justify-center rounded-lg py-3 text-sm font-semibold focus-visible:outline focus-visible:outline-2;
-    @apply bg-rose-500 text-white hover:bg-rose-600 focus-visible:outline-rose-700;
-    @apply sm:w-36;
-}
-
-.btn-base {
-    @apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 focus:outline-none;
-    @apply bg-white dark:bg-black;
-    @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
-}
-
-.btn-success {
-    @apply text-lime-600 dark:text-lime-400;
-}
-
-.btn-danger {
-    @apply text-rose-600 dark:text-rose-400;
-}
-
-.btn-warning {
-    @apply text-amber-600 dark:text-amber-400;
-}
-
-.button-section {
+.btn-section {
     @apply border-t px-3 pt-4 sm:flex sm:justify-end sm:border-0 sm:pt-0;
     @apply border-gray-300 dark:border-gray-700;
+}
+
+.btn {
+    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white;
+    @apply bg-rose-500 dark:bg-rose-600;
+    @apply hover:bg-rose-600 dark:hover:bg-rose-700;
+}
+
+.btn-loading {
+    @apply bg-rose-200 hover:bg-rose-200 dark:bg-rose-950 dark:hover:bg-rose-950;
 }

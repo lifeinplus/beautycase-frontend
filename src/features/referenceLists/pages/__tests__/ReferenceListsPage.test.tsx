@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { ReferenceListsPage } from '../ReferenceListsPage'
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 vi.mock('../../components/ReferenceListsMobileView')

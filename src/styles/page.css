@@ -8,9 +8,8 @@
 }
 
 .page-footer {
-    @apply border-t;
-    @apply border-gray-300 dark:border-gray-700;
-    @apply sm:mb-0 sm:ms-navbar-left lg:ms-navbar-left-open;
+    @apply mb-2 border-t border-gray-300 dark:border-gray-700;
+    @apply sm:ms-navbar-left lg:ms-navbar-left-open;
 }
 
 .content-container {

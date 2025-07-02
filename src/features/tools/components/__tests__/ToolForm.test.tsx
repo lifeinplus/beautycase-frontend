@@ -13,8 +13,8 @@ import { mockTool1 } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
-vi.mock('../../../../components/navigation/NavigationButton')
+vi.mock('../../../../components/navigation/NavBar')
+vi.mock('../../../../components/navigation/NavButton')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../brands/brandsApi')
 vi.mock('../../../form/components/ButtonNavigateSection')

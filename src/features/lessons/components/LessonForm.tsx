@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavBar } from '../../../components/navigation/NavBar'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
 import { TextareaSection } from '../../form/components/TextareaSection'
 import { selectFormData, setFormData } from '../../form/formSlice'
@@ -124,19 +124,19 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
-                <NavigationButton
+            <NavBar>
+                <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:actions.back')}
+                    label={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
-                <NavigationButton
+                <NavButton
                     icon={<CheckIcon className="h-6 w-6" />}
-                    text={t('navigation:actions.save')}
+                    label={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

@@ -3,7 +3,8 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '../../app/__mocks__/hooks'
 import axiosClient from '../../features/api/axiosClient.config'
-import { type AuthState, setCredentials } from '../../features/auth/authSlice'
+import { setCredentials } from '../../features/auth/authSlice'
+import type { AuthState } from '../../features/auth/types'
 import { mockError } from '../../utils/__mocks__/errorUtils'
 import { useRefreshAuth } from '../useRefreshAuth'
 

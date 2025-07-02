@@ -46,7 +46,7 @@ export const ModalDuplicate = ({
                     <button
                         aria-label={t('buttons.duplicate.ariaLabel')}
                         onClick={onConfirm}
-                        className="modal-btn modal-btn-warning"
+                        className="modal-btn text-warning"
                     >
                         {t('buttons.duplicate.text')}
                     </button>

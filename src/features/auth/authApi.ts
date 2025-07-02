@@ -1,23 +1,10 @@
 import { api } from '../api/api'
-import { AuthState } from './authSlice'
-
-export interface AuthQueryLogin {
-    username: string
-    password: string
-}
-
-export interface AuthResultLogin
-    extends Pick<AuthState, 'accessToken' | 'userId'> {}
-
-export interface AuthResultRegister {
-    message: string
-}
-
-export interface AuthQueryRegister {
-    username: string
-    password: string
-    confirmPassword: string
-}
+import type {
+    AuthQueryLogin,
+    AuthQueryRegister,
+    AuthResultLogin,
+    AuthResultRegister,
+} from './types'
 
 const authApi = api.injectEndpoints({
     endpoints: (builder) => ({

@@ -8,8 +8,8 @@ import { useAppDispatch } from '../../../app/hooks'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Hero } from '../../../components/Hero'
 import { TopPanel } from '../../../components/TopPanel'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavBar } from '../../../components/navigation/NavBar'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { clearFormData, setFormData } from '../../form/formSlice'
@@ -97,14 +97,14 @@ export const BrandsPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
-                <NavigationButton
+            <NavBar>
+                <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
-                    text={t('navigation:actions.back')}
+                    label={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
-            </AdaptiveNavBar>
+            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

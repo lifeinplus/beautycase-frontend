@@ -1,10 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
+import { ButtonSubmit } from '../../../components/ui/ButtonSubmit'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { getErrorMessage } from '../../../utils/errorUtils'
@@ -35,7 +37,8 @@ export const QuestionnairePage = () => {
         resolver: yupResolver(questionnaireSchema),
     })
 
-    const [createQuestionnaire] = useCreateQuestionnaireMutation()
+    const [createQuestionnaire, { isLoading }] =
+        useCreateQuestionnaireMutation()
 
     const onSubmit = async (data: Questionnaire) => {
         try {
@@ -67,7 +70,7 @@ export const QuestionnairePage = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p className="text-error text-sm">
+                            <p className="text-danger text-sm">
                                 {t('requiredField')}
                             </p>
 
@@ -239,16 +242,18 @@ export const QuestionnairePage = () => {
                             />
                         </article>
 
-                        <section className="button-section">
-                            <button className="button" type="submit">
-                                {t('submit')}
-                            </button>
+                        <section className="btn-section">
+                            <ButtonSubmit
+                                className={classNames('sm:w-44')}
+                                isLoading={isLoading}
+                                label={isLoading ? t('sending') : t('send')}
+                            />
                         </section>
                     </form>
                 </article>
             </main>
 
-            <AdaptiveNavBar />
+            <NavBar />
         </article>
     )
 }

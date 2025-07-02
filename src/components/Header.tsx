@@ -1,17 +1,20 @@
 import { AuthButton } from '../features/auth/components/AuthButton'
+import { ThemeToggler } from '../features/theme/ThemeToggler'
+import { LogoLink } from './ui/LogoLink'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
-export const Header = () => {
-    return (
-        <nav className="sticky top-0 z-10 border-b border-neutral-300 dark:border-neutral-700 sm:hidden">
-            <header className="mx-auto flex max-w-4xl items-center justify-between bg-white pe-0 ps-4 dark:bg-black">
-                <h1 className="nav-logo mb-1.5">
-                    <a href="/">Beautycase</a>
-                </h1>
+export const Header = () => (
+    <nav className="sticky top-0 z-10 border-b border-neutral-300 dark:border-neutral-700 sm:hidden">
+        <header className="mx-auto flex max-w-4xl items-center justify-between bg-white pe-0 ps-4 dark:bg-black">
+            <h1 className="nav-logo mb-1.5">
+                <LogoLink />
+            </h1>
 
-                <div className="sm:hidden">
-                    <AuthButton />
-                </div>
-            </header>
-        </nav>
-    )
-}
+            <div className="flex">
+                <LanguageSwitcher />
+                <ThemeToggler />
+                <AuthButton />
+            </div>
+        </header>
+    </nav>
+)

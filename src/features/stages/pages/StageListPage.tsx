@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavBar } from '../../../components/navigation/NavBar'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
@@ -97,16 +97,16 @@ export const StageListPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(({ key, icon, label, onClick }) => (
-                    <NavigationButton
+                    <NavButton
                         key={key}
                         icon={icon}
-                        text={label}
+                        label={label}
                         onClick={onClick}
                     />
                 ))}
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

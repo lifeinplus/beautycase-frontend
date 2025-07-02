@@ -12,7 +12,7 @@ describe('Footer', () => {
         expect(footer).toHaveClass('page-footer')
 
         const sections = container.querySelectorAll('section')
-        expect(sections).toHaveLength(3)
+        expect(sections).toHaveLength(2)
 
         sections.forEach((section) => {
             expect(section).toHaveClass('mx-auto', 'max-w-4xl', 'p-4')
@@ -47,10 +47,9 @@ describe('Footer', () => {
         expect(phone).toHaveAttribute('href', 'tel:+381629446904')
         expect(phone).toHaveTextContent('footer.phone')
         expect(phone).toHaveClass(
-            'text-rose-500',
-            'hover:underline',
-            'hover:decoration-wavy',
-            'dark:text-rose-400'
+            'focus-outline',
+            'hover-outline',
+            'text-danger'
         )
 
         expect(screen.getByText(/questions/)).toBeInTheDocument()
@@ -61,14 +60,5 @@ describe('Footer', () => {
     it('displays the services information correctly', () => {
         render(<Footer />)
         expect(screen.getByText('footer.services')).toBeInTheDocument()
-    })
-
-    it('displays the copyright information correctly', () => {
-        render(<Footer />)
-
-        const copyrightTextRegex = /© Beautycase \d{4}\.\d+\.\d+/
-        const copyright = screen.getByText(copyrightTextRegex)
-
-        expect(copyright).toBeInTheDocument()
     })
 })

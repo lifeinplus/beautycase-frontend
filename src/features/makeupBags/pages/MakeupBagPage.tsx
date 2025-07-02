@@ -14,9 +14,10 @@ import { TopPanel } from '../../../components/TopPanel'
 import { Hero } from '../../../components/Hero'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Footer } from '../../../components/Footer'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
-import { NavigationButton } from '../../../components/navigation/NavigationButton'
+import { NavBar } from '../../../components/navigation/NavBar'
+import { NavButton } from '../../../components/navigation/NavButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
+import { SpinnerButton } from '../../../components/SpinnerButton'
 import config from '../../../config'
 import { getErrorMessage } from '../../../utils/errorUtils'
 import { canAccess } from '../../../utils/menu'
@@ -84,6 +85,7 @@ export const MakeupBagPage = () => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
+    const [isExporting, setIsExporting] = useState(false)
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
     const { exportToPDF, error: exportError, clearError } = usePDFExport()
@@ -104,6 +106,7 @@ export const MakeupBagPage = () => {
         if (exportError) {
             toast.error(exportError)
             clearError()
+            setIsExporting(false)
         }
     }, [exportError, clearError])
 
@@ -113,16 +116,29 @@ export const MakeupBagPage = () => {
             return
         }
 
-        const filename = generatePdfFilename(categoryName, clientName)
+        if (isExporting) return
 
-        await exportToPDF(
-            {
-                category: data.category,
-                stages: data.stages,
-                tools: data.tools,
-            },
-            filename
-        )
+        setIsExporting(true)
+
+        try {
+            const filename = generatePdfFilename(categoryName, clientName)
+
+            await exportToPDF(
+                {
+                    category: data.category,
+                    stages: data.stages,
+                    tools: data.tools,
+                },
+                filename
+            )
+
+            toast.success(t('toast.exportSuccess'))
+        } catch (error) {
+            console.error('Export failed:', error)
+            toast.error(getErrorMessage(error))
+        } finally {
+            setIsExporting(false)
+        }
     }
 
     const actionHandlers = {
@@ -150,14 +166,33 @@ export const MakeupBagPage = () => {
         }
     }
 
+    const getActionIcon = (actionId: ActionId) => {
+        return actionId === 'export' && isExporting ? (
+            <SpinnerButton />
+        ) : (
+            ACTIONS[actionId].icon
+        )
+    }
+
+    const getActionLabel = (actionId: ActionId) => {
+        if (actionId === 'export' && isExporting) {
+            return t('navigation:actions.exporting')
+        }
+        return t(`navigation:${ACTIONS[actionId].label}`)
+    }
+
+    const isActionDisabled = (actionId: ActionId) => {
+        return actionId === 'export' && isExporting
+    }
+
     const visibleActions = ACTION_ITEMS.filter((item) =>
         canAccess(item, username, role)
     ).map(({ id, className }) => ({
         key: id,
-        className,
-        icon: ACTIONS[id].icon,
-        label: t(`navigation:${ACTIONS[id].label}`),
-        onClick: actionHandlers[id],
+        className: `${className} ${isActionDisabled(id) ? 'opacity-50 cursor-not-allowed' : ''}`,
+        icon: getActionIcon(id),
+        label: getActionLabel(id),
+        onClick: isActionDisabled(id) ? () => {} : actionHandlers[id],
     }))
 
     return (
@@ -190,19 +225,19 @@ export const MakeupBagPage = () => {
 
             {!isLoading && !error && <Footer />}
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
-                        <NavigationButton
+                        <NavButton
                             key={key}
                             className={className}
                             icon={icon}
-                            text={t(label)}
+                            label={t(label)}
                             onClick={onClick}
                         />
                     )
                 )}
-            </AdaptiveNavBar>
+            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

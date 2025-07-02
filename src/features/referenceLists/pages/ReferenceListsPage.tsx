@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { ReferenceListsMobileView } from '../components/ReferenceListsMobileView'
@@ -27,7 +27,7 @@ export const ReferenceListsPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar />
+            <NavBar />
         </article>
     )
 }

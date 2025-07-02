@@ -46,7 +46,7 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
                         onClick={onConfirm}
-                        className="modal-btn modal-btn-danger"
+                        className="modal-btn text-danger"
                     >
                         {t('buttons.delete.text')}
                     </button>

@@ -10,7 +10,8 @@
     "emptyMessageList": "Анкеты не найдены",
     "notSpecified": "Не указано",
     "requiredField": "* Обязательно для заполнения",
-    "submit": "Отправить",
+    "send": "Отправить",
+    "sending": "Отправка...",
     "table": {
         "date": "Дата",
         "time": "Время",

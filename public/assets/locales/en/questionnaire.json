@@ -10,7 +10,8 @@
     "emptyMessageList": "No questionnaires found",
     "notSpecified": "Not specified",
     "requiredField": "* Required field",
-    "submit": "Submit",
+    "send": "Send",
+    "sending": "Sending...",
     "table": {
         "date": "Date",
         "time": "Time",

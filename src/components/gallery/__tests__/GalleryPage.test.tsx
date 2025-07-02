@@ -14,8 +14,8 @@ import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
 vi.mock('../../../app/hooks')
 vi.mock('../../../utils/errorUtils')
-vi.mock('../../navigation/AdaptiveNavBar')
-vi.mock('../../navigation/NavigationButton')
+vi.mock('../../navigation/NavBar')
+vi.mock('../../navigation/NavButton')
 vi.mock('../../Header')
 vi.mock('../../Hero')
 

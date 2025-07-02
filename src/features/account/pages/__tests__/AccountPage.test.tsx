@@ -15,7 +15,7 @@ import { AccountPage } from '../AccountPage'
 import { mockError } from '../../../../utils/__mocks__/errorUtils'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')

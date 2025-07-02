@@ -5,7 +5,8 @@
         "edit": "Edit",
         "delete": "Delete",
         "duplicate": "Duplicate",
-        "export": "Download",
+        "export": "Export",
+        "exporting": "Exporting...",
         "save": "Save"
     },
     "menu": {

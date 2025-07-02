@@ -61,6 +61,7 @@
     "toast": {
         "delete": "Makeup bag deleted",
         "exportError": "Error creating PDF",
+        "exportSuccess": "PDF created successfully",
         "noExportData": "No data to export"
     }
 }

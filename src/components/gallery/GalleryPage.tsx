@@ -10,7 +10,7 @@ import { getErrorMessage } from '../../utils/errorUtils'
 import { canAccess } from '../../utils/menu'
 import { Header } from '../Header'
 import { Hero } from '../Hero'
-import { AdaptiveNavBar } from '../navigation/AdaptiveNavBar'
+import { NavBar } from '../navigation/NavBar'
 import { NavButton } from '../navigation/NavButton'
 
 const ACTIONS = {
@@ -91,7 +91,7 @@ export const GalleryPage = ({
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavButton
                         key={key}
@@ -100,7 +100,7 @@ export const GalleryPage = ({
                         onClick={onClick}
                     />
                 ))}
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

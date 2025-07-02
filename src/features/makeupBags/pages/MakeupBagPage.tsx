@@ -14,7 +14,7 @@ import { TopPanel } from '../../../components/TopPanel'
 import { Hero } from '../../../components/Hero'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Footer } from '../../../components/Footer'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { ModalDelete } from '../../../components/ui/ModalDelete'
 import config from '../../../config'
@@ -190,7 +190,7 @@ export const MakeupBagPage = () => {
 
             {!isLoading && !error && <Footer />}
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
                         <NavButton
@@ -202,7 +202,7 @@ export const MakeupBagPage = () => {
                         />
                     )
                 )}
-            </AdaptiveNavBar>
+            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

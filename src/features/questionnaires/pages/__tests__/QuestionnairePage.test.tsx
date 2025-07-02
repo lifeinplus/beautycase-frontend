@@ -10,7 +10,7 @@ import { useCreateQuestionnaireMutation } from '../../questionnairesApi'
 import { questions } from '../../utils'
 import { QuestionnairePage } from '../QuestionnairePage'
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 vi.mock('../../../../utils/errorUtils')

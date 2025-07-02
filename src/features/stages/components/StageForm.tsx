@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { TopPanel } from '../../../components/TopPanel'
 import { ButtonNavigateSection } from '../../form/components/ButtonNavigateSection'
@@ -123,7 +123,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
@@ -135,7 +135,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                     label={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

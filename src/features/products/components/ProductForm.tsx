@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { TopPanel } from '../../../components/TopPanel'
 import { useGetAllBrandsQuery } from '../../brands/brandsApi'
@@ -136,7 +136,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
@@ -148,7 +148,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                     label={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

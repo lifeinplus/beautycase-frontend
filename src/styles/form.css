@@ -7,7 +7,7 @@
 }
 
 .form-error {
-    @apply mt-2 text-sm text-rose-400 dark:text-rose-400;
+    @apply mt-2 text-sm;
 }
 
 .form-questionnaire {
@@ -54,8 +54,4 @@
 
 .border-error {
     @apply border-rose-500 dark:border-rose-400;
-}
-
-.text-error {
-    @apply text-rose-400 dark:text-rose-400;
 }

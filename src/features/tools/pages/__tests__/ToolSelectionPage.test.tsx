@@ -12,7 +12,7 @@ import { useGetAllToolsQuery } from '../../toolsApi'
 import { ToolSelectionPage } from '../ToolSelectionPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/navigation/NavButton')
 vi.mock('../../../../components/ui/Image')
 vi.mock('../../../../components/TopPanel')

@@ -13,7 +13,7 @@ import { mockProduct1 } from '../../__mocks__/productsApi'
 import { ProductForm } from '../ProductForm'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/navigation/NavButton')
 vi.mock('../../../../components/TopPanel')
 vi.mock('../../../brands/brandsApi')

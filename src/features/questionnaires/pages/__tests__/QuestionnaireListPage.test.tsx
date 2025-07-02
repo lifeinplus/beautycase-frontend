@@ -5,7 +5,7 @@ import { mockQuestionnaires } from '../../__mocks__/questionnairesApi'
 import { useGetAllQuestionnairesQuery } from '../../questionnairesApi'
 import { QuestionnaireListPage } from '../QuestionnaireListPage'
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/DataWrapper')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')

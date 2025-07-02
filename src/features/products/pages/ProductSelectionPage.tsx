@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { Image } from '../../../components/ui/Image'
 import { DataWrapper } from '../../../components/DataWrapper'
@@ -106,7 +106,7 @@ export const ProductSelectionPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
@@ -118,7 +118,7 @@ export const ProductSelectionPage = () => {
                     label={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

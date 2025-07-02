@@ -41,7 +41,7 @@ export const HomePage = () => {
                             <>
                                 {t('auth.loggedIn')}: {username} (
                                 <button
-                                    className="focus-outline link-color font-semibold"
+                                    className="focus-outline text-danger font-semibold"
                                     onClick={handleLogout}
                                 >
                                     {t('auth.logout')}
@@ -51,14 +51,14 @@ export const HomePage = () => {
                         ) : (
                             <>
                                 <Link
-                                    className="focus-outline link-color font-semibold"
+                                    className="focus-outline text-danger font-semibold"
                                     to="/login"
                                 >
                                     {t('link.login')}
                                 </Link>{' '}
                                 {t('link.or')}{' '}
                                 <Link
-                                    className="focus-outline link-color font-semibold"
+                                    className="focus-outline text-danger font-semibold"
                                     to="/register"
                                 >
                                     {t('link.register')}

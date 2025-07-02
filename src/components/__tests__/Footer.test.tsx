@@ -49,7 +49,7 @@ describe('Footer', () => {
         expect(phone).toHaveClass(
             'focus-outline',
             'hover-outline',
-            'link-color'
+            'text-danger'
         )
 
         expect(screen.getByText(/questions/)).toBeInTheDocument()

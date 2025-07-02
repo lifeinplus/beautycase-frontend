@@ -118,7 +118,9 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
             </div>
 
             {errors.name && (
-                <p className="form-error">{t(errors.name.message || '')}</p>
+                <p className="form-error text-danger">
+                    {t(errors.name.message || '')}
+                </p>
             )}
         </form>
     )

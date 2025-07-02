@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { useGetAllCategoriesQuery } from '../../categories/categoriesApi'
 import { SelectSection } from '../../form/components/SelectSection'
@@ -130,7 +130,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
@@ -142,7 +142,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                     label={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

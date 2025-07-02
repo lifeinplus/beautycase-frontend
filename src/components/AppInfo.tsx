@@ -9,7 +9,10 @@ function AppInfo() {
     return (
         <section className="mx-auto hidden px-4 pt-4 text-xs text-neutral-500 dark:text-neutral-400 lg:flex lg:flex-col lg:gap-2">
             <p>
-                <Link className="link-color focus-outline hover-outline" to="/">
+                <Link
+                    className="text-danger focus-outline hover-outline"
+                    to="/"
+                >
                     Beautycase
                 </Link>{' '}
                 — {t('home:motto').toLocaleLowerCase()}

@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderWithProviders } from '../../../../tests/mocks/wrappers'
 import { UnauthorizedPage } from '../UnauthorizedPage'
 
-vi.mock('../../../../components/navigation/AdaptiveNavBar')
+vi.mock('../../../../components/navigation/NavBar')
 vi.mock('../../../../components/Header')
 vi.mock('../../../../components/Hero')
 

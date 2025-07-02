@@ -16,7 +16,7 @@ import { getErrorMessage } from '../../utils/errorUtils'
 import { canAccess } from '../../utils/menu'
 import { DataWrapper } from '../DataWrapper'
 import { TopPanel } from '../TopPanel'
-import { AdaptiveNavBar } from '../navigation/AdaptiveNavBar'
+import { NavBar } from '../navigation/NavBar'
 import { NavButton } from '../navigation/NavButton'
 import { ModalDelete } from '../ui/ModalDelete'
 import { ModalDuplicate } from '../ui/ModalDuplicate'
@@ -197,7 +197,7 @@ export const DetailsPage = ({
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(
                     ({ key, className, icon, label, onClick }) => (
                         <NavButton
@@ -209,7 +209,7 @@ export const DetailsPage = ({
                         />
                     )
                 )}
-            </AdaptiveNavBar>
+            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

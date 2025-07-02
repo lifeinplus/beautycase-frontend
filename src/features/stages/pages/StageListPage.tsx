@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Header } from '../../../components/Header'
@@ -97,7 +97,7 @@ export const StageListPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavButton
                         key={key}
@@ -106,7 +106,7 @@ export const StageListPage = () => {
                         onClick={onClick}
                     />
                 ))}
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

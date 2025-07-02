@@ -32,6 +32,6 @@ export const InputSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error">{error}</p>}
+        {error && <p className="form-error text-danger">{error}</p>}
     </div>
 )

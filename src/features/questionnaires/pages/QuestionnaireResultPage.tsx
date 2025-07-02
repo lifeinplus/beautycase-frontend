@@ -2,7 +2,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { DataWrapper } from '../../../components/DataWrapper'
 import { Hero } from '../../../components/Hero'
@@ -52,14 +52,14 @@ export const QuestionnaireResultPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

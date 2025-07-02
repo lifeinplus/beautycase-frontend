@@ -22,15 +22,3 @@
     @apply bg-white dark:bg-black;
     @apply border border-neutral-200 focus:border-black dark:border-neutral-700 dark:focus:border-white;
 }
-
-.text-success {
-    @apply text-lime-500 dark:text-lime-400;
-}
-
-.text-danger {
-    @apply text-rose-500 dark:text-rose-400;
-}
-
-.text-warning {
-    @apply text-amber-500 dark:text-amber-400;
-}

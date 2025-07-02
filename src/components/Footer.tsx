@@ -14,11 +14,11 @@ export const Footer = () => {
                     <span>{t('footer.questions')}:</span>{' '}
                     <a
                         href="tel:+381629446904"
-                        className="focus-outline hover-outline link-color"
+                        className="focus-outline hover-outline text-danger"
                     >
                         {t('footer.phone')}
                     </a>{' '}
-                    <span className="link-color">({t('footer.country')})</span>{' '}
+                    <span className="text-danger">({t('footer.country')})</span>{' '}
                     <span>{t('footer.help')}</span>
                 </p>
                 <p>{t('footer.services')}</p>

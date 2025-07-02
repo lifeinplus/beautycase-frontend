@@ -83,7 +83,7 @@ export const LoginPage = () => {
                         </label>
 
                         {errors.username && (
-                            <p className="form-error">
+                            <p className="form-error text-danger">
                                 {t(errors.username.message || '')}
                             </p>
                         )}
@@ -105,7 +105,7 @@ export const LoginPage = () => {
                         </label>
 
                         {errors.password && (
-                            <p className="form-error">
+                            <p className="form-error text-danger">
                                 {t(errors.password.message || '')}
                             </p>
                         )}
@@ -133,7 +133,7 @@ export const LoginPage = () => {
                     <p className="auth-question">
                         {t('loginQuestion')}{' '}
                         <Link
-                            className="link-color focus-outline font-semibold"
+                            className="text-danger focus-outline font-semibold"
                             to="/register"
                         >
                             {t('register')}

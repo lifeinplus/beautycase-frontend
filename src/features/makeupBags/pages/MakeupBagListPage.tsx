@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { DataWrapper } from '../../../components/DataWrapper'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { canAccess } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
@@ -84,7 +84,7 @@ export const MakeupBagListPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 {visibleActions.map(({ key, icon, label, onClick }) => (
                     <NavButton
                         key={key}
@@ -93,7 +93,7 @@ export const MakeupBagListPage = () => {
                         onClick={onClick}
                     />
                 ))}
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

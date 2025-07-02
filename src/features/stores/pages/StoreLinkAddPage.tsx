@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { TopPanel } from '../../../components/TopPanel'
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { NavButton } from '../../../components/navigation/NavButton'
 import { selectFormData, setFormData } from '../../form/formSlice'
 import { useGetAllStoresQuery } from '../storesApi'
@@ -161,7 +161,7 @@ export const StoreLinkAddPage = () => {
                                             onClick={() => handleDelete(index)}
                                             type="button"
                                         >
-                                            <MinusCircleIcon className="link-color h-6 w-6" />
+                                            <MinusCircleIcon className="text-danger h-6 w-6" />
                                         </button>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ export const StoreLinkAddPage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar>
+            <NavBar>
                 <NavButton
                     icon={<ArrowLeftIcon className="h-6 w-6" />}
                     label={t('navigation:actions.back')}
@@ -193,7 +193,7 @@ export const StoreLinkAddPage = () => {
                     label={t('navigation:actions.save')}
                     onClick={handleSave}
                 />
-            </AdaptiveNavBar>
+            </NavBar>
         </article>
     )
 }

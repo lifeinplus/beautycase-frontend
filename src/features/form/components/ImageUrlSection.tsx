@@ -192,7 +192,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     <p className="form-description">{description}</p>
                 )}
 
-                {error && <p className="form-error">{error}</p>}
+                {error && <p className="form-error text-danger">{error}</p>}
 
                 {imageUrl && <ImagePreview url={imageUrl} />}
             </div>

@@ -23,11 +23,11 @@ import AppInfo from '../AppInfo'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import { NavButton } from './NavButton'
 
-export interface AdaptiveNavBarProps {
+export interface NavBarProps {
     children?: ReactNode
 }
 
-export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
+export const NavBar = ({ children }: NavBarProps) => {
     const location = useLocation()
     const navigate = useNavigate()
     const { t } = useTranslation(['navigation', 'home'])
@@ -71,7 +71,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
     }
 
     return (
-        <aside className="adaptive-nav-bar">
+        <aside className="nav-bar">
             <div className="nav-logo-container">
                 <h2 className="nav-logo">
                     <LogoLink>
@@ -87,7 +87,7 @@ export const AdaptiveNavBar = ({ children }: AdaptiveNavBarProps) => {
                     .map((item, index) => (
                         <NavButton
                             key={index}
-                            className={isActive(item.path) ? 'link-color' : ''}
+                            className={isActive(item.path) ? 'text-danger' : ''}
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
                             label={t(item.label)}

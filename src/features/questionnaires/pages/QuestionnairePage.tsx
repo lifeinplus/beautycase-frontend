@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { AdaptiveNavBar } from '../../../components/navigation/AdaptiveNavBar'
+import { NavBar } from '../../../components/navigation/NavBar'
 import { Header } from '../../../components/Header'
 import { Hero } from '../../../components/Hero'
 import { getErrorMessage } from '../../../utils/errorUtils'
@@ -69,7 +69,7 @@ export const QuestionnairePage = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p className="text-error text-sm">
+                            <p className="text-danger text-sm">
                                 {t('requiredField')}
                             </p>
 
@@ -261,7 +261,7 @@ export const QuestionnairePage = () => {
                 </article>
             </main>
 
-            <AdaptiveNavBar />
+            <NavBar />
         </article>
     )
 }

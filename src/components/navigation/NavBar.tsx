@@ -1,14 +1,3 @@
-import {
-    ClipboardDocumentListIcon,
-    ClipboardIcon,
-    FilmIcon,
-    ListBulletIcon,
-    PaintBrushIcon,
-    QueueListIcon,
-    RectangleGroupIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-} from '@heroicons/react/24/outline'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -42,26 +31,6 @@ export const NavBar = ({ children }: NavBarProps) => {
         )
     }
 
-    const icons: { [key: string]: ReactNode } = {
-        '/questionnaire': <ClipboardIcon className="h-6 w-6" />,
-        '/questionnaires': <ClipboardDocumentListIcon className="h-6 w-6" />,
-        '/makeup_bags': <ShoppingBagIcon className="h-6 w-6" />,
-        '/stages': <QueueListIcon className="h-6 w-6" />,
-        '/products': <RectangleGroupIcon className="h-6 w-6" />,
-        '/tools': <PaintBrushIcon className="h-6 w-6" />,
-        '/lessons': <FilmIcon className="h-6 w-6" />,
-        '/reference_lists': <ListBulletIcon className="h-6 w-6" />,
-        '/account': <UserCircleIcon className="h-6 w-6" />,
-    }
-
-    const navItems = menuItems.map(({ label, path, auth, roles }) => ({
-        auth,
-        label,
-        icon: icons[path],
-        path,
-        roles,
-    }))
-
     const handleClick = (path: string) => {
         if (location.pathname === path) {
             window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -82,7 +51,7 @@ export const NavBar = ({ children }: NavBarProps) => {
             </div>
 
             <div className="nav-btn-container hidden sm:flex">
-                {navItems
+                {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
                         <NavButton

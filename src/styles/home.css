@@ -1,26 +1,25 @@
 .home {
-    @apply flex min-h-screen flex-col items-center justify-center py-8;
-}
-
-.home-container {
-    @apply max-w-xs sm:max-w-sm lg:max-w-lg;
-}
-
-.home-title {
-    @apply mb-4 font-heading text-4xl font-bold sm:text-5xl lg:text-6xl;
+    @apply flex flex-col items-center justify-center py-8;
 }
 
 .home-logo {
-    @apply mb-10 mt-4 font-logo text-5xl font-bold sm:text-6xl lg:text-7xl;
+    @apply mb-10 mt-4 font-logo text-5xl sm:text-6xl lg:text-7xl;
 }
 
 .home-motto {
-    @apply mb-8 font-heading text-base sm:text-xl lg:text-2xl;
-    @apply text-slate-700 dark:text-slate-400;
+    @apply font-heading text-lg sm:text-xl lg:text-2xl;
+    @apply text-gray-700 dark:text-gray-400;
 }
 
 .home-button {
-    @apply w-auto sm:text-xl lg:text-2xl;
+    @apply flex min-h-44 w-full flex-col items-center px-5 pt-8;
+    @apply bg-white dark:bg-black;
+    @apply rounded-sm border border-gray-200 dark:border-neutral-700;
+    @apply hover:bg-rose-500 dark:hover:bg-rose-600;
+}
+
+.home-button-label {
+    @apply mt-8 text-center font-heading text-base font-normal leading-tight text-black group-hover:text-white dark:text-white;
 }
 
 .home-auth {

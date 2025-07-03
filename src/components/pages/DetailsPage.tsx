@@ -23,19 +23,19 @@ import { ModalDuplicate } from '../ui/ModalDuplicate'
 
 const ACTIONS = {
     back: {
-        icon: <ArrowLeftIcon className="h-6 w-6" />,
+        icon: ArrowLeftIcon,
         label: 'actions.back',
     },
     edit: {
-        icon: <PencilSquareIcon className="h-6 w-6" />,
+        icon: PencilSquareIcon,
         label: 'actions.edit',
     },
     duplicate: {
-        icon: <DocumentDuplicateIcon className="h-6 w-6" />,
+        icon: DocumentDuplicateIcon,
         label: 'actions.duplicate',
     },
     delete: {
-        icon: <TrashIcon className="h-6 w-6" />,
+        icon: TrashIcon,
         label: 'actions.delete',
     },
 } as const

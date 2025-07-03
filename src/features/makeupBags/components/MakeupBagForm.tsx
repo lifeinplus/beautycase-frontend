@@ -132,13 +132,13 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
 
             <NavBar>
                 <NavButton
-                    icon={<ArrowLeftIcon className="h-6 w-6" />}
+                    icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
                     className="nav-btn-back"
                 />
                 <NavButton
-                    icon={<CheckIcon className="h-6 w-6" />}
+                    icon={CheckIcon}
                     label={t('navigation:actions.save')}
                     onClick={handleSubmit(onSubmit)}
                 />

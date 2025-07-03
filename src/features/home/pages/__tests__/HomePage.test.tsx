@@ -22,7 +22,6 @@ describe('HomePage', () => {
     it('renders title, logo and motto', () => {
         renderWithRouter(<HomePage />)
 
-        expect(screen.getByText('title')).toBeInTheDocument()
         expect(screen.getByText('Beautycase')).toBeInTheDocument()
         expect(screen.getByText('motto')).toBeInTheDocument()
     })

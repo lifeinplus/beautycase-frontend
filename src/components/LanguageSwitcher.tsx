@@ -17,7 +17,7 @@ export const LanguageSwitcher = () => {
     return (
         <NavButton
             ariaLabel={t('language.ariaLabel')}
-            icon={<LanguageIcon className="h-6 w-6" />}
+            icon={LanguageIcon}
             label={t('language.label')}
             onClick={toggleLanguage}
         />

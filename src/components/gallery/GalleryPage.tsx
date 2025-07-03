@@ -15,7 +15,7 @@ import { NavButton } from '../navigation/NavButton'
 
 const ACTIONS = {
     add: {
-        icon: <PlusIcon className="h-6 w-6" />,
+        icon: PlusIcon,
         label: 'actions.add',
     },
 } as const

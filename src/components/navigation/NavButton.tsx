@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
+import { ComponentType, SVGProps } from 'react'
 
 export interface NavButtonProps {
     ariaLabel?: string
     className?: string
-    icon: ReactNode
+    icon: ComponentType<SVGProps<SVGSVGElement>>
     label: string
     onClick: () => void
 }
@@ -11,7 +11,7 @@ export interface NavButtonProps {
 export const NavButton = ({
     ariaLabel,
     className = '',
-    icon,
+    icon: Icon,
     label,
     onClick,
 }: NavButtonProps) => (
@@ -20,7 +20,7 @@ export const NavButton = ({
         className={`nav-btn focus-outline ${className}`}
         onClick={onClick}
     >
-        {icon}
+        <Icon className="h-6 w-6" />
         <span className="hidden lg:inline">{label}</span>
     </button>
 )

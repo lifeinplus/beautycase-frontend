@@ -20,13 +20,7 @@ export function ThemeToggler() {
 
     return (
         <NavButton
-            icon={
-                darkMode ? (
-                    <MoonIcon className="h-6 w-6" />
-                ) : (
-                    <SunIcon className="h-6 w-6" />
-                )
-            }
+            icon={darkMode ? MoonIcon : SunIcon}
             label={darkMode ? t('darkMode') : t('lightMode')}
             ariaLabel={darkMode ? t('buttonDarkMode') : t('buttonLightMode')}
             onClick={handleThemeToggle}

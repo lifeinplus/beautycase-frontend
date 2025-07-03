@@ -10,7 +10,7 @@ describe('NavButton', () => {
     const mockOnClick = vi.fn()
 
     const mockProps: NavButtonProps = {
-        icon: <MockIcon />,
+        icon: MockIcon,
         onClick: mockOnClick,
         label: 'Test Text',
     }

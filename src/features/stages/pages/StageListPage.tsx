@@ -20,7 +20,7 @@ import type { Stage } from '../types'
 
 const ACTIONS = {
     add: {
-        icon: <PlusIcon className="h-6 w-6" />,
+        icon: PlusIcon,
         label: 'actions.add',
     },
 } as const

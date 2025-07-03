@@ -34,19 +34,19 @@ import {
 
 const ACTIONS = {
     back: {
-        icon: <ArrowLeftIcon className="h-6 w-6" />,
+        icon: ArrowLeftIcon,
         label: 'actions.back',
     },
     export: {
-        icon: <DocumentArrowDownIcon className="h-6 w-6" />,
+        icon: DocumentArrowDownIcon,
         label: 'actions.export',
     },
     edit: {
-        icon: <PencilSquareIcon className="h-6 w-6" />,
+        icon: PencilSquareIcon,
         label: 'actions.edit',
     },
     delete: {
-        icon: <TrashIcon className="h-6 w-6" />,
+        icon: TrashIcon,
         label: 'actions.delete',
     },
 } as const
@@ -167,11 +167,9 @@ export const MakeupBagPage = () => {
     }
 
     const getActionIcon = (actionId: ActionId) => {
-        return actionId === 'export' && isExporting ? (
-            <SpinnerButton />
-        ) : (
-            ACTIONS[actionId].icon
-        )
+        return actionId === 'export' && isExporting
+            ? SpinnerButton
+            : ACTIONS[actionId].icon
     }
 
     const getActionLabel = (actionId: ActionId) => {

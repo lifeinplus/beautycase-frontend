@@ -18,7 +18,7 @@ import { useGetAllMakeupBagsQuery } from '../makeupBagsApi'
 
 const ACTIONS = {
     add: {
-        icon: <PlusIcon className="h-6 w-6" />,
+        icon: PlusIcon,
         label: 'actions.add',
     },
 } as const

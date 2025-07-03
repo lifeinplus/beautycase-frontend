@@ -21,7 +21,6 @@ export const Button = ({
         danger: 'text-danger',
         warning: 'text-warning',
     }
-    console.log(111)
 
     return (
         <button

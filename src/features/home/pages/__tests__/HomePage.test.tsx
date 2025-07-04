@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
@@ -7,8 +7,9 @@ import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { HomePage } from '../HomePage'
 
 vi.mock('../../../../app/hooks')
+vi.mock('../../../../components/LanguageSelect')
 vi.mock('../../../auth/hooks/useAuthLogout')
-vi.mock('../../components/HomeButton')
+vi.mock('../../components/HomeTile')
 
 describe('HomePage', () => {
     beforeEach(() => {
@@ -43,6 +44,12 @@ describe('HomePage', () => {
     })
 
     it('should display logout button when user is logged in', () => {
+        vi.mocked(useAppSelector).mockImplementation((selector) => {
+            if (selector === selectRole) return 'client'
+            if (selector === selectUsername) return 'testuser'
+            return null
+        })
+
         renderWithRouter(<HomePage />)
 
         expect(screen.getByText(/auth.loggedIn/i)).toBeInTheDocument()

@@ -2,9 +2,9 @@ import { screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { HomeTile } from '../HomeButton'
+import { HomeTile } from '../HomeTile'
 
-describe('HomeButton', () => {
+describe('HomeTile', () => {
     const MockIcon = () => <svg data-testid="mocked-icon" />
 
     const mockProps = {

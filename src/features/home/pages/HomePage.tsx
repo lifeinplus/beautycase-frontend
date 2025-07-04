@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '../../../app/hooks'
+import { LanguageSelect } from '../../../components/LanguageSelect'
 import { canAccess, menuItems } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
 import { useAuthLogout } from '../../auth/hooks/useAuthLogout'
-import { HomeTile } from '../components/HomeButton'
+import { HomeTile } from '../components/HomeTile'
 
 export const HomePage = () => {
     const { t } = useTranslation('home')
@@ -23,8 +24,8 @@ export const HomePage = () => {
 
     return (
         <div className="home">
-            <div className="max-w-xs sm:max-w-md">
-                <div className="mb-10 text-center">
+            <div className="flex max-w-xs flex-grow flex-col sm:max-w-md">
+                <div className="my-10 text-center">
                     <h2 className="home-logo">Beautycase</h2>
                     <p className="home-motto">{t('motto')}</p>
                 </div>
@@ -49,7 +50,7 @@ export const HomePage = () => {
                     ))}
                 </div>
 
-                <div className="mx-auto mt-16 max-w-xs sm:mb-5">
+                <div className="mx-auto mt-16 w-full max-w-60 sm:mb-5">
                     {username ? (
                         <>
                             <div className="mb-4 text-center">
@@ -89,6 +90,10 @@ export const HomePage = () => {
                         </div>
                     )}
                 </div>
+            </div>
+
+            <div className="mb-5 mt-10 flex">
+                <LanguageSelect />
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
-import { type HomeButtonProps } from '../HomeButton'
+import { type HomeTileProps } from '../HomeButton'
 
-export const HomeButton = ({ to, label }: HomeButtonProps) => (
-    <a data-testid="mocked-home-button" href={to}>
+export const HomeButton = ({ to, label }: HomeTileProps) => (
+    <a data-testid="mocked-home-tile" href={to}>
         {label}
     </a>
 )

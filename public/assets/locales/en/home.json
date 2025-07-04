@@ -2,11 +2,11 @@
     "motto": "All your makeup tools and products in one place",
     "auth": {
         "loggedIn": "Logged in",
-        "logout": "Log out"
+        "logout": "Log out",
+        "getStarted": "Start your beauty journey"
     },
     "link": {
         "login": "Log in",
-        "or": "or",
         "register": "Register"
     }
 }

@@ -4,7 +4,7 @@
 }
 
 .btn {
-    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white;
+    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors;
     @apply bg-rose-500 dark:bg-rose-600;
     @apply hover:bg-rose-600 dark:hover:bg-rose-700;
 }

@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../app/hooks'
 import { canAccess, menuItems } from '../../../utils/menu'
 import { selectRole, selectUsername } from '../../auth/authSlice'
 import { useAuthLogout } from '../../auth/hooks/useAuthLogout'
-import { HomeButton } from '../components/HomeButton'
+import { HomeTile } from '../components/HomeButton'
 
 export const HomePage = () => {
     const { t } = useTranslation('home')
@@ -40,7 +40,7 @@ export const HomePage = () => {
                     )}
                 >
                     {accessibleMenuItems.map((item, index) => (
-                        <HomeButton
+                        <HomeTile
                             key={index}
                             to={item.path}
                             label={t(`navigation:${item.label}`)}
@@ -49,37 +49,45 @@ export const HomePage = () => {
                     ))}
                 </div>
 
-                <div className="mt-10 sm:mb-5">
-                    <p className="home-auth">
-                        {username ? (
-                            <>
-                                {t('auth.loggedIn')}: {username} (
-                                <button
-                                    className="focus-outline text-danger font-semibold"
-                                    onClick={handleLogout}
-                                >
-                                    {t('auth.logout')}
-                                </button>
-                                )
-                            </>
-                        ) : (
-                            <>
+                <div className="mx-auto mt-16 max-w-xs sm:mb-5">
+                    {username ? (
+                        <>
+                            <div className="mb-4 text-center">
+                                <p className="mb-1 text-sm text-gray-700 dark:text-gray-400">
+                                    {t('auth.loggedIn')}
+                                </p>
+                                <p className="font-heading text-lg font-semibold text-black dark:text-white">
+                                    {username}
+                                </p>
+                            </div>
+                            <button
+                                className="focus-outline btn"
+                                onClick={handleLogout}
+                            >
+                                {t('auth.logout')}
+                            </button>
+                        </>
+                    ) : (
+                        <div className="mb-6 text-center">
+                            <p className="mb-4 text-lg text-gray-700 dark:text-gray-400">
+                                {t('auth.getStarted')}
+                            </p>
+                            <div className="flex flex-col gap-3">
                                 <Link
-                                    className="focus-outline text-danger font-semibold"
+                                    className="focus-outline home-btn-login"
                                     to="/login"
                                 >
                                     {t('link.login')}
-                                </Link>{' '}
-                                {t('link.or')}{' '}
+                                </Link>
                                 <Link
-                                    className="focus-outline text-danger font-semibold"
+                                    className="focus-outline home-btn-register"
                                     to="/register"
                                 >
                                     {t('link.register')}
                                 </Link>
-                            </>
-                        )}
-                    </p>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

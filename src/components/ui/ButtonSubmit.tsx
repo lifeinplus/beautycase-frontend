@@ -14,20 +14,18 @@ export const ButtonSubmit = ({
     isLoading = false,
     label = '',
     ...props
-}: ButtonSubmitProps) => {
-    return (
-        <button
-            {...props}
-            className={classNames(
-                'btn focus-outline',
-                className,
-                isLoading && 'btn-loading cursor-not-allowed'
-            )}
-            disabled={isLoading}
-            type="submit"
-        >
-            {isLoading && <SpinnerButton />}
-            {label}
-        </button>
-    )
-}
+}: ButtonSubmitProps) => (
+    <button
+        {...props}
+        className={classNames(
+            'btn focus-outline',
+            className,
+            isLoading && 'btn-loading cursor-not-allowed'
+        )}
+        disabled={isLoading}
+        type="submit"
+    >
+        {isLoading && <SpinnerButton />}
+        {label}
+    </button>
+)

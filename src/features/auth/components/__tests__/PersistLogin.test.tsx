@@ -2,15 +2,15 @@ import { screen } from '@testing-library/react'
 import { Route, Routes } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { useRefreshAuth } from '../../../../shared/hooks/useRefreshAuth'
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { useAppSelector } from '@/app/hooks'
+import { useRefreshAuth } from '@/shared/hooks/useRefreshAuth'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { PersistLogin } from '../PersistLogin'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../app/config')
-vi.mock('../../../../shared/components/common/Spinner')
-vi.mock('../../../../shared/hooks/useRefreshAuth')
+vi.mock('@/app/hooks')
+vi.mock('@/app/config')
+vi.mock('@/shared/components/common/Spinner')
+vi.mock('@/shared/hooks/useRefreshAuth')
 
 const MockRoutes = () => (
     <Routes>

@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { renderWithProviders } from '../../../../tests/mocks/wrappers'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { UnauthorizedPage } from '../UnauthorizedPage'
 
-vi.mock('../../../../shared/components/common/Hero')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/layout/Header')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/layout/Header')
 
 describe('UnauthorizedPage', () => {
     it('renders required components', () => {

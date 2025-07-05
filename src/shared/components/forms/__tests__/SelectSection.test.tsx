@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
-import type { SelectOption } from '../../../../features/form/types'
+import { mockFieldError, mockRegister } from '@/tests/mocks/form'
+import type { SelectOption } from '@/features/form/types'
 import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
 vi.mock('../Label')

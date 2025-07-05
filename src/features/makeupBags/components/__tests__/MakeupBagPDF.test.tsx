@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react'
 import type { ReactNode } from 'react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { mockT } from '../../../../tests/mocks/translation'
-import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi'
-import { mockStage1, mockStage2 } from '../../../stages/__mocks__/stagesApi'
-import { mockTool1, mockTool2 } from '../../../tools/__mocks__/toolsApi'
+import { mockT } from '@/tests/mocks/translation'
+import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi'
+import { mockStage1, mockStage2 } from '@/features/stages/__mocks__/stagesApi'
+import { mockTool1, mockTool2 } from '@/features/tools/__mocks__/toolsApi'
 import { mockMakeupBagPDFData } from '../../__mocks__/makeupBagsApi'
 import MakeupBagPDF from '../MakeupBagPDF'
 

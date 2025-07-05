@@ -3,21 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../app/hooks'
-import { selectRole, selectUsername } from '../../../features/auth/authSlice'
-import { clearFormData } from '../../../features/form/formSlice'
-import { mockError } from '../../../shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '../../../tests/mocks/router'
-import { DetailsPage, type DetailsPageProps } from '../DetailsPage'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { clearFormData } from '@/features/form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
+import type { DetailsPageProps } from '../DetailsPage'
+import { DetailsPage } from '../DetailsPage'
 
-vi.mock('../../../shared/components/common/DataWrapper')
-vi.mock('../../../shared/components/modals/ModalDelete')
-vi.mock('../../../shared/components/modals/ModalDuplicate')
-vi.mock('../../../shared/components/navigation/NavBar')
-vi.mock('../../../shared/components/navigation/NavButton')
-vi.mock('../../../shared/components/layout/TopPanel')
-vi.mock('../../../shared/utils/errorUtils')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/modals/ModalDelete')
+vi.mock('@/shared/components/modals/ModalDuplicate')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/utils/errorUtils')
 vi.mock('../../hooks')
 
 describe('DetailsPage', () => {

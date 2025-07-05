@@ -1,4 +1,4 @@
-import { type ButtonNavigateSectionProps } from '../../../../shared/components/forms/ButtonNavigateSection'
+import { type ButtonNavigateSectionProps } from '@/shared/components/forms/ButtonNavigateSection'
 
 export const ButtonNavigateSection = ({
     label,

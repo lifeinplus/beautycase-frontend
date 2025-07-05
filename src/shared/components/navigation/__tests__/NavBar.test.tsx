@@ -3,15 +3,15 @@ import userEvent from '@testing-library/user-event'
 import { useLocation } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { selectRole, selectUsername } from '../../../../features/auth/authSlice'
-import { mockLocation, mockNavigate } from '../../../../tests/mocks/router'
-import { renderWithProviders } from '../../../../tests/mocks/wrappers'
+import { useAppSelector } from '@/app/hooks'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { NavBar } from '../../navigation/NavBar'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../features/auth/components/AuthButton')
-vi.mock('../../../../features/theme/ThemeToggler')
+vi.mock('@/app/hooks')
+vi.mock('@/features/auth/components/AuthButton')
+vi.mock('@/features/theme/ThemeToggler')
 vi.mock('../../common/AppInfo')
 vi.mock('../../ui/LanguageSwitcher')
 vi.mock('../../ui/LogoLink')

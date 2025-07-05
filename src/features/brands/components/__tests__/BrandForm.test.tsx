@@ -3,12 +3,12 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { renderWithProviders } from '../../../../tests/mocks/wrappers'
-import { clearFormData } from '../../../form/formSlice'
-import type { FormRef } from '../../../form/types'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { clearFormData } from '@/features/form/formSlice'
+import type { FormRef } from '@/features/form/types'
 import { mockBrand1 } from '../../__mocks__/brandsApi'
 import {
     useCreateBrandMutation,
@@ -16,9 +16,9 @@ import {
 } from '../../brandsApi'
 import { BrandForm } from '../BrandForm'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/forms/Button')
-vi.mock('../../../../shared/utils/errorUtils')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/forms/Button')
+vi.mock('@/shared/utils/errorUtils')
 vi.mock('../../brandsApi')
 
 describe('BrandForm', () => {

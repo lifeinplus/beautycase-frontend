@@ -3,17 +3,17 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { clearFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData } from '@/features/form/formSlice'
 import { mockProduct1, mockProductCreate } from '../../__mocks__/productsApi'
 import { useCreateProductMutation } from '../../productsApi'
 import { ProductAddPage } from '../ProductAddPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/utils/errorUtils')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../components/ProductForm')
 vi.mock('../../productsApi')
 

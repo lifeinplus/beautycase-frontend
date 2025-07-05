@@ -1,20 +1,20 @@
 import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import App from '../../../App'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
+import App from '@/App'
 
+vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/features/auth/components/PersistLogin')
+vi.mock('@/features/auth/components/RequireAuth')
+vi.mock('@/features/auth/components/RequireRole')
+vi.mock('@/features/lessons/pages/LessonAddPage')
+vi.mock('@/features/lessons/pages/LessonDetailsPage')
+vi.mock('@/features/lessons/pages/LessonEditPage')
+vi.mock('@/features/lessons/pages/LessonsGalleryPage')
+vi.mock('@/features/products/pages/ProductSelectionPage')
+vi.mock('@/features/users/pages/UserSelectionPage')
 vi.mock('../../hooks')
-vi.mock('../../shared/components/ScrollToTop')
-vi.mock('../../../features/auth/components/PersistLogin')
-vi.mock('../../../features/auth/components/RequireAuth')
-vi.mock('../../../features/auth/components/RequireRole')
-vi.mock('../../../features/lessons/pages/LessonAddPage')
-vi.mock('../../../features/lessons/pages/LessonDetailsPage')
-vi.mock('../../../features/lessons/pages/LessonEditPage')
-vi.mock('../../../features/lessons/pages/LessonsGalleryPage')
-vi.mock('../../../features/products/pages/ProductSelectionPage')
-vi.mock('../../../features/users/pages/UserSelectionPage')
 
 describe('lessonRoutes', () => {
     it('renders the details page correctly', () => {

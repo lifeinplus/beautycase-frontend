@@ -4,9 +4,9 @@ import { describe, it, expect, vi } from 'vitest'
 import { mockMakeupBags } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagTable } from '../MakeupBagTable'
 
-vi.mock('../../../../shared/components/table/Table')
-vi.mock('../../../../shared/components/table/TableRow')
-vi.mock('../../../../shared/utils/date')
+vi.mock('@/shared/components/table/Table')
+vi.mock('@/shared/components/table/TableRow')
+vi.mock('@/shared/utils/date')
 
 describe('MakeupBagTable', () => {
     it('renders the table headers correctly', () => {

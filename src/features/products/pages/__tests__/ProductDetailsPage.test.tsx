@@ -8,8 +8,8 @@ import {
 } from '../../productsApi'
 import { ProductDetailsPage } from '../ProductDetailsPage'
 
-vi.mock('../../../../app/routes/DetailsPage')
-vi.mock('../../../../shared/components/ui/Image')
+vi.mock('@/app/routes/DetailsPage')
+vi.mock('@/shared/components/ui/Image')
 vi.mock('../../productsApi')
 
 describe('ProductDetailsPage', () => {

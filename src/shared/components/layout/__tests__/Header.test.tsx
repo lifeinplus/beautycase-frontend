@@ -3,8 +3,8 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { Header } from '../Header'
 
-vi.mock('../../../../features/auth/components/AuthButton')
-vi.mock('../../../../features/theme/ThemeToggler')
+vi.mock('@/features/auth/components/AuthButton')
+vi.mock('@/features/theme/ThemeToggler')
 vi.mock('../../ui/LogoLink')
 vi.mock('../../LanguageSwitcher')
 

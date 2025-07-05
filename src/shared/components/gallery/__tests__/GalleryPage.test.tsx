@@ -2,18 +2,18 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { selectRole, selectUsername } from '../../../../features/auth/authSlice'
-import { clearFormData } from '../../../../features/form/formSlice'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { getErrorMessage } from '../../../../shared/utils/errorUtils'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { renderWithProviders } from '../../../../tests/mocks/wrappers'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { clearFormData } from '@/features/form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { GalleryPage, type GalleryPageProps } from '../GalleryPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/utils/errorUtils')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/utils/errorUtils')
 vi.mock('../../common/Hero')
 vi.mock('../../layout/Header')
 vi.mock('../../navigation/NavBar')

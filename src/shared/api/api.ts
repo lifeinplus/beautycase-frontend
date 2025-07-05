@@ -4,9 +4,9 @@ import {
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
 
-import config from '../../app/config'
-import { logout, setCredentials } from '../../features/auth/authSlice'
-import type { AuthState } from '../../features/auth/types'
+import config from '@/app/config'
+import { logout, setCredentials } from '@/features/auth/authSlice'
+import type { AuthState } from '@/features/auth/types'
 
 const baseQuery = fetchBaseQuery({
     baseUrl: config.apiBaseUrl,

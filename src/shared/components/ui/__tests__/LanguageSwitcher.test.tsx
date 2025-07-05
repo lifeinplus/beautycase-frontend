@@ -6,7 +6,7 @@ import {
     mockChangeLanguage,
     mockT,
     mockUseTranslation,
-} from '../../../../tests/mocks/translation'
+} from '@/tests/mocks/translation'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 
 describe('LanguageSwitcher', () => {

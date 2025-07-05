@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockNavigate } from '@/tests/mocks/router'
 import { TableRow, type TableRowProps } from '../TableRow'
 
 describe('TableRow', () => {

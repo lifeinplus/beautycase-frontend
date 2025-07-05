@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockFieldError, mockRegister } from '../../../../tests/mocks/form'
+import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import { InputSection, type InputSectionProps } from '../InputSection'
 
 vi.mock('../Label')

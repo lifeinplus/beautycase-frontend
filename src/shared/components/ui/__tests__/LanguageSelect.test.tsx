@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
-import { mockChangeLanguage } from '../../../../tests/mocks/translation'
+import { mockChangeLanguage } from '@/tests/mocks/translation'
 import { LanguageSelect } from '../LanguageSelect'
 
 describe('LanguageSelect', () => {

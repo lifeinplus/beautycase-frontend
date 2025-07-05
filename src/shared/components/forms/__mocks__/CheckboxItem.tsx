@@ -1,4 +1,4 @@
-import { type CheckboxItemProps } from '../../../../shared/components/forms/CheckboxItem'
+import { type CheckboxItemProps } from '@/shared/components/forms/CheckboxItem'
 
 export const CheckboxItem = ({ id, label, register }: CheckboxItemProps) => (
     <div data-testid={`mocked-checkbox-item-${id}`}>

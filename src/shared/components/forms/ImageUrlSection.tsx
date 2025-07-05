@@ -15,8 +15,8 @@ import { useTranslation } from 'react-i18next'
 import {
     useUploadTempImageByFileMutation,
     useUploadTempImageByUrlMutation,
-} from '../../../features/uploads/uploadsApi'
-import { getErrorMessage } from '../../../shared/utils/errorUtils'
+} from '@/features/uploads/uploadsApi'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 

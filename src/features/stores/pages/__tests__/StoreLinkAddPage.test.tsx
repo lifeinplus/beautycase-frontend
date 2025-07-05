@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { setFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { setFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '../../storesApi'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('../../storesApi')
 
 describe('StoreLinkAddPage', () => {

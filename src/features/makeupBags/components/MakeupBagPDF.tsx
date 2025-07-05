@@ -9,7 +9,7 @@ import {
 } from '@react-pdf/renderer'
 import { TFunction } from 'i18next'
 
-import config from '../../../app/config'
+import config from '@/app/config'
 import type { MakeupBagData } from '../types'
 
 Font.register({

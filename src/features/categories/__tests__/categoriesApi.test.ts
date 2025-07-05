@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+import { renderHookWithProvider } from '@/tests/mocks/wrappers'
 import { mockCategories } from '../__mocks__/categoriesApi'
 import { useGetAllCategoriesQuery } from '../categoriesApi'
 

@@ -3,9 +3,13 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../shared/utils/errorUtils'
-import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
+import {
+    clearFormData,
+    selectIsDirty,
+    setFormData,
+} from '@/features/form/formSlice'
 import { ToolForm } from '../components/ToolForm'
 import { useUpdateToolByIdMutation, useGetToolByIdQuery } from '../toolsApi'
 import type { Tool } from '../types'

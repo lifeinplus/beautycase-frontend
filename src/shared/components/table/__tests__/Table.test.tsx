@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
+
+import { Header } from '@/shared/types/table'
 import { Table } from '../Table'
-import type { Header } from '../../../types/table'
 
 interface TestItem {
     id: number

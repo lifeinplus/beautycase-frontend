@@ -4,10 +4,10 @@ import {
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '../../../shared/components/forms/Button'
-import { Table } from '../../../shared/components/table/Table'
-import { TableRow } from '../../../shared/components/table/TableRow'
-import type { Header } from '../../../shared/types/table'
+import { Button } from '@/shared/components/forms/Button'
+import { Table } from '@/shared/components/table/Table'
+import { TableRow } from '@/shared/components/table/TableRow'
+import type { Header } from '@/shared/types/table'
 import type { Brand } from '../types'
 
 export interface BrandsTableProps {

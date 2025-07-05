@@ -4,9 +4,9 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { clearFormData, setFormData } from '../../../form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
+import { clearFormData, setFormData } from '@/features/form/formSlice'
 import {
     useDeleteBrandByIdMutation,
     useGetAllBrandsQuery,
@@ -14,15 +14,15 @@ import {
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/modals/ModalDelete')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/layout/TopPanel')
-vi.mock('../../../../shared/components/DataWrapper')
-vi.mock('../../../../shared/components/common/Hero')
-vi.mock('../../../../shared/utils/errorUtils')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/modals/ModalDelete')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/components/DataWrapper')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../components/BrandForm')
 vi.mock('../../components/BrandsMobileView')
 vi.mock('../../components/BrandsTable')

@@ -11,12 +11,13 @@ import {
     vi,
 } from 'vitest'
 
-import type { Product } from '../../../../features/products/types'
-import { mockUploadResult } from '../../../../features/uploads/__mocks__/uploadsApi'
+import type { Product } from '@/features/products/types'
+import { mockUploadResult } from '@/features/uploads/__mocks__/uploadsApi'
 import {
     useUploadTempImageByFileMutation,
     useUploadTempImageByUrlMutation,
-} from '../../../../features/uploads/uploadsApi'
+} from '@/features/uploads/uploadsApi'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import {
     mockClearErrors,
     mockFieldError,
@@ -24,12 +25,11 @@ import {
     mockImageUrl1,
     mockRegister,
     mockSetValue,
-} from '../../../../tests/mocks/form'
-import { mockError } from '../../../utils/__mocks__/errorUtils'
+} from '@/tests/mocks/form'
 import { ImageUrlSection, type ImageUrlSectionProps } from '../ImageUrlSection'
 
-vi.mock('../../../../features/uploads/uploadsApi')
-vi.mock('../../../../shared/utils/errorUtils')
+vi.mock('@/features/uploads/uploadsApi')
+vi.mock('@/shared/utils/errorUtils')
 vi.mock('../ImagePreview')
 vi.mock('../Label')
 

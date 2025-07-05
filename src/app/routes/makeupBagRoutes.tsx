@@ -1,12 +1,12 @@
 import { Route } from 'react-router-dom'
 
-import { RequireRole } from '../../features/auth/components/RequireRole'
-import { MakeupBagPage } from '../../features/makeupBags/pages/MakeupBagPage'
-import { MakeupBagListPage } from '../../features/makeupBags/pages/MakeupBagListPage'
-import { MakeupBagAddPage } from '../../features/makeupBags/pages/MakeupBagAddPage'
-import { MakeupBagEditPage } from '../../features/makeupBags/pages/MakeupBagEditPage'
-import { StageSelectionPage } from '../../features/stages/pages/StageSelectionPage'
-import { ToolSelectionPage } from '../../features/tools/pages/ToolSelectionPage'
+import { RequireRole } from '@/features/auth/components/RequireRole'
+import { MakeupBagAddPage } from '@/features/makeupBags/pages/MakeupBagAddPage'
+import { MakeupBagEditPage } from '@/features/makeupBags/pages/MakeupBagEditPage'
+import { MakeupBagListPage } from '@/features/makeupBags/pages/MakeupBagListPage'
+import { MakeupBagPage } from '@/features/makeupBags/pages/MakeupBagPage'
+import { StageSelectionPage } from '@/features/stages/pages/StageSelectionPage'
+import { ToolSelectionPage } from '@/features/tools/pages/ToolSelectionPage'
 
 export const makeupBagRoutes = [
     <Route key="makeup-bags" path="/makeup_bags">

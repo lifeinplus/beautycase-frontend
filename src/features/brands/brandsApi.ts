@@ -1,5 +1,5 @@
-import type { MutationResult, QueryResult } from '../../shared/types/api'
-import { api } from '../../shared/api/api'
+import type { MutationResult, QueryResult } from '@/shared/types/api'
+import { api } from '@/shared/api/api'
 import type { Brand } from './types'
 
 const brandsApi = api.injectEndpoints({

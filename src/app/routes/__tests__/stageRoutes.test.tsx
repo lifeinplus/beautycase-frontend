@@ -1,19 +1,19 @@
 import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import App from '../../../App'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import App from '@/App'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('../../hooks')
-vi.mock('../../../shared/components/ScrollToTop')
-vi.mock('../../../features/auth/components/PersistLogin')
-vi.mock('../../../features/auth/components/RequireAuth')
-vi.mock('../../../features/auth/components/RequireRole')
-vi.mock('../../../features/products/pages/ProductSelectionPage')
-vi.mock('../../../features/stages/pages/StageAddPage')
-vi.mock('../../../features/stages/pages/StageDetailsPage')
-vi.mock('../../../features/stages/pages/StageEditPage')
-vi.mock('../../../features/stages/pages/StageListPage')
+vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/features/auth/components/PersistLogin')
+vi.mock('@/features/auth/components/RequireAuth')
+vi.mock('@/features/auth/components/RequireRole')
+vi.mock('@/features/products/pages/ProductSelectionPage')
+vi.mock('@/features/stages/pages/StageAddPage')
+vi.mock('@/features/stages/pages/StageDetailsPage')
+vi.mock('@/features/stages/pages/StageEditPage')
+vi.mock('@/features/stages/pages/StageListPage')
 
 describe('stageRoutes', () => {
     it('renders the list page correctly', () => {

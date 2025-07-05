@@ -1,5 +1,5 @@
-import { AuthButton } from '../../../features/auth/components/AuthButton'
-import { ThemeToggler } from '../../../features/theme/ThemeToggler'
+import { AuthButton } from '@/features/auth/components/AuthButton'
+import { ThemeToggler } from '@/features/theme/ThemeToggler'
 import { LogoLink } from '../ui/LogoLink'
 import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 

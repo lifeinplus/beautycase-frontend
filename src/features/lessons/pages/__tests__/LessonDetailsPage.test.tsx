@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockYouTubeUrl } from '../../../../tests/mocks/form'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { getYouTubeEmbedUrl } from '../../../../shared/utils/youtube'
+import { mockYouTubeUrl } from '@/tests/mocks/form'
+import { mockNavigate } from '@/tests/mocks/router'
+import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
@@ -12,9 +12,9 @@ import {
 } from '../../lessonsApi'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
-vi.mock('../../../../app/routes/DetailsPage')
-vi.mock('../../../../shared/components/ui/Image')
-vi.mock('../../../../shared/utils/youtube')
+vi.mock('@/app/routes/DetailsPage')
+vi.mock('@/shared/components/ui/Image')
+vi.mock('@/shared/utils/youtube')
 vi.mock('../../lessonsApi')
 
 describe('LessonDetailsPage', () => {

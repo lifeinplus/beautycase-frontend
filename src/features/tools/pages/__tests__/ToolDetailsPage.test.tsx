@@ -5,8 +5,8 @@ import { mockTool1 } from '../../__mocks__/toolsApi'
 import { useDeleteToolByIdMutation, useGetToolByIdQuery } from '../../toolsApi'
 import { ToolDetailsPage } from '../ToolDetailsPage'
 
-vi.mock('../../../../app/routes/DetailsPage')
-vi.mock('../../../../shared/components/ui/Image')
+vi.mock('@/app/routes/DetailsPage')
+vi.mock('@/shared/components/ui/Image')
 vi.mock('../../toolsApi')
 
 describe('ToolDetailsPage', () => {

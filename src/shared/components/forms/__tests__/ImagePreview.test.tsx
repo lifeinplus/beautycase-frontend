@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { ImagePreview, type ImagePreviewProps } from '../ImagePreview'
 
-vi.mock('../../../../shared/components/ui/Image')
+vi.mock('@/shared/components/ui/Image')
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {

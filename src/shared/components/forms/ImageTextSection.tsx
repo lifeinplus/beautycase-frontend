@@ -12,8 +12,8 @@ import type {
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
-import { useUploadTempImageByFileMutation } from '../../../features/uploads/uploadsApi'
-import { getErrorMessage } from '../../../shared/utils/errorUtils'
+import { useUploadTempImageByFileMutation } from '@/features/uploads/uploadsApi'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 

@@ -1,25 +1,25 @@
 import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
+import { useAppSelector } from '@/app/hooks'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import {
     renderWithProviderAndRouter,
     renderWithProviders,
-} from '../../../../tests/mocks/wrappers'
-import { selectUserId } from '../../../auth/authSlice'
+} from '@/tests/mocks/wrappers'
+import { selectUserId } from '@/features/auth/authSlice'
 import {
     mockUseGetUserByIdQuery,
     mockUserResult,
-} from '../../../users/__mocks__/usersApi'
+} from '@/features/users/__mocks__/usersApi'
 import { AccountPage } from '../AccountPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/common/DataWrapper')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/layout/Header')
-vi.mock('../../../../shared/components/common/Hero')
-vi.mock('../../../users/usersApi')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/layout/Header')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/features/users/usersApi')
 vi.mock('../../components/AccountFields')
 
 describe('AccountPage', () => {

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
-import { NavBar } from '../../../shared/components/navigation/NavBar'
-import { Header } from '../../../shared/components/layout/Header'
-import { Hero } from '../../../shared/components/common/Hero'
+import { NavBar } from '@/shared/components/navigation/NavBar'
+import { Header } from '@/shared/components/layout/Header'
+import { Hero } from '@/shared/components/common/Hero'
 import { ReferenceListsMobileView } from '../components/ReferenceListsMobileView'
 import { ReferenceListsTable } from '../components/ReferenceListsTable'
 import type { ReferenceList } from '../types'

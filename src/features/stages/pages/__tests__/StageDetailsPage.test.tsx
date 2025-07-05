@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockNavigate } from '@/tests/mocks/router'
 import { mockStage1 } from '../../__mocks__/stagesApi'
 import {
     useDeleteStageByIdMutation,
@@ -11,8 +11,8 @@ import {
 } from '../../stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
-vi.mock('../../../../app/routes/DetailsPage')
-vi.mock('../../../../shared/components/ui/Image')
+vi.mock('@/app/routes/DetailsPage')
+vi.mock('@/shared/components/ui/Image')
 vi.mock('../../stagesApi')
 
 describe('StageDetailsPage', () => {

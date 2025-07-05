@@ -3,10 +3,10 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { clearFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData } from '@/features/form/formSlice'
 import { mockStage1 } from '../../__mocks__/stagesApi'
 import {
     useGetStageByIdQuery,
@@ -14,9 +14,9 @@ import {
 } from '../../stagesApi'
 import { StageEditPage } from '../StageEditPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/utils/errorUtils')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../components/StageForm')
 vi.mock('../../stagesApi')
 

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import { Image } from '../../../shared/components/ui/Image'
-import { GoodsGrid } from '../../../shared/components/gallery/GoodsGrid'
+import { Image } from '@/shared/components/ui/Image'
+import { GoodsGrid } from '@/shared/components/gallery/GoodsGrid'
 import type { Stage } from '../types'
 
 export interface StagesProps {

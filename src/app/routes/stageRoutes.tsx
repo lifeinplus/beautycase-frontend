@@ -1,11 +1,11 @@
 import { Route } from 'react-router-dom'
 
-import { RequireRole } from '../../features/auth/components/RequireRole'
-import { StageListPage } from '../../features/stages/pages/StageListPage'
-import { StageDetailsPage } from '../../features/stages/pages/StageDetailsPage'
-import { StageAddPage } from '../../features/stages/pages/StageAddPage'
-import { StageEditPage } from '../../features/stages/pages/StageEditPage'
-import { ProductSelectionPage } from '../../features/products/pages/ProductSelectionPage'
+import { RequireRole } from '@/features/auth/components/RequireRole'
+import { StageListPage } from '@/features/stages/pages/StageListPage'
+import { StageDetailsPage } from '@/features/stages/pages/StageDetailsPage'
+import { StageAddPage } from '@/features/stages/pages/StageAddPage'
+import { StageEditPage } from '@/features/stages/pages/StageEditPage'
+import { ProductSelectionPage } from '@/features/products/pages/ProductSelectionPage'
 
 export const stageRoutes = [
     <Route key="stages" path="/stages">

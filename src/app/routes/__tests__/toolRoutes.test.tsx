@@ -1,19 +1,19 @@
 import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import App from '../../../App'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import App from '@/App'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('../../hooks')
-vi.mock('../../shared/components/ScrollToTop')
-vi.mock('../../../features/auth/components/PersistLogin')
-vi.mock('../../../features/auth/components/RequireAuth')
-vi.mock('../../../features/auth/components/RequireRole')
-vi.mock('../../../features/stores/pages/StoreLinkAddPage')
-vi.mock('../../../features/tools/pages/ToolAddPage')
-vi.mock('../../../features/tools/pages/ToolDetailsPage')
-vi.mock('../../../features/tools/pages/ToolEditPage')
-vi.mock('../../../features/tools/pages/ToolsGalleryPage')
+vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/features/auth/components/PersistLogin')
+vi.mock('@/features/auth/components/RequireAuth')
+vi.mock('@/features/auth/components/RequireRole')
+vi.mock('@/features/stores/pages/StoreLinkAddPage')
+vi.mock('@/features/tools/pages/ToolAddPage')
+vi.mock('@/features/tools/pages/ToolDetailsPage')
+vi.mock('@/features/tools/pages/ToolEditPage')
+vi.mock('@/features/tools/pages/ToolsGalleryPage')
 
 describe('toolRoutes', () => {
     it('renders the details page correctly', () => {

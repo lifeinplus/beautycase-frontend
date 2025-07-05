@@ -7,7 +7,7 @@ import {
     mockRegisterVideo,
     mockImageUrl1,
     mockYouTubeUrl,
-} from '../../../../tests/mocks/form'
+} from '@/tests/mocks/form'
 import { TextareaSection, type TextareaSectionProps } from '../TextareaSection'
 
 vi.mock('../ImagePreview')

@@ -1,11 +1,11 @@
 import { Route } from 'react-router-dom'
 
-import { RequireRole } from '../../features/auth/components/RequireRole'
-import { ProductDetailsPage } from '../../features/products/pages/ProductDetailsPage'
-import { ProductGalleryPage } from '../../features/products/pages/ProductGalleryPage'
-import { ProductAddPage } from '../../features/products/pages/ProductAddPage'
-import { ProductEditPage } from '../../features/products/pages/ProductEditPage'
-import { StoreLinkAddPage } from '../../features/stores/pages/StoreLinkAddPage'
+import { RequireRole } from '@/features/auth/components/RequireRole'
+import { ProductDetailsPage } from '@/features/products/pages/ProductDetailsPage'
+import { ProductGalleryPage } from '@/features/products/pages/ProductGalleryPage'
+import { ProductAddPage } from '@/features/products/pages/ProductAddPage'
+import { ProductEditPage } from '@/features/products/pages/ProductEditPage'
+import { StoreLinkAddPage } from '@/features/stores/pages/StoreLinkAddPage'
 
 export const productRoutes = [
     <Route key="products" path="/products">

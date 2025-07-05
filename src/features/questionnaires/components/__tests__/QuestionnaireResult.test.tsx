@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import config from '../../../../app/config'
-import { mockT } from '../../../../tests/mocks/translation'
-import cloudinary from '../../../../shared/utils/cloudinary'
+import config from '@/app/config'
+import { mockT } from '@/tests/mocks/translation'
+import cloudinary from '@/shared/utils/cloudinary'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { QuestionnaireResult } from '../QuestionnaireResult'
 
 vi.mock('../../../../config')
-vi.mock('../../../../shared/utils/cloudinary')
+vi.mock('@/shared/utils/cloudinary')
 
 describe('QuestionnaireResult', () => {
     it('renders all fields correctly', () => {

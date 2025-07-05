@@ -1,9 +1,9 @@
 import { UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { QuestionnaireOption } from '../../../features/questionnaires/options'
-import { Questionnaire } from '../../../features/questionnaires/types'
-import { CheckboxItem } from '../../../shared/components/forms/CheckboxItem'
+import { QuestionnaireOption } from '@/features/questionnaires/options'
+import { Questionnaire } from '@/features/questionnaires/types'
+import { CheckboxItem } from '@/shared/components/forms/CheckboxItem'
 import { Label } from './Label'
 
 export interface CheckboxSectionProps {

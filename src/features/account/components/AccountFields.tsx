@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
-import type { User, UserResult } from '../../users/types'
+import type { User, UserResult } from '@/features/users/types'
 
 interface Field {
     label: string

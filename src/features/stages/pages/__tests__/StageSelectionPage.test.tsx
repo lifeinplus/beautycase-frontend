@@ -2,24 +2,24 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { setFormData } from '../../../form/formSlice'
-import { mockMakeupBags } from '../../../makeupBags/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '../../../makeupBags/makeupBagsApi'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { setFormData } from '@/features/form/formSlice'
+import { mockMakeupBags } from '@/features/makeupBags/__mocks__/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
 import { mockStages } from '../../__mocks__/stagesApi'
 import { useGetAllStagesQuery } from '../../stagesApi'
 import { StageSelectionPage } from '../StageSelectionPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/ui/Image')
-vi.mock('../../../../shared/components/layout/TopPanel')
-vi.mock('../../../../shared/components/DataWrapper')
-vi.mock('../../../form/formSlice')
-vi.mock('../../../makeupBags/makeupBagsApi')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/ui/Image')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/components/DataWrapper')
+vi.mock('@/features/form/formSlice')
+vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('../../stagesApi')
 
 describe('StageSelectionPage', () => {

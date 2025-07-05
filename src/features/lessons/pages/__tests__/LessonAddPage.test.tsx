@@ -3,17 +3,17 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { clearFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
+import { clearFormData } from '@/features/form/formSlice'
 import { mockLesson1, mockLessonCreate } from '../../__mocks__/lessonsApi'
 import { useCreateLessonMutation } from '../../lessonsApi'
 import { LessonAddPage } from '../LessonAddPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/utils/errorUtils')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../components/LessonForm')
 vi.mock('../../lessonsApi')
 

@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { useAppSelector } from '@/app/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
 import { useAuthLogout } from '../../hooks/useAuthLogout'
 import { AuthButton } from '../AuthButton'
 
-vi.mock('../../../../app/hooks')
+vi.mock('@/app/hooks')
 vi.mock('../../hooks/useAuthLogout')
 
 describe('AuthButton', () => {

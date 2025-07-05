@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { DataWrapper } from '../../../shared/components/common/DataWrapper'
-import { Hero } from '../../../shared/components/common/Hero'
-import { Header } from '../../../shared/components/layout/Header'
-import { NavBar } from '../../../shared/components/navigation/NavBar'
+import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import { Hero } from '@/shared/components/common/Hero'
+import { Header } from '@/shared/components/layout/Header'
+import { NavBar } from '@/shared/components/navigation/NavBar'
 import { QuestionnaireMobileView } from '../components/QuestionnaireMobileView'
 import { QuestionnaireTable } from '../components/QuestionnaireTable'
 import { useGetAllQuestionnairesQuery } from '../questionnairesApi'

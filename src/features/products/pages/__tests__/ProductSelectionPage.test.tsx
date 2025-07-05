@@ -2,21 +2,21 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { setFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { setFormData } from '@/features/form/formSlice'
 import { mockProducts } from '../../__mocks__/productsApi'
 import { useGetAllProductsQuery } from '../../productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/layout/TopPanel')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/ui/Image')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/ui/Image')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../productsApi')
 
 describe('ProductSelectionPage', () => {

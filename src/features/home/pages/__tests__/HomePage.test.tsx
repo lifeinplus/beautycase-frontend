@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { selectRole, selectUsername } from '../../../auth/authSlice'
+import { useAppSelector } from '@/app/hooks'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { HomePage } from '../HomePage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/LanguageSelect')
-vi.mock('../../../auth/hooks/useAuthLogout')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/LanguageSelect')
+vi.mock('@/features/auth/hooks/useAuthLogout')
 vi.mock('../../components/HomeTile')
 
 describe('HomePage', () => {

@@ -1,4 +1,4 @@
-import { type DetailsPageProps } from '../DetailsPage'
+import type { DetailsPageProps } from '../DetailsPage'
 
 export const DetailsPage = ({
     isLoading,

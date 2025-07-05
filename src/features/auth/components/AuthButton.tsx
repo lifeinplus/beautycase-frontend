@@ -5,8 +5,8 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
-import { NavButton } from '../../../shared/components/navigation/NavButton'
+import { useAppSelector } from '@/app/hooks'
+import { NavButton } from '@/shared/components/navigation/NavButton'
 import { selectUsername } from '../authSlice'
 import { useAuthLogout } from '../hooks/useAuthLogout'
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { Image } from '../../components/ui/Image'
-import { getYouTubeThumbnail } from '../../../shared/utils/youtube'
+import { getYouTubeThumbnail } from '@/shared/utils/youtube'
 
 interface VideoData {
     _id?: string

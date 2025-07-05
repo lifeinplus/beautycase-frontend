@@ -1,8 +1,8 @@
 import { Route } from 'react-router-dom'
 
-import { RequireRole } from '../../features/auth/components/RequireRole'
-import { QuestionnaireListPage } from '../../features/questionnaires/pages/QuestionnaireListPage'
-import { QuestionnaireResultPage } from '../../features/questionnaires/pages/QuestionnaireResultPage'
+import { RequireRole } from '@/features/auth/components/RequireRole'
+import { QuestionnaireListPage } from '@/features/questionnaires/pages/QuestionnaireListPage'
+import { QuestionnaireResultPage } from '@/features/questionnaires/pages/QuestionnaireResultPage'
 
 export const questionnaireRoutes = [
     <Route key="questionnaires" path="/questionnaires">

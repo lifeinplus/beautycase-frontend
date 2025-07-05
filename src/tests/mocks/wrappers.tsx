@@ -4,8 +4,8 @@ import type { RenderOptions } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import { setupStore } from '../../app/store'
-import type { AppStore, RootState } from '../../app/store'
+import { setupStore } from '@/app/store'
+import type { AppStore, RootState } from '@/app/store'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
     preloadedState?: Partial<RootState>

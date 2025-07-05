@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import AppInfo from '../AppInfo'
 
 describe('AppInfo', () => {

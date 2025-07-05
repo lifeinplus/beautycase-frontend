@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+import { renderHookWithProvider } from '@/tests/mocks/wrappers'
 import { mockUserResult, mockUsers } from '../__mocks__/usersApi'
 import { useGetUserByIdQuery, useGetAllUsersQuery } from '../usersApi'
 

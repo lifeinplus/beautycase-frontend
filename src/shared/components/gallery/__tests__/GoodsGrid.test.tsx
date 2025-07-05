@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockNavigate } from '@/tests/mocks/router'
 import { type Good, GoodsGrid } from '../GoodsGrid'
 
 vi.mock('../../ui/Image')

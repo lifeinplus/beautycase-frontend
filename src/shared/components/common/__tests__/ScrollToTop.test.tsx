@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { mockScrollTo } from '../../../../tests/mocks'
-import { mockLocation } from '../../../../tests/mocks/router'
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { mockScrollTo } from '@/tests/mocks'
+import { mockLocation } from '@/tests/mocks/router'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { ScrollToTop } from '../ScrollToTop'
 
 describe('ScrollToTop', () => {

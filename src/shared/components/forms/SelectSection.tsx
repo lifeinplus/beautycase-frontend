@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import type { SelectOption } from '../../../features/form/types'
+import type { SelectOption } from '@/features/form/types'
 import { Label } from './Label'
 
 export interface SelectSectionProps {

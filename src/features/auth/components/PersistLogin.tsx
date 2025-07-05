@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
-import { Spinner } from '../../../shared/components/common/Spinner'
-import config from '../../../app/config'
-import { useRefreshAuth } from '../../../shared/hooks/useRefreshAuth'
+import { useAppSelector } from '@/app/hooks'
+import { Spinner } from '@/shared/components/common/Spinner'
+import config from '@/app/config'
+import { useRefreshAuth } from '@/shared/hooks/useRefreshAuth'
 import { selectAccessToken } from '../authSlice'
 
 export const PersistLogin = () => {

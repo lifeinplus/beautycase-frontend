@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 
-import { mockRegister } from '../../../../tests/mocks/form'
+import { mockRegister } from '@/tests/mocks/form'
 import { RadioButtonItem, type RadioButtonItemProps } from '../RadioButtonItem'
 
 describe('RadioButtonItem', () => {

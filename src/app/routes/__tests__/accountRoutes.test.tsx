@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import App from '../../../App'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import App from '@/App'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 
-vi.mock('../../hooks')
+vi.mock('@/features/account/pages/AccountPage')
+vi.mock('@/features/auth/components/PersistLogin')
+vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('../../../components/ScrollToTop')
-vi.mock('../../../features/account/pages/AccountPage')
-vi.mock('../../../features/auth/components/PersistLogin')
-vi.mock('../../../features/auth/components/RequireAuth')
+vi.mock('../../hooks')
 
 describe('accountRoutes', () => {
     it('renders the account form correctly', () => {

@@ -1,10 +1,10 @@
 import { Cloudinary } from '@cloudinary/url-gen/index'
 import { describe, expect, it, vi } from 'vitest'
 
-import config from '../../../app/config'
+import config from '@/app/config'
 import cloudinary from '../cloudinary'
 
-vi.mock('../../../app/config')
+vi.mock('@/app/config')
 
 describe('cloudinary', () => {
     it('should create a Cloudinary instance', () => {

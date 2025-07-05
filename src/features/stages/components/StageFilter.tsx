@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useGetAllMakeupBagsQuery } from '../../makeupBags/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
 import type { Stage } from '../types'
 
 export interface StageFilterProps {

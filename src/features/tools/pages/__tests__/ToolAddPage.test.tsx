@@ -3,17 +3,17 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
-import { clearFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData } from '@/features/form/formSlice'
 import { mockTool1, mockToolCreate } from '../../__mocks__/toolsApi'
 import { useCreateToolMutation } from '../../toolsApi'
 import { ToolAddPage } from '../ToolAddPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/utils/errorUtils')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/form/formSlice')
 vi.mock('../../components/ToolForm')
 vi.mock('../../toolsApi')
 

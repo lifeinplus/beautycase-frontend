@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import config from '../../../../app/config'
+import config from '@/app/config'
 import { Image } from '../Image'
 
 describe('Image', () => {

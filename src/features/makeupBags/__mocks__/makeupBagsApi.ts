@@ -1,10 +1,10 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
-import type { MutationResult } from '../../../shared/types/api'
-import { mockCategory1 } from '../../categories/__mocks__/categoriesApi'
-import { mockStage1, mockStages } from '../../stages/__mocks__/stagesApi'
-import { mockTool1, mockTools } from '../../tools/__mocks__/toolsApi'
+import type { MutationResult } from '@/shared/types/api'
+import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi'
+import { mockStage1, mockStages } from '@/features/stages/__mocks__/stagesApi'
+import { mockTool1, mockTools } from '@/features/tools/__mocks__/toolsApi'
 import type { MakeupBag, MakeupBagData } from '../types'
 
 export const mockMakeupBagCreate: MutationResult = {

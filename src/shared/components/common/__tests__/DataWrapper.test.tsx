@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { mockError } from '../../../utils/__mocks__/errorUtils'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { DataWrapper } from '../DataWrapper'
 
 vi.mock('../LoadingOrError')

@@ -1,5 +1,5 @@
-import type { Brand } from '../brands/types'
-import type { StoreLink } from '../stores/types'
+import type { Brand } from '@/features/brands/types'
+import type { StoreLink } from '@/features/stores/types'
 
 export interface Product {
     _id?: string

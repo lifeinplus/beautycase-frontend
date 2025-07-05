@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { mockNavigate } from '@/tests/mocks/router'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { useGetQuestionnaireByIdQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
-vi.mock('../../../../shared/components/common/DataWrapper')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/layout/TopPanel')
-vi.mock('../../../../shared/components/common/Hero')
-vi.mock('../../../../shared/utils/date')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/utils/date')
 vi.mock('../../components/QuestionnaireResult')
 vi.mock('../../questionnairesApi')
 

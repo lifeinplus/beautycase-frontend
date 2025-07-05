@@ -2,11 +2,11 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 
-import { mockFieldError } from '../../../../tests/mocks/form'
+import { mockFieldError } from '@/tests/mocks/form'
 import {
     ButtonNavigateSection,
     type ButtonNavigateSectionProps,
-} from '../../../../shared/components/forms/ButtonNavigateSection'
+} from '@/shared/components/forms/ButtonNavigateSection'
 
 vi.mock('../Label')
 

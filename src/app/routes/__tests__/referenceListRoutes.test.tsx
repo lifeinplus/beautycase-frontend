@@ -1,17 +1,17 @@
 import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import App from '../../../App'
-import { renderWithRouter } from '../../../tests/mocks/wrappers'
+import App from '@/App'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('../../hooks')
-vi.mock('../../../shared/components/ScrollToTop')
-vi.mock('../../../features/auth/components/PersistLogin')
-vi.mock('../../../features/auth/components/RequireAuth')
-vi.mock('../../../features/auth/components/RequireRole')
-vi.mock('../../../features/brands/pages/BrandsPage')
-vi.mock('../../../features/referenceLists/pages/ReferenceListsPage')
-vi.mock('../../../features/stores/pages/StoresPage')
+vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/features/auth/components/PersistLogin')
+vi.mock('@/features/auth/components/RequireAuth')
+vi.mock('@/features/auth/components/RequireRole')
+vi.mock('@/features/brands/pages/BrandsPage')
+vi.mock('@/features/referenceLists/pages/ReferenceListsPage')
+vi.mock('@/features/stores/pages/StoresPage')
 
 describe('referenceListRoutes', () => {
     it('renders the list page correctly', () => {

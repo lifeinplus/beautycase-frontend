@@ -4,8 +4,8 @@ import { render, screen } from '@testing-library/react'
 import { mockQuestionnaires } from '../../__mocks__/questionnairesApi'
 import { QuestionnaireMobileView } from '../QuestionnaireMobileView'
 
-vi.mock('../../../../shared/components/table/MobileView')
-vi.mock('../../../../shared/utils/date')
+vi.mock('@/shared/components/table/MobileView')
+vi.mock('@/shared/utils/date')
 
 describe('QuestionnaireMobileView', () => {
     it('renders the MobileView component with correct props', () => {

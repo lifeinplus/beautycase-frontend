@@ -8,11 +8,11 @@ import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../shared/utils/errorUtils'
-import { Button } from '../../../shared/components/forms/Button'
-import { clearFormData, selectFormData } from '../../form/formSlice'
-import type { FormRef } from '../../form/types'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { Button } from '@/shared/components/forms/Button'
+import { clearFormData, selectFormData } from '@/features/form/formSlice'
+import type { FormRef } from '@/features/form/types'
 import {
     useCreateBrandMutation,
     useUpdateBrandByIdMutation,

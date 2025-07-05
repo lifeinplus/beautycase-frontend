@@ -1,4 +1,4 @@
-import type { Category } from '../categories/types'
+import type { Category } from '@/features/categories/types'
 
 export interface User {
     _id: string

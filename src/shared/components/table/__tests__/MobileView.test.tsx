@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { formatDate } from '../../../../shared/utils/date'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { formatDate } from '@/shared/utils/date'
 import { MobileView } from '../MobileView'
 
-vi.mock('../../../../shared/utils/date')
+vi.mock('@/shared/utils/date')
 
 interface TestItem {
     id: string

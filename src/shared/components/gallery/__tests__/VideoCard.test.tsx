@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { VideoCard } from '../VideoCard'
 
-vi.mock('../../../../shared/utils/youtube')
+vi.mock('@/shared/utils/youtube')
 vi.mock('../../ui/Image')
 
 describe('VideoCard', () => {

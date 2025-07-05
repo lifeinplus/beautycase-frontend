@@ -2,11 +2,11 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
-import { LanguageSelect } from '../../../shared/components/ui/LanguageSelect'
-import { canAccess, menuItems } from '../../../shared/utils/menu'
-import { selectRole, selectUsername } from '../../auth/authSlice'
-import { useAuthLogout } from '../../auth/hooks/useAuthLogout'
+import { useAppSelector } from '@/app/hooks'
+import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
+import { canAccess, menuItems } from '@/shared/utils/menu'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { useAuthLogout } from '@/features/auth/hooks/useAuthLogout'
 import { HomeTile } from '../components/HomeTile'
 
 export const HomePage = () => {

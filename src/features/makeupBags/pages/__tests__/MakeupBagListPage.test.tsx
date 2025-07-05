@@ -2,19 +2,19 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { selectRole, selectUsername } from '../../../auth/authSlice'
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { useAppSelector } from '@/app/hooks'
+import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { mockNavigate } from '@/tests/mocks/router'
 import { mockMakeupBags } from '../../__mocks__/makeupBagsApi'
 import { useGetAllMakeupBagsQuery } from '../../makeupBagsApi'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../shared/components/common/DataWrapper')
-vi.mock('../../../../shared/components/navigation/NavBar')
-vi.mock('../../../../shared/components/navigation/NavButton')
-vi.mock('../../../../shared/components/layout/Header')
-vi.mock('../../../../shared/components/common/Hero')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/Header')
+vi.mock('@/shared/components/common/Hero')
 vi.mock('../../components/MakeupBagMobileView')
 vi.mock('../../components/MakeupBagTable')
 vi.mock('../../makeupBagsApi')

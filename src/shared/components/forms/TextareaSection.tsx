@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
-import { getYouTubeThumbnail } from '../../../shared/utils/youtube'
+import { getYouTubeThumbnail } from '@/shared/utils/youtube'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
 

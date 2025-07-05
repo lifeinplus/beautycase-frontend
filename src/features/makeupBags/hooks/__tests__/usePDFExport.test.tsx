@@ -10,7 +10,7 @@ import {
     afterAll,
 } from 'vitest'
 
-import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi.ts'
+import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi.ts'
 import { mockMakeupBagPDFData } from '../../__mocks__/makeupBagsApi.ts'
 import { usePDFExport } from '../usePDFExport'
 

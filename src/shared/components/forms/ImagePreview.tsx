@@ -1,4 +1,4 @@
-import { Image } from '../../../shared/components/ui/Image'
+import { Image } from '@/shared/components/ui/Image'
 
 export interface ImagePreviewProps {
     url: string

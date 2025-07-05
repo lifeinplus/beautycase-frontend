@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { HomeTile } from '../HomeTile'
 
 describe('HomeTile', () => {

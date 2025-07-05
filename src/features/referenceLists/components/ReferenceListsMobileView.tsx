@@ -1,4 +1,4 @@
-import { MobileView } from '../../../components/table/MobileView'
+import { MobileView } from '../../../shared/components/table/MobileView'
 import type { ReferenceList } from '../types'
 
 export interface ReferenceListsMobileViewProps {

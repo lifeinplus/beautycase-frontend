@@ -13,15 +13,15 @@ import { mockTool1 } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/TopPanel')
+vi.mock('../../../../shared/components/forms/ButtonNavigateSection')
+vi.mock('../../../../shared/components/forms/ImageUrlSection')
+vi.mock('../../../../shared/components/forms/InputSection')
+vi.mock('../../../../shared/components/forms/SelectSection')
+vi.mock('../../../../shared/components/forms/TextareaSection')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
 vi.mock('../../../brands/brandsApi')
-vi.mock('../../../form/components/ButtonNavigateSection')
-vi.mock('../../../form/components/ImageUrlSection')
-vi.mock('../../../form/components/InputSection')
-vi.mock('../../../form/components/SelectSection')
-vi.mock('../../../form/components/TextareaSection')
 vi.mock('../../../form/formSlice')
 
 describe('ToolForm', () => {

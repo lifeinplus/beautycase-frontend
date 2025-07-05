@@ -4,8 +4,8 @@ import { describe, it, expect, vi } from 'vitest'
 import { mockStages } from '../../__mocks__/stagesApi'
 import { Stages } from '../Stages'
 
-vi.mock('../../../../components/ui/Image')
-vi.mock('../../../../components/GoodsGrid')
+vi.mock('../../../../shared/components/gallery/GoodsGrid')
+vi.mock('../../../../shared/components/ui/Image')
 
 describe('Stages', () => {
     it('renders the component with heading', () => {

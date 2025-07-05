@@ -1,32 +1,32 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi'
 import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
+import { usePDFExport } from '../../hooks/usePDFExport'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
 } from '../../makeupBagsApi'
-import { MakeupBagPage } from '../MakeupBagPage'
-import { usePDFExport } from '../../hooks/usePDFExport'
 import { generatePdfFilename } from '../../utils/generatePdfFilename'
+import { MakeupBagPage } from '../MakeupBagPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/ui/ModalDelete')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Footer')
-vi.mock('../../../../components/Hero')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../../utils/menu')
+vi.mock('../../../../shared/components/modals/ModalDelete')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/DataWrapper')
+vi.mock('../../../../shared/components/Footer')
+vi.mock('../../../../shared/components/common/Hero')
+vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('../../../../shared/utils/errorUtils')
+vi.mock('../../../../shared/utils/menu')
 vi.mock('../../../auth/authSlice')
 vi.mock('../../../form/formSlice')
 vi.mock('../../../stages/components/Stages')

@@ -1,16 +1,16 @@
-import { renderHook, act } from '@testing-library/react'
+import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { useLogoutUserMutation } from '../../authApi'
 import { logout } from '../../authSlice'
 import { useAuthLogout } from '../useAuthLogout'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../authApi')
 
 describe('useAuthLogout', () => {

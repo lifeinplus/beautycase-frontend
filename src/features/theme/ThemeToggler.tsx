@@ -2,7 +2,7 @@ import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { NavButton } from '../../components/navigation/NavButton'
+import { NavButton } from '../../shared/components/navigation/NavButton'
 import { selectDarkMode, toggleTheme } from './themeSlice'
 
 export function ThemeToggler() {

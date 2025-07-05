@@ -1,4 +1,4 @@
-import { api } from '../api/api'
+import { api } from '../../shared/api/api'
 import type { User, UserResult } from './types'
 
 const usersApi = api.injectEndpoints({

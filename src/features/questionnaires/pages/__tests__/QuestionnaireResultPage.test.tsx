@@ -7,12 +7,12 @@ import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { useGetQuestionnaireByIdQuery } from '../../questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Hero')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../../utils/date')
+vi.mock('../../../../shared/components/common/DataWrapper')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('../../../../shared/components/common/Hero')
+vi.mock('../../../../shared/utils/date')
 vi.mock('../../components/QuestionnaireResult')
 vi.mock('../../questionnairesApi')
 

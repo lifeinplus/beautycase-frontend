@@ -7,7 +7,7 @@ import { selectRole, selectUsername } from '../../../auth/authSlice'
 import { HomePage } from '../HomePage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/LanguageSelect')
+vi.mock('../../../../shared/components/LanguageSelect')
 vi.mock('../../../auth/hooks/useAuthLogout')
 vi.mock('../../components/HomeTile')
 

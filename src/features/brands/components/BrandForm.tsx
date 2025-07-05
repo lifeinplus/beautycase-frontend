@@ -5,12 +5,12 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { Button } from '../../form/components/Button'
-import { getErrorMessage } from '../../../utils/errorUtils'
+import { getErrorMessage } from '../../../shared/utils/errorUtils'
+import { Button } from '../../../shared/components/forms/Button'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
 import {

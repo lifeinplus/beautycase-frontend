@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { Table } from '../../../components/table/Table'
-import { TableRow } from '../../../components/table/TableRow'
-import type { Header } from '../../../types/table'
-import { formatDate } from '../../../utils/date'
+import { Table } from '../../../shared/components/table/Table'
+import { TableRow } from '../../../shared/components/table/TableRow'
+import type { Header } from '../../../shared/types/table'
+import { formatDate } from '../../../shared/utils/date'
 import type { Stage } from '../types'
 
 export interface StageTableProps {

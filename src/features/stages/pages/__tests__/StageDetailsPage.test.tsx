@@ -11,8 +11,8 @@ import {
 } from '../../stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
-vi.mock('../../../../components/pages/DetailsPage')
-vi.mock('../../../../components/ui/Image')
+vi.mock('../../../../app/routes/DetailsPage')
+vi.mock('../../../../shared/components/ui/Image')
 vi.mock('../../stagesApi')
 
 describe('StageDetailsPage', () => {

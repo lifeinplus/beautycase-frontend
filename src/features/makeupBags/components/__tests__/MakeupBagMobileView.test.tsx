@@ -5,8 +5,8 @@ import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi'
 import { mockMakeupBags } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagMobileView } from '../MakeupBagMobileView'
 
-vi.mock('../../../../components/table/MobileView')
-vi.mock('../../../../utils/date')
+vi.mock('../../../../shared/components/table/MobileView')
+vi.mock('../../../../shared/utils/date')
 
 describe('MakeupBagMobileView', () => {
     it('renders the MobileView component with correct props', () => {

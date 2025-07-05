@@ -5,17 +5,17 @@ import userEvent from '@testing-library/user-event'
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector, useAppDispatch } from '../../../../app/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { setFormData } from '../../../form/formSlice'
 import { mockUser1, mockUser2, mockUsers } from '../../__mocks__/usersApi'
 import { useGetAllUsersQuery } from '../../usersApi'
 import { UserSelectionPage } from '../UserSelectionPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/ui/Image')
-vi.mock('../../../../components/TopPanel')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('../../../../shared/components/ui/Image')
 vi.mock('../../../form/formSlice')
 vi.mock('../../usersApi')
 

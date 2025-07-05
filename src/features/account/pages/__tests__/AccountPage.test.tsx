@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '../../../../app/hooks'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import {
     renderWithProviderAndRouter,
     renderWithProviders,
@@ -12,13 +13,12 @@ import {
     mockUserResult,
 } from '../../../users/__mocks__/usersApi'
 import { AccountPage } from '../AccountPage'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Header')
-vi.mock('../../../../components/Hero')
+vi.mock('../../../../shared/components/common/DataWrapper')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/layout/Header')
+vi.mock('../../../../shared/components/common/Hero')
 vi.mock('../../../users/usersApi')
 vi.mock('../../components/AccountFields')
 

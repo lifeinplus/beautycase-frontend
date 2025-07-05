@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage } from '../../../components/pages/DetailsPage'
-import { Image } from '../../../components/ui/Image'
+import { DetailsPage } from '../../../app/routes/DetailsPage'
+import { Image } from '../../../shared/components/ui/Image'
 import type { Product } from '../../products/types'
 import {
     useDeleteStageByIdMutation,

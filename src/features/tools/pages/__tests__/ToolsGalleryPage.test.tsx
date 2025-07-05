@@ -5,8 +5,8 @@ import { mockTools } from '../../__mocks__/toolsApi'
 import { useGetAllToolsQuery } from '../../toolsApi'
 import { ToolsGalleryPage } from '../ToolsGalleryPage'
 
-vi.mock('../../../../components/gallery/GalleryPage')
-vi.mock('../../../../components/gallery/ImageCard')
+vi.mock('../../../../shared/components/gallery/GalleryPage')
+vi.mock('../../../../shared/components/gallery/ImageCard')
 vi.mock('../../toolsApi')
 
 describe('ToolsGalleryPage', () => {

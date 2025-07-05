@@ -13,11 +13,11 @@ import { useGetAllStagesQuery } from '../../stagesApi'
 import { StageSelectionPage } from '../StageSelectionPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/ui/Image')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../../components/DataWrapper')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/ui/Image')
+vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('../../../../shared/components/DataWrapper')
 vi.mock('../../../form/formSlice')
 vi.mock('../../../makeupBags/makeupBagsApi')
 vi.mock('../../stagesApi')

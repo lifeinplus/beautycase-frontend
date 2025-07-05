@@ -5,8 +5,8 @@ import { mockProducts } from '../../__mocks__/productsApi'
 import { useGetAllProductsQuery } from '../../productsApi'
 import { ProductGalleryPage } from '../ProductGalleryPage'
 
-vi.mock('../../../../components/gallery/GalleryPage')
-vi.mock('../../../../components/gallery/ImageCard')
+vi.mock('../../../../shared/components/gallery/GalleryPage')
+vi.mock('../../../../shared/components/gallery/ImageCard')
 vi.mock('../../productsApi')
 
 describe('ProductGalleryPage', () => {

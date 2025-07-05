@@ -2,18 +2,18 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '../../../../tests/mocks/router'
 import { renderWithRouter } from '../../../../tests/mocks/wrappers'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { mockLoginParams, mockLoginResult } from '../../__mocks__/authApi'
 import { useLoginUserMutation } from '../../authApi'
 import { LoginPage } from '../LoginPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../authApi')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils/errorUtils'
+import { getErrorMessage } from '../../../shared/utils/errorUtils'
 import { clearFormData, selectIsDirty, setFormData } from '../../form/formSlice'
 import { ProductForm } from '../components/ProductForm'
 import {

@@ -5,10 +5,10 @@ import { mockQuestionnaires } from '../../__mocks__/questionnairesApi'
 import { useGetAllQuestionnairesQuery } from '../../questionnairesApi'
 import { QuestionnaireListPage } from '../QuestionnaireListPage'
 
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Header')
-vi.mock('../../../../components/Hero')
+vi.mock('../../../../shared/components/common/DataWrapper')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/layout/Header')
+vi.mock('../../../../shared/components/common/Hero')
 vi.mock('../../components/QuestionnaireMobileView')
 vi.mock('../../components/QuestionnaireTable')
 vi.mock('../../questionnairesApi')

@@ -1,24 +1,24 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
-import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { useCreateQuestionnaireMutation } from '../../questionnairesApi'
 import { questions } from '../../utils'
 import { QuestionnairePage } from '../QuestionnairePage'
 
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/Header')
-vi.mock('../../../../components/Hero')
-vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../form/components/CheckboxSection')
-vi.mock('../../../form/components/InputSection')
-vi.mock('../../../form/components/ImageTextSection')
-vi.mock('../../../form/components/RadioButtonSection')
-vi.mock('../../../form/components/TextareaSection')
+vi.mock('../../../../shared/components/forms/CheckboxSection')
+vi.mock('../../../../shared/components/forms/InputSection')
+vi.mock('../../../../shared/components/forms/ImageTextSection')
+vi.mock('../../../../shared/components/forms/RadioButtonSection')
+vi.mock('../../../../shared/components/forms/TextareaSection')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/layout/Header')
+vi.mock('../../../../shared/components/common/Hero')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../questionnairesApi')
 
 describe('QuestionnairePage', () => {

@@ -9,8 +9,8 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
-import { Button } from '../../form/components/Button'
-import { getErrorMessage } from '../../../utils/errorUtils'
+import { Button } from '../../../shared/components/forms/Button'
+import { getErrorMessage } from '../../../shared/utils/errorUtils'
 import { clearFormData, selectFormData } from '../../form/formSlice'
 import type { FormRef } from '../../form/types'
 import {

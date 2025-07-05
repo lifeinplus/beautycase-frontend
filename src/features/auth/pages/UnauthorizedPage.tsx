@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
-import { NavBar } from '../../../components/navigation/NavBar'
-import { Header } from '../../../components/Header'
-import { Hero } from '../../../components/Hero'
+import { Hero } from '../../../shared/components/common/Hero'
+import { Header } from '../../../shared/components/layout/Header'
+import { NavBar } from '../../../shared/components/navigation/NavBar'
 
 export const UnauthorizedPage = () => {
     const { t } = useTranslation('unauthorized')

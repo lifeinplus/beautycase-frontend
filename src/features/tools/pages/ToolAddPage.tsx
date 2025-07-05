@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '../../../app/hooks'
-import { getErrorMessage } from '../../../utils/errorUtils'
+import { getErrorMessage } from '../../../shared/utils/errorUtils'
 import { clearFormData } from '../../form/formSlice'
 import { ToolForm } from '../components/ToolForm'
 import { useCreateToolMutation } from '../toolsApi'

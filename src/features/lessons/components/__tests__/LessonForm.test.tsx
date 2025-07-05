@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, vi, expect, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
@@ -11,11 +11,11 @@ import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import { LessonForm } from '../LessonForm'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../form/components/ButtonNavigateSection')
-vi.mock('../../../form/components/TextareaSection')
+vi.mock('../../../../shared/components/forms/ButtonNavigateSection')
+vi.mock('../../../../shared/components/forms/TextareaSection')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
 vi.mock('../../../form/formSlice')
 
 describe('LessonForm', () => {

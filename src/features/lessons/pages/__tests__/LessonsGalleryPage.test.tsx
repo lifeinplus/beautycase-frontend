@@ -5,8 +5,8 @@ import { mockLessons } from '../../__mocks__/lessonsApi'
 import { useGetAllLessonsQuery } from '../../lessonsApi'
 import { LessonsGalleryPage } from '../LessonsGalleryPage'
 
-vi.mock('../../../../components/gallery/GalleryPage')
-vi.mock('../../../../components/gallery/VideoCard')
+vi.mock('../../../../shared/components/gallery/GalleryPage')
+vi.mock('../../../../shared/components/gallery/VideoCard')
 vi.mock('../../lessonsApi')
 
 describe('LessonsGalleryPage', () => {

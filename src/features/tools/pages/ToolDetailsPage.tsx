@@ -2,8 +2,8 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { DetailsPage } from '../../../components/pages/DetailsPage'
-import { Image } from '../../../components/ui/Image'
+import { DetailsPage } from '../../../app/routes/DetailsPage'
+import { Image } from '../../../shared/components/ui/Image'
 import { useDeleteToolByIdMutation, useGetToolByIdQuery } from '../toolsApi'
 
 export const ToolDetailsPage = () => {

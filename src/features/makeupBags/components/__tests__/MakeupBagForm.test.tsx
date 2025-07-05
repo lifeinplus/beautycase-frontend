@@ -15,12 +15,12 @@ import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagForm } from '../MakeupBagForm'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/TopPanel')
+vi.mock('../../../../shared/components/forms/ButtonNavigateSection')
+vi.mock('../../../../shared/components/forms/SelectSection')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
 vi.mock('../../../categories/categoriesApi')
-vi.mock('../../../form/components/ButtonNavigateSection')
-vi.mock('../../../form/components/SelectSection')
 vi.mock('../../../form/formSlice')
 vi.mock('../../../users/usersApi')
 

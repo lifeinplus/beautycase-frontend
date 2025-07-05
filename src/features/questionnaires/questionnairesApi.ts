@@ -1,6 +1,6 @@
-import type { MutationResult } from '../../types/api'
-import { cleanObject } from '../../utils/common'
-import { api } from '../api/api'
+import type { MutationResult } from '../../shared/types/api'
+import { cleanObject } from '../../shared/utils/common'
+import { api } from '../../shared/api/api'
 import { Questionnaire } from './types'
 
 const questionnairesApi = api.injectEndpoints({

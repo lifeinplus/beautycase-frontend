@@ -5,14 +5,14 @@ import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockTool1 } from '../../__mocks__/toolsApi'
 import { useUpdateToolByIdMutation, useGetToolByIdQuery } from '../../toolsApi'
 import { ToolEditPage } from '../ToolEditPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/ToolForm')
 vi.mock('../../toolsApi')

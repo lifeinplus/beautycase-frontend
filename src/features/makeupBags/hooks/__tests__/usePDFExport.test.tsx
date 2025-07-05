@@ -20,12 +20,12 @@ vi.mock('@react-pdf/renderer', () => ({
 
 vi.mock('../../components/MakeupBagPDF')
 
-Object.defineProperty(global.URL, 'createObjectURL', {
+Object.defineProperty(globalThis.URL, 'createObjectURL', {
     value: vi.fn(),
     writable: true,
 })
 
-Object.defineProperty(global.URL, 'revokeObjectURL', {
+Object.defineProperty(globalThis.URL, 'revokeObjectURL', {
     value: vi.fn(),
     writable: true,
 })

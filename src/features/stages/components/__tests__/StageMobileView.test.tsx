@@ -4,8 +4,8 @@ import { describe, it, expect, vi } from 'vitest'
 import { mockStages } from '../../__mocks__/stagesApi'
 import { StageMobileView } from '../StageMobileView'
 
-vi.mock('../../../../components/table/MobileView')
-vi.mock('../../../../utils/date')
+vi.mock('../../../../shared/components/table/MobileView')
+vi.mock('../../../../shared/utils/date')
 
 describe('StageMobileView', () => {
     it('renders the MobileView component with correct props', () => {

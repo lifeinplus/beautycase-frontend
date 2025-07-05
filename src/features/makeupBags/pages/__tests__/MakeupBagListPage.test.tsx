@@ -10,11 +10,11 @@ import { useGetAllMakeupBagsQuery } from '../../makeupBagsApi'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Header')
-vi.mock('../../../../components/Hero')
+vi.mock('../../../../shared/components/common/DataWrapper')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/Header')
+vi.mock('../../../../shared/components/common/Hero')
 vi.mock('../../components/MakeupBagMobileView')
 vi.mock('../../components/MakeupBagTable')
 vi.mock('../../makeupBagsApi')

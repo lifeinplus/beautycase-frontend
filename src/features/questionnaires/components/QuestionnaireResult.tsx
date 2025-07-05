@@ -3,10 +3,10 @@ import { scale } from '@cloudinary/url-gen/actions/resize'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import config from '../../../config'
-import cloudinary from '../../../utils/cloudinary'
-import type { Questionnaire } from '../types'
+import config from '../../../app/config'
+import cloudinary from '../../../shared/utils/cloudinary'
 import { type QuestionnaireResultOption } from '../options'
+import type { Questionnaire } from '../types'
 import { questions } from '../utils'
 
 export interface QuestionnaireDetailsProps {

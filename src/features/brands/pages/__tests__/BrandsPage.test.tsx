@@ -1,27 +1,27 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { useNavigate } from 'react-router-dom'
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
 import { clearFormData, setFormData } from '../../../form/formSlice'
 import {
-    useGetAllBrandsQuery,
     useDeleteBrandByIdMutation,
+    useGetAllBrandsQuery,
 } from '../../brandsApi'
 import type { Brand } from '../../types'
 import { BrandsPage } from '../BrandsPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/ui/ModalDelete')
-vi.mock('../../../../components/DataWrapper')
-vi.mock('../../../../components/Hero')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../../shared/components/modals/ModalDelete')
+vi.mock('../../../../shared/components/navigation/NavBar')
+vi.mock('../../../../shared/components/navigation/NavButton')
+vi.mock('../../../../shared/components/layout/TopPanel')
+vi.mock('../../../../shared/components/DataWrapper')
+vi.mock('../../../../shared/components/common/Hero')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/BrandForm')
 vi.mock('../../components/BrandsMobileView')

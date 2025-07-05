@@ -4,7 +4,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '../../form/components/Button'
+import { Button } from '../../../shared/components/forms/Button'
 import type { Brand } from '../types'
 
 export interface BrandsMobileViewProps {

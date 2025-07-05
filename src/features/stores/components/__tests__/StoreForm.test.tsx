@@ -6,7 +6,7 @@ import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { useAppSelector } from '../../../../app/hooks'
 import { renderWithProviders } from '../../../../tests/mocks/wrappers'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import type { FormRef } from '../../../form/types'
 import {
@@ -17,8 +17,8 @@ import { StoreForm } from '../StoreForm'
 import { mockStore1 } from '../../__mocks__/storesApi'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../form/components/Button')
+vi.mock('../../../../shared/components/forms/Button')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../storesApi')
 
 describe('StoreForm', () => {

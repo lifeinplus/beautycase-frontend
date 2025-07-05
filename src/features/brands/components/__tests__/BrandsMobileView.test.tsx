@@ -5,7 +5,7 @@ import { describe, vi, expect, it } from 'vitest'
 import type { Brand } from '../../types'
 import { BrandsMobileView } from '../BrandsMobileView'
 
-vi.mock('../../../form/components/Button')
+vi.mock('../../../../shared/components/forms/Button')
 
 describe('BrandsMobileView', () => {
     const mockBrands: Brand[] = [

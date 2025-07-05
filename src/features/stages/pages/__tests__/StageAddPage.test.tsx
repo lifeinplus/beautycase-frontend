@@ -5,14 +5,14 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
 
 import { mockDispatch } from '../../../../app/__mocks__/hooks'
 import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
+import { mockError } from '../../../../shared/utils/__mocks__/errorUtils'
 import { clearFormData } from '../../../form/formSlice'
 import { mockStage1, mockStageCreate } from '../../__mocks__/stagesApi'
 import { useCreateStageMutation } from '../../stagesApi'
 import { StageAddPage } from '../StageAddPage'
 
 vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
+vi.mock('../../../../shared/utils/errorUtils')
 vi.mock('../../../form/formSlice')
 vi.mock('../../components/StageForm')
 vi.mock('../../stagesApi')

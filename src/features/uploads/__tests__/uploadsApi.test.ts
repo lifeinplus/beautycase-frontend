@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { mockImageUrl1, mockImageUrl2 } from '../../../tests/mocks/form'
 import server from '../../../tests/mocks/server'
 import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
-import { type DataMessageError } from '../../../utils/errorUtils'
+import { type DataMessageError } from '../../../shared/utils/errorUtils'
 import {
     useUploadTempImageByFileMutation,
     useUploadTempImageByUrlMutation,

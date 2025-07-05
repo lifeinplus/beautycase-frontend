@@ -1,9 +1,9 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { DetailsPage } from '../../../components/pages/DetailsPage'
-import { Image } from '../../../components/ui/Image'
-import { getYouTubeEmbedUrl } from '../../../utils/youtube'
+import { DetailsPage } from '../../../app/routes/DetailsPage'
+import { Image } from '../../../shared/components/ui/Image'
+import { getYouTubeEmbedUrl } from '../../../shared/utils/youtube'
 import type { Product } from '../../products/types'
 import {
     useDeleteLessonByIdMutation,

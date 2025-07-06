@@ -5,20 +5,23 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import {
+    useDeleteBrandByIdMutation,
+    useGetAllBrandsQuery,
+} from '@/features/brands/brandsApi'
+import { BrandForm } from '@/features/brands/components/BrandForm'
+import { BrandsMobileView } from '@/features/brands/components/BrandsMobileView'
+import { BrandsTable } from '@/features/brands/components/BrandsTable'
+import { Brand } from '@/features/brands/types'
 import { clearFormData, setFormData } from '@/features/form/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { useDeleteBrandByIdMutation, useGetAllBrandsQuery } from '../brandsApi'
-import { BrandForm } from '../components/BrandForm'
-import { BrandsMobileView } from '../components/BrandsMobileView'
-import { BrandsTable } from '../components/BrandsTable'
-import type { Brand } from '../types'
+import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import { Hero } from '@/shared/components/common/Hero'
+import { TopPanel } from '@/shared/components/layout/TopPanel'
+import { ModalDelete } from '@/shared/components/modals/ModalDelete'
+import { NavBar } from '@/shared/components/navigation/NavBar'
+import { NavButton } from '@/shared/components/navigation/NavButton'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const BrandsPage = () => {
     const navigate = useNavigate()

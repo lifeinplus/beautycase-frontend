@@ -10,10 +10,10 @@ import { useAppDispatch } from '@/app/hooks'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { useLoginUserMutation } from '../authApi'
-import { setCredentials } from '../authSlice'
-import type { AuthQueryLogin } from '../types'
-import { loginSchema } from '../validations'
+import { useLoginUserMutation } from '../../features/auth/authApi'
+import { setCredentials } from '../../features/auth/authSlice'
+import type { AuthQueryLogin } from '../../features/auth/types'
+import { loginSchema } from '../../features/auth/validations'
 
 export const LoginPage = () => {
     const location = useLocation()

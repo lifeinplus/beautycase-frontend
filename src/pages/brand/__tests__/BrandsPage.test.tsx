@@ -4,17 +4,22 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
 import {
     useDeleteBrandByIdMutation,
     useGetAllBrandsQuery,
-} from '../../brandsApi'
-import type { Brand } from '../../types'
+} from '@/features/brands/brandsApi'
+import type { Brand } from '@/features/brands/types'
+import { clearFormData, setFormData } from '@/features/form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { BrandsPage } from '../BrandsPage'
 
 vi.mock('@/app/hooks')
+vi.mock('@/features/brands/components/BrandForm')
+vi.mock('@/features/brands/components/BrandsMobileView')
+vi.mock('@/features/brands/components/BrandsTable')
+vi.mock('@/features/brands/brandsApi')
+vi.mock('@/features/form/formSlice')
 vi.mock('@/shared/components/modals/ModalDelete')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
@@ -22,11 +27,6 @@ vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/utils/errorUtils')
-vi.mock('@/features/form/formSlice')
-vi.mock('../../components/BrandForm')
-vi.mock('../../components/BrandsMobileView')
-vi.mock('../../components/BrandsTable')
-vi.mock('../../brandsApi')
 
 describe('BrandsPage', () => {
     const mockBrands: Brand[] = [

@@ -7,7 +7,7 @@ import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
 import { canAccess, menuItems } from '@/shared/utils/menu'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { useAuthLogout } from '@/features/auth/hooks/useAuthLogout'
-import { HomeTile } from '../components/HomeTile'
+import { HomeTile } from '../../features/home/components/HomeTile'
 
 export const HomePage = () => {
     const { t } = useTranslation('home')

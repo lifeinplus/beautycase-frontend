@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
 import { useAppSelector } from '@/app/hooks'
+import { AccountFields } from '@/features/account/components/AccountFields'
+import { selectUserId } from '@/features/auth/authSlice'
+import { useGetUserByIdQuery } from '@/features/users/usersApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
-import { selectUserId } from '@/features/auth/authSlice'
-import { useGetUserByIdQuery } from '@/features/users/usersApi'
-import { AccountFields } from '../components/AccountFields'
 
 export const AccountPage = () => {
     const { t } = useTranslation(['account', 'makeupBag'])

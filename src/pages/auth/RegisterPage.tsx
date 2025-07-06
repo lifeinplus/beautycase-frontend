@@ -9,9 +9,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { useRegisterUserMutation } from '../authApi'
-import type { AuthQueryRegister } from '../types'
-import { registerSchema } from '../validations'
+import { useRegisterUserMutation } from '../../features/auth/authApi'
+import type { AuthQueryRegister } from '../../features/auth/types'
+import { registerSchema } from '../../features/auth/validations'
 
 export const RegisterPage = () => {
     const navigate = useNavigate()

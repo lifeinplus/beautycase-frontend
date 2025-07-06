@@ -2,25 +2,25 @@ import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import {
-    renderWithProviderAndRouter,
-    renderWithProviders,
-} from '@/tests/mocks/wrappers'
 import { selectUserId } from '@/features/auth/authSlice'
 import {
     mockUseGetUserByIdQuery,
     mockUserResult,
 } from '@/features/users/__mocks__/usersApi'
-import { AccountPage } from '../AccountPage'
+import { AccountPage } from '@/pages/account/AccountPage'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import {
+    renderWithProviderAndRouter,
+    renderWithProviders,
+} from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks')
+vi.mock('@/features/account/components/AccountFields')
+vi.mock('@/features/users/usersApi')
 vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/layout/Header')
 vi.mock('@/shared/components/common/Hero')
-vi.mock('@/features/users/usersApi')
-vi.mock('../../components/AccountFields')
 
 describe('AccountPage', () => {
     beforeEach(() => {

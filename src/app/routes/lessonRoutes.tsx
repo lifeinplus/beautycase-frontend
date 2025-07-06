@@ -1,11 +1,11 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { LessonAddPage } from '@/features/lessons/pages/LessonAddPage'
-import { LessonDetailsPage } from '@/features/lessons/pages/LessonDetailsPage'
-import { LessonEditPage } from '@/features/lessons/pages/LessonEditPage'
-import { LessonsGalleryPage } from '@/features/lessons/pages/LessonsGalleryPage'
 import { UserSelectionPage } from '@/features/users/pages/UserSelectionPage'
+import { LessonAddPage } from '@/pages/lesson/LessonAddPage'
+import { LessonDetailsPage } from '@/pages/lesson/LessonDetailsPage'
+import { LessonEditPage } from '@/pages/lesson/LessonEditPage'
+import { LessonsGalleryPage } from '@/pages/lesson/LessonsGalleryPage'
 import { ProductSelectionPage } from '@/pages/product/ProductSelectionPage'
 
 export const lessonRoutes = [

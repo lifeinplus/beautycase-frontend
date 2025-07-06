@@ -1,10 +1,10 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { StageAddPage } from '@/features/stages/pages/StageAddPage'
-import { StageDetailsPage } from '@/features/stages/pages/StageDetailsPage'
-import { StageEditPage } from '@/features/stages/pages/StageEditPage'
-import { StageListPage } from '@/features/stages/pages/StageListPage'
+import { StageAddPage } from '@/pages/stage/StageAddPage'
+import { StageDetailsPage } from '@/pages/stage/StageDetailsPage'
+import { StageEditPage } from '@/pages/stage/StageEditPage'
+import { StageListPage } from '@/pages/stage/StageListPage'
 import { ProductSelectionPage } from '@/pages/product/ProductSelectionPage'
 
 export const stageRoutes = [

@@ -13,7 +13,7 @@ vi.mock('@/pages/product/ProductAddPage')
 vi.mock('@/pages/product/ProductDetailsPage')
 vi.mock('@/pages/product/ProductEditPage')
 vi.mock('@/pages/product/ProductGalleryPage')
-vi.mock('../../hooks')
+vi.mock('@/app/hooks')
 
 describe('productRoutes', () => {
     it('renders the details page correctly', () => {

@@ -4,16 +4,16 @@ import { describe, expect, it, vi } from 'vitest'
 import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
-vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/features/stages/pages/StageAddPage')
-vi.mock('@/features/stages/pages/StageDetailsPage')
-vi.mock('@/features/stages/pages/StageEditPage')
-vi.mock('@/features/stages/pages/StageListPage')
 vi.mock('@/pages/product/ProductSelectionPage')
-vi.mock('../../hooks')
+vi.mock('@/pages/stage/StageAddPage')
+vi.mock('@/pages/stage/StageDetailsPage')
+vi.mock('@/pages/stage/StageEditPage')
+vi.mock('@/pages/stage/StageListPage')
+vi.mock('@/shared/components/ScrollToTop')
 
 describe('stageRoutes', () => {
     it('renders the list page correctly', () => {

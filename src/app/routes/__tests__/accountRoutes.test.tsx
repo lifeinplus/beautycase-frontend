@@ -8,7 +8,7 @@ vi.mock('@/features/account/pages/AccountPage')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('../../../components/ScrollToTop')
-vi.mock('../../hooks')
+vi.mock('@/app/hooks')
 
 describe('accountRoutes', () => {
     it('renders the account form correctly', () => {

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage } from '@/app/routes/DetailsPage'
+import { DetailsPage } from '@/widgets/DetailsPage'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,

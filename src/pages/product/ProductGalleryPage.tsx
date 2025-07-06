@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
-import { GalleryPage } from '@/shared/components/gallery/GalleryPage'
+import { GalleryPage } from '@/widgets/GalleryPage'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
 
 export const ProductGalleryPage = () => {

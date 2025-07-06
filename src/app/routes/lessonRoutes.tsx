@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { UserSelectionPage } from '@/features/users/pages/UserSelectionPage'
+import { UserSelectionPage } from '@/pages/user/UserSelectionPage'
 import { LessonAddPage } from '@/pages/lesson/LessonAddPage'
 import { LessonDetailsPage } from '@/pages/lesson/LessonDetailsPage'
 import { LessonEditPage } from '@/pages/lesson/LessonEditPage'

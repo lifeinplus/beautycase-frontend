@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
-import { GalleryPage } from '@/shared/components/gallery/GalleryPage'
+import { GalleryPage } from '@/widgets/GalleryPage'
 import { VideoCard } from '@/shared/components/gallery/VideoCard'
 
 export const LessonsGalleryPage = () => {

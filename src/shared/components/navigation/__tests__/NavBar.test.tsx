@@ -7,7 +7,7 @@ import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
-import { NavBar } from '../../navigation/NavBar'
+import { NavBar } from '@/shared/components/navigation/NavBar'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/AuthButton')

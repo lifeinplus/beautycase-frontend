@@ -8,9 +8,9 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/features/referenceLists/pages/ReferenceListsPage')
-vi.mock('@/features/stores/pages/StoresPage')
+vi.mock('@/pages/store/StoresPage')
 vi.mock('@/pages/brand/BrandsPage')
+vi.mock('@/pages/reference-list/ReferenceListsPage')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('referenceListRoutes', () => {

@@ -2,7 +2,7 @@ import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
 import { StageSelectionPage } from '@/pages/stage/StageSelectionPage'
-import { ToolSelectionPage } from '@/features/tools/pages/ToolSelectionPage'
+import { ToolSelectionPage } from '@/pages/tool/ToolSelectionPage'
 import { MakeupBagAddPage } from '@/pages/makeup-bag/MakeupBagAddPage'
 import { MakeupBagEditPage } from '@/pages/makeup-bag/MakeupBagEditPage'
 import { MakeupBagListPage } from '@/pages/makeup-bag/MakeupBagListPage'

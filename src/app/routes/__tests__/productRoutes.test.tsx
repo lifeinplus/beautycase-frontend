@@ -8,11 +8,11 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/features/stores/pages/StoreLinkAddPage')
 vi.mock('@/pages/product/ProductAddPage')
 vi.mock('@/pages/product/ProductDetailsPage')
 vi.mock('@/pages/product/ProductEditPage')
 vi.mock('@/pages/product/ProductGalleryPage')
+vi.mock('@/pages/store/StoreLinkAddPage')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('productRoutes', () => {

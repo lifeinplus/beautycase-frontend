@@ -1,9 +1,9 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { ReferenceListsPage } from '@/features/referenceLists/pages/ReferenceListsPage'
+import { ReferenceListsPage } from '@/pages/reference-list/ReferenceListsPage'
 import { BrandsPage } from '@/pages/brand/BrandsPage'
-import { StoresPage } from '@/features/stores/pages/StoresPage'
+import { StoresPage } from '@/pages/store/StoresPage'
 
 export const referenceListRoutes = [
     <Route key="reference-lists" path="/reference_lists">

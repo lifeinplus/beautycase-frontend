@@ -8,9 +8,9 @@ import {
 } from '@/features/products/productsApi'
 import { ProductDetailsPage } from '../ProductDetailsPage'
 
-vi.mock('@/app/routes/DetailsPage')
 vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/components/ui/Image')
+vi.mock('@/widgets/DetailsPage')
 
 describe('ProductDetailsPage', () => {
     const mockDeleteProduct = vi.fn()

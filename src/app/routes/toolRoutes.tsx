@@ -1,10 +1,10 @@
 import { Route } from 'react-router-dom'
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { StoreLinkAddPage } from '@/features/stores/pages/StoreLinkAddPage'
-import { ToolDetailsPage } from '@/features/tools/pages/ToolDetailsPage'
-import { ToolsGalleryPage } from '@/features/tools/pages/ToolsGalleryPage'
-import { ToolAddPage } from '@/features/tools/pages/ToolAddPage'
-import { ToolEditPage } from '@/features/tools/pages/ToolEditPage'
+import { StoreLinkAddPage } from '@/pages/store/StoreLinkAddPage'
+import { ToolDetailsPage } from '@/pages/tool/ToolDetailsPage'
+import { ToolsGalleryPage } from '@/pages/tool/ToolsGalleryPage'
+import { ToolAddPage } from '@/pages/tool/ToolAddPage'
+import { ToolEditPage } from '@/pages/tool/ToolEditPage'
 
 export const toolRoutes = [
     <Route key="tools" path="/tools">

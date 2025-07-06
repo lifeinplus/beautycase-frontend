@@ -3,28 +3,28 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '@/widgets/DetailsPage'
-import {
-    useDeleteProductByIdMutation,
-    useGetProductByIdQuery,
-} from '@/features/products/productsApi'
 import { Image } from '@/shared/components/ui/Image'
+import {
+    useDeleteToolByIdMutation,
+    useGetToolByIdQuery,
+} from '../../features/tools/toolsApi'
 
-export const ProductDetailsPage = () => {
+export const ToolDetailsPage = () => {
     const { id } = useParams<{ id: string }>()
-    const { t } = useTranslation('product')
+    const { t } = useTranslation('tool')
 
-    const { data, isLoading, error } = useGetProductByIdQuery(id!)
-    const [deleteProductById] = useDeleteProductByIdMutation()
+    const { data, isLoading, error } = useGetToolByIdQuery(id!)
+    const [deleteToolById] = useDeleteToolByIdMutation()
 
     return (
         <DetailsPage
             isLoading={isLoading}
             error={error}
             topPanelTitle={t('titles.details')}
-            redirectPath="/products"
+            redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteItem={deleteProductById}
+            deleteItem={deleteToolById}
             mediaContent={
                 <section className="content-image">
                     <div className="img-container img-container-rectangle">
@@ -34,9 +34,9 @@ export const ProductDetailsPage = () => {
             }
             descriptionContent={
                 <>
-                    {data?.shade && (
+                    {data?.number && (
                         <section className="content-description">
-                            <p>{`${t('shade')}: ${data?.shade}`}</p>
+                            <p>{`${t('number')}: ${data?.number}`}</p>
                         </section>
                     )}
                     {data?.comment && (

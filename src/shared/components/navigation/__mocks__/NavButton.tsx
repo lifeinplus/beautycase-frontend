@@ -1,4 +1,4 @@
-import { type NavButtonProps } from '../../navigation/NavButton'
+import { type NavButtonProps } from '@/shared/components/navigation/NavButton'
 
 export const NavButton = ({ className, onClick, label }: NavButtonProps) => (
     <button

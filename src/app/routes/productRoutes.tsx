@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { StoreLinkAddPage } from '@/features/stores/pages/StoreLinkAddPage'
+import { StoreLinkAddPage } from '@/pages/store/StoreLinkAddPage'
 import { ProductAddPage } from '@/pages/product/ProductAddPage'
 import { ProductDetailsPage } from '@/pages/product/ProductDetailsPage'
 import { ProductEditPage } from '@/pages/product/ProductEditPage'

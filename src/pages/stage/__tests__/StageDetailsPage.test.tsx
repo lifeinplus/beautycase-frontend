@@ -11,9 +11,9 @@ import {
 } from '../../../features/stages/stagesApi'
 import { StageDetailsPage } from '../StageDetailsPage'
 
-vi.mock('@/app/routes/DetailsPage')
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/components/ui/Image')
+vi.mock('@/widgets/DetailsPage')
 
 describe('StageDetailsPage', () => {
     const mockDeleteStageById = vi.fn()

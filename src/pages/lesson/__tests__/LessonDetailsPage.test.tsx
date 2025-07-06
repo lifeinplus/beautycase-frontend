@@ -12,10 +12,10 @@ import {
 } from '../../../features/lessons/lessonsApi'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
-vi.mock('@/app/routes/DetailsPage')
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/ui/Image')
 vi.mock('@/shared/utils/youtube')
+vi.mock('@/widgets/DetailsPage')
 
 describe('LessonDetailsPage', () => {
     const mockDeleteLesson = vi.fn()

@@ -8,12 +8,12 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/features/tools/pages/ToolSelectionPage')
 vi.mock('@/pages/makeup-bag/MakeupBagAddPage')
 vi.mock('@/pages/makeup-bag/MakeupBagEditPage')
 vi.mock('@/pages/makeup-bag/MakeupBagListPage')
 vi.mock('@/pages/makeup-bag/MakeupBagPage')
 vi.mock('@/pages/stage/StageSelectionPage')
+vi.mock('@/pages/tool/ToolSelectionPage')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('makeupBagRoutes', () => {

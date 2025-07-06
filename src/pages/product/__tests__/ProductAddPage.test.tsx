@@ -1,21 +1,24 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { mockProduct1, mockProductCreate } from '../../__mocks__/productsApi'
-import { useCreateProductMutation } from '../../productsApi'
-import { ProductAddPage } from '../ProductAddPage'
+import {
+    mockProduct1,
+    mockProductCreate,
+} from '@/features/products/__mocks__/productsApi'
+import { useCreateProductMutation } from '@/features/products/productsApi'
+import { ProductAddPage } from '@/pages/product/ProductAddPage'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 
 vi.mock('@/app/hooks')
-vi.mock('@/shared/utils/errorUtils')
 vi.mock('@/features/form/formSlice')
-vi.mock('../../components/ProductForm')
-vi.mock('../../productsApi')
+vi.mock('@/features/products/components/ProductForm')
+vi.mock('@/features/products/productsApi')
+vi.mock('@/shared/utils/errorUtils')
 
 describe('ProductAddPage', () => {
     const mockAddProduct = vi.fn()

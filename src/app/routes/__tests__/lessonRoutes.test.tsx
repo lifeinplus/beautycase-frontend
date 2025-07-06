@@ -12,8 +12,8 @@ vi.mock('@/features/lessons/pages/LessonAddPage')
 vi.mock('@/features/lessons/pages/LessonDetailsPage')
 vi.mock('@/features/lessons/pages/LessonEditPage')
 vi.mock('@/features/lessons/pages/LessonsGalleryPage')
-vi.mock('@/features/products/pages/ProductSelectionPage')
 vi.mock('@/features/users/pages/UserSelectionPage')
+vi.mock('@/pages/product/ProductSelectionPage')
 vi.mock('../../hooks')
 
 describe('lessonRoutes', () => {

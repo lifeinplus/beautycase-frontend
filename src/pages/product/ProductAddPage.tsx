@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { ProductForm } from '../components/ProductForm'
-import { useCreateProductMutation } from '../productsApi'
-import type { Product } from '../types'
+import { ProductForm } from '@/features/products/components/ProductForm'
+import { useCreateProductMutation } from '@/features/products/productsApi'
+import type { Product } from '@/features/products/types'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const ProductAddPage = () => {
     const navigate = useNavigate()

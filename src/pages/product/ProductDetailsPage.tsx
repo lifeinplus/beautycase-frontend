@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { DetailsPage } from '@/app/routes/DetailsPage'
-import { Image } from '@/shared/components/ui/Image'
 import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
-} from '../productsApi'
+} from '@/features/products/productsApi'
+import { Image } from '@/shared/components/ui/Image'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<{ id: string }>()

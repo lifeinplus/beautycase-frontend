@@ -7,17 +7,17 @@ import { useAppSelector } from '@/app/hooks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { setFormData } from '@/features/form/formSlice'
-import { mockProducts } from '../../__mocks__/productsApi'
-import { useGetAllProductsQuery } from '../../productsApi'
+import { mockProducts } from '../../../features/products/__mocks__/productsApi'
+import { useGetAllProductsQuery } from '../../../features/products/productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
 
 vi.mock('@/app/hooks')
+vi.mock('@/features/form/formSlice')
+vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/ui/Image')
-vi.mock('@/features/form/formSlice')
-vi.mock('../../productsApi')
 
 describe('ProductSelectionPage', () => {
     const mockFormData = {

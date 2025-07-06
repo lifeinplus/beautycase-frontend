@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import { Image } from '@/shared/components/ui/Image'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
-import { useGetAllProductsQuery } from '../productsApi'
 
 export const ProductSelectionPage = () => {
     const navigate = useNavigate()

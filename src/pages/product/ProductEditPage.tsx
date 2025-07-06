@@ -1,21 +1,21 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
 } from '@/features/form/formSlice'
-import { ProductForm } from '../components/ProductForm'
+import { ProductForm } from '@/features/products/components/ProductForm'
 import {
-    useUpdateProductByIdMutation,
     useGetProductByIdQuery,
-} from '../productsApi'
-import type { Product } from '../types'
+    useUpdateProductByIdMutation,
+} from '@/features/products/productsApi'
+import type { Product } from '@/features/products/types'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const ProductEditPage = () => {
     const { id } = useParams()

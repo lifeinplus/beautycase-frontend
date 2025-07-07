@@ -79,7 +79,7 @@ describe('NavBar', () => {
 
         expect(
             screen.getByRole('button', { name: /questionnaires/i })
-        ).toHaveClass('text-danger')
+        ).toHaveClass(/textDanger/)
 
         expect(
             screen.getByRole('button', { name: /makeupBags/i })

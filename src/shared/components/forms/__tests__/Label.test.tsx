@@ -6,14 +6,13 @@ import { Label } from '../Label'
 describe('Label', () => {
     it('renders label text', () => {
         render(<Label text="Username" />)
-        const label = screen.getByText('Username')
-        expect(label).toBeInTheDocument()
+        expect(screen.getByText('Username')).toBeInTheDocument()
     })
 
     it('renders with required prop showing asterisk', () => {
         render(<Label text="Password" required />)
         expect(screen.getByText('Password')).toBeInTheDocument()
-        expect(screen.getByText('*')).toHaveClass('text-danger')
+        expect(screen.getByText('*')).toHaveClass(/textDanger/)
     })
 
     it('renders children inside the label', () => {

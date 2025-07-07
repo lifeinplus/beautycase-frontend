@@ -1,7 +1,9 @@
-import { ButtonHTMLAttributes } from 'react'
 import classNames from 'classnames'
+import { ButtonHTMLAttributes } from 'react'
 
 import { SpinnerButton } from '../common/SpinnerButton'
+import buttonStyles from './button.module.css'
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface ButtonSubmitProps
     extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,9 +20,10 @@ export const ButtonSubmit = ({
     <button
         {...props}
         className={classNames(
-            'btn focus-outline',
+            buttonStyles.btn,
+            commonStyles.focusOutline,
             className,
-            isLoading && 'btn-loading cursor-not-allowed'
+            isLoading && `${buttonStyles.loading} cursor-not-allowed`
         )}
         disabled={isLoading}
         type="submit"

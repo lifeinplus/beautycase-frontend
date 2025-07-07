@@ -6,7 +6,8 @@ import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { AuthButton } from '@/features/auth/components/AuthButton'
 import { ThemeToggler } from '@/features/theme/ThemeToggler'
-import { canAccess, menuItems } from '../../utils/menu'
+import commonStyles from '@/shared/components/common/common.module.css'
+import { canAccess, menuItems } from '@/shared/utils/menu'
 import AppInfo from '../common/AppInfo'
 import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 import { LogoLink } from '../ui/LogoLink'
@@ -56,7 +57,11 @@ export const NavBar = ({ children }: NavBarProps) => {
                     .map((item, index) => (
                         <NavButton
                             key={index}
-                            className={isActive(item.path) ? 'text-danger' : ''}
+                            className={
+                                isActive(item.path)
+                                    ? commonStyles.textDanger
+                                    : ''
+                            }
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
                             label={t(item.label)}

@@ -1,5 +1,7 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
+
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     ariaLabel?: string
@@ -17,9 +19,9 @@ export const Button = ({
     ...props
 }: ButtonProps) => {
     const variants = {
-        success: 'text-success',
-        danger: 'text-danger',
-        warning: 'text-warning',
+        success: commonStyles.textSuccess,
+        danger: commonStyles.textDanger,
+        warning: commonStyles.textWarning,
     }
 
     return (

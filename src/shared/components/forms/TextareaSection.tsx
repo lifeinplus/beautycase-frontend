@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
+import commonStyles from '@/shared/components/common/common.module.css'
 import { getYouTubeThumbnail } from '@/shared/utils/youtube'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
@@ -52,6 +53,10 @@ export const TextareaSection = ({
 
         {description && <p className="form-description">{description}</p>}
 
-        {error && <p className="form-error text-danger">{error}</p>}
+        {error && (
+            <p className={classNames(commonStyles.textDanger, 'form-error')}>
+                {error}
+            </p>
+        )}
     </div>
 )

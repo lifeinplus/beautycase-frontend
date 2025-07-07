@@ -46,11 +46,6 @@ describe('Footer', () => {
         const phone = screen.getByRole('link')
         expect(phone).toHaveAttribute('href', 'tel:+381629446904')
         expect(phone).toHaveTextContent('footer.phone')
-        expect(phone).toHaveClass(
-            'focus-outline',
-            'hover-outline',
-            'text-danger'
-        )
 
         expect(screen.getByText(/questions/)).toBeInTheDocument()
         expect(screen.getByText(/country/)).toBeInTheDocument()

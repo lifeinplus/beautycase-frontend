@@ -13,6 +13,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
 import { useUploadTempImageByFileMutation } from '@/features/uploads/uploadsApi'
+import commonStyles from '@/shared/components/common/common.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
@@ -123,7 +124,16 @@ export const ImageTextSection = <T extends FieldValues>({
 
             {description && <p className="form-description">{description}</p>}
 
-            {error && <p className="form-error text-danger">{error}</p>}
+            {error && (
+                <p
+                    className={classNames(
+                        commonStyles.textDanger,
+                        'form-error'
+                    )}
+                >
+                    {error}
+                </p>
+            )}
 
             {valueUrl && <ImagePreview url={valueUrl} />}
         </div>

@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
+import commonStyles from '@/shared/components/common/common.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
@@ -14,7 +15,7 @@ import { useLoginUserMutation } from '../../features/auth/authApi'
 import { setCredentials } from '../../features/auth/authSlice'
 import type { AuthQueryLogin } from '../../features/auth/types'
 import { loginSchema } from '../../features/auth/validations'
-import styles from './auth.module.css'
+import authStyles from './auth.module.css'
 
 export const LoginPage = () => {
     const location = useLocation()
@@ -56,20 +57,20 @@ export const LoginPage = () => {
     const { ref: refUsername, ...restUsername } = register('username')
 
     return (
-        <section className={styles.section}>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <div className={styles.logoContainer}>
-                    <h1 className={styles.logo}>
+        <section className={authStyles.section}>
+            <form className={authStyles.form} onSubmit={handleSubmit(onSubmit)}>
+                <div className={authStyles.logoContainer}>
+                    <h1 className={authStyles.logo}>
                         <LogoLink />
                     </h1>
                 </div>
 
-                <div className={styles.inputContainer}>
-                    <div className={styles.inputGroup}>
+                <div className={authStyles.inputContainer}>
+                    <div className={authStyles.inputGroup}>
                         <input
                             {...restUsername}
                             className={classNames(
-                                styles.input,
+                                authStyles.input,
                                 errors.username && 'border-error'
                             )}
                             placeholder={t('fields.username.label')}
@@ -80,40 +81,50 @@ export const LoginPage = () => {
                             type="text"
                         />
 
-                        <label htmlFor="username" className={styles.label}>
+                        <label htmlFor="username" className={authStyles.label}>
                             {t('fields.username.label')}
                         </label>
 
                         {errors.username?.message && (
-                            <p className="form-error text-danger">
+                            <p
+                                className={classNames(
+                                    commonStyles.textDanger,
+                                    'form-error'
+                                )}
+                            >
                                 {t(errors.username.message)}
                             </p>
                         )}
                     </div>
 
-                    <div className={styles.inputGroup}>
+                    <div className={authStyles.inputGroup}>
                         <input
                             {...register('password')}
                             className={classNames(
-                                styles.input,
+                                authStyles.input,
                                 errors.password && 'border-error'
                             )}
                             placeholder={t('fields.password.label')}
                             type="password"
                         />
 
-                        <label htmlFor="password" className={styles.label}>
+                        <label htmlFor="password" className={authStyles.label}>
                             {t('fields.password.label')}
                         </label>
 
                         {errors.password?.message && (
-                            <p className="form-error text-danger">
+                            <p
+                                className={classNames(
+                                    commonStyles.textDanger,
+                                    'form-error'
+                                )}
+                            >
                                 {t(errors.password.message)}
                             </p>
                         )}
                     </div>
 
-                    <div className={styles.submitContainer}>
+                    <div className={authStyles.submitContainer}>
                         <ButtonSubmit
                             isLoading={isLoading}
                             label={isLoading ? t('loggingIn') : t('login')}
@@ -121,11 +132,15 @@ export const LoginPage = () => {
                     </div>
                 </div>
 
-                <div className={styles.questionContainer}>
-                    <p className={styles.question}>
+                <div className={authStyles.questionContainer}>
+                    <p className={authStyles.question}>
                         {t('loginQuestion')}{' '}
                         <Link
-                            className="text-danger focus-outline font-semibold"
+                            className={classNames(
+                                commonStyles.focusOutline,
+                                commonStyles.textDanger,
+                                'font-semibold'
+                            )}
                             to="/register"
                         >
                             {t('register')}

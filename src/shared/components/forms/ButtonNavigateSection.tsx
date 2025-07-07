@@ -1,5 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 
+import commonStyles from '@/shared/components/common/common.module.css'
 import { Label } from './Label'
 
 export interface ButtonNavigateSectionProps {
@@ -34,7 +36,16 @@ export const ButtonNavigateSection = ({
 
             {description && <p className="form-description">{description}</p>}
 
-            {error && <p className="form-error text-danger">{error}</p>}
+            {error && (
+                <p
+                    className={classNames(
+                        commonStyles.textDanger,
+                        'form-error'
+                    )}
+                >
+                    {error}
+                </p>
+            )}
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import classNames from 'classnames'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
+import commonStyles from '@/shared/components/common/common.module.css'
 import { Hero } from '@/shared/components/common/Hero'
 import { CheckboxSection } from '@/shared/components/forms/CheckboxSection'
 import { ImageTextSection } from '@/shared/components/forms/ImageTextSection'
@@ -13,8 +13,10 @@ import { RadioButtonSection } from '@/shared/components/forms/RadioButtonSection
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
+import styles from '@/shared/components/ui/button.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
+import classNames from 'classnames'
 import { options } from '../../features/questionnaires/options'
 import { useCreateQuestionnaireMutation } from '../../features/questionnaires/questionnairesApi'
 import type { Questionnaire } from '../../features/questionnaires/types'
@@ -70,7 +72,12 @@ export const QuestionnairePage = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p className="text-danger text-sm">
+                            <p
+                                className={classNames(
+                                    commonStyles.textDanger,
+                                    'text-sm'
+                                )}
+                            >
                                 {t('requiredField')}
                             </p>
 
@@ -242,9 +249,9 @@ export const QuestionnairePage = () => {
                             />
                         </article>
 
-                        <section className="btn-section">
+                        <section className={styles.section}>
                             <ButtonSubmit
-                                className={classNames('sm:w-44')}
+                                className="sm:w-44"
                                 isLoading={isLoading}
                                 label={isLoading ? t('sending') : t('send')}
                             />

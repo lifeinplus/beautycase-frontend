@@ -1,5 +1,8 @@
+import classNames from 'classnames'
 import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface ModalDeleteProps {
     description: string
@@ -46,7 +49,10 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
                         onClick={onConfirm}
-                        className="modal-btn text-danger"
+                        className={classNames(
+                            commonStyles.textDanger,
+                            'modal-btn'
+                        )}
                     >
                         {t('buttons.delete.text')}
                     </button>

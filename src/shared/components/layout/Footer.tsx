@@ -1,4 +1,7 @@
+import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
+
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export const Footer = () => {
     const { t } = useTranslation('component')
@@ -14,11 +17,17 @@ export const Footer = () => {
                     <span>{t('footer.questions')}:</span>{' '}
                     <a
                         href="tel:+381629446904"
-                        className="focus-outline hover-outline text-danger"
+                        className={classNames(
+                            commonStyles.focusOutline,
+                            commonStyles.hoverOutline,
+                            commonStyles.textDanger
+                        )}
                     >
                         {t('footer.phone')}
                     </a>{' '}
-                    <span className="text-danger">({t('footer.country')})</span>{' '}
+                    <span className={commonStyles.textDanger}>
+                        ({t('footer.country')})
+                    </span>{' '}
                     <span>{t('footer.help')}</span>
                 </p>
                 <p>{t('footer.services')}</p>

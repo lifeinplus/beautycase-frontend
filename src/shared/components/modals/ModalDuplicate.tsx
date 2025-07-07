@@ -1,5 +1,8 @@
+import classNames from 'classnames'
 import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface ModalDuplicateProps {
     description: string
@@ -46,7 +49,10 @@ export const ModalDuplicate = ({
                     <button
                         aria-label={t('buttons.duplicate.ariaLabel')}
                         onClick={onConfirm}
-                        className="modal-btn text-warning"
+                        className={classNames(
+                            commonStyles.textWarning,
+                            'modal-btn'
+                        )}
                     >
                         {t('buttons.duplicate.text')}
                     </button>

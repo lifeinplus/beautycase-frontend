@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import commonStyles from '@/shared/components/common/common.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
@@ -83,7 +84,12 @@ export const RegisterPage = () => {
                         </label>
 
                         {errors.username?.message && (
-                            <p className="form-error text-danger">
+                            <p
+                                className={classNames(
+                                    commonStyles.textDanger,
+                                    'form-error'
+                                )}
+                            >
                                 {t(errors.username.message)}
                             </p>
                         )}
@@ -106,7 +112,12 @@ export const RegisterPage = () => {
                     </label>
 
                     {errors.password?.message && (
-                        <p className="form-error text-danger">
+                        <p
+                            className={classNames(
+                                commonStyles.textDanger,
+                                'form-error'
+                            )}
+                        >
                             {t(errors.password.message)}
                         </p>
                     )}
@@ -128,7 +139,12 @@ export const RegisterPage = () => {
                     </label>
 
                     {errors.confirmPassword?.message && (
-                        <p className="form-error text-danger">
+                        <p
+                            className={classNames(
+                                commonStyles.textDanger,
+                                'form-error'
+                            )}
+                        >
                             {t(errors.confirmPassword.message)}
                         </p>
                     )}
@@ -145,7 +161,11 @@ export const RegisterPage = () => {
                     <p className={styles.question}>
                         {t('registerQuestion')}{' '}
                         <Link
-                            className="text-danger focus-outline font-semibold"
+                            className={classNames(
+                                commonStyles.focusOutline,
+                                commonStyles.textDanger,
+                                'font-semibold'
+                            )}
                             to="/login"
                         >
                             {t('login')}

@@ -1,5 +1,8 @@
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
+
+import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface TopPanelProps {
     title: string
@@ -17,7 +20,10 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
         <nav className="panel-top">
             <div className="flex items-center justify-between px-4 py-2.5">
                 <button
-                    className="panel-top-btn focus-outline"
+                    className={classNames(
+                        commonStyles.focusOutline,
+                        'panel-top-btn'
+                    )}
                     onClick={onBack || handleBack}
                 >
                     <ChevronLeftIcon className="h-6 w-6" />

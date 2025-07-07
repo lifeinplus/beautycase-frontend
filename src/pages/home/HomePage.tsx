@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
-import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
-import { canAccess, menuItems } from '@/shared/utils/menu'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { useAuthLogout } from '@/features/auth/hooks/useAuthLogout'
-import { HomeTile } from '../../features/home/components/HomeTile'
+import { HomeTile } from '@/features/home/components/HomeTile'
+import commonStyles from '@/shared/components/common/common.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
+import { canAccess, menuItems } from '@/shared/utils/menu'
 
 export const HomePage = () => {
     const { t } = useTranslation('home')
@@ -62,7 +64,10 @@ export const HomePage = () => {
                                 </p>
                             </div>
                             <button
-                                className="focus-outline btn"
+                                className={classNames(
+                                    buttonStyles.btn,
+                                    commonStyles.focusOutline
+                                )}
                                 onClick={handleLogout}
                             >
                                 {t('auth.logout')}
@@ -75,13 +80,19 @@ export const HomePage = () => {
                             </p>
                             <div className="flex flex-col gap-3">
                                 <Link
-                                    className="focus-outline home-btn-login"
+                                    className={classNames(
+                                        commonStyles.focusOutline,
+                                        'home-btn-login'
+                                    )}
                                     to="/login"
                                 >
                                     {t('link.login')}
                                 </Link>
                                 <Link
-                                    className="focus-outline home-btn-register"
+                                    className={classNames(
+                                        commonStyles.focusOutline,
+                                        'home-btn-register'
+                                    )}
                                     to="/register"
                                 >
                                     {t('link.register')}

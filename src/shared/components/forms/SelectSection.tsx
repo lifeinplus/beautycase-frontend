@@ -1,8 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { SelectOption } from '@/features/form/types'
+import commonStyles from '@/shared/components/common/common.module.css'
 import { Label } from './Label'
 
 export interface SelectSectionProps {
@@ -50,7 +52,16 @@ export const SelectSection = ({
 
             {description && <p className="form-description">{description}</p>}
 
-            {error && <p className="form-error text-danger">{error}</p>}
+            {error && (
+                <p
+                    className={classNames(
+                        commonStyles.textDanger,
+                        'form-error'
+                    )}
+                >
+                    {error}
+                </p>
+            )}
         </div>
     )
 }

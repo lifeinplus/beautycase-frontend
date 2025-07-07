@@ -3,16 +3,18 @@ import {
     PlusCircleIcon,
 } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { Button } from '@/shared/components/forms/Button'
 import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import type { FormRef } from '@/features/form/types'
+import commonStyles from '@/shared/components/common/common.module.css'
+import { Button } from '@/shared/components/forms/Button'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import {
     useCreateBrandMutation,
     useUpdateBrandByIdMutation,
@@ -118,7 +120,12 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
             </div>
 
             {errors.name && (
-                <p className="form-error text-danger">
+                <p
+                    className={classNames(
+                        commonStyles.textDanger,
+                        'form-error'
+                    )}
+                >
                     {t(errors.name.message || '')}
                 </p>
             )}

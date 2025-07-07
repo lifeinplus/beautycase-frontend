@@ -12,6 +12,7 @@ import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { useRegisterUserMutation } from '../../features/auth/authApi'
 import type { AuthQueryRegister } from '../../features/auth/types'
 import { registerSchema } from '../../features/auth/validations'
+import styles from './auth.module.css'
 
 export const RegisterPage = () => {
     const navigate = useNavigate()
@@ -53,20 +54,20 @@ export const RegisterPage = () => {
     const { ref: refUsername, ...restUsername } = register('username')
 
     return (
-        <section className="auth-section">
-            <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="auth-logo-container">
-                    <h1 className="auth-logo">
+        <section className={styles.section}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                <div className={styles.logoContainer}>
+                    <h1 className={styles.logo}>
                         <LogoLink />
                     </h1>
                 </div>
 
-                <div className="mt-12">
-                    <div className="auth-input-group">
+                <div className={styles.inputContainer}>
+                    <div className={styles.inputGroup}>
                         <input
                             {...restUsername}
                             className={classNames(
-                                'auth-input peer',
+                                styles.input,
                                 errors.username && 'border-error'
                             )}
                             placeholder={t('fields.username.label')}
@@ -77,7 +78,7 @@ export const RegisterPage = () => {
                             type="text"
                         />
 
-                        <label htmlFor="username" className="auth-label">
+                        <label htmlFor="username" className={styles.label}>
                             {t('fields.username.label')}
                         </label>
 
@@ -89,18 +90,18 @@ export const RegisterPage = () => {
                     </div>
                 </div>
 
-                <div className="auth-input-group">
+                <div className={styles.inputGroup}>
                     <input
                         {...register('password')}
                         className={classNames(
-                            'auth-input peer',
+                            styles.input,
                             errors.password && 'border-error'
                         )}
                         placeholder={t('fields.password.label')}
                         type="password"
                     />
 
-                    <label htmlFor="password" className="auth-label">
+                    <label htmlFor="password" className={styles.label}>
                         {t('fields.password.label')}
                     </label>
 
@@ -111,18 +112,18 @@ export const RegisterPage = () => {
                     )}
                 </div>
 
-                <div className="auth-input-group">
+                <div className={styles.inputGroup}>
                     <input
                         {...register('confirmPassword')}
                         className={classNames(
-                            'auth-input peer',
+                            styles.input,
                             errors.confirmPassword && 'border-error'
                         )}
                         placeholder={t('fields.confirmPassword.label')}
                         type="password"
                     />
 
-                    <label htmlFor="confirmPassword" className="auth-label">
+                    <label htmlFor="confirmPassword" className={styles.label}>
                         {t('fields.confirmPassword.label')}
                     </label>
 
@@ -133,15 +134,15 @@ export const RegisterPage = () => {
                     )}
                 </div>
 
-                <div className="auth-submit-container">
+                <div className={styles.submitContainer}>
                     <ButtonSubmit
                         isLoading={isLoading}
                         label={isLoading ? t('regstering') : t('register')}
                     />
                 </div>
 
-                <div className="auth-question-container">
-                    <p className="auth-question">
+                <div className={styles.questionContainer}>
+                    <p className={styles.question}>
                         {t('registerQuestion')}{' '}
                         <Link
                             className="text-danger focus-outline font-semibold"

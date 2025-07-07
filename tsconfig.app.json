@@ -32,7 +32,6 @@
             "@/features/*": ["src/features/*"],
             "@/lib/*": ["src/lib/*"],
             "@/shared/*": ["src/shared/*"],
-            "@/styles/*": ["src/styles/*"],
             "@/tests/*": ["src/tests/*"]
         }
     },

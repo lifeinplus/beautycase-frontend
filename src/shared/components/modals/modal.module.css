@@ -1,0 +1,47 @@
+.modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+}
+
+.container {
+    @apply m-5 flex w-3/4 max-w-96 flex-col rounded-xl bg-white shadow-lg;
+}
+
+.content {
+    @apply mx-8 mb-4 mt-8 text-center;
+}
+
+.title {
+    @apply text-xl leading-none;
+}
+
+.description {
+    @apply pt-2.5 text-sm leading-4.5 text-neutral-500;
+}
+
+.btnGroup {
+    @apply mt-3 w-full;
+}
+
+.btn {
+    @apply min-h-12 w-full rounded border-t border-neutral-300 bg-transparent px-2 py-1 text-sm font-semibold;
+}
+
+.btnBottom {
+    @apply rounded-b-xl text-black;
+}
+
+:global(.dark) .container {
+    @apply bg-neutral-800;
+}
+
+:global(.dark) .description {
+    @apply text-neutral-400;
+}
+
+:global(.dark) .btn {
+    @apply border-neutral-700;
+}
+
+:global(.dark) .btnBottom {
+    @apply text-white;
+}

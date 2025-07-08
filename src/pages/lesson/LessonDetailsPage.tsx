@@ -1,14 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { DetailsPage } from '@/widgets/DetailsPage'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
 } from '@/features/lessons/lessonsApi'
 import type { Product } from '@/features/products/types'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import styles from './LessonDetailsPage.module.css'
 import { Image } from '@/shared/components/ui/Image'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
+import { DetailsPage } from '@/widgets/DetailsPage'
 
 export const LessonDetailsPage = () => {
     const { pathname } = useLocation()
@@ -38,7 +40,7 @@ export const LessonDetailsPage = () => {
             description={data?.fullDescription}
             deleteItem={deleteLessonById}
             mediaContent={
-                <div className="lesson-video-container">
+                <div className={styles.container}>
                     {embedUrl ? (
                         <iframe
                             width="100%"
@@ -58,7 +60,7 @@ export const LessonDetailsPage = () => {
                 </div>
             }
             additionalContent={
-                <div className="gallery-container">
+                <div className={galleryStyles.container}>
                     {data?.products?.map((product: Product) => (
                         <div
                             key={product._id}

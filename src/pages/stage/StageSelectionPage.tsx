@@ -4,15 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { Image } from '@/shared/components/ui/Image'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
+import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import { TopPanel } from '@/shared/components/layout/TopPanel'
+import { NavBar } from '@/shared/components/navigation/NavBar'
+import { NavButton } from '@/shared/components/navigation/NavButton'
+import { Image } from '@/shared/components/ui/Image'
 import { useGetAllStagesQuery } from '../../features/stages/stagesApi'
 import type { Stage } from '../../features/stages/types'
+import styles from './StageSelectionPage.module.css'
 
 export const StageSelectionPage = () => {
     const navigate = useNavigate()
@@ -83,8 +85,8 @@ export const StageSelectionPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <section className="gallery-header">
-                        <h1 className="gallery-title">
+                    <section className={galleryStyles.header}>
+                        <h1 className={galleryStyles.title}>
                             {t('titles.selection')}
                         </h1>
                     </section>
@@ -95,7 +97,7 @@ export const StageSelectionPage = () => {
                         data={filteredStages}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className="gallery-container-stages">
+                        <section className={styles.container}>
                             {filteredStages.map(
                                 ({ _id, title, subtitle, imageUrl }) => {
                                     const isSelected = orderedIds.has(_id!)

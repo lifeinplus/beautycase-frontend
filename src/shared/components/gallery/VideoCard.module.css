@@ -1,20 +1,24 @@
-.lesson-card {
+.card {
     @apply relative overflow-hidden border-t;
-    @apply border-neutral-200 dark:border-neutral-800;
+    @apply border-neutral-200;
 }
 
-.lesson-card-thumbnail-container {
+.thumbnail {
     @apply relative mx-auto aspect-video w-full overflow-hidden;
 }
 
-.lesson-card-metadata {
+.metadata {
     @apply mx-3 mt-2;
 }
 
-.lesson-card-headline {
+.headline {
     @apply text-sm;
 }
 
-.lesson-card-byline {
+.byline {
     @apply text-xs text-gray-400;
+}
+
+:global(.dark) .card {
+    @apply border-neutral-800;
 }

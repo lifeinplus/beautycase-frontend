@@ -15,11 +15,12 @@ import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { StoreLink } from '@/features/stores/types'
 import { Button } from '@/shared/components/forms/Button'
+import selectStyles from '@/shared/components/forms/SelectSection.module.css'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import inputStyles from '@/shared/components/ui/Input.module.css'
-import selectStyles from '@/shared/components/forms/SelectSection.module.css'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -96,8 +97,10 @@ export const StoreLinkAddPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <section className="gallery-header">
-                        <h1 className="gallery-title">{t('titles.add')}</h1>
+                    <section className={galleryStyles.header}>
+                        <h1 className={galleryStyles.title}>
+                            {t('titles.add')}
+                        </h1>
                     </section>
 
                     <form onSubmit={handleSave} className="form px-0 pt-6">

@@ -3,6 +3,7 @@ import { ComponentType, SVGProps } from 'react'
 import { Link } from 'react-router-dom'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import styles from './HomeTile.module.css'
 
 export interface HomeTileProps {
     to: string
@@ -13,11 +14,11 @@ export interface HomeTileProps {
 export const HomeTile = ({ to, label, icon: Icon }: HomeTileProps) => (
     <Link
         to={to}
-        className={classNames(commonStyles.focusOutline, 'home-tile group')}
+        className={classNames(commonStyles.focusOutline, styles.tile, 'group')}
     >
-        <div className="text-black group-hover:text-white dark:text-white">
+        <div className={styles.icon}>
             <Icon className="h-16 w-16" />
         </div>
-        <span className="home-tile-label">{label}</span>
+        <span className={styles.label}>{label}</span>
     </Link>
 )

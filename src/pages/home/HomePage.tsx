@@ -10,6 +10,7 @@ import commonStyles from '@/shared/components/common/common.module.css'
 import buttonStyles from '@/shared/components/ui/button.module.css'
 import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
 import { canAccess, menuItems } from '@/shared/utils/menu'
+import styles from './HomePage.module.css'
 
 export const HomePage = () => {
     const { t } = useTranslation('home')
@@ -25,11 +26,11 @@ export const HomePage = () => {
     const itemCount = accessibleMenuItems.length
 
     return (
-        <div className="home">
+        <div className={styles.container}>
             <div className="flex max-w-xs flex-grow flex-col sm:max-w-md">
                 <div className="my-10 text-center">
-                    <h2 className="home-logo">Beautycase</h2>
-                    <p className="home-motto">{t('motto')}</p>
+                    <h2 className={styles.logo}>Beautycase</h2>
+                    <p className={styles.motto}>{t('motto')}</p>
                 </div>
 
                 <div
@@ -82,7 +83,7 @@ export const HomePage = () => {
                                 <Link
                                     className={classNames(
                                         commonStyles.focusOutline,
-                                        'home-btn-login'
+                                        styles.btnLogin
                                     )}
                                     to="/login"
                                 >
@@ -91,7 +92,7 @@ export const HomePage = () => {
                                 <Link
                                     className={classNames(
                                         commonStyles.focusOutline,
-                                        'home-btn-register'
+                                        styles.btnRegister
                                     )}
                                     to="/register"
                                 >

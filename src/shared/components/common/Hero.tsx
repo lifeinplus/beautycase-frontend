@@ -1,4 +1,5 @@
 import { Image } from '../ui/Image'
+import styles from './Hero.module.css'
 
 export interface HeroProps {
     headline?: string
@@ -8,14 +9,14 @@ export interface HeroProps {
 }
 
 export const Hero = ({ headline, byline, imgUrl, content }: HeroProps) => (
-    <section id="hero" className="hero">
-        <div className="hero-title">
-            {headline && <h2 className="hero-headline">{headline}</h2>}
-            {byline && <h3 className="hero-byline">{byline}</h3>}
+    <section id="hero" className={styles.container}>
+        <div className={styles.title}>
+            {headline && <h2 className={styles.headline}>{headline}</h2>}
+            {byline && <h3 className={styles.byline}>{byline}</h3>}
         </div>
 
-        {imgUrl && <Image alt={headline} className="hero-img" src={imgUrl} />}
+        {imgUrl && <Image alt={headline} className={styles.img} src={imgUrl} />}
 
-        {content && <p className="hero-content">{content}</p>}
+        {content && <p className={styles.content}>{content}</p>}
     </section>
 )

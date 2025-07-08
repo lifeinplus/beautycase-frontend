@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { Image } from '../../components/ui/Image'
 import { getYouTubeThumbnail } from '@/shared/utils/youtube'
+import styles from './VideoCard.module.css'
 
 interface VideoData {
     _id?: string
@@ -16,17 +17,17 @@ export interface VideoCardProps {
 }
 
 export const VideoCard = ({ data, path }: VideoCardProps) => (
-    <Link to={path} className="lesson-card">
-        <div className="lesson-card-thumbnail-container">
+    <Link to={path} className={styles.card}>
+        <div className={styles.thumbnail}>
             <Image
                 alt={`${data.title} Thumbnail`}
                 src={getYouTubeThumbnail(data.videoUrl)}
             />
         </div>
 
-        <div className="lesson-card-metadata">
-            <h3 className="lesson-card-headline">{data.title}</h3>
-            <p className="lesson-card-byline">{data.shortDescription}</p>
+        <div className={styles.metadata}>
+            <h3 className={styles.headline}>{data.title}</h3>
+            <p className={styles.byline}>{data.shortDescription}</p>
         </div>
     </Link>
 )

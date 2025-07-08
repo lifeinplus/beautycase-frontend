@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
@@ -65,8 +66,8 @@ export const ToolSelectionPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <section className="gallery-header">
-                        <h1 className="gallery-title">
+                    <section className={galleryStyles.header}>
+                        <h1 className={galleryStyles.title}>
                             {t('titles.selection')}
                         </h1>
                     </section>
@@ -77,7 +78,7 @@ export const ToolSelectionPage = () => {
                         data={tools}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className="gallery-container">
+                        <section className={galleryStyles.container}>
                             {tools?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)
                                 const order = orderedIds.get(_id!)

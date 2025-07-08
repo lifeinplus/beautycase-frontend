@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
-import { GalleryPage } from '@/widgets/GalleryPage'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
+import { GalleryPage } from '@/widgets/GalleryPage'
 import { useGetAllToolsQuery } from '../../features/tools/toolsApi'
 
 export const ToolsGalleryPage = () => {
@@ -17,7 +18,7 @@ export const ToolsGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <section className="gallery-container">
+                <section className={galleryStyles.container}>
                     {tools?.map((tool) => (
                         <ImageCard
                             key={tool._id}

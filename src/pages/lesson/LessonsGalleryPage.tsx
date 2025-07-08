@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
-import { GalleryPage } from '@/widgets/GalleryPage'
 import { VideoCard } from '@/shared/components/gallery/VideoCard'
+import { GalleryPage } from '@/widgets/GalleryPage'
+import styles from './LessonsGalleryPage.module.css'
 
 export const LessonsGalleryPage = () => {
     const { t } = useTranslation('lesson')
@@ -16,7 +17,7 @@ export const LessonsGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <section className="gallery-container-video">
+                <section className={styles.container}>
                     {lessons?.map((lesson) => (
                         <VideoCard
                             key={lesson._id}

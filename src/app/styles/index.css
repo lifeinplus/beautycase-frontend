@@ -1,11 +1,5 @@
 @import './makeup/image.css';
 
-@import './gallery.css';
-@import './hero.css';
-@import './home.css';
-@import './lesson';
-@import './lesson-card';
-@import './modal.css';
 @import './navigation.css';
 @import './page.css';
 @import './panel-top.css';

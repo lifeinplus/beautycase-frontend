@@ -19,11 +19,8 @@ describe('VideoCard', () => {
     it('renders the video title and description', () => {
         renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
 
-        const title = screen.getByText(mockVideo.title)
-        const shortDescription = screen.getByText(mockVideo.shortDescription)
-
-        expect(title).toBeInTheDocument()
-        expect(shortDescription).toBeInTheDocument()
+        expect(screen.getByText(mockVideo.title)).toBeInTheDocument()
+        expect(screen.getByText(mockVideo.shortDescription)).toBeInTheDocument()
     })
 
     it('renders the video thumbnail correctly', () => {
@@ -31,8 +28,8 @@ describe('VideoCard', () => {
 
         const image = screen.getByTestId('mocked-image')
 
-        expect(image).toBeInTheDocument()
         expect(image).toHaveAttribute('alt', `${mockVideo.title} Thumbnail`)
+
         expect(image).toHaveAttribute(
             'src',
             `https://img.youtube.com/vi/${mockVideo.videoUrl}/hqdefault.jpg`
@@ -44,22 +41,22 @@ describe('VideoCard', () => {
 
         const link = screen.getByRole('link')
         expect(link).toHaveAttribute('href', mockPath)
-        expect(link).toHaveClass('lesson-card')
+        expect(link).toHaveClass(/card/)
     })
 
     it('applies correct CSS classes to elements', () => {
         renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
 
-        const container = screen.getByTestId('mocked-image').parentElement
-        expect(container).toHaveClass('lesson-card-thumbnail-container')
+        const parentThumbnail = screen.getByTestId('mocked-image').parentElement
+        expect(parentThumbnail).toHaveClass(/thumbnail/)
 
-        const metadata = screen.getByText(mockVideo.title).parentElement
-        expect(metadata).toHaveClass('lesson-card-metadata')
+        const parentTitle = screen.getByText(mockVideo.title).parentElement
+        expect(parentTitle).toHaveClass(/metadata/)
 
-        const headline = screen.getByText(mockVideo.title)
-        expect(headline).toHaveClass('lesson-card-headline')
+        expect(screen.getByText(mockVideo.title)).toHaveClass(/headline/)
 
-        const byline = screen.getByText(mockVideo.shortDescription)
-        expect(byline).toHaveClass('lesson-card-byline')
+        expect(screen.getByText(mockVideo.shortDescription)).toHaveClass(
+            /byline/
+        )
     })
 })

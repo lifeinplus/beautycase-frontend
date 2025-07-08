@@ -1,0 +1,24 @@
+.tile {
+    @apply flex min-h-44 w-full flex-col items-center bg-white px-5 pt-8 hover:bg-rose-500;
+    @apply rounded-md border border-gray-200;
+}
+
+.icon {
+    @apply text-black group-hover:text-white;
+}
+
+.label {
+    @apply mt-8 text-center font-heading text-base font-normal leading-tight text-black group-hover:text-white;
+}
+
+:global(.dark) .tile {
+    @apply border-neutral-700 bg-black hover:bg-rose-600;
+}
+
+:global(.dark) .icon {
+    @apply text-white;
+}
+
+:global(.dark) .label {
+    @apply text-white;
+}

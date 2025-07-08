@@ -8,10 +8,12 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllUsersQuery } from '@/features/users/usersApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import { Image } from '@/shared/components/ui/Image'
+import styles from './UserSelectionPage.module.css'
 
 export const UserSelectionPage = () => {
     const navigate = useNavigate()
@@ -58,8 +60,8 @@ export const UserSelectionPage = () => {
 
             <main className="page-content">
                 <article className="content-container">
-                    <section className="gallery-header">
-                        <h1 className="gallery-title">
+                    <section className={galleryStyles.header}>
+                        <h1 className={galleryStyles.title}>
                             {t('titles.selection')}
                         </h1>
                     </section>
@@ -70,7 +72,7 @@ export const UserSelectionPage = () => {
                         data={clients}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className="gallery-container-clients">
+                        <section className={styles.container}>
                             {clients.map(({ _id, username }) => {
                                 const isSelected = selectedIds.has(_id!)
 

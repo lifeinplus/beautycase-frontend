@@ -3,6 +3,7 @@ import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import styles from './modal.module.css'
 
 export interface ModalDeleteProps {
     description: string
@@ -39,19 +40,19 @@ export const ModalDelete = ({
     if (!isOpen) return null
 
     return (
-        <div className="modal" onClick={handleClickOutside}>
-            <div className="modal-container" ref={modalRef}>
-                <div className="modal-content">
-                    <h2 className="modal-title">{title}</h2>
-                    <p className="modal-description">{description}</p>
+        <div className={styles.modal} onClick={handleClickOutside}>
+            <div className={styles.container} ref={modalRef}>
+                <div className={styles.content}>
+                    <h2 className={styles.title}>{title}</h2>
+                    <p className={styles.description}>{description}</p>
                 </div>
-                <div className="modal-btn-group">
+                <div className={styles.btnGroup}>
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
                         onClick={onConfirm}
                         className={classNames(
                             commonStyles.textDanger,
-                            'modal-btn'
+                            styles.btn
                         )}
                     >
                         {t('buttons.delete.text')}
@@ -59,7 +60,7 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
                         onClick={onCancel}
-                        className="modal-btn modal-btn-bottom"
+                        className={classNames(styles.btn, styles.btnBottom)}
                     >
                         {t('buttons.cancel.text')}
                     </button>

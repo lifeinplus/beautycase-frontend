@@ -64,7 +64,7 @@ describe('ImageTextSection', () => {
 
         const description = screen.getByText(mockDescription)
         expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(description).toHaveClass(/description/)
     })
 
     it('renders error message', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import { InputSection, type InputSectionProps } from '../InputSection'
@@ -16,12 +16,11 @@ describe('InputSection', () => {
     it('renders with the label and input correctly', () => {
         render(<InputSection {...mockProps} />)
 
-        const label = screen.getByLabelText(mockProps.label)
-        expect(label).toBeInTheDocument()
-
-        const input = screen.getByPlaceholderText(mockProps.label)
-        expect(input).toBeInTheDocument()
-        expect(input).toHaveAttribute('type', 'text')
+        expect(screen.getByLabelText(mockProps.label)).toBeInTheDocument()
+        expect(screen.getByPlaceholderText(mockProps.label)).toHaveAttribute(
+            'type',
+            'text'
+        )
     })
 
     it('renders description if provided', () => {
@@ -29,19 +28,13 @@ describe('InputSection', () => {
 
         render(<InputSection {...mockProps} description={mockDescription} />)
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
     it('renders error message and applies error class', () => {
         render(<InputSection {...mockProps} error={mockFieldError.message} />)
 
-        const error = screen.getByText(mockFieldError.message!)
-        expect(error).toBeInTheDocument()
-        expect(error).toHaveClass('form-error')
-
-        const input = screen.getByRole('textbox')
-        expect(input).toHaveClass('border-error')
+        expect(screen.getByText(mockFieldError.message!)).toHaveClass(/error/)
+        expect(screen.getByRole('textbox')).toHaveClass(/borderError/)
     })
 })

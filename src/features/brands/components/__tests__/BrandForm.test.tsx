@@ -179,8 +179,8 @@ describe('BrandForm', () => {
         render(<BrandForm ref={mockRef} />)
         await user.click(screen.getByTestId('mocked-button'))
 
-        const error = screen.getByText('fields.name.errors.required')
-        expect(error).toBeInTheDocument()
-        expect(error).toHaveClass('form-error')
+        expect(screen.getByText('fields.name.errors.required')).toHaveClass(
+            /error/
+        )
     })
 })

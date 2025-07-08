@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { mockFieldError } from '@/tests/mocks/form'
 import {
     ButtonNavigateSection,
     type ButtonNavigateSectionProps,
 } from '@/shared/components/forms/ButtonNavigateSection'
+import { mockFieldError } from '@/tests/mocks/form'
 
 vi.mock('../Label')
 
@@ -35,9 +35,7 @@ describe('ButtonNavigateSection', () => {
             />
         )
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
     it('renders error message and applies error class', () => {
@@ -48,11 +46,8 @@ describe('ButtonNavigateSection', () => {
             />
         )
 
-        const error = screen.getByText(mockFieldError.message!)
-        expect(error).toBeInTheDocument()
-
-        const button = screen.getByRole('button')
-        expect(button).toHaveClass('border-error')
+        expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
+        expect(screen.getByRole('button')).toHaveClass(/borderError/)
     })
 
     it('calls onNavigate when button is clicked', async () => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
+import selectStyles from '@/shared/components/forms/SelectSection.module.css'
 import type { Stage } from '../types'
 
 export interface StageFilterProps {
@@ -44,9 +45,9 @@ export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
 
     return (
         <div className="mb-6 grid pe-5 ps-4 sm:p-0">
-            <ChevronDownIcon className="form-select-icon" />
+            <ChevronDownIcon className={selectStyles.icon} />
             <select
-                className="form-select"
+                className={selectStyles.select}
                 onChange={(e) => setSelectedMakeupBagId(e.target.value)}
                 value={selectedMakeupBagId}
             >

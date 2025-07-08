@@ -67,7 +67,7 @@ export const QuestionnairePage = () => {
                     />
 
                     <form
-                        className="form-questionnaire"
+                        className="space-y-6"
                         encType="multipart/form-data"
                         onSubmit={handleSubmit(onSubmit)}
                     >

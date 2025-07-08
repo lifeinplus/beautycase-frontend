@@ -10,7 +10,7 @@ export interface LabelProps {
 
 export const Label = ({ children, required, text }: LabelProps) => (
     <label className="block">
-        <span className="form-label">
+        <span className="block py-4 font-bold">
             {text}
             {required && <span className={commonStyles.textDanger}> *</span>}
         </span>

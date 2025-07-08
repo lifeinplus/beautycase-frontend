@@ -1,0 +1,18 @@
+.select {
+    @apply col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 pe-10 ps-4 focus:outline-none;
+    @apply bg-white placeholder-neutral-500;
+    @apply border border-neutral-200 focus:border-black;
+}
+
+.icon {
+    @apply pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end forced-colors:hidden;
+    @apply text-neutral-600;
+}
+
+:global(.dark) .select {
+    @apply border-neutral-700 bg-black placeholder-neutral-600 focus:border-white;
+}
+
+:global(.dark) .icon {
+    @apply text-neutral-400;
+}

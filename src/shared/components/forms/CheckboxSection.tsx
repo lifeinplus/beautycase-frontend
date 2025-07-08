@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { QuestionnaireOption } from '@/features/questionnaires/options'
 import { Questionnaire } from '@/features/questionnaires/types'
 import { CheckboxItem } from '@/shared/components/forms/CheckboxItem'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from './Label'
 
 export interface CheckboxSectionProps {
@@ -38,7 +39,9 @@ export const CheckboxSection = ({
                 </nav>
             </div>
 
-            {description && <p className="form-description">{description}</p>}
+            {description && (
+                <p className={formStyles.description}>{description}</p>
+            )}
         </div>
     )
 }

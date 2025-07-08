@@ -8,9 +8,7 @@ describe('Input', () => {
     it('renders with default className', () => {
         render(<Input data-testid="mocked-test-input" />)
 
-        const input = screen.getByTestId('mocked-test-input')
-        expect(input).toBeInTheDocument()
-        expect(input).toHaveClass('form-input')
+        expect(screen.getByTestId('mocked-test-input')).toHaveClass(/input/)
     })
 
     it('renders with custom className', () => {
@@ -21,7 +19,7 @@ describe('Input', () => {
         )
 
         const input = screen.getByTestId('mocked-test-input')
-        expect(input).toHaveClass('form-input')
+        expect(input).toHaveClass(/input/)
         expect(input).toHaveClass(customClass)
     })
 
@@ -41,8 +39,7 @@ describe('Input', () => {
 
         render(<Input data-testid="mocked-test-input" onBlur={handleBlur} />)
 
-        const input = screen.getByTestId('mocked-test-input')
-        fireEvent.blur(input)
+        fireEvent.blur(screen.getByTestId('mocked-test-input'))
 
         expect(handleBlur).toHaveBeenCalledTimes(1)
     })
@@ -52,8 +49,7 @@ describe('Input', () => {
 
         render(<Input data-testid="mocked-test-input" onFocus={handleFocus} />)
 
-        const input = screen.getByTestId('mocked-test-input')
-        fireEvent.focus(input)
+        fireEvent.focus(screen.getByTestId('mocked-test-input'))
 
         expect(handleFocus).toHaveBeenCalledTimes(1)
     })
@@ -61,22 +57,22 @@ describe('Input', () => {
     it('handles placeholder text', () => {
         render(<Input placeholder="Enter text" />)
 
-        const input = screen.getByPlaceholderText('Enter text')
-        expect(input).toBeInTheDocument()
+        expect(screen.getByPlaceholderText('Enter text')).toBeInTheDocument()
     })
 
     it('supports different input types', () => {
         render(<Input data-testid="mocked-test-input" type="password" />)
 
-        const input = screen.getByTestId('mocked-test-input')
-        expect(input).toHaveAttribute('type', 'password')
+        expect(screen.getByTestId('mocked-test-input')).toHaveAttribute(
+            'type',
+            'password'
+        )
     })
 
     it('supports disabled state', () => {
         render(<Input data-testid="mocked-test-input" disabled />)
 
-        const input = screen.getByTestId('mocked-test-input')
-        expect(input).toBeDisabled()
+        expect(screen.getByTestId('mocked-test-input')).toBeDisabled()
     })
 
     it('triggers onChange event', async () => {
@@ -87,8 +83,7 @@ describe('Input', () => {
             <Input data-testid="mocked-test-input" onChange={handleChange} />
         )
 
-        const input = screen.getByTestId('mocked-test-input')
-        await user.type(input, 'Test')
+        await user.type(screen.getByTestId('mocked-test-input'), 'Test')
 
         expect(handleChange).toHaveBeenCalled()
     })

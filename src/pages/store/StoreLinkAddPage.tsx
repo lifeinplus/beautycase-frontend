@@ -5,6 +5,7 @@ import {
     MinusCircleIcon,
     PlusCircleIcon,
 } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +18,8 @@ import { Button } from '@/shared/components/forms/Button'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import inputStyles from '@/shared/components/ui/Input.module.css'
+import selectStyles from '@/shared/components/forms/SelectSection.module.css'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -107,9 +110,11 @@ export const StoreLinkAddPage = () => {
                                     className="store-link-container"
                                 >
                                     <div className="grid sm:col-span-3">
-                                        <ChevronDownIcon className="form-select-icon" />
+                                        <ChevronDownIcon
+                                            className={selectStyles.icon}
+                                        />
                                         <select
-                                            className="form-select"
+                                            className={selectStyles.select}
                                             name="stores"
                                             onChange={(e) =>
                                                 handleChangeStore(e, index)
@@ -131,7 +136,10 @@ export const StoreLinkAddPage = () => {
                                     </div>
                                     <div className="sm:col-span-7">
                                         <textarea
-                                            className="form-input sm:hidden"
+                                            className={classNames(
+                                                inputStyles.input,
+                                                'sm:hidden'
+                                            )}
                                             name="links"
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
@@ -144,7 +152,10 @@ export const StoreLinkAddPage = () => {
                                             aria-label={t(
                                                 'fields.link.ariaLabel'
                                             )}
-                                            className="form-input hidden sm:block"
+                                            className={classNames(
+                                                inputStyles.input,
+                                                'hidden sm:block'
+                                            )}
                                             onChange={(e) =>
                                                 handleChangeLink(e, index)
                                             }

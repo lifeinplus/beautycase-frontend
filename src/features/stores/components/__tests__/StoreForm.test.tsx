@@ -81,11 +81,12 @@ describe('StoreForm', () => {
 
         renderWithProviders(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const addButton = screen.getByRole('button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Store'
+        )
 
-        await user.type(input, 'New Store')
-        await user.click(addButton)
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -104,11 +105,10 @@ describe('StoreForm', () => {
         render(<StoreForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('fields.name.label')
-        const updateButton = screen.getByRole('button')
-
         await user.clear(input)
         await user.type(input, store.name)
-        await user.click(updateButton)
+
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateStoreById).toHaveBeenCalledWith({
             id: '123',
@@ -129,11 +129,12 @@ describe('StoreForm', () => {
 
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const addButton = screen.getByRole('button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Store'
+        )
 
-        await user.type(input, 'New Store')
-        await user.click(addButton)
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateStore).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -177,8 +178,8 @@ describe('StoreForm', () => {
         render(<StoreForm ref={mockRef} />)
         await user.click(screen.getByTestId('mocked-button'))
 
-        const error = screen.getByText('fields.name.errors.required')
-        expect(error).toBeInTheDocument()
-        expect(error).toHaveClass('form-error')
+        expect(screen.getByText('fields.name.errors.required')).toHaveClass(
+            /error/
+        )
     })
 })

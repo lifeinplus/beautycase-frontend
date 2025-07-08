@@ -14,6 +14,8 @@ import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import type { FormRef } from '@/features/form/types'
 import commonStyles from '@/shared/components/common/common.module.css'
 import { Button } from '@/shared/components/forms/Button'
+import formStyles from '@/shared/components/forms/form.module.css'
+import inputStyles from '@/shared/components/ui/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import {
     useCreateBrandMutation,
@@ -89,7 +91,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
             <div className="flex gap-3">
                 <input
                     {...restName}
-                    className="form-input flex-grow"
+                    className={classNames(inputStyles.input, 'flex-grow')}
                     placeholder={t('fields.name.label')}
                     ref={(e) => {
                         refName(e)
@@ -123,7 +125,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                 <p
                     className={classNames(
                         commonStyles.textDanger,
-                        'form-error'
+                        formStyles.error
                     )}
                 >
                     {t(errors.name.message || '')}

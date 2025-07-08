@@ -6,15 +6,16 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
-import { SelectSection } from '@/shared/components/forms/SelectSection'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { useGetAllCategoriesQuery } from '@/features/categories/categoriesApi'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { useGetAllUsersQuery } from '@/features/users/usersApi'
+import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
+import formStyles from '@/shared/components/forms/form.module.css'
+import { SelectSection } from '@/shared/components/forms/SelectSection'
+import { TopPanel } from '@/shared/components/layout/TopPanel'
+import { NavBar } from '@/shared/components/navigation/NavBar'
+import { NavButton } from '@/shared/components/navigation/NavButton'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
@@ -92,7 +93,10 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                         <h1 className="title-headline">{title}</h1>
                     </section>
 
-                    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                    <form
+                        className={formStyles.form}
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
                         <SelectSection
                             error={t(errors.categoryId?.message || '')}
                             label={t('fields.category.label')}

@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next'
 
 import type { SelectOption } from '@/features/form/types'
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from './Label'
+import styles from './SelectSection.module.css'
 
 export interface SelectSectionProps {
     label: string
@@ -32,10 +34,13 @@ export const SelectSection = ({
         <div>
             <Label required={required} text={label}>
                 <div className="grid">
-                    <ChevronDownIcon className="form-select-icon" />
+                    <ChevronDownIcon className={styles.icon} />
                     <select
                         {...register}
-                        className={`form-select ${error ? 'border-error' : ''}`}
+                        className={classNames(
+                            styles.select,
+                            error && formStyles.borderError
+                        )}
                         value={value}
                     >
                         <option value="" disabled>
@@ -50,13 +55,15 @@ export const SelectSection = ({
                 </div>
             </Label>
 
-            {description && <p className="form-description">{description}</p>}
+            {description && (
+                <p className={formStyles.description}>{description}</p>
+            )}
 
             {error && (
                 <p
                     className={classNames(
                         commonStyles.textDanger,
-                        'form-error'
+                        formStyles.error
                     )}
                 >
                     {error}

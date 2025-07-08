@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import type { SelectOption } from '@/features/form/types'
+import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import { SelectSection, type SelectSectionProps } from '../SelectSection'
 
 vi.mock('../Label')
@@ -23,9 +23,9 @@ describe('SelectSection', () => {
     it('renders with the label correctly', () => {
         render(<SelectSection {...mockProps} />)
 
-        const label = screen.getByTestId('mocked-label')
-        expect(label).toBeInTheDocument()
-        expect(label).toHaveTextContent(mockProps.label)
+        expect(screen.getByTestId('mocked-label')).toHaveTextContent(
+            mockProps.label
+        )
     })
 
     it('renders with options', () => {
@@ -43,18 +43,13 @@ describe('SelectSection', () => {
 
         render(<SelectSection {...mockProps} description={mockDescription} />)
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
     it('renders error message and applies error class', () => {
         render(<SelectSection {...mockProps} error={mockFieldError.message} />)
 
-        const error = screen.getByText(mockFieldError.message!)
-        expect(error).toBeInTheDocument()
-
-        const select = screen.getByRole('combobox')
-        expect(select).toHaveClass('border-error')
+        expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
+        expect(screen.getByRole('combobox')).toHaveClass(/borderError/)
     })
 })

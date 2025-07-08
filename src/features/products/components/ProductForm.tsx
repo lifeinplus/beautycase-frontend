@@ -6,17 +6,18 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
+import { selectFormData, setFormData } from '@/features/form/formSlice'
+import type { SelectOption } from '@/features/form/types'
 import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
 import { SelectSection } from '@/shared/components/forms/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
+import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
-import type { SelectOption } from '@/features/form/types'
 import type { Product } from '../types'
 import { productSchema } from '../validations'
 
@@ -80,7 +81,10 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         <h1 className="title-headline">{title}</h1>
                     </section>
 
-                    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+                    <form
+                        className={formStyles.form}
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
                         <SelectSection
                             error={t(errors.brandId?.message || '')}
                             label={t('fields.brand.label')}

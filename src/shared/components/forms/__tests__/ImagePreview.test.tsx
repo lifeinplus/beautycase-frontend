@@ -13,30 +13,31 @@ describe('ImagePreview', () => {
     it('renders with the correct URL', () => {
         render(<ImagePreview {...mockProps} />)
 
-        const image = screen.getByTestId('mocked-image')
-        expect(image).toBeInTheDocument()
-        expect(image).toHaveAttribute('src', mockProps.url)
+        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
+            'src',
+            mockProps.url
+        )
     })
 
     it('has the correct className on the image', () => {
         render(<ImagePreview {...mockProps} />)
 
-        const image = screen.getByTestId('mocked-image')
-        expect(image).toHaveClass('img')
-        expect(image).toHaveClass('rounded-xl')
+        expect(screen.getByTestId('mocked-image')).toHaveClass('img rounded-xl')
     })
 
     it('renders with the correct alt text', () => {
         render(<ImagePreview {...mockProps} />)
 
-        const image = screen.getByTestId('mocked-image')
-        expect(image).toHaveAttribute('alt', 'Preview')
+        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
+            'alt',
+            'Preview'
+        )
     })
 
     it('renders container with correct class', () => {
         render(<ImagePreview {...mockProps} />)
 
         const container = screen.getByTestId('mocked-image').parentElement
-        expect(container).toHaveClass('form-preview')
+        expect(container).toHaveClass(/preview/)
     })
 })

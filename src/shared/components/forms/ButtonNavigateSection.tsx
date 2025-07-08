@@ -2,6 +2,8 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
+import styles from './ButtonNavigateSection.module.css'
 import { Label } from './Label'
 
 export interface ButtonNavigateSectionProps {
@@ -25,7 +27,10 @@ export const ButtonNavigateSection = ({
         <div>
             <Label required={required} text={label}>
                 <button
-                    className={`form-button-navigate ${error ? 'border-error' : ''}`}
+                    className={classNames(
+                        styles.buttonNavigate,
+                        error && formStyles.borderError
+                    )}
                     onClick={onNavigate}
                     type="button"
                 >
@@ -34,13 +39,15 @@ export const ButtonNavigateSection = ({
                 </button>
             </Label>
 
-            {description && <p className="form-description">{description}</p>}
+            {description && (
+                <p className={formStyles.description}>{description}</p>
+            )}
 
             {error && (
                 <p
                     className={classNames(
                         commonStyles.textDanger,
-                        'form-error'
+                        formStyles.error
                     )}
                 >
                     {error}

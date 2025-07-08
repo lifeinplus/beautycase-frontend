@@ -87,9 +87,7 @@ describe('ImageUrlSection', () => {
 
         render(<ImageUrlSection {...mockProps} description={mockDescription} />)
 
-        expect(screen.getByText(mockDescription)).toHaveClass(
-            'form-description'
-        )
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
     it('renders error message', () => {

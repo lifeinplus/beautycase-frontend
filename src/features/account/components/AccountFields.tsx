@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import type { User, UserResult } from '@/features/users/types'
 import commonStyles from '@/shared/components/common/common.module.css'
+import dlStyles from '@/shared/components/ui/description-list.module.css'
 
 interface Field {
     label: string
@@ -128,12 +129,14 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
     ]
 
     return (
-        <div className="dl-container">
-            <dl className="dl">
+        <div className={dlStyles.dlContainer}>
+            <dl className={dlStyles.dl}>
                 {fields.map((f) => (
-                    <div key={f.sysname} className="dl-grid">
-                        <dt className="dt">{f.label}</dt>
-                        <dd className="dd">{f.content || f.emptyMessage}</dd>
+                    <div key={f.sysname} className={dlStyles.dlGrid}>
+                        <dt className={dlStyles.dt}>{f.label}</dt>
+                        <dd className={dlStyles.dd}>
+                            {f.content || f.emptyMessage}
+                        </dd>
                     </div>
                 ))}
             </dl>

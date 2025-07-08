@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
@@ -69,7 +70,7 @@ export const RegisterPage = () => {
                             {...restUsername}
                             className={classNames(
                                 styles.input,
-                                errors.username && 'border-error'
+                                errors.username && formStyles.borderError
                             )}
                             placeholder={t('fields.username.label')}
                             ref={(e) => {
@@ -87,7 +88,7 @@ export const RegisterPage = () => {
                             <p
                                 className={classNames(
                                     commonStyles.textDanger,
-                                    'form-error'
+                                    formStyles.error
                                 )}
                             >
                                 {t(errors.username.message)}
@@ -101,7 +102,7 @@ export const RegisterPage = () => {
                         {...register('password')}
                         className={classNames(
                             styles.input,
-                            errors.password && 'border-error'
+                            errors.password && formStyles.borderError
                         )}
                         placeholder={t('fields.password.label')}
                         type="password"
@@ -115,7 +116,7 @@ export const RegisterPage = () => {
                         <p
                             className={classNames(
                                 commonStyles.textDanger,
-                                'form-error'
+                                formStyles.error
                             )}
                         >
                             {t(errors.password.message)}
@@ -128,7 +129,7 @@ export const RegisterPage = () => {
                         {...register('confirmPassword')}
                         className={classNames(
                             styles.input,
-                            errors.confirmPassword && 'border-error'
+                            errors.confirmPassword && formStyles.borderError
                         )}
                         placeholder={t('fields.confirmPassword.label')}
                         type="password"
@@ -142,7 +143,7 @@ export const RegisterPage = () => {
                         <p
                             className={classNames(
                                 commonStyles.textDanger,
-                                'form-error'
+                                formStyles.error
                             )}
                         >
                             {t(errors.confirmPassword.message)}

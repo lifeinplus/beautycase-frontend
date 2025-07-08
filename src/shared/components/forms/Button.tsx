@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import styles from './Button.module.css'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     ariaLabel?: string
@@ -28,7 +29,7 @@ export const Button = ({
         <button
             {...props}
             aria-label={ariaLabel}
-            className={classNames('form-button', variants[variant], className)}
+            className={classNames(styles.button, variants[variant], className)}
             type={type}
         >
             {children}

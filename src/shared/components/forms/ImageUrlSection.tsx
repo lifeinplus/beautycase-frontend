@@ -17,6 +17,8 @@ import {
     useUploadTempImageByUrlMutation,
 } from '@/features/uploads/uploadsApi'
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
+import inputStyles from '@/shared/components/ui/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
@@ -158,8 +160,9 @@ export const ImageUrlSection = <T extends FieldValues>({
                     <input
                         accept="image/*,.heic"
                         className={classNames(
-                            'form-input hidden',
-                            error && 'border-error'
+                            inputStyles.input,
+                            'hidden',
+                            error && formStyles.borderError
                         )}
                         disabled={isUploading}
                         onChange={handleUploadByFile}
@@ -173,9 +176,8 @@ export const ImageUrlSection = <T extends FieldValues>({
                 <textarea
                     {...register}
                     className={classNames(
-                        'form-input',
-                        'peer',
-                        error && 'border-error',
+                        inputStyles.input,
+                        error && formStyles.borderError,
                         isUploading && 'opacity-50'
                     )}
                     disabled={isUploading}
@@ -190,14 +192,14 @@ export const ImageUrlSection = <T extends FieldValues>({
                 )}
 
                 {description && (
-                    <p className="form-description">{description}</p>
+                    <p className={formStyles.description}>{description}</p>
                 )}
 
                 {error && (
                     <p
                         className={classNames(
                             commonStyles.textDanger,
-                            'form-error'
+                            formStyles.error
                         )}
                     >
                         {error}

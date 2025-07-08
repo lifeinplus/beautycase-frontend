@@ -2,6 +2,8 @@ import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
+import inputStyles from '@/shared/components/ui/Input.module.css'
 import { Label } from './Label'
 
 export interface InputSectionProps {
@@ -25,16 +27,24 @@ export const InputSection = ({
         <Label required={required} text={label}>
             <input
                 {...register}
-                className={classNames('form-input', error && 'border-error')}
+                className={classNames(
+                    inputStyles.input,
+                    error && formStyles.borderError
+                )}
                 placeholder={label}
                 type={type}
             />
         </Label>
 
-        {description && <p className="form-description">{description}</p>}
+        {description && <p className={formStyles.description}>{description}</p>}
 
         {error && (
-            <p className={classNames(commonStyles.textDanger, 'form-error')}>
+            <p
+                className={classNames(
+                    commonStyles.textDanger,
+                    formStyles.error
+                )}
+            >
                 {error}
             </p>
         )}

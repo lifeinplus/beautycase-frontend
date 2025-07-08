@@ -1,0 +1,26 @@
+.input {
+    @apply block w-full rounded-xl px-4 py-2.5 focus:outline-none;
+    @apply bg-white placeholder-neutral-500;
+    @apply border border-neutral-200 focus:border-black;
+}
+
+.preview {
+    @apply relative mx-auto mt-5 aspect-video w-full overflow-hidden rounded-2xl p-1;
+    @apply border border-neutral-200;
+}
+
+.input:focus + .preview {
+    @apply border-black;
+}
+
+:global(.dark) .input {
+    @apply border-neutral-700 bg-black placeholder-neutral-600 focus:border-white;
+}
+
+:global(.dark) .preview {
+    @apply border-neutral-700;
+}
+
+:global(.dark) .input:focus + .preview {
+    @apply border-white;
+}

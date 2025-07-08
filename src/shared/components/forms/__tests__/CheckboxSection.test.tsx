@@ -45,9 +45,7 @@ describe('CheckboxSection', () => {
 
         render(<CheckboxSection {...mockProps} description={mockDescription} />)
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
     it('does not render description when not provided', () => {
@@ -56,6 +54,6 @@ describe('CheckboxSection', () => {
         const description = screen.queryByText(/description/i)
 
         expect(description).not.toBeInTheDocument()
-        expect(document.querySelector('.form-description')).toBeNull()
+        expect(document.querySelector('.description')).toBeNull()
     })
 })

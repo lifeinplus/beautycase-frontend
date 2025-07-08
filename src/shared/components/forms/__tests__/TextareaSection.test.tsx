@@ -1,14 +1,15 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
     mockFieldError,
+    mockImageUrl1,
     mockRegister,
     mockRegisterVideo,
-    mockImageUrl1,
     mockYouTubeUrl,
 } from '@/tests/mocks/form'
-import { TextareaSection, type TextareaSectionProps } from '../TextareaSection'
+import type { TextareaSectionProps } from '../TextareaSection'
+import { TextareaSection } from '../TextareaSection'
 
 vi.mock('../ImagePreview')
 vi.mock('../Label')
@@ -22,12 +23,11 @@ describe('TextareaSection', () => {
     it('renders with the label correctly', () => {
         render(<TextareaSection {...mockProps} />)
 
-        const label = screen.getByTestId('mocked-label')
-        expect(label).toBeInTheDocument()
-        expect(label).toHaveTextContent(mockProps.label)
+        expect(screen.getByTestId('mocked-label')).toHaveTextContent(
+            mockProps.label
+        )
 
-        const textarea = screen.getByPlaceholderText(mockProps.label)
-        expect(textarea).toBeInTheDocument()
+        expect(screen.getByPlaceholderText(mockProps.label)).toBeInTheDocument()
     })
 
     it('renders description if provided', () => {
@@ -35,21 +35,16 @@ describe('TextareaSection', () => {
 
         render(<TextareaSection {...mockProps} description={mockDescription} />)
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass('form-description')
+        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
     })
 
-    it('renders error message and border-error class if error is provided', () => {
+    it('renders error message and borderError class if error is provided', () => {
         render(
             <TextareaSection {...mockProps} error={mockFieldError.message} />
         )
 
-        const error = screen.getByText(mockFieldError.message!)
-        expect(error).toBeInTheDocument()
-
-        const textarea = screen.getByRole('textbox')
-        expect(textarea).toHaveClass('border-error')
+        expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
+        expect(screen.getByRole('textbox')).toHaveClass(/borderError/)
     })
 
     it('renders image preview if preview and value are provided', () => {

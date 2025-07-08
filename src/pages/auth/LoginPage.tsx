@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
@@ -29,6 +30,7 @@ export const LoginPage = () => {
     } = useForm<AuthQueryLogin>({
         resolver: yupResolver(loginSchema),
     })
+    console.log(111, errors)
 
     const usernameRef = useRef<HTMLInputElement | null>(null)
 
@@ -71,7 +73,7 @@ export const LoginPage = () => {
                             {...restUsername}
                             className={classNames(
                                 authStyles.input,
-                                errors.username && 'border-error'
+                                errors.username && formStyles.borderError
                             )}
                             placeholder={t('fields.username.label')}
                             ref={(e) => {
@@ -89,7 +91,7 @@ export const LoginPage = () => {
                             <p
                                 className={classNames(
                                     commonStyles.textDanger,
-                                    'form-error'
+                                    formStyles.error
                                 )}
                             >
                                 {t(errors.username.message)}
@@ -102,7 +104,7 @@ export const LoginPage = () => {
                             {...register('password')}
                             className={classNames(
                                 authStyles.input,
-                                errors.password && 'border-error'
+                                errors.password && formStyles.borderError
                             )}
                             placeholder={t('fields.password.label')}
                             type="password"
@@ -116,7 +118,7 @@ export const LoginPage = () => {
                             <p
                                 className={classNames(
                                     commonStyles.textDanger,
-                                    'form-error'
+                                    formStyles.error
                                 )}
                             >
                                 {t(errors.password.message)}

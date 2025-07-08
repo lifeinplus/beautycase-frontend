@@ -14,6 +14,8 @@ import { useTranslation } from 'react-i18next'
 
 import { useUploadTempImageByFileMutation } from '@/features/uploads/uploadsApi'
 import commonStyles from '@/shared/components/common/common.module.css'
+import formStyles from '@/shared/components/forms/form.module.css'
+import inputStyles from '@/shared/components/ui/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ImagePreview } from './ImagePreview'
 import { Label } from './Label'
@@ -92,8 +94,9 @@ export const ImageTextSection = <T extends FieldValues>({
                     <input
                         accept="image/*,.heic"
                         className={classNames(
-                            'form-input hidden',
-                            error && 'border-error'
+                            inputStyles.input,
+                            'hidden',
+                            error && formStyles.borderError
                         )}
                         onChange={handleUpload}
                         type="file"
@@ -104,9 +107,9 @@ export const ImageTextSection = <T extends FieldValues>({
             <textarea
                 {...register}
                 className={classNames(
-                    'form-input',
+                    inputStyles.input,
                     'peer',
-                    error && 'border-error'
+                    error && formStyles.borderError
                 )}
                 placeholder={label}
             />
@@ -115,20 +118,22 @@ export const ImageTextSection = <T extends FieldValues>({
                 {...registerUrl}
                 className={classNames(
                     'hidden',
-                    'form-input',
+                    inputStyles.input,
                     'peer',
-                    error && 'border-error'
+                    error && formStyles.borderError
                 )}
                 placeholder={labelUrl}
             />
 
-            {description && <p className="form-description">{description}</p>}
+            {description && (
+                <p className={formStyles.description}>{description}</p>
+            )}
 
             {error && (
                 <p
                     className={classNames(
                         commonStyles.textDanger,
-                        'form-error'
+                        formStyles.error
                     )}
                 >
                     {error}

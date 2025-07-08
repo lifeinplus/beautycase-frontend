@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { QuestionnaireOption } from '@/features/questionnaires/options'
 import { Questionnaire } from '@/features/questionnaires/types'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from './Label'
 import { RadioButtonItem } from './RadioButtonItem'
 
@@ -43,7 +44,9 @@ export const RadioButtonSection = ({
                 </nav>
             </div>
 
-            {description && <p className="form-description">{description}</p>}
+            {description && (
+                <p className={formStyles.description}>{description}</p>
+            )}
         </div>
     )
 }

@@ -6,10 +6,6 @@
     @apply mb-2.5 py-2.5 sm:rounded-sm sm:border sm:border-neutral-300;
 }
 
-:global(.dark) .form {
-    @apply border-neutral-700;
-}
-
 .logoContainer {
     @apply sm:mx-auto sm:mt-10 sm:w-full;
 }
@@ -30,16 +26,8 @@
     @apply w-full rounded-sm border bg-neutral-50 pb-1 ps-2 pt-4 text-base placeholder-transparent focus:outline-none;
 }
 
-:global(.dark) .input {
-    @apply border-neutral-700 bg-neutral-900 text-neutral-200;
-}
-
 .label {
     @apply absolute start-2 top-1 transform text-xs text-neutral-400 transition-all;
-}
-
-:global(.dark) .label {
-    @apply text-neutral-400;
 }
 
 .input:placeholder-shown + .label {
@@ -60,6 +48,18 @@
 
 .question {
     @apply text-center text-base text-neutral-500;
+}
+
+:global(.dark) .form {
+    @apply border-neutral-700;
+}
+
+:global(.dark) .input {
+    @apply border-neutral-700 bg-neutral-900 text-neutral-200;
+}
+
+:global(.dark) .label {
+    @apply text-neutral-400;
 }
 
 :global(.dark) .question {

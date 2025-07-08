@@ -1,9 +1,10 @@
+import classNames from 'classnames'
 import { InputHTMLAttributes } from 'react'
 
-import classNames from 'classnames'
+import inputStyles from './Input.module.css'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input = ({ className, ...props }: InputProps) => {
-    return <input className={classNames('form-input', className)} {...props} />
-}
+export const Input = ({ className, ...props }: InputProps) => (
+    <input className={classNames(inputStyles.input, className)} {...props} />
+)

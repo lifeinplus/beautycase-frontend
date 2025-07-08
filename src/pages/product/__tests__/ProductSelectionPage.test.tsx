@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { setFormData } from '@/features/form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { mockProducts } from '../../../features/products/__mocks__/productsApi'
 import { useGetAllProductsQuery } from '../../../features/products/productsApi'
 import { ProductSelectionPage } from '../ProductSelectionPage'
@@ -73,11 +73,11 @@ describe('ProductSelectionPage', () => {
             .map((img) => img.parentElement)
 
         await user.click(imgContainers[0]!)
-        const selected = document.querySelectorAll('.img-order-selected')
+        const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
-        const finalSelected = document.querySelectorAll('.img-order-selected')
+        const finalSelected = document.querySelectorAll("[class*='numbered']")
         expect(finalSelected.length).toBe(1)
     })
 
@@ -115,7 +115,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelectionPage />)
 
-        const selected = document.querySelectorAll('.img-order-selected')
+        const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(0)
     })
 })

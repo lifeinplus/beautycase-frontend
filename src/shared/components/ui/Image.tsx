@@ -1,4 +1,5 @@
 import config from '@/app/config'
+import imageStyles from '@/shared/components/ui/image.module.css'
 
 export interface ImageProps {
     alt?: string
@@ -6,7 +7,11 @@ export interface ImageProps {
     src?: string
 }
 
-export const Image = ({ alt, className = 'img', src }: ImageProps) => {
+export const Image = ({
+    alt,
+    className = imageStyles.img,
+    src,
+}: ImageProps) => {
     return (
         <img
             alt={alt}

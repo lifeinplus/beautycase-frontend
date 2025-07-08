@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { mockYouTubeUrl } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
-import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { mockLesson1 } from '../../../features/lessons/__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
@@ -49,12 +49,19 @@ describe('LessonDetailsPage', () => {
     it('navigates to product details when product is clicked', async () => {
         const user = userEvent.setup()
 
-        const { container } = render(<LessonDetailsPage />)
-        const imgContainer = container.querySelector('.img-container')
+        render(<LessonDetailsPage />)
 
-        expect(imgContainer).not.toBeNull()
+        const additionalContent = screen.getByTestId(
+            'mocked-additional-content'
+        )
 
-        await user.click(imgContainer as HTMLElement)
+        const container = additionalContent.querySelector(
+            "[class*='container'][class*='square']"
+        )
+
+        expect(container).not.toBeNull()
+
+        await user.click(container as HTMLElement)
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/product-1', {
             state: { fromPathname: '/test-pathname' },

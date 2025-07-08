@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockStage1 } from '../../../features/stages/__mocks__/stagesApi'
@@ -73,11 +73,13 @@ describe('StageDetailsPage', () => {
             'mocked-additional-content'
         )
 
-        const imgContainer = additionalContent.querySelector('.img-container')
+        const container = additionalContent.querySelector(
+            "[class*='container'][class*='square']"
+        )
 
-        expect(imgContainer).not.toBeNull()
+        expect(container).not.toBeNull()
 
-        await user.click(imgContainer as HTMLElement)
+        await user.click(container as HTMLElement)
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/product1', {
             state: { fromPathname: '/test-pathname' },

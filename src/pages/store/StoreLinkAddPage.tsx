@@ -23,6 +23,7 @@ import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import inputStyles from '@/shared/components/ui/Input.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import styles from './StoreLinkAddPage.module.css'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -110,10 +111,7 @@ export const StoreLinkAddPage = () => {
                             const { _id = '', link } = storeLink
 
                             return (
-                                <div
-                                    key={index}
-                                    className="store-link-container"
-                                >
+                                <div key={index} className={styles.container}>
                                     <div className="grid sm:col-span-3">
                                         <ChevronDownIcon
                                             className={selectStyles.icon}

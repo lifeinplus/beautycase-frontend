@@ -1,0 +1,19 @@
+.tr {
+    @apply hover:bg-neutral-100;
+}
+
+.td {
+    @apply border-b border-neutral-200 p-4;
+}
+
+.actions {
+    @apply flex justify-center gap-2;
+}
+
+:global(.dark) .tr {
+    @apply hover:bg-neutral-800;
+}
+
+:global(.dark) .td {
+    @apply border-neutral-800;
+}

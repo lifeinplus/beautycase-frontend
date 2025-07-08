@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { ImageCard } from '../ImageCard'
@@ -31,7 +31,7 @@ describe('ImageCard', () => {
         expect(link).toHaveClass('overflow-hidden')
 
         const container = screen.getByRole('link').parentElement
-        expect(container).toHaveClass('img-container')
-        expect(container).toHaveClass('img-container-square')
+        expect(container).toHaveClass(/container/)
+        expect(container).toHaveClass(/square/)
     })
 })

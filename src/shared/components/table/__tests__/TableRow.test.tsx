@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { mockNavigate } from '@/tests/mocks/router'
 import { TableRow, type TableRowProps } from '../TableRow'
@@ -32,10 +32,10 @@ describe('TableRow', () => {
 
         const { container } = renderTableRow({ cellData, cellClasses })
 
-        const cells = container.querySelectorAll('td')
+        const cells = container.querySelectorAll("[class*='td']")
 
         cells.forEach((cell, index) => {
-            expect(cell).toHaveClass('td')
+            expect(cell).toHaveClass(/td/)
             expect(cell).toHaveClass(cellClasses[index])
         })
     })
@@ -51,7 +51,7 @@ describe('TableRow', () => {
         ).toBeInTheDocument()
 
         expect(screen.getByRole('cell', { name: 'Delete' })).toHaveClass(
-            'td-actions'
+            /actions/
         )
     })
 

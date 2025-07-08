@@ -1,12 +1,12 @@
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector, useAppDispatch } from '@/app/hooks'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { setFormData } from '@/features/form/formSlice'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import {
     mockUser1,
     mockUser2,
@@ -70,7 +70,7 @@ describe('UserSelectionPage', () => {
 
     it('shows selected state for preselected clients', () => {
         render(<UserSelectionPage />)
-        const selected = document.querySelectorAll('.img-selected')
+        const selected = document.querySelectorAll("[class*='selected']")
         expect(selected.length).toBe(1)
     })
 
@@ -82,11 +82,11 @@ describe('UserSelectionPage', () => {
         expect(aliceRow).toBeInTheDocument()
 
         await user.click(aliceRow!)
-        const selected = document.querySelectorAll('.img-selected')
+        const selected = document.querySelectorAll("[class*='selected']")
         expect(selected.length).toBe(2)
 
         await user.click(aliceRow!)
-        const selectedAfter = document.querySelectorAll('.img-selected')
+        const selectedAfter = document.querySelectorAll("[class*='selected']")
         expect(selectedAfter.length).toBe(1)
     })
 
@@ -122,7 +122,7 @@ describe('UserSelectionPage', () => {
 
         render(<UserSelectionPage />)
 
-        const selected = document.querySelectorAll('.img-selected')
+        const selected = document.querySelectorAll("[class*='selected']")
         expect(selected.length).toBe(0)
     })
 })

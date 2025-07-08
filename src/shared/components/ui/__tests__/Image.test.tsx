@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import config from '@/app/config'
 import { Image } from '../Image'
@@ -9,22 +9,23 @@ describe('Image', () => {
         const testSrc = 'test-image.jpg'
         render(<Image src={testSrc} alt="Test image" />)
 
-        const imgElement = screen.getByAltText('Test image')
-        expect(imgElement).toBeInTheDocument()
-        expect(imgElement).toHaveAttribute('src', testSrc)
+        expect(screen.getByAltText('Test image')).toHaveAttribute(
+            'src',
+            testSrc
+        )
     })
 
     it('applies default className when none is provided', () => {
         render(<Image src="test.jpg" alt="Test" />)
-        const imgElement = screen.getByAltText('Test')
-        expect(imgElement).toHaveClass('img')
+        expect(screen.getByAltText('Test')).toHaveClass(/img/)
     })
 
     it('applies custom className when provided', () => {
         const customClass = 'custom-image-class'
+
         render(<Image src="test.jpg" alt="Test" className={customClass} />)
-        const imgElement = screen.getByAltText('Test')
-        expect(imgElement).toHaveClass(customClass)
+
+        expect(screen.getByAltText('Test')).toHaveClass(customClass)
     })
 
     it('changes to default image on error', () => {
@@ -42,9 +43,6 @@ describe('Image', () => {
 
     it('handles empty props gracefully', () => {
         render(<Image />)
-
-        const imgElement = screen.getByRole('img')
-        expect(imgElement).toBeInTheDocument()
-        expect(imgElement).toHaveAttribute('class', 'img')
+        expect(screen.getByRole('img')).toHaveClass(/img/)
     })
 })

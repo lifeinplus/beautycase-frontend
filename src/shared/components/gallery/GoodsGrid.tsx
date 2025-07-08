@@ -1,5 +1,7 @@
+import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
+import imageStyles from '@/shared/components/ui/image.module.css'
 import { useScrollToElement } from '../../hooks/useScrollToElement'
 import { Image } from '../ui/Image'
 
@@ -42,7 +44,7 @@ export const GoodsGrid = <T extends Good>({
                     <div className="relative mx-auto aspect-square w-2/3 overflow-hidden">
                         <Image
                             alt={g.name}
-                            className="img rounded"
+                            className={classNames(imageStyles.img, 'rounded')}
                             src={g.imageUrl}
                         />
                     </div>

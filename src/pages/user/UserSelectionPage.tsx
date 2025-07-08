@@ -1,4 +1,5 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
+import classNames from 'classnames'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +15,8 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import { Image } from '@/shared/components/ui/Image'
+import imageStyles from '@/shared/components/ui/image.module.css'
+import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import styles from './UserSelectionPage.module.css'
 
@@ -84,10 +87,18 @@ export const UserSelectionPage = () => {
                                         className="grid cursor-pointer grid-cols-5 gap-3"
                                         onClick={() => toggleSelectedId(_id!)}
                                     >
-                                        <div className="img-container img-container-square">
+                                        <div
+                                            className={classNames(
+                                                imageStyles.container,
+                                                imageStyles.square
+                                            )}
+                                        >
                                             <Image
                                                 alt={username}
-                                                className="img rounded"
+                                                className={classNames(
+                                                    imageStyles.img,
+                                                    'rounded'
+                                                )}
                                                 src={
                                                     config.cloudinary
                                                         .defaultAvatarUrl
@@ -100,9 +111,15 @@ export const UserSelectionPage = () => {
                                         </div>
 
                                         <div className="flex items-center justify-center">
-                                            <span className="img-order-center" />
+                                            <span
+                                                className={orderStyles.center}
+                                            />
                                             {isSelected && (
-                                                <span className="img-selected" />
+                                                <span
+                                                    className={
+                                                        orderStyles.selected
+                                                    }
+                                                />
                                             )}
                                         </div>
                                     </div>

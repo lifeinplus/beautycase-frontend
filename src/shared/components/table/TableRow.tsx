@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
+import styles from './TableRow.module.css'
+
 export interface TableRowProps {
     cellClasses?: string[]
     cellData: (string | number | undefined)[]
@@ -18,16 +20,21 @@ export const TableRow = ({
 
     return (
         <tr
-            className="tr"
+            className={styles.tr}
             onClick={() => redirectPath && navigate(redirectPath)}
         >
             {cellData.map((data, idx) => (
-                <td key={idx} className={classNames('td', cellClasses[idx])}>
+                <td
+                    key={idx}
+                    className={classNames(styles.td, cellClasses[idx])}
+                >
                     {data}
                 </td>
             ))}
             {actions && (
-                <td className={classNames('td', 'td-actions')}>{actions}</td>
+                <td className={classNames(styles.td, styles.actions)}>
+                    {actions}
+                </td>
             )}
         </tr>
     )

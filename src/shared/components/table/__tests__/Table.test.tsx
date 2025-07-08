@@ -37,13 +37,13 @@ describe('Table', () => {
         expect(screen.getByText('Name')).toBeInTheDocument()
         expect(screen.getByText('Age')).toBeInTheDocument()
 
-        const nameHeader = screen.getByText('Name')
-        expect(nameHeader).toHaveClass('th')
-        expect(nameHeader).toHaveClass('name-column')
+        const name = screen.getByText('Name')
+        expect(name).toHaveClass(/th/)
+        expect(name).toHaveClass('name-column')
 
-        const idHeader = screen.getByText('Age')
-        expect(idHeader).toHaveClass('th')
-        expect(idHeader).toHaveClass('age-column')
+        const age = screen.getByText('Age')
+        expect(age).toHaveClass(/th/)
+        expect(age).toHaveClass('age-column')
     })
 
     it('renders table rows correctly', () => {
@@ -52,12 +52,13 @@ describe('Table', () => {
         )
 
         mockData.forEach((item) => {
-            const row = screen.getByTestId(`mocked-row-${item.id}`)
-            const name = screen.getByText(item.name)
-            const age = screen.getByText(item.age.toString())
-            expect(row).toBeInTheDocument()
-            expect(name).toBeInTheDocument()
-            expect(age).toBeInTheDocument()
+            expect(
+                screen.getByTestId(`mocked-row-${item.id}`)
+            ).toBeInTheDocument()
+
+            expect(screen.getByText(item.name)).toBeInTheDocument()
+
+            expect(screen.getByText(item.age.toString())).toBeInTheDocument()
         })
     })
 
@@ -76,10 +77,10 @@ describe('Table', () => {
             <Table headers={headers} data={mockData} renderRow={renderRow} />
         )
 
-        const tableContainer = container.querySelector('.table-container')
-        const table = container.querySelector('.table')
+        expect(
+            container.querySelector("[class*='container']")
+        ).toBeInTheDocument()
 
-        expect(tableContainer).toBeInTheDocument()
-        expect(table).toBeInTheDocument()
+        expect(container.querySelector("[class*='table']")).toBeInTheDocument()
     })
 })

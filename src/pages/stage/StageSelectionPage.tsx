@@ -1,4 +1,5 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
+import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -13,6 +14,8 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import { Image } from '@/shared/components/ui/Image'
+import imageStyles from '@/shared/components/ui/image.module.css'
+import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { useGetAllStagesQuery } from '../../features/stages/stagesApi'
 import type { Stage } from '../../features/stages/types'
@@ -113,19 +116,28 @@ export const StageSelectionPage = () => {
                                                 toggleOrderedIds(_id!)
                                             }
                                         >
-                                            <div className="img-container img-container-square">
+                                            <div
+                                                className={classNames(
+                                                    imageStyles.container,
+                                                    imageStyles.square
+                                                )}
+                                            >
                                                 <Image
                                                     alt={title}
-                                                    className="img rounded"
+                                                    className={classNames(
+                                                        imageStyles.img,
+                                                        'rounded'
+                                                    )}
                                                     src={imageUrl}
                                                 />
 
                                                 <span
-                                                    className={`img-order-left ${
+                                                    className={classNames(
+                                                        orderStyles.left,
                                                         isSelected
-                                                            ? 'img-order-selected'
-                                                            : 'img-order-default'
-                                                    }`}
+                                                            ? orderStyles.numbered
+                                                            : orderStyles.default
+                                                    )}
                                                 >
                                                     {order ?? ''}
                                                 </span>

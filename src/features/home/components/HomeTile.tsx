@@ -14,7 +14,7 @@ export interface HomeTileProps {
 export const HomeTile = ({ to, label, icon: Icon }: HomeTileProps) => (
     <Link
         to={to}
-        className={classNames(commonStyles.focusOutline, styles.tile, 'group')}
+        className={classNames(commonStyles.focusOutline, styles.tile)}
     >
         <div className={styles.icon}>
             <Icon className="h-16 w-16" />

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { ImagePreview, type ImagePreviewProps } from '../ImagePreview'
 
@@ -22,7 +22,8 @@ describe('ImagePreview', () => {
     it('has the correct className on the image', () => {
         render(<ImagePreview {...mockProps} />)
 
-        expect(screen.getByTestId('mocked-image')).toHaveClass('img rounded-xl')
+        expect(screen.getByTestId('mocked-image')).toHaveClass(/img/)
+        expect(screen.getByTestId('mocked-image')).toHaveClass('rounded-xl')
     })
 
     it('renders with the correct alt text', () => {

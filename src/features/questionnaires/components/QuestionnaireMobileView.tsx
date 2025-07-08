@@ -1,5 +1,5 @@
-import { MobileView } from '../../../components/table/MobileView'
-import { formatDate } from '../../../utils/date'
+import { MobileView } from '@/shared/components/table/MobileView'
+import { formatDate } from '@/shared/utils/date'
 import type { Questionnaire } from '../types'
 
 export interface QuestionnaireMobileViewProps {

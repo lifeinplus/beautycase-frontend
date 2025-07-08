@@ -1,4 +1,4 @@
-import type { Product } from '../products/types'
+import type { Product } from '@/features/products/types'
 
 export interface Lesson {
     _id?: string

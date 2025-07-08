@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { mockDispatch } from '../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../app/hooks'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
 import { ThemeToggler } from '../ThemeToggler'
 import { toggleTheme } from '../themeSlice'
 
-vi.mock('../../../app/hooks')
+vi.mock('@/app/hooks')
 
 describe('ThemeToggler', () => {
     beforeEach(() => {
@@ -78,6 +78,6 @@ describe('ThemeToggler', () => {
 
         const button = screen.getByRole('button')
         expect(button).toHaveAttribute('aria-label', 'buttonDarkMode')
-        expect(button).toHaveClass('nav-btn')
+        expect(button).toHaveClass(/navBtn/)
     })
 })

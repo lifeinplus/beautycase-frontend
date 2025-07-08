@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
-import type { MutationResult } from '../../../types/api'
+import type { MutationResult } from '@/shared/types/api'
 import type { Brand } from '../types'
 
 export const mockBrandCreate: MutationResult = {

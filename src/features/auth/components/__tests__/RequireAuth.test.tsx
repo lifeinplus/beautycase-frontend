@@ -2,11 +2,11 @@ import { screen } from '@testing-library/react'
 import { Routes, Route } from 'react-router-dom'
 import { describe, it, expect, vi } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { renderWithRouter } from '../../../../tests/mocks/wrappers'
+import { useAppSelector } from '@/app/hooks'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { RequireAuth } from '../RequireAuth'
 
-vi.mock('../../../../app/hooks')
+vi.mock('@/app/hooks')
 
 const MockProtected = () => (
     <div data-testid="mocked-protected-content">ProtectedContent</div>

@@ -22,7 +22,18 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+
+        /* Absolute Imports Configuration */
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@/app/*": ["src/app/*"],
+            "@/features/*": ["src/features/*"],
+            "@/lib/*": ["src/lib/*"],
+            "@/shared/*": ["src/shared/*"],
+            "@/tests/*": ["src/tests/*"]
+        }
     },
     "include": ["src"]
 }

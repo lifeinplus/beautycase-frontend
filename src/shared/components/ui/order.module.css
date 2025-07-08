@@ -1,0 +1,26 @@
+.order {
+    @apply absolute right-1 top-1 flex h-8 w-8 items-center justify-center text-sm font-bold shadow-lg;
+    @apply rounded-full border-2 border-white;
+}
+
+.left {
+    @apply absolute left-1 top-1 flex h-8 w-8 items-center justify-center text-sm font-bold shadow-lg;
+    @apply rounded-full border-2 border-white;
+}
+
+.center {
+    @apply absolute h-6 w-6 shadow-lg;
+    @apply rounded-full border-2 border-white;
+}
+
+.default {
+    @apply bg-transparent text-gray-400;
+}
+
+.numbered {
+    @apply bg-rose-500 text-white;
+}
+
+.selected {
+    @apply absolute h-3.5 w-3.5 rounded-full bg-rose-500 text-white;
+}

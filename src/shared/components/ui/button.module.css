@@ -1,0 +1,26 @@
+.section {
+    @apply border-t px-3 pt-4 sm:flex sm:justify-end sm:border-0 sm:pt-0;
+    @apply border-gray-300;
+}
+
+.btn {
+    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors;
+    @apply bg-rose-500;
+    @apply hover:bg-rose-600;
+}
+
+.loading {
+    @apply bg-rose-200 hover:bg-rose-200;
+}
+
+:global(.dark) .section {
+    @apply border-gray-700;
+}
+
+:global(.dark) .btn {
+    @apply bg-rose-600 hover:bg-rose-700;
+}
+
+:global(.dark) .loading {
+    @apply bg-rose-950 hover:bg-rose-950;
+}

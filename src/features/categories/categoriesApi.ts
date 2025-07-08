@@ -1,4 +1,4 @@
-import { api } from '../api/api'
+import { api } from '@/shared/api/api'
 import type { Category } from './types'
 
 const categoriesApi = api.injectEndpoints({

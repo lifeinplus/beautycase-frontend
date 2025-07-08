@@ -5,8 +5,8 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppSelector } from '../../../app/hooks'
-import { NavButton } from '../../../components/navigation/NavButton'
+import { useAppSelector } from '@/app/hooks'
+import { NavButton } from '@/shared/components/navigation/NavButton'
 import { selectUsername } from '../authSlice'
 import { useAuthLogout } from '../hooks/useAuthLogout'
 
@@ -24,11 +24,9 @@ export const AuthButton = () => {
     return (
         <NavButton
             icon={
-                username ? (
-                    <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
-                ) : (
-                    <ArrowRightEndOnRectangleIcon className="h-6 w-6" />
-                )
+                username
+                    ? ArrowLeftStartOnRectangleIcon
+                    : ArrowRightEndOnRectangleIcon
             }
             label={username ? t('logout') : t('login')}
             ariaLabel={username ? t('buttonLogout') : t('buttonLogin')}

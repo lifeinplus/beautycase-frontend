@@ -1,0 +1,10 @@
+.button {
+    @apply inline-flex items-center justify-center px-4 py-2.5;
+    @apply bg-white;
+    @apply rounded-xl border border-neutral-200;
+    @apply focus:border-black focus:outline-none;
+}
+
+:global(.dark) .button {
+    @apply border-neutral-700 bg-black focus:border-white;
+}

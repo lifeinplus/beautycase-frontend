@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import { ReferenceListsMobileView } from '../ReferenceListsMobileView'
 import type { ReferenceList } from '../../types'
 
-vi.mock('../../../../components/table/MobileView')
+vi.mock('@/shared/components/table/MobileView')
 
 describe('ReferenceListMobileView', () => {
     const mockReferenceLists: ReferenceList[] = [

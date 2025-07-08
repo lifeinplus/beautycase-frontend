@@ -10,7 +10,7 @@ import {
     afterAll,
 } from 'vitest'
 
-import { mockCategory1 } from '../../../categories/__mocks__/categoriesApi.ts'
+import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi.ts'
 import { mockMakeupBagPDFData } from '../../__mocks__/makeupBagsApi.ts'
 import { usePDFExport } from '../usePDFExport'
 
@@ -20,12 +20,12 @@ vi.mock('@react-pdf/renderer', () => ({
 
 vi.mock('../../components/MakeupBagPDF')
 
-Object.defineProperty(global.URL, 'createObjectURL', {
+Object.defineProperty(globalThis.URL, 'createObjectURL', {
     value: vi.fn(),
     writable: true,
 })
 
-Object.defineProperty(global.URL, 'revokeObjectURL', {
+Object.defineProperty(globalThis.URL, 'revokeObjectURL', {
     value: vi.fn(),
     writable: true,
 })

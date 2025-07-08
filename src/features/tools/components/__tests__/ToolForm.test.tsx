@@ -2,27 +2,27 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockOnSubmit } from '../../../../tests/mocks/form'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockBrands } from '../../../brands/__mocks__/brandsApi'
-import { useGetAllBrandsQuery } from '../../../brands/brandsApi'
-import { setFormData } from '../../../form/formSlice'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockOnSubmit } from '@/tests/mocks/form'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockBrands } from '@/features/brands/__mocks__/brandsApi'
+import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
+import { setFormData } from '@/features/form/formSlice'
 import { mockTool1 } from '../../__mocks__/toolsApi'
 import { ToolForm } from '../ToolForm'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../brands/brandsApi')
-vi.mock('../../../form/components/ButtonNavigateSection')
-vi.mock('../../../form/components/ImageUrlSection')
-vi.mock('../../../form/components/InputSection')
-vi.mock('../../../form/components/SelectSection')
-vi.mock('../../../form/components/TextareaSection')
-vi.mock('../../../form/formSlice')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/forms/ButtonNavigateSection')
+vi.mock('@/shared/components/forms/ImageUrlSection')
+vi.mock('@/shared/components/forms/InputSection')
+vi.mock('@/shared/components/forms/SelectSection')
+vi.mock('@/shared/components/forms/TextareaSection')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/features/brands/brandsApi')
+vi.mock('@/features/form/formSlice')
 
 describe('ToolForm', () => {
     const mockTitle = 'Test Title'

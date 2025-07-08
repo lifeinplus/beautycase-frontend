@@ -2,27 +2,27 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, beforeEach, expect, vi, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { mockOnSubmit } from '../../../../tests/mocks/form'
-import { mockNavigate } from '../../../../tests/mocks/router'
-import { mockCategories } from '../../../categories/__mocks__/categoriesApi'
-import { useGetAllCategoriesQuery } from '../../../categories/categoriesApi'
-import { setFormData } from '../../../form/formSlice'
-import { mockUsers } from '../../../users/__mocks__/usersApi'
-import { useGetAllUsersQuery } from '../../../users/usersApi'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { mockOnSubmit } from '@/tests/mocks/form'
+import { mockNavigate } from '@/tests/mocks/router'
+import { mockCategories } from '@/features/categories/__mocks__/categoriesApi'
+import { useGetAllCategoriesQuery } from '@/features/categories/categoriesApi'
+import { setFormData } from '@/features/form/formSlice'
+import { mockUsers } from '@/features/users/__mocks__/usersApi'
+import { useGetAllUsersQuery } from '@/features/users/usersApi'
 import { mockMakeupBag1 } from '../../__mocks__/makeupBagsApi'
 import { MakeupBagForm } from '../MakeupBagForm'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../components/navigation/NavBar')
-vi.mock('../../../../components/navigation/NavButton')
-vi.mock('../../../../components/TopPanel')
-vi.mock('../../../categories/categoriesApi')
-vi.mock('../../../form/components/ButtonNavigateSection')
-vi.mock('../../../form/components/SelectSection')
-vi.mock('../../../form/formSlice')
-vi.mock('../../../users/usersApi')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/forms/ButtonNavigateSection')
+vi.mock('@/shared/components/forms/SelectSection')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/features/categories/categoriesApi')
+vi.mock('@/features/form/formSlice')
+vi.mock('@/features/users/usersApi')
 
 describe('MakeupBagForm', () => {
     const mockTitle = 'Test Title'

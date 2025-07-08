@@ -1,9 +1,12 @@
 import { FilmIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
-import type { User, UserResult } from '../../users/types'
+import type { User, UserResult } from '@/features/users/types'
+import commonStyles from '@/shared/components/common/common.module.css'
+import dlStyles from '@/shared/components/ui/description-list.module.css'
 
 interface Field {
     label: string
@@ -62,7 +65,12 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                             </div>
                             <div className="ml-4 shrink-0">
                                 <Link
-                                    className="text-danger focus-outline hover-outline font-medium"
+                                    className={classNames(
+                                        commonStyles.focusOutline,
+                                        commonStyles.hoverOutline,
+                                        commonStyles.textDanger,
+                                        'font-medium'
+                                    )}
                                     to={`/makeup_bags/${bag._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
@@ -101,7 +109,12 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                             </div>
                             <div className="ml-4 shrink-0">
                                 <Link
-                                    className="text-danger focus-outline font-medium text-amber-500 dark:hover:text-amber-400"
+                                    className={classNames(
+                                        commonStyles.focusOutline,
+                                        commonStyles.hoverOutline,
+                                        commonStyles.textDanger,
+                                        'font-medium'
+                                    )}
                                     to={`/lessons/${lesson._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
@@ -116,12 +129,14 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
     ]
 
     return (
-        <div className="dl-container">
-            <dl className="dl">
+        <div className={dlStyles.dlContainer}>
+            <dl className={dlStyles.dl}>
                 {fields.map((f) => (
-                    <div key={f.sysname} className="dl-grid">
-                        <dt className="dt">{f.label}</dt>
-                        <dd className="dd">{f.content || f.emptyMessage}</dd>
+                    <div key={f.sysname} className={dlStyles.dlGrid}>
+                        <dt className={dlStyles.dt}>{f.label}</dt>
+                        <dd className={dlStyles.dd}>
+                            {f.content || f.emptyMessage}
+                        </dd>
                     </div>
                 ))}
             </dl>

@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { renderHookWithProvider } from '../../../tests/mocks/wrappers'
+import { renderHookWithProvider } from '@/tests/mocks/wrappers'
 import {
     mockLoginParams,
     mockLoginResult,

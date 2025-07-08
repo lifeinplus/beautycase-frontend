@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from '../../../../app/hooks'
-import { mockNavigate } from '../../../../tests/mocks/router'
+import { useAppSelector } from '@/app/hooks'
+import { mockNavigate } from '@/tests/mocks/router'
 import { useAuthLogout } from '../../hooks/useAuthLogout'
 import { AuthButton } from '../AuthButton'
 
-vi.mock('../../../../app/hooks')
+vi.mock('@/app/hooks')
 vi.mock('../../hooks/useAuthLogout')
 
 describe('AuthButton', () => {
@@ -27,11 +27,13 @@ describe('AuthButton', () => {
         expect(
             screen.getByTestId('mocked-arrow-right-end-on-rectangle-icon')
         ).toBeInTheDocument()
+
         expect(screen.getByText('login')).toBeInTheDocument()
 
         expect(
             screen.queryByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).not.toBeInTheDocument()
+
         expect(screen.queryByText('logout')).not.toBeInTheDocument()
     })
 
@@ -45,11 +47,13 @@ describe('AuthButton', () => {
         expect(
             screen.getByTestId('mocked-arrow-left-start-on-rectangle-icon')
         ).toBeInTheDocument()
+
         expect(screen.getByText('logout')).toBeInTheDocument()
 
         expect(
             screen.queryByTestId('arrow-right-end-on-rectangle-icon')
         ).not.toBeInTheDocument()
+
         expect(screen.queryByText('login')).not.toBeInTheDocument()
     })
 
@@ -78,8 +82,7 @@ describe('AuthButton', () => {
 
         render(<AuthButton />)
 
-        const button = screen.getByRole('button')
-        expect(button).toHaveClass('nav-btn')
+        expect(screen.getByRole('button')).toHaveClass(/navBtn/)
     })
 
     it('applies correct responsive classes to the text', () => {

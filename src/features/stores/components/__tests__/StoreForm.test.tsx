@@ -3,12 +3,12 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { describe, vi, expect, beforeEach, it, Mock } from 'vitest'
 
-import { mockDispatch } from '../../../../app/__mocks__/hooks'
-import { useAppSelector } from '../../../../app/hooks'
-import { renderWithProviders } from '../../../../tests/mocks/wrappers'
-import { mockError } from '../../../../utils/__mocks__/errorUtils'
-import { clearFormData } from '../../../form/formSlice'
-import type { FormRef } from '../../../form/types'
+import { mockDispatch } from '@/app/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData } from '@/features/form/formSlice'
+import type { FormRef } from '@/features/form/types'
 import {
     useCreateStoreMutation,
     useUpdateStoreByIdMutation,
@@ -16,9 +16,9 @@ import {
 import { StoreForm } from '../StoreForm'
 import { mockStore1 } from '../../__mocks__/storesApi'
 
-vi.mock('../../../../app/hooks')
-vi.mock('../../../../utils/errorUtils')
-vi.mock('../../../form/components/Button')
+vi.mock('@/app/hooks')
+vi.mock('@/shared/components/forms/Button')
+vi.mock('@/shared/utils/errorUtils')
 vi.mock('../../storesApi')
 
 describe('StoreForm', () => {
@@ -81,11 +81,12 @@ describe('StoreForm', () => {
 
         renderWithProviders(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const addButton = screen.getByRole('button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Store'
+        )
 
-        await user.type(input, 'New Store')
-        await user.click(addButton)
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateStore).toHaveBeenCalledWith({ name: 'New Store' })
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -104,11 +105,10 @@ describe('StoreForm', () => {
         render(<StoreForm ref={mockRef} />)
 
         const input = screen.getByPlaceholderText('fields.name.label')
-        const updateButton = screen.getByRole('button')
-
         await user.clear(input)
         await user.type(input, store.name)
-        await user.click(updateButton)
+
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateStoreById).toHaveBeenCalledWith({
             id: '123',
@@ -129,11 +129,12 @@ describe('StoreForm', () => {
 
         render(<StoreForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const addButton = screen.getByRole('button')
+        await user.type(
+            screen.getByPlaceholderText('fields.name.label'),
+            'New Store'
+        )
 
-        await user.type(input, 'New Store')
-        await user.click(addButton)
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateStore).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -177,8 +178,8 @@ describe('StoreForm', () => {
         render(<StoreForm ref={mockRef} />)
         await user.click(screen.getByTestId('mocked-button'))
 
-        const error = screen.getByText('fields.name.errors.required')
-        expect(error).toBeInTheDocument()
-        expect(error).toHaveClass('form-error')
+        expect(screen.getByText('fields.name.errors.required')).toHaveClass(
+            /error/
+        )
     })
 })

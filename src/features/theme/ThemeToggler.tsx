@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { useTranslation } from 'react-i18next'
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { NavButton } from '../../components/navigation/NavButton'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { NavButton } from '@/shared/components/navigation/NavButton'
 import { selectDarkMode, toggleTheme } from './themeSlice'
 
 export function ThemeToggler() {
@@ -20,13 +20,7 @@ export function ThemeToggler() {
 
     return (
         <NavButton
-            icon={
-                darkMode ? (
-                    <MoonIcon className="h-6 w-6" />
-                ) : (
-                    <SunIcon className="h-6 w-6" />
-                )
-            }
+            icon={darkMode ? MoonIcon : SunIcon}
             label={darkMode ? t('darkMode') : t('lightMode')}
             ariaLabel={darkMode ? t('buttonDarkMode') : t('buttonLightMode')}
             onClick={handleThemeToggle}

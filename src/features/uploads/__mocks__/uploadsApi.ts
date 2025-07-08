@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
-import { mockImageUrl1 } from '../../../tests/mocks/form'
+import { mockImageUrl1 } from '@/tests/mocks/form'
 import { type UploadImageResponse } from '../uploadsApi'
 
 export const mockUploadResult: UploadImageResponse = { imageUrl: mockImageUrl1 }

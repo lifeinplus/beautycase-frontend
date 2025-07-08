@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { renderWithProviderAndRouter } from '../../../../tests/mocks/wrappers'
 import {
     mockUserLesson1,
     mockUserLesson2,
     mockUserMakeupBag1,
     mockUserMakeupBag2,
     mockUserResult,
-} from '../../../users/__mocks__/usersApi'
+} from '@/features/users/__mocks__/usersApi'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { AccountFields } from '../AccountFields'
 
 describe('AccountFields', () => {

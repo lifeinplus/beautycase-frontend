@@ -4,8 +4,8 @@ import { describe, it, expect, vi } from 'vitest'
 import type { ReferenceList } from '../../types'
 import { ReferenceListsTable } from '../ReferenceListsTable'
 
-vi.mock('../../../../components/table/Table')
-vi.mock('../../../../components/table/TableRow')
+vi.mock('@/shared/components/table/Table')
+vi.mock('@/shared/components/table/TableRow')
 
 describe('ReferenceListsTable', () => {
     const data: ReferenceList[] = [

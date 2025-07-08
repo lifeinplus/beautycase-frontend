@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { GoodsGrid } from '../../../components/GoodsGrid'
+import { GoodsGrid } from '@/shared/components/gallery/GoodsGrid'
 import type { Tool } from '../types'
 
 export interface ToolsProps {

@@ -3,10 +3,11 @@ import { scale } from '@cloudinary/url-gen/actions/resize'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import config from '../../../config'
-import cloudinary from '../../../utils/cloudinary'
-import type { Questionnaire } from '../types'
+import config from '@/app/config'
+import dlStyles from '@/shared/components/ui/description-list.module.css'
+import cloudinary from '@/shared/utils/cloudinary'
 import { type QuestionnaireResultOption } from '../options'
+import type { Questionnaire } from '../types'
 import { questions } from '../utils'
 
 export interface QuestionnaireDetailsProps {
@@ -74,12 +75,14 @@ export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
     }
 
     return (
-        <div className="dl-container">
-            <dl className="dl">
+        <div className={dlStyles.dlContainer}>
+            <dl className={dlStyles.dl}>
                 {fields.map((f) => (
-                    <div key={f} className="dl-grid">
-                        <dt className="dt">{t(questions[f]?.label)}</dt>
-                        <dd className="dd">
+                    <div key={f} className={dlStyles.dlGrid}>
+                        <dt className={dlStyles.dt}>
+                            {t(questions[f]?.label)}
+                        </dt>
+                        <dd className={dlStyles.dd}>
                             {f === 'makeupBagPhotoId'
                                 ? renderImage(data?.[f])
                                 : renderText(data?.[f], questions[f]?.options)}

@@ -1,0 +1,27 @@
+.container {
+    @apply mb-6 flex flex-col items-center justify-center pt-6 sm:pt-0;
+}
+
+.title {
+    @apply mx-auto w-11/12;
+}
+
+.headline {
+    @apply mx-auto text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
+}
+
+.byline {
+    @apply mx-auto mt-3 text-center font-heading text-slate-700 sm:text-xl;
+}
+
+.img {
+    @apply mt-6 sm:rounded;
+}
+
+.content {
+    @apply me-3 ms-3 mt-6;
+}
+
+:global(.dark) .byline {
+    @apply text-slate-400;
+}

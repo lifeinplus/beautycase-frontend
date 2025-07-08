@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import { MobileView } from '../../../components/table/MobileView'
-import { formatDate } from '../../../utils/date'
+import { MobileView } from '@/shared/components/table/MobileView'
+import { formatDate } from '@/shared/utils/date'
 import type { MakeupBag } from '../types'
 
 export interface MakeupBagMobileViewProps {

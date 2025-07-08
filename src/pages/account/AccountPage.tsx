@@ -8,6 +8,7 @@ import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
+import pageStyles from '@/shared/components/ui/page.module.css'
 
 export const AccountPage = () => {
     const { t } = useTranslation(['account', 'makeupBag'])
@@ -16,11 +17,11 @@ export const AccountPage = () => {
     const { data, isLoading, error } = useGetUserByIdQuery(userId)
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero
                         headline={t('hero.headline')}
                         byline={t('hero.byline')}

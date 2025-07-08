@@ -14,6 +14,7 @@ import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { canAccess } from '@/shared/utils/menu'
 
 const ACTIONS = {
@@ -66,8 +67,8 @@ export const MakeupBagListPage = () => {
         <article>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero headline={t('hero.headline')} />
 
                     <DataWrapper

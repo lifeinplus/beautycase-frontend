@@ -15,6 +15,7 @@ import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import styles from '@/shared/components/ui/button.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import classNames from 'classnames'
 import { options } from '../../features/questionnaires/options'
@@ -57,8 +58,8 @@ export const QuestionnairePage = () => {
         <article>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero
                         headline={t('hero.headline')}
                         byline={t('hero.byline')}

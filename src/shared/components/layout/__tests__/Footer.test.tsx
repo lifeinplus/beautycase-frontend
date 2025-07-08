@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { Footer } from '../Footer'
 
@@ -9,7 +9,7 @@ describe('Footer', () => {
 
         const footer = container.querySelector('footer')
         expect(footer).toHaveAttribute('id', 'footer')
-        expect(footer).toHaveClass('page-footer')
+        expect(footer).toHaveClass(/footer/)
 
         const sections = container.querySelectorAll('section')
         expect(sections).toHaveLength(2)

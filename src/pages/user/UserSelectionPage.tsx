@@ -12,7 +12,9 @@ import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
 import { Image } from '@/shared/components/ui/Image'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import styles from './UserSelectionPage.module.css'
 
 export const UserSelectionPage = () => {
@@ -55,11 +57,11 @@ export const UserSelectionPage = () => {
     }
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.selection')}
@@ -116,7 +118,7 @@ export const UserSelectionPage = () => {
                     icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
-                    className="nav-btn-back"
+                    className={navStyles.navBtnBack}
                 />
                 <NavButton
                     icon={CheckIcon}

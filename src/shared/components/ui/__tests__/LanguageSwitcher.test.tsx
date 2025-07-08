@@ -18,7 +18,7 @@ describe('LanguageSwitcher', () => {
         })
 
         expect(button).toBeInTheDocument()
-        expect(button).toHaveClass('nav-btn')
+        expect(button).toHaveClass(/navBtn/)
     })
 
     it('switches to Russian when button is clicked', async () => {

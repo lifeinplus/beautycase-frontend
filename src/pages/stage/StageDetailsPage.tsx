@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import type { Product } from '@/features/products/types'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { Image } from '@/shared/components/ui/Image'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { DetailsPage } from '@/widgets/DetailsPage'
 import {
     useDeleteStageByIdMutation,
@@ -40,7 +41,7 @@ export const StageDetailsPage = () => {
             duplicateItem={duplicateStageById}
             showDuplicate={true}
             mediaContent={
-                <section className="content-image">
+                <section className={pageStyles.contentImage}>
                     <div className="img-container img-container-rectangle">
                         <Image alt={data?.title} src={data?.imageUrl} />
                     </div>
@@ -49,12 +50,12 @@ export const StageDetailsPage = () => {
             descriptionContent={
                 <>
                     {data?.comment && (
-                        <section className="content-description">
+                        <section className={pageStyles.contentDescription}>
                             <p>{data?.comment}</p>
                         </section>
                     )}
                     {data?.steps?.length ? (
-                        <section className="content-description">
+                        <section className={pageStyles.contentDescription}>
                             <p className="my-2 font-bold sm:text-left">
                                 {t('steps')}
                             </p>

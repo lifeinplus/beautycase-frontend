@@ -1,0 +1,16 @@
+.navBar {
+    @apply fixed bottom-0 left-0 z-20 flex w-full overflow-y-auto bg-white sm:h-full sm:w-auto sm:flex-col sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open;
+    @apply border-t border-neutral-300 sm:border-e sm:border-t-0;
+}
+
+.logoContainer {
+    @apply mt-3 hidden flex-col pb-10 pe-3 ps-4 pt-3 sm:flex;
+}
+
+.btnContainer {
+    @apply w-full flex-row justify-evenly sm:flex-col sm:justify-start;
+}
+
+:global(.dark) .navBar {
+    @apply border-neutral-700 bg-black;
+}

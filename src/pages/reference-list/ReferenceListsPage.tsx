@@ -6,6 +6,7 @@ import type { ReferenceList } from '@/features/referenceLists/types'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
+import pageStyles from '@/shared/components/ui/page.module.css'
 
 export const ReferenceListsPage = () => {
     const { t } = useTranslation('referenceList')
@@ -19,8 +20,8 @@ export const ReferenceListsPage = () => {
         <article>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero headline={t('hero.headline')} />
                     <ReferenceListsMobileView data={data} />
                     <ReferenceListsTable data={data} />

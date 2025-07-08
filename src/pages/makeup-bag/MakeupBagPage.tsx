@@ -23,6 +23,8 @@ import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { canAccess } from '@/shared/utils/menu'
 import { usePDFExport } from '../../features/makeupBags/hooks/usePDFExport'
@@ -61,7 +63,7 @@ interface ActionItem {
 }
 
 const ACTION_ITEMS: ActionItem[] = [
-    { id: 'back', className: 'nav-btn-back' },
+    { id: 'back', className: navStyles.navBtnBack },
     { id: 'export', auth: false },
     { id: 'edit', auth: true, roles: ['admin', 'mua'] },
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
@@ -194,14 +196,14 @@ export const MakeupBagPage = () => {
     }))
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <TopPanel
                 title={t('titles.details')}
                 onBack={actionHandlers.back}
             />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}

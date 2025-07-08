@@ -13,6 +13,9 @@ import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
+import classNames from 'classnames'
 import type { Lesson } from '../types'
 import { lessonSchema } from '../validations'
 
@@ -64,13 +67,18 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     }
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="page-content">
-                <article className="content-container">
-                    <section className="title-container hidden sm:block">
-                        <h1 className="title-headline">{title}</h1>
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
+                    <section
+                        className={classNames(
+                            pageStyles.titleContainer,
+                            'hidden sm:block'
+                        )}
+                    >
+                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
                     </section>
 
                     <form
@@ -133,7 +141,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                     icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
-                    className="nav-btn-back"
+                    className={navStyles.navBtnBack}
                 />
                 <NavButton
                     icon={CheckIcon}

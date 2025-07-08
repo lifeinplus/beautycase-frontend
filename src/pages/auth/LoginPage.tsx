@@ -30,7 +30,6 @@ export const LoginPage = () => {
     } = useForm<AuthQueryLogin>({
         resolver: yupResolver(loginSchema),
     })
-    console.log(111, errors)
 
     const usernameRef = useRef<HTMLInputElement | null>(null)
 

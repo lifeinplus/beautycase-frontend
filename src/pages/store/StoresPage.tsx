@@ -5,15 +5,17 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
+import { clearFormData, setFormData } from '@/features/form/formSlice'
+import type { FormRef } from '@/features/form/types'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
-import type { FormRef } from '@/features/form/types'
 import { StoreForm } from '../../features/stores/components/StoreForm'
 import { StoresMobileView } from '../../features/stores/components/StoresMobileView'
 import { StoresTable } from '../../features/stores/components/StoresTable'
@@ -68,8 +70,8 @@ export const StoresPage = () => {
         <article>
             <TopPanel title={t('titles.list')} onBack={handleBack} />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <div className="hidden sm:block">
                         <Hero headline={t('titles.list')} />
                     </div>
@@ -105,7 +107,7 @@ export const StoresPage = () => {
                     icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
-                    className="nav-btn-back"
+                    className={navStyles.navBtnBack}
                 />
             </NavBar>
 

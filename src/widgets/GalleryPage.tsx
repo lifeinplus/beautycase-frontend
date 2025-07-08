@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { clearFormData } from '@/features/form/formSlice'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { canAccess } from '@/shared/utils/menu'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import pageStyles from '@/shared/components/ui/page.module.css'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { canAccess } from '@/shared/utils/menu'
 
 const ACTIONS = {
     add: {
@@ -74,11 +75,11 @@ export const GalleryPage = ({
     }))
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero headline={title} byline={subtitle} />
 
                     {isLoading ? (

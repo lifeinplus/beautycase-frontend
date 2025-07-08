@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { mockNavigate } from '@/tests/mocks/router'
 import { TopPanel } from '../TopPanel'
@@ -11,20 +11,17 @@ describe('TopPanel', () => {
     it('renders with the correct title', () => {
         render(<TopPanel title={mockTitle} />)
 
-        const title = screen.getByText(mockTitle)
-        expect(title).toBeInTheDocument()
-        expect(title).toHaveClass('panel-top-title')
+        expect(screen.getByText(mockTitle)).toHaveClass(/title/)
     })
 
     it('renders back button with chevron icon', () => {
         render(<TopPanel title={mockTitle} />)
 
-        const icon = screen.getByTestId('mocked-chevron-left-icon')
-        expect(icon).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-chevron-left-icon')
+        ).toBeInTheDocument()
 
-        const button = screen.getByRole('button')
-        expect(button).toBeInTheDocument()
-        expect(button).toHaveClass('panel-top-btn')
+        expect(screen.getByRole('button')).toHaveClass(/btn/)
     })
 
     it('navigates back when default back button is clicked', async () => {

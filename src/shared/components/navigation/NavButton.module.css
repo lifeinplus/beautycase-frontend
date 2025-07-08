@@ -1,0 +1,7 @@
+.navBtn {
+    @apply m-2 flex rounded-lg p-1 hover:bg-neutral-100 sm:m-0 sm:my-1 sm:p-3 lg:gap-4;
+}
+
+:global(.dark) .navBtn {
+    @apply hover:bg-neutral-800;
+}

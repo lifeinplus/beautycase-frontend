@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
-import { Image } from '@/shared/components/ui/Image'
 import { GoodsGrid } from '@/shared/components/gallery/GoodsGrid'
+import { Image } from '@/shared/components/ui/Image'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import type { Stage } from '../types'
 
 export interface StagesProps {
@@ -25,7 +26,7 @@ export const Stages = ({ stages }: StagesProps) => {
                     <h3 className="stage-headline">{stage.title}</h3>
                     <h4 className="stage-byline">{stage.subtitle}</h4>
 
-                    <section className="content-image">
+                    <section className={pageStyles.contentImage}>
                         <div className="img-container img-container-rectangle">
                             <Image alt={stage.title} src={stage.imageUrl} />
                         </div>

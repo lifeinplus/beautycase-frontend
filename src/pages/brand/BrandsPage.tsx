@@ -21,6 +21,8 @@ import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const BrandsPage = () => {
@@ -68,8 +70,8 @@ export const BrandsPage = () => {
         <article>
             <TopPanel title={t('hero.headline')} onBack={handleBack} />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <div className="hidden sm:block">
                         <Hero headline={t('hero.headline')} />
                     </div>
@@ -105,7 +107,7 @@ export const BrandsPage = () => {
                     icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
-                    className="nav-btn-back"
+                    className={navStyles.navBtnBack}
                 />
             </NavBar>
 

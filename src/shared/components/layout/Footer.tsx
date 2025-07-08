@@ -2,12 +2,13 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import styles from './Footer.module.css'
 
 export const Footer = () => {
     const { t } = useTranslation('component')
 
     return (
-        <footer id="footer" className="page-footer">
+        <footer id="footer" className={styles.footer}>
             <section className="mx-auto max-w-4xl p-4">
                 <h4 className="font-heading text-lg">{t('footer.thanks')}</h4>
             </section>

@@ -11,7 +11,10 @@ import { canAccess, menuItems } from '@/shared/utils/menu'
 import AppInfo from '../common/AppInfo'
 import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 import { LogoLink } from '../ui/LogoLink'
+import styles from './NavBar.module.css'
 import { NavButton } from './NavButton'
+import navStyles from './navigation.module.css'
+import classNames from 'classnames'
 
 export interface NavBarProps {
     children?: ReactNode
@@ -41,9 +44,9 @@ export const NavBar = ({ children }: NavBarProps) => {
     }
 
     return (
-        <aside className="nav-bar">
-            <div className="nav-logo-container">
-                <h2 className="nav-logo">
+        <aside className={styles.navBar}>
+            <div className={styles.logoContainer}>
+                <h2 className={navStyles.navLogo}>
                     <LogoLink>
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>
@@ -51,7 +54,7 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className="nav-btn-container hidden sm:flex">
+            <div className={classNames(styles.btnContainer, 'hidden sm:flex')}>
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
@@ -69,7 +72,12 @@ export const NavBar = ({ children }: NavBarProps) => {
                     ))}
             </div>
 
-            <div className="nav-btn-container flex grow sm:my-10">
+            <div
+                className={classNames(
+                    styles.btnContainer,
+                    'flex grow sm:my-10'
+                )}
+            >
                 {children}
             </div>
 

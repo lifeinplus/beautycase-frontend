@@ -2,8 +2,9 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { DetailsPage } from '@/widgets/DetailsPage'
 import { Image } from '@/shared/components/ui/Image'
+import pageStyles from '@/shared/components/ui/page.module.css'
+import { DetailsPage } from '@/widgets/DetailsPage'
 import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
@@ -26,7 +27,7 @@ export const ToolDetailsPage = () => {
             subtitle={data?.brand?.name}
             deleteItem={deleteToolById}
             mediaContent={
-                <section className="content-image">
+                <section className={pageStyles.contentImage}>
                     <div className="img-container img-container-rectangle">
                         <Image alt={data?.name} src={data?.imageUrl} />
                     </div>
@@ -35,12 +36,12 @@ export const ToolDetailsPage = () => {
             descriptionContent={
                 <>
                     {data?.number && (
-                        <section className="content-description">
+                        <section className={pageStyles.contentDescription}>
                             <p>{`${t('number')}: ${data?.number}`}</p>
                         </section>
                     )}
                     {data?.comment && (
-                        <section className="content-description">
+                        <section className={pageStyles.contentDescription}>
                             <p>{data?.comment}</p>
                         </section>
                     )}
@@ -48,7 +49,7 @@ export const ToolDetailsPage = () => {
             }
             additionalContent={
                 data?.storeLinks?.length !== 0 && (
-                    <section className="content-description">
+                    <section className={pageStyles.contentDescription}>
                         <p className="mb-3 font-bold">{t('links')}</p>
                         <div className="flex flex-col gap-3 sm:flex-row">
                             {data?.storeLinks?.map((l, i) => (

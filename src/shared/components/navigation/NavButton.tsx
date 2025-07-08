@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { ComponentType, SVGProps } from 'react'
 
 import commonStyles from '@/shared/components/common/common.module.css'
+import styles from './NavButton.module.css'
 
 export interface NavButtonProps {
     ariaLabel?: string
@@ -20,7 +21,11 @@ export const NavButton = ({
 }: NavButtonProps) => (
     <button
         aria-label={ariaLabel}
-        className={classNames('nav-btn', commonStyles.focusOutline, className)}
+        className={classNames(
+            styles.navBtn,
+            commonStyles.focusOutline,
+            className
+        )}
         onClick={onClick}
     >
         <Icon className="h-6 w-6" />

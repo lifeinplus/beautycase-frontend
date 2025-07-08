@@ -20,7 +20,9 @@ import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
 import inputStyles from '@/shared/components/ui/Input.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
 
 export const StoreLinkAddPage = () => {
     const navigate = useNavigate()
@@ -92,11 +94,11 @@ export const StoreLinkAddPage = () => {
     }
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.add')}
@@ -203,7 +205,7 @@ export const StoreLinkAddPage = () => {
                     icon={ArrowLeftIcon}
                     label={t('navigation:actions.back')}
                     onClick={handleBack}
-                    className="nav-btn-back"
+                    className={navStyles.navBtnBack}
                 />
                 <NavButton
                     icon={CheckIcon}

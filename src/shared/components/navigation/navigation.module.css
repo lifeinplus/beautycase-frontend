@@ -1,0 +1,7 @@
+.navLogo {
+    @apply font-logo text-2xl font-bold;
+}
+
+.navBtnBack {
+    @apply hidden sm:flex;
+}

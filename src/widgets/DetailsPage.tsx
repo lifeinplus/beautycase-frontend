@@ -18,8 +18,11 @@ import { ModalDelete } from '@/shared/components/modals/ModalDelete'
 import { ModalDuplicate } from '@/shared/components/modals/ModalDuplicate'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
+import navStyles from '@/shared/components/navigation/navigation.module.css'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { canAccess } from '@/shared/utils/menu'
+import styles from './DetailsPage.module.css'
 
 const ACTIONS = {
     back: {
@@ -51,7 +54,7 @@ interface ActionItem {
 
 const getActionItems = (showDuplicate: boolean): ActionItem[] => {
     const items: ActionItem[] = [
-        { id: 'back', className: 'nav-btn-back' },
+        { id: 'back', className: navStyles.navBtnBack },
         { id: 'edit', auth: true, roles: ['admin', 'mua'] },
         { id: 'delete', auth: true, roles: ['admin', 'mua'] },
     ]
@@ -162,11 +165,11 @@ export const DetailsPage = ({
         }))
 
     return (
-        <article className="page">
+        <article className={pageStyles.page}>
             <TopPanel title={topPanelTitle} onBack={actionHandlers.back} />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
@@ -176,9 +179,11 @@ export const DetailsPage = ({
                         })}
                     >
                         <>
-                            <section className="title-container">
-                                <h2 className="title-headline">{title}</h2>
-                                <p className="title-byline">{subtitle}</p>
+                            <section className={pageStyles.titleContainer}>
+                                <h2 className={pageStyles.titleHeadline}>
+                                    {title}
+                                </h2>
+                                <p className={styles.byline}>{subtitle}</p>
                             </section>
 
                             {mediaContent}
@@ -186,7 +191,11 @@ export const DetailsPage = ({
                             {descriptionContent
                                 ? descriptionContent
                                 : description && (
-                                      <section className="content-description">
+                                      <section
+                                          className={
+                                              pageStyles.contentDescription
+                                          }
+                                      >
                                           <p>{description}</p>
                                       </section>
                                   )}

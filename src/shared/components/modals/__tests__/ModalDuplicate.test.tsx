@@ -58,7 +58,11 @@ describe('ModalDuplicate', () => {
         const user = userEvent.setup()
 
         render(<ModalDuplicate {...mockProps} />)
-        await user.click(document.querySelector('.modal')!)
+
+        const modal = document.querySelector("[class*='modal']")
+        expect(modal).toBeInTheDocument()
+
+        await user.click(modal!)
 
         expect(mockProps.onCancel).toHaveBeenCalledTimes(1)
     })

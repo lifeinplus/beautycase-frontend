@@ -4,6 +4,7 @@ import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
+import pageStyles from '@/shared/components/ui/page.module.css'
 import { QuestionnaireMobileView } from '../../features/questionnaires/components/QuestionnaireMobileView'
 import { QuestionnaireTable } from '../../features/questionnaires/components/QuestionnaireTable'
 import { useGetAllQuestionnairesQuery } from '../../features/questionnaires/questionnairesApi'
@@ -16,8 +17,8 @@ export const QuestionnaireListPage = () => {
         <article>
             <Header />
 
-            <main className="page-content">
-                <article className="content-container">
+            <main className={pageStyles.content}>
+                <article className={pageStyles.contentContainer}>
                     <Hero headline={t('hero.headlineList')} />
 
                     <DataWrapper

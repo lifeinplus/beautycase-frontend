@@ -20,12 +20,12 @@ describe('UnauthorizedPage', () => {
     it('has correct page structure', () => {
         const { container } = renderWithProviders(<UnauthorizedPage />)
 
-        const mainContent = container.querySelector('main.page-content')
-        const contentArticle = container.querySelector(
-            'article.content-container'
-        )
+        expect(
+            container.querySelector("[class*='content']")
+        ).toBeInTheDocument()
 
-        expect(mainContent).toBeInTheDocument()
-        expect(contentArticle).toBeInTheDocument()
+        expect(
+            container.querySelector("[class*='contentContainer']")
+        ).toBeInTheDocument()
     })
 })

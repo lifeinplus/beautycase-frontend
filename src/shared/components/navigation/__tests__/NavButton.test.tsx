@@ -27,7 +27,7 @@ describe('NavButton', () => {
 
         const button = screen.getByRole('button')
 
-        expect(button).toHaveClass('nav-btn')
+        expect(button).toHaveClass(/navBtn/)
         expect(button).toHaveClass('custom-class')
     })
 
@@ -36,7 +36,7 @@ describe('NavButton', () => {
 
         const button = screen.getByRole('button')
 
-        expect(button).toHaveClass('nav-btn')
+        expect(button).toHaveClass(/navBtn/)
         expect(button).not.toHaveClass('custom-class')
     })
 

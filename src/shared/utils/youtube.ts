@@ -16,7 +16,7 @@ function getValidYouTubeId(url?: string) {
     return videoId
 }
 
-export const getYouTubeEmbedUrl = (videoUrl?: string) => {
+export const getYouTubeEmbedUrl = (videoUrl: string) => {
     try {
         const id = getValidYouTubeId(videoUrl)
         return `https://www.youtube.com/embed/${id}`

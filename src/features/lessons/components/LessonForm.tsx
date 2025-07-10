@@ -1,5 +1,6 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -15,7 +16,6 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import classNames from 'classnames'
 import type { Lesson } from '../types'
 import { lessonSchema } from '../validations'
 
@@ -44,12 +44,6 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
     useEffect(() => {
         reset(formData)
     }, [formData])
-
-    const productIds = watch('productIds')
-
-    const productsText = productIds
-        ? `${t('fields.products.selected')}: ${productIds.length}`
-        : t('fields.products.select')
 
     const clientIds = watch('clientIds')
 
@@ -117,14 +111,6 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                             required={true}
                             rows={4}
                             value={watch('fullDescription')}
-                        />
-
-                        <ButtonNavigateSection
-                            error={t(errors.productIds?.message || '')}
-                            label={t('fields.products.label')}
-                            onNavigate={() => handleNavigate('products')}
-                            required={true}
-                            text={productsText}
                         />
 
                         <ButtonNavigateSection

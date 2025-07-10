@@ -17,7 +17,7 @@ export const HomeTile = ({ to, label, icon: Icon }: HomeTileProps) => (
         className={classNames(commonStyles.focusOutline, styles.tile)}
     >
         <div className={styles.icon}>
-            <Icon className="h-16 w-16" />
+            <Icon className="h-16 w-16 stroke-1" />
         </div>
         <span className={styles.label}>{label}</span>
     </Link>

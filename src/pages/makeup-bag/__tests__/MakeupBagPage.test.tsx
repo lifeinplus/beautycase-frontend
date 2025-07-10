@@ -4,17 +4,17 @@ import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi'
-import { mockMakeupBag1 } from '../../../features/makeupBags/__mocks__/makeupBagsApi'
-import { usePDFExport } from '../../../features/makeupBags/hooks/usePDFExport'
+import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
+import { usePDFExport } from '@/features/makeupBags/hooks/usePDFExport'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
-} from '../../../features/makeupBags/makeupBagsApi'
-import { generatePdfFilename } from '../../../features/makeupBags/utils/generatePdfFilename'
+} from '@/features/makeupBags/makeupBagsApi'
+import { generatePdfFilename } from '@/features/makeupBags/utils/generatePdfFilename'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagPage } from '../MakeupBagPage'
 
 vi.mock('@/app/hooks')

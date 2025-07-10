@@ -2,8 +2,6 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { setFormData } from '@/features/form/formSlice'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
@@ -14,7 +12,7 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { DetailsPage } from '@/widgets/DetailsPage'
-import { SquaresPlusIcon } from '@heroicons/react/24/outline'
+import SelectProductsTile from '@/widgets/product/SelectProductsTile'
 import styles from './LessonDetailsPage.module.css'
 
 export const LessonDetailsPage = () => {
@@ -22,8 +20,6 @@ export const LessonDetailsPage = () => {
     const navigate = useNavigate()
     const { id } = useParams<{ id: string }>()
     const { t } = useTranslation('lesson')
-
-    const dispatch = useAppDispatch()
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
     const [deleteLessonById] = useDeleteLessonByIdMutation()
@@ -80,23 +76,8 @@ export const LessonDetailsPage = () => {
                             <Image alt={product.name} src={product.imageUrl} />
                         </div>
                     ))}
-                    <div
-                        className={classNames(
-                            imageStyles.container,
-                            imageStyles.square,
-                            'flex items-center justify-center rounded-md border border-gray-200 bg-white text-black hover:bg-rose-500 dark:border-neutral-700 dark:bg-black dark:text-white dark:hover:bg-rose-600'
-                        )}
-                        onClick={() => {
-                            const productIds = data?.products?.map(
-                                (p) => p._id!
-                            )
 
-                            dispatch(setFormData({ productIds }))
-                            navigate('products')
-                        }}
-                    >
-                        <SquaresPlusIcon className="h-32 w-32 stroke-[0.5]" />
-                    </div>
+                    <SelectProductsTile products={data?.products} />
                 </div>
             }
         />

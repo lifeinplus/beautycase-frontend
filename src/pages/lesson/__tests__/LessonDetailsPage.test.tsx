@@ -2,19 +2,20 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
-import { mockYouTubeUrl } from '@/tests/mocks/form'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockLesson1 } from '../../../features/lessons/__mocks__/lessonsApi'
+import { mockLesson1 } from '@/features/lessons/__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
-} from '../../../features/lessons/lessonsApi'
+} from '@/features/lessons/lessonsApi'
+import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
+import { mockYouTubeUrl } from '@/tests/mocks/form'
+import { mockNavigate } from '@/tests/mocks/router'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/ui/Image')
 vi.mock('@/shared/utils/youtube')
+vi.mock('@/widgets/product/SelectProductsTile')
 vi.mock('@/widgets/DetailsPage')
 
 describe('LessonDetailsPage', () => {

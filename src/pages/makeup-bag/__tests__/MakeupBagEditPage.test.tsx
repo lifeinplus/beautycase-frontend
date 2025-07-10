@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { mockMakeupBag1 } from '../../../features/makeupBags/__mocks__/makeupBagsApi'
+import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
 import {
-    useUpdateMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
-} from '../../../features/makeupBags/makeupBagsApi'
+    useUpdateMakeupBagByIdMutation,
+} from '@/features/makeupBags/makeupBagsApi'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagEditPage } from '../MakeupBagEditPage'
 
 vi.mock('@/app/hooks')

@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { mockStage1, mockStages } from '@/features/stages/__mocks__/stagesApi'
+import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import {
-    mockStage1,
-    mockStages,
-} from '../../../features/stages/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '../../../features/stages/stagesApi'
 import { StageListPage } from '../StageListPage'
 
 vi.mock('@/app/hooks')

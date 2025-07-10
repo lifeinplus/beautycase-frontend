@@ -1,13 +1,13 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
-import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
+import { useAppSelector } from '@/app/hooks'
+import { selectFormData } from '@/features/form/formSlice'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
@@ -17,7 +17,6 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import classNames from 'classnames'
 import type { Stage } from '../types'
 import { stageSchema } from '../validations'
 
@@ -42,26 +41,14 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
         resolver: yupResolver(stageSchema),
     })
 
-    const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData) as Stage
 
     useEffect(() => {
         reset(formData)
     }, [formData])
 
-    const productIds = watch('productIds')
-
-    const productsText = productIds
-        ? `${t('fields.products.selected')}: ${productIds.length}`
-        : t('fields.products.select')
-
     const handleBack = () => {
         navigate(-1)
-    }
-
-    const handleNavigate = () => {
-        dispatch(setFormData(watch()))
-        navigate('products')
     }
 
     return (
@@ -122,14 +109,6 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                             register={register('stepsText')}
                             rows={10}
                             value={watch('stepsText')}
-                        />
-
-                        <ButtonNavigateSection
-                            error={t(errors.productIds?.message || '')}
-                            label={t('fields.products.label')}
-                            onNavigate={handleNavigate}
-                            required={true}
-                            text={productsText}
                         />
                     </form>
                 </article>

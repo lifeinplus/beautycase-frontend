@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { mockQuestionnaire1 } from '@/features/questionnaires/__mocks__/questionnairesApi'
+import { useCreateQuestionnaireMutation } from '@/features/questionnaires/questionnairesApi'
+import { questions } from '@/features/questionnaires/utils'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { mockQuestionnaire1 } from '../../../features/questionnaires/__mocks__/questionnairesApi'
-import { useCreateQuestionnaireMutation } from '../../../features/questionnaires/questionnairesApi'
-import { questions } from '../../../features/questionnaires/utils'
 import { QuestionnairePage } from '../QuestionnairePage'
 
 vi.mock('@/features/questionnaires/questionnairesApi')

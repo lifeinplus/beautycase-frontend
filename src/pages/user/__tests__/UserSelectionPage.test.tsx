@@ -5,14 +5,14 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { setFormData } from '@/features/form/formSlice'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
 import {
     mockUser1,
     mockUser2,
     mockUsers,
-} from '../../../features/users/__mocks__/usersApi'
-import { useGetAllUsersQuery } from '../../../features/users/usersApi'
+} from '@/features/users/__mocks__/usersApi'
+import { useGetAllUsersQuery } from '@/features/users/usersApi'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { UserSelectionPage } from '../UserSelectionPage'
 
 vi.mock('@/app/hooks')

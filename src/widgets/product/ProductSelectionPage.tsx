@@ -7,7 +7,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { clearFormData, selectFormData } from '@/features/form/formSlice'
-import { useUpdateLessonProductsMutation } from '@/features/lessons/lessonsApi'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
@@ -21,7 +20,11 @@ import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ProductSelectionPage = () => {
+export interface ProductSelectionPageProps {
+    onSave: (id: string, productIds: string[]) => Promise<void>
+}
+
+export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => {
     const navigate = useNavigate()
     const { id } = useParams()
     const { t } = useTranslation('product')
@@ -29,8 +32,6 @@ export const ProductSelectionPage = () => {
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
     const { data: products, isLoading, error } = useGetAllProductsQuery()
-
-    const [updateLessonProducts] = useUpdateLessonProductsMutation()
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.productIds || []
@@ -62,16 +63,13 @@ export const ProductSelectionPage = () => {
     }
 
     const handleSave = async () => {
+        if (!id) return
+
         try {
             const productIds = Array.from(orderedIds.keys())
-
-            await updateLessonProducts({
-                id: id!,
-                data: { productIds },
-            }).unwrap()
-
+            await onSave(id, productIds)
             dispatch(clearFormData())
-            navigate(`/lessons/${id}`)
+            navigate(-1)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

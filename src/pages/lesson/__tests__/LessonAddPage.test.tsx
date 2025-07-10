@@ -4,14 +4,14 @@ import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
 import { clearFormData } from '@/features/form/formSlice'
 import {
     mockLesson1,
     mockLessonCreate,
-} from '../../../features/lessons/__mocks__/lessonsApi'
-import { useCreateLessonMutation } from '../../../features/lessons/lessonsApi'
+} from '@/features/lessons/__mocks__/lessonsApi'
+import { useCreateLessonMutation } from '@/features/lessons/lessonsApi'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { LessonAddPage } from '../LessonAddPage'
 
 vi.mock('@/app/hooks')

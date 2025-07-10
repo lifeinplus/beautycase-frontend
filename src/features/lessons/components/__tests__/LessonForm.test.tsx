@@ -2,11 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
-import { setFormData } from '@/features/form/formSlice'
 import { mockLesson1 } from '../../__mocks__/lessonsApi'
 import { LessonForm } from '../LessonForm'
 
@@ -40,7 +38,6 @@ describe('LessonForm', () => {
         )
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByText('fields.products.label')).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
@@ -50,26 +47,5 @@ describe('LessonForm', () => {
         await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
-    })
-
-    it('navigates to products selection and saves form data', async () => {
-        const user = userEvent.setup()
-
-        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const buttons = screen.getAllByTestId('mocked-button-navigate-section')
-        await user.click(buttons[0])
-
-        expect(mockDispatch).toHaveBeenCalled()
-        expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('products')
-    })
-
-    it('displays the correct number of selected products', () => {
-        render(<LessonForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        const buttons = screen.getAllByTestId('mocked-button-navigate-section')
-        expect(buttons[0]).toHaveTextContent('fields.products.selected: 3')
-        expect(buttons[1]).toHaveTextContent('fields.clients.select')
     })
 })

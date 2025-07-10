@@ -10,5 +10,5 @@ export interface Stage {
     steps?: string[]
     stepsText?: string
     products?: Product[]
-    productIds: string[]
+    productIds?: string[]
 }

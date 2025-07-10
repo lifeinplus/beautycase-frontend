@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, vi, beforeEach, expect, Mock } from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
-import { mockNavigate } from '@/tests/mocks/router'
 import { setFormData } from '@/features/form/formSlice'
-import { useGetAllStoresQuery } from '../../../features/stores/storesApi'
+import { useGetAllStoresQuery } from '@/features/stores/storesApi'
+import { mockNavigate } from '@/tests/mocks/router'
 import { StoreLinkAddPage } from '../StoreLinkAddPage'
 
 vi.mock('@/app/hooks')

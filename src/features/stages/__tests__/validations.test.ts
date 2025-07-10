@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { mockStage1 } from '../__mocks__/stagesApi'
 import { stageSchema } from '../validations'
@@ -27,20 +27,6 @@ describe('stageSchema validation', () => {
         const data = { ...mockStage1, imageUrl: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
             'fields.imageUrl.errors.required'
-        )
-    })
-
-    it('should fail when productIds is missing', async () => {
-        const data = { ...mockStage1, productIds: undefined }
-        await expect(stageSchema.validate(data)).rejects.toThrow(
-            'fields.products.errors.required'
-        )
-    })
-
-    it('should fail when productIds is empty', async () => {
-        const data = { ...mockStage1, productIds: [] }
-        await expect(stageSchema.validate(data)).rejects.toThrow(
-            'fields.products.errors.min'
         )
     })
 })

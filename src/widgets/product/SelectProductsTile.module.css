@@ -1,0 +1,20 @@
+.tile {
+    @apply flex items-center justify-center bg-white hover:bg-rose-500;
+    @apply rounded-md border border-gray-200;
+}
+
+.tile:hover .icon {
+    @apply text-white;
+}
+
+.icon {
+    @apply h-32 w-32 stroke-[0.5] text-neutral-700;
+}
+
+:global(.dark) .tile {
+    @apply border-neutral-700 bg-black text-white hover:bg-rose-600;
+}
+
+:global(.dark) .icon {
+    @apply text-neutral-200;
+}

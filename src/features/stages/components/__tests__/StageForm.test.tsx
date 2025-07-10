@@ -1,12 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, beforeEach, expect, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
-import { setFormData } from '@/features/form/formSlice'
 import { mockStage1 } from '../../__mocks__/stagesApi'
 import { StageForm } from '../StageForm'
 
@@ -30,11 +28,7 @@ describe('StageForm', () => {
     it('renders all required form fields', () => {
         render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const testIds = [
-            'mocked-top-panel',
-            'mocked-image-url-section',
-            'mocked-button-navigate-section',
-        ]
+        const testIds = ['mocked-top-panel', 'mocked-image-url-section']
 
         testIds.forEach((id) =>
             expect(screen.getByTestId(id)).toBeInTheDocument()
@@ -59,24 +53,5 @@ describe('StageForm', () => {
         await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
-    })
-
-    it('navigates to products selection and saves form data', async () => {
-        const user = userEvent.setup()
-
-        render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
-        await user.click(screen.getByTestId('mocked-button-navigate-section'))
-
-        expect(mockDispatch).toHaveBeenCalled()
-        expect(setFormData).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('products')
-    })
-
-    it('displays the correct number of added store links', () => {
-        render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
-
-        expect(
-            screen.getByText('fields.products.selected: 2')
-        ).toBeInTheDocument()
     })
 })

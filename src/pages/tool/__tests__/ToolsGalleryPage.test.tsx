@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockTools } from '../../../features/tools/__mocks__/toolsApi'
-import { useGetAllToolsQuery } from '../../../features/tools/toolsApi'
+import { mockTools } from '@/features/tools/__mocks__/toolsApi'
+import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
 import { ToolsGalleryPage } from '../ToolsGalleryPage'
 
 vi.mock('@/features/tools/toolsApi')

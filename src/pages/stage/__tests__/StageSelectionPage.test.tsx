@@ -7,9 +7,9 @@ import { useAppSelector } from '@/app/hooks'
 import { setFormData } from '@/features/form/formSlice'
 import { mockMakeupBags } from '@/features/makeupBags/__mocks__/makeupBagsApi'
 import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
+import { mockStages } from '@/features/stages/__mocks__/stagesApi'
+import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { mockStages } from '../../../features/stages/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '../../../features/stages/stagesApi'
 import { StageSelectionPage } from '../StageSelectionPage'
 
 vi.mock('@/app/hooks')

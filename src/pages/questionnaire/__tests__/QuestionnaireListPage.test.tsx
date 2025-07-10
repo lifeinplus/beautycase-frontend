@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
-import { mockQuestionnaires } from '../../../features/questionnaires/__mocks__/questionnairesApi'
-import { useGetAllQuestionnairesQuery } from '../../../features/questionnaires/questionnairesApi'
+import { mockQuestionnaires } from '@/features/questionnaires/__mocks__/questionnairesApi'
+import { useGetAllQuestionnairesQuery } from '@/features/questionnaires/questionnairesApi'
 import { QuestionnaireListPage } from '../QuestionnaireListPage'
 
 vi.mock('@/features/questionnaires/components/QuestionnaireMobileView')

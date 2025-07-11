@@ -9,11 +9,11 @@ import type { Product } from '@/features/products/types'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import styles from './SelectProductsTile.module.css'
 
-export interface ProductTileButtonProps {
+export interface SelectProductsTileProps {
     products?: Product[]
 }
 
-const SelectProductsTile = ({ products }: ProductTileButtonProps) => {
+const SelectProductsTile = ({ products }: SelectProductsTileProps) => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()

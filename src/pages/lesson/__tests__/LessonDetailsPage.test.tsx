@@ -38,13 +38,15 @@ describe('LessonDetailsPage', () => {
     it('renders lesson details', async () => {
         render(<LessonDetailsPage />)
 
-        const title = screen.getByText(mockLesson1.title)
-        const subtitle = screen.getByText(mockLesson1.shortDescription)
-        const description = screen.getByText(mockLesson1.fullDescription)
+        expect(screen.getByText(mockLesson1.title)).toBeInTheDocument()
 
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
-        expect(description).toBeInTheDocument()
+        expect(
+            screen.getByText(mockLesson1.shortDescription)
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText(mockLesson1.fullDescription)
+        ).toBeInTheDocument()
     })
 
     it('navigates to product details when product is clicked', async () => {
@@ -74,9 +76,8 @@ describe('LessonDetailsPage', () => {
 
         render(<LessonDetailsPage />)
 
-        const image = screen.getByRole('img', { name: /product/i })
-
-        expect(image).toBeInTheDocument()
-        expect(image.getAttribute('alt')).toBe('Product 1')
+        expect(
+            screen.getByRole('img', { name: /product/i }).getAttribute('alt')
+        ).toBe('Product 1')
     })
 })

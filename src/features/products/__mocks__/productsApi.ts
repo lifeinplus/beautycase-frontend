@@ -37,6 +37,8 @@ export const mockProduct2: Product = {
 
 export const mockProducts: Product[] = [mockProduct1, mockProduct2]
 
+export const mockProductIds: string[] = ['product1', 'product2']
+
 export const useCreateProductMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()

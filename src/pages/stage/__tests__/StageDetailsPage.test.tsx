@@ -2,17 +2,18 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockStage1 } from '../../../features/stages/__mocks__/stagesApi'
+import { mockStage1 } from '@/features/stages/__mocks__/stagesApi'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
-} from '../../../features/stages/stagesApi'
+} from '@/features/stages/stagesApi'
+import { mockNavigate } from '@/tests/mocks/router'
 import { StageDetailsPage } from '../StageDetailsPage'
 
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/components/ui/Image')
+vi.mock('@/widgets/product/SelectProductsTile')
 vi.mock('@/widgets/DetailsPage')
 
 describe('StageDetailsPage', () => {
@@ -38,13 +39,9 @@ describe('StageDetailsPage', () => {
     it('renders stage details', async () => {
         render(<StageDetailsPage />)
 
-        const title = screen.getByText(mockStage1.title)
-        const subtitle = screen.getByText(mockStage1.subtitle)
-        const descriptionContent = screen.getByText(mockStage1.comment!)
-
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
-        expect(descriptionContent).toBeInTheDocument()
+        expect(screen.getByText(mockStage1.title)).toBeInTheDocument()
+        expect(screen.getByText(mockStage1.subtitle)).toBeInTheDocument()
+        expect(screen.getByText(mockStage1.comment!)).toBeInTheDocument()
     })
 
     it('does not render steps section when steps do not exist', () => {

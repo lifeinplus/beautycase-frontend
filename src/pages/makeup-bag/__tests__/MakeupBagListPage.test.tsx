@@ -4,9 +4,9 @@ import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { mockMakeupBags } from '@/features/makeupBags/__mocks__/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { mockMakeupBags } from '../../../features/makeupBags/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '../../../features/makeupBags/makeupBagsApi'
 import { MakeupBagListPage } from '../MakeupBagListPage'
 
 vi.mock('@/app/hooks')

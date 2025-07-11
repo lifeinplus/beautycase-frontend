@@ -12,11 +12,11 @@
 }
 
 .icon {
-    @apply text-black;
+    @apply text-neutral-700;
 }
 
 .label {
-    @apply mt-8 text-center font-heading text-base font-normal leading-tight text-black;
+    @apply mt-8 text-center font-heading text-base font-normal leading-tight text-neutral-600;
 }
 
 :global(.dark) .tile {
@@ -24,9 +24,9 @@
 }
 
 :global(.dark) .icon {
-    @apply text-white;
+    @apply text-neutral-200;
 }
 
 :global(.dark) .label {
-    @apply text-white;
+    @apply text-neutral-300;
 }

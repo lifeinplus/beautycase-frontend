@@ -4,14 +4,14 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
 import { clearFormData, setFormData } from '@/features/form/formSlice'
 import {
     useDeleteStoreByIdMutation,
     useGetAllStoresQuery,
-} from '../../../features/stores/storesApi'
-import type { Store } from '../../../features/stores/types'
+} from '@/features/stores/storesApi'
+import type { Store } from '@/features/stores/types'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { StoresPage } from '../StoresPage'
 
 vi.mock('@/app/hooks')

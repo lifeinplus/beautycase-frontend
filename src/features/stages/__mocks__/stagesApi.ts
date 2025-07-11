@@ -1,8 +1,8 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
-import type { MutationResult } from '@/shared/types/api'
 import { mockProduct1 } from '@/features/products/__mocks__/productsApi'
+import type { MutationResult } from '@/shared/types/api'
 import type { Stage } from '../types'
 
 export const mockStageCreate: MutationResult = {
@@ -24,7 +24,7 @@ export const mockStage1: Stage = {
     steps: ['Step 1.1', 'Step 1.2', 'Step 1.3'],
     stepsText: 'Step 1.1\n\nStep 1.2\n\nStep 1.3',
     products: [mockProduct1],
-    productIds: ['111', '222'],
+    productIds: ['product1', 'product2'],
 }
 
 export const mockStage2: Stage = {
@@ -33,7 +33,7 @@ export const mockStage2: Stage = {
     subtitle: 'Applying eyeshadow and eyeliner',
     imageUrl: 'https://example.com/image2.jpg',
     steps: ['Step 2.1', 'Step 2.2'],
-    productIds: ['333', '444'],
+    productIds: ['product3', 'product4'],
 }
 
 export const mockStages: Stage[] = [mockStage1, mockStage2]
@@ -43,6 +43,7 @@ export const useDuplicateStageByIdMutation = vi.fn()
 export const useGetAllStagesQuery = vi.fn()
 export const useGetStageByIdQuery = vi.fn()
 export const useUpdateStageByIdMutation = vi.fn()
+export const useUpdateStageProductsMutation = vi.fn()
 export const useDeleteStageByIdMutation = vi.fn()
 
 const stagesHandlers = [

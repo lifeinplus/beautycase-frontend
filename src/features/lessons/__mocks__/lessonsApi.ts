@@ -43,6 +43,7 @@ export const useCreateLessonMutation = vi.fn()
 export const useGetAllLessonsQuery = vi.fn()
 export const useGetLessonByIdQuery = vi.fn()
 export const useUpdateLessonByIdMutation = vi.fn()
+export const useUpdateLessonProductsMutation = vi.fn()
 export const useDeleteLessonByIdMutation = vi.fn()
 
 const lessonsHandlers = [

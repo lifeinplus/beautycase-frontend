@@ -4,35 +4,36 @@ import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { mockCategory1 } from '@/features/categories/__mocks__/categoriesApi'
-import { mockMakeupBag1 } from '../../../features/makeupBags/__mocks__/makeupBagsApi'
-import { usePDFExport } from '../../../features/makeupBags/hooks/usePDFExport'
+import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
+import { usePDFExport } from '@/features/makeupBags/hooks/usePDFExport'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
-} from '../../../features/makeupBags/makeupBagsApi'
-import { generatePdfFilename } from '../../../features/makeupBags/utils/generatePdfFilename'
+} from '@/features/makeupBags/makeupBagsApi'
+import { generatePdfFilename } from '@/features/makeupBags/utils/generatePdfFilename'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagPage } from '../MakeupBagPage'
 
 vi.mock('@/app/hooks')
-vi.mock('@/shared/components/modals/ModalDelete')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/DataWrapper')
-vi.mock('@/shared/components/Footer')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/utils/errorUtils')
-vi.mock('@/shared/utils/menu')
 vi.mock('@/features/auth/authSlice')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/makeupBags/hooks/usePDFExport')
 vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('@/features/stages/components/Stages')
 vi.mock('@/features/tools/components/Tools')
+vi.mock('@/shared/components/modals/ModalDelete')
+vi.mock('@/shared/components/navigation/NavBar')
+vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/DataWrapper')
+vi.mock('@/shared/components/Footer')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/components/layout/Footer')
+vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/shared/utils/menu')
 
 describe('MakeupBagPage', () => {
     const mockDeleteMakeupBagById = vi.fn()

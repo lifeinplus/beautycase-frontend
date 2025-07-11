@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import { mockQuestionnaire1 } from '@/features/questionnaires/__mocks__/questionnairesApi'
+import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { mockQuestionnaire1 } from '../../../features/questionnaires/__mocks__/questionnairesApi'
-import { useGetQuestionnaireByIdQuery } from '../../../features/questionnaires/questionnairesApi'
 import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
 
 vi.mock('@/features/questionnaires/components/QuestionnaireResult')

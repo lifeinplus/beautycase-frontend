@@ -12,6 +12,7 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { DetailsPage } from '@/widgets/DetailsPage'
+import SelectProductsTile from '@/widgets/product/SelectProductsTile'
 import styles from './LessonDetailsPage.module.css'
 
 export const LessonDetailsPage = () => {
@@ -29,7 +30,7 @@ export const LessonDetailsPage = () => {
         })
     }
 
-    const embedUrl = getYouTubeEmbedUrl(data?.videoUrl)
+    const embedUrl = data?.videoUrl && getYouTubeEmbedUrl(data?.videoUrl)
 
     return (
         <DetailsPage
@@ -75,6 +76,8 @@ export const LessonDetailsPage = () => {
                             <Image alt={product.name} src={product.imageUrl} />
                         </div>
                     ))}
+
+                    <SelectProductsTile products={data?.products} />
                 </div>
             }
         />

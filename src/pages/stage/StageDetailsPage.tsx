@@ -8,6 +8,7 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { DetailsPage } from '@/widgets/DetailsPage'
+import SelectProductsTile from '@/widgets/product/SelectProductsTile'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
@@ -91,6 +92,8 @@ export const StageDetailsPage = () => {
                             <Image alt={product.name} src={product.imageUrl} />
                         </div>
                     ))}
+
+                    <SelectProductsTile products={data?.products} />
                 </div>
             }
         />

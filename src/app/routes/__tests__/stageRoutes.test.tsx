@@ -8,7 +8,7 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/pages/product/ProductSelectionPage')
+vi.mock('@/features/products/wrappers/ProductSelectionPageForStage')
 vi.mock('@/pages/stage/StageAddPage')
 vi.mock('@/pages/stage/StageDetailsPage')
 vi.mock('@/pages/stage/StageEditPage')
@@ -30,6 +30,14 @@ describe('stageRoutes', () => {
         ).toBeInTheDocument()
     })
 
+    it('renders the product selection page correctly', () => {
+        renderWithRouter(<App />, ['/stages/1/products'])
+
+        expect(
+            screen.getByTestId('mocked-product-selection-page-for-stage')
+        ).toBeInTheDocument()
+    })
+
     it('renders the add page correctly', () => {
         renderWithRouter(<App />, ['/stages/add'])
 
@@ -40,13 +48,5 @@ describe('stageRoutes', () => {
         renderWithRouter(<App />, ['/stages/edit/1'])
 
         expect(screen.getByTestId('mocked-stage-edit-page')).toBeInTheDocument()
-    })
-
-    it('renders the product selection page correctly', () => {
-        renderWithRouter(<App />, ['/stages/edit/1/products'])
-
-        expect(
-            screen.getByTestId('mocked-product-selection-page')
-        ).toBeInTheDocument()
     })
 })

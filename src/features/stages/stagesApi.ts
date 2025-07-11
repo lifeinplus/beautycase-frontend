@@ -1,6 +1,6 @@
+import { api } from '@/shared/api/api'
 import type { MutationResult, QueryResult } from '@/shared/types/api'
 import { cleanObject } from '@/shared/utils/common'
-import { api } from '@/shared/api/api'
 import type { Stage } from './types'
 
 const stagesApi = api.injectEndpoints({
@@ -53,6 +53,21 @@ const stagesApi = api.injectEndpoints({
             ],
         }),
 
+        updateStageProducts: builder.mutation<
+            MutationResult,
+            { id: string; data: Pick<Stage, 'productIds'> }
+        >({
+            query: ({ id, data }) => ({
+                url: `/stages/${id}/products`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Stage', id: id },
+                { type: 'Stage', id: 'LIST' },
+            ],
+        }),
+
         deleteStageById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/stages/${id}`,
@@ -69,5 +84,6 @@ export const {
     useGetAllStagesQuery,
     useGetStageByIdQuery,
     useUpdateStageByIdMutation,
+    useUpdateStageProductsMutation,
     useDeleteStageByIdMutation,
 } = stagesApi

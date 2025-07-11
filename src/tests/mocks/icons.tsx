@@ -32,6 +32,7 @@ const icons = {
     QueueListIcon: mockIcon('queue-list-icon'),
     RectangleGroupIcon: mockIcon('rectangle-group-icon'),
     ShoppingBagIcon: mockIcon('shopping-bag-icon'),
+    SquaresPlusIcon: mockIcon('squares-plus-icon'),
     SunIcon: mockIcon('sun-icon'),
     TrashIcon: mockIcon('trash-icon'),
     UserCircleIcon: mockIcon('user-circle-icon'),

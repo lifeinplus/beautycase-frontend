@@ -2,19 +2,20 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
-import { mockYouTubeUrl } from '@/tests/mocks/form'
-import { mockNavigate } from '@/tests/mocks/router'
-import { mockLesson1 } from '../../../features/lessons/__mocks__/lessonsApi'
+import { mockLesson1 } from '@/features/lessons/__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
-} from '../../../features/lessons/lessonsApi'
+} from '@/features/lessons/lessonsApi'
+import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
+import { mockYouTubeUrl } from '@/tests/mocks/form'
+import { mockNavigate } from '@/tests/mocks/router'
 import { LessonDetailsPage } from '../LessonDetailsPage'
 
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/ui/Image')
 vi.mock('@/shared/utils/youtube')
+vi.mock('@/widgets/product/SelectProductsTile')
 vi.mock('@/widgets/DetailsPage')
 
 describe('LessonDetailsPage', () => {
@@ -37,13 +38,15 @@ describe('LessonDetailsPage', () => {
     it('renders lesson details', async () => {
         render(<LessonDetailsPage />)
 
-        const title = screen.getByText(mockLesson1.title)
-        const subtitle = screen.getByText(mockLesson1.shortDescription)
-        const description = screen.getByText(mockLesson1.fullDescription)
+        expect(screen.getByText(mockLesson1.title)).toBeInTheDocument()
 
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
-        expect(description).toBeInTheDocument()
+        expect(
+            screen.getByText(mockLesson1.shortDescription)
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText(mockLesson1.fullDescription)
+        ).toBeInTheDocument()
     })
 
     it('navigates to product details when product is clicked', async () => {
@@ -73,9 +76,8 @@ describe('LessonDetailsPage', () => {
 
         render(<LessonDetailsPage />)
 
-        const image = screen.getByRole('img', { name: /product/i })
-
-        expect(image).toBeInTheDocument()
-        expect(image.getAttribute('alt')).toBe('Product 1')
+        expect(
+            screen.getByRole('img', { name: /product/i }).getAttribute('alt')
+        ).toBe('Product 1')
     })
 })

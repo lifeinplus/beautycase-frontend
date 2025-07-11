@@ -5,10 +5,10 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { clearFormData } from '@/features/form/formSlice'
 import type { FormRef } from '@/features/form/types'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { mockBrand1 } from '../../__mocks__/brandsApi'
 import {
     useCreateBrandMutation,

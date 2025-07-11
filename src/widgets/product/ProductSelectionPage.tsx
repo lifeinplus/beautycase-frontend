@@ -1,11 +1,12 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
@@ -17,9 +18,15 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ProductSelectionPage = () => {
+export interface ProductSelectionPageProps {
+    onSave: (id: string, productIds: string[]) => Promise<void>
+}
+
+export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => {
     const navigate = useNavigate()
+    const { id } = useParams()
     const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()
@@ -55,14 +62,18 @@ export const ProductSelectionPage = () => {
         navigate(-1)
     }
 
-    const handleSave = () => {
-        dispatch(
-            setFormData({
-                ...formData,
-                productIds: Array.from(orderedIds.keys()),
-            })
-        )
-        navigate(-1)
+    const handleSave = async () => {
+        if (!id) return
+
+        try {
+            const productIds = Array.from(orderedIds.keys())
+            await onSave(id, productIds)
+            dispatch(clearFormData())
+            navigate(-1)
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
     return (

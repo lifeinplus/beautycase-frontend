@@ -1,5 +1,5 @@
-import type { MutationResult, QueryResult } from '@/shared/types/api'
 import { api } from '@/shared/api/api'
+import type { MutationResult, QueryResult } from '@/shared/types/api'
 import type { Lesson } from './types'
 
 const lessonsApi = api.injectEndpoints({
@@ -59,6 +59,21 @@ const lessonsApi = api.injectEndpoints({
             ],
         }),
 
+        updateLessonProducts: builder.mutation<
+            MutationResult,
+            { id: string; data: Pick<Lesson, 'productIds'> }
+        >({
+            query: ({ id, data }) => ({
+                url: `/lessons/${id}/products`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Lesson', id: id },
+                { type: 'Lesson', id: 'LIST' },
+            ],
+        }),
+
         deleteLessonById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/lessons/${id}`,
@@ -74,5 +89,6 @@ export const {
     useGetAllLessonsQuery,
     useGetLessonByIdQuery,
     useUpdateLessonByIdMutation,
+    useUpdateLessonProductsMutation,
     useDeleteLessonByIdMutation,
 } = lessonsApi

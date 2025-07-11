@@ -5,14 +5,14 @@ import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
 import {
     mockLoginParams,
     mockLoginResult,
-} from '../../../features/auth/__mocks__/authApi'
-import { useLoginUserMutation } from '../../../features/auth/authApi'
+} from '@/features/auth/__mocks__/authApi'
+import { useLoginUserMutation } from '@/features/auth/authApi'
+import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { LoginPage } from '../LoginPage'
 
 vi.mock('@/app/hooks')

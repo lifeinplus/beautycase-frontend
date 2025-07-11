@@ -1,4 +1,4 @@
-import { array, object, string } from 'yup'
+import { object, string } from 'yup'
 
 export const lessonSchema = object({
     title: string().required('fields.title.errors.required'),
@@ -9,7 +9,4 @@ export const lessonSchema = object({
     fullDescription: string()
         .required('fields.fullDescription.errors.required')
         .min(20, 'fields.fullDescription.errors.min'),
-    productIds: array()
-        .min(1, 'fields.products.errors.min')
-        .required('fields.products.errors.required'),
 })

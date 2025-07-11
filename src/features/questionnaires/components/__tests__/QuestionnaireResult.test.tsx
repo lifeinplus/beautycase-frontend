@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import config from '@/app/config'
-import { mockT } from '@/tests/mocks/translation'
 import cloudinary from '@/shared/utils/cloudinary'
+import { mockT } from '@/tests/mocks/translation'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
 import { QuestionnaireResult } from '../QuestionnaireResult'
 
-vi.mock('../../../../config')
+vi.mock('@/app/config')
 vi.mock('@/shared/utils/cloudinary')
 
 describe('QuestionnaireResult', () => {

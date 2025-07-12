@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { clearFormData } from '@/features/form/formSlice'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
 import { ModalDuplicate } from '@/shared/components/modals/ModalDuplicate'
@@ -22,7 +23,6 @@ import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { canAccess } from '@/shared/utils/menu'
-import styles from './DetailsPage.module.css'
 
 const ACTIONS = {
     back: {
@@ -179,12 +179,7 @@ export const DetailsPage = ({
                         })}
                     >
                         <>
-                            <section className={pageStyles.titleContainer}>
-                                <h2 className={pageStyles.titleHeadline}>
-                                    {title}
-                                </h2>
-                                <p className={styles.byline}>{subtitle}</p>
-                            </section>
+                            <TitleSection title={title} subtitle={subtitle} />
 
                             {mediaContent}
 

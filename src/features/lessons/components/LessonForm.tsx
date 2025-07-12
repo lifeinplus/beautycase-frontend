@@ -1,6 +1,5 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
-import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
@@ -66,14 +66,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.contentContainer}>
-                    <section
-                        className={classNames(
-                            pageStyles.titleContainer,
-                            'hidden sm:block'
-                        )}
-                    >
-                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
-                    </section>
+                    <TitleSection title={title} hideOnMobile />
 
                     <form
                         className={formStyles.form}

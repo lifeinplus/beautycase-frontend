@@ -19,16 +19,3 @@
 .contentDescription {
     @apply my-3 px-4 text-sm;
 }
-
-.titleContainer {
-    @apply my-2 border-b-0.5 px-3 sm:mx-auto sm:mb-6 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0;
-    @apply border-neutral-200;
-}
-
-.titleHeadline {
-    @apply text-sm font-bold sm:text-center sm:text-2xl md:text-3xl lg:text-4xl;
-}
-
-:global(.dark) .titleContainer {
-    @apply border-neutral-800;
-}

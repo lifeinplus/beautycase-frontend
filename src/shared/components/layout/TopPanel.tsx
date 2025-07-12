@@ -27,7 +27,7 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
                     )}
                     onClick={onBack || handleBack}
                 >
-                    <ChevronLeftIcon className="h-6 w-6" />
+                    <ChevronLeftIcon className="h-7 w-7" />
                 </button>
                 <h2 aria-label="Top Panel Title" className={styles.title}>
                     {title}

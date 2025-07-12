@@ -7,7 +7,7 @@
 }
 
 .title {
-    @apply flex-grow text-center font-semibold;
+    @apply flex-grow text-center text-lg font-semibold;
 }
 
 :global(.dark) .container {

@@ -1,7 +1,0 @@
-.byline {
-    @apply text-xs text-slate-700 sm:mt-3 sm:text-center sm:text-xl;
-}
-
-:global(.dark) .byline {
-    @apply text-slate-400;
-}

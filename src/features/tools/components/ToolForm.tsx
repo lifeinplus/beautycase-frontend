@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
@@ -20,7 +21,6 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import classNames from 'classnames'
 import type { Tool } from '../types'
 import { toolSchema } from '../validations'
 
@@ -80,14 +80,7 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.contentContainer}>
-                    <section
-                        className={classNames(
-                            pageStyles.titleContainer,
-                            'hidden sm:block'
-                        )}
-                    >
-                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
-                    </section>
+                    <TitleSection title={title} hideOnMobile />
 
                     <form
                         className={formStyles.form}

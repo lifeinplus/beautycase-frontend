@@ -15,10 +15,11 @@ import {
     useUpdateProductByIdMutation,
 } from '@/features/products/productsApi'
 import type { Product } from '@/features/products/types'
+import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const ProductEditPage = () => {
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const navigate = useNavigate()
     const { t } = useTranslation('product')
 

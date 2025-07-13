@@ -18,6 +18,7 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export interface ProductSelectionPageProps {
@@ -26,7 +27,7 @@ export interface ProductSelectionPageProps {
 
 export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()
@@ -81,7 +82,7 @@ export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => {
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.selection')}

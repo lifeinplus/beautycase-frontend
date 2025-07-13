@@ -71,7 +71,7 @@ export const BrandsPage = () => {
             <TopPanel title={t('hero.headline')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <div className="hidden sm:block">
                         <Hero headline={t('hero.headline')} />
                     </div>

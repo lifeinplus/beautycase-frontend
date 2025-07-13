@@ -64,7 +64,7 @@ export const UserSelectionPage = () => {
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.selection')}

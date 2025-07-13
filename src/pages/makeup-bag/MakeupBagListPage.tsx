@@ -68,7 +68,7 @@ export const MakeupBagListPage = () => {
             <Header />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <Hero headline={t('hero.headline')} />
 
                     <DataWrapper

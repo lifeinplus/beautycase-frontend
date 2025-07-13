@@ -2,10 +2,6 @@
     @apply relative mx-auto w-full overflow-hidden;
 }
 
-.rectangle {
-    @apply aspect-4/5;
-}
-
 .square {
     @apply aspect-square;
 }

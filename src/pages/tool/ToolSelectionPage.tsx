@@ -70,7 +70,7 @@ export const ToolSelectionPage = () => {
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.selection')}
@@ -98,6 +98,7 @@ export const ToolSelectionPage = () => {
                                         )}
                                     >
                                         <Image alt={name} src={imageUrl} />
+
                                         <span
                                             className={classNames(
                                                 orderStyles.order,

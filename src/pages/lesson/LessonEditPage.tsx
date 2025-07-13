@@ -15,11 +15,12 @@ import {
     useUpdateLessonByIdMutation,
 } from '@/features/lessons/lessonsApi'
 import type { Lesson } from '@/features/lessons/types'
+import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const LessonEditPage = () => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('lesson')
 
     const dispatch = useAppDispatch()

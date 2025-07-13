@@ -19,11 +19,11 @@ export const ProductGalleryPage = () => {
             error={error}
             mediaContent={
                 <article className={galleryStyles.container}>
-                    {products?.map((product) => (
+                    {products?.map((p) => (
                         <ImageCard
-                            key={product._id}
-                            data={product}
-                            path={`/products/${product._id}`}
+                            key={p._id}
+                            data={p}
+                            path={`/products/${p._id}`}
                         />
                     ))}
                 </article>

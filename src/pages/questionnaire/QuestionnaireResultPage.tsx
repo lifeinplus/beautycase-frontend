@@ -11,11 +11,12 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import type { RouteId } from '@/shared/types/router'
 import { formatDate } from '@/shared/utils/date'
 
 export const QuestionnaireResultPage = () => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation(['questionnaire'])
 
     const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)
@@ -31,7 +32,7 @@ export const QuestionnaireResultPage = () => {
             <TopPanel title={t('hero.headlineResult')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <div className="hidden sm:block">
                         <Hero
                             headline={t('hero.headlineResult')}

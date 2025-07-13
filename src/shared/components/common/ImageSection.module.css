@@ -1,0 +1,11 @@
+.image {
+    @apply mx-auto mb-3 max-w-md;
+}
+
+.container {
+    @apply relative mx-auto w-full overflow-hidden;
+}
+
+.rectangle {
+    @apply aspect-4/5;
+}

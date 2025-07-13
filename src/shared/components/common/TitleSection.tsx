@@ -13,10 +13,7 @@ export const TitleSection = ({
     hideOnMobile,
 }: TitleSectionProps) => (
     <section
-        className={classNames(
-            styles.container,
-            hideOnMobile && 'hidden sm:block'
-        )}
+        className={classNames(styles.title, hideOnMobile && 'hidden sm:block')}
     >
         <h1 className={styles.headline}>{title}</h1>
         <p className={styles.byline}>{subtitle}</p>

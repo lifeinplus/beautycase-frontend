@@ -7,15 +7,15 @@
     @apply sm:ms-navbar-left lg:ms-navbar-left-open;
 }
 
-.contentContainer {
+.container {
     @apply mx-auto w-full;
     @apply sm:max-w-lg sm:pt-6 md:max-w-2xl;
 }
 
-.contentImage {
+.image {
     @apply mx-auto mb-3 max-w-md;
 }
 
-.contentDescription {
-    @apply my-3 px-4 text-sm;
+.description {
+    @apply my-3 px-4 text-base;
 }

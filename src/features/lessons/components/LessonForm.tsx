@@ -65,7 +65,7 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <TitleSection title={title} hideOnMobile />
 
                     <form

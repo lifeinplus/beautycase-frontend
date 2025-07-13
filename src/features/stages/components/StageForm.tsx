@@ -56,7 +56,7 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <TitleSection title={title} hideOnMobile />
 
                     <form

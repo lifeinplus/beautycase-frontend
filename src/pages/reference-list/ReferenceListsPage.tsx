@@ -21,7 +21,7 @@ export const ReferenceListsPage = () => {
             <Header />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <Hero headline={t('hero.headline')} />
                     <ReferenceListsMobileView data={data} />
                     <ReferenceListsTable data={data} />

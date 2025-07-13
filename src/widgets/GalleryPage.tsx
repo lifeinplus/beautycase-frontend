@@ -79,7 +79,7 @@ export const GalleryPage = ({
             <Header />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <Hero headline={title} byline={subtitle} />
 
                     {isLoading ? (

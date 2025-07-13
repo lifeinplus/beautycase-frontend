@@ -19,6 +19,7 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import type { RouteId } from '@/shared/types/router'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
@@ -29,7 +30,7 @@ export interface MakeupBagFormProps {
 
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('makeupBag')
 
     const {
@@ -91,7 +92,7 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <TitleSection title={title} hideOnMobile />
 
                     <form

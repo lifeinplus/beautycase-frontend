@@ -34,14 +34,14 @@ export const BrandsMobileView = ({
                     </div>
                     <div className="flex gap-2">
                         <Button
-                            aria-label={t('buttonEdit.ariaLabel')}
+                            aria-label={t('buttons.brandEdit.ariaLabel')}
                             onClick={() => onEdit(item)}
                             variant="warning"
                         >
                             <EllipsisHorizontalCircleIcon className="h-5 w-5" />
                         </Button>
                         <Button
-                            aria-label={t('buttonDelete.ariaLabel')}
+                            aria-label={t('buttons.brandDelete.ariaLabel')}
                             onClick={() => onDelete(item)}
                             variant="danger"
                         >

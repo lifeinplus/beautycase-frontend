@@ -1,18 +1,16 @@
 import classNames from 'classnames'
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { type ButtonHTMLAttributes, type ReactNode } from 'react'
 
 import commonStyles from '@/shared/components/common/common.module.css'
 import styles from './Button.module.css'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    ariaLabel?: string
     children: ReactNode
     type?: 'button' | 'submit' | 'reset'
     variant?: 'success' | 'danger' | 'warning'
 }
 
 export const Button = ({
-    ariaLabel,
     children,
     className,
     type = 'button',
@@ -28,7 +26,6 @@ export const Button = ({
     return (
         <button
             {...props}
-            aria-label={ariaLabel}
             className={classNames(styles.button, variants[variant], className)}
             type={type}
         >

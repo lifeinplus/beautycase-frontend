@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { NavButton } from '../navigation/NavButton'
 
 export const LanguageSwitcher = () => {
-    const { i18n, t } = useTranslation('component')
+    const { i18n, t } = useTranslation('language')
 
     const currentLang = i18n.language === 'en' ? 'en' : 'ru'
 
@@ -16,9 +16,9 @@ export const LanguageSwitcher = () => {
 
     return (
         <NavButton
-            ariaLabel={t('language.ariaLabel')}
+            aria-label={t('buttons.language.ariaLabel')}
             icon={LanguageIcon}
-            label={t('language.label')}
+            label={t('buttons.language.text')}
             onClick={toggleLanguage}
         />
     )

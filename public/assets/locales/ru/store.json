@@ -1,12 +1,20 @@
 {
-    "buttonAdd": {
-        "ariaLabel": "Кнопка добавить ссылку"
-    },
-    "buttonDelete": {
-        "ariaLabel": "Кнопка удалить ссылку"
-    },
-    "buttonEdit": {
-        "ariaLabel": "Кнопка изменить ссылку"
+    "buttons": {
+        "linkAdd": {
+            "ariaLabel": "Кнопка добавить ссылку"
+        },
+        "linkDelete": {
+            "ariaLabel": "Кнопка удалить ссылку"
+        },
+        "storeAdd": {
+            "ariaLabel": "Кнопка добавить магазин"
+        },
+        "storeDelete": {
+            "ariaLabel": "Кнопка удалить магазин"
+        },
+        "storeEdit": {
+            "ariaLabel": "Кнопка изменить магазин"
+        }
     },
     "emptyMessageList": "Магазины не найдены",
     "fields": {
@@ -30,7 +38,11 @@
     },
     "titles": {
         "add": "Добавить ссылки",
-        "list": "Магазины"
+        "list": "Магазины",
+        "links": {
+            "product": "Ссылки на продукт",
+            "tool": "Ссылки на инструмент"
+        }
     },
     "toast": {
         "delete": "Магазин удалён"

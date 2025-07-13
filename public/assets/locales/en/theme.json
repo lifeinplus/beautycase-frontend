@@ -1,10 +1,12 @@
 {
-    "buttonDarkMode": {
-        "ariaLabel": "Dark mode button"
-    },
-    "buttonLightMode": {
-        "ariaLabel": "Light mode button"
-    },
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode"
+    "buttons": {
+        "darkMode": {
+            "text": "Dark Mode",
+            "ariaLabel": "Dark mode button"
+        },
+        "lightMode": {
+            "text": "Light Mode",
+            "ariaLabel": "Light mode button"
+        }
+    }
 }

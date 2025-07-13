@@ -1,12 +1,4 @@
 {
-    "delete": {
-        "title": "Delete?",
-        "description": "Are you sure you want to delete {{name}}?"
-    },
-    "duplicate": {
-        "title": "Duplicate?",
-        "description": "Are you sure you want to duplicate {{name}}?"
-    },
     "buttons": {
         "cancel": {
             "text": "Cancel",
@@ -20,5 +12,13 @@
             "text": "Duplicate",
             "ariaLabel": "Duplicate button"
         }
+    },
+    "delete": {
+        "title": "Delete?",
+        "description": "Are you sure you want to delete {{name}}?"
+    },
+    "duplicate": {
+        "title": "Duplicate?",
+        "description": "Are you sure you want to duplicate {{name}}?"
     }
 }

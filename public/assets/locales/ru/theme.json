@@ -1,10 +1,12 @@
 {
-    "buttonDarkMode": {
-        "ariaLabel": "Кнопка тёмного режима"
-    },
-    "buttonLightMode": {
-        "ariaLabel": "Кнопка светлого режима"
-    },
-    "darkMode": "Тёмный режим",
-    "lightMode": "Светлый режим"
+    "buttons": {
+        "darkMode": {
+            "text": "Тёмный режим",
+            "ariaLabel": "Кнопка тёмного режима"
+        },
+        "lightMode": {
+            "text": "Светлый режим",
+            "ariaLabel": "Кнопка светлого режима"
+        }
+    }
 }

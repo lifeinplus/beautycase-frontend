@@ -102,6 +102,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
 
                 {formData?._id ? (
                     <Button
+                        aria-label={t('buttons.brandEdit.ariaLabel')}
                         className="min-w-28"
                         onClick={handleSubmit(handleUpdateBrand)}
                         type="submit"
@@ -111,6 +112,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                     </Button>
                 ) : (
                     <Button
+                        aria-label={t('buttons.brandAdd.ariaLabel')}
                         className="min-w-28"
                         onClick={handleSubmit(handleAddBrand)}
                         type="submit"

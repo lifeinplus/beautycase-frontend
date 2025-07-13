@@ -15,6 +15,7 @@ import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { StoreLink } from '@/features/stores/types'
 import { Button } from '@/shared/components/forms/Button'
+import formStyles from '@/shared/components/forms/form.module.css'
 import selectStyles from '@/shared/components/forms/SelectSection.module.css'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
@@ -106,13 +107,16 @@ export const StoreLinkAddPage = () => {
                         </h1>
                     </section>
 
-                    <form onSubmit={handleSave} className="form px-0 pt-6">
+                    <form
+                        className={(formStyles.form, 'px-0')}
+                        onSubmit={handleSave}
+                    >
                         {storeLinks.map((storeLink, index) => {
                             const { _id = '', link } = storeLink
 
                             return (
                                 <div key={index} className={styles.container}>
-                                    <div className="grid sm:col-span-3">
+                                    <div className={styles.stores}>
                                         <ChevronDownIcon
                                             className={selectStyles.icon}
                                         />
@@ -137,7 +141,7 @@ export const StoreLinkAddPage = () => {
                                             ))}
                                         </select>
                                     </div>
-                                    <div className="sm:col-span-7">
+                                    <div className={styles.link}>
                                         <textarea
                                             className={classNames(
                                                 inputStyles.input,
@@ -167,25 +171,23 @@ export const StoreLinkAddPage = () => {
                                             value={link}
                                         />
                                     </div>
-                                    <div className="sm:col-span-2">
-                                        <Button
-                                            ariaLabel={t(
-                                                'buttonDelete.ariaLabel'
-                                            )}
-                                            className="w-full"
-                                            onClick={() => handleDelete(index)}
-                                            type="button"
-                                            variant="danger"
-                                        >
-                                            <MinusCircleIcon className="h-6 w-6" />
-                                        </Button>
-                                    </div>
+                                    <Button
+                                        aria-label={t(
+                                            'buttons.linkDelete.ariaLabel'
+                                        )}
+                                        className={styles.delete}
+                                        onClick={() => handleDelete(index)}
+                                        type="button"
+                                        variant="danger"
+                                    >
+                                        <MinusCircleIcon className="h-6 w-6" />
+                                    </Button>
                                 </div>
                             )
                         })}
-                        <div className="px-3">
+                        <div className={styles.add}>
                             <Button
-                                ariaLabel={t('buttonAdd.ariaLabel')}
+                                aria-label={t('buttons.linkAdd.ariaLabel')}
                                 className="w-full"
                                 onClick={handleAdd}
                                 type="button"

@@ -1,6 +1,6 @@
+import { api } from '@/shared/api/api'
 import type { MutationResult, QueryResult } from '@/shared/types/api'
 import { cleanObject } from '@/shared/utils/common'
-import { api } from '@/shared/api/api'
 import type { Product } from './types'
 
 const productsApi = api.injectEndpoints({
@@ -48,6 +48,21 @@ const productsApi = api.injectEndpoints({
             ],
         }),
 
+        updateProductStoreLinks: builder.mutation<
+            MutationResult,
+            { id: string; data: Pick<Product, 'storeLinks'> }
+        >({
+            query: ({ id, data }) => ({
+                url: `/products/${id}/store-links`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Product', id: id },
+                { type: 'Product', id: 'LIST' },
+            ],
+        }),
+
         deleteProductById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/products/${id}`,
@@ -63,5 +78,6 @@ export const {
     useGetAllProductsQuery,
     useGetProductByIdQuery,
     useUpdateProductByIdMutation,
+    useUpdateProductStoreLinksMutation,
     useDeleteProductByIdMutation,
 } = productsApi

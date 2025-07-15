@@ -28,7 +28,7 @@ export const NavButton = ({
             className
         )}
     >
-        <Icon className="h-6 w-6" />
+        <Icon className="h-7 w-7 sm:h-6 sm:w-6" />
         <span className="hidden lg:inline">{label}</span>
     </button>
 )

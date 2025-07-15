@@ -1,0 +1,24 @@
+.button {
+    @apply hover:rounded-full focus-visible:rounded-full;
+}
+
+.label {
+    @apply inline-flex items-center gap-2 bg-white py-2 pe-3 ps-4 text-sm font-medium text-neutral-600 hover:bg-rose-500 hover:text-white;
+    @apply rounded-full ring-1 ring-inset ring-neutral-200 hover:ring-white;
+}
+
+.label:hover .icon {
+    @apply text-white;
+}
+
+.icon {
+    @apply h-4 w-4 stroke-2 text-neutral-700;
+}
+
+:global(.dark) .label {
+    @apply bg-black text-neutral-300 ring-neutral-700 hover:bg-rose-600 hover:ring-white;
+}
+
+:global(.dark) .icon {
+    @apply text-neutral-200;
+}

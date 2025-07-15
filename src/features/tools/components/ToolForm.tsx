@@ -5,12 +5,11 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppSelector } from '@/app/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { selectFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { TitleSection } from '@/shared/components/common/TitleSection'
-import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
@@ -45,7 +44,6 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         resolver: yupResolver(toolSchema),
     })
 
-    const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData) as Tool
 
     useEffect(() => {
@@ -59,19 +57,8 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
         value: b._id!,
     }))
 
-    const storeLinks = watch('storeLinks')
-
-    const linksText = storeLinks
-        ? `${t('fields.storeLinks.selected')}: ${storeLinks.length}`
-        : t('fields.storeLinks.select')
-
     const handleBack = () => {
         navigate(-1)
-    }
-
-    const handleNavigate = () => {
-        dispatch(setFormData(watch()))
-        navigate('links')
     }
 
     return (
@@ -127,14 +114,6 @@ export const ToolForm = ({ title, onSubmit }: ToolFormProps) => {
                             register={register('comment')}
                             required={true}
                             value={watch('comment')}
-                        />
-
-                        <ButtonNavigateSection
-                            error={t(errors.storeLinks?.message || '')}
-                            label={t('fields.storeLinks.label')}
-                            onNavigate={handleNavigate}
-                            required={true}
-                            text={linksText}
                         />
                     </form>
                 </article>

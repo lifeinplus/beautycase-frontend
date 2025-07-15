@@ -1,0 +1,16 @@
+.link {
+    @apply hover:rounded-full focus-visible:rounded-full;
+}
+
+.label {
+    @apply inline-flex items-center gap-2 bg-neutral-100 py-2 pe-3 ps-4 text-sm font-medium text-neutral-600;
+    @apply rounded-full ring-1 ring-inset ring-neutral-200;
+}
+
+.icon {
+    @apply h-4 w-4;
+}
+
+:global(.dark) .label {
+    @apply bg-neutral-800 text-neutral-300 ring-neutral-700;
+}

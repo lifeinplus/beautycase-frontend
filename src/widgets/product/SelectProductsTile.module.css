@@ -1,6 +1,6 @@
 .tile {
     @apply flex items-center justify-center bg-white hover:bg-rose-500;
-    @apply sm:rounded-md sm:border sm:border-gray-200;
+    @apply hover:border-white sm:rounded-md sm:border sm:border-gray-200;
 }
 
 .tile:hover .icon {
@@ -12,7 +12,7 @@
 }
 
 :global(.dark) .tile {
-    @apply bg-black text-white hover:bg-rose-600 sm:border-neutral-700;
+    @apply bg-black text-white hover:border-white hover:bg-rose-600 sm:border-neutral-700;
 }
 
 :global(.dark) .icon {

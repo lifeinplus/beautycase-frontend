@@ -7,11 +7,12 @@ import {
 } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent, useState } from 'react'
+import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { StoreLink } from '@/features/stores/types'
 import { Button } from '@/shared/components/forms/Button'
@@ -24,10 +25,17 @@ import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import inputStyles from '@/shared/components/ui/Input.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import type { RouteId } from '@/shared/types/router'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import styles from './StoreLinkAddPage.module.css'
 
-export const StoreLinkAddPage = () => {
+export interface StoreLinkAddPageProps {
+    onSave: (id: string, storeLinks: StoreLink[]) => Promise<void>
+}
+
+export const StoreLinkAddPage = ({ onSave }: StoreLinkAddPageProps) => {
     const navigate = useNavigate()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('store')
 
     const dispatch = useAppDispatch()
@@ -83,16 +91,17 @@ export const StoreLinkAddPage = () => {
     }
 
     const handleSave = () => {
-        const filtered = storeLinks.filter((l) => l._id)
+        if (!id) return
 
-        dispatch(
-            setFormData({
-                ...formData,
-                storeLinks: filtered,
-            })
-        )
-
-        navigate(-1)
+        try {
+            const storeLinksWithId = storeLinks.filter((l) => l._id)
+            onSave(id, storeLinksWithId)
+            dispatch(clearFormData())
+            navigate(-1)
+        } catch (error) {
+            console.error(error)
+            toast.error(getErrorMessage(error))
+        }
     }
 
     return (

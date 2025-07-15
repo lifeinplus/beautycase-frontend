@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -14,7 +15,6 @@ import { LogoLink } from '../ui/LogoLink'
 import styles from './NavBar.module.css'
 import { NavButton } from './NavButton'
 import navStyles from './navigation.module.css'
-import classNames from 'classnames'
 
 export interface NavBarProps {
     children?: ReactNode
@@ -54,7 +54,7 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className={classNames(styles.btnContainer, 'hidden sm:flex')}>
+            <div className={classNames(styles.btnContainer)}>
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
@@ -81,12 +81,13 @@ export const NavBar = ({ children }: NavBarProps) => {
                 {children}
             </div>
 
-            <div className="hidden sm:inline">
+            <div className={classNames(styles.btnContainer)}>
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />
-                <AppInfo />
             </div>
+
+            <AppInfo />
         </aside>
     )
 }

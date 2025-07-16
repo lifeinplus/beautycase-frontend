@@ -16,13 +16,14 @@ import { ProductSelection } from './ProductSelection'
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/products/productsApi')
+vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/ui/Image')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('ProductSelectionPage', () => {
+describe('ProductSelection', () => {
     const mockFormData = {
         productIds: ['product2'],
     }
@@ -48,7 +49,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByText('loading')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -60,7 +61,7 @@ describe('ProductSelectionPage', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
     })
 
     it('renders product items', () => {

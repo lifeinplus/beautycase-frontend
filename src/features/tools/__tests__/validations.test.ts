@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { mockTool1 } from '../__mocks__/toolsApi'
 import { toolSchema } from '../validations'
@@ -49,20 +49,6 @@ describe('toolSchema validation', () => {
         const data = { ...mockTool1, comment: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
             'fields.comment.errors.required'
-        )
-    })
-
-    it('should fail when storeLinks is missing', async () => {
-        const data = { ...mockTool1, storeLinks: undefined }
-        await expect(toolSchema.validate(data)).rejects.toThrow(
-            'fields.storeLinks.errors.required'
-        )
-    })
-
-    it('should fail when storeLinks is empty', async () => {
-        const data = { ...mockTool1, storeLinks: [] }
-        await expect(toolSchema.validate(data)).rejects.toThrow(
-            'fields.storeLinks.errors.min'
         )
     })
 })

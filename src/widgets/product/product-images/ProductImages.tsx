@@ -5,7 +5,7 @@ import type { Product } from '@/features/products/types'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
-import SelectTile from './ui/SelectTile'
+import { SelectTile } from './ui/SelectTile'
 
 export interface ProductImagesProps {
     products?: Product[]

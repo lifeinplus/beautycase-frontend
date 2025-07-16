@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { StoreLinkAddPageForProducts } from '@/features/stores/wrappers/StoreLinkAddPageForProducts'
+import { StoreLinksAddPageForProduct } from '@/features/stores/wrappers/StoreLinksAddPageForProduct'
 import { ProductAddPage } from '@/pages/product/ProductAddPage'
 import { ProductDetailsPage } from '@/pages/product/ProductDetailsPage'
 import { ProductEditPage } from '@/pages/product/ProductEditPage'
@@ -12,7 +12,7 @@ export const productRoutes = [
         <Route path=":id" element={<ProductDetailsPage />} />
         <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
             <Route index element={<ProductGalleryPage />} />
-            <Route path=":id/links" element={<StoreLinkAddPageForProducts />} />
+            <Route path=":id/links" element={<StoreLinksAddPageForProduct />} />
             <Route path="add" element={<ProductAddPage />} />
             <Route path="edit/:id" element={<ProductEditPage />} />
         </Route>

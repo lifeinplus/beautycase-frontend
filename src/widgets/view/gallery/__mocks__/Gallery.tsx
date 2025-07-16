@@ -1,6 +1,6 @@
 import { GalleryProps } from '../Gallery'
 
-export const GalleryPage = ({
+export const Gallery = ({
     title,
     isLoading,
     error,

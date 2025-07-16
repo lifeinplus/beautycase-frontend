@@ -1,5 +1,1 @@
-const SelectProductsTile = () => (
-    <div data-testid="mocked-product-tile-button" />
-)
-
-export default SelectProductsTile
+export const SelectTile = () => <div data-testid="mocked-select-tile" />

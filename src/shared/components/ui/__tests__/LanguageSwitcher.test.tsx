@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
     mockChangeLanguage,
@@ -14,7 +14,7 @@ describe('LanguageSwitcher', () => {
         render(<LanguageSwitcher />)
 
         const button = screen.getByRole('button', {
-            name: 'language.ariaLabel',
+            name: 'buttons.language.ariaLabel',
         })
 
         expect(button).toBeInTheDocument()
@@ -27,7 +27,7 @@ describe('LanguageSwitcher', () => {
         render(<LanguageSwitcher />)
 
         await user.click(
-            screen.getByRole('button', { name: 'language.ariaLabel' })
+            screen.getByRole('button', { name: 'buttons.language.ariaLabel' })
         )
 
         expect(mockChangeLanguage).toHaveBeenCalledWith('ru')
@@ -47,7 +47,7 @@ describe('LanguageSwitcher', () => {
         render(<LanguageSwitcher />)
 
         await user.click(
-            screen.getByRole('button', { name: 'language.ariaLabel' })
+            screen.getByRole('button', { name: 'buttons.language.ariaLabel' })
         )
 
         expect(mockChangeLanguage).toHaveBeenCalledWith('en')

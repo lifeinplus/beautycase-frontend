@@ -13,7 +13,7 @@ export interface SelectTileProps {
     products?: Product[]
 }
 
-const SelectTile = ({ products }: SelectTileProps) => {
+export const SelectTile = ({ products }: SelectTileProps) => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
@@ -43,5 +43,3 @@ const SelectTile = ({ products }: SelectTileProps) => {
         </div>
     )
 }
-
-export default SelectTile

@@ -4,7 +4,7 @@ import { useUpdateLessonProductsMutation } from '@/features/lessons/lessonsApi'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
 
-const ProductSelectionPageForLesson = () => {
+export const ProductSelectionPageForLesson = () => {
     const [updateLessonProducts] = useUpdateLessonProductsMutation()
 
     const onSave = async (id: string, productIds: string[]) => {
@@ -21,5 +21,3 @@ const ProductSelectionPageForLesson = () => {
 
     return <ProductSelection onSave={onSave} />
 }
-
-export default ProductSelectionPageForLesson

@@ -7,7 +7,7 @@ import { ToolsGalleryPage } from '../ToolsGalleryPage'
 
 vi.mock('@/features/tools/toolsApi')
 vi.mock('@/shared/components/gallery/ImageCard')
-vi.mock('@/widgets/GalleryPage')
+vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('ToolsGalleryPage', () => {
     beforeEach(() => {

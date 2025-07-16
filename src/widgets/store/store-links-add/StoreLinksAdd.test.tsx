@@ -4,16 +4,16 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
-import { setFormData } from '@/features/form/formSlice'
+import { clearFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StoreLinksAdd } from './StoreLinksAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/stores/storesApi')
+vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/layout/TopPanel')
 
 describe('StoreLinksAdd', () => {
     const mockStoreLink = {
@@ -84,7 +84,7 @@ describe('StoreLinksAdd', () => {
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const addButton = screen.getByRole('button', {
-            name: 'buttonAdd.ariaLabel',
+            name: 'buttons.linkAdd.ariaLabel',
         })
         await user.click(addButton)
 
@@ -109,7 +109,7 @@ describe('StoreLinksAdd', () => {
         expect(linkInputs.length).toBe(2)
 
         const deleteButtons = screen.getAllByRole('button', {
-            name: 'buttonDelete.ariaLabel',
+            name: 'buttons.linkDelete.ariaLabel',
         })
 
         const deleteStore1 = deleteButtons[0]
@@ -170,31 +170,22 @@ describe('StoreLinksAdd', () => {
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
-        const select = screen.getByRole('combobox')
-        await user.selectOptions(select, 'store1')
+        await user.selectOptions(screen.getByRole('combobox'), 'store1')
 
-        const linkInput = screen.getByRole('textbox', {
-            name: 'fields.link.ariaLabel',
-        }) as HTMLInputElement
-        await user.type(linkInput, 'https://example.com')
+        await user.type(
+            screen.getByRole('textbox', {
+                name: 'fields.link.ariaLabel',
+            }) as HTMLInputElement,
+            'https://example.com'
+        )
 
-        const saveButton = screen.getByRole('button', {
-            name: 'navigation:actions.save',
-        })
-        await user.click(saveButton)
-
-        expect(mockDispatch).toHaveBeenCalledWith(
-            setFormData({
-                ...mockFormData,
-                storeLinks: [
-                    expect.objectContaining({
-                        _id: 'store1',
-                        link: 'https://example.com',
-                    }),
-                ],
+        await user.click(
+            screen.getByRole('button', {
+                name: 'navigation:actions.save',
             })
         )
 
+        expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
 })

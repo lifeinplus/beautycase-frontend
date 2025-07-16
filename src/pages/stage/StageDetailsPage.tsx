@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import {
+    useDeleteStageByIdMutation,
+    useDuplicateStageByIdMutation,
+    useGetStageByIdQuery,
+} from '@/features/stages/stagesApi'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
 import { Details } from '@/widgets/view/details/Details'
-import {
-    useDeleteStageByIdMutation,
-    useDuplicateStageByIdMutation,
-    useGetStageByIdQuery,
-} from '../../features/stages/stagesApi'
 
 export const StageDetailsPage = () => {
     const { id } = useParams<RouteId>()

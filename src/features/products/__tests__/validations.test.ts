@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { ValidationError } from 'yup'
 
 import { mockProduct1 } from '../__mocks__/productsApi'
@@ -76,20 +76,6 @@ describe('productSchema validation', () => {
         )
     })
 
-    it('should reject when storeLinks is missing', async () => {
-        const data = { ...mockProduct1, storeLinks: undefined }
-        await expect(productSchema.validate(data)).rejects.toThrowError(
-            'fields.storeLinks.errors.required'
-        )
-    })
-
-    it('should reject when storeLinks is an empty array', async () => {
-        const data = { mockProduct: mockProduct1, storeLinks: [] }
-        await expect(productSchema.validate(data)).rejects.toThrowError(
-            'fields.storeLinks.errors.min'
-        )
-    })
-
     it('should collect multiple validation errors when abortEarly is false', async () => {
         const invalidProduct = {}
 
@@ -109,9 +95,6 @@ describe('productSchema validation', () => {
             )
             expect(validationError.errors).toContain(
                 'fields.comment.errors.required'
-            )
-            expect(validationError.errors).toContain(
-                'fields.storeLinks.errors.required'
             )
         }
     })

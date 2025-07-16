@@ -8,11 +8,11 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
+vi.mock('@/features/stores/wrappers/StoreLinksAddPageForProduct')
 vi.mock('@/pages/product/ProductAddPage')
 vi.mock('@/pages/product/ProductDetailsPage')
 vi.mock('@/pages/product/ProductEditPage')
 vi.mock('@/pages/product/ProductGalleryPage')
-vi.mock('@/pages/store/StoreLinksAdd')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('productRoutes', () => {
@@ -32,6 +32,14 @@ describe('productRoutes', () => {
         ).toBeInTheDocument()
     })
 
+    it('renders the add links page correctly', () => {
+        renderWithRouter(<App />, ['/products/1/links'])
+
+        expect(
+            screen.getByTestId('mocked-store-links-add-page-for-product')
+        ).toBeInTheDocument()
+    })
+
     it('renders the add page correctly', () => {
         renderWithRouter(<App />, ['/products/add'])
 
@@ -40,27 +48,11 @@ describe('productRoutes', () => {
         ).toBeInTheDocument()
     })
 
-    it('renders the add links page correctly', () => {
-        renderWithRouter(<App />, ['/products/add/links'])
-
-        expect(
-            screen.getByTestId('mocked-store-link-add-page')
-        ).toBeInTheDocument()
-    })
-
     it('renders the edit page correctly', () => {
         renderWithRouter(<App />, ['/products/edit/1'])
 
         expect(
             screen.getByTestId('mocked-product-edit-page')
-        ).toBeInTheDocument()
-    })
-
-    it('renders the edit links page correctly', () => {
-        renderWithRouter(<App />, ['/products/edit/1/links'])
-
-        expect(
-            screen.getByTestId('mocked-store-link-add-page')
         ).toBeInTheDocument()
     })
 })

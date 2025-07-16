@@ -61,24 +61,20 @@ describe('Details', () => {
     it('renders the component with all elements', () => {
         render(<Details {...mockProps} />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        const title = screen.getByRole('heading', {
-            level: 2,
-            name: mockProps.title,
-        })
-        const subtitle = screen.getByText(mockProps.subtitle!)
-        const description = screen.getByText(mockProps.description!)
-        const dataWrapper = screen.getByTestId('mocked-data-wrapper')
-        const mediaContent = screen.getByTestId('mocked-media-content')
-        const complementary = screen.getByRole('complementary')
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
-        expect(topPanel).toBeInTheDocument()
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
-        expect(description).toBeInTheDocument()
-        expect(dataWrapper).toBeInTheDocument()
-        expect(mediaContent).toBeInTheDocument()
-        expect(complementary).toBeInTheDocument()
+        expect(
+            screen.getByRole('heading', {
+                level: 1,
+                name: mockProps.title,
+            })
+        ).toBeInTheDocument()
+
+        expect(screen.getByText(mockProps.subtitle!)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
+        expect(screen.getByRole('complementary')).toBeInTheDocument()
     })
 
     it('dispatches clearFormData on mount', () => {

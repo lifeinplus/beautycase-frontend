@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { mockStages } from '../../__mocks__/stagesApi'
 import { Stages } from '../Stages'
 
+vi.mock('@/shared/components/common/ImageSection')
 vi.mock('@/shared/components/gallery/GoodsGrid')
-vi.mock('@/shared/components/ui/Image')
 
 describe('Stages', () => {
     it('renders the component with heading', () => {
@@ -34,17 +34,9 @@ describe('Stages', () => {
         expect(subtitle2).toBeInTheDocument()
     })
 
-    it('renders images for each stage', () => {
+    it('renders image sections for each stage', () => {
         render(<Stages stages={mockStages} />)
-
-        const images = screen.getAllByTestId('mocked-image')
-        expect(images).toHaveLength(2)
-
-        expect(images[0]).toHaveAttribute('alt', mockStages[0].title)
-        expect(images[0]).toHaveAttribute('src', mockStages[0].imageUrl)
-
-        expect(images[1]).toHaveAttribute('alt', mockStages[1].title)
-        expect(images[1]).toHaveAttribute('src', mockStages[1].imageUrl)
+        expect(screen.getAllByTestId('mocked-image-section')).toHaveLength(2)
     })
 
     it('renders steps for each stage', () => {

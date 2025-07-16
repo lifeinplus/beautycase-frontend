@@ -16,11 +16,11 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('@/features/stages/stagesApi')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/ui/Image')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/DataWrapper')
 
 describe('StageSelectionPage', () => {
     const mockFormData = {
@@ -45,18 +45,19 @@ describe('StageSelectionPage', () => {
     it('renders the page with title', () => {
         render(<StageSelectionPage />)
 
-        const title1 = screen.getByRole('heading', {
-            level: 1,
-            name: 'titles.selection',
-        })
+        expect(
+            screen.getByRole('heading', {
+                level: 1,
+                name: 'titles.selection',
+            })
+        ).toBeInTheDocument()
 
-        const title2 = screen.getByRole('heading', {
-            level: 2,
-            name: 'titles.selection',
-        })
-
-        expect(title1).toBeInTheDocument()
-        expect(title2).toBeInTheDocument()
+        expect(
+            screen.getByRole('heading', {
+                level: 2,
+                name: 'titles.selection',
+            })
+        ).toBeInTheDocument()
     })
 
     it('renders stage items', () => {

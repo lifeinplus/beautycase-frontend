@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { clearFormData } from '@/features/form/formSlice'
+import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { canAccess } from '@/shared/utils/menu'
 
 const ACTIONS = {
@@ -33,7 +33,7 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'add', auth: true, roles: ['admin', 'mua'] },
 ]
 
-export interface GalleryPageProps {
+export interface GalleryProps {
     redirectPath: string
     title: string
     subtitle?: string
@@ -42,16 +42,16 @@ export interface GalleryPageProps {
     mediaContent?: ReactNode
 }
 
-export const GalleryPage = ({
+export const Gallery = ({
     redirectPath,
     title,
     subtitle,
     isLoading,
     error,
     mediaContent,
-}: GalleryPageProps) => {
+}: GalleryProps) => {
     const navigate = useNavigate()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation('component')
 
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
@@ -70,7 +70,7 @@ export const GalleryPage = ({
     ).map(({ id }) => ({
         key: id,
         icon: ACTIONS[id].icon,
-        label: t(ACTIONS[id].label),
+        label: t(`navigation:${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 
@@ -82,13 +82,16 @@ export const GalleryPage = ({
                 <article className={pageStyles.container}>
                     <Hero headline={title} byline={subtitle} />
 
-                    {isLoading ? (
-                        <div>Loading...</div>
-                    ) : error ? (
-                        <div>{getErrorMessage(error)}</div>
-                    ) : (
-                        mediaContent
-                    )}
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={title}
+                        emptyMessage={t('emptyMessage', {
+                            value: title,
+                        })}
+                    >
+                        {mediaContent}
+                    </DataWrapper>
                 </article>
             </main>
 

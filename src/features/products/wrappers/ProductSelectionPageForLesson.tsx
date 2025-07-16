@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 
 import { useUpdateLessonProductsMutation } from '@/features/lessons/lessonsApi'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { ProductSelectionPage } from '@/widgets/product/ProductSelectionPage'
+import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
 
 const ProductSelectionPageForLesson = () => {
     const [updateLessonProducts] = useUpdateLessonProductsMutation()
@@ -19,7 +19,7 @@ const ProductSelectionPageForLesson = () => {
         }
     }
 
-    return <ProductSelectionPage onSave={onSave} />
+    return <ProductSelection onSave={onSave} />
 }
 
 export default ProductSelectionPageForLesson

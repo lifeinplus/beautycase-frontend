@@ -11,7 +11,7 @@ import { mockProducts } from '@/features/products/__mocks__/productsApi'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { ProductSelectionPage } from '../ProductSelectionPage'
+import { ProductSelection } from '../../product-selection/ProductSelection'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -46,7 +46,7 @@ describe('ProductSelectionPage', () => {
             error: null,
         })
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         expect(screen.getByText('loading')).toBeInTheDocument()
     })
@@ -58,20 +58,20 @@ describe('ProductSelectionPage', () => {
             error: mockError,
         })
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders product items', () => {
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
         expect(screen.getByAltText('Product 1')).toBeInTheDocument()
         expect(screen.getByAltText('Product 2')).toBeInTheDocument()
     })
 
     it('toggles product selection on click', async () => {
         const user = userEvent.setup()
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         const imgContainers = screen
             .getAllByTestId('mocked-image')
@@ -88,7 +88,7 @@ describe('ProductSelectionPage', () => {
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
@@ -99,7 +99,7 @@ describe('ProductSelectionPage', () => {
     it('saves selection and navigates back when save button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         await user.click(
             screen.getByTestId('mocked-nav-button-navigation:actions.save')
@@ -119,7 +119,7 @@ describe('ProductSelectionPage', () => {
 
         mockOnSave.mockRejectedValue(mockError)
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         await user.click(
             screen.getByTestId('mocked-nav-button-navigation:actions.save')
@@ -137,7 +137,7 @@ describe('ProductSelectionPage', () => {
 
         vi.mocked(useParams).mockReturnValue({})
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         await user.click(
             screen.getByTestId('mocked-nav-button-navigation:actions.save')
@@ -151,7 +151,7 @@ describe('ProductSelectionPage', () => {
     it('uses an empty array when there is no productId', async () => {
         vi.mocked(useAppSelector).mockReturnValue({ productIds: null })
 
-        render(<ProductSelectionPage onSave={mockOnSave} />)
+        render(<ProductSelection onSave={mockOnSave} />)
 
         const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(0)

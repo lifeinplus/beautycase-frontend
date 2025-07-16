@@ -27,13 +27,13 @@ import inputStyles from '@/shared/components/ui/Input.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import styles from './StoreLinkAddPage.module.css'
+import styles from './StoreLinksAdd.module.css'
 
-export interface StoreLinkAddPageProps {
+export interface StoreLinkAddProps {
     onSave: (id: string, storeLinks: StoreLink[]) => Promise<void>
 }
 
-export const StoreLinkAddPage = ({ onSave }: StoreLinkAddPageProps) => {
+export const StoreLinksAdd = ({ onSave }: StoreLinkAddProps) => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('store')

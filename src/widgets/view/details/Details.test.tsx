@@ -9,8 +9,7 @@ import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { clearFormData } from '@/features/form/formSlice'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import type { DetailsPageProps } from '../DetailsPage'
-import { DetailsPage } from '../DetailsPage'
+import { Details, type DetailsProps } from './Details'
 
 vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/modals/ModalDelete')
@@ -21,7 +20,7 @@ vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/utils/errorUtils')
 vi.mock('@/app/hooks')
 
-describe('DetailsPage', () => {
+describe('Details', () => {
     const mockDeleteItem = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
@@ -32,7 +31,7 @@ describe('DetailsPage', () => {
         <div data-testid="mocked-media-content">Media Content</div>
     )
 
-    const mockProps: DetailsPageProps = {
+    const mockProps: DetailsProps = {
         redirectPath: '/products',
         topPanelTitle: 'Test Top Panel Title',
         title: 'Test Title',
@@ -60,7 +59,7 @@ describe('DetailsPage', () => {
     })
 
     it('renders the component with all elements', () => {
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
 
         const topPanel = screen.getByTestId('mocked-top-panel')
         const title = screen.getByRole('heading', {
@@ -83,12 +82,12 @@ describe('DetailsPage', () => {
     })
 
     it('dispatches clearFormData on mount', () => {
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
     })
 
     it('renders navigation buttons for actions that user can access', () => {
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
 
         const buttons = [
             'navigation:actions.back',
@@ -104,7 +103,7 @@ describe('DetailsPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
         await user.click(screen.getByRole('button', { name: /back/ }))
 
         expect(mockNavigate).toHaveBeenCalledWith(mockProps.redirectPath, {
@@ -116,14 +115,14 @@ describe('DetailsPage', () => {
     it('navigates to edit page when edit button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
         await user.click(screen.getByRole('button', { name: /edit/ }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/edit/123')
     })
 
     it('does not render duplicate button when showDuplicate is false', () => {
-        render(<DetailsPage {...mockProps} showDuplicate={false} />)
+        render(<Details {...mockProps} showDuplicate={false} />)
 
         expect(
             screen.queryByRole('button', { name: /duplicate/ })
@@ -133,7 +132,7 @@ describe('DetailsPage', () => {
     it('opens duplicate modal when duplicate button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} showDuplicate />)
+        render(<Details {...mockProps} showDuplicate />)
         await user.click(screen.getByRole('button', { name: /duplicate/ }))
 
         expect(screen.getByTestId('mocked-modal-duplicate')).toBeInTheDocument()
@@ -142,7 +141,7 @@ describe('DetailsPage', () => {
     it('opens delete modal when delete button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
         await user.click(screen.getByRole('button', { name: /delete/ }))
 
         expect(screen.getByTestId('mocked-modal-delete')).toBeInTheDocument()
@@ -151,7 +150,7 @@ describe('DetailsPage', () => {
     it('handles successful item duplication', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} showDuplicate />)
+        render(<Details {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: /duplicate/ }))
         await user.click(screen.getByTestId('mocked-modal-duplicate-confirm'))
@@ -170,7 +169,7 @@ describe('DetailsPage', () => {
 
         mockDuplicateUnwrap.mockRejectedValue(mockError)
 
-        render(<DetailsPage {...mockProps} showDuplicate />)
+        render(<Details {...mockProps} showDuplicate />)
 
         await user.click(screen.getByRole('button', { name: /duplicate/ }))
         await user.click(screen.getByTestId('mocked-modal-duplicate-confirm'))
@@ -185,7 +184,7 @@ describe('DetailsPage', () => {
     it('handles successful item deletion', async () => {
         const user = userEvent.setup()
 
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
 
         await user.click(screen.getByRole('button', { name: /delete/ }))
         await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
@@ -204,7 +203,7 @@ describe('DetailsPage', () => {
 
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        render(<DetailsPage {...mockProps} />)
+        render(<Details {...mockProps} />)
 
         await user.click(screen.getByRole('button', { name: /delete/ }))
         await user.click(screen.getByTestId('mocked-modal-delete-confirm'))

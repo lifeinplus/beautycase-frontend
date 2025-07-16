@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
-import { GalleryPage } from '@/widgets/GalleryPage'
+import { Gallery } from '@/widgets/view/gallery/Gallery'
 import { useGetAllToolsQuery } from '../../features/tools/toolsApi'
 
 export const ToolsGalleryPage = () => {
@@ -11,7 +11,7 @@ export const ToolsGalleryPage = () => {
     const { data: tools, isLoading, error } = useGetAllToolsQuery()
 
     return (
-        <GalleryPage
+        <Gallery
             redirectPath="/tools"
             title={t('titles.gallery')}
             subtitle={t('titles.gallerySubtitle')}

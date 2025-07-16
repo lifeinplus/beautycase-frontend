@@ -7,13 +7,13 @@ import { selectRole } from '@/features/auth/authSlice'
 import { setFormData } from '@/features/form/formSlice'
 import type { Product } from '@/features/products/types'
 import imageStyles from '@/shared/components/ui/image.module.css'
-import styles from './SelectProductsTile.module.css'
+import styles from './SelectTile.module.css'
 
-export interface SelectProductsTileProps {
+export interface SelectTileProps {
     products?: Product[]
 }
 
-const SelectProductsTile = ({ products }: SelectProductsTileProps) => {
+const SelectTile = ({ products }: SelectTileProps) => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
@@ -44,4 +44,4 @@ const SelectProductsTile = ({ products }: SelectProductsTileProps) => {
     )
 }
 
-export default SelectProductsTile
+export default SelectTile

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
-import { GalleryPage } from '@/widgets/GalleryPage'
+import { Gallery } from '@/widgets/view/gallery/Gallery'
 
 export const ProductGalleryPage = () => {
     const { t } = useTranslation('product')
@@ -11,7 +11,7 @@ export const ProductGalleryPage = () => {
     const { data: products, isLoading, error } = useGetAllProductsQuery()
 
     return (
-        <GalleryPage
+        <Gallery
             redirectPath="/products"
             title={t('titles.gallery')}
             subtitle={t('titles.gallerySubtitle')}

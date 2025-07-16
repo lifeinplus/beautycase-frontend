@@ -1,6 +1,6 @@
-import type { DetailsPageProps } from '../DetailsPage'
+import type { DetailsProps } from '../Details'
 
-export const DetailsPage = ({
+export const Details = ({
     isLoading,
     error,
     title,
@@ -10,7 +10,7 @@ export const DetailsPage = ({
     descriptionContent,
     additionalContent,
     deleteItem,
-}: DetailsPageProps) => (
+}: DetailsProps) => (
     <div data-testid="mocked-details-page">
         {isLoading && <div data-testid="mocked-loading">Loading...</div>}
 

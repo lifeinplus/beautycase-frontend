@@ -12,7 +12,7 @@ import {
 import type { Store } from '@/features/stores/types'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StoresPage } from '../StoresPage'
+import { StoresPage } from './StoresPage'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')

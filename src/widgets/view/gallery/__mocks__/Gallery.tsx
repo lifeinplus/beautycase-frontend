@@ -1,11 +1,11 @@
-import { GalleryPageProps } from '../GalleryPage'
+import { GalleryProps } from '../Gallery'
 
 export const GalleryPage = ({
     title,
     isLoading,
     error,
     mediaContent,
-}: GalleryPageProps) => (
+}: GalleryProps) => (
     <div data-testid="mocked-gallery-page">
         <h2>{title}</h2>
         {isLoading && <div data-testid="mocked-loading">Loading...</div>}

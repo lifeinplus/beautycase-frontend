@@ -71,7 +71,7 @@ const getActionItems = (showDuplicate: boolean): ActionItem[] => {
     return items
 }
 
-export interface DetailsPageProps {
+export interface DetailsProps {
     isLoading: boolean
     error: unknown
     topPanelTitle: string
@@ -87,7 +87,7 @@ export interface DetailsPageProps {
     additionalContent?: ReactNode
 }
 
-export const DetailsPage = ({
+export const Details = ({
     isLoading = false,
     error,
     topPanelTitle,
@@ -101,7 +101,7 @@ export const DetailsPage = ({
     mediaContent,
     descriptionContent,
     additionalContent,
-}: DetailsPageProps) => {
+}: DetailsProps) => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()

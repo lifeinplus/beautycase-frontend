@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast'
 
 import { useUpdateToolStoreLinksMutation } from '@/features/tools/toolsApi'
-import { StoreLinkAddPage } from '@/pages/store/StoreLinkAddPage'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { StoreLinksAdd } from '@/widgets/store/store-links-add/StoreLinksAdd'
 import type { StoreLink } from '../types'
 
 export const StoreLinkAddPageForTools = () => {
@@ -20,5 +20,5 @@ export const StoreLinkAddPageForTools = () => {
         }
     }
 
-    return <StoreLinkAddPage onSave={onSave} />
+    return <StoreLinksAdd onSave={onSave} />
 }

@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
-import { DetailsPage } from '@/widgets/DetailsPage'
-import { ProductImages } from '@/widgets/product/ProductImages'
+import { ProductImages } from '@/widgets/product/product-images/ProductImages'
+import { Details } from '@/widgets/view/details/Details'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
@@ -21,7 +21,7 @@ export const StageDetailsPage = () => {
     const [duplicateStageById] = useDuplicateStageByIdMutation()
 
     return (
-        <DetailsPage
+        <Details
             isLoading={isLoading}
             error={error}
             topPanelTitle={t('titles.details')}

@@ -8,8 +8,8 @@ import {
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
-import { DetailsPage } from '@/widgets/DetailsPage'
-import { StoreLinks } from '@/widgets/store-links/StoreLinks'
+import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
+import { Details } from '@/widgets/view/details/Details'
 
 export const ProductDetailsPage = () => {
     const { id } = useParams<RouteId>()
@@ -19,7 +19,7 @@ export const ProductDetailsPage = () => {
     const [deleteProductById] = useDeleteProductByIdMutation()
 
     return (
-        <DetailsPage
+        <Details
             isLoading={isLoading}
             error={error}
             topPanelTitle={t('titles.details')}

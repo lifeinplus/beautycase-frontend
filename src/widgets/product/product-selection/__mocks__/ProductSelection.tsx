@@ -1,7 +1,7 @@
 import { mockProductIds } from '@/features/products/__mocks__/productsApi'
-import { ProductSelectionPageProps } from '../ProductSelectionPage'
+import { ProductSelectionProps } from '../ProductSelection'
 
-export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => (
+export const ProductSelectionPage = ({ onSave }: ProductSelectionProps) => (
     <div data-testid="mocked-product-selection-page">
         <button
             data-testid="mocked-submit-button"

@@ -12,7 +12,7 @@ vi.mock('@/pages/product/ProductAddPage')
 vi.mock('@/pages/product/ProductDetailsPage')
 vi.mock('@/pages/product/ProductEditPage')
 vi.mock('@/pages/product/ProductGalleryPage')
-vi.mock('@/pages/store/StoreLinkAddPage')
+vi.mock('@/pages/store/StoreLinksAdd')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('productRoutes', () => {

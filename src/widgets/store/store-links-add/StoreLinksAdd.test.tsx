@@ -7,7 +7,7 @@ import { useAppSelector } from '@/app/hooks'
 import { setFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StoreLinkAddPage } from '../StoreLinkAddPage'
+import { StoreLinksAdd } from './StoreLinksAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/stores/storesApi')
@@ -15,7 +15,7 @@ vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/layout/TopPanel')
 
-describe('StoreLinkAddPage', () => {
+describe('StoreLinksAdd', () => {
     const mockStoreLink = {
         _id: 'store1',
         name: 'Store 1',
@@ -36,6 +36,8 @@ describe('StoreLinkAddPage', () => {
         { _id: 'store2', name: 'Store 2' },
     ]
 
+    const mockOnSave = vi.fn().mockResolvedValue(undefined)
+
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue({
             storeLinks: [],
@@ -47,14 +49,14 @@ describe('StoreLinkAddPage', () => {
     })
 
     it('renders the page with correct title', () => {
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const topPanel = screen.getByTestId('mocked-top-panel')
         expect(topPanel).toBeInTheDocument()
     })
 
     it('renders initial empty store link form', () => {
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         expect(screen.getByText('fields.stores.label')).toBeInTheDocument()
         expect(screen.getAllByPlaceholderText('fields.link.label').length).toBe(
@@ -67,7 +69,7 @@ describe('StoreLinkAddPage', () => {
             storeLinks: [mockStoreLink],
         })
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const linkInput = screen.getByRole('textbox', {
             name: 'fields.link.ariaLabel',
@@ -79,7 +81,7 @@ describe('StoreLinkAddPage', () => {
     it('adds a new store link when plus button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const addButton = screen.getByRole('button', {
             name: 'buttonAdd.ariaLabel',
@@ -98,7 +100,7 @@ describe('StoreLinkAddPage', () => {
 
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         let linkInputs = screen.getAllByRole('textbox', {
             name: 'fields.link.ariaLabel',
@@ -123,7 +125,7 @@ describe('StoreLinkAddPage', () => {
     it('updates store selection when select is changed', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const select = screen.getByRole('combobox')
         await user.selectOptions(select, 'store1')
@@ -139,7 +141,7 @@ describe('StoreLinkAddPage', () => {
     it('updates link value when input changes', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const linkInput = screen.getByRole('textbox', {
             name: 'fields.link.ariaLabel',
@@ -153,7 +155,7 @@ describe('StoreLinkAddPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const backButton = screen.getByRole('button', {
             name: 'navigation:actions.back',
@@ -166,7 +168,7 @@ describe('StoreLinkAddPage', () => {
     it('saves form data and navigates back when save button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinkAddPage />)
+        render(<StoreLinksAdd onSave={mockOnSave} />)
 
         const select = screen.getByRole('combobox')
         await user.selectOptions(select, 'store1')

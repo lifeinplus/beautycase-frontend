@@ -5,7 +5,7 @@ import type { Product } from '@/features/products/types'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
-import SelectProductsTile from './SelectProductsTile'
+import SelectTile from './ui/SelectTile'
 
 export interface ProductImagesProps {
     products?: Product[]
@@ -20,6 +20,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
             state: { fromPathname: pathname },
         })
     }
+
     return (
         <div className={galleryStyles.container}>
             {products?.map((p) => (
@@ -35,7 +36,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
                 </div>
             ))}
 
-            <SelectProductsTile products={products} />
+            <SelectTile products={products} />
         </div>
     )
 }

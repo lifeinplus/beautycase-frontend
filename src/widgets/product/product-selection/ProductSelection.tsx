@@ -21,11 +21,11 @@ import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export interface ProductSelectionPageProps {
+export interface ProductSelectionProps {
     onSave: (id: string, productIds: string[]) => Promise<void>
 }
 
-export const ProductSelectionPage = ({ onSave }: ProductSelectionPageProps) => {
+export const ProductSelection = ({ onSave }: ProductSelectionProps) => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('product')

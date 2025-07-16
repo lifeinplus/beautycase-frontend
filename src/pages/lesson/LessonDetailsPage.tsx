@@ -8,8 +8,8 @@ import {
 import { Image } from '@/shared/components/ui/Image'
 import type { RouteId } from '@/shared/types/router'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
-import { DetailsPage } from '@/widgets/DetailsPage'
-import { ProductImages } from '@/widgets/product/ProductImages'
+import { ProductImages } from '@/widgets/product/product-images/ProductImages'
+import { Details } from '@/widgets/view/details/Details'
 import styles from './LessonDetailsPage.module.css'
 
 export const LessonDetailsPage = () => {
@@ -22,7 +22,7 @@ export const LessonDetailsPage = () => {
     const embedUrl = data?.videoUrl && getYouTubeEmbedUrl(data?.videoUrl)
 
     return (
-        <DetailsPage
+        <Details
             isLoading={isLoading}
             error={error}
             topPanelTitle={t('titles.details')}

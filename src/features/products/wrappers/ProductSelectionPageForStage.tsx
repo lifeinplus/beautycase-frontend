@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 
 import { useUpdateStageProductsMutation } from '@/features/stages/stagesApi'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { ProductSelectionPage } from '@/widgets/product/ProductSelectionPage'
+import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
 
 const ProductSelectionPageForStage = () => {
     const [updateStageProducts] = useUpdateStageProductsMutation()
@@ -19,7 +19,7 @@ const ProductSelectionPageForStage = () => {
         }
     }
 
-    return <ProductSelectionPage onSave={onSave} />
+    return <ProductSelection onSave={onSave} />
 }
 
 export default ProductSelectionPageForStage

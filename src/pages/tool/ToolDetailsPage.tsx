@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
-import { DetailsPage } from '@/widgets/DetailsPage'
-import { StoreLinks } from '@/widgets/store-links/StoreLinks'
+import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
+import { Details } from '@/widgets/view/details/Details'
 import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
@@ -19,7 +19,7 @@ export const ToolDetailsPage = () => {
     const [deleteToolById] = useDeleteToolByIdMutation()
 
     return (
-        <DetailsPage
+        <Details
             isLoading={isLoading}
             error={error}
             topPanelTitle={t('titles.details')}

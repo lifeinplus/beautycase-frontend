@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
 import { VideoCard } from '@/shared/components/gallery/VideoCard'
-import { GalleryPage } from '@/widgets/GalleryPage'
+import { Gallery } from '@/widgets/view/gallery/Gallery'
 import styles from './LessonsGalleryPage.module.css'
 
 export const LessonsGalleryPage = () => {
@@ -11,7 +11,7 @@ export const LessonsGalleryPage = () => {
     const { data: lessons, isLoading, error } = useGetAllLessonsQuery()
 
     return (
-        <GalleryPage
+        <Gallery
             redirectPath="/lessons"
             title={t('titles.gallery')}
             isLoading={isLoading}

@@ -5,6 +5,11 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
 import { clearFormData } from '@/features/form/formSlice'
+import {
+    mockStoreLink1,
+    mockStoreLinks,
+    mockStores,
+} from '@/features/stores/__mocks__/storesApi'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StoreLinksAdd } from './StoreLinksAdd'
@@ -16,25 +21,9 @@ vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 
 describe('StoreLinksAdd', () => {
-    const mockStoreLink = {
-        _id: 'store1',
-        name: 'Store 1',
-        link: 'https://store1.com',
-    }
-
-    const mockStoreLinks = [
-        mockStoreLink,
-        { _id: 'store2', name: 'Store 2', link: 'https://store2.com' },
-    ]
-
     const mockFormData = {
         storeLinks: mockStoreLinks,
     }
-
-    const mockStores = [
-        { _id: 'store1', name: 'Store 1' },
-        { _id: 'store2', name: 'Store 2' },
-    ]
 
     const mockOnSave = vi.fn().mockResolvedValue(undefined)
 
@@ -66,7 +55,7 @@ describe('StoreLinksAdd', () => {
 
     it('initializes with existing store links from form data', async () => {
         vi.mocked(useAppSelector).mockReturnValue({
-            storeLinks: [mockStoreLink],
+            storeLinks: [mockStoreLink1],
         })
 
         render(<StoreLinksAdd onSave={mockOnSave} />)

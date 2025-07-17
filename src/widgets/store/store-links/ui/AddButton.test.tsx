@@ -5,18 +5,14 @@ import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { setFormData } from '@/features/form/formSlice'
-import {
-    mockProduct1,
-    mockProduct2,
-    mockProducts,
-} from '@/features/products/__mocks__/productsApi'
+import { mockStoreLinks } from '@/features/stores/__mocks__/storesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
-import { SelectTile } from './SelectTile'
+import { AddButton } from './AddButton'
 
 vi.mock('@/app/hooks')
 
-describe('SelectTile', () => {
+describe('AddButton', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectRole) return 'admin'
@@ -25,37 +21,37 @@ describe('SelectTile', () => {
         })
     })
 
-    it('renders SelectTile correctly', () => {
-        render(<SelectTile products={mockProducts} />)
+    it('renders AddButton correctly', () => {
+        render(<AddButton storeLinks={mockStoreLinks} />)
 
         expect(
-            screen.getByTestId('mocked-squares-plus-icon')
+            screen.getByRole('button', { name: 'buttons.storeLinks.text' })
         ).toBeInTheDocument()
     })
 
     it('renders null if there has no access', () => {
         vi.mocked(useAppSelector).mockReturnValue(null)
 
-        render(<SelectTile products={mockProducts} />)
+        render(<AddButton storeLinks={mockStoreLinks} />)
 
         expect(
-            screen.queryByTestId('mocked-squares-plus-icon')
+            screen.queryByRole('button', { name: 'buttons.storeLinks.text' })
         ).not.toBeInTheDocument()
     })
 
-    it('navigates to products page when add button is clicked', async () => {
+    it('navigates to links page when add button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<SelectTile products={mockProducts} />)
+        render(<AddButton storeLinks={mockStoreLinks} />)
 
-        await user.click(screen.getByTestId('mocked-squares-plus-icon'))
-
-        expect(mockDispatch).toHaveBeenCalledWith(
-            setFormData({
-                productIds: [mockProduct1._id, mockProduct2._id],
-            })
+        await user.click(
+            screen.getByRole('button', { name: 'buttons.storeLinks.text' })
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith('products')
+        expect(mockDispatch).toHaveBeenCalledWith(
+            setFormData({ storeLinks: mockStoreLinks })
+        )
+
+        expect(mockNavigate).toHaveBeenCalledWith('links')
     })
 })

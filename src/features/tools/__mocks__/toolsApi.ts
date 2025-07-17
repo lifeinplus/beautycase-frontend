@@ -65,6 +65,7 @@ export const useGetAllToolsQuery = vi.fn()
 export const useGetToolByIdQuery = vi.fn()
 export const useDeleteToolByIdMutation = vi.fn()
 export const useUpdateToolByIdMutation = vi.fn()
+export const useUpdateToolStoreLinksMutation = vi.fn()
 
 const toolsHandlers = [
     http.post('api/tools', () => HttpResponse.json(mockToolCreate)),

@@ -29,11 +29,11 @@ import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import styles from './StoreLinksAdd.module.css'
 
-export interface StoreLinkAddProps {
+export interface StoreLinksAddProps {
     onSave: (id: string, storeLinks: StoreLink[]) => Promise<void>
 }
 
-export const StoreLinksAdd = ({ onSave }: StoreLinkAddProps) => {
+export const StoreLinksAdd = ({ onSave }: StoreLinksAddProps) => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('store')

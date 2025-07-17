@@ -1,10 +1,7 @@
-import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
+import { ImageSection } from '@/shared/components/common/ImageSection'
 import { GoodsGrid } from '@/shared/components/gallery/GoodsGrid'
-import { Image } from '@/shared/components/ui/Image'
-import imageStyles from '@/shared/components/ui/image.module.css'
-import pageStyles from '@/shared/components/ui/page.module.css'
 import type { Stage } from '../types'
 import style from './Stages.module.css'
 
@@ -29,16 +26,7 @@ export const Stages = ({ stages }: StagesProps) => {
                     <h3 className={style.title}>{stage.title}</h3>
                     <h4 className={style.subtitle}>{stage.subtitle}</h4>
 
-                    <section className={pageStyles.contentImage}>
-                        <div
-                            className={classNames(
-                                imageStyles.container,
-                                imageStyles.rectangle
-                            )}
-                        >
-                            <Image alt={stage.title} src={stage.imageUrl} />
-                        </div>
-                    </section>
+                    <ImageSection name={stage?.title} url={stage?.imageUrl} />
 
                     <section className="px-4">
                         <p className="my-2 font-bold sm:text-left">

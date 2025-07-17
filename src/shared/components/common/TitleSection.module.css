@@ -1,0 +1,20 @@
+.title {
+    @apply my-2 border-b-0.5 px-3 sm:mx-auto sm:mb-6 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0;
+    @apply border-neutral-200;
+}
+
+.headline {
+    @apply text-base font-bold sm:text-center sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+.byline {
+    @apply text-sm text-slate-700 sm:mt-3 sm:text-center sm:text-xl;
+}
+
+:global(.dark) .title {
+    @apply border-neutral-800;
+}
+
+:global(.dark) .byline {
+    @apply text-slate-400;
+}

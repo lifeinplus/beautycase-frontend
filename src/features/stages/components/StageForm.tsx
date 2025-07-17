@@ -1,6 +1,5 @@
 import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
-import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -8,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectFormData } from '@/features/form/formSlice'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
@@ -56,15 +56,8 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
-                    <section
-                        className={classNames(
-                            pageStyles.titleContainer,
-                            'hidden sm:block'
-                        )}
-                    >
-                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
-                    </section>
+                <article className={pageStyles.container}>
+                    <TitleSection title={title} hideOnMobile />
 
                     <form
                         className={formStyles.form}

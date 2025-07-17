@@ -21,7 +21,7 @@ vi.mock('@/features/users/usersApi')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/ui/Image')
+vi.mock('@/shared/components/common/ImageSection')
 
 describe('UserSelectionPage', () => {
     const mockFormData = {

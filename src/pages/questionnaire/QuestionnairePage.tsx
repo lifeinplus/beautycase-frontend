@@ -59,7 +59,7 @@ export const QuestionnairePage = () => {
             <Header />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <Hero
                         headline={t('hero.headline')}
                         byline={t('hero.byline')}

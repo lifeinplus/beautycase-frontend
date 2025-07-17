@@ -23,13 +23,17 @@ export const AuthButton = () => {
 
     return (
         <NavButton
+            aria-label={
+                username
+                    ? t('buttons.logout.ariaLabel')
+                    : t('buttons.login.ariaLabel')
+            }
             icon={
                 username
                     ? ArrowLeftStartOnRectangleIcon
                     : ArrowRightEndOnRectangleIcon
             }
             label={username ? t('logout') : t('login')}
-            ariaLabel={username ? t('buttonLogout') : t('buttonLogin')}
             onClick={username ? handleLogout : handleLogin}
         />
     )

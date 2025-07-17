@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import ProductSelectionPageForStage from '@/features/products/wrappers/ProductSelectionPageForStage'
+import { ProductSelectionPageForStage } from '@/features/products/wrappers/ProductSelectionPageForStage'
 import { StageAddPage } from '@/pages/stage/StageAddPage'
 import { StageDetailsPage } from '@/pages/stage/StageDetailsPage'
 import { StageEditPage } from '@/pages/stage/StageEditPage'

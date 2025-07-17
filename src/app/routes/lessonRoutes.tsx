@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import ProductSelectionPageForLesson from '@/features/products/wrappers/ProductSelectionPageForLesson'
+import { ProductSelectionPageForLesson } from '@/features/products/wrappers/ProductSelectionPageForLesson'
 import { LessonAddPage } from '@/pages/lesson/LessonAddPage'
 import { LessonDetailsPage } from '@/pages/lesson/LessonDetailsPage'
 import { LessonEditPage } from '@/pages/lesson/LessonEditPage'

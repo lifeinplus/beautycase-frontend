@@ -4,22 +4,23 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
 } from '@/features/form/formSlice'
+import type { RouteId } from '@/shared/types/router'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { MakeupBagForm } from '../../features/makeupBags/components/MakeupBagForm'
 import {
-    useUpdateMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
+    useUpdateMakeupBagByIdMutation,
 } from '../../features/makeupBags/makeupBagsApi'
 import type { MakeupBag } from '../../features/makeupBags/types'
 
 export const MakeupBagEditPage = () => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('makeupBag')
 
     const dispatch = useAppDispatch()

@@ -20,9 +20,17 @@ export function ThemeToggler() {
 
     return (
         <NavButton
+            aria-label={
+                darkMode
+                    ? t('buttons.darkMode.ariaLabel')
+                    : t('buttons.lightMode.ariaLabel')
+            }
             icon={darkMode ? MoonIcon : SunIcon}
-            label={darkMode ? t('darkMode') : t('lightMode')}
-            ariaLabel={darkMode ? t('buttonDarkMode') : t('buttonLightMode')}
+            label={
+                darkMode
+                    ? t('buttons.darkMode.text')
+                    : t('buttons.lightMode.text')
+            }
             onClick={handleThemeToggle}
         />
     )

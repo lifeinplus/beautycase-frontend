@@ -1,12 +1,24 @@
 {
-    "buttonAdd": {
-        "ariaLabel": "Add link button"
-    },
-    "buttonDelete": {
-        "ariaLabel": "Delete link button"
-    },
-    "buttonEdit": {
-        "ariaLabel": "Edit link button"
+    "buttons": {
+        "linkAdd": {
+            "ariaLabel": "Add link button"
+        },
+        "linkDelete": {
+            "ariaLabel": "Delete link button"
+        },
+        "storeAdd": {
+            "ariaLabel": "Add store button"
+        },
+        "storeDelete": {
+            "ariaLabel": "Delete store button"
+        },
+        "storeEdit": {
+            "ariaLabel": "Edit store button"
+        },
+        "storeLinks": {
+            "text": "Add",
+            "ariaLabel": "Links add button"
+        }
     },
     "emptyMessageList": "No stores found",
     "fields": {
@@ -30,7 +42,11 @@
     },
     "titles": {
         "add": "Add Links",
-        "list": "Stores"
+        "list": "Stores",
+        "links": {
+            "product": "Product Links",
+            "tool": "Tool Links"
+        }
     },
     "toast": {
         "delete": "Store deleted"

@@ -1,24 +1,25 @@
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
 } from '@/features/form/formSlice'
+import type { RouteId } from '@/shared/types/router'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ToolForm } from '../../features/tools/components/ToolForm'
 import {
-    useUpdateToolByIdMutation,
     useGetToolByIdQuery,
+    useUpdateToolByIdMutation,
 } from '../../features/tools/toolsApi'
 import type { Tool } from '../../features/tools/types'
 
 export const ToolEditPage = () => {
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const navigate = useNavigate()
     const { t } = useTranslation('tool')
 

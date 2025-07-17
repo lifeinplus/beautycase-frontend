@@ -1,12 +1,17 @@
 {
+    "buttons": {
+        "brandAdd": {
+            "ariaLabel": "Кнопка добавить бренд"
+        },
+        "brandDelete": {
+            "ariaLabel": "Кнопка удалить бренд"
+        },
+        "brandEdit": {
+            "ariaLabel": "Кнопка изменить бренд"
+        }
+    },
     "hero": {
         "headline": "Бренды"
-    },
-    "buttonDelete": {
-        "ariaLabel": "Кнопка удалить бренд"
-    },
-    "buttonEdit": {
-        "ariaLabel": "Кнопка изменить бренд"
     },
     "emptyMessageList": "Бренды не найдены",
     "fields": {

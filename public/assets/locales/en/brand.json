@@ -1,12 +1,17 @@
 {
+    "buttons": {
+        "brandAdd": {
+            "ariaLabel": "Add brand button"
+        },
+        "brandDelete": {
+            "ariaLabel": "Delete brand button"
+        },
+        "brandEdit": {
+            "ariaLabel": "Edit brand button"
+        }
+    },
     "hero": {
         "headline": "Brands"
-    },
-    "buttonDelete": {
-        "ariaLabel": "Delete brand button"
-    },
-    "buttonEdit": {
-        "ariaLabel": "Edit brand button"
     },
     "emptyMessageList": "No brands found",
     "fields": {

@@ -5,11 +5,11 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useUpdateStageProductsMutation } from '@/features/stages/stagesApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import ProductSelectionPageForStage from '../ProductSelectionPageForStage'
+import { ProductSelectionPageForStage } from '../ProductSelectionPageForStage'
 
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/utils/errorUtils')
-vi.mock('@/widgets/product/ProductSelectionPage')
+vi.mock('@/widgets/product/product-selection/ProductSelection')
 
 describe('ProductSelectionPageForStage', () => {
     const mockUpdate = vi.fn()
@@ -24,11 +24,11 @@ describe('ProductSelectionPageForStage', () => {
         mockUnwrap.mockResolvedValue({})
     })
 
-    it('renders ProductSelectionPage successfully', async () => {
+    it('renders ProductSelection successfully', async () => {
         render(<ProductSelectionPageForStage />)
 
         expect(
-            screen.getByTestId('mocked-product-selection-page')
+            screen.getByTestId('mocked-product-selection')
         ).toBeInTheDocument()
     })
 

@@ -1,8 +1,0 @@
-.storeLink {
-    @apply inline-flex items-center gap-1 rounded-2xl px-2 py-1 text-xs font-medium ring-1 ring-inset;
-    @apply bg-neutral-100 text-neutral-600 ring-neutral-200;
-}
-
-:global(.dark) .storeLink {
-    @apply bg-neutral-800 text-neutral-300 ring-neutral-700;
-}

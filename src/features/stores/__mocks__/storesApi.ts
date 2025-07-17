@@ -9,11 +9,25 @@ export const mockStoreCreate: MutationResult = {
     message: 'Store created successfully',
 }
 
-export const mockStore1: Store = { _id: '1', name: 'Brush' }
+export const mockStore1: Store = { _id: 'store1', name: 'Store 1' }
 
-export const mockStore2: Store = { _id: '2', name: 'Sponge' }
+export const mockStore2: Store = { _id: 'store2', name: 'Store 2' }
 
 export const mockStores: Store[] = [mockStore1, mockStore2]
+
+export const mockStoreLink1 = {
+    _id: 'store1',
+    name: 'Store 1',
+    link: 'https://store1.com',
+}
+
+export const mockStoreLink2 = {
+    _id: 'store2',
+    name: 'Store 2',
+    link: 'https://store2.com',
+}
+
+export const mockStoreLinks = [mockStoreLink1, mockStoreLink2]
 
 export const useCreateStoreMutation = vi.fn()
 export const useGetAllStoresQuery = vi.fn()

@@ -25,6 +25,7 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { canAccess } from '@/shared/utils/menu'
 import { usePDFExport } from '../../features/makeupBags/hooks/usePDFExport'
@@ -72,7 +73,7 @@ const ACTION_ITEMS: ActionItem[] = [
 export const MakeupBagPage = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation([
         'makeupBag',
         'modal',
@@ -203,7 +204,7 @@ export const MakeupBagPage = () => {
             />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}

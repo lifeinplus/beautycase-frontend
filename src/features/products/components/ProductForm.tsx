@@ -5,11 +5,11 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppSelector } from '@/app/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
+import { selectFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
-import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
@@ -20,7 +20,6 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import classNames from 'classnames'
 import type { Product } from '../types'
 import { productSchema } from '../validations'
 
@@ -45,7 +44,6 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         resolver: yupResolver(productSchema),
     })
 
-    const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData) as Product
 
     useEffect(() => {
@@ -59,19 +57,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         value: b._id!,
     }))
 
-    const storeLinks = watch('storeLinks')
-
-    const linksText = storeLinks
-        ? `${t('fields.storeLinks.selected')}: ${storeLinks.length}`
-        : t('fields.storeLinks.select')
-
     const handleBack = () => {
         navigate(-1)
-    }
-
-    const handleNavigate = () => {
-        dispatch(setFormData(watch()))
-        navigate('links')
     }
 
     return (
@@ -79,15 +66,8 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
-                    <section
-                        className={classNames(
-                            pageStyles.titleContainer,
-                            'hidden sm:block'
-                        )}
-                    >
-                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
-                    </section>
+                <article className={pageStyles.container}>
+                    <TitleSection title={title} hideOnMobile />
 
                     <form
                         className={formStyles.form}
@@ -135,14 +115,6 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                             register={register('comment')}
                             required={true}
                             value={watch('comment')}
-                        />
-
-                        <ButtonNavigateSection
-                            error={t(errors.storeLinks?.message || '')}
-                            label={t('fields.storeLinks.label')}
-                            onNavigate={handleNavigate}
-                            required={true}
-                            text={linksText}
                         />
                     </form>
                 </article>

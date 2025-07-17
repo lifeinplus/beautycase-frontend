@@ -32,7 +32,7 @@ export default {
                 login: '350px',
             },
             padding: {
-                13: '52px',
+                13: '3.25rem' /* 52px */,
             },
             scrollMargin: {
                 header: '61px',

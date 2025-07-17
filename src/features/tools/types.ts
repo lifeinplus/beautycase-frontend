@@ -9,5 +9,5 @@ export interface Tool {
     imageUrl: string
     number?: string
     comment: string
-    storeLinks: StoreLink[]
+    storeLinks?: StoreLink[]
 }

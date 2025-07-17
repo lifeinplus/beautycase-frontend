@@ -7,7 +7,7 @@ import { LessonsGalleryPage } from '../LessonsGalleryPage'
 
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/gallery/VideoCard')
-vi.mock('@/widgets/GalleryPage')
+vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('LessonsGalleryPage', () => {
     beforeEach(() => {

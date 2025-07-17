@@ -1,6 +1,6 @@
+import { api } from '@/shared/api/api'
 import type { MutationResult, QueryResult } from '@/shared/types/api'
 import { cleanObject } from '@/shared/utils/common'
-import { api } from '@/shared/api/api'
 import type { Tool } from './types'
 
 const toolsApi = api.injectEndpoints({
@@ -45,6 +45,21 @@ const toolsApi = api.injectEndpoints({
             ],
         }),
 
+        updateToolStoreLinks: builder.mutation<
+            MutationResult,
+            { id: string; data: Pick<Tool, 'storeLinks'> }
+        >({
+            query: ({ id, data }) => ({
+                url: `/tools/${id}/store-links`,
+                method: 'PATCH',
+                body: data,
+            }),
+            invalidatesTags: (_result, _error, { id }) => [
+                { type: 'Tool', id: id },
+                { type: 'Tool', id: 'LIST' },
+            ],
+        }),
+
         deleteToolById: builder.mutation<QueryResult, string>({
             query: (id) => ({
                 url: `/tools/${id}`,
@@ -60,5 +75,6 @@ export const {
     useGetAllToolsQuery,
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
+    useUpdateToolStoreLinksMutation,
     useDeleteToolByIdMutation,
 } = toolsApi

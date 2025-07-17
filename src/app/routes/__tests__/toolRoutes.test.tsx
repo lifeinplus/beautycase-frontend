@@ -8,7 +8,7 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/pages/store/StoreLinkAddPage')
+vi.mock('@/features/stores/wrappers/StoreLinksAddPageForTool')
 vi.mock('@/pages/tool/ToolAddPage')
 vi.mock('@/pages/tool/ToolDetailsPage')
 vi.mock('@/pages/tool/ToolEditPage')
@@ -32,31 +32,23 @@ describe('toolRoutes', () => {
         ).toBeInTheDocument()
     })
 
+    it('renders the add links page correctly', () => {
+        renderWithRouter(<App />, ['/tools/1/links'])
+
+        expect(
+            screen.getByTestId('mocked-store-links-add-page-for-tool')
+        ).toBeInTheDocument()
+    })
+
     it('renders the add page correctly', () => {
         renderWithRouter(<App />, ['/tools/add'])
 
         expect(screen.getByTestId('mocked-tool-add-page')).toBeInTheDocument()
     })
 
-    it('renders the add links page correctly', () => {
-        renderWithRouter(<App />, ['/tools/add/links'])
-
-        expect(
-            screen.getByTestId('mocked-store-link-add-page')
-        ).toBeInTheDocument()
-    })
-
     it('renders the edit page correctly', () => {
         renderWithRouter(<App />, ['/tools/edit/1'])
 
         expect(screen.getByTestId('mocked-tool-edit-page')).toBeInTheDocument()
-    })
-
-    it('renders the edit links page correctly', () => {
-        renderWithRouter(<App />, ['/tools/edit/1/links'])
-
-        expect(
-            screen.getByTestId('mocked-store-link-add-page')
-        ).toBeInTheDocument()
     })
 })

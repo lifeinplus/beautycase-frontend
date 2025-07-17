@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks'
@@ -20,7 +20,7 @@ describe('ThemeToggler', () => {
         render(<ThemeToggler />)
 
         expect(
-            screen.getByRole('button', { name: 'buttonLightMode' })
+            screen.getByRole('button', { name: 'buttons.lightMode.ariaLabel' })
         ).toBeInTheDocument()
 
         expect(screen.getByTestId('mocked-sun-icon')).toBeInTheDocument()
@@ -33,7 +33,7 @@ describe('ThemeToggler', () => {
         render(<ThemeToggler />)
 
         expect(
-            screen.getByRole('button', { name: 'buttonDarkMode' })
+            screen.getByRole('button', { name: 'buttons.darkMode.ariaLabel' })
         ).toBeInTheDocument()
 
         expect(screen.getByTestId('mocked-moon-icon')).toBeInTheDocument()
@@ -57,8 +57,10 @@ describe('ThemeToggler', () => {
         render(<ThemeToggler />)
         await user.click(screen.getByRole('button'))
 
-        const toggle = document.documentElement.classList.toggle
-        expect(toggle).toHaveBeenCalledWith('dark', true)
+        expect(document.documentElement.classList.toggle).toHaveBeenCalledWith(
+            'dark',
+            true
+        )
     })
 
     it('updates localStorage when clicked', async () => {
@@ -77,7 +79,12 @@ describe('ThemeToggler', () => {
         render(<ThemeToggler />)
 
         const button = screen.getByRole('button')
-        expect(button).toHaveAttribute('aria-label', 'buttonDarkMode')
+
+        expect(button).toHaveAttribute(
+            'aria-label',
+            'buttons.darkMode.ariaLabel'
+        )
+
         expect(button).toHaveClass(/navBtn/)
     })
 })

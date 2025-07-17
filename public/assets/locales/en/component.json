@@ -12,9 +12,5 @@
     "toast": {
         "delete": "{{title}} deleted",
         "duplicate": "{{title}} duplicated"
-    },
-    "language": {
-        "ariaLabel": "Switch language button",
-        "label": "English"
     }
 }

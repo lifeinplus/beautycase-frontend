@@ -1,4 +1,4 @@
-import { array, object, string } from 'yup'
+import { object, string } from 'yup'
 
 export const toolSchema = object({
     brandId: string().required('fields.brand.errors.required'),
@@ -8,7 +8,4 @@ export const toolSchema = object({
         .required('fields.imageUrl.errors.required'),
     number: string().optional(),
     comment: string().required('fields.comment.errors.required'),
-    storeLinks: array()
-        .min(1, 'fields.storeLinks.errors.min')
-        .required('fields.storeLinks.errors.required'),
 })

@@ -10,6 +10,7 @@ import { useGetAllCategoriesQuery } from '@/features/categories/categoriesApi'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { useGetAllUsersQuery } from '@/features/users/usersApi'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateSection'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { SelectSection } from '@/shared/components/forms/SelectSection'
@@ -18,7 +19,7 @@ import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import classNames from 'classnames'
+import type { RouteId } from '@/shared/types/router'
 import type { MakeupBag } from '../types'
 import { makeupBagSchema } from '../validations'
 
@@ -29,7 +30,7 @@ export interface MakeupBagFormProps {
 
 export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id } = useParams<RouteId>()
     const { t } = useTranslation('makeupBag')
 
     const {
@@ -91,15 +92,8 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
-                    <section
-                        className={classNames(
-                            pageStyles.titleContainer,
-                            'hidden sm:block'
-                        )}
-                    >
-                        <h1 className={pageStyles.titleHeadline}>{title}</h1>
-                    </section>
+                <article className={pageStyles.container}>
+                    <TitleSection title={title} hideOnMobile />
 
                     <form
                         className={formStyles.form}

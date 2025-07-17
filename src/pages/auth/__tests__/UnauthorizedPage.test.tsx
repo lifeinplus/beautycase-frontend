@@ -25,7 +25,7 @@ describe('UnauthorizedPage', () => {
         ).toBeInTheDocument()
 
         expect(
-            container.querySelector("[class*='contentContainer']")
+            container.querySelector("[class*='container']")
         ).toBeInTheDocument()
     })
 })

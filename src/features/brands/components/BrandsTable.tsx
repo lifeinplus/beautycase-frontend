@@ -38,7 +38,7 @@ export const BrandsTable = ({ items, onDelete, onEdit }: BrandsTableProps) => {
                     actions={
                         <div className="flex gap-2">
                             <Button
-                                aria-label={t('buttonEdit.ariaLabel')}
+                                aria-label={t('buttons.brandEdit.ariaLabel')}
                                 onClick={() => onEdit(item)}
                                 variant="warning"
                             >
@@ -46,7 +46,7 @@ export const BrandsTable = ({ items, onDelete, onEdit }: BrandsTableProps) => {
                             </Button>
 
                             <Button
-                                aria-label={t('buttonDelete.ariaLabel')}
+                                aria-label={t('buttons.brandDelete.ariaLabel')}
                                 onClick={() => onDelete(item)}
                                 variant="danger"
                             >

@@ -43,6 +43,7 @@ export const useCreateProductMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()
 export const useUpdateProductByIdMutation = vi.fn()
+export const useUpdateProductStoreLinksMutation = vi.fn()
 export const useDeleteProductByIdMutation = vi.fn()
 
 const productsHandlers = [

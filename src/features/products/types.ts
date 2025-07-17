@@ -9,5 +9,5 @@ export interface Product {
     imageUrl: string
     shade?: string
     comment: string
-    storeLinks: StoreLink[]
+    storeLinks?: StoreLink[]
 }

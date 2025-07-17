@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
+import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
+import type { Stage } from '@/features/stages/types'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
@@ -17,8 +19,6 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import { useGetAllStagesQuery } from '../../features/stages/stagesApi'
-import type { Stage } from '../../features/stages/types'
 import styles from './StageSelectionPage.module.css'
 
 export const StageSelectionPage = () => {
@@ -89,7 +89,7 @@ export const StageSelectionPage = () => {
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
-                <article className={pageStyles.contentContainer}>
+                <article className={pageStyles.container}>
                     <section className={galleryStyles.header}>
                         <h1 className={galleryStyles.title}>
                             {t('titles.selection')}

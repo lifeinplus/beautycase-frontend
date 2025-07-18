@@ -1,3 +1,4 @@
+import { type ComponentType, type SVGProps } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
@@ -6,7 +7,24 @@ import { useMakeupBagActions } from '@/pages/makeup-bag/hooks/useMakeupBagAction
 import { useMakeupBagListActions } from '@/pages/makeup-bag/hooks/useMakeupBagListActions'
 import { canAccess } from '@/shared/utils/menu'
 
-export const useNavBarActions = () => {
+export interface NavBarAction {
+    key: string
+    className?: string
+    icon: ComponentType<SVGProps<SVGSVGElement>>
+    label: string
+    onClick: () => void
+    auth?: boolean
+    roles?: string[]
+    modalProps?: {
+        isOpen: boolean
+        title: string
+        description: string
+        onConfirm: () => Promise<void>
+        onCancel: () => void
+    }
+}
+
+export const useNavBarActions = (): NavBarAction[] => {
     const location = useLocation()
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)

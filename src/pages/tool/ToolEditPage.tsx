@@ -9,14 +9,14 @@ import {
     selectIsDirty,
     setFormData,
 } from '@/features/form/formSlice'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { ToolForm } from '../../features/tools/components/ToolForm'
+import { ToolForm } from '@/features/tools/components/ToolForm'
 import {
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
-} from '../../features/tools/toolsApi'
-import type { Tool } from '../../features/tools/types'
+} from '@/features/tools/toolsApi'
+import type { Tool } from '@/features/tools/types'
+import type { RouteId } from '@/shared/types/router'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const ToolEditPage = () => {
     const { id } = useParams<RouteId>()

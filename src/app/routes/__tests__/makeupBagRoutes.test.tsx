@@ -14,21 +14,22 @@ vi.mock('@/pages/makeup-bag/MakeupBagListPage')
 vi.mock('@/pages/makeup-bag/MakeupBagPage')
 vi.mock('@/pages/stage/StageSelectionPage')
 vi.mock('@/pages/tool/ToolSelectionPage')
+vi.mock('@/shared/components/layout/Layout')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('makeupBagRoutes', () => {
-    it('renders the page correctly', () => {
-        renderWithRouter(<App />, ['/makeup_bags/1'])
-
-        expect(screen.getByTestId('mocked-makeup-bag-page')).toBeInTheDocument()
-    })
-
     it('renders the list page correctly', () => {
         renderWithRouter(<App />, ['/makeup_bags'])
 
         expect(
             screen.getByTestId('mocked-makeup-bag-list-page')
         ).toBeInTheDocument()
+    })
+
+    it('renders the page correctly', () => {
+        renderWithRouter(<App />, ['/makeup_bags/1'])
+
+        expect(screen.getByTestId('mocked-makeup-bag-page')).toBeInTheDocument()
     })
 
     it('renders the add page correctly', () => {

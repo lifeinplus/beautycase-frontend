@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { MakeupBagForm } from '../../features/makeupBags/components/MakeupBagForm'
-import { useCreateMakeupBagMutation } from '../../features/makeupBags/makeupBagsApi'
-import type { MakeupBag } from '../../features/makeupBags/types'
+import { MakeupBagForm } from '@/features/makeupBags/components/MakeupBagForm'
+import { useCreateMakeupBagMutation } from '@/features/makeupBags/makeupBagsApi'
+import type { MakeupBag } from '@/features/makeupBags/types'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const MakeupBagAddPage = () => {
     const navigate = useNavigate()

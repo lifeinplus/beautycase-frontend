@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { StageForm } from '../../features/stages/components/StageForm'
-import { useCreateStageMutation } from '../../features/stages/stagesApi'
-import type { Stage } from '../../features/stages/types'
+import { StageForm } from '@/features/stages/components/StageForm'
+import { useCreateStageMutation } from '@/features/stages/stagesApi'
+import type { Stage } from '@/features/stages/types'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const StageAddPage = () => {
     const navigate = useNavigate()

@@ -61,7 +61,7 @@ export const useMakeupBagActions = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
-    const { t } = useTranslation(['makeupBag'])
+    const { t } = useTranslation(['makeupBag', 'modal'])
 
     const dispatch = useAppDispatch()
     const [isExporting, setIsExporting] = useState(false)
@@ -162,16 +162,22 @@ export const useMakeupBagActions = () => {
 
     if (!id) return []
 
+    const categoryName = t(`categories.${data?.category?.name}.full`)
+
     return ACTION_ITEMS.map(({ id, className, ...rest }) => ({
         key: id,
-        ...rest,
         className: `${className} ${isActionDisabled(id) ? 'opacity-50 cursor-not-allowed' : ''}`,
+        ...rest,
         icon: getActionIcon(id),
         label: getActionLabel(id),
         onClick: isActionDisabled(id) ? () => {} : actionHandlers[id],
         ...(id === 'delete' && {
             modalProps: {
                 isOpen: isModalDeleteOpen,
+                title: t('modal:delete.title'),
+                description: t('modal:delete.description', {
+                    name: categoryName,
+                }),
                 onConfirm: handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),
             },

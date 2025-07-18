@@ -4,6 +4,11 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
+import { options } from '@/features/questionnaires/options'
+import { useCreateQuestionnaireMutation } from '@/features/questionnaires/questionnairesApi'
+import type { Questionnaire } from '@/features/questionnaires/types'
+import { questions } from '@/features/questionnaires/utils'
+import { questionnaireSchema } from '@/features/questionnaires/validations'
 import commonStyles from '@/shared/components/common/common.module.css'
 import { Hero } from '@/shared/components/common/Hero'
 import { CheckboxSection } from '@/shared/components/forms/CheckboxSection'
@@ -18,11 +23,6 @@ import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import classNames from 'classnames'
-import { options } from '../../features/questionnaires/options'
-import { useCreateQuestionnaireMutation } from '../../features/questionnaires/questionnairesApi'
-import type { Questionnaire } from '../../features/questionnaires/types'
-import { questions } from '../../features/questionnaires/utils'
-import { questionnaireSchema } from '../../features/questionnaires/validations'
 
 export const QuestionnairePage = () => {
     const navigate = useNavigate()

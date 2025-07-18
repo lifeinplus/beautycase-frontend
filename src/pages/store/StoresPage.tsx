@@ -7,6 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks'
 import { clearFormData, setFormData } from '@/features/form/formSlice'
 import type { FormRef } from '@/features/form/types'
+import { StoreForm } from '@/features/stores/components/StoreForm'
+import { StoresMobileView } from '@/features/stores/components/StoresMobileView'
+import { StoresTable } from '@/features/stores/components/StoresTable'
+import {
+    useDeleteStoreByIdMutation,
+    useGetAllStoresQuery,
+} from '@/features/stores/storesApi'
+import type { Store } from '@/features/stores/types'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
@@ -16,14 +24,6 @@ import { NavButton } from '@/shared/components/navigation/NavButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { StoreForm } from '../../features/stores/components/StoreForm'
-import { StoresMobileView } from '../../features/stores/components/StoresMobileView'
-import { StoresTable } from '../../features/stores/components/StoresTable'
-import {
-    useDeleteStoreByIdMutation,
-    useGetAllStoresQuery,
-} from '../../features/stores/storesApi'
-import type { Store } from '../../features/stores/types'
 
 export const StoresPage = () => {
     const navigate = useNavigate()

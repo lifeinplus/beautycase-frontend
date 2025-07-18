@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { clearFormData } from '@/features/form/formSlice'
-import { ToolForm } from '../../features/tools/components/ToolForm'
-import { useCreateToolMutation } from '../../features/tools/toolsApi'
-import type { Tool } from '../../features/tools/types'
+import { ToolForm } from '@/features/tools/components/ToolForm'
+import { useCreateToolMutation } from '@/features/tools/toolsApi'
+import type { Tool } from '@/features/tools/types'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const ToolAddPage = () => {
     const navigate = useNavigate()

@@ -9,14 +9,14 @@ import {
     selectIsDirty,
     setFormData,
 } from '@/features/form/formSlice'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { MakeupBagForm } from '../../features/makeupBags/components/MakeupBagForm'
+import { MakeupBagForm } from '@/features/makeupBags/components/MakeupBagForm'
 import {
     useGetMakeupBagByIdQuery,
     useUpdateMakeupBagByIdMutation,
-} from '../../features/makeupBags/makeupBagsApi'
-import type { MakeupBag } from '../../features/makeupBags/types'
+} from '@/features/makeupBags/makeupBagsApi'
+import type { MakeupBag } from '@/features/makeupBags/types'
+import type { RouteId } from '@/shared/types/router'
+import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const MakeupBagEditPage = () => {
     const navigate = useNavigate()

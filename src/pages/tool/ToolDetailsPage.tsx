@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import {
+    useDeleteToolByIdMutation,
+    useGetToolByIdQuery,
+} from '@/features/tools/toolsApi'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
 import { Details } from '@/widgets/view/details/Details'
-import {
-    useDeleteToolByIdMutation,
-    useGetToolByIdQuery,
-} from '../../features/tools/toolsApi'
 
 export const ToolDetailsPage = () => {
     const { id } = useParams<RouteId>()

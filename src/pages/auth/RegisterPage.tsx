@@ -6,14 +6,14 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { useRegisterUserMutation } from '@/features/auth/authApi'
+import type { AuthQueryRegister } from '@/features/auth/types'
+import { registerSchema } from '@/features/auth/validations'
 import commonStyles from '@/shared/components/common/common.module.css'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import { useRegisterUserMutation } from '../../features/auth/authApi'
-import type { AuthQueryRegister } from '../../features/auth/types'
-import { registerSchema } from '../../features/auth/validations'
 import styles from './auth.module.css'
 
 export const RegisterPage = () => {

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
 import { useGetMakeupBagByIdQuery } from '@/features/makeupBags/makeupBagsApi'
-import { MakeupBagPage } from './MakeupBagPage'
+import { MakeupBagPage } from '../MakeupBagPage'
 
 vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('@/features/stages/components/Stages')
@@ -12,7 +12,7 @@ vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Footer')
 vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('./hooks/useMakeupBagActions')
+vi.mock('../hooks/useMakeupBagActions')
 
 describe('MakeupBagPage', () => {
     beforeEach(() => {

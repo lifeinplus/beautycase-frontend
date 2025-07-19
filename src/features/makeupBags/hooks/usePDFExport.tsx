@@ -10,7 +10,7 @@ interface ExportResult {
     error?: string
 }
 
-interface UsePDFExportReturn {
+export interface UsePDFExportReturn {
     exportToPDF: (
         data: MakeupBagData,
         filename?: string

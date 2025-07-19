@@ -119,9 +119,8 @@ export const useMakeupBagActions = () => {
     }
 
     const handleDelete = async () => {
-        if (!id) return
         try {
-            await deleteMakeupBagById(id).unwrap()
+            await deleteMakeupBagById(id!).unwrap()
             toast.success(t('toast.delete'))
             navigate(redirectPath)
         } catch (err) {

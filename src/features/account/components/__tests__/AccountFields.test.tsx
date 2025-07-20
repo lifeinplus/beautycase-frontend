@@ -46,8 +46,8 @@ describe('AccountFields', () => {
         })
 
         expect(links).toHaveLength(2)
-        expect(links[0]).toHaveAttribute('href', '/makeup_bags/makeupBag1')
-        expect(links[1]).toHaveAttribute('href', '/makeup_bags/makeupBag2')
+        expect(links[0]).toHaveAttribute('href', '/makeup-bag/makeupBag1')
+        expect(links[1]).toHaveAttribute('href', '/makeup-bag/makeupBag2')
     })
 
     it('handles empty makeup bags', () => {

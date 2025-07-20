@@ -5,9 +5,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { NavBar } from '@/shared/components/navigation/NavBar'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/AuthButton')
@@ -92,7 +92,7 @@ describe('NavBar', () => {
         renderWithProviders(<NavBar />)
         await user.click(screen.getByRole('button', { name: /makeupBags/i }))
 
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/list')
     })
 
     it('scrolls to top when clicking the active navigation button', async () => {

@@ -18,7 +18,7 @@ import type { MakeupBag } from '@/features/makeupBags/types'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const MakeupBagEditPage = () => {
+export const MakeupBagEdit = () => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('makeupBag')
@@ -54,7 +54,7 @@ export const MakeupBagEditPage = () => {
                 },
             }).unwrap()
             dispatch(clearFormData())
-            navigate(`/makeup_bags/${id}`)
+            navigate(`/makeup-bag/${id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { useMakeupBagActions } from '@/pages/makeup-bag/hooks/useMakeupBagActions'
-import { useMakeupBagListActions } from '@/pages/makeup-bag/hooks/useMakeupBagListActions'
+import { useMakeupBagDetailsActions } from '@/pages/makeup-bag/details/hooks/useMakeupBagDetailsActions'
+import { useMakeupBagListActions } from '@/pages/makeup-bag/list/hooks/useMakeupBagListActions'
 import { canAccess } from '@/shared/utils/menu'
 
 export interface NavBarAction {
@@ -30,14 +30,14 @@ export const useNavBarActions = (): NavBarAction[] => {
     const username = useAppSelector(selectUsername)
 
     const makeupBagListActions = useMakeupBagListActions()
-    const makeupBagActions = useMakeupBagActions()
+    const makeupBagActions = useMakeupBagDetailsActions()
 
     const getActionsForRoute = () => {
-        if (location.pathname === '/makeup_bags') {
+        if (location.pathname === '/makeup-bag/list') {
             return makeupBagListActions
         }
 
-        if (location.pathname.match(/^\/makeup_bags\/[a-f0-9]{24}$/i)) {
+        if (location.pathname.match(/^\/makeup-bag\/[a-f0-9]{24}$/i)) {
             return makeupBagActions
         }
 

@@ -12,14 +12,14 @@ import {
 import { useCreateMakeupBagMutation } from '@/features/makeupBags/makeupBagsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { MakeupBagAddPage } from '../MakeupBagAddPage'
+import { MakeupBagAdd } from './MakeupBagAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/makeupBags/components/MakeupBagForm')
 vi.mock('@/shared/utils/errorUtils')
 vi.mock('@/features/makeupBags/makeupBagsApi')
 
-describe('MakeupBagAddPage', () => {
+describe('MakeupBagAdd', () => {
     const mockAddMakeupBag = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -33,7 +33,7 @@ describe('MakeupBagAddPage', () => {
     })
 
     it('renders the MakeupBagForm with correct title', () => {
-        render(<MakeupBagAddPage />)
+        render(<MakeupBagAdd />)
 
         expect(screen.getByTestId('mocked-makeup-bag-form')).toBeInTheDocument()
         expect(screen.getByText('titles.add')).toBeInTheDocument()
@@ -42,13 +42,13 @@ describe('MakeupBagAddPage', () => {
     it('calls addMakeupBag and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagAddPage />)
+        render(<MakeupBagAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags/makeupBag3')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/makeupBag3')
     })
 
     it('displays an error toast if submission fails', async () => {
@@ -60,7 +60,7 @@ describe('MakeupBagAddPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<MakeupBagAddPage />)
+        render(<MakeupBagAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddMakeupBag).toHaveBeenCalled()

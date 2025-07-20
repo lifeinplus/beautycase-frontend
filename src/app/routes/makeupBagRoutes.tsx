@@ -1,29 +1,29 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { MakeupBagAddPage } from '@/pages/makeup-bag/MakeupBagAddPage'
-import { MakeupBagEditPage } from '@/pages/makeup-bag/MakeupBagEditPage'
-import { MakeupBagListPage } from '@/pages/makeup-bag/MakeupBagListPage'
-import { MakeupBagPage } from '@/pages/makeup-bag/MakeupBagPage'
+import { MakeupBagAdd } from '@/pages/makeup-bag/add/MakeupBagAdd'
+import { MakeupBagDetails } from '@/pages/makeup-bag/details/MakeupBagDetails'
+import { MakeupBagEdit } from '@/pages/makeup-bag/edit/MakeupBagEdit'
+import { MakeupBagList } from '@/pages/makeup-bag/list/MakeupBagList'
 import { StageSelectionPage } from '@/pages/stage/StageSelectionPage'
 import { ToolSelectionPage } from '@/pages/tool/ToolSelectionPage'
 import { Layout } from '@/shared/components/layout/Layout'
 
 export const makeupBagRoutes = [
-    <Route key="makeup-bags" path="/makeup_bags">
+    <Route key="makeup-bag" path="/makeup-bag">
         <Route element={<Layout />}>
-            <Route path=":id" element={<MakeupBagPage />} />
+            <Route path=":id" element={<MakeupBagDetails />} />
             <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-                <Route index element={<MakeupBagListPage />} />
-                <Route path="add" element={<MakeupBagAddPage />} />
+                <Route path="add" element={<MakeupBagAdd />} />
                 <Route path="add/stages" element={<StageSelectionPage />} />
                 <Route path="add/tools" element={<ToolSelectionPage />} />
-                <Route path="edit/:id" element={<MakeupBagEditPage />} />
+                <Route path="edit/:id" element={<MakeupBagEdit />} />
                 <Route
                     path="edit/:id/stages"
                     element={<StageSelectionPage />}
                 />
                 <Route path="edit/:id/tools" element={<ToolSelectionPage />} />
+                <Route path="list" element={<MakeupBagList />} />
             </Route>
         </Route>
     </Route>,

@@ -8,7 +8,7 @@ import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
 import pageStyles from '@/shared/components/ui/page.module.css'
 
-export const MakeupBagListPage = () => {
+export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])
     const { data, isLoading, error } = useGetAllMakeupBagsQuery()
 

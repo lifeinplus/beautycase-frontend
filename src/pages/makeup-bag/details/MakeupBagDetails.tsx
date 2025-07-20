@@ -11,9 +11,9 @@ import { Footer } from '@/shared/components/layout/Footer'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
-import { useMakeupBagActions } from './hooks/useMakeupBagActions'
+import { useMakeupBagDetailsActions } from './hooks/useMakeupBagDetailsActions'
 
-export const MakeupBagPage = () => {
+export const MakeupBagDetails = () => {
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['makeupBag', 'component', 'stage', 'tool'])
 
@@ -22,7 +22,7 @@ export const MakeupBagPage = () => {
     const stages = data?.stages || []
     const tools = data?.tools || []
 
-    const actions = useMakeupBagActions()
+    const actions = useMakeupBagDetailsActions()
     const backAction = actions.find((action) => action.key === 'back')
 
     return (

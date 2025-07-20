@@ -9,7 +9,7 @@ import { useCreateMakeupBagMutation } from '@/features/makeupBags/makeupBagsApi'
 import type { MakeupBag } from '@/features/makeupBags/types'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const MakeupBagAddPage = () => {
+export const MakeupBagAdd = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('makeupBag')
 
@@ -20,7 +20,7 @@ export const MakeupBagAddPage = () => {
         try {
             const response = await createMakeupBag(makeupBag).unwrap()
             dispatch(clearFormData())
-            navigate(`/makeup_bags/${response.id}`)
+            navigate(`/makeup-bag/${response.id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

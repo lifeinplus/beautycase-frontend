@@ -12,7 +12,7 @@ import {
 } from '@/features/makeupBags/makeupBagsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { MakeupBagEditPage } from '../MakeupBagEditPage'
+import { MakeupBagEdit } from './MakeupBagEdit'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,7 +20,7 @@ vi.mock('@/features/makeupBags/components/MakeupBagForm')
 vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('MakeupBagEditPage', () => {
+describe('MakeupBagEdit', () => {
     const mockUpdateMakeupBagById = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -38,7 +38,7 @@ describe('MakeupBagEditPage', () => {
     })
 
     it('renders the MakeupBagForm with title', () => {
-        render(<MakeupBagEditPage />)
+        render(<MakeupBagEdit />)
 
         expect(screen.getByTestId('mocked-makeup-bag-form')).toBeInTheDocument()
         expect(screen.getByText('titles.edit')).toBeInTheDocument()
@@ -47,13 +47,13 @@ describe('MakeupBagEditPage', () => {
     it('handles form submission successfully', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagEditPage />)
+        render(<MakeupBagEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup_bags/123')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/123')
     })
 
     it('shows error toast on failure', async () => {
@@ -65,7 +65,7 @@ describe('MakeupBagEditPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<MakeupBagEditPage />)
+        render(<MakeupBagEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()

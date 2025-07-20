@@ -57,7 +57,7 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
 
-export const useMakeupBagActions = () => {
+export const useMakeupBagDetailsActions = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
@@ -71,7 +71,7 @@ export const useMakeupBagActions = () => {
     const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
     const { data } = useGetMakeupBagByIdQuery(id!, { skip: !id })
 
-    const redirectPath = '/makeup_bags'
+    const redirectPath = '/makeup-bag/list'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -138,7 +138,7 @@ export const useMakeupBagActions = () => {
                 state: { scrollId: id },
             }),
         export: handleExportToPDF,
-        edit: () => navigate(`${redirectPath}/edit/${id}`),
+        edit: () => navigate(`/makeup-bag/edit/${id}`),
         delete: () => setIsModalDeleteOpen(true),
     }
 

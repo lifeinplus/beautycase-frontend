@@ -52,7 +52,7 @@ export const menuItems: MenuItem[] = [
     {
         auth: true,
         label: 'menu.makeupBags',
-        path: '/makeup-bag/list',
+        path: '/makeup-bags',
         roles: ['admin', 'mua'],
         icon: ShoppingBagIcon,
     },

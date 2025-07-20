@@ -7,7 +7,8 @@
         "duplicate": "Duplicate",
         "export": "Export",
         "exporting": "Exporting...",
-        "save": "Save"
+        "save": "Save",
+        "saving": "Saving..."
     },
     "menu": {
         "account": "Account",

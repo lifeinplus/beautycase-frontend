@@ -54,7 +54,7 @@ export const MakeupBagEdit = () => {
                 },
             }).unwrap()
             dispatch(clearFormData())
-            navigate(`/makeup-bag/${id}`)
+            navigate(`/makeup-bags/${id}`)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

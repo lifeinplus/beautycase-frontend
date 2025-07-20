@@ -1,5 +1,5 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -15,9 +15,8 @@ import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateS
 import formStyles from '@/shared/components/forms/form.module.css'
 import { SelectSection } from '@/shared/components/forms/SelectSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import type { MakeupBag } from '../types'
@@ -26,9 +25,14 @@ import { makeupBagSchema } from '../validations'
 export interface MakeupBagFormProps {
     title: string
     onSubmit: (data: MakeupBag) => void
+    isSaving?: boolean
 }
 
-export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
+export const MakeupBagForm = ({
+    onSubmit,
+    title,
+    isSaving = false,
+}: MakeupBagFormProps) => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('makeupBag')
@@ -96,59 +100,59 @@ export const MakeupBagForm = ({ onSubmit, title }: MakeupBagFormProps) => {
                     <TitleSection title={title} hideOnMobile />
 
                     <form
-                        className={formStyles.form}
+                        className={classNames(formStyles.form)}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <SelectSection
-                            error={t(errors.categoryId?.message || '')}
-                            label={t('fields.category.label')}
-                            options={categoryOptions}
-                            register={register('categoryId')}
-                            required={true}
-                            value={watch('categoryId')}
-                        />
+                        <article className="px-3">
+                            <SelectSection
+                                error={t(errors.categoryId?.message || '')}
+                                label={t('fields.category.label')}
+                                options={categoryOptions}
+                                register={register('categoryId')}
+                                required={true}
+                                value={watch('categoryId')}
+                            />
 
-                        <SelectSection
-                            error={t(errors.clientId?.message || '')}
-                            label={t('fields.client.label')}
-                            options={clientOptions}
-                            register={register('clientId')}
-                            required={true}
-                            value={watch('clientId')}
-                        />
+                            <SelectSection
+                                error={t(errors.clientId?.message || '')}
+                                label={t('fields.client.label')}
+                                options={clientOptions}
+                                register={register('clientId')}
+                                required={true}
+                                value={watch('clientId')}
+                            />
 
-                        <ButtonNavigateSection
-                            error={t(errors.stageIds?.message || '')}
-                            label={t('fields.stages.label')}
-                            onNavigate={() => handleNavigate('stages')}
-                            required={true}
-                            text={stagesText}
-                        />
+                            <ButtonNavigateSection
+                                error={t(errors.stageIds?.message || '')}
+                                label={t('fields.stages.label')}
+                                onNavigate={() => handleNavigate('stages')}
+                                required={true}
+                                text={stagesText}
+                            />
 
-                        <ButtonNavigateSection
-                            error={t(errors.toolIds?.message || '')}
-                            label={t('fields.tools.label')}
-                            onNavigate={() => handleNavigate('tools')}
-                            required={true}
-                            text={toolsText}
-                        />
+                            <ButtonNavigateSection
+                                error={t(errors.toolIds?.message || '')}
+                                label={t('fields.tools.label')}
+                                onNavigate={() => handleNavigate('tools')}
+                                required={true}
+                                text={toolsText}
+                            />
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-44"
+                                isLoading={isSaving}
+                                label={
+                                    isSaving
+                                        ? t('navigation:actions.saving')
+                                        : t('navigation:actions.save')
+                                }
+                            />
+                        </section>
                     </form>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSubmit(onSubmit)}
-                />
-            </NavBar>
         </article>
     )
 }

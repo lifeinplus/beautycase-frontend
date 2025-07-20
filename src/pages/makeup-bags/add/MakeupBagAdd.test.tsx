@@ -48,7 +48,7 @@ describe('MakeupBagAdd', () => {
         expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/makeupBag3')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags/makeupBag3')
     })
 
     it('displays an error toast if submission fails', async () => {

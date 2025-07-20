@@ -92,7 +92,7 @@ describe('NavBar', () => {
         renderWithProviders(<NavBar />)
         await user.click(screen.getByRole('button', { name: /makeupBags/i }))
 
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/list')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags')
     })
 
     it('scrolls to top when clicking the active navigation button', async () => {

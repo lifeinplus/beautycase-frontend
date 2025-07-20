@@ -8,10 +8,10 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/pages/makeup-bag/add/MakeupBagAdd')
-vi.mock('@/pages/makeup-bag/details/MakeupBagDetails')
-vi.mock('@/pages/makeup-bag/edit/MakeupBagEdit')
-vi.mock('@/pages/makeup-bag/list/MakeupBagList')
+vi.mock('@/pages/makeup-bags/add/MakeupBagAdd')
+vi.mock('@/pages/makeup-bags/details/MakeupBagDetails')
+vi.mock('@/pages/makeup-bags/edit/MakeupBagEdit')
+vi.mock('@/pages/makeup-bags/list/MakeupBagList')
 vi.mock('@/pages/stage/StageSelectionPage')
 vi.mock('@/pages/tool/ToolSelectionPage')
 vi.mock('@/shared/components/layout/Layout')
@@ -19,29 +19,29 @@ vi.mock('@/shared/components/ScrollToTop')
 
 describe('makeupBagRoutes', () => {
     it('renders the list page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/list'])
+        renderWithRouter(<App />, ['/makeup-bags'])
         expect(screen.getByTestId('mocked-makeup-bag-list')).toBeInTheDocument()
     })
 
     it('renders the page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/1'])
+        renderWithRouter(<App />, ['/makeup-bags/1'])
         expect(
             screen.getByTestId('mocked-makeup-bag-details')
         ).toBeInTheDocument()
     })
 
     it('renders the add page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/add'])
+        renderWithRouter(<App />, ['/makeup-bags/add'])
         expect(screen.getByTestId('mocked-makeup-bag-add')).toBeInTheDocument()
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/edit/1'])
+        renderWithRouter(<App />, ['/makeup-bags/edit/1'])
         expect(screen.getByTestId('mocked-makeup-bag-edit')).toBeInTheDocument()
     })
 
     it('renders the stage selection page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/edit/1/stages'])
+        renderWithRouter(<App />, ['/makeup-bags/edit/1/stages'])
 
         expect(
             screen.getByTestId('mocked-stage-selection-page')
@@ -49,7 +49,7 @@ describe('makeupBagRoutes', () => {
     })
 
     it('renders the tool selection page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bag/edit/1/tools'])
+        renderWithRouter(<App />, ['/makeup-bags/edit/1/tools'])
 
         expect(
             screen.getByTestId('mocked-tool-selection-page')

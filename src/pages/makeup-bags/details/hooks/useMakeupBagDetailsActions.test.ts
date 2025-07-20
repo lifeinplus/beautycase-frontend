@@ -161,7 +161,7 @@ describe('useMakeupBagDetailsActions', () => {
             await backAction!.onClick()
         })
 
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/list', {
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags', {
             replace: true,
             state: { scrollId: '123' },
         })

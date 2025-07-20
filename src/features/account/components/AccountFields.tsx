@@ -71,7 +71,7 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                                         commonStyles.textDanger,
                                         'font-medium'
                                     )}
-                                    to={`/makeup-bag/${bag._id}`}
+                                    to={`/makeup-bags/${bag._id}`}
                                     state={{ fromPathname: pathname }}
                                 >
                                     {t('fields.makeupBags.link')}

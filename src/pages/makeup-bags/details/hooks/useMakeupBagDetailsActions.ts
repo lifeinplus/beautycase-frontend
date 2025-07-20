@@ -51,8 +51,8 @@ interface ActionItem {
 }
 
 const ACTION_ITEMS: ActionItem[] = [
-    { id: 'back', className: navStyles.navBtnBack },
-    { id: 'export', auth: false },
+    { id: 'back', auth: true, className: navStyles.navBtnBack },
+    { id: 'export', auth: true },
     { id: 'edit', auth: true, roles: ['admin', 'mua'] },
     { id: 'delete', auth: true, roles: ['admin', 'mua'] },
 ]
@@ -71,7 +71,7 @@ export const useMakeupBagDetailsActions = () => {
     const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
     const { data } = useGetMakeupBagByIdQuery(id!, { skip: !id })
 
-    const redirectPath = '/makeup-bag/list'
+    const redirectPath = '/makeup-bags'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -138,7 +138,7 @@ export const useMakeupBagDetailsActions = () => {
                 state: { scrollId: id },
             }),
         export: handleExportToPDF,
-        edit: () => navigate(`/makeup-bag/edit/${id}`),
+        edit: () => navigate(`/makeup-bags/edit/${id}`),
         delete: () => setIsModalDeleteOpen(true),
     }
 

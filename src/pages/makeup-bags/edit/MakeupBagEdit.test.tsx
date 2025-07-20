@@ -53,7 +53,7 @@ describe('MakeupBagEdit', () => {
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bag/123')
+        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags/123')
     })
 
     it('shows error toast on failure', async () => {

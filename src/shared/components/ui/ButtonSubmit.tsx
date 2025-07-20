@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { ButtonHTMLAttributes } from 'react'
 
+import commonStyles from '@/shared/components/common/common.module.css'
 import { SpinnerButton } from '../common/SpinnerButton'
 import buttonStyles from './button.module.css'
-import commonStyles from '@/shared/components/common/common.module.css'
 
 export interface ButtonSubmitProps
     extends ButtonHTMLAttributes<HTMLButtonElement> {

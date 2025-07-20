@@ -19,7 +19,7 @@ export const MakeupBagMobileView = ({
             getTitle={(item) => item.client?.username || ''}
             getSubtitle={(item) => t(`categories.${item.category?.name}.short`)}
             getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
-            getLink={(item) => `/makeup-bag/${item._id}`}
+            getLink={(item) => `/makeup-bags/${item._id}`}
         />
     )
 }

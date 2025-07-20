@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -12,17 +13,17 @@ import { questionnaireSchema } from '@/features/questionnaires/validations'
 import commonStyles from '@/shared/components/common/common.module.css'
 import { Hero } from '@/shared/components/common/Hero'
 import { CheckboxSection } from '@/shared/components/forms/CheckboxSection'
+import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageTextSection } from '@/shared/components/forms/ImageTextSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { Header } from '@/shared/components/layout/Header'
 import { NavBar } from '@/shared/components/navigation/NavBar'
-import styles from '@/shared/components/ui/button.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import classNames from 'classnames'
 
 export const QuestionnairePage = () => {
     const navigate = useNavigate()
@@ -68,7 +69,7 @@ export const QuestionnairePage = () => {
                     />
 
                     <form
-                        className="space-y-6"
+                        className={classNames(formStyles.form)}
                         encType="multipart/form-data"
                         onSubmit={handleSubmit(onSubmit)}
                     >
@@ -250,7 +251,7 @@ export const QuestionnairePage = () => {
                             />
                         </article>
 
-                        <section className={styles.section}>
+                        <section className={buttonStyles.section}>
                             <ButtonSubmit
                                 className="sm:w-44"
                                 isLoading={isLoading}

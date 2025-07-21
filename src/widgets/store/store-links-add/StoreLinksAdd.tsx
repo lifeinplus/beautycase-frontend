@@ -15,10 +15,10 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/storesApi'
 import { StoreLink } from '@/features/stores/types'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { Button } from '@/shared/components/forms/Button'
 import formStyles from '@/shared/components/forms/form.module.css'
 import selectStyles from '@/shared/components/forms/SelectSection.module.css'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
@@ -110,11 +110,7 @@ export const StoreLinksAdd = ({ onSave }: StoreLinksAddProps) => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <section className={galleryStyles.header}>
-                        <h1 className={galleryStyles.title}>
-                            {t('titles.add')}
-                        </h1>
-                    </section>
+                    <TitleSection title={t('titles.add')} hideOnMobile />
 
                     <form
                         className={(formStyles.form, 'px-0')}

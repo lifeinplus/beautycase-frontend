@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
@@ -17,6 +17,7 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
+import styles from './ToolSelectionPage.module.css'
 
 export const ToolSelectionPage = () => {
     const navigate = useNavigate()
@@ -71,11 +72,7 @@ export const ToolSelectionPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <section className={galleryStyles.header}>
-                        <h1 className={galleryStyles.title}>
-                            {t('titles.selection')}
-                        </h1>
-                    </section>
+                    <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper
                         isLoading={isLoading}
@@ -83,7 +80,7 @@ export const ToolSelectionPage = () => {
                         data={tools}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className={galleryStyles.container}>
+                        <section className={styles.container}>
                             {tools?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)
                                 const order = orderedIds.get(_id!)

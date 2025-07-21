@@ -10,7 +10,7 @@ import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
 import { mockStages } from '@/features/stages/__mocks__/stagesApi'
 import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StageSelectionPage } from '../StageSelectionPage'
+import { StageSelection } from './StageSelection'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -22,7 +22,7 @@ vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/ui/Image')
 
-describe('StageSelectionPage', () => {
+describe('StageSelection', () => {
     const mockFormData = {
         makeupBagId: 'makeupBag1',
         stageIds: ['stage2'],
@@ -43,7 +43,7 @@ describe('StageSelectionPage', () => {
     })
 
     it('renders the page with title', () => {
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         expect(
             screen.getByRole('heading', {
@@ -61,7 +61,7 @@ describe('StageSelectionPage', () => {
     })
 
     it('renders stage items', () => {
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         const stage1 = screen.getByAltText(mockStages[0].title)
         const stage2 = screen.getByAltText(mockStages[1].title)
@@ -73,7 +73,7 @@ describe('StageSelectionPage', () => {
     it('toggles stage selection on click', async () => {
         const user = userEvent.setup()
 
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         const imgContainers = screen
             .getAllByTestId('mocked-image')
@@ -93,7 +93,7 @@ describe('StageSelectionPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
@@ -104,7 +104,7 @@ describe('StageSelectionPage', () => {
     it('saves selection and navigates back when save button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         await user.click(
             screen.getByTestId('mocked-nav-button-navigation:actions.save')
@@ -123,7 +123,7 @@ describe('StageSelectionPage', () => {
     it('uses an empty array when there is no stageId', async () => {
         vi.mocked(useAppSelector).mockReturnValue({ stageIds: null })
 
-        render(<StageSelectionPage />)
+        render(<StageSelection />)
 
         const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(0)

@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,18 +9,17 @@ import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
 import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
 import type { Stage } from '@/features/stages/types'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import styles from './StageSelectionPage.module.css'
+import styles from './StageSelection.module.css'
 
-export const StageSelectionPage = () => {
+export const StageSelection = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('stage')
 
@@ -90,11 +88,7 @@ export const StageSelectionPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <section className={galleryStyles.header}>
-                        <h1 className={galleryStyles.title}>
-                            {t('titles.selection')}
-                        </h1>
-                    </section>
+                    <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper
                         isLoading={isLoading}
@@ -102,7 +96,7 @@ export const StageSelectionPage = () => {
                         data={filteredStages}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className={styles.container}>
+                        <article className={styles.container}>
                             {filteredStages.map(
                                 ({ _id, title, subtitle, imageUrl }) => {
                                     const isSelected = orderedIds.has(_id!)
@@ -153,24 +147,18 @@ export const StageSelectionPage = () => {
                                     )
                                 }
                             )}
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-44"
+                                label={t('navigation:actions.save')}
+                                onClick={handleSave}
+                            />
                         </section>
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSave}
-                />
-            </NavBar>
         </article>
     )
 }

@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { selectFormData, setFormData } from '@/features/form/formSlice'
 import { useGetAllUsersQuery } from '@/features/users/usersApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
@@ -65,11 +65,7 @@ export const UserSelectionPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <section className={galleryStyles.header}>
-                        <h1 className={galleryStyles.title}>
-                            {t('titles.selection')}
-                        </h1>
-                    </section>
+                    <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper
                         isLoading={isLoading}

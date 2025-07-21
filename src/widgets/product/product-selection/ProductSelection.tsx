@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { clearFormData, selectFormData } from '@/features/form/formSlice'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
+import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { NavBar } from '@/shared/components/navigation/NavBar'
 import { NavButton } from '@/shared/components/navigation/NavButton'
@@ -20,6 +20,7 @@ import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
+import styles from './ProductSelection.module.css'
 
 export interface ProductSelectionProps {
     onSave: (id: string, productIds: string[]) => Promise<void>
@@ -83,11 +84,7 @@ export const ProductSelection = ({ onSave }: ProductSelectionProps) => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <section className={galleryStyles.header}>
-                        <h1 className={galleryStyles.title}>
-                            {t('titles.selection')}
-                        </h1>
-                    </section>
+                    <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper
                         isLoading={isLoading}
@@ -95,7 +92,7 @@ export const ProductSelection = ({ onSave }: ProductSelectionProps) => {
                         data={products}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className={galleryStyles.container}>
+                        <section className={styles.container}>
                             {products?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)
                                 const order = orderedIds.get(_id!)

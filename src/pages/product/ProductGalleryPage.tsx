@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
+import styles from './ProductGalleryPage.module.css'
 
 export const ProductGalleryPage = () => {
     const { t } = useTranslation('product')
@@ -18,7 +18,7 @@ export const ProductGalleryPage = () => {
             isLoading={isLoading}
             error={error}
             mediaContent={
-                <article className={galleryStyles.container}>
+                <article className={styles.container}>
                     {products?.map((p) => (
                         <ImageCard
                             key={p._id}

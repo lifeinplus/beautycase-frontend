@@ -9,7 +9,7 @@ import { mockTools } from '@/features/tools/__mocks__/toolsApi'
 import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { ToolSelectionPage } from '../ToolSelectionPage'
+import { ToolSelection } from './ToolSelection'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,7 +20,7 @@ vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
 vi.mock('@/shared/components/ui/Image')
 
-describe('ToolSelectionPage', () => {
+describe('ToolSelection', () => {
     const mockFormData = {
         toolIds: ['tool2'],
     }
@@ -42,7 +42,7 @@ describe('ToolSelectionPage', () => {
             error: null,
         })
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
     })
@@ -54,13 +54,13 @@ describe('ToolSelectionPage', () => {
             error: mockError,
         })
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
     })
 
     it('renders tool items', () => {
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         const tool1 = screen.getByAltText('Tool 1')
         const tool2 = screen.getByAltText('Tool 2')
@@ -72,7 +72,7 @@ describe('ToolSelectionPage', () => {
     it('toggles tool selection on click', async () => {
         const user = userEvent.setup()
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         const imgContainers = screen
             .getAllByTestId('mocked-image')
@@ -92,7 +92,7 @@ describe('ToolSelectionPage', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
@@ -103,11 +103,9 @@ describe('ToolSelectionPage', () => {
     it('saves selection and navigates back when save button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByText('navigation:actions.save'))
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({
@@ -122,7 +120,7 @@ describe('ToolSelectionPage', () => {
     it('uses an empty array when there is no toolId', async () => {
         vi.mocked(useAppSelector).mockReturnValue({ toolIds: null })
 
-        render(<ToolSelectionPage />)
+        render(<ToolSelection />)
 
         const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(0)

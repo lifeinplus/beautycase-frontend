@@ -12,10 +12,10 @@ vi.mock('@/pages/makeup-bags/add/MakeupBagAdd')
 vi.mock('@/pages/makeup-bags/details/MakeupBagDetails')
 vi.mock('@/pages/makeup-bags/edit/MakeupBagEdit')
 vi.mock('@/pages/makeup-bags/list/MakeupBagList')
-vi.mock('@/pages/stage/StageSelection')
-vi.mock('@/pages/tool/ToolSelectionPage')
 vi.mock('@/shared/components/layout/Layout')
 vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/widgets/stage/stage-selection/StageSelection')
+vi.mock('@/widgets/tool/tool-selection/ToolSelection')
 
 describe('makeupBagRoutes', () => {
     it('renders the list page correctly', () => {
@@ -43,16 +43,12 @@ describe('makeupBagRoutes', () => {
     it('renders the stage selection page correctly', () => {
         renderWithRouter(<App />, ['/makeup-bags/edit/1/stages'])
 
-        expect(
-            screen.getByTestId('mocked-stage-selection-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stage-selection')).toBeInTheDocument()
     })
 
     it('renders the tool selection page correctly', () => {
         renderWithRouter(<App />, ['/makeup-bags/edit/1/tools'])
 
-        expect(
-            screen.getByTestId('mocked-tool-selection-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-tool-selection')).toBeInTheDocument()
     })
 })

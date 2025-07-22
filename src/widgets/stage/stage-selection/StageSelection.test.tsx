@@ -106,9 +106,7 @@ describe('StageSelection', () => {
 
         render(<StageSelection />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByText('navigation:actions.save'))
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

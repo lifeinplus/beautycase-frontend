@@ -24,9 +24,9 @@ const ACTION_ITEMS: ActionItem[] = [
     { id: 'back', auth: true, className: navStyles.navBtnBack },
 ]
 
-export const useStageSelectionActions = () => {
+export const useBackActions = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation(['makeupBag'])
+    const { t } = useTranslation('navigation')
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export const useStageSelectionActions = () => {
         key: id,
         ...rest,
         icon: ACTIONS[id].icon,
-        label: t(`navigation:${ACTIONS[id].label}`),
+        label: t(`${ACTIONS[id].label}`),
         onClick: actionHandlers[id],
     }))
 }

@@ -26,10 +26,10 @@ export const StageSelection = () => {
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
 
-    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
-
     const { data: makeupBags = [] } = useGetAllMakeupBagsQuery()
     const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
+
+    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
 
     useEffect(() => {
         const otherMakeupBags = makeupBags.filter(

@@ -3,12 +3,10 @@ import { useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { useMakeupBagAddActions } from '@/pages/makeup-bags/add/hooks/useMakeupBagAddActions'
 import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
-import { useMakeupBagEditActions } from '@/pages/makeup-bags/edit/hooks/useMakeupBagEditActions'
 import { useMakeupBagListActions } from '@/pages/makeup-bags/list/hooks/useMakeupBagListActions'
+import { useBackActions } from '@/shared/hooks/useBackActions'
 import { canAccess } from '@/shared/utils/menu'
-import { useStageSelectionActions } from '@/widgets/stage/stage-selection/hooks/useStageSelectionActions'
 
 export interface NavBarAction {
     key: string
@@ -29,37 +27,39 @@ export interface NavBarAction {
 
 export const useNavBarActions = (): NavBarAction[] => {
     const location = useLocation()
+
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const makeupBagAddActions = useMakeupBagAddActions()
+    const backActions = useBackActions()
     const makeupBagDetailsActions = useMakeupBagDetailsActions()
-    const makeupBagEditActions = useMakeupBagEditActions()
     const makeupBagListActions = useMakeupBagListActions()
-    const stageSelectionActions = useStageSelectionActions()
 
     const getActionsForRoute = () => {
-        if (location.pathname === '/makeup-bags') {
-            return makeupBagListActions
-        }
+        const { pathname } = location
 
-        if (location.pathname.match(/^\/makeup-bags\/[a-f0-9]{24}$/i)) {
-            return makeupBagDetailsActions
-        }
+        const routeMap = [
+            {
+                pattern: /^\/makeup-bags$/i,
+                actions: makeupBagListActions,
+            },
+            {
+                pattern: /^\/makeup-bags\/[a-f0-9]{24}$/i,
+                actions: makeupBagDetailsActions,
+            },
+            {
+                pattern: /^\/makeup-bags\/(add|add\/(stages|tools))$/i,
+                actions: backActions,
+            },
+            {
+                pattern:
+                    /^\/makeup-bags\/(edit\/[a-f0-9]{24}|edit\/[a-f0-9]{24}\/(stages|tools))$/i,
+                actions: backActions,
+            },
+        ]
 
-        if (location.pathname === '/makeup-bags/add') {
-            return makeupBagAddActions
-        }
-
-        if (location.pathname === '/makeup-bags/add/stages') {
-            return stageSelectionActions
-        }
-
-        if (location.pathname.match(/^\/makeup-bags\/edit\/[a-f0-9]{24}$/i)) {
-            return makeupBagEditActions
-        }
-
-        return []
+        const match = routeMap.find((route) => route.pattern.test(pathname))
+        return match?.actions || []
     }
 
     const actions = getActionsForRoute()

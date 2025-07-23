@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -12,9 +11,8 @@ import { ButtonNavigateSection } from '@/shared/components/forms/ButtonNavigateS
 import formStyles from '@/shared/components/forms/form.module.css'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { Lesson } from '../types'
 import { lessonSchema } from '../validations'
@@ -22,9 +20,14 @@ import { lessonSchema } from '../validations'
 export interface LessonFormProps {
     title: string
     onSubmit: (data: Lesson) => void
+    isSaving?: boolean
 }
 
-export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
+export const LessonForm = ({
+    onSubmit,
+    title,
+    isSaving = false,
+}: LessonFormProps) => {
     const navigate = useNavigate()
     const { t } = useTranslation('lesson')
 
@@ -72,62 +75,64 @@ export const LessonForm = ({ onSubmit, title }: LessonFormProps) => {
                         className={formStyles.form}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <TextareaSection
-                            error={t(errors.title?.message || '')}
-                            label={t('fields.title.label')}
-                            register={register('title')}
-                            required={true}
-                            value={watch('title')}
-                        />
+                        <article className="px-3">
+                            <TextareaSection
+                                error={t(errors.title?.message || '')}
+                                label={t('fields.title.label')}
+                                register={register('title')}
+                                required={true}
+                                value={watch('title')}
+                            />
 
-                        <TextareaSection
-                            error={t(errors.shortDescription?.message || '')}
-                            label={t('fields.shortDescription.label')}
-                            register={register('shortDescription')}
-                            required={true}
-                            value={watch('shortDescription')}
-                        />
+                            <TextareaSection
+                                error={t(
+                                    errors.shortDescription?.message || ''
+                                )}
+                                label={t('fields.shortDescription.label')}
+                                register={register('shortDescription')}
+                                required={true}
+                                value={watch('shortDescription')}
+                            />
 
-                        <TextareaSection
-                            error={t(errors.videoUrl?.message || '')}
-                            label={t('fields.videoUrl.label')}
-                            preview={true}
-                            register={register('videoUrl')}
-                            required={true}
-                            value={watch('videoUrl')}
-                        />
+                            <TextareaSection
+                                error={t(errors.videoUrl?.message || '')}
+                                label={t('fields.videoUrl.label')}
+                                preview={true}
+                                register={register('videoUrl')}
+                                required={true}
+                                value={watch('videoUrl')}
+                            />
 
-                        <TextareaSection
-                            error={t(errors.fullDescription?.message || '')}
-                            label={t('fields.fullDescription.label')}
-                            register={register('fullDescription')}
-                            required={true}
-                            rows={4}
-                            value={watch('fullDescription')}
-                        />
+                            <TextareaSection
+                                error={t(errors.fullDescription?.message || '')}
+                                label={t('fields.fullDescription.label')}
+                                register={register('fullDescription')}
+                                required={true}
+                                rows={4}
+                                value={watch('fullDescription')}
+                            />
 
-                        <ButtonNavigateSection
-                            label={t('fields.clients.label')}
-                            onNavigate={() => handleNavigate('clients')}
-                            text={clientsText}
-                        />
+                            <ButtonNavigateSection
+                                label={t('fields.clients.label')}
+                                onNavigate={() => handleNavigate('clients')}
+                                text={clientsText}
+                            />
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-44"
+                                isLoading={isSaving}
+                                label={
+                                    isSaving
+                                        ? t('navigation:actions.saving')
+                                        : t('navigation:actions.save')
+                                }
+                            />
+                        </section>
                     </form>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSubmit(onSubmit)}
-                />
-            </NavBar>
         </article>
     )
 }

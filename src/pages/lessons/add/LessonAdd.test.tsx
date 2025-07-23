@@ -12,7 +12,7 @@ import {
 import { useCreateLessonMutation } from '@/features/lessons/lessonsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { LessonAddPage } from '../LessonAddPage'
+import { LessonAdd } from './LessonAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,7 +20,7 @@ vi.mock('@/features/lessons/components/LessonForm')
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('LessonAddPage', () => {
+describe('LessonAdd', () => {
     const mockAddLesson = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -34,7 +34,7 @@ describe('LessonAddPage', () => {
     })
 
     it('renders the LessonForm with title', () => {
-        render(<LessonAddPage />)
+        render(<LessonAdd />)
 
         expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
         expect(screen.getByText('titles.add')).toBeInTheDocument()
@@ -43,7 +43,7 @@ describe('LessonAddPage', () => {
     it('submits lesson and navigates on success', async () => {
         const user = userEvent.setup()
 
-        render(<LessonAddPage />)
+        render(<LessonAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddLesson).toHaveBeenCalledWith(mockLesson1)
@@ -60,7 +60,7 @@ describe('LessonAddPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<LessonAddPage />)
+        render(<LessonAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddLesson).toHaveBeenCalled()

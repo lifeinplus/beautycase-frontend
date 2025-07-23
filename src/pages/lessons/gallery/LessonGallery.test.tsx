@@ -3,13 +3,13 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockLessons } from '@/features/lessons/__mocks__/lessonsApi'
 import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
-import { LessonsGalleryPage } from '../LessonsGalleryPage'
+import { LessonGallery } from './LessonGallery'
 
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/gallery/VideoCard')
 vi.mock('@/widgets/view/gallery/Gallery')
 
-describe('LessonsGalleryPage', () => {
+describe('LessonGallery', () => {
     beforeEach(() => {
         vi.mocked(useGetAllLessonsQuery as Mock).mockReturnValue({
             data: mockLessons,
@@ -19,7 +19,7 @@ describe('LessonsGalleryPage', () => {
     })
 
     it('renders list of lessons when data is available', () => {
-        render(<LessonsGalleryPage />)
+        render(<LessonGallery />)
 
         expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
         expect(screen.getByText('titles.gallery')).toBeInTheDocument()

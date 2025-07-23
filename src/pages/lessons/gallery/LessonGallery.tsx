@@ -3,16 +3,15 @@ import { useTranslation } from 'react-i18next'
 import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
 import { VideoCard } from '@/shared/components/gallery/VideoCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
-import styles from './LessonsGalleryPage.module.css'
+import styles from './LessonGallery.module.css'
 
-export const LessonsGalleryPage = () => {
+export const LessonGallery = () => {
     const { t } = useTranslation('lesson')
 
     const { data: lessons, isLoading, error } = useGetAllLessonsQuery()
 
     return (
         <Gallery
-            redirectPath="/lessons"
             title={t('titles.gallery')}
             isLoading={isLoading}
             error={error}

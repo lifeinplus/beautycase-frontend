@@ -10,9 +10,9 @@ import type { RouteId } from '@/shared/types/router'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
 import { Details } from '@/widgets/view/details/Details'
-import styles from './LessonDetailsPage.module.css'
+import styles from './LessonDetails.module.css'
 
-export const LessonDetailsPage = () => {
+export const LessonDetails = () => {
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('lesson')
 

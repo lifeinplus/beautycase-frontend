@@ -9,7 +9,7 @@ import { useCreateLessonMutation } from '@/features/lessons/lessonsApi'
 import { Lesson } from '@/features/lessons/types'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const LessonAddPage = () => {
+export const LessonAdd = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('lesson')
 

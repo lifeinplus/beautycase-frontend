@@ -1,13 +1,12 @@
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { PlusIcon } from '@heroicons/react/24/outline'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks'
 import { clearFormData } from '@/features/form/formSlice'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
 
-export const useBackActions = () => {
+export const useAddActions = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('navigation')
     const dispatch = useAppDispatch()
@@ -18,12 +17,12 @@ export const useBackActions = () => {
 
     return [
         {
-            key: 'back',
+            key: 'add',
             auth: true,
-            className: navStyles.navBtnBack,
-            icon: ArrowLeftIcon,
-            label: t('actions.back'),
-            onClick: () => navigate(-1),
+            roles: ['admin', 'mua'],
+            icon: PlusIcon,
+            label: t('actions.add'),
+            onClick: () => navigate('add'),
         },
     ]
 }

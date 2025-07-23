@@ -8,7 +8,7 @@ import {
 } from '@/features/lessons/lessonsApi'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
 import { mockYouTubeUrl } from '@/tests/mocks/form'
-import { LessonDetailsPage } from '../LessonDetailsPage'
+import { LessonDetails } from './LessonDetails'
 
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/components/ui/Image')
@@ -16,7 +16,7 @@ vi.mock('@/shared/utils/youtube')
 vi.mock('@/widgets/product/product-images/ProductImages')
 vi.mock('@/widgets/view/details/Details')
 
-describe('LessonDetailsPage', () => {
+describe('LessonDetails', () => {
     const mockDeleteLesson = vi.fn()
 
     beforeEach(() => {
@@ -34,7 +34,7 @@ describe('LessonDetailsPage', () => {
     })
 
     it('renders lesson details', async () => {
-        render(<LessonDetailsPage />)
+        render(<LessonDetails />)
 
         expect(screen.getByText(mockLesson1.title)).toBeInTheDocument()
 
@@ -48,7 +48,7 @@ describe('LessonDetailsPage', () => {
     })
 
     it('renders product images', async () => {
-        render(<LessonDetailsPage />)
+        render(<LessonDetails />)
 
         expect(screen.getByTestId('mocked-product-images')).toBeInTheDocument()
     })

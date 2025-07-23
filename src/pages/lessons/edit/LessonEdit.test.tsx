@@ -12,7 +12,7 @@ import {
 } from '@/features/lessons/lessonsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { LessonEditPage } from '../LessonEditPage'
+import { LessonEdit } from './LessonEdit'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,7 +20,7 @@ vi.mock('@/features/lessons/components/LessonForm')
 vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('LessonEditPage', () => {
+describe('LessonEdit', () => {
     const mockUpdateLessonById = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -37,7 +37,7 @@ describe('LessonEditPage', () => {
     })
 
     it('renders the LessonForm with title', () => {
-        render(<LessonEditPage />)
+        render(<LessonEdit />)
 
         expect(screen.getByTestId('mocked-lesson-form')).toBeInTheDocument()
         expect(screen.getByText('titles.edit')).toBeInTheDocument()
@@ -46,7 +46,7 @@ describe('LessonEditPage', () => {
     it('submits lesson and navigates on success', async () => {
         const user = userEvent.setup()
 
-        render(<LessonEditPage />)
+        render(<LessonEdit />)
 
         await user.click(screen.getByTestId('mocked-submit-button'))
 
@@ -68,7 +68,7 @@ describe('LessonEditPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<LessonEditPage />)
+        render(<LessonEdit />)
 
         await user.click(screen.getByTestId('mocked-submit-button'))
 

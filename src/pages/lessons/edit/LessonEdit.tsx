@@ -18,7 +18,7 @@ import type { Lesson } from '@/features/lessons/types'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const LessonEditPage = () => {
+export const LessonEdit = () => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('lesson')

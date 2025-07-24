@@ -87,7 +87,7 @@ export const menuItems: MenuItem[] = [
     {
         auth: true,
         label: 'menu.referenceLists',
-        path: '/reference_lists',
+        path: '/reference-lists',
         roles: ['admin'],
         icon: ListBulletIcon,
     },

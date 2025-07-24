@@ -12,7 +12,7 @@ import type { Brand } from '@/features/brands/types'
 import { clearFormData, setFormData } from '@/features/form/formSlice'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { BrandsPage } from '../BrandsPage'
+import { Brands } from './Brands'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/brands/components/BrandForm')
@@ -28,7 +28,7 @@ vi.mock('@/shared/components/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('BrandsPage', () => {
+describe('Brands', () => {
     const mockBrands: Brand[] = [
         { _id: 'brand1', name: 'Brand A' },
         { _id: 'brand2', name: 'Brand B' },
@@ -54,52 +54,50 @@ describe('BrandsPage', () => {
         })
     })
 
-    it('renders the page title', () => {
-        render(<BrandsPage />)
+    it('renders the page', () => {
+        render(<Brands />)
 
-        const topPanel = screen.getByTestId('mocked-top-panel')
-        const hero = screen.getByTestId('mocked-hero')
-        const brandForm = screen.getByTestId('mocked-brand-form')
-        const brandsMobileView = screen.getByTestId('mocked-brands-mobile-view')
-        const brandsTable = screen.getByTestId('mocked-brands-table')
-        const navBar = screen.getByTestId('mocked-nav-bar')
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-brand-form')).toBeInTheDocument()
 
-        expect(topPanel).toBeInTheDocument()
-        expect(hero).toBeInTheDocument()
-        expect(brandForm).toBeInTheDocument()
-        expect(brandsMobileView).toBeInTheDocument()
-        expect(brandsTable).toBeInTheDocument()
-        expect(navBar).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-brands-mobile-view')
+        ).toBeInTheDocument()
 
-        const mobileBrand1 = screen.getByTestId('mocked-mobile-brand-brand1')
-        const mobilebBand2 = screen.getByTestId('mocked-mobile-brand-brand2')
-        const tableBrand1 = screen.getByTestId('mocked-table-brand-brand1')
-        const tableBrand2 = screen.getByTestId('mocked-table-brand-brand2')
+        expect(screen.getByTestId('mocked-brands-table')).toBeInTheDocument()
 
-        expect(mobileBrand1).toBeInTheDocument()
-        expect(mobilebBand2).toBeInTheDocument()
-        expect(tableBrand1).toBeInTheDocument()
-        expect(tableBrand2).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-mobile-brand-brand1')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByTestId('mocked-mobile-brand-brand2')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByTestId('mocked-table-brand-brand1')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByTestId('mocked-table-brand-brand2')
+        ).toBeInTheDocument()
     })
 
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<BrandsPage />)
+        render(<Brands />)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
-
-        expect(mockNavigate).toHaveBeenCalledWith('/reference_lists')
+        expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
     })
 
     it('should edit brand when edit button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<BrandsPage />)
-
-        const editButton = screen.getByTestId('mocked-table-edit-brand1')
-        await user.click(editButton)
+        render(<Brands />)
+        await user.click(screen.getByTestId('mocked-table-edit-brand1'))
 
         expect(setFormData).toHaveBeenCalledWith(mockBrands[0])
     })
@@ -107,11 +105,9 @@ describe('BrandsPage', () => {
     it('should delete brand when delete is confirmed', async () => {
         const user = userEvent.setup()
 
-        render(<BrandsPage />)
+        render(<Brands />)
 
-        const deleteButton = screen.getByTestId('mocked-table-delete-brand1')
-
-        await user.click(deleteButton)
+        await user.click(screen.getByTestId('mocked-table-delete-brand1'))
 
         const modalDeleteConfirm = screen.getByTestId(
             'mocked-modal-delete-confirm'
@@ -134,17 +130,10 @@ describe('BrandsPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<BrandsPage />)
+        render(<Brands />)
 
-        const deleteButton = screen.getByTestId('mocked-table-delete-brand1')
-
-        await user.click(deleteButton)
-
-        const modalDeleteConfirm = screen.getByTestId(
-            'mocked-modal-delete-confirm'
-        )
-
-        await user.click(modalDeleteConfirm)
+        await user.click(screen.getByTestId('mocked-table-delete-brand1'))
+        await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
 
         expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)

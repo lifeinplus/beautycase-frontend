@@ -7,7 +7,7 @@ import {
     mockUseGetUserByIdQuery,
     mockUserResult,
 } from '@/features/users/__mocks__/usersApi'
-import { AccountPage } from '@/pages/account/AccountPage'
+import { Account } from '@/pages/account/Account'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import {
     renderWithProviderAndRouter,
@@ -22,7 +22,7 @@ vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/layout/Header')
 vi.mock('@/shared/components/common/Hero')
 
-describe('AccountPage', () => {
+describe('Account', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectUserId) return 'user123'
@@ -43,21 +43,20 @@ describe('AccountPage', () => {
             error: null,
         })
 
-        renderWithProviders(<AccountPage />)
+        renderWithProviders(<Account />)
 
         expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
-        renderWithProviderAndRouter(<AccountPage />)
+        renderWithProviderAndRouter(<Account />)
 
         const matchers = [
             'mocked-header',
             'mocked-hero',
             'mocked-data-wrapper',
             'mocked-account-fields',
-            'mocked-nav-bar',
         ]
 
         matchers.forEach((m) =>
@@ -72,7 +71,7 @@ describe('AccountPage', () => {
             error: mockError,
         })
 
-        renderWithProviders(<AccountPage />)
+        renderWithProviders(<Account />)
 
         expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
     })

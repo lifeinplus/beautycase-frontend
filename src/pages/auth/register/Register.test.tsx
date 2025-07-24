@@ -9,7 +9,7 @@ import type { AuthResultRegister } from '@/features/auth/types'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
-import { RegisterPage } from '../RegisterPage'
+import { Register } from './Register'
 
 vi.mock('@/features/auth/authApi')
 vi.mock('@/shared/utils/errorUtils')
@@ -22,11 +22,11 @@ const MockRoutes = () => (
     <Routes>
         <Route path="/" element={<MockHome />} />
         <Route path="/login" element={<MockLogin />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register" element={<Register />} />
     </Routes>
 )
 
-describe('RegisterPage', () => {
+describe('Register', () => {
     const initialEntries = ['/register']
 
     const mockRegisterResult: AuthResultRegister = {

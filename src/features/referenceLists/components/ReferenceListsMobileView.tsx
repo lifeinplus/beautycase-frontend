@@ -11,6 +11,6 @@ export const ReferenceListsMobileView = ({
     <MobileView
         items={data}
         getTitle={(item) => item.name || ''}
-        getLink={(item) => `/reference_lists/${item.id}`}
+        getLink={(item) => `/reference-lists/${item.id}`}
     />
 )

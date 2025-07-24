@@ -38,7 +38,7 @@ export const StoresPage = () => {
     const [deleteStoreById] = useDeleteStoreByIdMutation()
 
     const handleBack = () => {
-        navigate('/reference_lists')
+        navigate('/reference-lists')
     }
 
     const handleDelete = async (data: Store) => {

@@ -4,14 +4,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
-import { HomePage } from '../HomePage'
+import { Home } from './Home'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/auth/hooks/useAuthLogout')
 vi.mock('@/features/home/components/HomeTile')
 vi.mock('@/shared/components/ui/LanguageSelect')
 
-describe('HomePage', () => {
+describe('Home', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectRole) return 'admin'
@@ -21,7 +21,7 @@ describe('HomePage', () => {
     })
 
     it('renders title, logo and motto', () => {
-        renderWithRouter(<HomePage />)
+        renderWithRouter(<Home />)
 
         expect(screen.getByText('Beautycase')).toBeInTheDocument()
         expect(screen.getByText('motto')).toBeInTheDocument()
@@ -30,7 +30,7 @@ describe('HomePage', () => {
     it('should display login and register links when user is not logged in', () => {
         vi.mocked(useAppSelector).mockReturnValue(null)
 
-        renderWithRouter(<HomePage />)
+        renderWithRouter(<Home />)
 
         expect(
             screen.getByRole('link', { name: 'link.login' })
@@ -50,7 +50,7 @@ describe('HomePage', () => {
             return null
         })
 
-        renderWithRouter(<HomePage />)
+        renderWithRouter(<Home />)
 
         expect(screen.getByText(/auth.loggedIn/i)).toBeInTheDocument()
 

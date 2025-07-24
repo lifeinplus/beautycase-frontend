@@ -7,10 +7,9 @@ import { useGetUserByIdQuery } from '@/features/users/usersApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 import pageStyles from '@/shared/components/ui/page.module.css'
 
-export const AccountPage = () => {
+export const Account = () => {
     const { t } = useTranslation(['account', 'makeupBag'])
     const userId = useAppSelector(selectUserId)
 
@@ -19,14 +18,12 @@ export const AccountPage = () => {
     return (
         <article className={pageStyles.page}>
             <Header />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero
                         headline={t('hero.headline')}
                         byline={t('hero.byline')}
                     />
-
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
@@ -37,8 +34,6 @@ export const AccountPage = () => {
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar />
         </article>
     )
 }

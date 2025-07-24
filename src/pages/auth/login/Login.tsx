@@ -16,9 +16,9 @@ import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import authStyles from './auth.module.css'
+import authStyles from '../auth.module.css'
 
-export const LoginPage = () => {
+export const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const { t } = useTranslation('auth')

@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -19,13 +18,10 @@ import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const BrandsPage = () => {
+export const Brands = () => {
     const navigate = useNavigate()
     const brandFormRef = useRef<FormRef | null>(null)
     const { t } = useTranslation(['brand', 'modal'])
@@ -38,7 +34,7 @@ export const BrandsPage = () => {
     const [deleteBrandById] = useDeleteBrandByIdMutation()
 
     const handleBack = () => {
-        navigate('/reference_lists')
+        navigate('/reference-lists')
     }
 
     const handleDelete = async (data: Brand) => {
@@ -72,12 +68,11 @@ export const BrandsPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
+                    {/* TODO hide on mobile */}
                     <div className="hidden sm:block">
                         <Hero headline={t('hero.headline')} />
                     </div>
-
                     <BrandForm ref={brandFormRef} />
-
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
@@ -101,15 +96,6 @@ export const BrandsPage = () => {
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

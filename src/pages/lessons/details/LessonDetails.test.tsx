@@ -49,7 +49,20 @@ describe('LessonDetails', () => {
 
     it('renders product images', async () => {
         render(<LessonDetails />)
-
         expect(screen.getByTestId('mocked-product-images')).toBeInTheDocument()
+    })
+
+    it('renders default thumbnail', async () => {
+        const { videoUrl, ...restLesson } = mockLesson1
+
+        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
+            data: restLesson,
+            isLoading: false,
+            error: null,
+        })
+
+        render(<LessonDetails />)
+
+        expect(screen.getByTestId('mocked-image')).toBeInTheDocument()
     })
 })

@@ -14,9 +14,9 @@ import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/LogoLink'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
-import styles from './auth.module.css'
+import styles from '../auth.module.css'
 
-export const RegisterPage = () => {
+export const Register = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('auth')
 

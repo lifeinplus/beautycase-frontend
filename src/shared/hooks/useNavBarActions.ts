@@ -85,9 +85,18 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
-        const match = [...lessonRoutes, ...makeupBagRoutes].find((route) =>
-            route.pattern.test(pathname)
-        )
+        const referenceListRoutes = [
+            {
+                pattern: /^\/reference-lists\/brands$/i,
+                actions: backActions,
+            },
+        ]
+
+        const match = [
+            ...lessonRoutes,
+            ...makeupBagRoutes,
+            ...referenceListRoutes,
+        ].find((route) => route.pattern.test(pathname))
 
         return match?.actions || []
     }

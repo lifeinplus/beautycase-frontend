@@ -13,7 +13,7 @@ import { useLoginUserMutation } from '@/features/auth/authApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
-import { LoginPage } from '../LoginPage'
+import { Login } from './Login'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/auth/authApi')
@@ -28,12 +28,12 @@ const MockRegister = () => (
 const MockRoutes = () => (
     <Routes>
         <Route path="/" element={<MockHome />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<MockRegister />} />
     </Routes>
 )
 
-describe('LoginPage', () => {
+describe('Login', () => {
     const initialEntries = ['/login']
 
     const mockLoginUser = vi.fn()

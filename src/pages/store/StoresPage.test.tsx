@@ -80,7 +80,7 @@ describe('StoresPage', () => {
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
 
-        expect(mockNavigate).toHaveBeenCalledWith('/reference_lists')
+        expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
     })
 
     it('should edit store when edit button is clicked', async () => {

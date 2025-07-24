@@ -10,9 +10,9 @@ import commonStyles from '@/shared/components/common/common.module.css'
 import buttonStyles from '@/shared/components/ui/button.module.css'
 import { LanguageSelect } from '@/shared/components/ui/LanguageSelect'
 import { canAccess, menuItems } from '@/shared/utils/menu'
-import styles from './HomePage.module.css'
+import styles from './Home.module.css'
 
-export const HomePage = () => {
+export const Home = () => {
     const { t } = useTranslation('home')
     const handleLogout = useAuthLogout()
 

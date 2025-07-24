@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import {
-    useDeleteToolByIdMutation,
-    useGetToolByIdQuery,
-} from '@/features/tools/toolsApi'
+import { useGetToolByIdQuery } from '@/features/tools/toolsApi'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
@@ -16,7 +13,7 @@ export const ToolDetailsPage = () => {
     const { t } = useTranslation(['tool', 'store'])
 
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
-    const [deleteToolById] = useDeleteToolByIdMutation()
+    // const [deleteToolById] = useDeleteToolByIdMutation()
 
     return (
         <Details
@@ -26,7 +23,7 @@ export const ToolDetailsPage = () => {
             redirectPath="/tools"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteItem={deleteToolById}
+            // deleteItem={deleteToolById}
             mediaContent={
                 <ImageSection name={data?.name} url={data?.imageUrl} />
             }

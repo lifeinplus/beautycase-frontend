@@ -18,10 +18,11 @@ import { UserSelectionPage } from '../UserSelectionPage'
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/users/usersApi')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/common/ImageSection')
+vi.mock('@/shared/components/ui/ButtonSubmit')
+vi.mock('@/shared/components/ui/Image')
 
 describe('UserSelectionPage', () => {
     const mockFormData = {
@@ -47,7 +48,7 @@ describe('UserSelectionPage', () => {
 
         render(<UserSelectionPage />)
 
-        expect(screen.getByText('loading')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -59,7 +60,7 @@ describe('UserSelectionPage', () => {
 
         render(<UserSelectionPage />)
 
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
     })
 
     it('renders client items', () => {
@@ -104,9 +105,7 @@ describe('UserSelectionPage', () => {
         const user = userEvent.setup()
         render(<UserSelectionPage />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByTestId('mocked-button-submit'))
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

@@ -14,19 +14,18 @@ vi.mock('@/pages/lessons/details/LessonDetails')
 vi.mock('@/pages/lessons/edit/LessonEdit')
 vi.mock('@/pages/lessons/gallery/LessonGallery')
 vi.mock('@/pages/user/UserSelectionPage')
+vi.mock('@/shared/components/layout/Layout')
 vi.mock('@/shared/components/ScrollToTop')
 
 describe('lessonRoutes', () => {
     it('renders the details page correctly', () => {
         renderWithRouter(<App />, ['/lessons/1'])
-
         expect(screen.getByTestId('mocked-lesson-details')).toBeInTheDocument()
     })
 
     it('renders the gallery page correctly', () => {
         renderWithRouter(<App />, ['/lessons'])
-
-        expect(screen.getByTestId('mocked-lessons-gallery')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-lesson-gallery')).toBeInTheDocument()
     })
 
     it('renders the product selection page correctly', () => {
@@ -39,13 +38,11 @@ describe('lessonRoutes', () => {
 
     it('renders the add page correctly', () => {
         renderWithRouter(<App />, ['/lessons/add'])
-
         expect(screen.getByTestId('mocked-lesson-add')).toBeInTheDocument()
     })
 
     it('renders the edit page correctly', () => {
         renderWithRouter(<App />, ['/lessons/edit/1'])
-
         expect(screen.getByTestId('mocked-lesson-edit')).toBeInTheDocument()
     })
 

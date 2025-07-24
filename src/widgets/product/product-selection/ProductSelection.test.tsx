@@ -17,9 +17,9 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
+vi.mock('@/shared/components/ui/ButtonSubmit')
 vi.mock('@/shared/components/ui/Image')
 vi.mock('@/shared/utils/errorUtils')
 
@@ -102,9 +102,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByTestId('mocked-button-submit'))
 
         expect(mockOnSave).toHaveBeenCalledWith('123', ['product2'])
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -122,9 +120,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByTestId('mocked-button-submit'))
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -140,9 +136,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByTestId('mocked-nav-button-navigation:actions.save')
-        )
+        await user.click(screen.getByTestId('mocked-button-submit'))
 
         expect(mockOnSave).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()

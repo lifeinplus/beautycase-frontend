@@ -12,7 +12,6 @@ export const ProductGalleryPage = () => {
 
     return (
         <Gallery
-            redirectPath="/products"
             title={t('titles.gallery')}
             subtitle={t('titles.gallerySubtitle')}
             isLoading={isLoading}

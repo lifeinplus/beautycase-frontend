@@ -51,12 +51,16 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: lessonDetailsActions,
             },
             {
-                pattern: /^\/lessons\/(add|add\/(stages|tools))$/i,
+                pattern: /^\/lessons\/[a-f0-9]{24}\/products$/i,
+                actions: backActions,
+            },
+            {
+                pattern: /^\/lessons\/(add|add\/clients)$/i,
                 actions: backActions,
             },
             {
                 pattern:
-                    /^\/lessons\/(edit\/[a-f0-9]{24}|edit\/[a-f0-9]{24}\/(stages|tools))$/i,
+                    /^\/lessons\/(edit\/[a-f0-9]{24}|edit\/[a-f0-9]{24}\/clients)$/i,
                 actions: backActions,
             },
         ]

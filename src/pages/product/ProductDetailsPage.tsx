@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import {
-    useDeleteProductByIdMutation,
-    useGetProductByIdQuery,
-} from '@/features/products/productsApi'
+import { useGetProductByIdQuery } from '@/features/products/productsApi'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
@@ -16,7 +13,7 @@ export const ProductDetailsPage = () => {
     const { t } = useTranslation(['product', 'store'])
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
-    const [deleteProductById] = useDeleteProductByIdMutation()
+    // const [deleteProductById] = useDeleteProductByIdMutation()
 
     return (
         <Details
@@ -26,7 +23,7 @@ export const ProductDetailsPage = () => {
             redirectPath="/products"
             title={data?.name}
             subtitle={data?.brand?.name}
-            deleteItem={deleteProductById}
+            // deleteItem={deleteProductById}
             mediaContent={
                 <ImageSection name={data?.name} url={data?.imageUrl} />
             }

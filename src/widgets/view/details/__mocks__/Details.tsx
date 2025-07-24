@@ -9,7 +9,7 @@ export const Details = ({
     mediaContent,
     descriptionContent,
     additionalContent,
-    deleteItem,
+    // deleteItem,
 }: DetailsProps) => (
     <div data-testid="mocked-details-page">
         {isLoading && <div data-testid="mocked-loading">Loading...</div>}
@@ -34,11 +34,11 @@ export const Details = ({
 
         <div data-testid="mocked-additional-content">{additionalContent}</div>
 
-        <button
+        {/* <button
             data-testid="mocked-delete-button"
             onClick={() => deleteItem('123')}
         >
             Delete
-        </button>
+        </button> */}
     </div>
 )

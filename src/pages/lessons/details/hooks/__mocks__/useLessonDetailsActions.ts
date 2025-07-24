@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-export const useMakeupBagDetailsActions = vi.fn(() => [
+export const useLessonDetailsActions = vi.fn(() => [
     {
         key: 'edit',
         label: 'Edit',

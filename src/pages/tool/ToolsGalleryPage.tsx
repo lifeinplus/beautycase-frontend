@@ -12,7 +12,6 @@ export const ToolsGalleryPage = () => {
 
     return (
         <Gallery
-            redirectPath="/tools"
             title={t('titles.gallery')}
             subtitle={t('titles.gallerySubtitle')}
             isLoading={isLoading}

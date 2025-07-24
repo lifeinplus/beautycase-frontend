@@ -15,17 +15,14 @@ describe('useAddActions', () => {
 
         const action = actions[0]
         expect(action.key).toBe('add')
-        expect(action.label).toBe('navigation:actions.add')
+        expect(action.label).toBe('actions.add')
         expect(action.icon).toBeDefined()
         expect(typeof action.onClick).toBe('function')
     })
 
     it('calls navigate on add click', () => {
         const { result } = renderHook(() => useAddActions())
-
-        const action = result.current[0]
-        action.onClick()
-
+        result.current[0].onClick()
         expect(mockNavigate).toHaveBeenCalledWith('add')
     })
 })

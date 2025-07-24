@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import {
-    useDeleteLessonByIdMutation,
-    useGetLessonByIdQuery,
-} from '@/features/lessons/lessonsApi'
+import { useGetLessonByIdQuery } from '@/features/lessons/lessonsApi'
 import { Image } from '@/shared/components/ui/Image'
 import type { RouteId } from '@/shared/types/router'
 import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
@@ -17,8 +14,6 @@ export const LessonDetails = () => {
     const { t } = useTranslation('lesson')
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
-    const [deleteLessonById] = useDeleteLessonByIdMutation()
-
     const embedUrl = data?.videoUrl && getYouTubeEmbedUrl(data?.videoUrl)
 
     return (
@@ -30,7 +25,6 @@ export const LessonDetails = () => {
             title={data?.title}
             subtitle={data?.shortDescription}
             description={data?.fullDescription}
-            deleteItem={deleteLessonById}
             mediaContent={
                 <div className={styles.container}>
                     {embedUrl ? (

@@ -1,11 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import {
-    useDeleteStageByIdMutation,
-    useDuplicateStageByIdMutation,
-    useGetStageByIdQuery,
-} from '@/features/stages/stagesApi'
+import { useGetStageByIdQuery } from '@/features/stages/stagesApi'
 import { ImageSection } from '@/shared/components/common/ImageSection'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
@@ -17,8 +13,8 @@ export const StageDetailsPage = () => {
     const { t } = useTranslation('stage')
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
-    const [deleteStageById] = useDeleteStageByIdMutation()
-    const [duplicateStageById] = useDuplicateStageByIdMutation()
+    // const [deleteStageById] = useDeleteStageByIdMutation()
+    // const [duplicateStageById] = useDuplicateStageByIdMutation()
 
     return (
         <Details
@@ -29,8 +25,8 @@ export const StageDetailsPage = () => {
             title={data?.title}
             subtitle={data?.subtitle}
             description={data?.steps?.reduce((p, c) => p + c, '')}
-            deleteItem={deleteStageById}
-            duplicateItem={duplicateStageById}
+            // deleteItem={deleteStageById}
+            // duplicateItem={duplicateStageById}
             showDuplicate={true}
             mediaContent={
                 <ImageSection name={data?.title} url={data?.imageUrl} />

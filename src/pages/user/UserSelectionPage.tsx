@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/solid'
 import classNames from 'classnames'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -11,9 +10,8 @@ import { useGetAllUsersQuery } from '@/features/users/usersApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { TitleSection } from '@/shared/components/common/TitleSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
@@ -73,7 +71,7 @@ export const UserSelectionPage = () => {
                         data={clients}
                         emptyMessage={t('emptyMessageList')}
                     >
-                        <section className={styles.container}>
+                        <article className={styles.container}>
                             {clients.map(({ _id, username }) => {
                                 const isSelected = selectedIds.has(_id!)
 
@@ -121,24 +119,18 @@ export const UserSelectionPage = () => {
                                     </div>
                                 )
                             })}
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-44"
+                                label={t('navigation:actions.save')}
+                                onClick={handleSave}
+                            />
                         </section>
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSave}
-                />
-            </NavBar>
         </article>
     )
 }

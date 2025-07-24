@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { useGetAllProductsQuery } from '@/features/products/productsApi'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
-import styles from './ProductGalleryPage.module.css'
+import styles from './ProductGallery.module.css'
 
-export const ProductGalleryPage = () => {
+export const ProductGallery = () => {
     const { t } = useTranslation('product')
 
     const { data: products, isLoading, error } = useGetAllProductsQuery()

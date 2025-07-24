@@ -116,7 +116,7 @@ describe('Brands', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
-        expect(toast.success).toHaveBeenCalledWith('toast.delete')
+        expect(toast.success).toHaveBeenCalledWith('modal:delete.toast')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
     })

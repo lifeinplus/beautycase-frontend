@@ -9,12 +9,12 @@ import { useCreateProductMutation } from '@/features/products/productsApi'
 import type { Product } from '@/features/products/types'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ProductAddPage = () => {
+export const ProductAdd = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()
-    const [createProduct] = useCreateProductMutation()
+    const [createProduct, { isLoading }] = useCreateProductMutation()
 
     const handleAddProduct = async (product: Product) => {
         try {
@@ -27,5 +27,11 @@ export const ProductAddPage = () => {
         }
     }
 
-    return <ProductForm title={t('titles.add')} onSubmit={handleAddProduct} />
+    return (
+        <ProductForm
+            title={t('titles.add')}
+            onSubmit={handleAddProduct}
+            isSaving={isLoading}
+        />
+    )
 }

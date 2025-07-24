@@ -8,12 +8,11 @@ import type { RouteId } from '@/shared/types/router'
 import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
 import { Details } from '@/widgets/view/details/Details'
 
-export const ProductDetailsPage = () => {
+export const ProductDetails = () => {
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['product', 'store'])
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
-    // const [deleteProductById] = useDeleteProductByIdMutation()
 
     return (
         <Details
@@ -23,7 +22,6 @@ export const ProductDetailsPage = () => {
             redirectPath="/products"
             title={data?.name}
             subtitle={data?.brand?.name}
-            // deleteItem={deleteProductById}
             mediaContent={
                 <ImageSection name={data?.name} url={data?.imageUrl} />
             }

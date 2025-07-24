@@ -3,21 +3,21 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { useUpdateToolStoreLinksMutation } from '@/features/tools/toolsApi'
+import { useUpdateProductStoreLinksMutation } from '@/features/products/productsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockStoreLinks } from '../__mocks__/storesApi'
-import { StoreLinksAddPageForTool } from './StoreLinksAddPageForTool'
+import { StoreLinksAddForProduct } from './StoreLinksAddForProduct'
 
-vi.mock('@/features/tools/toolsApi')
+vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/utils/errorUtils')
 vi.mock('@/widgets/store/store-links-add/StoreLinksAdd')
 
-describe('StoreLinksAddPageForTool', () => {
+describe('StoreLinksAddForProduct', () => {
     const mockUpdate = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateToolStoreLinksMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateProductStoreLinksMutation as Mock).mockReturnValue([
             mockUpdate,
         ])
 
@@ -26,7 +26,7 @@ describe('StoreLinksAddPageForTool', () => {
     })
 
     it('renders StoreLinksAdd successfully', async () => {
-        render(<StoreLinksAddPageForTool />)
+        render(<StoreLinksAddForProduct />)
 
         expect(screen.getByTestId('mocked-store-links-add')).toBeInTheDocument()
     })
@@ -34,7 +34,7 @@ describe('StoreLinksAddPageForTool', () => {
     it('passes correct onSave handler', async () => {
         const user = userEvent.setup()
 
-        render(<StoreLinksAddPageForTool />)
+        render(<StoreLinksAddForProduct />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalledWith({
@@ -54,7 +54,7 @@ describe('StoreLinksAddPageForTool', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<StoreLinksAddPageForTool />)
+        render(<StoreLinksAddForProduct />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalled()

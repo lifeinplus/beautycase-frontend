@@ -11,14 +11,14 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks'
 import { clearFormData } from '@/features/form/formSlice'
 import {
-    useDeleteLessonByIdMutation,
-    useGetLessonByIdQuery,
-} from '@/features/lessons/lessonsApi'
+    useDeleteProductByIdMutation,
+    useGetProductByIdQuery,
+} from '@/features/products/productsApi'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const useLessonDetailsActions = () => {
+export const useProductDetailsActions = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
@@ -27,10 +27,10 @@ export const useLessonDetailsActions = () => {
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const { data } = useGetLessonByIdQuery(id!, { skip: !id })
-    const [deleteLessonById] = useDeleteLessonByIdMutation()
+    const { data } = useGetProductByIdQuery(id!, { skip: !id })
+    const [deleteProductById] = useDeleteProductByIdMutation()
 
-    const redirectPath = '/lessons'
+    const redirectPath = '/products'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -38,8 +38,8 @@ export const useLessonDetailsActions = () => {
 
     const handleDelete = async () => {
         try {
-            await deleteLessonById(id!).unwrap()
-            toast.success(t('modal:delete.toast', { name: data?.title }))
+            await deleteProductById(id!).unwrap()
+            toast.success(t('modal:delete.toast', { name: data?.name }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -83,7 +83,7 @@ export const useLessonDetailsActions = () => {
                 isOpen: isModalDeleteOpen,
                 title: t('modal:delete.title'),
                 description: t('modal:delete.description', {
-                    name: data?.title,
+                    name: data?.name,
                 }),
                 onConfirm: handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),

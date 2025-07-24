@@ -6,14 +6,14 @@ import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
 } from '@/features/products/productsApi'
-import { ProductDetailsPage } from '../ProductDetailsPage'
+import { ProductDetails } from './ProductDetails'
 
 vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/components/common/ImageSection')
 vi.mock('@/widgets/store/store-links/StoreLinks')
 vi.mock('@/widgets/view/details/Details')
 
-describe('ProductDetailsPage', () => {
+describe('ProductDetails', () => {
     const mockDeleteProduct = vi.fn()
 
     beforeEach(() => {
@@ -29,7 +29,7 @@ describe('ProductDetailsPage', () => {
     })
 
     it('renders product details', async () => {
-        render(<ProductDetailsPage />)
+        render(<ProductDetails />)
 
         expect(screen.getByText(mockProduct1.name)).toBeInTheDocument()
         expect(screen.getByText(mockProduct1.brand?.name!)).toBeInTheDocument()

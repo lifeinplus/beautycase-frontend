@@ -1,16 +1,17 @@
 import toast from 'react-hot-toast'
 
-import { useUpdateToolStoreLinksMutation } from '@/features/tools/toolsApi'
+import { useUpdateProductStoreLinksMutation } from '@/features/products/productsApi'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { StoreLinksAdd } from '@/widgets/store/store-links-add/StoreLinksAdd'
 import type { StoreLink } from '../types'
 
-export const StoreLinksAddPageForTool = () => {
-    const [updateToolStoreLinks] = useUpdateToolStoreLinksMutation()
+export const StoreLinksAddForProduct = () => {
+    const [updateProductStoreLinks, { isLoading }] =
+        useUpdateProductStoreLinksMutation()
 
     const onSave = async (id: string, storeLinks: StoreLink[]) => {
         try {
-            await updateToolStoreLinks({
+            await updateProductStoreLinks({
                 id: id,
                 data: { storeLinks },
             }).unwrap()
@@ -20,5 +21,5 @@ export const StoreLinksAddPageForTool = () => {
         }
     }
 
-    return <StoreLinksAdd onSave={onSave} />
+    return <StoreLinksAdd onSave={onSave} isSaving={isLoading} />
 }

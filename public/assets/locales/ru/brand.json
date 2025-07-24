@@ -25,8 +25,5 @@
     "table": {
         "brandName": "Бренд",
         "actions": "Действия"
-    },
-    "toast": {
-        "delete": "Бренд удалён"
     }
 }

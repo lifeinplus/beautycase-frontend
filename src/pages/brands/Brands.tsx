@@ -47,7 +47,7 @@ export const Brands = () => {
 
         try {
             await deleteBrandById(brand._id).unwrap()
-            toast.success(t('toast.delete'))
+            toast.success(t('modal:delete.toast', { name: brand.name }))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)

@@ -22,7 +22,7 @@ export const publicRoutes = [
         path="/questionnaire"
         element={<QuestionnairePage />}
     />,
-    <Route element={<Layout />}>
+    <Route key={'unauthorized-layout'} element={<Layout />}>
         <Route
             key="unauthorized"
             path="/unauthorized"

@@ -5,62 +5,54 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { clearFormData } from '@/features/form/formSlice'
-import { mockProduct1 } from '@/features/products/__mocks__/productsApi'
 import {
-    useGetProductByIdQuery,
-    useUpdateProductByIdMutation,
-} from '@/features/products/productsApi'
+    mockProduct1,
+    mockProductCreate,
+} from '@/features/products/__mocks__/productsApi'
+import { useCreateProductMutation } from '@/features/products/productsApi'
+import { ProductAdd } from '@/pages/product/add/ProductAdd'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { ProductEditPage } from '../ProductEditPage'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
-vi.mock('@/features/products/productsApi')
 vi.mock('@/features/products/components/ProductForm')
+vi.mock('@/features/products/productsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('ProductEditPage', () => {
-    const mockUpdateProductById = vi.fn()
+describe('ProductAdd', () => {
+    const mockAddProduct = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateProductByIdMutation as Mock).mockReturnValue([
-            mockUpdateProductById,
+        vi.mocked(useCreateProductMutation as Mock).mockReturnValue([
+            mockAddProduct,
         ])
 
-        mockUpdateProductById.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue({})
-
-        vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
-            data: mockProduct1,
-        })
+        mockAddProduct.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue(mockProductCreate)
     })
 
-    it('renders the ProductForm with title', () => {
-        render(<ProductEditPage />)
+    it('renders the ProductForm with correct title', () => {
+        render(<ProductAdd />)
 
         expect(screen.getByTestId('mocked-product-form')).toBeInTheDocument()
-        expect(screen.getByText('titles.edit')).toBeInTheDocument()
+        expect(screen.getByText('titles.add')).toBeInTheDocument()
     })
 
-    it('handles form submission successfully', async () => {
+    it('calls addProduct and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<ProductEditPage />)
+        render(<ProductAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateProductById).toHaveBeenCalledWith({
-            id: '123',
-            product: mockProduct1,
-        })
-
+        expect(mockAddProduct).toHaveBeenCalledWith(mockProduct1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/products/123')
+        expect(mockNavigate).toHaveBeenCalledWith('/products/product3')
     })
 
-    it('shows error toast on failure', async () => {
+    it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
         const mockConsoleError = vi
@@ -69,13 +61,14 @@ describe('ProductEditPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<ProductEditPage />)
+        render(<ProductAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateProductById).toHaveBeenCalled()
+        expect(mockAddProduct).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
+        expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()
 
         mockConsoleError.mockRestore()

@@ -86,7 +86,7 @@ export const useMakeupBagDetailsActions = () => {
     const handleDelete = async () => {
         try {
             await deleteMakeupBagById(id!).unwrap()
-            toast.success(t('toast.delete'))
+            toast.success(t('modal:delete.toast', { name: categoryName }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)

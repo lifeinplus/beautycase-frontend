@@ -8,9 +8,5 @@
         "services": "My services: all types of makeup, styling, hairstyles, training, gift certificates",
         "country": "Serbia"
     },
-    "loading": "Loading...",
-    "toast": {
-        "delete": "{{title}} deleted",
-        "duplicate": "{{title}} duplicated"
-    }
+    "loading": "Loading..."
 }

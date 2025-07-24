@@ -18,7 +18,7 @@ import type { Product } from '@/features/products/types'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ProductEditPage = () => {
+export const ProductEdit = () => {
     const { id } = useParams<RouteId>()
     const navigate = useNavigate()
     const { t } = useTranslation('product')
@@ -26,7 +26,7 @@ export const ProductEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [updateProductById] = useUpdateProductByIdMutation()
+    const [updateProductById, { isLoading }] = useUpdateProductByIdMutation()
     const { data } = useGetProductByIdQuery(id!)
 
     useEffect(() => {
@@ -55,5 +55,11 @@ export const ProductEditPage = () => {
         }
     }
 
-    return <ProductForm title={t('titles.edit')} onSubmit={handleEditProduct} />
+    return (
+        <ProductForm
+            title={t('titles.edit')}
+            onSubmit={handleEditProduct}
+            isSaving={isLoading}
+        />
+    )
 }

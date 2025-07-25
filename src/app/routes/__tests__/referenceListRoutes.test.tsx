@@ -9,17 +9,14 @@ vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
 vi.mock('@/pages/brands/Brands')
+vi.mock('@/pages/reference-lists/ReferenceLists')
 vi.mock('@/pages/store/StoresPage')
-vi.mock('@/pages/reference-list/ReferenceListsPage')
 vi.mock('@/shared/components/layout/Layout')
 
 describe('referenceListRoutes', () => {
     it('renders the list page correctly', () => {
         renderWithRouter(<App />, ['/reference-lists'])
-
-        expect(
-            screen.getByTestId('mocked-reference-lists-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-reference-lists')).toBeInTheDocument()
     })
 
     it('renders the brands page correctly', () => {

@@ -2,10 +2,10 @@ import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
 import { StoreLinksAddForProduct } from '@/features/stores/wrappers/StoreLinksAddForProduct'
-import { ProductAdd } from '@/pages/product/add/ProductAdd'
-import { ProductDetails } from '@/pages/product/details/ProductDetails'
-import { ProductEdit } from '@/pages/product/edit/ProductEdit'
-import { ProductGallery } from '@/pages/product/gallery/ProductGallery'
+import { ProductAdd } from '@/pages/products/add/ProductAdd'
+import { ProductDetails } from '@/pages/products/details/ProductDetails'
+import { ProductEdit } from '@/pages/products/edit/ProductEdit'
+import { ProductGallery } from '@/pages/products/gallery/ProductGallery'
 import { Layout } from '@/shared/components/layout/Layout'
 
 export const productRoutes = [

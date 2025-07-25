@@ -10,7 +10,7 @@ import {
     mockProductCreate,
 } from '@/features/products/__mocks__/productsApi'
 import { useCreateProductMutation } from '@/features/products/productsApi'
-import { ProductAdd } from '@/pages/product/add/ProductAdd'
+import { ProductAdd } from '@/pages/products/add/ProductAdd'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
 

@@ -10,7 +10,7 @@ import { type QuestionnaireResultOption } from '../options'
 import type { Questionnaire } from '../types'
 import { questions } from '../utils'
 
-export interface QuestionnaireDetailsProps {
+export interface QuestionnaireDataProps {
     data: Questionnaire
 }
 
@@ -36,7 +36,7 @@ const fields: (keyof Questionnaire)[] = [
     'referral',
 ]
 
-export const QuestionnaireResult = ({ data }: QuestionnaireDetailsProps) => {
+export const QuestionnaireData = ({ data }: QuestionnaireDataProps) => {
     const { t } = useTranslation(['questionnaire'])
 
     const renderImage = (value?: string): ReactNode => {

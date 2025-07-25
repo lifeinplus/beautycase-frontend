@@ -6,10 +6,9 @@ import { useGetAllQuestionnairesQuery } from '@/features/questionnaires/question
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 import pageStyles from '@/shared/components/ui/page.module.css'
 
-export const QuestionnaireListPage = () => {
+export const QuestionnaireList = () => {
     const { t } = useTranslation('questionnaire')
     const { data, isLoading, error } = useGetAllQuestionnairesQuery()
 
@@ -34,8 +33,6 @@ export const QuestionnaireListPage = () => {
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar />
         </article>
     )
 }

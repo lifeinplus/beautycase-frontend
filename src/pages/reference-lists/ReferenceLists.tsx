@@ -5,10 +5,9 @@ import { ReferenceListsTable } from '@/features/referenceLists/components/Refere
 import type { ReferenceList } from '@/features/referenceLists/types'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 import pageStyles from '@/shared/components/ui/page.module.css'
 
-export const ReferenceListsPage = () => {
+export const ReferenceLists = () => {
     const { t } = useTranslation('referenceList')
 
     const data: ReferenceList[] = [
@@ -27,8 +26,6 @@ export const ReferenceListsPage = () => {
                     <ReferenceListsTable data={data} />
                 </article>
             </main>
-
-            <NavBar />
         </article>
     )
 }

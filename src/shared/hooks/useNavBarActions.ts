@@ -5,7 +5,7 @@ import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLessonDetailsActions'
 import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
-import { useProductDetailsActions } from '@/pages/product/details/hooks/useProductDetailsActions'
+import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useAddActions } from '@/shared/hooks/useAddActions'
 import { useBackActions } from '@/shared/hooks/useBackActions'
 import { canAccess } from '@/shared/utils/menu'
@@ -110,6 +110,13 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const questionnaireRoutes = [
+            {
+                pattern: /^\/questionnaires\/[a-f0-9]{24}$/i,
+                actions: backActions,
+            },
+        ]
+
         const referenceListRoutes = [
             {
                 pattern: /^\/reference-lists\/brands$/i,
@@ -121,6 +128,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             ...lessonRoutes,
             ...makeupBagRoutes,
             ...productRoutes,
+            ...questionnaireRoutes,
             ...referenceListRoutes,
         ].find((route) => route.pattern.test(pathname))
 

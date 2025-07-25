@@ -10,8 +10,8 @@ vi.mock('@/pages/auth/login/Login')
 vi.mock('@/pages/auth/register/Register')
 vi.mock('@/pages/auth/unauthorized/Unauthorized')
 vi.mock('@/pages/home/Home')
-vi.mock('@/pages/questionnaire/ConfirmationPage')
-vi.mock('@/pages/questionnaire/QuestionnairePage')
+vi.mock('@/pages/questionnaires/confirmation/Confirmation')
+vi.mock('@/pages/questionnaires/create/QuestionnaireCreate')
 vi.mock('@/shared/components/layout/Layout')
 
 describe('publicRoutes', () => {
@@ -22,10 +22,7 @@ describe('publicRoutes', () => {
 
     it('renders the confirmation page correctly', () => {
         renderWithRouter(<App />, ['/confirmation'])
-
-        expect(
-            screen.getByTestId('mocked-confirmation-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-confirmation')).toBeInTheDocument()
     })
 
     it('renders the login page correctly', () => {
@@ -40,10 +37,7 @@ describe('publicRoutes', () => {
 
     it('renders the questionnaire page correctly', () => {
         renderWithRouter(<App />, ['/questionnaire'])
-
-        expect(
-            screen.getByTestId('mocked-questionnaire-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-questionnaire')).toBeInTheDocument()
     })
 
     it('renders the unauthorized page correctly', () => {

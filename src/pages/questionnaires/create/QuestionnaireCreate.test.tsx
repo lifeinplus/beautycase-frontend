@@ -8,7 +8,7 @@ import { useCreateQuestionnaireMutation } from '@/features/questionnaires/questi
 import { questions } from '@/features/questionnaires/utils'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { QuestionnairePage } from '../QuestionnairePage'
+import { QuestionnaireCreate } from './QuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/questionnairesApi')
 vi.mock('@/shared/components/forms/CheckboxSection')
@@ -21,7 +21,7 @@ vi.mock('@/shared/components/layout/Header')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('QuestionnairePage', () => {
+describe('QuestionnaireCreate', () => {
     const mockAddQuestionnaire = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -36,7 +36,7 @@ describe('QuestionnairePage', () => {
     })
 
     it('renders all required form fields', () => {
-        render(<QuestionnairePage />)
+        render(<QuestionnaireCreate />)
 
         const placeholders = [
             'fields.name.label',
@@ -67,7 +67,7 @@ describe('QuestionnairePage', () => {
     it('calls addQuestionnaire and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<QuestionnairePage />)
+        render(<QuestionnaireCreate />)
 
         await user.type(
             screen.getByPlaceholderText(questions.name.label),
@@ -99,7 +99,7 @@ describe('QuestionnairePage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<QuestionnairePage />)
+        render(<QuestionnaireCreate />)
 
         await user.type(
             screen.getByPlaceholderText(questions.name.label),

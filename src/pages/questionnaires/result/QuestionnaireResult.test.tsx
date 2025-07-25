@@ -5,18 +5,16 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockQuestionnaire1 } from '@/features/questionnaires/__mocks__/questionnairesApi'
 import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { QuestionnaireResultPage } from '../QuestionnaireResultPage'
+import { QuestionnaireResult } from './QuestionnaireResult'
 
-vi.mock('@/features/questionnaires/components/QuestionnaireResult')
+vi.mock('@/features/questionnaires/components/QuestionnaireData')
 vi.mock('@/features/questionnaires/questionnairesApi')
 vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/utils/date')
 
-describe('QuestionnaireResultPage', () => {
+describe('QuestionnaireResult', () => {
     beforeEach(() => {
         vi.mocked(useGetQuestionnaireByIdQuery as Mock).mockReturnValue({
             data: mockQuestionnaire1,
@@ -26,14 +24,13 @@ describe('QuestionnaireResultPage', () => {
     })
 
     it('renders questionnaire data', () => {
-        render(<QuestionnaireResultPage />)
+        render(<QuestionnaireResult />)
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('mocked-questionnaire-result')
+            screen.getByTestId('mocked-questionnaire-data')
         ).toBeInTheDocument()
 
         expect(screen.getByText(mockQuestionnaire1.name)).toBeInTheDocument()
@@ -42,10 +39,8 @@ describe('QuestionnaireResultPage', () => {
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<QuestionnaireResultPage />)
-
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
+        render(<QuestionnaireResult />)
+        await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
     })

@@ -5,14 +5,14 @@ import config from '@/app/config'
 import cloudinary from '@/shared/utils/cloudinary'
 import { mockT } from '@/tests/mocks/translation'
 import { mockQuestionnaire1 } from '../../__mocks__/questionnairesApi'
-import { QuestionnaireResult } from '../QuestionnaireResult'
+import { QuestionnaireData } from '../QuestionnaireData'
 
 vi.mock('@/app/config')
 vi.mock('@/shared/utils/cloudinary')
 
-describe('QuestionnaireResult', () => {
+describe('QuestionnaireData', () => {
     it('renders all fields correctly', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire1} />)
+        render(<QuestionnaireData data={mockQuestionnaire1} />)
 
         expect(mockT).toHaveBeenCalledWith('fields.name.label')
         expect(mockT).toHaveBeenCalledWith('fields.instagram.label')
@@ -25,7 +25,7 @@ describe('QuestionnaireResult', () => {
     })
 
     it('displays fallback for undefined values', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire1} />)
+        render(<QuestionnaireData data={mockQuestionnaire1} />)
 
         const notSpecifiedElements = screen.getAllByText('notSpecified')
         expect(notSpecifiedElements.length).toBe(19 - 6)
@@ -35,7 +35,7 @@ describe('QuestionnaireResult', () => {
         const mockMakeupBagPhotoId = 'makeupBagPhoto1'
 
         render(
-            <QuestionnaireResult
+            <QuestionnaireData
                 data={{
                     ...mockQuestionnaire1,
                     makeupBagPhotoId: mockMakeupBagPhotoId,
@@ -48,7 +48,7 @@ describe('QuestionnaireResult', () => {
     })
 
     it('uses default image when makeupBagPhotoId is not provided', () => {
-        render(<QuestionnaireResult data={mockQuestionnaire1} />)
+        render(<QuestionnaireData data={mockQuestionnaire1} />)
 
         expect(cloudinary.image).toHaveBeenCalledWith(
             config.cloudinary.defaultThumbnailName
@@ -63,7 +63,7 @@ describe('QuestionnaireResult', () => {
         }
 
         render(
-            <QuestionnaireResult
+            <QuestionnaireData
                 data={{ ...mockQuestionnaire1, problems: mockData }}
             />
         )

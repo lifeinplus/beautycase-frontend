@@ -2,10 +2,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 import pageStyles from '@/shared/components/ui/page.module.css'
 
-export const ConfirmationPage = () => {
+export const Confirmation = () => {
     const { t } = useTranslation('confirmation')
 
     return (
@@ -20,8 +19,6 @@ export const ConfirmationPage = () => {
                     />
                 </article>
             </main>
-
-            <NavBar />
         </article>
     )
 }

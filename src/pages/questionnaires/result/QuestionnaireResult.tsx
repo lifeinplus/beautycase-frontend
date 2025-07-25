@@ -1,20 +1,16 @@
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { QuestionnaireResult } from '@/features/questionnaires/components/QuestionnaireResult'
+import { QuestionnaireData } from '@/features/questionnaires/components/QuestionnaireData'
 import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/questionnairesApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { RouteId } from '@/shared/types/router'
 import { formatDate } from '@/shared/utils/date'
 
-export const QuestionnaireResultPage = () => {
+export const QuestionnaireResult = () => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['questionnaire'])
@@ -49,19 +45,10 @@ export const QuestionnaireResultPage = () => {
                         data={data}
                         emptyMessage={t('emptyMessage')}
                     >
-                        {data && <QuestionnaireResult data={data} />}
+                        {data && <QuestionnaireData data={data} />}
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-            </NavBar>
         </article>
     )
 }

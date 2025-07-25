@@ -1,25 +1,23 @@
 import { render, screen } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { ReferenceListsPage } from '../ReferenceListsPage'
+import { ReferenceLists } from './ReferenceLists'
 
 vi.mock('@/features/referenceLists/components/ReferenceListsMobileView')
 vi.mock('@/features/referenceLists/components/ReferenceListsTable')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/layout/Header')
 vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/components/layout/Header')
 
-describe('ReferenceListsPage', () => {
+describe('ReferenceLists', () => {
     it('renders the component with correct structure', () => {
-        render(<ReferenceListsPage />)
+        render(<ReferenceLists />)
 
         expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {
-        render(<ReferenceListsPage />)
+        render(<ReferenceLists />)
 
         expect(
             screen.getByTestId('mocked-reference-lists-mobile-view')

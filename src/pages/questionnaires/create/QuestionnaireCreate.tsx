@@ -19,13 +19,12 @@ import { InputSection } from '@/shared/components/forms/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
 import buttonStyles from '@/shared/components/ui/button.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const QuestionnairePage = () => {
+export const QuestionnaireCreate = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('questionnaire')
 
@@ -261,8 +260,6 @@ export const QuestionnairePage = () => {
                     </form>
                 </article>
             </main>
-
-            <NavBar />
         </article>
     )
 }

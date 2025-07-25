@@ -123,7 +123,7 @@ export const UserSelectionPage = () => {
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-44"
+                                className="sm:w-48"
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}
                             />

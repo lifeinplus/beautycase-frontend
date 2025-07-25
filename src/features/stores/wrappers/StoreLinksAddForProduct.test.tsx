@@ -19,6 +19,7 @@ describe('StoreLinksAddForProduct', () => {
     beforeEach(() => {
         vi.mocked(useUpdateProductStoreLinksMutation as Mock).mockReturnValue([
             mockUpdate,
+            { isLoading: false },
         ])
 
         mockUpdate.mockReturnValue({ unwrap: mockUnwrap })

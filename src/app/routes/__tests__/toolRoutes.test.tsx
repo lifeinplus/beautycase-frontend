@@ -13,7 +13,6 @@ vi.mock('@/pages/tool/ToolAddPage')
 vi.mock('@/pages/tool/ToolDetailsPage')
 vi.mock('@/pages/tool/ToolEditPage')
 vi.mock('@/pages/tool/ToolsGalleryPage')
-vi.mock('@/shared/components/ScrollToTop')
 
 describe('toolRoutes', () => {
     it('renders the details page correctly', () => {
@@ -36,7 +35,7 @@ describe('toolRoutes', () => {
         renderWithRouter(<App />, ['/tools/1/links'])
 
         expect(
-            screen.getByTestId('mocked-store-links-add-page-for-tool')
+            screen.getByTestId('mocked-store-links-add-for-tool')
         ).toBeInTheDocument()
     })
 

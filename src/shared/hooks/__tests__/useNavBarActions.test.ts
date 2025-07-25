@@ -6,8 +6,10 @@ import { mockLocation } from '@/tests/mocks/router'
 import { useNavBarActions } from '../useNavBarActions'
 
 vi.mock('@/app/hooks')
+vi.mock('@/features/auth/authSlice')
 vi.mock('@/pages/lessons/details/hooks/useLessonDetailsActions')
 vi.mock('@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions')
+vi.mock('@/pages/product/details/hooks/useProductDetailsActions')
 vi.mock('@/shared/hooks/useAddActions')
 vi.mock('@/shared/hooks/useBackActions')
 vi.mock('@/shared/utils/menu')

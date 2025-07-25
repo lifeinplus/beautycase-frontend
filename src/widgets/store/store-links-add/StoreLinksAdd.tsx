@@ -153,6 +153,9 @@ export const StoreLinksAdd = ({
                                         </div>
                                         <div className={styles.link}>
                                             <textarea
+                                                aria-label={t(
+                                                    'fields.link.ariaLabel'
+                                                )}
                                                 className={classNames(
                                                     inputStyles.input,
                                                     'sm:hidden'
@@ -214,7 +217,6 @@ export const StoreLinksAdd = ({
                         </article>
 
                         <section className={buttonStyles.section}>
-                            {/* TODO check w-48 for other buttons */}
                             <ButtonSubmit
                                 className="sm:w-48"
                                 isLoading={isSaving}

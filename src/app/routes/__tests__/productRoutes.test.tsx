@@ -13,7 +13,7 @@ vi.mock('@/pages/product/add/ProductAdd')
 vi.mock('@/pages/product/details/ProductDetails')
 vi.mock('@/pages/product/edit/ProductEdit')
 vi.mock('@/pages/product/gallery/ProductGallery')
-vi.mock('@/shared/components/ScrollToTop')
+vi.mock('@/shared/components/layout/Layout')
 
 describe('productRoutes', () => {
     it('renders the details page correctly', () => {
@@ -30,7 +30,7 @@ describe('productRoutes', () => {
         renderWithRouter(<App />, ['/products/1/links'])
 
         expect(
-            screen.getByTestId('mocked-store-links-add-page-for-product')
+            screen.getByTestId('mocked-store-links-add-for-product')
         ).toBeInTheDocument()
     })
 

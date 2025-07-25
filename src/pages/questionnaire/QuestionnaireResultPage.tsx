@@ -33,12 +33,11 @@ export const QuestionnaireResultPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <div className="hidden sm:block">
-                        <Hero
-                            headline={t('hero.headlineResult')}
-                            byline={createdAt}
-                        />
-                    </div>
+                    <Hero
+                        headline={t('hero.headlineResult')}
+                        byline={createdAt}
+                        hideOnMobile
+                    />
 
                     <div className="sm:hidden">
                         <Hero byline={createdAt} />

@@ -151,4 +151,12 @@ describe('ProductSelection', () => {
         const selected = document.querySelectorAll("[class*='numbered']")
         expect(selected.length).toBe(0)
     })
+
+    it('shows saving label when isSaving is true', () => {
+        render(<ProductSelection onSave={mockOnSave} isSaving={true} />)
+
+        expect(screen.getByTestId('mocked-button-submit')).toHaveTextContent(
+            'navigation:actions.saving'
+        )
+    })
 })

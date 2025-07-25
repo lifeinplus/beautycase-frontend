@@ -21,15 +21,16 @@ vi.mock('@/features/products/components/ProductForm')
 vi.mock('@/shared/utils/errorUtils')
 
 describe('ProductEdit', () => {
-    const mockUpdateProductById = vi.fn()
+    const mockUpdate = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useUpdateProductByIdMutation as Mock).mockReturnValue([
-            mockUpdateProductById,
+            mockUpdate,
+            { isLoading: false },
         ])
 
-        mockUpdateProductById.mockReturnValue({ unwrap: mockUnwrap })
+        mockUpdate.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
 
         vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
@@ -50,7 +51,7 @@ describe('ProductEdit', () => {
         render(<ProductEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateProductById).toHaveBeenCalledWith({
+        expect(mockUpdate).toHaveBeenCalledWith({
             id: '123',
             product: mockProduct1,
         })
@@ -72,7 +73,7 @@ describe('ProductEdit', () => {
         render(<ProductEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateProductById).toHaveBeenCalled()
+        expect(mockUpdate).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 

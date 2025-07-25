@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { Image } from '../ui/Image'
 import styles from './Hero.module.css'
 
@@ -6,10 +7,23 @@ export interface HeroProps {
     byline?: string
     imgUrl?: string
     content?: string
+    hideOnMobile?: boolean
 }
 
-export const Hero = ({ headline, byline, imgUrl, content }: HeroProps) => (
-    <section id="hero" className={styles.container}>
+export const Hero = ({
+    headline,
+    byline,
+    imgUrl,
+    content,
+    hideOnMobile,
+}: HeroProps) => (
+    <section
+        id="hero"
+        className={classNames(
+            styles.container,
+            hideOnMobile && 'hidden sm:block'
+        )}
+    >
         <div className={styles.title}>
             {headline && <h2 className={styles.headline}>{headline}</h2>}
             {byline && <h3 className={styles.byline}>{byline}</h3>}

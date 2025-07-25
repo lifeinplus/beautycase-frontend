@@ -121,7 +121,7 @@ export const LessonForm = ({
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-44"
+                                className="sm:w-48"
                                 isLoading={isSaving}
                                 label={
                                     isSaving

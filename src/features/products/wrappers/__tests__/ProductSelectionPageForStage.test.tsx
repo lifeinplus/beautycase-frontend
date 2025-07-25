@@ -18,6 +18,7 @@ describe('ProductSelectionPageForStage', () => {
     beforeEach(() => {
         vi.mocked(useUpdateStageProductsMutation as Mock).mockReturnValue([
             mockUpdate,
+            { isLoading: false },
         ])
 
         mockUpdate.mockReturnValue({ unwrap: mockUnwrap })
@@ -49,7 +50,7 @@ describe('ProductSelectionPageForStage', () => {
     it('shows error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
+        const spyConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
@@ -59,9 +60,9 @@ describe('ProductSelectionPageForStage', () => {
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
-        mockConsoleError.mockRestore()
+        spyConsoleError.mockRestore()
     })
 })

@@ -5,7 +5,8 @@ import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
 
 export const ProductSelectionPageForStage = () => {
-    const [updateStageProducts] = useUpdateStageProductsMutation()
+    const [updateStageProducts, { isLoading }] =
+        useUpdateStageProductsMutation()
 
     const onSave = async (id: string, productIds: string[]) => {
         try {
@@ -19,5 +20,5 @@ export const ProductSelectionPageForStage = () => {
         }
     }
 
-    return <ProductSelection onSave={onSave} />
+    return <ProductSelection onSave={onSave} isSaving={isLoading} />
 }

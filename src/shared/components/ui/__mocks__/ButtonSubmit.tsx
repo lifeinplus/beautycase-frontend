@@ -1,5 +1,7 @@
 import { ButtonSubmitProps } from '../ButtonSubmit'
 
-export const ButtonSubmit = ({ onClick }: ButtonSubmitProps) => (
-    <button data-testid="mocked-button-submit" onClick={onClick}></button>
+export const ButtonSubmit = ({ label, onClick }: ButtonSubmitProps) => (
+    <button data-testid="mocked-button-submit" onClick={onClick}>
+        {label}
+    </button>
 )

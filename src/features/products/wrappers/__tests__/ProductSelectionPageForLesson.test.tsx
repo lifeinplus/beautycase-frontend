@@ -18,6 +18,7 @@ describe('ProductSelectionPageForLesson', () => {
     beforeEach(() => {
         vi.mocked(useUpdateLessonProductsMutation as Mock).mockReturnValue([
             mockUpdate,
+            { isLoading: false },
         ])
 
         mockUpdate.mockReturnValue({ unwrap: mockUnwrap })

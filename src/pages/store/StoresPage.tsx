@@ -72,9 +72,7 @@ export const StoresPage = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <div className="hidden sm:block">
-                        <Hero headline={t('titles.list')} />
-                    </div>
+                    <Hero headline={t('titles.list')} hideOnMobile />
 
                     <StoreForm ref={storeFormRef} />
 

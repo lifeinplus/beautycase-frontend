@@ -68,11 +68,10 @@ export const Brands = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    {/* TODO hide on mobile */}
-                    <div className="hidden sm:block">
-                        <Hero headline={t('hero.headline')} />
-                    </div>
+                    <Hero headline={t('hero.headline')} hideOnMobile />
+
                     <BrandForm ref={brandFormRef} />
+
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}

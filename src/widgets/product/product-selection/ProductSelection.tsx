@@ -22,9 +22,13 @@ import styles from './ProductSelection.module.css'
 
 export interface ProductSelectionProps {
     onSave: (id: string, productIds: string[]) => Promise<void>
+    isSaving?: boolean
 }
 
-export const ProductSelection = ({ onSave }: ProductSelectionProps) => {
+export const ProductSelection = ({
+    onSave,
+    isSaving = false,
+}: ProductSelectionProps) => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('product')
@@ -122,8 +126,13 @@ export const ProductSelection = ({ onSave }: ProductSelectionProps) => {
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-44"
-                                label={t('navigation:actions.save')}
+                                className="sm:w-48"
+                                isLoading={isSaving}
+                                label={
+                                    isSaving
+                                        ? t('navigation:actions.saving')
+                                        : t('navigation:actions.save')
+                                }
                                 onClick={handleSave}
                             />
                         </section>

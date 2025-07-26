@@ -12,7 +12,7 @@ import {
 } from '@/features/stages/stagesApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StageEditPage } from '../StageEditPage'
+import { StageEdit } from './StageEdit'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,7 +20,7 @@ vi.mock('@/features/stages/components/StageForm')
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('StageEditPage', () => {
+describe('StageEdit', () => {
     const mockUpdateStageById = vi.fn()
     const mockUnwrap = vi.fn()
 
@@ -38,7 +38,7 @@ describe('StageEditPage', () => {
     })
 
     it('renders the StageForm with title', () => {
-        render(<StageEditPage />)
+        render(<StageEdit />)
 
         expect(screen.getByTestId('mocked-stage-form')).toBeInTheDocument()
         expect(screen.getByText('titles.edit')).toBeInTheDocument()
@@ -47,7 +47,7 @@ describe('StageEditPage', () => {
     it('handles form submission successfully', async () => {
         const user = userEvent.setup()
 
-        render(<StageEditPage />)
+        render(<StageEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateStageById).toHaveBeenCalledWith({
@@ -72,7 +72,7 @@ describe('StageEditPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<StageEditPage />)
+        render(<StageEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdateStageById).toHaveBeenCalled()

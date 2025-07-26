@@ -8,7 +8,7 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/auth/components/PersistLogin')
 vi.mock('@/features/auth/components/RequireAuth')
 vi.mock('@/features/auth/components/RequireRole')
-vi.mock('@/features/products/wrappers/ProductSelectionPageForLesson')
+vi.mock('@/features/products/wrappers/ProductSelectionForLesson')
 vi.mock('@/pages/lessons/add/LessonAdd')
 vi.mock('@/pages/lessons/details/LessonDetails')
 vi.mock('@/pages/lessons/edit/LessonEdit')
@@ -32,7 +32,7 @@ describe('lessonRoutes', () => {
         renderWithRouter(<App />, ['/lessons/1/products'])
 
         expect(
-            screen.getByTestId('mocked-product-selection-page-for-lesson')
+            screen.getByTestId('mocked-product-selection-for-lesson')
         ).toBeInTheDocument()
     })
 

@@ -18,7 +18,7 @@ import type { Stage } from '@/features/stages/types'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const StageEditPage = () => {
+export const StageEdit = () => {
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('stage')

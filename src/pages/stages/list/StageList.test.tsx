@@ -6,24 +6,19 @@ import { useAppSelector } from '@/app/hooks'
 import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { mockStage1, mockStages } from '@/features/stages/__mocks__/stagesApi'
 import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
-import { mockNavigate } from '@/tests/mocks/router'
-import { StageListPage } from '../StageListPage'
+import { StageList } from './StageList'
 
 vi.mock('@/app/hooks')
-vi.mock('@/features/auth/authSlice')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/stages/components/StageFilter')
 vi.mock('@/features/stages/components/StageMobileView')
 vi.mock('@/features/stages/components/StageTable')
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/layout/Header')
 vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/utils/menu')
+vi.mock('@/shared/components/layout/Header')
 
-describe('StageListPage', () => {
+describe('StageList', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockImplementation((selector) => {
             if (selector === selectRole) return 'admin'
@@ -44,10 +39,9 @@ describe('StageListPage', () => {
             'mocked-hero',
             'mocked-stage-filter',
             'mocked-data-wrapper',
-            'mocked-nav-bar',
         ]
 
-        render(<StageListPage />)
+        render(<StageList />)
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
@@ -55,24 +49,15 @@ describe('StageListPage', () => {
     it('renders page components and list views', () => {
         const ids = ['mocked-stage-mobile-view', 'mocked-stage-table']
 
-        render(<StageListPage />)
+        render(<StageList />)
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
-    })
-
-    it('navigates to add page when add button is clicked', async () => {
-        const user = userEvent.setup()
-
-        render(<StageListPage />)
-        await user.click(screen.getByRole('button', { name: /add/ }))
-
-        expect(mockNavigate).toHaveBeenCalledWith('add')
     })
 
     it('updates filtered stages when filter changes', async () => {
         const user = userEvent.setup()
 
-        render(<StageListPage />)
+        render(<StageList />)
         await user.click(screen.getByTestId('mocked-filter-button'))
 
         const stageTable = screen.getByTestId('mocked-stage-table')

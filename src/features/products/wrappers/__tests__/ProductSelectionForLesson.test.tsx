@@ -3,20 +3,20 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { useUpdateStageProductsMutation } from '@/features/stages/stagesApi'
+import { useUpdateLessonProductsMutation } from '@/features/lessons/lessonsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { ProductSelectionPageForStage } from '../ProductSelectionPageForStage'
+import { ProductSelectionForLesson } from '../ProductSelectionForLesson'
 
-vi.mock('@/features/stages/stagesApi')
+vi.mock('@/features/lessons/lessonsApi')
 vi.mock('@/shared/utils/errorUtils')
 vi.mock('@/widgets/product/product-selection/ProductSelection')
 
-describe('ProductSelectionPageForStage', () => {
+describe('ProductSelectionForLesson', () => {
     const mockUpdate = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateStageProductsMutation as Mock).mockReturnValue([
+        vi.mocked(useUpdateLessonProductsMutation as Mock).mockReturnValue([
             mockUpdate,
             { isLoading: false },
         ])
@@ -26,7 +26,7 @@ describe('ProductSelectionPageForStage', () => {
     })
 
     it('renders ProductSelection successfully', async () => {
-        render(<ProductSelectionPageForStage />)
+        render(<ProductSelectionForLesson />)
 
         expect(
             screen.getByTestId('mocked-product-selection')
@@ -36,7 +36,7 @@ describe('ProductSelectionPageForStage', () => {
     it('passes correct onSave handler', async () => {
         const user = userEvent.setup()
 
-        render(<ProductSelectionPageForStage />)
+        render(<ProductSelectionForLesson />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalledWith({
@@ -50,19 +50,19 @@ describe('ProductSelectionPageForStage', () => {
     it('shows error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const spyConsoleError = vi
+        const mockConsoleError = vi
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<ProductSelectionPageForStage />)
+        render(<ProductSelectionForLesson />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalled()
-        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
+        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
-        spyConsoleError.mockRestore()
+        mockConsoleError.mockRestore()
     })
 })

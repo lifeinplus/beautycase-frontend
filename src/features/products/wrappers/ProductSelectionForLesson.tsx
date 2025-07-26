@@ -1,16 +1,16 @@
 import toast from 'react-hot-toast'
 
-import { useUpdateStageProductsMutation } from '@/features/stages/stagesApi'
+import { useUpdateLessonProductsMutation } from '@/features/lessons/lessonsApi'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
 
-export const ProductSelectionPageForStage = () => {
-    const [updateStageProducts, { isLoading }] =
-        useUpdateStageProductsMutation()
+export const ProductSelectionForLesson = () => {
+    const [updateLessonProducts, { isLoading }] =
+        useUpdateLessonProductsMutation()
 
     const onSave = async (id: string, productIds: string[]) => {
         try {
-            await updateStageProducts({
+            await updateLessonProducts({
                 id: id,
                 data: { productIds },
             }).unwrap()

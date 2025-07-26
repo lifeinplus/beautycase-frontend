@@ -12,7 +12,7 @@ import {
 import { useCreateStageMutation } from '@/features/stages/stagesApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StageAddPage } from '../StageAddPage'
+import { StageAdd } from './StageAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,13 +20,14 @@ vi.mock('@/features/stages/components/StageForm')
 vi.mock('@/features/stages/stagesApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('StageAddPage', () => {
+describe('StageAdd', () => {
     const mockAddStage = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useCreateStageMutation as Mock).mockReturnValue([
             mockAddStage,
+            { isLoading: false },
         ])
 
         mockAddStage.mockReturnValue({ unwrap: mockUnwrap })
@@ -34,7 +35,7 @@ describe('StageAddPage', () => {
     })
 
     it('renders the StageForm with correct title', () => {
-        render(<StageAddPage />)
+        render(<StageAdd />)
 
         expect(screen.getByTestId('mocked-stage-form')).toBeInTheDocument()
         expect(screen.getByText('titles.add')).toBeInTheDocument()
@@ -44,7 +45,7 @@ describe('StageAddPage', () => {
         const user = userEvent.setup()
         const { stepsText, ...restStage } = mockStage1
 
-        render(<StageAddPage />)
+        render(<StageAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddStage).toHaveBeenCalledWith(restStage)
@@ -62,7 +63,7 @@ describe('StageAddPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<StageAddPage />)
+        render(<StageAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddStage).toHaveBeenCalled()

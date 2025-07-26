@@ -39,12 +39,12 @@ export const mockStage2: Stage = {
 export const mockStages: Stage[] = [mockStage1, mockStage2]
 
 export const useCreateStageMutation = vi.fn()
+export const useDeleteStageByIdMutation = vi.fn()
 export const useDuplicateStageByIdMutation = vi.fn()
 export const useGetAllStagesQuery = vi.fn()
 export const useGetStageByIdQuery = vi.fn()
 export const useUpdateStageByIdMutation = vi.fn()
 export const useUpdateStageProductsMutation = vi.fn()
-export const useDeleteStageByIdMutation = vi.fn()
 
 const stagesHandlers = [
     http.post('api/stages', () => HttpResponse.json(mockStageCreate)),

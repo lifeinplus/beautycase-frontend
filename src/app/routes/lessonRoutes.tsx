@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { ProductSelectionPageForLesson } from '@/features/products/wrappers/ProductSelectionPageForLesson'
+import { ProductSelectionForLesson } from '@/features/products/wrappers/ProductSelectionForLesson'
 import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
 import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
@@ -17,7 +17,7 @@ export const lessonRoutes = [
                 <Route index element={<LessonGallery />} />
                 <Route
                     path=":id/products"
-                    element={<ProductSelectionPageForLesson />}
+                    element={<ProductSelectionForLesson />}
                 />
                 <Route path="add" element={<LessonAdd />} />
                 <Route path="add/clients" element={<UserSelectionPage />} />

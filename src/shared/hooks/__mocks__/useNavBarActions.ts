@@ -18,4 +18,16 @@ export const useNavBarActions = vi.fn(() => [
             onCancel: vi.fn(),
         },
     },
+    {
+        key: 'duplicate',
+        label: 'Duplicate',
+        onClick: vi.fn(),
+        modalProps: {
+            isOpen: true,
+            title: 'Confirm Duplicate',
+            description: 'Are you sure?',
+            onConfirm: vi.fn(),
+            onCancel: vi.fn(),
+        },
+    },
 ])

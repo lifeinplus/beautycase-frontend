@@ -1,10 +1,7 @@
-import { PlusIcon } from '@heroicons/react/24/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
+import { useAppDispatch } from '@/app/hooks'
 import { clearFormData } from '@/features/form/formSlice'
 import { StageFilter } from '@/features/stages/components/StageFilter'
 import { StageMobileView } from '@/features/stages/components/StageMobileView'
@@ -14,58 +11,18 @@ import type { Stage } from '@/features/stages/types'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { Header } from '@/shared/components/layout/Header'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import { canAccess } from '@/shared/utils/menu'
 
-const ACTIONS = {
-    add: {
-        icon: PlusIcon,
-        label: 'actions.add',
-    },
-} as const
-
-type ActionId = keyof typeof ACTIONS
-
-interface ActionItem {
-    id: ActionId
-    auth?: boolean
-    roles?: string[]
-}
-
-const ACTION_ITEMS: ActionItem[] = [
-    { id: 'add', auth: true, roles: ['admin', 'mua'] },
-]
-
-export const StageListPage = () => {
-    const navigate = useNavigate()
+export const StageList = () => {
     const { t } = useTranslation(['stage', 'component'])
-
     const dispatch = useAppDispatch()
-    const role = useAppSelector(selectRole)
-    const username = useAppSelector(selectUsername)
 
     const [filteredStages, setFilteredStages] = useState<Stage[]>([])
-
     const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
 
     useEffect(() => {
         dispatch(clearFormData())
     }, [dispatch])
-
-    const actionHandlers = {
-        add: () => navigate('add'),
-    }
-
-    const visibleActions = ACTION_ITEMS.filter((item) =>
-        canAccess(item, username, role)
-    ).map(({ id }) => ({
-        key: id,
-        icon: ACTIONS[id].icon,
-        label: t(`navigation:${ACTIONS[id].label}`),
-        onClick: actionHandlers[id],
-    }))
 
     const handleFilterChange = useCallback((filteredStages: Stage[]) => {
         setFilteredStages(filteredStages)
@@ -97,17 +54,6 @@ export const StageListPage = () => {
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                {visibleActions.map(({ key, icon, label, onClick }) => (
-                    <NavButton
-                        key={key}
-                        icon={icon}
-                        label={label}
-                        onClick={onClick}
-                    />
-                ))}
-            </NavBar>
         </article>
     )
 }

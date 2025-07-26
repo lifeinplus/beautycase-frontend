@@ -8,13 +8,11 @@ import type { RouteId } from '@/shared/types/router'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
 import { Details } from '@/widgets/view/details/Details'
 
-export const StageDetailsPage = () => {
+export const StageDetails = () => {
     const { id } = useParams<RouteId>()
     const { t } = useTranslation('stage')
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
-    // const [deleteStageById] = useDeleteStageByIdMutation()
-    // const [duplicateStageById] = useDuplicateStageByIdMutation()
 
     return (
         <Details
@@ -25,9 +23,6 @@ export const StageDetailsPage = () => {
             title={data?.title}
             subtitle={data?.subtitle}
             description={data?.steps?.reduce((p, c) => p + c, '')}
-            // deleteItem={deleteStageById}
-            // duplicateItem={duplicateStageById}
-            showDuplicate={true}
             mediaContent={
                 <ImageSection name={data?.title} url={data?.imageUrl} />
             }

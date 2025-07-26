@@ -9,12 +9,12 @@ import { useCreateStageMutation } from '@/features/stages/stagesApi'
 import type { Stage } from '@/features/stages/types'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const StageAddPage = () => {
+export const StageAdd = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('stage')
 
     const dispatch = useAppDispatch()
-    const [createStage] = useCreateStageMutation()
+    const [createStage, { isLoading }] = useCreateStageMutation()
 
     const handleAddStage = async (stage: Stage) => {
         const { stepsText, ...newStage } = stage
@@ -33,5 +33,11 @@ export const StageAddPage = () => {
         }
     }
 
-    return <StageForm title={t('titles.add')} onSubmit={handleAddStage} />
+    return (
+        <StageForm
+            title={t('titles.add')}
+            onSubmit={handleAddStage}
+            isSaving={isLoading}
+        />
+    )
 }

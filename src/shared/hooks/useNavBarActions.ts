@@ -6,6 +6,7 @@ import { selectRole, selectUsername } from '@/features/auth/authSlice'
 import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLessonDetailsActions'
 import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
+import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
 import { useAddActions } from '@/shared/hooks/useAddActions'
 import { useBackActions } from '@/shared/hooks/useBackActions'
 import { canAccess } from '@/shared/utils/menu'
@@ -39,6 +40,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const lessonDetailsActions = useLessonDetailsActions()
     const makeupBagDetailsActions = useMakeupBagDetailsActions()
     const productDetailsActions = useProductDetailsActions()
+    const stageDetailsActions = useStageDetailsActions()
 
     const getActionsForRoute = () => {
         const { pathname } = location
@@ -124,12 +126,36 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const stageRoutes = [
+            {
+                pattern: /^\/stages$/i,
+                actions: addActions,
+            },
+            {
+                pattern: /^\/stages\/[a-f0-9]{24}$/i,
+                actions: stageDetailsActions,
+            },
+            {
+                pattern: /^\/stages\/[a-f0-9]{24}\/products$/i,
+                actions: backActions,
+            },
+            {
+                pattern: /^\/stages\/add$/i,
+                actions: backActions,
+            },
+            {
+                pattern: /^\/stages\/edit\/[a-f0-9]{24}$/i,
+                actions: backActions,
+            },
+        ]
+
         const match = [
             ...lessonRoutes,
             ...makeupBagRoutes,
             ...productRoutes,
             ...questionnaireRoutes,
             ...referenceListRoutes,
+            ...stageRoutes,
         ].find((route) => route.pattern.test(pathname))
 
         return match?.actions || []

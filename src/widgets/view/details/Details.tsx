@@ -18,7 +18,6 @@ export interface DetailsProps {
     title?: string
     subtitle?: string
     description?: string
-    showDuplicate?: boolean
     mediaContent?: ReactNode
     descriptionContent?: ReactNode
     additionalContent?: ReactNode

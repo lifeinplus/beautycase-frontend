@@ -10,9 +10,6 @@
             "ariaLabel": "Кнопка изменить бренд"
         }
     },
-    "hero": {
-        "headline": "Бренды"
-    },
     "emptyMessageList": "Бренды не найдены",
     "fields": {
         "name": {
@@ -23,7 +20,10 @@
         }
     },
     "table": {
-        "brandName": "Бренд",
+        "brand": "Бренд",
         "actions": "Действия"
+    },
+    "titles": {
+        "list": "Бренды"
     }
 }

@@ -18,7 +18,7 @@ import type { Tool } from '@/features/tools/types'
 import type { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ToolEditPage = () => {
+export const ToolEdit = () => {
     const { id } = useParams<RouteId>()
     const navigate = useNavigate()
     const { t } = useTranslation('tool')
@@ -26,7 +26,7 @@ export const ToolEditPage = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [updateToolById] = useUpdateToolByIdMutation()
+    const [updateToolById, { isLoading }] = useUpdateToolByIdMutation()
     const { data } = useGetToolByIdQuery(id!)
 
     useEffect(() => {
@@ -55,5 +55,11 @@ export const ToolEditPage = () => {
         }
     }
 
-    return <ToolForm title={t('titles.edit')} onSubmit={handleEditTool} />
+    return (
+        <ToolForm
+            title={t('titles.edit')}
+            onSubmit={handleEditTool}
+            isSaving={isLoading}
+        />
+    )
 }

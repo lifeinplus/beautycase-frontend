@@ -6,7 +6,7 @@ import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
 import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
 import { LessonGallery } from '@/pages/lessons/gallery/LessonGallery'
-import { UserSelectionPage } from '@/pages/user/UserSelectionPage'
+import { UserSelection } from '@/pages/users/UserSelection'
 import { Layout } from '@/shared/components/layout/Layout'
 
 export const lessonRoutes = [
@@ -20,12 +20,9 @@ export const lessonRoutes = [
                     element={<ProductSelectionForLesson />}
                 />
                 <Route path="add" element={<LessonAdd />} />
-                <Route path="add/clients" element={<UserSelectionPage />} />
+                <Route path="add/clients" element={<UserSelection />} />
                 <Route path="edit/:id" element={<LessonEdit />} />
-                <Route
-                    path="edit/:id/clients"
-                    element={<UserSelectionPage />}
-                />
+                <Route path="edit/:id/clients" element={<UserSelection />} />
             </Route>
         </Route>
     </Route>,

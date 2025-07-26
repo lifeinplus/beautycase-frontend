@@ -7,6 +7,7 @@ import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLesson
 import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
+import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
 import { useAddActions } from '@/shared/hooks/useAddActions'
 import { useBackActions } from '@/shared/hooks/useBackActions'
 import { canAccess } from '@/shared/utils/menu'
@@ -23,7 +24,7 @@ export interface NavBarAction {
         isOpen: boolean
         title: string
         description: string
-        onConfirm: () => Promise<void>
+        onConfirm: () => Promise<void> | void
         onCancel: () => void
     }
 }
@@ -41,6 +42,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const makeupBagDetailsActions = useMakeupBagDetailsActions()
     const productDetailsActions = useProductDetailsActions()
     const stageDetailsActions = useStageDetailsActions()
+    const toolDetailsActions = useToolDetailsActions()
 
     const getActionsForRoute = () => {
         const { pathname } = location
@@ -103,11 +105,7 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: backActions,
             },
             {
-                pattern: /^\/products\/add$/i,
-                actions: backActions,
-            },
-            {
-                pattern: /^\/products\/edit\/[a-f0-9]{24}$/i,
+                pattern: /^\/products\/(add|edit\/[a-f0-9]{24})$/i,
                 actions: backActions,
             },
         ]
@@ -121,7 +119,7 @@ export const useNavBarActions = (): NavBarAction[] => {
 
         const referenceListRoutes = [
             {
-                pattern: /^\/reference-lists\/brands$/i,
+                pattern: /^\/reference-lists\/(brands|stores)$/i,
                 actions: backActions,
             },
         ]
@@ -140,11 +138,26 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: backActions,
             },
             {
-                pattern: /^\/stages\/add$/i,
+                pattern: /^\/stages\/(add|edit\/[a-f0-9]{24})$/i,
+                actions: backActions,
+            },
+        ]
+
+        const toolRoutes = [
+            {
+                pattern: /^\/tools$/i,
+                actions: addActions,
+            },
+            {
+                pattern: /^\/tools\/[a-f0-9]{24}$/i,
+                actions: toolDetailsActions,
+            },
+            {
+                pattern: /^\/tools\/[a-f0-9]{24}\/links$/i,
                 actions: backActions,
             },
             {
-                pattern: /^\/stages\/edit\/[a-f0-9]{24}$/i,
+                pattern: /^\/tools\/(add|edit\/[a-f0-9]{24})$/i,
                 actions: backActions,
             },
         ]
@@ -156,6 +169,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             ...questionnaireRoutes,
             ...referenceListRoutes,
             ...stageRoutes,
+            ...toolRoutes,
         ].find((route) => route.pattern.test(pathname))
 
         return match?.actions || []

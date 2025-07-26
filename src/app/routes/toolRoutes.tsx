@@ -2,19 +2,22 @@ import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
 import { StoreLinksAddForTool } from '@/features/stores/wrappers/StoreLinksAddForTool'
-import { ToolAddPage } from '@/pages/tool/ToolAddPage'
-import { ToolDetailsPage } from '@/pages/tool/ToolDetailsPage'
-import { ToolEditPage } from '@/pages/tool/ToolEditPage'
-import { ToolsGalleryPage } from '@/pages/tool/ToolsGalleryPage'
+import { ToolAdd } from '@/pages/tools/add/ToolAdd'
+import { ToolDetails } from '@/pages/tools/details/ToolDetails'
+import { ToolEdit } from '@/pages/tools/edit/ToolEdit'
+import { ToolsGallery } from '@/pages/tools/gallery/ToolsGallery'
+import { Layout } from '@/shared/components/layout/Layout'
 
 export const toolRoutes = [
     <Route key="tools" path="/tools">
-        <Route path=":id" element={<ToolDetailsPage />} />
-        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-            <Route index element={<ToolsGalleryPage />} />
-            <Route path=":id/links" element={<StoreLinksAddForTool />} />
-            <Route path="add" element={<ToolAddPage />} />
-            <Route path="edit/:id" element={<ToolEditPage />} />
+        <Route element={<Layout />}>
+            <Route path=":id" element={<ToolDetails />} />
+            <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+                <Route index element={<ToolsGallery />} />
+                <Route path=":id/links" element={<StoreLinksAddForTool />} />
+                <Route path="add" element={<ToolAdd />} />
+                <Route path="edit/:id" element={<ToolEdit />} />
+            </Route>
         </Route>
     </Route>,
 ]

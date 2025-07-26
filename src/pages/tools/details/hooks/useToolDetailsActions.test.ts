@@ -12,22 +12,22 @@ import {
     vi,
 } from 'vitest'
 
-import { mockLesson1 } from '@/features/lessons/__mocks__/lessonsApi'
+import { mockTool1 } from '@/features/tools/__mocks__/toolsApi'
 import {
-    useDeleteLessonByIdMutation,
-    useGetLessonByIdQuery,
-} from '@/features/lessons/lessonsApi'
+    useDeleteToolByIdMutation,
+    useGetToolByIdQuery,
+} from '@/features/tools/toolsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { useLessonDetailsActions } from './useLessonDetailsActions'
+import { useToolDetailsActions } from './useToolDetailsActions'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
-vi.mock('@/features/lessons/lessonsApi')
+vi.mock('@/features/tools/toolsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('useLessonDetailsActions', () => {
-    const mockDeleteLessonById = vi.fn()
+describe('useToolDetailsActions', () => {
+    const mockDeleteToolById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
@@ -37,15 +37,15 @@ describe('useLessonDetailsActions', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useDeleteLessonByIdMutation as Mock).mockReturnValue([
-            mockDeleteLessonById,
+        vi.mocked(useDeleteToolByIdMutation as Mock).mockReturnValue([
+            mockDeleteToolById,
             { isLoading: false },
         ])
 
-        mockDeleteLessonById.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDeleteToolById.mockReturnValue({ unwrap: mockDeleteUnwrap })
 
-        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
-            data: mockLesson1,
+        vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
+            data: mockTool1,
             isLoading: false,
             error: null,
         })
@@ -56,12 +56,12 @@ describe('useLessonDetailsActions', () => {
     })
 
     it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useToolDetailsActions())
         expect(result.current).toHaveLength(3)
     })
 
     it('handles delete action', async () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useToolDetailsActions())
 
         const deleteAction = result.current.find(
             (action) => action.key === 'delete'
@@ -79,7 +79,7 @@ describe('useLessonDetailsActions', () => {
     it('shows error toast if delete fails', async () => {
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useToolDetailsActions())
 
         const deleteAction = result.current.find(
             (action) => action.key === 'delete'
@@ -91,12 +91,12 @@ describe('useLessonDetailsActions', () => {
             await onConfirm?.()
         })
 
-        expect(mockDeleteLessonById).toHaveBeenCalledWith('123')
+        expect(mockDeleteToolById).toHaveBeenCalledWith('123')
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
     })
 
     it('handles back action', async () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useToolDetailsActions())
 
         const backAction = result.current.find(
             (action) => action.key === 'back'
@@ -108,7 +108,7 @@ describe('useLessonDetailsActions', () => {
             await backAction!.onClick()
         })
 
-        expect(mockNavigate).toHaveBeenCalledWith('/lessons', {
+        expect(mockNavigate).toHaveBeenCalledWith('/tools', {
             replace: true,
             state: { scrollId: '123' },
         })
@@ -116,7 +116,7 @@ describe('useLessonDetailsActions', () => {
 
     it('returns empty array if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useToolDetailsActions())
         expect(result.current).toEqual([])
     })
 })

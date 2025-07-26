@@ -13,7 +13,7 @@ import {
 import { useGetAllUsersQuery } from '@/features/users/usersApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { UserSelectionPage } from '../UserSelectionPage'
+import { UserSelection } from './UserSelection'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -24,7 +24,7 @@ vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/ui/ButtonSubmit')
 vi.mock('@/shared/components/ui/Image')
 
-describe('UserSelectionPage', () => {
+describe('UserSelection', () => {
     const mockFormData = {
         clientIds: ['user2'],
     }
@@ -46,7 +46,7 @@ describe('UserSelectionPage', () => {
             error: null,
         })
 
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
     })
@@ -58,26 +58,26 @@ describe('UserSelectionPage', () => {
             error: mockError,
         })
 
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
     })
 
     it('renders client items', () => {
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
         expect(screen.getByText(mockUser1.username)).toBeInTheDocument()
         expect(screen.getByText(mockUser2.username)).toBeInTheDocument()
     })
 
     it('shows selected state for preselected clients', () => {
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
         const selected = document.querySelectorAll("[class*='selected']")
         expect(selected.length).toBe(1)
     })
 
     it('toggles client selection on click', async () => {
         const user = userEvent.setup()
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         const aliceRow = screen.getByText(mockUser1.username).closest('.grid')
         expect(aliceRow).toBeInTheDocument()
@@ -93,7 +93,7 @@ describe('UserSelectionPage', () => {
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
@@ -103,7 +103,7 @@ describe('UserSelectionPage', () => {
 
     it('saves selection and navigates back when save button is clicked', async () => {
         const user = userEvent.setup()
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         await user.click(screen.getByTestId('mocked-button-submit'))
 
@@ -119,7 +119,7 @@ describe('UserSelectionPage', () => {
     it('uses an empty array when there is no clientIds', async () => {
         vi.mocked(useAppSelector).mockReturnValue({ clientIds: null })
 
-        render(<UserSelectionPage />)
+        render(<UserSelection />)
 
         const selected = document.querySelectorAll("[class*='selected']")
         expect(selected.length).toBe(0)

@@ -44,6 +44,7 @@ describe('useMakeupBagDetailsActions', () => {
     beforeEach(() => {
         vi.mocked(useDeleteMakeupBagByIdMutation as Mock).mockReturnValue([
             mockDeleteMakeupBagById,
+            { isLoading: false },
         ])
 
         mockDeleteMakeupBagById.mockReturnValue({ unwrap: mockDeleteUnwrap })

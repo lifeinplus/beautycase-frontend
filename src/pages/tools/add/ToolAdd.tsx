@@ -9,12 +9,12 @@ import { useCreateToolMutation } from '@/features/tools/toolsApi'
 import type { Tool } from '@/features/tools/types'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const ToolAddPage = () => {
+export const ToolAdd = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('tool')
 
     const dispatch = useAppDispatch()
-    const [createTool] = useCreateToolMutation()
+    const [createTool, { isLoading }] = useCreateToolMutation()
 
     const handleAddTool = async (tool: Tool) => {
         try {
@@ -27,5 +27,11 @@ export const ToolAddPage = () => {
         }
     }
 
-    return <ToolForm title={t('titles.add')} onSubmit={handleAddTool} />
+    return (
+        <ToolForm
+            title={t('titles.add')}
+            onSubmit={handleAddTool}
+            isSaving={isLoading}
+        />
+    )
 }

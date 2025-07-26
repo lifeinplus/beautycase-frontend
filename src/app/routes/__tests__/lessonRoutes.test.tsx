@@ -13,7 +13,7 @@ vi.mock('@/pages/lessons/add/LessonAdd')
 vi.mock('@/pages/lessons/details/LessonDetails')
 vi.mock('@/pages/lessons/edit/LessonEdit')
 vi.mock('@/pages/lessons/gallery/LessonGallery')
-vi.mock('@/pages/user/UserSelectionPage')
+vi.mock('@/pages/users/UserSelection')
 vi.mock('@/shared/components/layout/Layout')
 vi.mock('@/shared/components/ScrollToTop')
 
@@ -48,9 +48,6 @@ describe('lessonRoutes', () => {
 
     it('renders the user selection page correctly', () => {
         renderWithRouter(<App />, ['/lessons/edit/1/clients'])
-
-        expect(
-            screen.getByTestId('mocked-user-selection-page')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-user-selection')).toBeInTheDocument()
     })
 })

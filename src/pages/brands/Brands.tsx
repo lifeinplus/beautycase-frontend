@@ -64,11 +64,11 @@ export const Brands = () => {
 
     return (
         <article>
-            <TopPanel title={t('hero.headline')} onBack={handleBack} />
+            <TopPanel title={t('titles.list')} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('hero.headline')} hideOnMobile />
+                    <Hero headline={t('titles.list')} hideOnMobile />
 
                     <BrandForm ref={brandFormRef} />
 

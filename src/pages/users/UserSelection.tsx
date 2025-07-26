@@ -16,9 +16,9 @@ import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
 import orderStyles from '@/shared/components/ui/order.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import styles from './UserSelectionPage.module.css'
+import styles from './UserSelection.module.css'
 
-export const UserSelectionPage = () => {
+export const UserSelection = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('client')
 

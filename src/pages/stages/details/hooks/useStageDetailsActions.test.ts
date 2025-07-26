@@ -48,6 +48,7 @@ describe('useStageDetailsActions', () => {
 
         vi.mocked(useDeleteStageByIdMutation as Mock).mockReturnValue([
             mockDeleteStage,
+            { isLoading: false },
         ])
 
         mockDeleteStage.mockReturnValue({ unwrap: mockDeleteUnwrap })

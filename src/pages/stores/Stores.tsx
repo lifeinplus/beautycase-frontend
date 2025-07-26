@@ -1,4 +1,3 @@
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -19,16 +18,13 @@ import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const StoresPage = () => {
+export const Stores = () => {
     const navigate = useNavigate()
     const storeFormRef = useRef<FormRef | null>(null)
-    const { t } = useTranslation('store')
+    const { t } = useTranslation(['store', 'modal'])
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [store, setStore] = useState<Store>()
@@ -99,15 +95,6 @@ export const StoresPage = () => {
                     </DataWrapper>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-            </NavBar>
 
             <ModalDelete
                 isOpen={isModalDeleteOpen}

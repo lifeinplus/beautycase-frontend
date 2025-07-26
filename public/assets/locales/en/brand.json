@@ -10,9 +10,6 @@
             "ariaLabel": "Edit brand button"
         }
     },
-    "hero": {
-        "headline": "Brands"
-    },
     "emptyMessageList": "No brands found",
     "fields": {
         "name": {
@@ -23,7 +20,10 @@
         }
     },
     "table": {
-        "brandName": "Brand",
+        "brand": "Brand",
         "actions": "Actions"
+    },
+    "titles": {
+        "list": "Brands"
     }
 }

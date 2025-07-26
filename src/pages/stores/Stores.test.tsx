@@ -12,7 +12,7 @@ import {
 import type { Store } from '@/features/stores/types'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { StoresPage } from './StoresPage'
+import { Stores } from './Stores'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -28,7 +28,7 @@ vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('StoresPage', () => {
+describe('Stores', () => {
     const mockStores: Store[] = [
         { _id: '1', name: 'Store A' },
         { _id: '2', name: 'Store B' },
@@ -55,27 +55,27 @@ describe('StoresPage', () => {
     })
 
     it('renders the page title', () => {
-        render(<StoresPage />)
+        render(<Stores />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-store-form')).toBeInTheDocument()
-        expect(
-            screen.getByTestId('mocked-stores-mobile-view')
-        ).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-stores-table')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-nav-bar')).toBeInTheDocument()
+        const ids = [
+            'mocked-top-panel',
+            'mocked-hero',
+            'mocked-store-form',
+            'mocked-stores-mobile-view',
+            'mocked-stores-table',
+            'mocked-mobile-store-1',
+            'mocked-mobile-store-2',
+            'mocked-table-store-1',
+            'mocked-table-store-2',
+        ]
 
-        expect(screen.getByTestId('mocked-mobile-store-1')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-mobile-store-2')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-table-store-1')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-table-store-2')).toBeInTheDocument()
+        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })
 
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StoresPage />)
+        render(<Stores />)
 
         const backButton = screen.getByTestId('mocked-back-button')
         await user.click(backButton)
@@ -86,7 +86,7 @@ describe('StoresPage', () => {
     it('should edit store when edit button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<StoresPage />)
+        render(<Stores />)
 
         const editButton = screen.getByTestId('mocked-table-edit-1')
         await user.click(editButton)
@@ -97,7 +97,7 @@ describe('StoresPage', () => {
     it('should delete store when delete is confirmed', async () => {
         const user = userEvent.setup()
 
-        render(<StoresPage />)
+        render(<Stores />)
 
         const deleteButton = screen.getByTestId('mocked-table-delete-1')
 
@@ -124,7 +124,7 @@ describe('StoresPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<StoresPage />)
+        render(<Stores />)
 
         const deleteButton = screen.getByTestId('mocked-table-delete-1')
 

@@ -31,7 +31,10 @@ export const useStageDetailsActions = () => {
     const [isModalDuplicateOpen, setIsModalDuplicateOpen] = useState(false)
 
     const { data } = useGetStageByIdQuery(id!, { skip: !id })
-    const [deleteStageById] = useDeleteStageByIdMutation()
+
+    const [deleteStageById, { isLoading: isDeleting }] =
+        useDeleteStageByIdMutation()
+
     const [duplicateStageById] = useDuplicateStageByIdMutation()
 
     const redirectPath = '/stages'
@@ -119,7 +122,7 @@ export const useStageDetailsActions = () => {
                 description: t('modal:delete.description', {
                     name: data?.title,
                 }),
-                onConfirm: handleDelete,
+                onConfirm: isDeleting ? () => {} : handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),
             },
         },

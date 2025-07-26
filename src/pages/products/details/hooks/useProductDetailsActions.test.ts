@@ -39,6 +39,7 @@ describe('useProductDetailsActions', () => {
     beforeEach(() => {
         vi.mocked(useDeleteProductByIdMutation as Mock).mockReturnValue([
             mockDeleteProductById,
+            { isLoading: false },
         ])
 
         mockDeleteProductById.mockReturnValue({ unwrap: mockDeleteUnwrap })

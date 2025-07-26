@@ -19,6 +19,7 @@ describe('StoreLinksAddForTool', () => {
     beforeEach(() => {
         vi.mocked(useUpdateToolStoreLinksMutation as Mock).mockReturnValue([
             mockUpdate,
+            { isLoading: false },
         ])
 
         mockUpdate.mockReturnValue({ unwrap: mockUnwrap })
@@ -27,7 +28,6 @@ describe('StoreLinksAddForTool', () => {
 
     it('renders StoreLinksAdd successfully', async () => {
         render(<StoreLinksAddForTool />)
-
         expect(screen.getByTestId('mocked-store-links-add')).toBeInTheDocument()
     })
 

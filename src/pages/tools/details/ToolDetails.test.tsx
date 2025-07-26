@@ -6,14 +6,14 @@ import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
 } from '@/features/tools/toolsApi'
-import { ToolDetailsPage } from '../ToolDetailsPage'
+import { ToolDetails } from './ToolDetails'
 
 vi.mock('@/features/tools/toolsApi')
 vi.mock('@/shared/components/common/ImageSection')
 vi.mock('@/widgets/store/store-links/StoreLinks')
 vi.mock('@/widgets/view/details/Details')
 
-describe('ToolDetailsPage', () => {
+describe('ToolDetails', () => {
     const mockDeleteTool = vi.fn()
 
     beforeEach(() => {
@@ -29,7 +29,7 @@ describe('ToolDetailsPage', () => {
     })
 
     it('renders tool details', async () => {
-        render(<ToolDetailsPage />)
+        render(<ToolDetails />)
 
         const title = screen.getByText(mockTool1.name)
         const subtitle = screen.getByText(mockTool1.brand?.name!)

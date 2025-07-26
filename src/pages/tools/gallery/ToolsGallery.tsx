@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
-import styles from './ToolsGalleryPage.module.css'
+import styles from './ToolsGallery.module.css'
 
-export const ToolsGalleryPage = () => {
+export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
-
     const { data: tools, isLoading, error } = useGetAllToolsQuery()
 
     return (

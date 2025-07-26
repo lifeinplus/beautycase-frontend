@@ -28,7 +28,9 @@ export const useLessonDetailsActions = () => {
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
     const { data } = useGetLessonByIdQuery(id!, { skip: !id })
-    const [deleteLessonById] = useDeleteLessonByIdMutation()
+
+    const [deleteLessonById, { isLoading: isDeleting }] =
+        useDeleteLessonByIdMutation()
 
     const redirectPath = '/lessons'
 
@@ -85,7 +87,7 @@ export const useLessonDetailsActions = () => {
                 description: t('modal:delete.description', {
                     name: data?.title,
                 }),
-                onConfirm: handleDelete,
+                onConfirm: isDeleting ? () => {} : handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),
             },
         },

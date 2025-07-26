@@ -5,14 +5,11 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/__mocks__/hooks'
 import { clearFormData } from '@/features/form/formSlice'
-import { mockTool1 } from '@/features/tools/__mocks__/toolsApi'
-import {
-    useGetToolByIdQuery,
-    useUpdateToolByIdMutation,
-} from '@/features/tools/toolsApi'
+import { mockTool1, mockToolCreate } from '@/features/tools/__mocks__/toolsApi'
+import { useCreateToolMutation } from '@/features/tools/toolsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
 import { mockNavigate } from '@/tests/mocks/router'
-import { ToolEditPage } from '../ToolEditPage'
+import { ToolAdd } from './ToolAdd'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
@@ -20,47 +17,43 @@ vi.mock('@/features/tools/components/ToolForm')
 vi.mock('@/features/tools/toolsApi')
 vi.mock('@/shared/utils/errorUtils')
 
-describe('ToolEditPage', () => {
-    const mockUpdateToolById = vi.fn()
+describe('ToolAdd', () => {
+    const mockAddTool = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useUpdateToolByIdMutation as Mock).mockReturnValue([
-            mockUpdateToolById,
+        vi.mocked(useCreateToolMutation as Mock).mockReturnValue([
+            mockAddTool,
+            { isLoading: false },
         ])
 
-        mockUpdateToolById.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue({})
-
-        vi.mocked(useGetToolByIdQuery as Mock).mockReturnValue({
-            data: mockTool1,
-        })
+        mockAddTool.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue(mockToolCreate)
     })
 
-    it('renders the ToolForm with title', () => {
-        render(<ToolEditPage />)
+    it('renders the ToolForm with correct title', () => {
+        render(<ToolAdd />)
 
-        expect(screen.getByTestId('mocked-tool-form')).toBeInTheDocument()
-        expect(screen.getByText('titles.edit')).toBeInTheDocument()
+        const form = screen.getByTestId('mocked-tool-form')
+        const title = screen.getByText('titles.add')
+
+        expect(form).toBeInTheDocument()
+        expect(title).toBeInTheDocument()
     })
 
-    it('handles form submission successfully', async () => {
+    it('calls addTool and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<ToolEditPage />)
+        render(<ToolAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateToolById).toHaveBeenCalledWith({
-            id: '123',
-            tool: mockTool1,
-        })
-
+        expect(mockAddTool).toHaveBeenCalledWith(mockTool1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/tools/123')
+        expect(mockNavigate).toHaveBeenCalledWith('/tools/tool3')
     })
 
-    it('shows error toast on failure', async () => {
+    it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
         const mockConsoleError = vi
@@ -69,13 +62,14 @@ describe('ToolEditPage', () => {
 
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<ToolEditPage />)
+        render(<ToolAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
-        expect(mockUpdateToolById).toHaveBeenCalled()
+        expect(mockAddTool).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith(mockError.message)
 
+        expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()
 
         mockConsoleError.mockRestore()

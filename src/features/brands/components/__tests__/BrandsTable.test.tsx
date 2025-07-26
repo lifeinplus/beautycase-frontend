@@ -27,7 +27,7 @@ describe('BrandsTable', () => {
             />
         )
 
-        expect(screen.getByText('table.brandName')).toBeInTheDocument()
+        expect(screen.getByText('table.brand')).toBeInTheDocument()
         expect(screen.getByText('table.actions')).toBeInTheDocument()
     })
 

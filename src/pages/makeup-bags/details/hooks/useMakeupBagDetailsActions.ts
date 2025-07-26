@@ -33,7 +33,10 @@ export const useMakeupBagDetailsActions = () => {
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
     const { exportToPDF, error: exportError, clearError } = usePDFExport()
-    const [deleteMakeupBagById] = useDeleteMakeupBagByIdMutation()
+
+    const [deleteMakeupBagById, { isLoading: isDeleting }] =
+        useDeleteMakeupBagByIdMutation()
+
     const { data } = useGetMakeupBagByIdQuery(id!, { skip: !id })
 
     const redirectPath = '/makeup-bags'
@@ -142,7 +145,7 @@ export const useMakeupBagDetailsActions = () => {
                 description: t('modal:delete.description', {
                     name: categoryName,
                 }),
-                onConfirm: handleDelete,
+                onConfirm: isDeleting ? () => {} : handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),
             },
         },

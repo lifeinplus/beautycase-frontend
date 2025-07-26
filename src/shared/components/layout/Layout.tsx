@@ -14,8 +14,6 @@ export const Layout = () => {
 
     return (
         <>
-            <Outlet />
-
             <NavBar>
                 {navBarActions.map(
                     ({ key, className, icon, label, onClick }) => (
@@ -49,6 +47,8 @@ export const Layout = () => {
                     onCancel={duplicateAction.modalProps.onCancel}
                 />
             )}
+
+            <Outlet />
         </>
     )
 }

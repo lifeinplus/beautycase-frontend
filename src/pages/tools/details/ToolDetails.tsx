@@ -8,7 +8,7 @@ import type { RouteId } from '@/shared/types/router'
 import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
 import { Details } from '@/widgets/view/details/Details'
 
-export const ToolDetailsPage = () => {
+export const ToolDetails = () => {
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['tool', 'store'])
 

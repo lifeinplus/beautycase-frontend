@@ -11,14 +11,14 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks'
 import { clearFormData } from '@/features/form/formSlice'
 import {
-    useDeleteProductByIdMutation,
-    useGetProductByIdQuery,
-} from '@/features/products/productsApi'
+    useDeleteToolByIdMutation,
+    useGetToolByIdQuery,
+} from '@/features/tools/toolsApi'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
 import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
-export const useProductDetailsActions = () => {
+export const useToolDetailsActions = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
@@ -27,12 +27,12 @@ export const useProductDetailsActions = () => {
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const { data } = useGetProductByIdQuery(id!, { skip: !id })
+    const { data } = useGetToolByIdQuery(id!, { skip: !id })
 
-    const [deleteProductById, { isLoading: isDeleting }] =
-        useDeleteProductByIdMutation()
+    const [deleteToolById, { isLoading: isDeleting }] =
+        useDeleteToolByIdMutation()
 
-    const redirectPath = '/products'
+    const redirectPath = '/tools'
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -40,7 +40,7 @@ export const useProductDetailsActions = () => {
 
     const handleDelete = async () => {
         try {
-            await deleteProductById(id!).unwrap()
+            await deleteToolById(id!).unwrap()
             toast.success(t('modal:delete.toast', { name: data?.name }))
             navigate(redirectPath)
         } catch (err) {

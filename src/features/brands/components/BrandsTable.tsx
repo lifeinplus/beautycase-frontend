@@ -20,7 +20,7 @@ export const BrandsTable = ({ items, onDelete, onEdit }: BrandsTableProps) => {
     const { t } = useTranslation('brand')
 
     const headers: Header[] = [
-        { label: t('table.brandName'), className: 'text-left w-auto' },
+        { label: t('table.brand'), className: 'text-left w-auto' },
         { label: t('table.actions'), className: 'text-center w-1' },
     ]
 

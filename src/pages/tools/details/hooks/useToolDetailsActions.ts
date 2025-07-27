@@ -78,7 +78,7 @@ export const useToolDetailsActions = () => {
             icon: PencilSquareIcon,
             label: t('actions.edit'),
             roles: ['admin', 'mua'],
-            onClick: () => navigate(`${redirectPath}/edit/${id}`),
+            onClick: () => navigate(`${redirectPath}/${id}/edit`),
         },
         {
             key: 'delete',

@@ -12,7 +12,7 @@ export const publicRoutes = [
     <Route key="home" path="/" element={<Home />} />,
     <Route key="login" path="/login" element={<Login />} />,
     <Route key="register" path="/register" element={<Register />} />,
-    <Route key={'public-layout'} element={<Layout />}>
+    <Route key="public-layout" element={<Layout />}>
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/questionnaire" element={<QuestionnaireCreate />} />
         <Route path="/unauthorized" element={<Unauthorized />} />

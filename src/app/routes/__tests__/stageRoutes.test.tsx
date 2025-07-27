@@ -18,18 +18,16 @@ vi.mock('@/shared/components/layout/Layout')
 describe('stageRoutes', () => {
     it('renders the list page correctly', () => {
         renderWithRouter(<App />, ['/stages'])
-
         expect(screen.getByTestId('mocked-stage-list')).toBeInTheDocument()
     })
 
     it('renders the details page correctly', () => {
-        renderWithRouter(<App />, ['/stages/1'])
-
+        renderWithRouter(<App />, ['/stages/123'])
         expect(screen.getByTestId('mocked-stage-details')).toBeInTheDocument()
     })
 
     it('renders the product selection page correctly', () => {
-        renderWithRouter(<App />, ['/stages/1/products'])
+        renderWithRouter(<App />, ['/stages/123/products'])
 
         expect(
             screen.getByTestId('mocked-product-selection-for-stage')
@@ -38,13 +36,11 @@ describe('stageRoutes', () => {
 
     it('renders the add page correctly', () => {
         renderWithRouter(<App />, ['/stages/add'])
-
         expect(screen.getByTestId('mocked-stage-add')).toBeInTheDocument()
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/stages/edit/1'])
-
+        renderWithRouter(<App />, ['/stages/123/edit'])
         expect(screen.getByTestId('mocked-stage-edit')).toBeInTheDocument()
     })
 })

@@ -40,7 +40,7 @@ describe('toolRoutes', () => {
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/tools/edit/1'])
+        renderWithRouter(<App />, ['/tools/123/edit'])
         expect(screen.getByTestId('mocked-tool-edit')).toBeInTheDocument()
     })
 })

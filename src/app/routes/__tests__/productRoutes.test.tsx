@@ -17,7 +17,7 @@ vi.mock('@/shared/components/layout/Layout')
 
 describe('productRoutes', () => {
     it('renders the details page correctly', () => {
-        renderWithRouter(<App />, ['/products/1'])
+        renderWithRouter(<App />, ['/products/123'])
         expect(screen.getByTestId('mocked-product-details')).toBeInTheDocument()
     })
 
@@ -27,7 +27,7 @@ describe('productRoutes', () => {
     })
 
     it('renders the add links page correctly', () => {
-        renderWithRouter(<App />, ['/products/1/links'])
+        renderWithRouter(<App />, ['/products/123/links'])
 
         expect(
             screen.getByTestId('mocked-store-links-add-for-product')
@@ -40,7 +40,7 @@ describe('productRoutes', () => {
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/products/edit/1'])
+        renderWithRouter(<App />, ['/products/123/edit'])
         expect(screen.getByTestId('mocked-product-edit')).toBeInTheDocument()
     })
 })

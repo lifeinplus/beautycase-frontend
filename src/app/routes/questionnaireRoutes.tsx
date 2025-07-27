@@ -6,12 +6,10 @@ import { QuestionnaireResult } from '@/pages/questionnaires/result/Questionnaire
 import { Layout } from '@/shared/components/layout/Layout'
 
 export const questionnaireRoutes = [
-    <Route key="questionnaires" path="/questionnaires">
-        <Route element={<Layout />}>
-            <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-                <Route index element={<QuestionnaireList />} />
-                <Route path=":id" element={<QuestionnaireResult />} />
-            </Route>
+    <Route key="questionnaires" path="/questionnaires" element={<Layout />}>
+        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+            <Route index element={<QuestionnaireList />} />
+            <Route path=":id" element={<QuestionnaireResult />} />
         </Route>
     </Route>,
 ]

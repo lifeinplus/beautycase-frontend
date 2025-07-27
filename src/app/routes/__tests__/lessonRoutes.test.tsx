@@ -19,7 +19,7 @@ vi.mock('@/shared/components/ScrollToTop')
 
 describe('lessonRoutes', () => {
     it('renders the details page correctly', () => {
-        renderWithRouter(<App />, ['/lessons/1'])
+        renderWithRouter(<App />, ['/lessons/123'])
         expect(screen.getByTestId('mocked-lesson-details')).toBeInTheDocument()
     })
 
@@ -29,7 +29,7 @@ describe('lessonRoutes', () => {
     })
 
     it('renders the product selection page correctly', () => {
-        renderWithRouter(<App />, ['/lessons/1/products'])
+        renderWithRouter(<App />, ['/lessons/123/products'])
 
         expect(
             screen.getByTestId('mocked-product-selection-for-lesson')
@@ -42,12 +42,12 @@ describe('lessonRoutes', () => {
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/lessons/edit/1'])
+        renderWithRouter(<App />, ['/lessons/123/edit'])
         expect(screen.getByTestId('mocked-lesson-edit')).toBeInTheDocument()
     })
 
     it('renders the user selection page correctly', () => {
-        renderWithRouter(<App />, ['/lessons/edit/1/clients'])
+        renderWithRouter(<App />, ['/lessons/123/edit/clients'])
         expect(screen.getByTestId('mocked-user-selection')).toBeInTheDocument()
     })
 })

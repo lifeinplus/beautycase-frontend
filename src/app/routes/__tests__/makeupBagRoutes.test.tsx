@@ -24,7 +24,8 @@ describe('makeupBagRoutes', () => {
     })
 
     it('renders the page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bags/1'])
+        renderWithRouter(<App />, ['/makeup-bags/123'])
+
         expect(
             screen.getByTestId('mocked-makeup-bag-details')
         ).toBeInTheDocument()
@@ -36,19 +37,17 @@ describe('makeupBagRoutes', () => {
     })
 
     it('renders the edit page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bags/edit/1'])
+        renderWithRouter(<App />, ['/makeup-bags/123/edit'])
         expect(screen.getByTestId('mocked-makeup-bag-edit')).toBeInTheDocument()
     })
 
     it('renders the stage selection page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bags/edit/1/stages'])
-
+        renderWithRouter(<App />, ['/makeup-bags/123/edit/stages'])
         expect(screen.getByTestId('mocked-stage-selection')).toBeInTheDocument()
     })
 
     it('renders the tool selection page correctly', () => {
-        renderWithRouter(<App />, ['/makeup-bags/edit/1/tools'])
-
+        renderWithRouter(<App />, ['/makeup-bags/123/edit/tools'])
         expect(screen.getByTestId('mocked-tool-selection')).toBeInTheDocument()
     })
 })

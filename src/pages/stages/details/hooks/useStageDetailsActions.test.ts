@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
     beforeAll,
@@ -19,7 +19,7 @@ import {
     useGetStageByIdQuery,
 } from '@/features/stages/stagesApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useStageDetailsActions } from './useStageDetailsActions'
 
 vi.mock('@/app/hooks')
@@ -34,6 +34,11 @@ describe('useStageDetailsActions', () => {
     const mockDuplicateUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
+
+    vi.mocked(useLocation).mockReturnValue({
+        ...mockLocation,
+        pathname: '/stages/123456789012345678901234',
+    })
 
     beforeAll(() => {
         spyConsoleError.mockImplementation(() => {})

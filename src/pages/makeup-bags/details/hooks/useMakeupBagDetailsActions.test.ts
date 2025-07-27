@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
     beforeAll,
@@ -20,7 +20,7 @@ import {
     useGetMakeupBagByIdQuery,
 } from '@/features/makeupBags/makeupBagsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useMakeupBagDetailsActions } from './useMakeupBagDetailsActions'
 
 vi.mock('@/app/hooks')
@@ -36,6 +36,11 @@ describe('useMakeupBagDetailsActions', () => {
     const mockDeleteUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
+
+    vi.mocked(useLocation).mockReturnValue({
+        ...mockLocation,
+        pathname: '/makeup-bags/123456789012345678901234',
+    })
 
     beforeAll(() => {
         spyConsoleError.mockImplementation(() => {})
@@ -81,6 +86,19 @@ describe('useMakeupBagDetailsActions', () => {
         expect(mockExportToPDF).toHaveBeenCalled()
     })
 
+    it('disables export when exporting', () => {
+        const { result, rerender } = renderHook(() =>
+            useMakeupBagDetailsActions()
+        )
+
+        result.current.find((a) => a.key === 'export')?.onClick()
+
+        rerender()
+
+        const exportAction = result.current.find((a) => a.key === 'export')
+        expect(exportAction?.className).toContain('opacity-50')
+    })
+
     it('handles export error', async () => {
         vi.mocked(usePDFExport as Mock).mockReturnValue({
             exportToPDF: vi.fn().mockRejectedValue(mockError),
@@ -99,19 +117,6 @@ describe('useMakeupBagDetailsActions', () => {
         })
 
         expect(mockExportToPDF).not.toHaveBeenCalled()
-    })
-
-    it('disables export when exporting', () => {
-        const { result, rerender } = renderHook(() =>
-            useMakeupBagDetailsActions()
-        )
-
-        result.current.find((a) => a.key === 'export')?.onClick()
-
-        rerender()
-
-        const exportAction = result.current.find((a) => a.key === 'export')
-        expect(exportAction?.className).toContain('opacity-50')
     })
 
     it('handles delete action', async () => {

@@ -21,7 +21,7 @@ import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const useStageDetailsActions = () => {
-    const { state } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['navigation', 'modal'])
@@ -30,7 +30,11 @@ export const useStageDetailsActions = () => {
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [isModalDuplicateOpen, setIsModalDuplicateOpen] = useState(false)
 
-    const { data } = useGetStageByIdQuery(id!, { skip: !id })
+    const isStageDetailsPage = pathname.match(/^\/stages\/[a-f0-9]{24}$/i)
+
+    const { data } = useGetStageByIdQuery(id!, {
+        skip: !id || !isStageDetailsPage,
+    })
 
     const [deleteStageById, { isLoading: isDeleting }] =
         useDeleteStageByIdMutation()
@@ -40,8 +44,10 @@ export const useStageDetailsActions = () => {
     const redirectPath = '/stages'
 
     useEffect(() => {
-        dispatch(clearFormData())
-    }, [dispatch])
+        if (isStageDetailsPage) {
+            dispatch(clearFormData())
+        }
+    }, [dispatch, isStageDetailsPage])
 
     const handleDelete = async () => {
         try {
@@ -69,7 +75,7 @@ export const useStageDetailsActions = () => {
         }
     }
 
-    if (!id) return []
+    if (!id || !isStageDetailsPage) return []
 
     return [
         {

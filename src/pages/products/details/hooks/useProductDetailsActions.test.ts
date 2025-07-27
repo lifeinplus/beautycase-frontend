@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
     beforeAll,
@@ -18,7 +18,7 @@ import {
     useGetProductByIdQuery,
 } from '@/features/products/productsApi'
 import { mockError } from '@/shared/utils/__mocks__/errorUtils'
-import { mockNavigate } from '@/tests/mocks/router'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useProductDetailsActions } from './useProductDetailsActions'
 
 vi.mock('@/app/hooks')
@@ -31,6 +31,11 @@ describe('useProductDetailsActions', () => {
     const mockDeleteUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
+
+    vi.mocked(useLocation).mockReturnValue({
+        ...mockLocation,
+        pathname: '/products/123456789012345678901234',
+    })
 
     beforeAll(() => {
         spyConsoleError.mockImplementation(() => {})

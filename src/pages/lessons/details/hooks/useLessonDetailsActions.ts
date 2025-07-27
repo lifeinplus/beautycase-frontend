@@ -19,7 +19,7 @@ import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const useLessonDetailsActions = () => {
-    const { state } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['navigation', 'modal'])
@@ -27,7 +27,11 @@ export const useLessonDetailsActions = () => {
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const { data } = useGetLessonByIdQuery(id!, { skip: !id })
+    const isLessonDetailsPage = pathname.match(/^\/lessons\/[a-f0-9]{24}$/i)
+
+    const { data } = useGetLessonByIdQuery(id!, {
+        skip: !id || !isLessonDetailsPage,
+    })
 
     const [deleteLessonById, { isLoading: isDeleting }] =
         useDeleteLessonByIdMutation()
@@ -35,8 +39,10 @@ export const useLessonDetailsActions = () => {
     const redirectPath = '/lessons'
 
     useEffect(() => {
-        dispatch(clearFormData())
-    }, [dispatch])
+        if (isLessonDetailsPage) {
+            dispatch(clearFormData())
+        }
+    }, [dispatch, isLessonDetailsPage])
 
     const handleDelete = async () => {
         try {
@@ -51,7 +57,7 @@ export const useLessonDetailsActions = () => {
         }
     }
 
-    if (!id) return []
+    if (!id || !isLessonDetailsPage) return []
 
     return [
         {

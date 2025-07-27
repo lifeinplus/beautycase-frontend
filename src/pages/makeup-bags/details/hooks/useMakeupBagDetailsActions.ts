@@ -23,7 +23,7 @@ import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const useMakeupBagDetailsActions = () => {
-    const { state } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['makeupBag', 'modal'])
@@ -34,25 +34,33 @@ export const useMakeupBagDetailsActions = () => {
 
     const { exportToPDF, error: exportError, clearError } = usePDFExport()
 
+    const isMakeupBagDetailsPage = pathname.match(
+        /^\/makeup-bags\/[a-f0-9]{24}$/i
+    )
+
+    const { data } = useGetMakeupBagByIdQuery(id!, {
+        skip: !id || !isMakeupBagDetailsPage,
+    })
+
     const [deleteMakeupBagById, { isLoading: isDeleting }] =
         useDeleteMakeupBagByIdMutation()
-
-    const { data } = useGetMakeupBagByIdQuery(id!, { skip: !id })
 
     const redirectPath = '/makeup-bags'
     const categoryName = t(`categories.${data?.category?.name}.full`)
 
     useEffect(() => {
-        dispatch(clearFormData())
-    }, [dispatch])
+        if (isMakeupBagDetailsPage) {
+            dispatch(clearFormData())
+        }
+    }, [dispatch, isMakeupBagDetailsPage])
 
     useEffect(() => {
-        if (exportError) {
+        if (exportError && isMakeupBagDetailsPage) {
             toast.error(exportError)
             clearError()
             setIsExporting(false)
         }
-    }, [exportError, clearError])
+    }, [exportError, clearError, isMakeupBagDetailsPage])
 
     const handleExportToPDF = async () => {
         if (!data) {
@@ -99,7 +107,7 @@ export const useMakeupBagDetailsActions = () => {
         }
     }
 
-    if (!id) return []
+    if (!id || !isMakeupBagDetailsPage) return []
 
     return [
         {

@@ -19,7 +19,7 @@ import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const useProductDetailsActions = () => {
-    const { state } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['navigation', 'modal'])
@@ -27,7 +27,11 @@ export const useProductDetailsActions = () => {
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const { data } = useGetProductByIdQuery(id!, { skip: !id })
+    const isProductDetailsPage = pathname.match(/^\/products\/[a-f0-9]{24}$/i)
+
+    const { data } = useGetProductByIdQuery(id!, {
+        skip: !id || !isProductDetailsPage,
+    })
 
     const [deleteProductById, { isLoading: isDeleting }] =
         useDeleteProductByIdMutation()
@@ -35,8 +39,10 @@ export const useProductDetailsActions = () => {
     const redirectPath = '/products'
 
     useEffect(() => {
-        dispatch(clearFormData())
-    }, [dispatch])
+        if (isProductDetailsPage) {
+            dispatch(clearFormData())
+        }
+    }, [dispatch, isProductDetailsPage])
 
     const handleDelete = async () => {
         try {
@@ -51,7 +57,7 @@ export const useProductDetailsActions = () => {
         }
     }
 
-    if (!id) return []
+    if (!id || !isProductDetailsPage) return []
 
     return [
         {

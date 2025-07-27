@@ -19,7 +19,7 @@ import { RouteId } from '@/shared/types/router'
 import { getErrorMessage } from '@/shared/utils/errorUtils'
 
 export const useToolDetailsActions = () => {
-    const { state } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams<RouteId>()
     const { t } = useTranslation(['navigation', 'modal'])
@@ -27,7 +27,11 @@ export const useToolDetailsActions = () => {
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const { data } = useGetToolByIdQuery(id!, { skip: !id })
+    const isToolDetailsPage = pathname.match(/^\/tools\/[a-f0-9]{24}$/i)
+
+    const { data } = useGetToolByIdQuery(id!, {
+        skip: !id || !isToolDetailsPage,
+    })
 
     const [deleteToolById, { isLoading: isDeleting }] =
         useDeleteToolByIdMutation()
@@ -35,8 +39,10 @@ export const useToolDetailsActions = () => {
     const redirectPath = '/tools'
 
     useEffect(() => {
-        dispatch(clearFormData())
-    }, [dispatch])
+        if (isToolDetailsPage) {
+            dispatch(clearFormData())
+        }
+    }, [dispatch, isToolDetailsPage])
 
     const handleDelete = async () => {
         try {
@@ -51,7 +57,7 @@ export const useToolDetailsActions = () => {
         }
     }
 
-    if (!id) return []
+    if (!id || !isToolDetailsPage) return []
 
     return [
         {

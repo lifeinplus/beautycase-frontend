@@ -1,6 +1,6 @@
 .title {
-    @apply my-2 border-b-0.5 px-3 sm:mx-auto sm:mb-6 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0;
-    @apply border-neutral-200;
+    @apply my-2 border-b-0.5 border-neutral-200 px-3;
+    @apply sm:mx-auto sm:mb-9 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0 sm:font-heading;
 }
 
 .headline {

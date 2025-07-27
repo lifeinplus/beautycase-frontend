@@ -1,6 +1,6 @@
 .section {
-    @apply border-t px-3 pt-4 sm:flex sm:justify-end sm:border-0 sm:pt-0;
-    @apply border-gray-300;
+    @apply border-t border-gray-300 px-3 pt-6;
+    @apply sm:flex sm:justify-end sm:border-0 sm:pt-0;
 }
 
 .btn {

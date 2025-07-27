@@ -15,7 +15,7 @@ export const TitleSection = ({
     <section
         className={classNames(styles.title, hideOnMobile && 'hidden sm:block')}
     >
-        <h1 className={styles.headline}>{title}</h1>
-        <p className={styles.byline}>{subtitle}</p>
+        {title && <h1 className={styles.headline}>{title}</h1>}
+        {subtitle && <p className={styles.byline}>{subtitle}</p>}
     </section>
 )

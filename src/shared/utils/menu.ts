@@ -52,7 +52,7 @@ export const menuItems: MenuItem[] = [
     {
         auth: true,
         label: 'menu.makeupBags',
-        path: '/makeup_bags',
+        path: '/makeup-bags',
         roles: ['admin', 'mua'],
         icon: ShoppingBagIcon,
     },
@@ -87,7 +87,7 @@ export const menuItems: MenuItem[] = [
     {
         auth: true,
         label: 'menu.referenceLists',
-        path: '/reference_lists',
+        path: '/reference-lists',
         roles: ['admin'],
         icon: ListBulletIcon,
     },

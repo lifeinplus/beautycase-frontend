@@ -4,7 +4,8 @@
         "title": {
             "label": "Title",
             "errors": {
-                "required": "Please specify the stage title"
+                "required": "Please specify the stage title",
+                "min": "At least 3 characters"
             }
         },
         "subtitle": {

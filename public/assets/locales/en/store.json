@@ -47,8 +47,5 @@
             "product": "Product Links",
             "tool": "Tool Links"
         }
-    },
-    "toast": {
-        "delete": "Store deleted"
     }
 }

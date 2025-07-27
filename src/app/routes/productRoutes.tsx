@@ -1,20 +1,23 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { StoreLinksAddPageForProduct } from '@/features/stores/wrappers/StoreLinksAddPageForProduct'
-import { ProductAddPage } from '@/pages/product/ProductAddPage'
-import { ProductDetailsPage } from '@/pages/product/ProductDetailsPage'
-import { ProductEditPage } from '@/pages/product/ProductEditPage'
-import { ProductGalleryPage } from '@/pages/product/ProductGalleryPage'
+import { StoreLinksAddForProduct } from '@/features/stores/wrappers/StoreLinksAddForProduct'
+import { ProductAdd } from '@/pages/products/add/ProductAdd'
+import { ProductDetails } from '@/pages/products/details/ProductDetails'
+import { ProductEdit } from '@/pages/products/edit/ProductEdit'
+import { ProductGallery } from '@/pages/products/gallery/ProductGallery'
+import { Layout } from '@/shared/components/layout/Layout'
 
 export const productRoutes = [
     <Route key="products" path="/products">
-        <Route path=":id" element={<ProductDetailsPage />} />
-        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-            <Route index element={<ProductGalleryPage />} />
-            <Route path=":id/links" element={<StoreLinksAddPageForProduct />} />
-            <Route path="add" element={<ProductAddPage />} />
-            <Route path="edit/:id" element={<ProductEditPage />} />
+        <Route element={<Layout />}>
+            <Route path=":id" element={<ProductDetails />} />
+            <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+                <Route index element={<ProductGallery />} />
+                <Route path=":id/links" element={<StoreLinksAddForProduct />} />
+                <Route path="add" element={<ProductAdd />} />
+                <Route path="edit/:id" element={<ProductEdit />} />
+            </Route>
         </Route>
     </Route>,
 ]

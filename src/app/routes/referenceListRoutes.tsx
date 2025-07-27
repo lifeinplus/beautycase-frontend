@@ -1,16 +1,19 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { ReferenceListsPage } from '@/pages/reference-list/ReferenceListsPage'
-import { BrandsPage } from '@/pages/brand/BrandsPage'
-import { StoresPage } from '@/pages/store/StoresPage'
+import { Brands } from '@/pages/brands/Brands'
+import { ReferenceLists } from '@/pages/reference-lists/ReferenceLists'
+import { Stores } from '@/pages/stores/Stores'
+import { Layout } from '@/shared/components/layout/Layout'
 
 export const referenceListRoutes = [
-    <Route key="reference-lists" path="/reference_lists">
-        <Route element={<RequireRole allowedRoles={['admin']} />}>
-            <Route index element={<ReferenceListsPage />} />
-            <Route path="brands" element={<BrandsPage />} />
-            <Route path="stores" element={<StoresPage />} />
+    <Route key="reference-lists" path="/reference-lists">
+        <Route element={<Layout />}>
+            <Route element={<RequireRole allowedRoles={['admin']} />}>
+                <Route index element={<ReferenceLists />} />
+                <Route path="brands" element={<Brands />} />
+                <Route path="stores" element={<Stores />} />
+            </Route>
         </Route>
     </Route>,
 ]

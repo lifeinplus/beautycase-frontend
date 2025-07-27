@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -13,9 +12,8 @@ import { ImageUrlSection } from '@/shared/components/forms/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/InputSection'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { Stage } from '../types'
 import { stageSchema } from '../validations'
@@ -23,9 +21,14 @@ import { stageSchema } from '../validations'
 export interface StageFormProps {
     onSubmit: (data: Stage) => void
     title: string
+    isSaving?: boolean
 }
 
-export const StageForm = ({ onSubmit, title }: StageFormProps) => {
+export const StageForm = ({
+    onSubmit,
+    title,
+    isSaving = false,
+}: StageFormProps) => {
     const navigate = useNavigate()
     const { t } = useTranslation('stage')
 
@@ -63,63 +66,63 @@ export const StageForm = ({ onSubmit, title }: StageFormProps) => {
                         className={formStyles.form}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <InputSection
-                            error={t(errors.title?.message || '')}
-                            label={t('fields.title.label')}
-                            register={register('title')}
-                            required={true}
-                            type="text"
-                        />
+                        <article className="px-3">
+                            <InputSection
+                                error={t(errors.title?.message || '')}
+                                label={t('fields.title.label')}
+                                register={register('title')}
+                                required={true}
+                                type="text"
+                            />
 
-                        <TextareaSection
-                            error={t(errors.subtitle?.message || '')}
-                            label={t('fields.subtitle.label')}
-                            register={register('subtitle')}
-                            required={true}
-                            value={watch('subtitle')}
-                        />
+                            <TextareaSection
+                                error={t(errors.subtitle?.message || '')}
+                                label={t('fields.subtitle.label')}
+                                register={register('subtitle')}
+                                required={true}
+                                value={watch('subtitle')}
+                            />
 
-                        <ImageUrlSection
-                            clearErrors={clearErrors}
-                            folder="stages"
-                            error={t(errors.imageUrl?.message || '')}
-                            label={t('fields.imageUrl.label')}
-                            name="imageUrl"
-                            register={register('imageUrl')}
-                            required={true}
-                            setValue={setValue}
-                            value={watch('imageUrl')}
-                        />
+                            <ImageUrlSection
+                                clearErrors={clearErrors}
+                                folder="stages"
+                                error={t(errors.imageUrl?.message || '')}
+                                label={t('fields.imageUrl.label')}
+                                name="imageUrl"
+                                register={register('imageUrl')}
+                                required={true}
+                                setValue={setValue}
+                                value={watch('imageUrl')}
+                            />
 
-                        <TextareaSection
-                            label={t('fields.comment.label')}
-                            register={register('comment')}
-                            value={watch('comment')}
-                        />
+                            <TextareaSection
+                                label={t('fields.comment.label')}
+                                register={register('comment')}
+                                value={watch('comment')}
+                            />
 
-                        <TextareaSection
-                            label={t('fields.stepsText.label')}
-                            register={register('stepsText')}
-                            rows={10}
-                            value={watch('stepsText')}
-                        />
+                            <TextareaSection
+                                label={t('fields.stepsText.label')}
+                                register={register('stepsText')}
+                                rows={10}
+                                value={watch('stepsText')}
+                            />
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-48"
+                                isLoading={isSaving}
+                                label={
+                                    isSaving
+                                        ? t('navigation:actions.saving')
+                                        : t('navigation:actions.save')
+                                }
+                            />
+                        </section>
                     </form>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSubmit(onSubmit)}
-                />
-            </NavBar>
         </article>
     )
 }

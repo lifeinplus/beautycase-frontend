@@ -1,26 +1,29 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { ProductSelectionPageForLesson } from '@/features/products/wrappers/ProductSelectionPageForLesson'
-import { LessonAddPage } from '@/pages/lesson/LessonAddPage'
-import { LessonDetailsPage } from '@/pages/lesson/LessonDetailsPage'
-import { LessonEditPage } from '@/pages/lesson/LessonEditPage'
-import { LessonsGalleryPage } from '@/pages/lesson/LessonsGalleryPage'
-import { UserSelectionPage } from '@/pages/user/UserSelectionPage'
+import { ProductSelectionForLesson } from '@/features/products/wrappers/ProductSelectionForLesson'
+import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
+import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
+import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
+import { LessonGallery } from '@/pages/lessons/gallery/LessonGallery'
+import { UserSelection } from '@/pages/users/UserSelection'
+import { Layout } from '@/shared/components/layout/Layout'
 
 export const lessonRoutes = [
     <Route key="lessons" path="/lessons">
-        <Route path=":id" element={<LessonDetailsPage />} />
-        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-            <Route index element={<LessonsGalleryPage />} />
-            <Route
-                path=":id/products"
-                element={<ProductSelectionPageForLesson />}
-            />
-            <Route path="add" element={<LessonAddPage />} />
-            <Route path="add/clients" element={<UserSelectionPage />} />
-            <Route path="edit/:id" element={<LessonEditPage />} />
-            <Route path="edit/:id/clients" element={<UserSelectionPage />} />
+        <Route element={<Layout />}>
+            <Route path=":id" element={<LessonDetails />} />
+            <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+                <Route index element={<LessonGallery />} />
+                <Route
+                    path=":id/products"
+                    element={<ProductSelectionForLesson />}
+                />
+                <Route path="add" element={<LessonAdd />} />
+                <Route path="add/clients" element={<UserSelection />} />
+                <Route path="edit/:id" element={<LessonEdit />} />
+                <Route path="edit/:id/clients" element={<UserSelection />} />
+            </Route>
         </Route>
     </Route>,
 ]

@@ -1,23 +1,26 @@
 import { Route } from 'react-router-dom'
 
 import { RequireRole } from '@/features/auth/components/RequireRole'
-import { ProductSelectionPageForStage } from '@/features/products/wrappers/ProductSelectionPageForStage'
-import { StageAddPage } from '@/pages/stage/StageAddPage'
-import { StageDetailsPage } from '@/pages/stage/StageDetailsPage'
-import { StageEditPage } from '@/pages/stage/StageEditPage'
-import { StageListPage } from '@/pages/stage/StageListPage'
+import { ProductSelectionForStage } from '@/features/products/wrappers/ProductSelectionForStage'
+import { StageAdd } from '@/pages/stages/add/StageAdd'
+import { StageDetails } from '@/pages/stages/details/StageDetails'
+import { StageEdit } from '@/pages/stages/edit/StageEdit'
+import { StageList } from '@/pages/stages/list/StageList'
+import { Layout } from '@/shared/components/layout/Layout'
 
 export const stageRoutes = [
     <Route key="stages" path="/stages">
-        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-            <Route index element={<StageListPage />} />
-            <Route path=":id" element={<StageDetailsPage />} />
-            <Route
-                path=":id/products"
-                element={<ProductSelectionPageForStage />}
-            />
-            <Route path="add" element={<StageAddPage />} />
-            <Route path="edit/:id" element={<StageEditPage />} />
+        <Route element={<Layout />}>
+            <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+                <Route index element={<StageList />} />
+                <Route path=":id" element={<StageDetails />} />
+                <Route
+                    path=":id/products"
+                    element={<ProductSelectionForStage />}
+                />
+                <Route path="add" element={<StageAdd />} />
+                <Route path="edit/:id" element={<StageEdit />} />
+            </Route>
         </Route>
     </Route>,
 ]

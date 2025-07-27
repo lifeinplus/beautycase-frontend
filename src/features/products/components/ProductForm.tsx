@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, CheckIcon } from '@heroicons/react/24/outline'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
@@ -16,9 +15,8 @@ import { InputSection } from '@/shared/components/forms/InputSection'
 import { SelectSection } from '@/shared/components/forms/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/TextareaSection'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { NavBar } from '@/shared/components/navigation/NavBar'
-import { NavButton } from '@/shared/components/navigation/NavButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import buttonStyles from '@/shared/components/ui/button.module.css'
+import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
 import pageStyles from '@/shared/components/ui/page.module.css'
 import type { Product } from '../types'
 import { productSchema } from '../validations'
@@ -26,9 +24,14 @@ import { productSchema } from '../validations'
 export interface ProductFormProps {
     title: string
     onSubmit: (data: Product) => void
+    isSaving?: boolean
 }
 
-export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
+export const ProductForm = ({
+    title,
+    onSubmit,
+    isSaving = false,
+}: ProductFormProps) => {
     const navigate = useNavigate()
     const { t } = useTranslation('product')
 
@@ -44,7 +47,7 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
         resolver: yupResolver(productSchema),
     })
 
-    const formData = useAppSelector(selectFormData) as Product
+    const formData: Product = useAppSelector(selectFormData)
 
     useEffect(() => {
         reset(formData)
@@ -73,66 +76,66 @@ export const ProductForm = ({ title, onSubmit }: ProductFormProps) => {
                         className={formStyles.form}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <SelectSection
-                            error={t(errors.brandId?.message || '')}
-                            label={t('fields.brand.label')}
-                            options={brandOptions}
-                            register={register('brandId')}
-                            required={true}
-                            value={watch('brandId')}
-                        />
+                        <article className="px-3">
+                            <SelectSection
+                                error={t(errors.brandId?.message || '')}
+                                label={t('fields.brand.label')}
+                                options={brandOptions}
+                                register={register('brandId')}
+                                required={true}
+                                value={watch('brandId')}
+                            />
 
-                        <TextareaSection
-                            error={t(errors.name?.message || '')}
-                            label={t('fields.name.label')}
-                            register={register('name')}
-                            required={true}
-                            value={watch('name')}
-                        />
+                            <TextareaSection
+                                error={t(errors.name?.message || '')}
+                                label={t('fields.name.label')}
+                                register={register('name')}
+                                required={true}
+                                value={watch('name')}
+                            />
 
-                        <ImageUrlSection
-                            clearErrors={clearErrors}
-                            folder="products"
-                            error={t(errors.imageUrl?.message || '')}
-                            label={t('fields.imageUrl.label')}
-                            name={'imageUrl'}
-                            register={register('imageUrl')}
-                            required={true}
-                            setValue={setValue}
-                            value={watch('imageUrl')}
-                        />
+                            <ImageUrlSection
+                                clearErrors={clearErrors}
+                                folder="products"
+                                error={t(errors.imageUrl?.message || '')}
+                                label={t('fields.imageUrl.label')}
+                                name={'imageUrl'}
+                                register={register('imageUrl')}
+                                required={true}
+                                setValue={setValue}
+                                value={watch('imageUrl')}
+                            />
 
-                        <InputSection
-                            error={t(errors.shade?.message || '')}
-                            label={t('fields.shade.label')}
-                            register={register('shade')}
-                            type={'text'}
-                        />
+                            <InputSection
+                                error={t(errors.shade?.message || '')}
+                                label={t('fields.shade.label')}
+                                register={register('shade')}
+                                type={'text'}
+                            />
 
-                        <TextareaSection
-                            error={t(errors.comment?.message || '')}
-                            label={t('fields.comment.label')}
-                            register={register('comment')}
-                            required={true}
-                            value={watch('comment')}
-                        />
+                            <TextareaSection
+                                error={t(errors.comment?.message || '')}
+                                label={t('fields.comment.label')}
+                                register={register('comment')}
+                                required={true}
+                                value={watch('comment')}
+                            />
+                        </article>
+
+                        <section className={buttonStyles.section}>
+                            <ButtonSubmit
+                                className="sm:w-48"
+                                isLoading={isSaving}
+                                label={
+                                    isSaving
+                                        ? t('navigation:actions.saving')
+                                        : t('navigation:actions.save')
+                                }
+                            />
+                        </section>
                     </form>
                 </article>
             </main>
-
-            <NavBar>
-                <NavButton
-                    icon={ArrowLeftIcon}
-                    label={t('navigation:actions.back')}
-                    onClick={handleBack}
-                    className={navStyles.navBtnBack}
-                />
-                <NavButton
-                    icon={CheckIcon}
-                    label={t('navigation:actions.save')}
-                    onClick={handleSubmit(onSubmit)}
-                />
-            </NavBar>
         </article>
     )
 }

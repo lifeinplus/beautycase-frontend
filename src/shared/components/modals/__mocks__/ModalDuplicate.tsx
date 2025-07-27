@@ -1,10 +1,11 @@
 import { type ModalDuplicateProps } from '../../modals/ModalDuplicate'
 
 export const ModalDuplicate = ({
+    isOpen,
     onCancel,
     onConfirm,
-}: ModalDuplicateProps) => {
-    return (
+}: ModalDuplicateProps) =>
+    isOpen && (
         <div data-testid="mocked-modal-duplicate">
             <button
                 data-testid="mocked-modal-duplicate-confirm"
@@ -20,4 +21,3 @@ export const ModalDuplicate = ({
             </button>
         </div>
     )
-}

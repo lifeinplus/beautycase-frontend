@@ -2,9 +2,9 @@ import classNames from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { Product } from '@/features/products/types'
-import galleryStyles from '@/shared/components/gallery/gallery.module.css'
 import { Image } from '@/shared/components/ui/Image'
 import imageStyles from '@/shared/components/ui/image.module.css'
+import styles from './ProductImages.module.css'
 import { SelectTile } from './ui/SelectTile'
 
 export interface ProductImagesProps {
@@ -22,7 +22,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
     }
 
     return (
-        <div className={galleryStyles.container}>
+        <div className={styles.container}>
             {products?.map((p) => (
                 <div
                     key={p._id}

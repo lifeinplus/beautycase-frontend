@@ -15,10 +15,12 @@
     },
     "delete": {
         "title": "Delete?",
-        "description": "Are you sure you want to delete {{name}}?"
+        "description": "Are you sure you want to delete {{name}}?",
+        "toast": "{{name}} deleted"
     },
     "duplicate": {
         "title": "Duplicate?",
-        "description": "Are you sure you want to duplicate {{name}}?"
+        "description": "Are you sure you want to duplicate {{name}}?",
+        "toast": "{{name}} duplicated"
     }
 }

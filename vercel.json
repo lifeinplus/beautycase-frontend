@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/:path*",
-            "destination": "https://beautycase-backend.onrender.com/api/:path*"
+            "destination": "https://beautycase-api.onrender.com/api/:path*"
         },
 
         {

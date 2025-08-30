@@ -40,6 +40,28 @@ describe('useNavBarActions', () => {
             expect(result.current[0].key).toEqual('edit')
         })
 
+        it('returns actions on /lessons/:id/edit', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/lessons/123456789012345678901234/edit',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /lessons/:id/edit/clients', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/lessons/123456789012345678901234/edit/clients',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
         it('returns actions on /lessons/:id/products', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
@@ -72,28 +94,6 @@ describe('useNavBarActions', () => {
 
             expect(result.current[0].key).toEqual('back')
         })
-
-        it('returns actions on /lessons/edit/:id', () => {
-            vi.mocked(useLocation).mockReturnValue({
-                ...mockLocation,
-                pathname: '/lessons/edit/123456789012345678901234',
-            })
-
-            const { result } = renderHook(() => useNavBarActions())
-
-            expect(result.current[0].key).toEqual('back')
-        })
-
-        it('returns actions on /lessons/edit/:id/clients', () => {
-            vi.mocked(useLocation).mockReturnValue({
-                ...mockLocation,
-                pathname: '/lessons/edit/123456789012345678901234/clients',
-            })
-
-            const { result } = renderHook(() => useNavBarActions())
-
-            expect(result.current[0].key).toEqual('back')
-        })
     })
 
     describe('makeupBagRoutes', () => {
@@ -117,6 +117,39 @@ describe('useNavBarActions', () => {
             const { result } = renderHook(() => useNavBarActions())
 
             expect(result.current[0].key).toEqual('edit')
+        })
+
+        it('returns actions on /makeup-bags/:id/edit', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/makeup-bags/123456789012345678901234/edit',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /makeup-bags/:id/edit/stages', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/makeup-bags/123456789012345678901234/edit/stages',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /makeup-bags/:id/edit/tools', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/makeup-bags/123456789012345678901234/edit/tools',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
         })
 
         it('returns actions on /makeup-bags/add', () => {
@@ -151,11 +184,35 @@ describe('useNavBarActions', () => {
 
             expect(result.current[0].key).toEqual('back')
         })
+    })
 
-        it('returns actions on /makeup-bags/edit/:id', () => {
+    describe('productRoutes', () => {
+        it('returns actions on /products', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/makeup-bags/edit/123456789012345678901234',
+                pathname: '/products',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('add')
+        })
+
+        it('returns actions on /products/:id', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/products/123456789012345678901234',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('edit')
+        })
+
+        it('returns actions on /products/:id/edit', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/products/123456789012345678901234/edit',
             })
 
             const { result } = renderHook(() => useNavBarActions())
@@ -163,10 +220,10 @@ describe('useNavBarActions', () => {
             expect(result.current[0].key).toEqual('back')
         })
 
-        it('returns actions on /makeup-bags/edit/:id/stages', () => {
+        it('returns actions on /products/:id/links', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/makeup-bags/edit/123456789012345678901234/stages',
+                pathname: '/products/123456789012345678901234/links',
             })
 
             const { result } = renderHook(() => useNavBarActions())
@@ -174,10 +231,161 @@ describe('useNavBarActions', () => {
             expect(result.current[0].key).toEqual('back')
         })
 
-        it('returns actions on /makeup-bags/edit/:id/tools', () => {
+        it('returns actions on /products/add', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/makeup-bags/edit/123456789012345678901234/tools',
+                pathname: '/products/add',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+    })
+
+    describe('questionnaireRoutes', () => {
+        it('returns actions on /questionnaires/:id', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/questionnaires/123456789012345678901234',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+    })
+
+    describe('referenceListRoutes', () => {
+        it('returns actions on /reference-lists/brands', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/reference-lists/brands',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /reference-lists/stores', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/reference-lists/stores',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+    })
+
+    describe('stageRoutes', () => {
+        it('returns actions on /stages', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/stages',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('add')
+        })
+
+        it('returns actions on /stages/:id', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/stages/123456789012345678901234',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('edit')
+        })
+
+        it('returns actions on /stages/:id/edit', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/stages/123456789012345678901234/edit',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /stages/:id/products', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/stages/123456789012345678901234/products',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /stages/add', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/stages/add',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+    })
+
+    describe('toolRoutes', () => {
+        it('returns actions on /tools', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/tools',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('add')
+        })
+
+        it('returns actions on /tools/:id', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/tools/123456789012345678901234',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('edit')
+        })
+
+        it('returns actions on /tools/:id/edit', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/tools/123456789012345678901234/edit',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /tools/:id/links', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/tools/123456789012345678901234/links',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /tools/add', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/tools/add',
             })
 
             const { result } = renderHook(() => useNavBarActions())

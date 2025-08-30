@@ -138,7 +138,7 @@ export const useMakeupBagDetailsActions = () => {
             icon: PencilSquareIcon,
             label: t('navigation:actions.edit'),
             roles: ['admin', 'mua'],
-            onClick: () => navigate(`/makeup-bags/edit/${id}`),
+            onClick: () => navigate(`/makeup-bags/${id}/edit`),
         },
         {
             key: 'delete',

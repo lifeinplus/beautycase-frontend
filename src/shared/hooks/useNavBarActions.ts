@@ -57,16 +57,15 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: lessonDetailsActions,
             },
             {
-                pattern: /^\/lessons\/[a-f0-9]{24}\/products$/i,
+                pattern: /^\/lessons\/[a-f0-9]{24}\/(edit|products)$/i,
+                actions: backActions,
+            },
+            {
+                pattern: /^\/lessons\/[a-f0-9]{24}\/edit\/clients$/i,
                 actions: backActions,
             },
             {
                 pattern: /^\/lessons\/(add|add\/clients)$/i,
-                actions: backActions,
-            },
-            {
-                pattern:
-                    /^\/lessons\/(edit\/[a-f0-9]{24}|edit\/[a-f0-9]{24}\/clients)$/i,
                 actions: backActions,
             },
         ]
@@ -81,12 +80,15 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: makeupBagDetailsActions,
             },
             {
-                pattern: /^\/makeup-bags\/(add|add\/(stages|tools))$/i,
+                pattern: /^\/makeup-bags\/[a-f0-9]{24}\/edit$/i,
                 actions: backActions,
             },
             {
-                pattern:
-                    /^\/makeup-bags\/(edit\/[a-f0-9]{24}|edit\/[a-f0-9]{24}\/(stages|tools))$/i,
+                pattern: /^\/makeup-bags\/[a-f0-9]{24}\/edit\/(stages|tools)$/i,
+                actions: backActions,
+            },
+            {
+                pattern: /^\/makeup-bags\/(add|add\/(stages|tools))$/i,
                 actions: backActions,
             },
         ]
@@ -101,11 +103,11 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: productDetailsActions,
             },
             {
-                pattern: /^\/products\/[a-f0-9]{24}\/links$/i,
+                pattern: /^\/products\/[a-f0-9]{24}\/(edit|links)$/i,
                 actions: backActions,
             },
             {
-                pattern: /^\/products\/(add|edit\/[a-f0-9]{24})$/i,
+                pattern: /^\/products\/add$/i,
                 actions: backActions,
             },
         ]
@@ -134,11 +136,11 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: stageDetailsActions,
             },
             {
-                pattern: /^\/stages\/[a-f0-9]{24}\/products$/i,
+                pattern: /^\/stages\/[a-f0-9]{24}\/(edit|products)$/i,
                 actions: backActions,
             },
             {
-                pattern: /^\/stages\/(add|edit\/[a-f0-9]{24})$/i,
+                pattern: /^\/stages\/add$/i,
                 actions: backActions,
             },
         ]
@@ -153,11 +155,15 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: toolDetailsActions,
             },
             {
+                pattern: /^\/tools\/[a-f0-9]{24}\/edit$/i,
+                actions: backActions,
+            },
+            {
                 pattern: /^\/tools\/[a-f0-9]{24}\/links$/i,
                 actions: backActions,
             },
             {
-                pattern: /^\/tools\/(add|edit\/[a-f0-9]{24})$/i,
+                pattern: /^\/tools\/add$/i,
                 actions: backActions,
             },
         ]

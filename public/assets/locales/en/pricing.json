@@ -1,0 +1,48 @@
+{
+    "hero": {
+        "headline": "Online Services",
+        "byline": "Choose the best interaction format that suits your needs"
+    },
+    "services": {
+        "miniConsultation": {
+            "name": "Mini Consultation",
+            "time": "40 minutes",
+            "features": [
+                "Analysis of your makeup questions",
+                "Simple solutions for difficult moments in makeup application",
+                "Personalized recommendations on products, techniques, and skincare"
+            ]
+        },
+        "makeupBag": {
+            "name": "Makeup Bag Review + Product Selection",
+            "time": "3 days",
+            "features": [
+                "Analysis of your current makeup bag via questionnaire",
+                "Identifying effective and unnecessary products",
+                "Personalized selection of makeup and skincare products for skin preparation",
+                "Recommendations on brushes and other tools"
+            ]
+        },
+        "videoLesson": {
+            "name": "Online Video Lesson (Workshop)",
+            "time": "1 hour 30 minutes",
+            "features": [
+                "Joint makeup session via video call on a chosen topic",
+                "Step-by-step instructions for express/day/evening/smoky or other makeup",
+                "Detailed explanations and demonstration of techniques in real time",
+                "Practical tips on products, application, and working methods"
+            ]
+        },
+        "premiumPackage": {
+            "name": "Premium Package: Makeup for Yourself",
+            "time": "1 month",
+            "features": [
+                "All-inclusive: introductory consultation; makeup bag review, personalized product selection, and three online lessons with different makeup looks of your choice",
+                "Lessons with detailed explanations and technique demonstrations",
+                "Support throughout the month: answers to your questions",
+                "Personalized approach: you get a working system tailored to you"
+            ]
+        }
+    },
+    "button": "Contact"
+}

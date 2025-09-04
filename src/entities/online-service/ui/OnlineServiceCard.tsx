@@ -28,13 +28,13 @@ export const OnlineServiceCard = ({
                 popular ? styles.containerPopular : styles.container
             )}
         >
-            <h3
+            <h4
                 className={classNames(
                     popular ? styles.namePopular : styles.name
                 )}
             >
                 {name}
-            </h3>
+            </h4>
             <p className="mt-4 flex items-baseline gap-x-2">
                 <span className={styles.price}>{`€${priceEur}`}</span>
                 <span className={styles.time}>{`/ ${time}`}</span>

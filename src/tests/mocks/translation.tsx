@@ -2,7 +2,10 @@ import { TFunction } from 'i18next'
 import { vi } from 'vitest'
 
 export const mockChangeLanguage = vi.fn()
-export const mockT = vi.fn((key: string) => key) as unknown as TFunction
+export const mockT = vi.fn((key: string, options) => {
+    if (options?.returnObjects) return []
+    return key
+}) as unknown as TFunction
 
 export const mockUseTranslation = vi.fn(() => ({
     i18n: {

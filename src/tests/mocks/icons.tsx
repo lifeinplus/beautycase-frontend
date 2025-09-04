@@ -16,6 +16,7 @@ const icons = {
     ChevronRightIcon: mockIcon('chevron-right-icon'),
     ClipboardDocumentListIcon: mockIcon('clipboard-document-list-icon'),
     ClipboardIcon: mockIcon('clipboard-icon'),
+    ComputerDesktopIcon: mockIcon('computer-desktop-icon'),
     DocumentArrowDownIcon: mockIcon('document-arrow-down-icon'),
     DocumentDuplicateIcon: mockIcon('document-duplicate-icon'),
     EllipsisHorizontalCircleIcon: mockIcon('ellipsis-horizontal-circle-icon'),

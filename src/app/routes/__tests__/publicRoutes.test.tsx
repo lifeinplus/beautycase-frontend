@@ -10,6 +10,7 @@ vi.mock('@/pages/auth/login/Login')
 vi.mock('@/pages/auth/register/Register')
 vi.mock('@/pages/auth/unauthorized/Unauthorized')
 vi.mock('@/pages/home/Home')
+vi.mock('@/pages/pricing/ui/Pricing')
 vi.mock('@/pages/questionnaires/confirmation/Confirmation')
 vi.mock('@/pages/questionnaires/create/QuestionnaireCreate')
 vi.mock('@/shared/components/layout/Layout')
@@ -20,11 +21,6 @@ describe('publicRoutes', () => {
         expect(screen.getByTestId('mocked-home')).toBeInTheDocument()
     })
 
-    it('renders the confirmation page correctly', () => {
-        renderWithRouter(<App />, ['/confirmation'])
-        expect(screen.getByTestId('mocked-confirmation')).toBeInTheDocument()
-    })
-
     it('renders the login page correctly', () => {
         renderWithRouter(<App />, ['/login'])
         expect(screen.getByTestId('mocked-login')).toBeInTheDocument()
@@ -33,6 +29,16 @@ describe('publicRoutes', () => {
     it('renders the register page correctly', () => {
         renderWithRouter(<App />, ['/register'])
         expect(screen.getByTestId('mocked-register')).toBeInTheDocument()
+    })
+
+    it('renders the confirmation page correctly', () => {
+        renderWithRouter(<App />, ['/confirmation'])
+        expect(screen.getByTestId('mocked-confirmation')).toBeInTheDocument()
+    })
+
+    it('renders the pricing page correctly', () => {
+        renderWithRouter(<App />, ['/pricing'])
+        expect(screen.getByTestId('mocked-pricing')).toBeInTheDocument()
     })
 
     it('renders the questionnaire page correctly', () => {

@@ -8,7 +8,7 @@ export const OnlineServices = () => {
 
     const services = [
         { key: 'miniConsultation', priceEur: 25 },
-        { key: 'makeupBag', priceEur: 45, popular: true },
+        { key: 'makeupBag', priceEur: 45, oldPriceEur: 65, popular: true },
         { key: 'videoLesson', priceEur: 70 },
         { key: 'premiumPackage', priceEur: 250 },
     ]
@@ -19,7 +19,9 @@ export const OnlineServices = () => {
                 <OnlineServiceCard
                     key={s.key}
                     name={t(`services.${s.key}.name`)}
+                    blurb={t(`services.${s.key}.blurb`)}
                     priceEur={s.priceEur}
+                    oldPriceEur={s.oldPriceEur}
                     time={t(`services.${s.key}.time`)}
                     features={
                         t(`services.${s.key}.features`, {

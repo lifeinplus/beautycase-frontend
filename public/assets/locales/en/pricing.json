@@ -6,43 +6,51 @@
     "services": {
         "miniConsultation": {
             "name": "Mini Consultation",
-            "time": "40 minutes",
+            "blurb": "All answers and quick tips for your perfect makeup",
+            "time": "40 min",
             "features": [
-                "Analysis of your makeup questions",
-                "Simple solutions for difficult moments in makeup application",
-                "Personalized recommendations on products, techniques, and skincare"
+                "Answers to questions about makeup and skincare",
+                "Personalized advice on products and techniques",
+                "Solutions to common issues (oily shine, mascara smudging, etc.)",
+                "Clear direction for improving your results"
             ]
         },
         "makeupBag": {
             "name": "Makeup Bag Review + Product Selection",
-            "time": "3 days",
+            "blurb": "A makeup bag that truly works for you",
+            "time": "3 d",
             "features": [
-                "Analysis of your current makeup bag via questionnaire",
-                "Identifying effective and unnecessary products",
-                "Personalized selection of makeup and skincare products for skin preparation",
-                "Recommendations on brushes and other tools"
+                "Makeup bag analysis via questionnaire",
+                "Identifying useful and unnecessary products",
+                "Personalized selection of cosmetics and skincare",
+                "Recommendations for tools (brushes, sponges, etc.)",
+                "Convenient and effective makeup bag without excess ✨"
             ]
         },
         "videoLesson": {
             "name": "Online Video Lesson (Workshop)",
-            "time": "1 hour 30 minutes",
+            "blurb": "Let's do makeup together — learn, repeat, create your own looks",
+            "time": "1 h 30 min",
             "features": [
-                "Joint makeup session via video call on a chosen topic",
-                "Step-by-step instructions for express/day/evening/smoky or other makeup",
-                "Detailed explanations and demonstration of techniques in real time",
-                "Practical tips on products, application, and working methods"
+                "Do makeup via video call — look of your choice",
+                "Detailed explanations and demonstration of techniques",
+                "Practical tips on products and application",
+                "Leave with a new look, knowledge, and inspiration"
             ]
         },
         "premiumPackage": {
-            "name": "Premium Package: Makeup for Yourself",
-            "time": "1 month",
+            "name": "Premium Package 'Complete Makeup Course'",
+            "blurb": "All inclusive: system, support, and three personal lessons for perfect makeup",
+            "time": "1 mo",
             "features": [
-                "All-inclusive: introductory consultation; makeup bag review, personalized product selection, and three online lessons with different makeup looks of your choice",
-                "Lessons with detailed explanations and technique demonstrations",
-                "Support throughout the month: answers to your questions",
-                "Personalized approach: you get a working system tailored to you"
+                "Mini consultation, makeup bag review, and three online lessons",
+                "Any makeup: express, daytime, evening, Smoky",
+                "Support throughout the month: tips and answers to questions",
+                "Personalized approach and system that works just for you",
+                "Save time and money, confidence in your makeup every day",
+                "Result: ready-made plan, harmonious makeup bag, and new skills 💄"
             ]
         }
     },
-    "button": "Contact"
+    "button": "Book Now"
 }

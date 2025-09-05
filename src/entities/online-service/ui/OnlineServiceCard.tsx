@@ -7,7 +7,9 @@ import styles from './OnlineServiceCard.module.css'
 
 interface OnlineServiceCardProps {
     name: string
+    blurb: string
     priceEur: number
+    oldPriceEur?: number
     time: string
     features: string[]
     popular?: boolean
@@ -15,7 +17,9 @@ interface OnlineServiceCardProps {
 
 export const OnlineServiceCard = ({
     name,
+    blurb,
     priceEur,
+    oldPriceEur,
     time,
     features,
     popular,
@@ -36,9 +40,13 @@ export const OnlineServiceCard = ({
                 {name}
             </h4>
             <p className="mt-4 flex items-baseline gap-x-2">
+                {oldPriceEur && (
+                    <span className={styles.oldPrice}>{`€${oldPriceEur}`}</span>
+                )}
                 <span className={styles.price}>{`€${priceEur}`}</span>
                 <span className={styles.time}>{`/ ${time}`}</span>
             </p>
+            <p className={styles.blurb}>{blurb}</p>
             <ul role="list" className={styles.features}>
                 {features.map((f) => (
                     <li key={f} className="flex gap-x-3">

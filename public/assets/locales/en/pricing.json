@@ -4,8 +4,8 @@
         "byline": "Choose the best interaction format that suits your needs"
     },
     "services": {
-        "miniConsultation": {
-            "name": "Mini Consultation",
+        "consultation": {
+            "name": "Consultation",
             "blurb": "All answers and quick tips for your perfect makeup",
             "time": "40 min",
             "features": [
@@ -39,11 +39,11 @@
             ]
         },
         "premiumPackage": {
-            "name": "Premium Package 'Complete Makeup Course'",
+            "name": "Premium Package “Complete Makeup Course“",
             "blurb": "All inclusive: system, support, and three personal lessons for perfect makeup",
             "time": "1 mo",
             "features": [
-                "Mini consultation, makeup bag review, and three online lessons",
+                "Consultation, makeup bag review, and three online lessons",
                 "Any makeup: express, daytime, evening, Smoky",
                 "Support throughout the month: tips and answers to questions",
                 "Personalized approach and system that works just for you",
@@ -52,5 +52,31 @@
             ]
         }
     },
-    "button": "Book Now"
+    "workshops": {
+        "workshopMakeup": {
+            "name": "Workshop “Makeup for Yourself“",
+            "blurb": "4 lessons with different makeup looks in an easy and understandable format. You will learn how to prepare your skin for makeup, do cream contouring, and enhance the expressiveness of your eyes, so you can confidently create looks for yourself for every day and special occasions.",
+            "features": [
+                "Daytime makeup with cream contouring",
+                "Smoky eyes in dark brown tones",
+                "Evening makeup with a transition from dark to light",
+                "Express makeup for every day"
+            ]
+        },
+        "workshopHairStyle": {
+            "name": "Workshop “Hairstyling for Yourself“",
+            "blurb": "4 lessons on creating hairstyles with a flat iron and curling iron in an easy and understandable format. You will learn how to properly prepare your hair, choose styling products and tools; follow step-by-step techniques to create beautiful and long-lasting hairstyles on your own.",
+            "features": [
+                "Express styling with a curling iron",
+                "Surf waves with a curling iron",
+                "Styling with a flat iron: features and technique",
+                "Transforming curls into a simple hairstyle"
+            ]
+        }
+    },
+    "included": "What’s included",
+    "buttons": {
+        "book": "Book now",
+        "get": "Get access"
+    }
 }

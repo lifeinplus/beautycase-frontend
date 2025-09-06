@@ -1,0 +1,91 @@
+.container {
+    @apply relative rounded-xl p-2 shadow-md ring-1 ring-gray-200;
+}
+
+:global(.dark) .container {
+    @apply bg-gray-900 ring-gray-700;
+}
+
+.name {
+    @apply text-pretty text-2xl font-semibold text-black;
+}
+
+:global(.dark) .name {
+    @apply text-white;
+}
+
+.blurb {
+    @apply mt-6 text-pretty text-base/7 text-neutral-700 sm:text-sm/7;
+}
+
+:global(.dark) .blurb {
+    @apply text-gray-300;
+}
+
+.included {
+    @apply flex-none text-rose-500;
+}
+
+:global(.dark) .included {
+    @apply text-rose-400;
+}
+
+.includedLine {
+    @apply h-px flex-auto bg-gray-200;
+}
+
+:global(.dark) .includedLine {
+    @apply bg-gray-700;
+}
+
+.features {
+    @apply mt-8 grid grid-cols-1 gap-5 text-pretty text-base text-neutral-700 sm:mt-10 sm:grid-cols-2 sm:text-sm;
+}
+
+:global(.dark) .features {
+    @apply text-gray-300;
+}
+
+.icon {
+    @apply h-6 w-5 flex-none text-rose-500;
+}
+
+:global(.dark) .icon {
+    @apply text-rose-400;
+}
+
+.pay {
+    @apply rounded-lg bg-gray-50 py-10 ring-1 ring-gray-200;
+}
+
+:global(.dark) .pay {
+    @apply bg-gray-950 ring-gray-700;
+}
+
+.priceContainer {
+    @apply flex items-baseline justify-center gap-x-2;
+}
+
+.price {
+    @apply text-5xl font-semibold tracking-tight text-black;
+}
+
+:global(.dark) .price {
+    @apply text-white;
+}
+
+.oldPrice {
+    @apply text-5xl font-semibold tracking-tight text-black/30 line-through;
+}
+
+:global(.dark) .oldPrice {
+    @apply text-white/40;
+}
+
+.button {
+    @apply mt-8 block rounded-lg border border-rose-300 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100 sm:mt-10;
+}
+
+:global(.dark) .button {
+    @apply border-rose-600 bg-gray-900 hover:bg-black;
+}

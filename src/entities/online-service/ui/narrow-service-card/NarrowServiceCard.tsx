@@ -3,9 +3,9 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
 import commonStyles from '@/shared/components/common/common.module.css'
-import styles from './OnlineServiceCard.module.css'
+import styles from './NarrowServiceCard.module.css'
 
-interface OnlineServiceCardProps {
+interface NarrowServiceCardProps {
     name: string
     blurb: string
     priceEur: number
@@ -15,7 +15,7 @@ interface OnlineServiceCardProps {
     popular?: boolean
 }
 
-export const OnlineServiceCard = ({
+export const NarrowServiceCard = ({
     name,
     blurb,
     priceEur,
@@ -23,7 +23,7 @@ export const OnlineServiceCard = ({
     time,
     features,
     popular,
-}: OnlineServiceCardProps) => {
+}: NarrowServiceCardProps) => {
     const { t } = useTranslation('pricing')
 
     return (
@@ -64,7 +64,7 @@ export const OnlineServiceCard = ({
                     popular ? styles.buttonPopular : styles.button
                 )}
             >
-                {t('button')}
+                {t('buttons.book')}
             </a>
         </div>
     )

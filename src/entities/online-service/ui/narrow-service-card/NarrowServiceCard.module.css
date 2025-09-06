@@ -1,5 +1,5 @@
 .container {
-    @apply relative rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
+    @apply relative flex flex-col rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
 }
 
 :global(.dark) .container {
@@ -7,7 +7,7 @@
 }
 
 .containerPopular {
-    @apply relative rounded-xl p-8 ring-2 ring-rose-500 sm:p-10;
+    @apply relative flex flex-col rounded-xl p-8 ring-2 ring-rose-500 sm:p-10;
 }
 
 :global(.dark) .containerPopular {
@@ -63,7 +63,7 @@
 }
 
 .features {
-    @apply mt-8 space-y-3 text-pretty text-base text-neutral-700 sm:mt-10 sm:text-sm;
+    @apply my-8 space-y-3 text-pretty text-base text-neutral-700 sm:my-10 sm:text-sm;
 }
 
 :global(.dark) .features {
@@ -79,15 +79,15 @@
 }
 
 .button {
-    @apply mt-8 block rounded-lg border border-rose-300 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100 sm:mt-10;
+    @apply mt-auto block rounded-lg border border-rose-300 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100;
 }
 
 :global(.dark) .button {
-    @apply border-rose-600 bg-gray-900 hover:bg-black;
+    @apply border-rose-500 bg-gray-950 hover:bg-black;
 }
 
 .buttonPopular {
-    @apply mt-8 block rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600 sm:mt-10;
+    @apply mt-auto block rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600;
 }
 
 :global(.dark) .buttonPopular {

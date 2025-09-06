@@ -1,36 +1,61 @@
 import { useTranslation } from 'react-i18next'
 
-import { OnlineServiceCard } from '@/entities/online-service/ui/OnlineServiceCard'
+import { NarrowServiceCard } from '@/entities/online-service/ui/narrow-service-card/NarrowServiceCard'
+import { WideServiceCard } from '@/entities/online-service/ui/wide-service-card/WideServiceCard'
 import styles from './OnlineServices.module.css'
 
 export const OnlineServices = () => {
     const { t } = useTranslation('pricing')
 
     const services = [
-        { key: 'miniConsultation', priceEur: 25 },
+        { key: 'consultation', priceEur: 25 },
         { key: 'makeupBag', priceEur: 45, oldPriceEur: 65, popular: true },
         { key: 'videoLesson', priceEur: 70 },
         { key: 'premiumPackage', priceEur: 250 },
     ]
 
+    const workshops = [
+        { key: 'workshopMakeup', priceEur: 15, oldPriceEur: 25 },
+        { key: 'workshopHairStyle', priceEur: 15, oldPriceEur: 25 },
+    ]
+
     return (
-        <div className={styles.container}>
-            {services.map((s) => (
-                <OnlineServiceCard
-                    key={s.key}
-                    name={t(`services.${s.key}.name`)}
-                    blurb={t(`services.${s.key}.blurb`)}
-                    priceEur={s.priceEur}
-                    oldPriceEur={s.oldPriceEur}
-                    time={t(`services.${s.key}.time`)}
-                    features={
-                        t(`services.${s.key}.features`, {
-                            returnObjects: true,
-                        }) as string[]
-                    }
-                    popular={s.popular}
-                />
-            ))}
+        <div className="space-y-8">
+            <div className={styles.narrow}>
+                {services.map((s) => (
+                    <NarrowServiceCard
+                        key={s.key}
+                        name={t(`services.${s.key}.name`)}
+                        blurb={t(`services.${s.key}.blurb`)}
+                        priceEur={s.priceEur}
+                        oldPriceEur={s.oldPriceEur}
+                        time={t(`services.${s.key}.time`)}
+                        features={
+                            t(`services.${s.key}.features`, {
+                                returnObjects: true,
+                            }) as string[]
+                        }
+                        popular={s.popular}
+                    />
+                ))}
+            </div>
+
+            <div className={styles.wide}>
+                {workshops.map((w) => (
+                    <WideServiceCard
+                        key={w.key}
+                        name={t(`workshops.${w.key}.name`)}
+                        blurb={t(`workshops.${w.key}.blurb`)}
+                        priceEur={w.priceEur}
+                        oldPriceEur={w.oldPriceEur}
+                        features={
+                            t(`workshops.${w.key}.features`, {
+                                returnObjects: true,
+                            }) as string[]
+                        }
+                    />
+                ))}
+            </div>
         </div>
     )
 }

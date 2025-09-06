@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { OnlineServiceCard } from './OnlineServiceCard'
+import { NarrowServiceCard } from './NarrowServiceCard'
 
-describe('OnlineServiceCard', () => {
+describe('NarrowServiceCard', () => {
     const mockData = {
-        name: 'Mini Consultation',
+        name: 'Consultation',
+        blurb: 'Test Blurb',
         priceEur: 25,
         time: '30 minutes',
         features: [
@@ -16,22 +17,22 @@ describe('OnlineServiceCard', () => {
     }
 
     it('renders service name correctly', () => {
-        render(<OnlineServiceCard {...mockData} />)
-        expect(screen.getByText('Mini Consultation')).toBeInTheDocument()
+        render(<NarrowServiceCard {...mockData} />)
+        expect(screen.getByText('Consultation')).toBeInTheDocument()
     })
 
     it('displays price in EUR format', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
         expect(screen.getByText('€25')).toBeInTheDocument()
     })
 
     it('shows duration information', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
         expect(screen.getByText('/ 30 minutes')).toBeInTheDocument()
     })
 
     it('renders all features with checkmarks', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
 
         mockData.features.forEach((feature) => {
             expect(screen.getByText(feature)).toBeInTheDocument()
@@ -41,23 +42,23 @@ describe('OnlineServiceCard', () => {
     })
 
     it('applies popular styling when popular is true', () => {
-        render(<OnlineServiceCard {...mockData} popular />)
+        render(<NarrowServiceCard {...mockData} popular />)
 
-        const container = screen.getByText('Mini Consultation').closest('div')
+        const container = screen.getByText('Consultation').closest('div')
         expect(container).toHaveClass(/_containerPopular_/)
     })
 
     it('applies regular styling when popular is false', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
 
-        const container = screen.getByText('Mini Consultation').closest('div')
+        const container = screen.getByText('Consultation').closest('div')
         expect(container).toHaveClass(/_container_/)
     })
 
     it('renders contact button with correct link', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
 
-        const contactButton = screen.getByRole('link', { name: 'button' })
+        const contactButton = screen.getByRole('link', { name: 'buttons.book' })
         expect(contactButton).toHaveAttribute(
             'href',
             'https://t.me/InnaZakharova'
@@ -67,16 +68,16 @@ describe('OnlineServiceCard', () => {
     })
 
     it('uses popular button styling for popular services', () => {
-        render(<OnlineServiceCard {...mockData} popular />)
+        render(<NarrowServiceCard {...mockData} popular />)
 
-        const button = screen.getByRole('link', { name: 'button' })
+        const button = screen.getByRole('link', { name: 'buttons.book' })
         expect(button).toHaveClass(/_buttonPopular_/)
     })
 
     it('uses regular button styling for non-popular services', () => {
-        render(<OnlineServiceCard {...mockData} />)
+        render(<NarrowServiceCard {...mockData} />)
 
-        const button = screen.getByRole('link', { name: 'button' })
+        const button = screen.getByRole('link', { name: 'buttons.book' })
         expect(button).toHaveClass(/_button_/)
     })
 })

@@ -2,6 +2,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config'
 import commonStyles from '@/shared/components/common/common.module.css'
 import styles from './WideServiceCard.module.css'
 
@@ -55,7 +56,7 @@ export const WideServiceCard = ({
                         <span className={styles.price}>{`€${priceEur}`}</span>
                     </p>
                     <a
-                        href="https://t.me/InnaZakharova"
+                        href={config.contactLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={classNames(

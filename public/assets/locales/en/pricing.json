@@ -53,6 +53,7 @@
         }
     },
     "workshops": {
+        "title": "Video Tutorials",
         "workshopMakeup": {
             "name": "Workshop “Makeup for Yourself“",
             "blurb": "4 lessons with different makeup looks in an easy and understandable format. You will learn how to prepare your skin for makeup, do cream contouring, and enhance the expressiveness of your eyes, so you can confidently create looks for yourself for every day and special occasions.",
@@ -74,9 +75,21 @@
             ]
         }
     },
+    "addons": {
+        "title": "Additional Materials",
+        "budgetCosmetics": {
+            "name": "Budget Cosmetics Selection",
+            "blurb": "PDF guide to a budget-friendly makeup bag under €50. Effective products at an affordable price."
+        },
+        "basicBrushes": {
+            "name": "Basic Brush Selection",
+            "blurb": "Basic makeup brushes in different price categories — from affordable to professional."
+        }
+    },
     "included": "What’s included",
     "buttons": {
         "book": "Book now",
+        "download": "Download for free",
         "get": "Get access"
     }
 }

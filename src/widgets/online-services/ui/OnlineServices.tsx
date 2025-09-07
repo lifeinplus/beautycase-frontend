@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { AddonServiceCard } from '@/entities/online-service/ui/addon-service-card/AddonServiceCard'
 import { NarrowServiceCard } from '@/entities/online-service/ui/narrow-service-card/NarrowServiceCard'
 import { WideServiceCard } from '@/entities/online-service/ui/wide-service-card/WideServiceCard'
 import styles from './OnlineServices.module.css'
@@ -18,6 +19,8 @@ export const OnlineServices = () => {
         { key: 'workshopMakeup', priceEur: 15, oldPriceEur: 25 },
         { key: 'workshopHairStyle', priceEur: 15, oldPriceEur: 25 },
     ]
+
+    const addons = [{ key: 'budgetCosmetics' }, { key: 'basicBrushes' }]
 
     return (
         <div className="space-y-8">
@@ -40,6 +43,7 @@ export const OnlineServices = () => {
                 ))}
             </div>
 
+            <p className={styles.title}>{t('workshops.title')}</p>
             <div className={styles.wide}>
                 {workshops.map((w) => (
                     <WideServiceCard
@@ -53,6 +57,17 @@ export const OnlineServices = () => {
                                 returnObjects: true,
                             }) as string[]
                         }
+                    />
+                ))}
+            </div>
+
+            <p className={styles.title}>{t('addons.title')}</p>
+            <div className={styles.addons}>
+                {addons.map((a) => (
+                    <AddonServiceCard
+                        key={a.key}
+                        name={t(`addons.${a.key}.name`)}
+                        blurb={t(`addons.${a.key}.blurb`)}
                     />
                 ))}
             </div>

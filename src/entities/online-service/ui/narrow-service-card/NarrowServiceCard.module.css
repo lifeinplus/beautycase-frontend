@@ -83,7 +83,7 @@
 }
 
 :global(.dark) .button {
-    @apply border-rose-500 bg-gray-950 hover:bg-black;
+    @apply border-rose-500 bg-gray-950 hover:bg-gray-900;
 }
 
 .buttonPopular {

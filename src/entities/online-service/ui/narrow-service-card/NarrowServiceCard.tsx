@@ -2,6 +2,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config'
 import commonStyles from '@/shared/components/common/common.module.css'
 import styles from './NarrowServiceCard.module.css'
 
@@ -39,6 +40,7 @@ export const NarrowServiceCard = ({
             >
                 {name}
             </h4>
+
             <p className="mt-4 flex items-baseline gap-x-2">
                 {oldPriceEur && (
                     <span className={styles.oldPrice}>{`€${oldPriceEur}`}</span>
@@ -46,7 +48,9 @@ export const NarrowServiceCard = ({
                 <span className={styles.price}>{`€${priceEur}`}</span>
                 <span className={styles.time}>{`/ ${time}`}</span>
             </p>
+
             <p className={styles.blurb}>{blurb}</p>
+
             <ul role="list" className={styles.features}>
                 {features.map((f) => (
                     <li key={f} className="flex gap-x-3">
@@ -55,8 +59,9 @@ export const NarrowServiceCard = ({
                     </li>
                 ))}
             </ul>
+
             <a
-                href="https://t.me/InnaZakharova"
+                href={config.contactLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classNames(

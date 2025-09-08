@@ -4,6 +4,7 @@ const mockIcon = (name: string) => () => <svg data-testid={`mocked-${name}`} />
 
 const icons = {
     ArrowDownCircleIcon: mockIcon('arrow-down-circle-icon'),
+    ArrowDownTrayIcon: mockIcon('arrow-down-tray-icon'),
     ArrowLeftIcon: mockIcon('arrow-left-icon'),
     ArrowLeftStartOnRectangleIcon: mockIcon(
         'arrow-left-start-on-rectangle-icon'
@@ -16,6 +17,7 @@ const icons = {
     ChevronRightIcon: mockIcon('chevron-right-icon'),
     ClipboardDocumentListIcon: mockIcon('clipboard-document-list-icon'),
     ClipboardIcon: mockIcon('clipboard-icon'),
+    ComputerDesktopIcon: mockIcon('computer-desktop-icon'),
     DocumentArrowDownIcon: mockIcon('document-arrow-down-icon'),
     DocumentDuplicateIcon: mockIcon('document-duplicate-icon'),
     EllipsisHorizontalCircleIcon: mockIcon('ellipsis-horizontal-circle-icon'),

@@ -18,9 +18,9 @@ vi.mock('@/app/hooks')
 vi.mock('@/features/account/components/AccountFields')
 vi.mock('@/features/users/usersApi')
 vi.mock('@/shared/components/common/DataWrapper')
+vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/layout/Header')
-vi.mock('@/shared/components/common/Hero')
 
 describe('Account', () => {
     beforeEach(() => {

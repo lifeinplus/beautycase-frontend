@@ -1,0 +1,31 @@
+.container {
+    @apply relative flex flex-col rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
+}
+
+:global(.dark) .container {
+    @apply bg-gray-900 ring-gray-700;
+}
+
+.name {
+    @apply text-pretty text-base/7 font-semibold text-black;
+}
+
+:global(.dark) .name {
+    @apply text-white;
+}
+
+.blurb {
+    @apply my-6 text-pretty text-base/7 text-neutral-700 sm:text-sm/7;
+}
+
+:global(.dark) .blurb {
+    @apply text-gray-300;
+}
+
+.button {
+    @apply mt-auto flex justify-between rounded-lg border border-rose-300 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100;
+}
+
+:global(.dark) .button {
+    @apply border-rose-500 bg-gray-950 hover:bg-gray-900;
+}

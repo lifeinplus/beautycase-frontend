@@ -1,0 +1,22 @@
+.narrow,
+.wide,
+.addons {
+    @apply mx-auto grid max-w-2xl items-stretch gap-7 px-7 sm:px-0;
+}
+
+.narrow,
+.addons {
+    @apply grid-cols-1;
+}
+
+.narrow {
+    @apply md:grid-cols-2;
+}
+
+.addons {
+    @apply sm:grid-cols-2;
+}
+
+.title {
+    @apply mx-auto w-11/12 pt-4 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
+}

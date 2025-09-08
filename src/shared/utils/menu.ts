@@ -1,6 +1,7 @@
 import {
     ClipboardDocumentListIcon,
     ClipboardIcon,
+    ComputerDesktopIcon,
     FilmIcon,
     ListBulletIcon,
     PaintBrushIcon,
@@ -90,6 +91,11 @@ export const menuItems: MenuItem[] = [
         path: '/reference-lists',
         roles: ['admin'],
         icon: ListBulletIcon,
+    },
+    {
+        label: 'menu.pricing',
+        path: '/pricing',
+        icon: ComputerDesktopIcon,
     },
     {
         auth: true,

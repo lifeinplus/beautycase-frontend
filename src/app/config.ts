@@ -12,6 +12,7 @@ const config = {
         robotoRegular: import.meta.env.VITE_FONT_ROBOTO_REGULAR,
     },
     prod: import.meta.env.PROD,
+    contactLink: import.meta.env.VITE_CONTACT_LINK,
 }
 
 export default config

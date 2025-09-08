@@ -9,7 +9,7 @@ import {
     mockUserResult,
 } from '@/features/users/__mocks__/usersApi'
 import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
-import { AccountFields } from '../AccountFields'
+import { AccountFields } from './AccountFields'
 
 describe('AccountFields', () => {
     it('renders user data correctly', () => {

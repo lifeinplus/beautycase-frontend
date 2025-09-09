@@ -12,6 +12,7 @@ export const ReferenceLists = () => {
 
     const data: ReferenceList[] = [
         { id: 'brands', name: t('names.brands') },
+        { id: 'categories', name: t('names.categories') },
         { id: 'stores', name: t('names.stores') },
     ]
 

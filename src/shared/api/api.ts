@@ -42,6 +42,7 @@ export const api = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: [
         'Brand',
+        'Category',
         'Lesson',
         'MakeupBag',
         'Product',

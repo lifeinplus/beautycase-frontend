@@ -60,7 +60,7 @@ export const MakeupBagForm = ({
     const categoryOptions = categories.map(
         (c): SelectOption => ({
             text: t(`categories.${c.name}.full`),
-            value: c._id,
+            value: c._id!,
         })
     )
 

@@ -1,0 +1,36 @@
+{
+    "buttons": {
+        "categoryAdd": {
+            "ariaLabel": "Add category button"
+        },
+        "categoryDelete": {
+            "ariaLabel": "Delete category button"
+        },
+        "categoryEdit": {
+            "ariaLabel": "Edit category button"
+        }
+    },
+    "emptyMessageList": "No categories found",
+    "fields": {
+        "name": {
+            "label": "Category",
+            "errors": {
+                "required": "Please enter the category name"
+            }
+        },
+        "type": {
+            "label": "Type",
+            "errors": {
+                "required": "Please enter the category type"
+            }
+        }
+    },
+    "table": {
+        "category": "Category",
+        "type": "Type",
+        "actions": "Actions"
+    },
+    "titles": {
+        "list": "Categories"
+    }
+}

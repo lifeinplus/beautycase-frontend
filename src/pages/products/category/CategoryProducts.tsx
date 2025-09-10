@@ -1,43 +1,46 @@
 import { useTranslation } from 'react-i18next'
 
-import { useGetProductCategoriesQuery } from '@/features/categories/categoriesApi'
-import { useGetProductsWithoutCategoryQuery } from '@/features/products/productsApi'
+import { useGetProductsByCategoryQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
 import { Hero } from '@/shared/components/common/Hero'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
-import { Header } from '@/shared/components/layout/Header'
+import { TopPanel } from '@/shared/components/layout/TopPanel'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import { ProductCategoriesMobileView } from '@/widgets/product/categories/mobile-view/ProductCategoriesMobileView'
-import { ProductCategoriesTable } from '@/widgets/product/categories/table/ProductCategoriesTable'
-import styles from './ProductGallery.module.css'
+import { useNavigate, useParams } from 'react-router-dom'
+import styles from './CategoryProducts.module.css'
 
-export const ProductGallery = () => {
+export const CategoryProducts = () => {
+    const navigate = useNavigate()
+    const { category } = useParams()
     const { t } = useTranslation('product')
-
-    const { data: categories, isLoading: isCategoriesLoading } =
-        useGetProductCategoriesQuery()
 
     const {
         data: products,
         isLoading,
         error,
-    } = useGetProductsWithoutCategoryQuery()
+    } = useGetProductsByCategoryQuery(category!)
 
     const title = t('titles.gallery')
+    const subtitle = t(`categories.${category}`)
+
+    const handleBack = () => {
+        navigate('/products')
+    }
 
     return (
         <article className={pageStyles.page}>
-            <Header />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={title} />
+                    <Hero headline={title} byline={subtitle} hideOnMobile />
 
-                    <ProductCategoriesMobileView categories={categories} />
-                    <ProductCategoriesTable categories={categories} />
+                    <div className="sm:hidden">
+                        <Hero byline={subtitle} />
+                    </div>
 
                     <DataWrapper
-                        isLoading={isLoading || isCategoriesLoading}
+                        isLoading={isLoading}
                         error={error}
                         data={title}
                         emptyMessage={t('emptyMessageList')}

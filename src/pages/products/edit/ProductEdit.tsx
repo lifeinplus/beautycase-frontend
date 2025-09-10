@@ -34,6 +34,7 @@ export const ProductEdit = () => {
             dispatch(
                 setFormData({
                     brandId: data.brand?._id,
+                    categoryId: data.category?._id,
                     name: data.name,
                     imageUrl: data.imageUrl,
                     shade: data.shade,

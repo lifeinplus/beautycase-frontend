@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
+import { useGetProductCategoriesQuery } from '@/features/categories/categoriesApi'
 import { selectFormData } from '@/features/form/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { TitleSection } from '@/shared/components/common/TitleSection'
@@ -54,18 +55,26 @@ export const ProductForm = ({
     }, [formData])
 
     const { data: brands } = useGetAllBrandsQuery()
+    const { data: categories } = useGetProductCategoriesQuery()
 
     const brandOptions: SelectOption[] | undefined = brands?.map((b) => ({
         text: b.name,
         value: b._id!,
     }))
 
+    const categoryOptions: SelectOption[] | undefined = categories?.map(
+        (c) => ({
+            text: t(`categories.${c.name}`),
+            value: c._id!,
+        })
+    )
+
     const handleBack = () => {
         navigate(-1)
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
@@ -84,6 +93,16 @@ export const ProductForm = ({
                                 register={register('brandId')}
                                 required={true}
                                 value={watch('brandId')}
+                            />
+
+                            {/* TODO: make it required */}
+                            <SelectSection
+                                // error={t(errors.categoryId?.message || '')}
+                                label={t('fields.category.label')}
+                                options={categoryOptions}
+                                register={register('categoryId')}
+                                // required={true}
+                                value={watch('categoryId')}
                             />
 
                             <TextareaSection

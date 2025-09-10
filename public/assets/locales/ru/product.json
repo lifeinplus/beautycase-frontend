@@ -1,11 +1,17 @@
 {
-    "emptyMessageList": "Косметички не найдены",
+    "emptyMessageList": "Продукты не найдены",
     "error": "Ошибка при загрузке продуктов",
     "fields": {
         "brand": {
             "label": "Бренд",
             "errors": {
                 "required": "Выберите бренд"
+            }
+        },
+        "category": {
+            "label": "Категория",
+            "errors": {
+                "required": "Выберите категорию"
             }
         },
         "name": {
@@ -47,7 +53,17 @@
         "details": "Продукт",
         "edit": "Редактировать продукт",
         "gallery": "Продукты",
-        "gallerySubtitle": "Мицеллярная вода, тоники, тональные основы и крема",
         "selection": "Выбрать продукты"
+    },
+    "categories": {
+        "brow-products": "Продукты для бровей",
+        "cream-contouring": "Кремовая коррекция",
+        "eyeshadows-and-pencils": "Тени и карандаши для глаз",
+        "foundation-creams": "Тональные крема",
+        "lipsticks-glosses-pencils": "Помады, блески и карандаши для губ",
+        "mascaras": "Туши",
+        "powder-products": "Сухие продукты",
+        "skin-preparation": "Подготовка кожи к макияжу",
+        "sprays-and-fixers": "Спреи и фиксаторы"
     }
 }

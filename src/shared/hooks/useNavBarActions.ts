@@ -110,6 +110,10 @@ export const useNavBarActions = (): NavBarAction[] => {
                 pattern: /^\/products\/add$/i,
                 actions: backActions,
             },
+            {
+                pattern: /^\/products\/category\/[^/]+$/i,
+                actions: [...backActions, ...addActions],
+            },
         ]
 
         const questionnaireRoutes = [

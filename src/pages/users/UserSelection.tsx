@@ -58,7 +58,7 @@ export const UserSelection = () => {
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>

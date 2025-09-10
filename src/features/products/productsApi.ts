@@ -33,6 +33,16 @@ const productsApi = api.injectEndpoints({
             providesTags: (_result, _error, id) => [{ type: 'Product', id }],
         }),
 
+        getProductsByCategory: builder.query<Product[], string>({
+            query: (category) => `/products/category/${category}`,
+            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
+        }),
+
+        getProductsWithoutCategory: builder.query<Product[], void>({
+            query: () => '/products/without-category',
+            providesTags: [{ type: 'Product', id: 'WITHOUT_CATEGORY' }],
+        }),
+
         updateProductById: builder.mutation<
             Product,
             { id: string; product: Product }
@@ -77,6 +87,8 @@ export const {
     useCreateProductMutation,
     useGetAllProductsQuery,
     useGetProductByIdQuery,
+    useGetProductsByCategoryQuery,
+    useGetProductsWithoutCategoryQuery,
     useUpdateProductByIdMutation,
     useUpdateProductStoreLinksMutation,
     useDeleteProductByIdMutation,

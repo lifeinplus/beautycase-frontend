@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { RequireRole } from '@/features/auth/components/RequireRole'
 import { StoreLinksAddForProduct } from '@/features/stores/wrappers/StoreLinksAddForProduct'
 import { ProductAdd } from '@/pages/products/add/ProductAdd'
+import { CategoryProducts } from '@/pages/products/category/CategoryProducts'
 import { ProductDetails } from '@/pages/products/details/ProductDetails'
 import { ProductEdit } from '@/pages/products/edit/ProductEdit'
 import { ProductGallery } from '@/pages/products/gallery/ProductGallery'
@@ -16,6 +17,7 @@ export const productRoutes = [
             <Route path=":id/edit" element={<ProductEdit />} />
             <Route path=":id/links" element={<StoreLinksAddForProduct />} />
             <Route path="add" element={<ProductAdd />} />
+            <Route path="category/:category" element={<CategoryProducts />} />
         </Route>
     </Route>,
 ]

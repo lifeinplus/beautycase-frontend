@@ -64,7 +64,7 @@ export const LessonForm = ({
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>

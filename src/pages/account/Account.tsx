@@ -16,7 +16,7 @@ export const Account = () => {
     const { data, isLoading, error } = useGetUserByIdQuery(userId)
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <Header />
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>

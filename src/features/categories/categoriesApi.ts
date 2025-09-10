@@ -18,6 +18,11 @@ const categoriesApi = api.injectEndpoints({
             providesTags: ['Category'],
         }),
 
+        getProductCategories: builder.query<Category[], void>({
+            query: () => '/categories/products',
+            providesTags: ['Category'],
+        }),
+
         updateCategoryById: builder.mutation<
             Category,
             { id: string; category: Category }
@@ -43,6 +48,7 @@ const categoriesApi = api.injectEndpoints({
 export const {
     useCreateCategoryMutation,
     useGetAllCategoriesQuery,
+    useGetProductCategoriesQuery,
     useUpdateCategoryByIdMutation,
     useDeleteCategoryByIdMutation,
 } = categoriesApi

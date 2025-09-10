@@ -106,7 +106,7 @@ export const StoreLinksAdd = ({
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
             <main className={pageStyles.content}>

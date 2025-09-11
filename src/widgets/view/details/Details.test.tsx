@@ -11,7 +11,6 @@ import { Details, type DetailsProps } from './Details'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/layout/TopPanel')
 
@@ -52,7 +51,6 @@ describe('Details', () => {
             screen.getByTestId('mocked-description-content')
         ).toBeInTheDocument()
 
-        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
     })
 

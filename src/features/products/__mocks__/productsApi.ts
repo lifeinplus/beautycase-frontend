@@ -42,6 +42,8 @@ export const mockProductIds: string[] = ['product1', 'product2']
 export const useCreateProductMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()
+export const useGetProductsByCategoryQuery = vi.fn()
+export const useGetProductsWithoutCategoryQuery = vi.fn()
 export const useUpdateProductByIdMutation = vi.fn()
 export const useUpdateProductStoreLinksMutation = vi.fn()
 export const useDeleteProductByIdMutation = vi.fn()
@@ -61,7 +63,22 @@ const productsHandlers = [
               )
     }),
 
+    http.get('api/products/category/:category', ({}) => {
+        return HttpResponse.json(mockProducts)
+    }),
+
+    http.get('api/products/without-category', ({}) => {
+        return HttpResponse.json(mockProducts)
+    }),
+
     http.put('api/products/:id', async ({ params }) =>
+        HttpResponse.json({
+            id: params.id,
+            message: 'Product updated successfully',
+        })
+    ),
+
+    http.patch('api/products/:id/store-links', async ({ params }) =>
         HttpResponse.json({
             id: params.id,
             message: 'Product updated successfully',

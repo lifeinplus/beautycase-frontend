@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useGetProductsByCategoryQuery } from '@/features/products/productsApi'
 import { DataWrapper } from '@/shared/components/common/DataWrapper'
@@ -6,7 +7,6 @@ import { Hero } from '@/shared/components/common/Hero'
 import { ImageCard } from '@/shared/components/gallery/ImageCard'
 import { TopPanel } from '@/shared/components/layout/TopPanel'
 import pageStyles from '@/shared/components/ui/page.module.css'
-import { useNavigate, useParams } from 'react-router-dom'
 import styles from './CategoryProducts.module.css'
 
 export const CategoryProducts = () => {
@@ -42,7 +42,7 @@ export const CategoryProducts = () => {
                     <DataWrapper
                         isLoading={isLoading}
                         error={error}
-                        data={title}
+                        data={products}
                         emptyMessage={t('emptyMessageList')}
                     >
                         <article className={styles.container}>

@@ -14,7 +14,6 @@ vi.mock('@/features/stages/components/StageFilter')
 vi.mock('@/features/stages/components/StageMobileView')
 vi.mock('@/features/stages/components/StageTable')
 vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Header')
 
@@ -34,12 +33,7 @@ describe('StageList', () => {
     })
 
     it('renders the component with correct structure', () => {
-        const ids = [
-            'mocked-header',
-            'mocked-hero',
-            'mocked-stage-filter',
-            'mocked-data-wrapper',
-        ]
+        const ids = ['mocked-header', 'mocked-hero', 'mocked-stage-filter']
 
         render(<StageList />)
 
@@ -47,11 +41,8 @@ describe('StageList', () => {
     })
 
     it('renders page components and list views', () => {
-        const ids = ['mocked-stage-mobile-view', 'mocked-stage-table']
-
         render(<StageList />)
-
-        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('updates filtered stages when filter changes', async () => {
@@ -59,6 +50,9 @@ describe('StageList', () => {
 
         render(<StageList />)
         await user.click(screen.getByTestId('mocked-filter-button'))
+
+        const stageMobileView = screen.getByTestId('mocked-stage-mobile-view')
+        expect(stageMobileView.textContent).toContain(mockStage1.title)
 
         const stageTable = screen.getByTestId('mocked-stage-table')
         expect(stageTable.textContent).toContain(mockStage1.title)

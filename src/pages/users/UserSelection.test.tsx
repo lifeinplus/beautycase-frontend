@@ -18,7 +18,6 @@ import { UserSelection } from './UserSelection'
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/users/usersApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/ui/ButtonSubmit')
@@ -48,7 +47,7 @@ describe('UserSelection', () => {
 
         render(<UserSelection />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -60,7 +59,7 @@ describe('UserSelection', () => {
 
         render(<UserSelection />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders client items', () => {

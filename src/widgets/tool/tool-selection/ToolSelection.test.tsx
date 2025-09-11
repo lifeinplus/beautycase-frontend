@@ -14,7 +14,6 @@ import { ToolSelection } from './ToolSelection'
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/navigation/NavButton')
@@ -44,7 +43,7 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -56,7 +55,7 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders tool items', () => {

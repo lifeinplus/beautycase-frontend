@@ -10,7 +10,6 @@ import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { Gallery, type GalleryProps } from './Gallery'
 
 vi.mock('@/app/hooks')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Header')
 
@@ -60,14 +59,14 @@ describe('Gallery', () => {
     it('shows loading state when isLoading is true', () => {
         renderWithProviders(<Gallery {...mockProps} isLoading />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 
     it('shows error message when error is present', () => {
         renderWithProviders(<Gallery {...mockProps} error={mockError} />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessage')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 })

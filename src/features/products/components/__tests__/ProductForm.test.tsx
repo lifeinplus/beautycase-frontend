@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks'
 import { mockBrands } from '@/features/brands/__mocks__/brandsApi'
 import { useGetAllBrandsQuery } from '@/features/brands/brandsApi'
+import { useGetProductCategoriesQuery } from '@/features/categories/categoriesApi'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockProduct1 } from '../../__mocks__/productsApi'
@@ -12,6 +13,7 @@ import { ProductForm } from '../ProductForm'
 
 vi.mock('@/app/hooks')
 vi.mock('@/features/brands/brandsApi')
+vi.mock('@/features/categories/categoriesApi')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/forms/ImageUrlSection')
@@ -31,6 +33,10 @@ describe('ProductForm', () => {
         vi.mocked(useGetAllBrandsQuery as Mock).mockReturnValue({
             data: mockBrands,
         })
+
+        vi.mocked(useGetProductCategoriesQuery as Mock).mockReturnValue({
+            data: mockBrands,
+        })
     })
 
     it('renders all required form fields', () => {
@@ -38,8 +44,7 @@ describe('ProductForm', () => {
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
-        const brand = screen.getByTestId('mocked-select-section')
-        expect(brand).toBeInTheDocument()
+        expect(screen.getAllByTestId('mocked-select-section')).toHaveLength(2)
 
         const placeholders = [
             'fields.name.label',

@@ -9,7 +9,6 @@ import { QuestionnaireResult } from './QuestionnaireResult'
 
 vi.mock('@/features/questionnaires/components/QuestionnaireData')
 vi.mock('@/features/questionnaires/questionnairesApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/utils/date')
@@ -27,7 +26,6 @@ describe('QuestionnaireResult', () => {
         render(<QuestionnaireResult />)
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
 
         expect(
             screen.getByTestId('mocked-questionnaire-data')

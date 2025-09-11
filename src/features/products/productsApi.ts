@@ -40,7 +40,7 @@ const productsApi = api.injectEndpoints({
 
         getProductsWithoutCategory: builder.query<Product[], void>({
             query: () => '/products/without-category',
-            providesTags: [{ type: 'Product', id: 'WITHOUT_CATEGORY' }],
+            providesTags: [{ type: 'Product', id: 'LIST' }],
         }),
 
         updateProductById: builder.mutation<

@@ -8,14 +8,15 @@ import {
     mockProduct1,
     mockProductCreate,
     mockProducts,
-} from '../__mocks__/productsApi'
+} from './__mocks__/productsApi'
 import {
     useCreateProductMutation,
-    useGetProductByIdQuery,
-    useGetAllProductsQuery,
-    useUpdateProductByIdMutation,
     useDeleteProductByIdMutation,
-} from '../productsApi'
+    useGetAllProductsQuery,
+    useGetProductByIdQuery,
+    useUpdateProductByIdMutation,
+    useUpdateProductStoreLinksMutation,
+} from './productsApi'
 
 describe('productsApi', () => {
     describe('createProduct', () => {
@@ -121,6 +122,62 @@ describe('productsApi', () => {
                     id: mockProduct1._id!,
                     message: 'Product updated successfully',
                 })
+            })
+        })
+    })
+
+    describe('updateProductStoreLinks', () => {
+        it('updates product store links', async () => {
+            const { result } = renderHookWithProvider(() =>
+                useUpdateProductStoreLinksMutation()
+            )
+
+            const [updateProductStoreLinks] = result.current
+
+            await act(async () => {
+                const response = await updateProductStoreLinks({
+                    id: mockProduct1._id!,
+                    data: {
+                        storeLinks: [
+                            {
+                                _id: '',
+                                link: 'https://example.com',
+                                name: 'Test Name',
+                            },
+                        ],
+                    },
+                }).unwrap()
+
+                expect(response).toMatchObject({
+                    id: mockProduct1._id!,
+                    message: 'Product updated successfully',
+                })
+            })
+        })
+
+        it('returns 400 error when store links update fails', async () => {
+            server.use(
+                http.patch('api/products/:id/store-links', () =>
+                    HttpResponse.json(
+                        { message: 'Invalid store links' },
+                        { status: 400 }
+                    )
+                )
+            )
+
+            const { result } = renderHookWithProvider(() =>
+                useUpdateProductStoreLinksMutation()
+            )
+
+            const [updateProductStoreLinks] = result.current
+
+            await act(async () => {
+                const response = updateProductStoreLinks({
+                    id: mockProduct1._id!,
+                    data: { storeLinks: [] },
+                }).unwrap()
+
+                await expect(response).rejects.toThrow()
             })
         })
     })

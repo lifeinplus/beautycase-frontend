@@ -1,0 +1,73 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+
+import { mockProducts } from '@/features/products/__mocks__/productsApi'
+import { useGetProductsByCategoryQuery } from '@/features/products/productsApi'
+import { mockNavigate } from '@/tests/mocks/router'
+import { CategoryProducts } from './CategoryProducts'
+
+vi.mock('@/features/products/productsApi')
+vi.mock('@/shared/components/common/Hero')
+vi.mock('@/shared/components/gallery/ImageCard')
+vi.mock('@/shared/components/layout/TopPanel')
+
+describe('CategoryProducts', () => {
+    beforeEach(() => {
+        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+            data: mockProducts,
+            isLoading: false,
+            error: null,
+        })
+    })
+
+    it('renders products with title and subtitle', () => {
+        render(<CategoryProducts />)
+        expect(screen.getAllByText(/gallery/i)).toHaveLength(2)
+        expect(screen.getByText(mockProducts[0].name)).toBeInTheDocument()
+    })
+
+    it('navigates back when back button is clicked', async () => {
+        const user = userEvent.setup()
+
+        render(<CategoryProducts />)
+        await user.click(screen.getByTestId('mocked-back-button'))
+
+        expect(mockNavigate).toHaveBeenCalledWith('/products')
+    })
+
+    it('renders empty message when no products', () => {
+        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+            data: [],
+            isLoading: false,
+            error: null,
+        })
+
+        render(<CategoryProducts />)
+        expect(screen.getByText(/emptyMessageList/i)).toBeInTheDocument()
+    })
+
+    it('shows loading state', () => {
+        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+            data: undefined,
+            isLoading: true,
+            error: null,
+        })
+
+        render(<CategoryProducts />)
+
+        expect(screen.getByText(/loading/i)).toBeInTheDocument()
+    })
+
+    it('shows error state', () => {
+        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+            data: undefined,
+            isLoading: false,
+            error: { message: 'Error!' },
+        })
+
+        render(<CategoryProducts />)
+
+        expect(screen.getByText(/emptyMessageList/i)).toBeInTheDocument()
+    })
+})

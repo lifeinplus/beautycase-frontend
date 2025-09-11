@@ -8,7 +8,6 @@ import { MakeupBagList } from './MakeupBagList'
 vi.mock('@/features/makeupBags/components/MakeupBagMobileView')
 vi.mock('@/features/makeupBags/components/MakeupBagTable')
 vi.mock('@/features/makeupBags/makeupBagsApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Header')
 
@@ -24,7 +23,7 @@ describe('MakeupBagList', () => {
     it('renders the component with correct structure', () => {
         render(<MakeupBagList />)
 
-        const ids = ['mocked-header', 'mocked-hero', 'mocked-data-wrapper']
+        const ids = ['mocked-header', 'mocked-hero']
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
     })

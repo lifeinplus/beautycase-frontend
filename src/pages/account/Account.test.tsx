@@ -17,7 +17,6 @@ import {
 vi.mock('@/app/hooks')
 vi.mock('@/features/account/components/AccountFields')
 vi.mock('@/features/users/usersApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/navigation/NavBar')
 vi.mock('@/shared/components/layout/Header')
@@ -45,8 +44,7 @@ describe('Account', () => {
 
         renderWithProviders(<Account />)
 
-        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
@@ -55,7 +53,6 @@ describe('Account', () => {
         const matchers = [
             'mocked-header',
             'mocked-hero',
-            'mocked-data-wrapper',
             'mocked-account-fields',
         ]
 
@@ -73,6 +70,6 @@ describe('Account', () => {
 
         renderWithProviders(<Account />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessage')).toBeInTheDocument()
     })
 })

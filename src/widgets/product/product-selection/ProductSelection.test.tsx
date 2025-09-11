@@ -16,7 +16,6 @@ import { ProductSelection } from './ProductSelection'
 vi.mock('@/app/hooks')
 vi.mock('@/features/form/formSlice')
 vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/TitleSection')
 vi.mock('@/shared/components/layout/TopPanel')
 vi.mock('@/shared/components/ui/ButtonSubmit')
@@ -49,7 +48,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -61,7 +60,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders product items', () => {

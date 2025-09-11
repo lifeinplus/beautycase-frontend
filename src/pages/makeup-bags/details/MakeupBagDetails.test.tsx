@@ -8,7 +8,6 @@ import { MakeupBagDetails } from './MakeupBagDetails'
 vi.mock('@/features/makeupBags/makeupBagsApi')
 vi.mock('@/features/stages/components/Stages')
 vi.mock('@/features/tools/components/Tools')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Footer')
 vi.mock('@/shared/components/layout/TopPanel')
@@ -45,7 +44,6 @@ describe('MakeupBagDetails', () => {
 
         render(<MakeupBagDetails />)
 
-        expect(screen.getByText('0 stages')).toBeInTheDocument()
-        expect(screen.getByText('0 tools')).toBeInTheDocument()
+        expect(screen.getByText(/emptyMessage/)).toBeInTheDocument()
     })
 })

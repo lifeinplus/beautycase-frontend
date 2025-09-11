@@ -8,7 +8,6 @@ import { QuestionnaireList } from './QuestionnaireList'
 vi.mock('@/features/questionnaires/components/QuestionnaireMobileView')
 vi.mock('@/features/questionnaires/components/QuestionnaireTable')
 vi.mock('@/features/questionnaires/questionnairesApi')
-vi.mock('@/shared/components/common/DataWrapper')
 vi.mock('@/shared/components/common/Hero')
 vi.mock('@/shared/components/layout/Header')
 
@@ -26,7 +25,6 @@ describe('QuestionnaireList', () => {
 
         expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {

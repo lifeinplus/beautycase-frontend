@@ -1,0 +1,36 @@
+{
+    "buttons": {
+        "categoryAdd": {
+            "ariaLabel": "Кнопка добавить категорию"
+        },
+        "categoryDelete": {
+            "ariaLabel": "Кнопка удалить категорию"
+        },
+        "categoryEdit": {
+            "ariaLabel": "Кнопка изменить категорию"
+        }
+    },
+    "emptyMessageList": "Категории не найдены",
+    "fields": {
+        "name": {
+            "label": "Категория",
+            "errors": {
+                "required": "Укажите название категории"
+            }
+        },
+        "type": {
+            "label": "Тип",
+            "errors": {
+                "required": "Укажите тип категории"
+            }
+        }
+    },
+    "table": {
+        "category": "Категория",
+        "type": "Тип",
+        "actions": "Действия"
+    },
+    "titles": {
+        "list": "Категории"
+    }
+}

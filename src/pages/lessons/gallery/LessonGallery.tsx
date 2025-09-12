@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import { useGetAllLessonsQuery } from '@/features/lessons/lessonsApi'
-import { VideoCard } from '@/shared/components/gallery/VideoCard'
+import { useGetAllLessonsQuery } from '@/features/lessons/api/lessonsApi'
+import { VideoCard } from '@/shared/components/gallery/video-card/VideoCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
 import styles from './LessonGallery.module.css'
 

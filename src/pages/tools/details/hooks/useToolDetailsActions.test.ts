@@ -12,19 +12,19 @@ import {
     vi,
 } from 'vitest'
 
-import { mockTool1 } from '@/features/tools/__mocks__/toolsApi'
+import { mockTool1 } from '@/features/tools/api/__mocks__/toolsApi'
 import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
-} from '@/features/tools/toolsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/tools/api/toolsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useToolDetailsActions } from './useToolDetailsActions'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/tools/api/toolsApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useToolDetailsActions', () => {
     const mockDeleteToolById = vi.fn()

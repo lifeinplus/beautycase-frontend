@@ -2,25 +2,24 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { setFormData } from '@/features/form/formSlice'
-import { mockMakeupBags } from '@/features/makeupBags/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
-import { mockStages } from '@/features/stages/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { setFormData } from '@/features/form/slice/formSlice'
+import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { mockStages } from '@/features/stages/api/__mocks__/stagesApi'
+import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageSelection } from './StageSelection'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/makeupBags/makeupBagsApi')
-vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/ui/Image')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/makeup-bags/api/makeupBagsApi')
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/components/ui/image/Image')
 
 describe('StageSelection', () => {
     const mockFormData = {

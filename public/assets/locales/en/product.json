@@ -8,6 +8,12 @@
                 "required": "Select a brand"
             }
         },
+        "category": {
+            "label": "Category",
+            "errors": {
+                "required": "Select a category"
+            }
+        },
         "name": {
             "label": "Name",
             "errors": {
@@ -48,7 +54,17 @@
         "details": "Product",
         "edit": "Edit Product",
         "gallery": "Products",
-        "gallerySubtitle": "Micellar water, toners, foundations, and creams",
         "selection": "Select Products"
+    },
+    "categories": {
+        "brow-products": "Brow products",
+        "cream-contouring": "Cream contouring",
+        "eyeshadows-and-pencils": "Eyeshadows and eye pencils",
+        "foundation-creams": "Foundation creams",
+        "lipsticks-glosses-pencils": "Lipsticks, glosses, and lip pencils",
+        "mascaras": "Mascaras",
+        "powder-products": "Powder products",
+        "skin-preparation": "Skin preparation for makeup",
+        "sprays-and-fixers": "Sprays and fixers"
     }
 }

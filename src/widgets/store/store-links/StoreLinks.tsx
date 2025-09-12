@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { StoreLink } from '@/features/stores/types'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import styles from './StoreLinks.module.css'
 import { AddButton } from './ui/AddButton'
 import { ItemLink } from './ui/ItemLink'

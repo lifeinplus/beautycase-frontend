@@ -1,20 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { setFormData } from '@/features/form/formSlice'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { setFormData } from '@/features/form/slice/formSlice'
 import {
     mockProduct1,
     mockProduct2,
     mockProducts,
-} from '@/features/products/__mocks__/productsApi'
+} from '@/features/products/api/__mocks__/productsApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
 import { SelectTile } from './SelectTile'
 
-vi.mock('@/app/hooks')
+vi.mock('@/app/hooks/hooks')
 
 describe('SelectTile', () => {
     beforeEach(() => {

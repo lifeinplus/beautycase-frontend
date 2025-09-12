@@ -4,24 +4,23 @@ import toast from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { mockProducts } from '@/features/products/__mocks__/productsApi'
-import { useGetAllProductsQuery } from '@/features/products/productsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
+import { useGetAllProductsQuery } from '@/features/products/api/productsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ProductSelection } from './ProductSelection'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/common/TitleSection')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/ui/ButtonSubmit')
-vi.mock('@/shared/components/ui/Image')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/shared/components/common/title-section/TitleSection')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
+vi.mock('@/shared/components/ui/image/Image')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ProductSelection', () => {
     const mockFormData = {
@@ -49,7 +48,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -61,7 +60,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders product items', () => {

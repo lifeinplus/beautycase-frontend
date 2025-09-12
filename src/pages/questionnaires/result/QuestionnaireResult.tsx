@@ -1,18 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { QuestionnaireData } from '@/features/questionnaires/components/QuestionnaireData'
-import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/questionnairesApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
-import { formatDate } from '@/shared/utils/date'
+import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { QuestionnaireData } from '@/features/questionnaires/components/data/QuestionnaireData'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { formatDate } from '@/shared/utils/date/formatDate'
 
 export const QuestionnaireResult = () => {
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation(['questionnaire'])
 
     const { data, isLoading, error } = useGetQuestionnaireByIdQuery(id!)

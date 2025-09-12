@@ -3,22 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { mockTool1 } from '@/features/tools/__mocks__/toolsApi'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { mockTool1 } from '@/features/tools/api/__mocks__/toolsApi'
 import {
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
-} from '@/features/tools/toolsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/tools/api/toolsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolEdit } from './ToolEdit'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/tools/components/ToolForm')
-vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/tools/components/form/ToolForm')
+vi.mock('@/features/tools/api/toolsApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ToolEdit', () => {
     const mockUpdateToolById = vi.fn()

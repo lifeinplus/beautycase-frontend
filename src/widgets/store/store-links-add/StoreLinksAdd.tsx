@@ -9,21 +9,20 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { clearFormData, selectFormData } from '@/features/form/formSlice'
-import { useGetAllStoresQuery } from '@/features/stores/storesApi'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
+import { clearFormData, selectFormData } from '@/features/form/slice/formSlice'
+import { useGetAllStoresQuery } from '@/features/stores/api/storesApi'
 import { StoreLink } from '@/features/stores/types'
-import { TitleSection } from '@/shared/components/common/TitleSection'
-import { Button } from '@/shared/components/forms/Button'
+import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { Button } from '@/shared/components/forms/button/Button'
 import formStyles from '@/shared/components/forms/form.module.css'
-import selectStyles from '@/shared/components/forms/SelectSection.module.css'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import buttonStyles from '@/shared/components/ui/button.module.css'
-import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
-import inputStyles from '@/shared/components/ui/Input.module.css'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import selectStyles from '@/shared/components/forms/select/section/SelectSection.module.css'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
+import inputStyles from '@/shared/components/ui/input/Input.module.css'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import styles from './StoreLinksAdd.module.css'
 
 export interface StoreLinksAddProps {
@@ -36,7 +35,7 @@ export const StoreLinksAdd = ({
     isSaving = false,
 }: StoreLinksAddProps) => {
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation('store')
 
     const dispatch = useAppDispatch()
@@ -106,7 +105,7 @@ export const StoreLinksAdd = ({
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
             <main className={pageStyles.content}>

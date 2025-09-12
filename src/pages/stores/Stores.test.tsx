@@ -4,29 +4,28 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { clearFormData, setFormData } from '@/features/form/formSlice'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteStoreByIdMutation,
     useGetAllStoresQuery,
-} from '@/features/stores/storesApi'
+} from '@/features/stores/api/storesApi'
 import type { Store } from '@/features/stores/types'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { Stores } from './Stores'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/stores/components/StoreForm')
-vi.mock('@/features/stores/components/StoresMobileView')
-vi.mock('@/features/stores/components/StoresTable')
-vi.mock('@/features/stores/storesApi')
-vi.mock('@/shared/components/modals/ModalDelete')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/DataWrapper')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/stores/api/storesApi')
+vi.mock('@/features/stores/components/form/StoreForm')
+vi.mock('@/features/stores/components/mobile-view/StoresMobileView')
+vi.mock('@/features/stores/components/table/StoresTable')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/modals/delete/ModalDelete')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('Stores', () => {
     const mockStores: Store[] = [

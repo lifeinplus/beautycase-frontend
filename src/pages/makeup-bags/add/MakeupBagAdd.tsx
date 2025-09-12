@@ -2,12 +2,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { MakeupBagForm } from '@/features/makeupBags/components/MakeupBagForm'
-import { useCreateMakeupBagMutation } from '@/features/makeupBags/makeupBagsApi'
-import type { MakeupBag } from '@/features/makeupBags/types'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useCreateMakeupBagMutation } from '@/features/makeup-bags/api/makeupBagsApi'
+import { MakeupBagForm } from '@/features/makeup-bags/components/form/MakeupBagForm'
+import type { MakeupBag } from '@/features/makeup-bags/types'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagAdd = () => {
     const navigate = useNavigate()

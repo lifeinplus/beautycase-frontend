@@ -1,17 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
-import { useGetMakeupBagByIdQuery } from '@/features/makeupBags/makeupBagsApi'
+import { mockMakeupBag1 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
+import { useGetMakeupBagByIdQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagDetails } from './MakeupBagDetails'
 
-vi.mock('@/features/makeupBags/makeupBagsApi')
-vi.mock('@/features/stages/components/Stages')
-vi.mock('@/features/tools/components/Tools')
-vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/common/Hero')
+vi.mock('@/features/makeup-bags/api/makeupBagsApi')
+vi.mock('@/features/stages/components/stages/Stages')
+vi.mock('@/features/tools/components/tools/Tools')
+vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/Footer')
-vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('./hooks/useMakeupBagDetailsActions')
 
 describe('MakeupBagDetails', () => {
@@ -45,7 +44,6 @@ describe('MakeupBagDetails', () => {
 
         render(<MakeupBagDetails />)
 
-        expect(screen.getByText('0 stages')).toBeInTheDocument()
-        expect(screen.getByText('0 tools')).toBeInTheDocument()
+        expect(screen.getByText(/emptyMessage/)).toBeInTheDocument()
     })
 })

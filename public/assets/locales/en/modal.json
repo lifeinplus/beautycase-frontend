@@ -16,7 +16,8 @@
     "delete": {
         "title": "Delete?",
         "description": "Are you sure you want to delete {{name}}?",
-        "toast": "{{name}} deleted"
+        "toast": "{{name}} deleted",
+        "descriptionCategory": "Are you sure you want to delete category {{name}} of type {{type}}?"
     },
     "duplicate": {
         "title": "Duplicate?",

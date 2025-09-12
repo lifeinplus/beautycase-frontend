@@ -1,15 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { useGetProductByIdQuery } from '@/features/products/productsApi'
-import { ImageSection } from '@/shared/components/common/ImageSection'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
+import { useGetProductByIdQuery } from '@/features/products/api/productsApi'
+import { ImageSection } from '@/shared/components/common/image-section/ImageSection'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
 import { Details } from '@/widgets/view/details/Details'
 
 export const ProductDetails = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation(['product', 'store'])
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)

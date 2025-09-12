@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { StageFilter } from '@/features/stages/components/StageFilter'
-import { StageMobileView } from '@/features/stages/components/StageMobileView'
-import { StageTable } from '@/features/stages/components/StageTable'
-import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
+import { StageFilter } from '@/features/stages/components/filter/StageFilter'
+import { StageMobileView } from '@/features/stages/components/mobile-view/StageMobileView'
+import { StageTable } from '@/features/stages/components/table/StageTable'
 import type { Stage } from '@/features/stages/types'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const StageList = () => {
     const { t } = useTranslation(['stage', 'component'])

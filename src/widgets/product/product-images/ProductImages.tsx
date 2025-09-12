@@ -2,8 +2,8 @@ import classNames from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { Product } from '@/features/products/types'
-import { Image } from '@/shared/components/ui/Image'
-import imageStyles from '@/shared/components/ui/image.module.css'
+import { Image } from '@/shared/components/ui/image/Image'
+import imageStyles from '@/shared/components/ui/image/Image.module.css'
 import styles from './ProductImages.module.css'
 import { SelectTile } from './ui/SelectTile'
 

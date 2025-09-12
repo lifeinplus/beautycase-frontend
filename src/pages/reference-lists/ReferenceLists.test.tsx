@@ -3,10 +3,12 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { ReferenceLists } from './ReferenceLists'
 
-vi.mock('@/features/referenceLists/components/ReferenceListsMobileView')
-vi.mock('@/features/referenceLists/components/ReferenceListsTable')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/Header')
+vi.mock(
+    '@/features/reference-lists/components/mobile-view/ReferenceListsMobileView'
+)
+vi.mock('@/features/reference-lists/components/table/ReferenceListsTable')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/header/Header')
 
 describe('ReferenceLists', () => {
     it('renders the component with correct structure', () => {

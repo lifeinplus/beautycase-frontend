@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-import { useAppSelector } from '@/app/hooks'
-import { AccountFields } from '@/features/account/components/AccountFields'
-import { selectUserId } from '@/features/auth/authSlice'
-import { useGetUserByIdQuery } from '@/features/users/usersApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { AccountFields } from '@/features/account/components/fields/AccountFields'
+import { selectUserId } from '@/features/auth/slice/authSlice'
+import { useGetUserByIdQuery } from '@/features/users/api/usersApi'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const Account = () => {
     const { t } = useTranslation(['account', 'makeupBag'])
@@ -16,7 +16,7 @@ export const Account = () => {
     const { data, isLoading, error } = useGetUserByIdQuery(userId)
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <Header />
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>

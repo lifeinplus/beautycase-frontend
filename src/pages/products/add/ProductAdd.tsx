@@ -2,12 +2,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { ProductForm } from '@/features/products/components/ProductForm'
-import { useCreateProductMutation } from '@/features/products/productsApi'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useCreateProductMutation } from '@/features/products/api/productsApi'
+import { ProductForm } from '@/features/products/components/form/ProductForm'
 import type { Product } from '@/features/products/types'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ProductAdd = () => {
     const navigate = useNavigate()

@@ -2,23 +2,22 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { setFormData } from '@/features/form/formSlice'
-import { mockTools } from '@/features/tools/__mocks__/toolsApi'
-import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { setFormData } from '@/features/form/slice/formSlice'
+import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
+import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolSelection } from './ToolSelection'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/ui/Image')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/tools/api/toolsApi')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/components/ui/image/Image')
 
 describe('ToolSelection', () => {
     const mockFormData = {
@@ -44,7 +43,7 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders error state', () => {
@@ -56,7 +55,7 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
     })
 
     it('renders tool items', () => {

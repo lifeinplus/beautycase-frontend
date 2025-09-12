@@ -3,24 +3,23 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
-} from '@/features/form/formSlice'
-import { MakeupBagForm } from '@/features/makeupBags/components/MakeupBagForm'
+} from '@/features/form/slice/formSlice'
 import {
     useGetMakeupBagByIdQuery,
     useUpdateMakeupBagByIdMutation,
-} from '@/features/makeupBags/makeupBagsApi'
-import type { MakeupBag } from '@/features/makeupBags/types'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+} from '@/features/makeup-bags/api/makeupBagsApi'
+import { MakeupBagForm } from '@/features/makeup-bags/components/form/MakeupBagForm'
+import type { MakeupBag } from '@/features/makeup-bags/types'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagEdit = () => {
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation('makeupBag')
 
     const dispatch = useAppDispatch()

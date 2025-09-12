@@ -3,22 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { mockLesson1 } from '@/features/lessons/__mocks__/lessonsApi'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { mockLesson1 } from '@/features/lessons/api/__mocks__/lessonsApi'
 import {
     useGetLessonByIdQuery,
     useUpdateLessonByIdMutation,
-} from '@/features/lessons/lessonsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/lessons/api/lessonsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { LessonEdit } from './LessonEdit'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/lessons/components/LessonForm')
-vi.mock('@/features/lessons/lessonsApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/lessons/components/form/LessonForm')
+vi.mock('@/features/lessons/api/lessonsApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('LessonEdit', () => {
     const mockUpdateLessonById = vi.fn()

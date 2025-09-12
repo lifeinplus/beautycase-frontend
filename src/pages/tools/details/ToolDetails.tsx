@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { useGetToolByIdQuery } from '@/features/tools/toolsApi'
-import { ImageSection } from '@/shared/components/common/ImageSection'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
+import { useGetToolByIdQuery } from '@/features/tools/api/toolsApi'
+import { ImageSection } from '@/shared/components/common/image-section/ImageSection'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { StoreLinks } from '@/widgets/store/store-links/StoreLinks'
 import { Details } from '@/widgets/view/details/Details'
 
 export const ToolDetails = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation(['tool', 'store'])
 
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
+    // TODO: ???
     // const [deleteToolById] = useDeleteToolByIdMutation()
 
     return (

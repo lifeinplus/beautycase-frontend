@@ -2,11 +2,11 @@ import { SquaresPlusIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectRole } from '@/features/auth/authSlice'
-import { setFormData } from '@/features/form/formSlice'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
+import { selectRole } from '@/features/auth/slice/authSlice'
+import { setFormData } from '@/features/form/slice/formSlice'
 import type { Product } from '@/features/products/types'
-import imageStyles from '@/shared/components/ui/image.module.css'
+import imageStyles from '@/shared/components/ui/image/Image.module.css'
 import styles from './SelectTile.module.css'
 
 export interface SelectTileProps {

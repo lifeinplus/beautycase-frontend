@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockLesson1 } from '@/features/lessons/__mocks__/lessonsApi'
+import { mockLesson1 } from '@/features/lessons/api/__mocks__/lessonsApi'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
-} from '@/features/lessons/lessonsApi'
-import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
+} from '@/features/lessons/api/lessonsApi'
+import { getEmbedUrl } from '@/shared/utils/youtube/getEmbedUrl'
 import { mockYouTubeUrl } from '@/tests/mocks/form'
 import { LessonDetails } from './LessonDetails'
 
-vi.mock('@/features/lessons/lessonsApi')
-vi.mock('@/shared/components/ui/Image')
-vi.mock('@/shared/utils/youtube')
+vi.mock('@/features/lessons/api/lessonsApi')
+vi.mock('@/shared/components/ui/image/Image')
+vi.mock('@/shared/utils/youtube/getEmbedUrl')
 vi.mock('@/widgets/product/product-images/ProductImages')
 vi.mock('@/widgets/view/details/Details')
 
@@ -30,7 +30,7 @@ describe('LessonDetails', () => {
             mockDeleteLesson,
         ])
 
-        vi.mocked(getYouTubeEmbedUrl).mockReturnValue(mockYouTubeUrl)
+        vi.mocked(getEmbedUrl).mockReturnValue(mockYouTubeUrl)
     })
 
     it('renders lesson details', async () => {

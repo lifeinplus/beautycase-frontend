@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockStoreLinks } from '@/features/stores/__mocks__/storesApi'
+import { mockStoreLinks } from '@/features/stores/api/__mocks__/storesApi'
 import { StoreLinks } from './StoreLinks'
 
 vi.mock('./ui/AddButton')

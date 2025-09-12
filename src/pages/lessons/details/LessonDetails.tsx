@@ -1,20 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { useGetLessonByIdQuery } from '@/features/lessons/lessonsApi'
-import { Image } from '@/shared/components/ui/Image'
-import type { RouteId } from '@/shared/types/router'
-import { getYouTubeEmbedUrl } from '@/shared/utils/youtube'
+import { useGetLessonByIdQuery } from '@/features/lessons/api/lessonsApi'
+import { Image } from '@/shared/components/ui/image/Image'
+import { getEmbedUrl } from '@/shared/utils/youtube/getEmbedUrl'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
 import { Details } from '@/widgets/view/details/Details'
 import styles from './LessonDetails.module.css'
 
 export const LessonDetails = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation('lesson')
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
-    const embedUrl = data?.videoUrl && getYouTubeEmbedUrl(data?.videoUrl)
+    const embedUrl = data?.videoUrl && getEmbedUrl(data?.videoUrl)
 
     return (
         <Details

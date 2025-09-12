@@ -3,23 +3,22 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
-} from '@/features/form/formSlice'
-import { ProductForm } from '@/features/products/components/ProductForm'
+} from '@/features/form/slice/formSlice'
 import {
     useGetProductByIdQuery,
     useUpdateProductByIdMutation,
-} from '@/features/products/productsApi'
+} from '@/features/products/api/productsApi'
+import { ProductForm } from '@/features/products/components/form/ProductForm'
 import type { Product } from '@/features/products/types'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ProductEdit = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const navigate = useNavigate()
     const { t } = useTranslation('product')
 
@@ -34,6 +33,7 @@ export const ProductEdit = () => {
             dispatch(
                 setFormData({
                     brandId: data.brand?._id,
+                    categoryId: data.category?._id,
                     name: data.name,
                     imageUrl: data.imageUrl,
                     shade: data.shade,

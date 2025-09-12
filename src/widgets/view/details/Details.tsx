@@ -2,13 +2,12 @@ import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { TitleSection } from '@/shared/components/common/TitleSection'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import { RouteId } from '@/shared/types/router'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export interface DetailsProps {
     isLoading: boolean
@@ -37,7 +36,7 @@ export const Details = ({
 }: DetailsProps) => {
     const { state } = useLocation()
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation('component')
 
     const dispatch = useAppDispatch()

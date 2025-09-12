@@ -1,26 +1,25 @@
 import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from '@/app/hooks'
-import { selectUserId } from '@/features/auth/authSlice'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectUserId } from '@/features/auth/slice/authSlice'
 import {
     mockUseGetUserByIdQuery,
     mockUserResult,
-} from '@/features/users/__mocks__/usersApi'
+} from '@/features/users/api/__mocks__/usersApi'
 import { Account } from '@/pages/account/Account'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import {
     renderWithProviderAndRouter,
     renderWithProviders,
 } from '@/tests/mocks/wrappers'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/account/components/AccountFields')
-vi.mock('@/features/users/usersApi')
-vi.mock('@/shared/components/common/DataWrapper')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/account/components/fields/AccountFields')
+vi.mock('@/features/users/api/usersApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/layout/header/Header')
 
 describe('Account', () => {
     beforeEach(() => {
@@ -45,8 +44,7 @@ describe('Account', () => {
 
         renderWithProviders(<Account />)
 
-        expect(screen.getByTestId('mocked-data-wrapper')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-loading')).toBeInTheDocument()
+        expect(screen.getByText('loading')).toBeInTheDocument()
     })
 
     it('renders the page title and subtitle', () => {
@@ -55,7 +53,6 @@ describe('Account', () => {
         const matchers = [
             'mocked-header',
             'mocked-hero',
-            'mocked-data-wrapper',
             'mocked-account-fields',
         ]
 
@@ -73,6 +70,6 @@ describe('Account', () => {
 
         renderWithProviders(<Account />)
 
-        expect(screen.getByTestId('mocked-error')).toBeInTheDocument()
+        expect(screen.getByText('emptyMessage')).toBeInTheDocument()
     })
 })

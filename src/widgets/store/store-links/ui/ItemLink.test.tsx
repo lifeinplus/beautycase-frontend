@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockStoreLink1 } from '@/features/stores/__mocks__/storesApi'
+import { mockStoreLink1 } from '@/features/stores/api/__mocks__/storesApi'
 import { ItemLink } from './ItemLink'
 
 describe('ItemLink', () => {

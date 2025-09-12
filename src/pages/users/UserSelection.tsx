@@ -3,19 +3,19 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import config from '@/app/config'
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { selectFormData, setFormData } from '@/features/form/formSlice'
-import { useGetAllUsersQuery } from '@/features/users/usersApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { TitleSection } from '@/shared/components/common/TitleSection'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import buttonStyles from '@/shared/components/ui/button.module.css'
-import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
-import { Image } from '@/shared/components/ui/Image'
-import imageStyles from '@/shared/components/ui/image.module.css'
-import orderStyles from '@/shared/components/ui/order.module.css'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import config from '@/app/config/config'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
+import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
+import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
+import { Image } from '@/shared/components/ui/image/Image'
+import imageStyles from '@/shared/components/ui/image/Image.module.css'
+import orderStyles from '@/shared/components/ui/order/order.module.css'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import styles from './UserSelection.module.css'
 
 export const UserSelection = () => {
@@ -58,7 +58,7 @@ export const UserSelection = () => {
     }
 
     return (
-        <article className={pageStyles.page}>
+        <article>
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
             <main className={pageStyles.content}>

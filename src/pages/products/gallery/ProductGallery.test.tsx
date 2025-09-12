@@ -1,17 +1,29 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockProducts } from '@/features/products/__mocks__/productsApi'
-import { useGetAllProductsQuery } from '@/features/products/productsApi'
+import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
+import { useGetProductCategoriesQuery } from '@/features/categories/api/categoriesApi'
+import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
+import { useGetProductsWithoutCategoryQuery } from '@/features/products/api/productsApi'
 import { ProductGallery } from './ProductGallery'
 
-vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/components/gallery/ImageCard')
-vi.mock('@/widgets/view/gallery/Gallery')
+vi.mock('@/features/categories/api/categoriesApi')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/gallery/image-card/ImageCard')
+vi.mock('@/shared/components/layout/header/Header')
+vi.mock('@/widgets/product/categories/mobile-view/ProductCategoriesMobileView')
+vi.mock('@/widgets/product/categories/table/ProductCategoriesTable')
 
 describe('ProductGallery', () => {
     beforeEach(() => {
-        vi.mocked(useGetAllProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetProductCategoriesQuery as Mock).mockReturnValue({
+            data: mockCategories,
+            isLoading: false,
+            error: null,
+        })
+
+        vi.mocked(useGetProductsWithoutCategoryQuery as Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             error: null,
@@ -21,9 +33,7 @@ describe('ProductGallery', () => {
     it('renders list of products when data is available', () => {
         render(<ProductGallery />)
 
-        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
         expect(screen.getByText('titles.gallery')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockProducts.forEach((product) => {
             const imageCard = screen.getByTestId(

@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { setFormData } from '@/features/form/formSlice'
-import { mockStoreLinks } from '@/features/stores/__mocks__/storesApi'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { setFormData } from '@/features/form/slice/formSlice'
+import { mockStoreLinks } from '@/features/stores/api/__mocks__/storesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
 import { AddButton } from './AddButton'
 
-vi.mock('@/app/hooks')
+vi.mock('@/app/hooks/hooks')
 
 describe('AddButton', () => {
     beforeEach(() => {

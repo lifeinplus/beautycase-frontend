@@ -4,8 +4,8 @@ import {
     fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
 
-import config from '@/app/config'
-import { logout, setCredentials } from '@/features/auth/authSlice'
+import config from '@/app/config/config'
+import { logout, setCredentials } from '@/features/auth/slice/authSlice'
 import type { AuthState } from '@/features/auth/types'
 
 const baseQuery = fetchBaseQuery({
@@ -42,6 +42,7 @@ export const api = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: [
         'Brand',
+        'Category',
         'Lesson',
         'MakeupBag',
         'Product',

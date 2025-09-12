@@ -2,12 +2,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { StageForm } from '@/features/stages/components/StageForm'
-import { useCreateStageMutation } from '@/features/stages/stagesApi'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useCreateStageMutation } from '@/features/stages/api/stagesApi'
+import { StageForm } from '@/features/stages/components/form/StageForm'
 import type { Stage } from '@/features/stages/types'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const StageAdd = () => {
     const navigate = useNavigate()

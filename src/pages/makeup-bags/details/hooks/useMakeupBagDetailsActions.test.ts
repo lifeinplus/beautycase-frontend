@@ -12,24 +12,24 @@ import {
     vi,
 } from 'vitest'
 
-import { mockMakeupBag1 } from '@/features/makeupBags/__mocks__/makeupBagsApi'
-import { mockExportToPDF } from '@/features/makeupBags/hooks/__mocks__/usePDFExport'
-import { usePDFExport } from '@/features/makeupBags/hooks/usePDFExport'
+import { mockMakeupBag1 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
-} from '@/features/makeupBags/makeupBagsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/makeup-bags/api/makeupBagsApi'
+import { mockExportToPDF } from '@/features/makeup-bags/hooks/pdf/__mocks__/usePDFExport'
+import { usePDFExport } from '@/features/makeup-bags/hooks/pdf/usePDFExport'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useMakeupBagDetailsActions } from './useMakeupBagDetailsActions'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/makeupBags/hooks/usePDFExport')
-vi.mock('@/features/makeupBags/makeupBagsApi')
-vi.mock('@/features/makeupBags/utils/generatePdfFilename')
-vi.mock('@/shared/components/common/SpinnerButton')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/makeup-bags/hooks/pdf/usePDFExport')
+vi.mock('@/features/makeup-bags/api/makeupBagsApi')
+vi.mock('@/features/makeup-bags/utils/pdf/generatePdfFilename')
+vi.mock('@/shared/components/common/spinner/SpinnerButton')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useMakeupBagDetailsActions', () => {
     const mockDeleteMakeupBagById = vi.fn()

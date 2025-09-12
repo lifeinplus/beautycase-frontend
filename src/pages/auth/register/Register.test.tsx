@@ -4,15 +4,15 @@ import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { useRegisterUserMutation } from '@/features/auth/authApi'
+import { useRegisterUserMutation } from '@/features/auth/api/authApi'
 import type { AuthResultRegister } from '@/features/auth/types'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Register } from './Register'
 
-vi.mock('@/features/auth/authApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/auth/api/authApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 

@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockProducts } from '@/features/products/__mocks__/productsApi'
+import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
 import { ProductImages } from './ProductImages'
 
-vi.mock('@/shared/components/ui/Image')
+vi.mock('@/shared/components/ui/image/Image')
 vi.mock('./ui/SelectTile')
 
 describe('ProductImages', () => {

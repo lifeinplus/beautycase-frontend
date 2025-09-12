@@ -3,23 +3,23 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockQuestionnaire1 } from '@/features/questionnaires/__mocks__/questionnairesApi'
-import { useCreateQuestionnaireMutation } from '@/features/questionnaires/questionnairesApi'
-import { questions } from '@/features/questionnaires/utils'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { useCreateQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
+import { questions } from '@/features/questionnaires/utils/questions'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { QuestionnaireCreate } from './QuestionnaireCreate'
 
-vi.mock('@/features/questionnaires/questionnairesApi')
-vi.mock('@/shared/components/forms/CheckboxSection')
-vi.mock('@/shared/components/forms/InputSection')
-vi.mock('@/shared/components/forms/ImageTextSection')
-vi.mock('@/shared/components/forms/RadioButtonSection')
-vi.mock('@/shared/components/forms/TextareaSection')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/layout/Header')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/features/questionnaires/api/questionnairesApi')
+vi.mock('@/shared/components/forms/checkbox/section/CheckboxSection')
+vi.mock('@/shared/components/forms/input/section/InputSection')
+vi.mock('@/shared/components/forms/image/text-section/ImageTextSection')
+vi.mock('@/shared/components/forms/radio-button/section/RadioButtonSection')
+vi.mock('@/shared/components/forms/textarea/section/TextareaSection')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/layout/header/Header')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('QuestionnaireCreate', () => {
     const mockAddQuestionnaire = vi.fn()

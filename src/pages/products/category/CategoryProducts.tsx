@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useGetProductsByCategoryQuery } from '@/features/products/productsApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { ImageCard } from '@/shared/components/gallery/ImageCard'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import styles from './CategoryProducts.module.css'
 
 export const CategoryProducts = () => {

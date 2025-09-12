@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockStage1 } from '@/features/stages/__mocks__/stagesApi'
+import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
-} from '@/features/stages/stagesApi'
+} from '@/features/stages/api/stagesApi'
 import { StageDetails } from './StageDetails'
 
-vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/components/common/ImageSection')
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/widgets/product/product-images/ProductImages')
 vi.mock('@/widgets/view/details/Details')
 

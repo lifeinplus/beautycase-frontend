@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
 import type { Category } from '@/features/categories/types'
-import { Table } from '@/shared/components/table/Table'
-import { TableRow } from '@/shared/components/table/TableRow'
-import type { Header } from '@/shared/types/table'
+import { TableRow } from '@/shared/components/table/table-row/TableRow'
+import { Table } from '@/shared/components/table/table/Table'
+import type { Header } from '@/shared/components/table/table/types'
 
 export interface ProductCategoriesTableProps {
     categories?: Category[]

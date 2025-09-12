@@ -3,23 +3,23 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
+import { useAppDispatch } from '@/app/hooks/hooks'
 import {
     useDeleteBrandByIdMutation,
     useGetAllBrandsQuery,
-} from '@/features/brands/brandsApi'
-import { BrandForm } from '@/features/brands/components/BrandForm'
-import { BrandsMobileView } from '@/features/brands/components/BrandsMobileView'
-import { BrandsTable } from '@/features/brands/components/BrandsTable'
+} from '@/features/brands/api/brandsApi'
+import { BrandForm } from '@/features/brands/components/form/BrandForm'
+import { BrandsMobileView } from '@/features/brands/components/mobile-view/BrandsMobileView'
+import { BrandsTable } from '@/features/brands/components/table/BrandsTable'
 import { Brand } from '@/features/brands/types'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const Brands = () => {
     const navigate = useNavigate()

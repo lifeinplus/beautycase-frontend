@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
-import { QuestionnaireMobileView } from '@/features/questionnaires/components/QuestionnaireMobileView'
-import { QuestionnaireTable } from '@/features/questionnaires/components/QuestionnaireTable'
-import { useGetAllQuestionnairesQuery } from '@/features/questionnaires/questionnairesApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { useGetAllQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { QuestionnaireMobileView } from '@/features/questionnaires/components/mobile-view/QuestionnaireMobileView'
+import { QuestionnaireTable } from '@/features/questionnaires/components/table/QuestionnaireTable'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const QuestionnaireList = () => {
     const { t } = useTranslation('questionnaire')

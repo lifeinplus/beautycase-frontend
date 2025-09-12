@@ -12,19 +12,19 @@ import {
     vi,
 } from 'vitest'
 
-import { mockProduct1 } from '@/features/products/__mocks__/productsApi'
+import { mockProduct1 } from '@/features/products/api/__mocks__/productsApi'
 import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
-} from '@/features/products/productsApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/products/api/productsApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useProductDetailsActions } from './useProductDetailsActions'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useProductDetailsActions', () => {
     const mockDeleteProductById = vi.fn()

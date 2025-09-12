@@ -2,12 +2,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { LessonForm } from '@/features/lessons/components/LessonForm'
-import { useCreateLessonMutation } from '@/features/lessons/lessonsApi'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useCreateLessonMutation } from '@/features/lessons/api/lessonsApi'
+import { LessonForm } from '@/features/lessons/components/form/LessonForm'
 import { Lesson } from '@/features/lessons/types'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const LessonAdd = () => {
     const navigate = useNavigate()

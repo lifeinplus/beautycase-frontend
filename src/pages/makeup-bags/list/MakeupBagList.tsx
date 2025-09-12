@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
-import { MakeupBagMobileView } from '@/features/makeupBags/components/MakeupBagMobileView'
-import { MakeupBagTable } from '@/features/makeupBags/components/MakeupBagTable'
-import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { MakeupBagMobileView } from '@/features/makeup-bags/components/mobile-view/MakeupBagMobileView'
+import { MakeupBagTable } from '@/features/makeup-bags/components/table/MakeupBagTable'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])

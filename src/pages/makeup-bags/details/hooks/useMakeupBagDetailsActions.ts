@@ -9,23 +9,22 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { usePDFExport } from '@/features/makeupBags/hooks/usePDFExport'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
-} from '@/features/makeupBags/makeupBagsApi'
-import { generatePdfFilename } from '@/features/makeupBags/utils/generatePdfFilename'
-import { SpinnerButton } from '@/shared/components/common/SpinnerButton'
+} from '@/features/makeup-bags/api/makeupBagsApi'
+import { usePDFExport } from '@/features/makeup-bags/hooks/pdf/usePDFExport'
+import { generatePdfFilename } from '@/features/makeup-bags/utils/pdf/generatePdfFilename'
+import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
 import navStyles from '@/shared/components/navigation/navigation.module.css'
-import { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useMakeupBagDetailsActions = () => {
     const { pathname, state } = useLocation()
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation(['makeupBag', 'modal'])
 
     const dispatch = useAppDispatch()

@@ -3,23 +3,23 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { StoreForm } from '@/features/stores/components/StoreForm'
-import { StoresMobileView } from '@/features/stores/components/StoresMobileView'
-import { StoresTable } from '@/features/stores/components/StoresTable'
 import {
     useDeleteStoreByIdMutation,
     useGetAllStoresQuery,
-} from '@/features/stores/storesApi'
+} from '@/features/stores/api/storesApi'
+import { StoreForm } from '@/features/stores/components/form/StoreForm'
+import { StoresMobileView } from '@/features/stores/components/mobile-view/StoresMobileView'
+import { StoresTable } from '@/features/stores/components/table/StoresTable'
 import type { Store } from '@/features/stores/types'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const Stores = () => {
     const navigate = useNavigate()

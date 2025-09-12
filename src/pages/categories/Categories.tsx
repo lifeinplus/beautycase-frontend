@@ -3,23 +3,23 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
+import { useAppDispatch } from '@/app/hooks/hooks'
 import {
     useDeleteCategoryByIdMutation,
     useGetAllCategoriesQuery,
-} from '@/features/categories/categoriesApi'
-import { CategoriesMobileView } from '@/features/categories/components/categories-mobile-view/CategoriesMobileView'
-import { CategoriesTable } from '@/features/categories/components/categories-table/CategoriesTable'
-import { CategoryForm } from '@/features/categories/components/category-form/CategoryForm'
+} from '@/features/categories/api/categoriesApi'
+import { CategoryForm } from '@/features/categories/components/form/CategoryForm'
+import { CategoriesMobileView } from '@/features/categories/components/mobile-view/CategoriesMobileView'
+import { CategoriesTable } from '@/features/categories/components/table/CategoriesTable'
 import { Category } from '@/features/categories/types'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import { ModalDelete } from '@/shared/components/modals/ModalDelete'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const Categories = () => {
     const navigate = useNavigate()

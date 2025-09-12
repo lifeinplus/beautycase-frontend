@@ -1,18 +1,18 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { clearFormData } from '@/features/form/formSlice'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
 import { Details, type DetailsProps } from './Details'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/shared/components/common/TitleSection')
-vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/shared/components/common/title-section/TitleSection')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('Details', () => {
     const mockDescriptionContent = (

@@ -2,16 +2,16 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockQuestionnaire1 } from '@/features/questionnaires/__mocks__/questionnairesApi'
-import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/questionnairesApi'
+import { mockQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { useGetQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { QuestionnaireResult } from './QuestionnaireResult'
 
-vi.mock('@/features/questionnaires/components/QuestionnaireData')
-vi.mock('@/features/questionnaires/questionnairesApi')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/utils/date')
+vi.mock('@/features/questionnaires/components/data/QuestionnaireData')
+vi.mock('@/features/questionnaires/api/questionnairesApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/utils/date/formatDate')
 
 describe('QuestionnaireResult', () => {
     beforeEach(() => {

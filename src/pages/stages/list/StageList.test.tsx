@@ -2,20 +2,23 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
-import { useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { mockStage1, mockStages } from '@/features/stages/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '@/features/stages/stagesApi'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import {
+    mockStage1,
+    mockStages,
+} from '@/features/stages/api/__mocks__/stagesApi'
+import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
 import { StageList } from './StageList'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/stages/components/StageFilter')
-vi.mock('@/features/stages/components/StageMobileView')
-vi.mock('@/features/stages/components/StageTable')
-vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/stages/components/filter/StageFilter')
+vi.mock('@/features/stages/components/mobile-view/StageMobileView')
+vi.mock('@/features/stages/components/table/StageTable')
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/header/Header')
 
 describe('StageList', () => {
     beforeEach(() => {

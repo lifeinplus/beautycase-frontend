@@ -4,8 +4,8 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Pricing } from './Pricing'
 
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/online-services/ui/OnlineServices')
 
 describe('Pricing page', () => {

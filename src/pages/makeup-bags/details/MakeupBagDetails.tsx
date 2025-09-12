@@ -1,20 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import config from '@/app/config'
-import { useGetMakeupBagByIdQuery } from '@/features/makeupBags/makeupBagsApi'
-import { Stages } from '@/features/stages/components/Stages'
-import { Tools } from '@/features/tools/components/Tools'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Footer } from '@/shared/components/layout/Footer'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
+import config from '@/app/config/config'
+import { useGetMakeupBagByIdQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { Stages } from '@/features/stages/components/stages/Stages'
+import { Tools } from '@/features/tools/components/tools/Tools'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Footer } from '@/shared/components/layout/footer/Footer'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { useMakeupBagDetailsActions } from './hooks/useMakeupBagDetailsActions'
 
 export const MakeupBagDetails = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation(['makeupBag', 'component', 'stage', 'tool'])
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
-import { ImageCard } from '@/shared/components/gallery/ImageCard'
+import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
+import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
 import { Gallery } from '@/widgets/view/gallery/Gallery'
 import styles from './ToolsGallery.module.css'
 

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { Category } from '@/features/categories/types'
-import { MobileView } from '@/shared/components/table/MobileView'
+import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 
 export interface ProductCategoriesMobileViewProps {
     categories?: Category[]

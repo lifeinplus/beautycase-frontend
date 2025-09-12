@@ -2,15 +2,15 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockProducts } from '@/features/products/__mocks__/productsApi'
-import { useGetProductsByCategoryQuery } from '@/features/products/productsApi'
+import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
+import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { CategoryProducts } from './CategoryProducts'
 
-vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/gallery/ImageCard')
-vi.mock('@/shared/components/layout/TopPanel')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/gallery/image-card/ImageCard')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('CategoryProducts', () => {
     beforeEach(() => {

@@ -12,20 +12,20 @@ import {
     vi,
 } from 'vitest'
 
-import { mockStage1 } from '@/features/stages/__mocks__/stagesApi'
+import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
 import {
     useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
-} from '@/features/stages/stagesApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/stages/api/stagesApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useStageDetailsActions } from './useStageDetailsActions'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useStageDetailsActions', () => {
     const mockDeleteStage = vi.fn()

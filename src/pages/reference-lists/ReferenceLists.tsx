@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 
-import { ReferenceListsMobileView } from '@/features/referenceLists/components/ReferenceListsMobileView'
-import { ReferenceListsTable } from '@/features/referenceLists/components/ReferenceListsTable'
-import type { ReferenceList } from '@/features/referenceLists/types'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { ReferenceListsMobileView } from '@/features/reference-lists/components/mobile-view/ReferenceListsMobileView'
+import { ReferenceListsTable } from '@/features/reference-lists/components/table/ReferenceListsTable'
+import type { ReferenceList } from '@/features/reference-lists/types'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const ReferenceLists = () => {
     const { t } = useTranslation('referenceList')

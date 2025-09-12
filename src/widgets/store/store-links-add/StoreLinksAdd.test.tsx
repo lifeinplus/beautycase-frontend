@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import toast from 'react-hot-toast'
+import { useParams } from 'react-router-dom'
 import {
     afterAll,
     beforeAll,
@@ -11,29 +13,27 @@ import {
     vi,
 } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     mockStoreLink1,
     mockStoreLinks,
     mockStores,
-} from '@/features/stores/__mocks__/storesApi'
-import { useGetAllStoresQuery } from '@/features/stores/storesApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/stores/api/__mocks__/storesApi'
+import { useGetAllStoresQuery } from '@/features/stores/api/storesApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
-import toast from 'react-hot-toast'
-import { useParams } from 'react-router-dom'
 import { StoreLinksAdd } from './StoreLinksAdd'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/stores/storesApi')
-vi.mock('@/shared/components/common/TitleSection')
-vi.mock('@/shared/components/forms/Button')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/ui/ButtonSubmit')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/stores/api/storesApi')
+vi.mock('@/shared/components/common/title-section/TitleSection')
+vi.mock('@/shared/components/forms/button/Button')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('StoreLinksAdd', () => {
     const mockFormData = {

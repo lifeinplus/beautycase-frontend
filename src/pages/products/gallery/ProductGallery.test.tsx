@@ -1,17 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockCategories } from '@/features/categories/__mocks__/categoriesApi'
-import { useGetProductCategoriesQuery } from '@/features/categories/categoriesApi'
-import { mockProducts } from '@/features/products/__mocks__/productsApi'
-import { useGetProductsWithoutCategoryQuery } from '@/features/products/productsApi'
+import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
+import { useGetProductCategoriesQuery } from '@/features/categories/api/categoriesApi'
+import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
+import { useGetProductsWithoutCategoryQuery } from '@/features/products/api/productsApi'
 import { ProductGallery } from './ProductGallery'
 
-vi.mock('@/features/categories/categoriesApi')
-vi.mock('@/features/products/productsApi')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/gallery/ImageCard')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/features/categories/api/categoriesApi')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/gallery/image-card/ImageCard')
+vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/product/categories/mobile-view/ProductCategoriesMobileView')
 vi.mock('@/widgets/product/categories/table/ProductCategoriesTable')
 

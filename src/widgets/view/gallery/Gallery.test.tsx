@@ -1,17 +1,17 @@
 import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { useAppSelector } from '@/app/hooks'
-import { selectRole, selectUsername } from '@/features/auth/authSlice'
-import { clearFormData } from '@/features/form/formSlice'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { Gallery, type GalleryProps } from './Gallery'
 
-vi.mock('@/app/hooks')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/header/Header')
 
 describe('Gallery', () => {
     const mockMediaContent = (

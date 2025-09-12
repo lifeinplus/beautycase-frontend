@@ -2,7 +2,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
-import config from '@/app/config'
+import config from '@/app/config/config'
 import commonStyles from '@/shared/components/common/common.module.css'
 import styles from './WideServiceCard.module.css'
 

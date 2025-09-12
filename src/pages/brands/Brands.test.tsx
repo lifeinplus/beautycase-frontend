@@ -7,26 +7,25 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import {
     useDeleteBrandByIdMutation,
     useGetAllBrandsQuery,
-} from '@/features/brands/brandsApi'
+} from '@/features/brands/api/brandsApi'
 import type { Brand } from '@/features/brands/types'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { Brands } from './Brands'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/brands/components/BrandForm')
-vi.mock('@/features/brands/components/BrandsMobileView')
-vi.mock('@/features/brands/components/BrandsTable')
-vi.mock('@/features/brands/brandsApi')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/shared/components/modals/ModalDelete')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/DataWrapper')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/brands/api/brandsApi')
+vi.mock('@/features/brands/components/form/BrandForm')
+vi.mock('@/features/brands/components/mobile-view/BrandsMobileView')
+vi.mock('@/features/brands/components/table/BrandsTable')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/modals/delete/ModalDelete')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('Brands', () => {
     const mockBrands: Brand[] = [

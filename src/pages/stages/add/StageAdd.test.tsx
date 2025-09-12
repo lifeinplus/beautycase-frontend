@@ -3,22 +3,22 @@ import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockDispatch } from '@/app/__mocks__/hooks'
-import { clearFormData } from '@/features/form/formSlice'
+import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     mockStage1,
     mockStageCreate,
-} from '@/features/stages/__mocks__/stagesApi'
-import { useCreateStageMutation } from '@/features/stages/stagesApi'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+} from '@/features/stages/api/__mocks__/stagesApi'
+import { useCreateStageMutation } from '@/features/stages/api/stagesApi'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageAdd } from './StageAdd'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/features/stages/components/StageForm')
-vi.mock('@/features/stages/stagesApi')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/features/stages/components/form/StageForm')
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('StageAdd', () => {
     const mockAddStage = vi.fn()

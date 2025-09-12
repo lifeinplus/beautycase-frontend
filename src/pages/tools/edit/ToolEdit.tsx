@@ -3,23 +3,22 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import {
     clearFormData,
     selectIsDirty,
     setFormData,
-} from '@/features/form/formSlice'
-import { ToolForm } from '@/features/tools/components/ToolForm'
+} from '@/features/form/slice/formSlice'
 import {
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
-} from '@/features/tools/toolsApi'
+} from '@/features/tools/api/toolsApi'
+import { ToolForm } from '@/features/tools/components/form/ToolForm'
 import type { Tool } from '@/features/tools/types'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ToolEdit = () => {
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const navigate = useNavigate()
     const { t } = useTranslation('tool')
 

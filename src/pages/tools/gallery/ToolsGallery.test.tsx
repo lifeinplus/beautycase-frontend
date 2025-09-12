@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockTools } from '@/features/tools/__mocks__/toolsApi'
-import { useGetAllToolsQuery } from '@/features/tools/toolsApi'
+import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
+import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
 import { ToolsGallery } from './ToolsGallery'
 
-vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/components/gallery/ImageCard')
+vi.mock('@/features/tools/api/toolsApi')
+vi.mock('@/shared/components/gallery/image-card/ImageCard')
 vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('ToolsGallery', () => {

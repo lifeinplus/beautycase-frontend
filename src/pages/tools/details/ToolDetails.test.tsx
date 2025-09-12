@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockTool1 } from '@/features/tools/__mocks__/toolsApi'
+import { mockTool1 } from '@/features/tools/api/__mocks__/toolsApi'
 import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
-} from '@/features/tools/toolsApi'
+} from '@/features/tools/api/toolsApi'
 import { ToolDetails } from './ToolDetails'
 
-vi.mock('@/features/tools/toolsApi')
-vi.mock('@/shared/components/common/ImageSection')
+vi.mock('@/features/tools/api/toolsApi')
+vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/widgets/store/store-links/StoreLinks')
 vi.mock('@/widgets/view/details/Details')
 

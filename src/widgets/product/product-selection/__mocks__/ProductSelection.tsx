@@ -1,4 +1,4 @@
-import { mockProductIds } from '@/features/products/__mocks__/productsApi'
+import { mockProductIds } from '@/features/products/api/__mocks__/productsApi'
 import type { ProductSelectionProps } from '../ProductSelection'
 
 export const ProductSelection = ({ onSave }: ProductSelectionProps) => (

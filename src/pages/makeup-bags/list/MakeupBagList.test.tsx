@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
-import { mockMakeupBags } from '@/features/makeupBags/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeupBags/makeupBagsApi'
+import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
+import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagList } from './MakeupBagList'
 
-vi.mock('@/features/makeupBags/components/MakeupBagMobileView')
-vi.mock('@/features/makeupBags/components/MakeupBagTable')
-vi.mock('@/features/makeupBags/makeupBagsApi')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/components/layout/Header')
+vi.mock('@/features/makeup-bags/api/makeupBagsApi')
+vi.mock('@/features/makeup-bags/components/mobile-view/MakeupBagMobileView')
+vi.mock('@/features/makeup-bags/components/table/MakeupBagTable')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/layout/header/Header')
 
 describe('MakeupBagList', () => {
     beforeEach(() => {

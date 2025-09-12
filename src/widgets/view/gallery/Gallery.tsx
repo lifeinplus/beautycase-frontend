@@ -1,12 +1,12 @@
 import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { Hero } from '@/shared/components/common/Hero'
-import { Header } from '@/shared/components/layout/Header'
-import pageStyles from '@/shared/components/ui/page.module.css'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { Hero } from '@/shared/components/common/hero/Hero'
+import { Header } from '@/shared/components/layout/header/Header'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export interface GalleryProps {
     title: string

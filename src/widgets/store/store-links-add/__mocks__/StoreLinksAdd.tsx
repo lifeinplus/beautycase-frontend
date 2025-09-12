@@ -1,4 +1,4 @@
-import { mockStoreLinks } from '@/features/stores/__mocks__/storesApi'
+import { mockStoreLinks } from '@/features/stores/api/__mocks__/storesApi'
 import type { StoreLinksAddProps } from '../StoreLinksAdd'
 
 export const StoreLinksAdd = ({ onSave }: StoreLinksAddProps) => (

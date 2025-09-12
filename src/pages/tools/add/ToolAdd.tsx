@@ -2,12 +2,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks'
-import { clearFormData } from '@/features/form/formSlice'
-import { ToolForm } from '@/features/tools/components/ToolForm'
-import { useCreateToolMutation } from '@/features/tools/toolsApi'
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
+import { useCreateToolMutation } from '@/features/tools/api/toolsApi'
+import { ToolForm } from '@/features/tools/components/form/ToolForm'
 import type { Tool } from '@/features/tools/types'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ToolAdd = () => {
     const navigate = useNavigate()

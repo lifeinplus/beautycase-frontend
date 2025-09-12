@@ -7,28 +7,25 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import {
     useDeleteCategoryByIdMutation,
     useGetAllCategoriesQuery,
-} from '@/features/categories/categoriesApi'
+} from '@/features/categories/api/categoriesApi'
 import type { Category } from '@/features/categories/types'
-import { clearFormData, setFormData } from '@/features/form/formSlice'
-import { mockError } from '@/shared/utils/__mocks__/errorUtils'
+import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
+import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
 import { mockNavigate } from '@/tests/mocks/router'
 import { Categories } from './Categories'
 
-vi.mock('@/app/hooks')
-vi.mock('@/features/categories/components/category-form/CategoryForm')
-vi.mock(
-    '@/features/categories/components/categories-mobile-view/CategoriesMobileView'
-)
-vi.mock('@/features/categories/components/categories-table/CategoriesTable')
-vi.mock('@/features/categories/categoriesApi')
-vi.mock('@/features/form/formSlice')
-vi.mock('@/shared/components/modals/ModalDelete')
-vi.mock('@/shared/components/navigation/NavBar')
-vi.mock('@/shared/components/navigation/NavButton')
-vi.mock('@/shared/components/layout/TopPanel')
-vi.mock('@/shared/components/DataWrapper')
-vi.mock('@/shared/components/common/Hero')
-vi.mock('@/shared/utils/errorUtils')
+vi.mock('@/app/hooks/hooks')
+vi.mock('@/features/categories/api/categoriesApi')
+vi.mock('@/features/categories/components/form/CategoryForm')
+vi.mock('@/features/categories/components/mobile-view/CategoriesMobileView')
+vi.mock('@/features/categories/components/table/CategoriesTable')
+vi.mock('@/features/form/slice/formSlice')
+vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/modals/delete/ModalDelete')
+vi.mock('@/shared/components/navigation/nav-bar/NavBar')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('Categories', () => {
     const mockCategories: Category[] = [

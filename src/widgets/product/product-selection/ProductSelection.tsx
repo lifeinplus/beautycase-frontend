@@ -4,20 +4,19 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { clearFormData, selectFormData } from '@/features/form/formSlice'
-import { useGetAllProductsQuery } from '@/features/products/productsApi'
-import { DataWrapper } from '@/shared/components/common/DataWrapper'
-import { TitleSection } from '@/shared/components/common/TitleSection'
-import { TopPanel } from '@/shared/components/layout/TopPanel'
-import buttonStyles from '@/shared/components/ui/button.module.css'
-import { ButtonSubmit } from '@/shared/components/ui/ButtonSubmit'
-import { Image } from '@/shared/components/ui/Image'
-import imageStyles from '@/shared/components/ui/image.module.css'
-import orderStyles from '@/shared/components/ui/order.module.css'
-import pageStyles from '@/shared/components/ui/page.module.css'
-import type { RouteId } from '@/shared/types/router'
-import { getErrorMessage } from '@/shared/utils/errorUtils'
+import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
+import { clearFormData, selectFormData } from '@/features/form/slice/formSlice'
+import { useGetAllProductsQuery } from '@/features/products/api/productsApi'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
+import { Image } from '@/shared/components/ui/image/Image'
+import imageStyles from '@/shared/components/ui/image/Image.module.css'
+import orderStyles from '@/shared/components/ui/order/order.module.css'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import styles from './ProductSelection.module.css'
 
 export interface ProductSelectionProps {
@@ -30,7 +29,7 @@ export const ProductSelection = ({
     isSaving = false,
 }: ProductSelectionProps) => {
     const navigate = useNavigate()
-    const { id } = useParams<RouteId>()
+    const { id } = useParams()
     const { t } = useTranslation('product')
 
     const dispatch = useAppDispatch()

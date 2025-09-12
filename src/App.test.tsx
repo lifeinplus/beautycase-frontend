@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/react'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { useAppSelector } from './app/hooks'
-import { renderWithProviderAndRouter } from './tests/mocks/wrappers'
 import App from './App'
+import { useAppSelector } from './app/hooks/hooks'
+import { renderWithProviderAndRouter } from './tests/mocks/wrappers'
 
-vi.mock('./app/hooks')
-vi.mock('./features/auth/components/PersistLogin')
-vi.mock('./features/auth/components/RequireAuth')
-vi.mock('./features/auth/components/RequireRole')
-vi.mock('./shared/components/common/ScrollToTop')
+vi.mock('./app/hooks/hooks')
+vi.mock('./features/auth/components/persist-login/PersistLogin')
+vi.mock('./features/auth/components/require-auth/RequireAuth')
+vi.mock('./features/auth/components/require-role/RequireRole')
+vi.mock('./shared/components/common/scroll-to-top/ScrollToTop')
 
 describe('App', () => {
     beforeEach(() => {

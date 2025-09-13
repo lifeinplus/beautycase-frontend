@@ -18,7 +18,7 @@ import {
 import { usePDFExport } from '@/features/makeup-bags/hooks/pdf/usePDFExport'
 import { generatePdfFilename } from '@/features/makeup-bags/utils/pdf/generatePdfFilename'
 import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useMakeupBagDetailsActions = () => {
@@ -112,7 +112,7 @@ export const useMakeupBagDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navStyles.navBtnBack,
+            className: navButtonStyles.navBtnBack,
             icon: ArrowLeftIcon,
             label: t('navigation:actions.back'),
             onClick: () =>

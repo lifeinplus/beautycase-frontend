@@ -4,18 +4,18 @@ import { useLocation } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks/hooks'
+import { NavBar } from '@/app/layout/nav-bar/NavBar'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
-import { NavBar } from '@/shared/components/navigation/nav-bar/NavBar'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/auth/components/auth-button/AuthButton')
 vi.mock('@/features/theme/toggler/ThemeToggler')
-vi.mock('../../common/app-info/AppInfo')
-vi.mock('../../ui/language/switcher/LanguageSwitcher')
-vi.mock('../../ui/logo-link/LogoLink')
-vi.mock('../NavButton')
+vi.mock('@/shared/components/common/app-info/AppInfo')
+vi.mock('@/shared/components/navigation/nav-button/NavButton')
+vi.mock('@/shared/components/ui/language/switcher/LanguageSwitcher')
+vi.mock('@/shared/components/ui/logo-link/LogoLink')
 
 describe('NavBar', () => {
     beforeEach(() => {

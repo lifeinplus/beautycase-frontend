@@ -8,13 +8,13 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { AuthButton } from '@/features/auth/components/auth-button/AuthButton'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { ThemeToggler } from '@/features/theme/toggler/ThemeToggler'
+import AppInfo from '@/shared/components/common/app-info/AppInfo'
 import commonStyles from '@/shared/components/common/common.module.css'
+import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
+import { LanguageSwitcher } from '@/shared/components/ui/language/switcher/LanguageSwitcher'
+import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
 import { canAccess } from '@/shared/lib/access/canAccess'
-import AppInfo from '../../common/app-info/AppInfo'
-import { LanguageSwitcher } from '../../ui/language/switcher/LanguageSwitcher'
-import { LogoLink } from '../../ui/logo-link/LogoLink'
-import { NavButton } from '../nav-button/NavButton'
-import navStyles from '../navigation.module.css'
+import logoStyles from '@/shared/styles/logo.module.css'
 import styles from './NavBar.module.css'
 
 export interface NavBarProps {
@@ -47,7 +47,7 @@ export const NavBar = ({ children }: NavBarProps) => {
     return (
         <aside className={styles.navBar}>
             <div className={styles.logoContainer}>
-                <h2 className={navStyles.navLogo}>
+                <h2 className={logoStyles.logo}>
                     <LogoLink>
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>

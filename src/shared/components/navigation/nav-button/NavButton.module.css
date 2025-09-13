@@ -5,3 +5,7 @@
 :global(.dark) .navBtn {
     @apply hover:bg-neutral-800;
 }
+
+.navBtnBack {
+    @apply hidden sm:flex;
+}

@@ -14,7 +14,7 @@ import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
 } from '@/features/products/api/productsApi'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useProductDetailsActions = () => {
@@ -62,7 +62,7 @@ export const useProductDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navStyles.navBtnBack,
+            className: navButtonStyles.navBtnBack,
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>

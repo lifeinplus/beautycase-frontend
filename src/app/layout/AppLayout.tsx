@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
 
 import { useNavBarActions } from '@/app/layout/hooks/nav-bar-actions/useNavBarActions'
+import { NavBar } from '@/app/layout/nav-bar/NavBar'
 import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { ModalDuplicate } from '@/shared/components/modals/duplicate/ModalDuplicate'
-import { NavBar } from '@/shared/components/navigation/nav-bar/NavBar'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
 
 export const AppLayout = () => {

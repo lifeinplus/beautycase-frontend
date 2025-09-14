@@ -1,5 +1,5 @@
 .footer {
-    @apply mb-2 border-t border-gray-300;
+    @apply pb-safe-bottom mb-2 border-t border-gray-300;
     @apply sm:ms-navbar-left lg:ms-navbar-left-open;
 }
 

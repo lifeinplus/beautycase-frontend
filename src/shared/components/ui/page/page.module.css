@@ -3,12 +3,12 @@
 }
 
 .content {
-    @apply flex flex-col items-center justify-center pb-6;
+    @apply flex flex-col items-center justify-center pb-safe-bottom;
     @apply sm:ms-navbar-left lg:ms-navbar-left-open;
 }
 
 .container {
-    @apply mx-auto w-full;
+    @apply mx-auto w-full pb-6;
     @apply sm:max-w-lg sm:pt-6 md:max-w-2xl;
 }
 

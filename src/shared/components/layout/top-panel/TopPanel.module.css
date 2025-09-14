@@ -1,5 +1,5 @@
 .container {
-    @apply sticky left-0 top-0 z-10 w-full border-b border-neutral-300 bg-white sm:hidden;
+    @apply pt-safe-top sticky left-0 top-0 z-10 w-full border-b border-neutral-300 bg-white sm:hidden;
 }
 
 .btn {

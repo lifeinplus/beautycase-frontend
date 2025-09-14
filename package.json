@@ -1,7 +1,7 @@
 {
     "name": "beautycase-frontend",
     "private": true,
-    "version": "2025.24.0",
+    "version": "2025.25.0",
     "type": "module",
     "scripts": {
         "dev": "vite",

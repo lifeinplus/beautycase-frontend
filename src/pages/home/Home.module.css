@@ -1,5 +1,5 @@
 .container {
-    @apply flex min-h-screen flex-col items-center justify-center;
+    @apply pt-safe-top pb-safe-bottom flex min-h-screen flex-col items-center justify-center;
 }
 
 .logo {

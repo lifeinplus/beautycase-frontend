@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 
 export const useBackActions = () => {
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ export const useBackActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navStyles.navBtnBack,
+            className: navButtonStyles.navBtnBack,
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () => navigate(-1),

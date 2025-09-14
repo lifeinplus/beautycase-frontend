@@ -14,7 +14,7 @@ import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
 } from '@/features/lessons/api/lessonsApi'
-import navStyles from '@/shared/components/navigation/navigation.module.css'
+import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useLessonDetailsActions = () => {
@@ -62,7 +62,7 @@ export const useLessonDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navStyles.navBtnBack,
+            className: navButtonStyles.navBtnBack,
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>

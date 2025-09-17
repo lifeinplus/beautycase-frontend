@@ -30,7 +30,7 @@ export const Brands = () => {
     const [brand, setBrand] = useState<Brand>()
 
     const dispatch = useAppDispatch()
-    const { data, isLoading, error } = useGetAllBrandsQuery()
+    const { data = [], isLoading, error } = useGetAllBrandsQuery()
     const [deleteBrandById] = useDeleteBrandByIdMutation()
 
     const handleBack = () => {
@@ -64,11 +64,17 @@ export const Brands = () => {
 
     return (
         <article>
-            <TopPanel title={t('titles.list')} onBack={handleBack} />
+            <TopPanel
+                title={`${t('titles.list')} (${data.length})`}
+                onBack={handleBack}
+            />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('titles.list')} hideOnMobile />
+                    <Hero
+                        headline={`${t('titles.list')} (${data.length})`}
+                        hideOnMobile
+                    />
 
                     <BrandForm ref={brandFormRef} />
 

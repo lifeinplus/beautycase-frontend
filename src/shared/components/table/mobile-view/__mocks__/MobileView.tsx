@@ -3,8 +3,8 @@ import { type MobileViewProps } from '../MobileView'
 export const MobileView = <T,>({
     items,
     getTitle,
-    getSubtitle,
-    getDate,
+    getDescription: getSubtitle,
+    getRightText: getDate,
     getLink,
 }: MobileViewProps<T>) => (
     <div data-testid="mocked-mobile-view">

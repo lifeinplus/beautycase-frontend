@@ -12,8 +12,8 @@ export const QuestionnaireMobileView = ({
     <MobileView
         items={questionnaires}
         getTitle={(item) => item.name}
-        getSubtitle={(item) => item.city || '—'}
-        getDate={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
+        getDescription={(item) => item.city || '—'}
+        getRightText={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
         getLink={(item) => `/questionnaires/${item._id}`}
     />
 )

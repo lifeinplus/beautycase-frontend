@@ -15,13 +15,12 @@ export const CategoryProducts = () => {
     const { t } = useTranslation('product')
 
     const {
-        data: products,
+        data: products = [],
         isLoading,
         error,
     } = useGetProductsByCategoryQuery(category!)
 
-    const title = t('titles.gallery')
-    const subtitle = t(`categories.${category}`)
+    const title = t(`categories.${category}`)
 
     const handleBack = () => {
         navigate('/products')
@@ -33,11 +32,10 @@ export const CategoryProducts = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={title} byline={subtitle} hideOnMobile />
-
-                    <div className="sm:hidden">
-                        <Hero byline={subtitle} />
-                    </div>
+                    <Hero
+                        headline={`${title} (${products?.length})`}
+                        hideOnMobile
+                    />
 
                     <DataWrapper
                         isLoading={isLoading}

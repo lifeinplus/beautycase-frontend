@@ -22,7 +22,7 @@ export const ReferenceLists = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('hero.headline')} />
+                    <Hero headline={`${t('hero.headline')} (${data.length})`} />
                     <ReferenceListsMobileView data={data} />
                     <ReferenceListsTable data={data} />
                 </article>

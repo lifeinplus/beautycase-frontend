@@ -10,7 +10,7 @@ import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])
-    const { data, isLoading, error } = useGetAllMakeupBagsQuery()
+    const { data = [], isLoading, error } = useGetAllMakeupBagsQuery()
 
     return (
         <article>
@@ -18,7 +18,9 @@ export const MakeupBagList = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('hero.headline')} />
+                    <Hero
+                        headline={`${t('hero.headline')} (${data?.length})`}
+                    />
 
                     <DataWrapper
                         isLoading={isLoading}

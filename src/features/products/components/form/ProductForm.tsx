@@ -95,13 +95,12 @@ export const ProductForm = ({
                                 value={watch('brandId')}
                             />
 
-                            {/* TODO: make it required */}
                             <SelectSection
-                                // error={t(errors.categoryId?.message || '')}
+                                error={t(errors.categoryId?.message || '')}
                                 label={t('fields.category.label')}
                                 options={categoryOptions}
                                 register={register('categoryId')}
-                                // required={true}
+                                required={true}
                                 value={watch('categoryId')}
                             />
 

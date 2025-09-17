@@ -1,5 +1,5 @@
 .container {
-    @apply pt-safe-top sticky left-0 top-0 z-10 w-full border-b border-neutral-300 bg-white sm:hidden;
+    @apply sticky left-0 top-0 z-10 w-full border-b border-neutral-300 bg-white pt-safe-top sm:hidden;
 }
 
 .btn {
@@ -7,7 +7,7 @@
 }
 
 .title {
-    @apply flex-grow text-center text-lg font-semibold;
+    @apply flex-grow truncate text-center text-lg font-semibold;
 }
 
 :global(.dark) .container {

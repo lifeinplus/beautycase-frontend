@@ -53,6 +53,7 @@ export const MakeupBagForm = ({
         reset(formData)
     }, [formData])
 
+    // TODO: only makeup bag categories
     const { data: categories = [] } = useGetAllCategoriesQuery()
     const { data: users = [] } = useGetAllUsersQuery()
 

@@ -28,7 +28,8 @@
     "table": {
         "category": "Category",
         "type": "Type",
-        "actions": "Actions"
+        "actions": "Actions",
+        "count": "Count"
     },
     "titles": {
         "list": "Categories"

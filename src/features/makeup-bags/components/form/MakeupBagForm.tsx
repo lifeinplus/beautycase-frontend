@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
-import { useGetAllCategoriesQuery } from '@/features/categories/api/categoriesApi'
+import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/categoriesApi'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
@@ -53,8 +53,7 @@ export const MakeupBagForm = ({
         reset(formData)
     }, [formData])
 
-    // TODO: only makeup bag categories
-    const { data: categories = [] } = useGetAllCategoriesQuery()
+    const { data: categories = [] } = useGetMakeupBagCategoriesQuery()
     const { data: users = [] } = useGetAllUsersQuery()
 
     const categoryOptions = categories.map(

@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
-import { useGetAllCategoriesQuery } from '@/features/categories/api/categoriesApi'
+import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/categoriesApi'
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockUsers } from '@/features/users/api/__mocks__/usersApi'
 import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
@@ -32,7 +32,7 @@ describe('MakeupBagForm', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockMakeupBag1)
 
-        vi.mocked(useGetAllCategoriesQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMakeupBagCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,
         })
 

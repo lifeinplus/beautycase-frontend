@@ -7,7 +7,7 @@ import { CategoriesTable } from './CategoriesTable'
 
 vi.mock('@/shared/components/forms/button/Button')
 vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/TableRow')
+vi.mock('@/shared/components/table/table-row/TableRow')
 
 describe('CategoriesTable', () => {
     const mockCategories: Category[] = [

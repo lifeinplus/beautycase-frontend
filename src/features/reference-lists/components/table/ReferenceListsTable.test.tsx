@@ -5,7 +5,7 @@ import type { ReferenceList } from '../../types'
 import { ReferenceListsTable } from './ReferenceListsTable'
 
 vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/TableRow')
+vi.mock('@/shared/components/table/table-row/TableRow')
 
 describe('ReferenceListsTable', () => {
     const data: ReferenceList[] = [

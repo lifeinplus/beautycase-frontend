@@ -9,7 +9,7 @@ vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/stages/components/stages/Stages')
 vi.mock('@/features/tools/components/tools/Tools')
 vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/Footer')
+vi.mock('@/shared/components/layout/footer/Footer')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('./hooks/useMakeupBagDetailsActions')
 

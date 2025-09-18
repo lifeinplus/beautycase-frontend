@@ -23,7 +23,7 @@ describe('CategoryProducts', () => {
 
     it('renders products with title and subtitle', () => {
         render(<CategoryProducts />)
-        expect(screen.getAllByText(/gallery/i)).toHaveLength(2)
+        expect(screen.getAllByText(/categories.product/i)).toHaveLength(2)
         expect(screen.getByText(mockProducts[0].name)).toBeInTheDocument()
     })
 

@@ -22,7 +22,7 @@ describe('ToolsGallery', () => {
         render(<ToolsGallery />)
 
         expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
-        expect(screen.getByText('titles.gallery')).toBeInTheDocument()
+        expect(screen.getByText(/titles.gallery/i)).toBeInTheDocument()
         expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockTools.forEach((tool) => {

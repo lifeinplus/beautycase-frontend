@@ -20,6 +20,7 @@ export const mockLesson1: Lesson = {
         {
             _id: 'product-1',
             brandId: 'brand-1',
+            categoryId: 'category-1',
             name: 'Product 1',
             imageUrl: 'https://example.com/product-1.jpg',
             comment: 'Comment 1',

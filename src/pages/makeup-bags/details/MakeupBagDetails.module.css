@@ -1,5 +1,5 @@
 .container {
-    @apply mb-3 mt-2 sm:hidden;
+    @apply mt-5 sm:hidden;
 }
 
 .title {
@@ -8,4 +8,8 @@
 
 :global(.dark) .title {
     @apply text-slate-400;
+}
+
+.img {
+    @apply mt-6;
 }

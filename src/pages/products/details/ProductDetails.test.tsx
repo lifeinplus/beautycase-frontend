@@ -11,7 +11,7 @@ import { ProductDetails } from './ProductDetails'
 vi.mock('@/features/products/api/productsApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/widgets/store/store-links/StoreLinks')
-vi.mock('@/widgets/view/details/Details')
+vi.mock('./hooks/useProductDetailsActions')
 
 describe('ProductDetails', () => {
     const mockDeleteProduct = vi.fn()
@@ -31,7 +31,7 @@ describe('ProductDetails', () => {
     it('renders product details', async () => {
         render(<ProductDetails />)
 
-        expect(screen.getByText(mockProduct1.name)).toBeInTheDocument()
-        expect(screen.getByText(mockProduct1.brand?.name!)).toBeInTheDocument()
+        expect(screen.getAllByText(mockProduct1.name)).toHaveLength(2)
+        expect(screen.getAllByText(mockProduct1.brand?.name!)).toHaveLength(2)
     })
 })

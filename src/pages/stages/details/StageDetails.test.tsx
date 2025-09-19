@@ -12,7 +12,7 @@ import { StageDetails } from './StageDetails'
 vi.mock('@/features/stages/api/stagesApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/widgets/product/product-images/ProductImages')
-vi.mock('@/widgets/view/details/Details')
+vi.mock('./hooks/useStageDetailsActions')
 
 describe('StageDetails', () => {
     const mockDeleteStageById = vi.fn()
@@ -37,9 +37,10 @@ describe('StageDetails', () => {
     it('renders stage details', async () => {
         render(<StageDetails />)
 
-        expect(screen.getByText(mockStage1.title)).toBeInTheDocument()
-        expect(screen.getByText(mockStage1.subtitle)).toBeInTheDocument()
+        expect(screen.getAllByText(mockStage1.title)).toHaveLength(2)
+        expect(screen.getAllByText(mockStage1.subtitle)).toHaveLength(2)
         expect(screen.getByText(mockStage1.comment!)).toBeInTheDocument()
+        expect(screen.getByText('steps')).toBeInTheDocument()
     })
 
     it('does not render steps section when steps do not exist', () => {
@@ -51,12 +52,7 @@ describe('StageDetails', () => {
 
         render(<StageDetails />)
 
-        const descriptionContent = screen.getByTestId(
-            'mocked-description-content'
-        )
-
-        expect(descriptionContent).toBeInTheDocument()
-        expect(descriptionContent.textContent).not.toContain('steps')
+        expect(screen.queryByText('steps')).not.toBeInTheDocument()
     })
 
     it('renders product images', async () => {

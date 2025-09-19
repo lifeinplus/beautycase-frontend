@@ -2,49 +2,60 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { useGetLessonByIdQuery } from '@/features/lessons/api/lessonsApi'
-import { Image } from '@/shared/components/ui/image/Image'
-import { getEmbedUrl } from '@/shared/utils/youtube/getEmbedUrl'
+import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
+import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { VideoSection } from '@/shared/components/common/video-section/VideoSection'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
-import { Details } from '@/widgets/view/details/Details'
 import styles from './LessonDetails.module.css'
+import { useLessonDetailsActions } from './hooks/useLessonDetailsActions'
 
 export const LessonDetails = () => {
     const { id } = useParams()
     const { t } = useTranslation('lesson')
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
-    const embedUrl = data?.videoUrl && getEmbedUrl(data?.videoUrl)
+
+    const actions = useLessonDetailsActions()
+    const backAction = actions.find((action) => action.key === 'back')
+
+    const title = data?.title || t('titles.details')
 
     return (
-        <Details
-            isLoading={isLoading}
-            error={error}
-            topPanelTitle={t('titles.details')}
-            redirectPath="/lessons"
-            title={data?.title}
-            subtitle={data?.shortDescription}
-            description={data?.fullDescription}
-            mediaContent={
-                <div className={styles.container}>
-                    {embedUrl ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={embedUrl}
+        <article className={pageStyles.page}>
+            <TopPanel title={title} onBack={backAction?.onClick} />
+
+            <main className={pageStyles.content}>
+                <article className={pageStyles.container}>
+                    <DataWrapper
+                        isLoading={isLoading}
+                        error={error}
+                        data={data}
+                        emptyMessage={t('emptyMessage')}
+                    >
+                        <TitleSection
                             title={data?.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <Image
-                            alt={`${data?.title} Thumbnail`}
-                            src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
+                            subtitle={data?.shortDescription}
+                            hideOnMobile
                         />
-                    )}
-                </div>
-            }
-            additionalContent={<ProductImages products={data?.products} />}
-        />
+
+                        <section className={styles.container}>
+                            <h2 className={styles.title}>
+                                {data?.shortDescription}
+                            </h2>
+                        </section>
+
+                        <VideoSection name={data?.title} url={data?.videoUrl} />
+
+                        <section className={pageStyles.description}>
+                            <p>{data?.fullDescription}</p>
+                        </section>
+
+                        <ProductImages products={data?.products} />
+                    </DataWrapper>
+                </article>
+            </main>
+        </article>
     )
 }

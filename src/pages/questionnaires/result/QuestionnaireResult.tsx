@@ -22,17 +22,15 @@ export const QuestionnaireResult = () => {
         navigate('/questionnaires')
     }
 
+    const title = data?.name || t('hero.headline')
+
     return (
         <article>
-            <TopPanel title={t('hero.headlineResult')} onBack={handleBack} />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero
-                        headline={t('hero.headlineResult')}
-                        byline={createdAt}
-                        hideOnMobile
-                    />
+                    <Hero headline={title} byline={createdAt} hideOnMobile />
 
                     <div className="sm:hidden">
                         <Hero byline={createdAt} />

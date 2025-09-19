@@ -6,8 +6,8 @@ import { useGetMakeupBagByIdQuery } from '@/features/makeup-bags/api/makeupBagsA
 import { MakeupBagDetails } from './MakeupBagDetails'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
-vi.mock('@/features/stages/components/stages/Stages')
-vi.mock('@/features/tools/components/tools/Tools')
+vi.mock('@/features/makeup-bags/components/stages/MakeupBagStages')
+vi.mock('@/features/makeup-bags/components/tools/MakeupBagTools')
 vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/footer/Footer')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
@@ -28,8 +28,8 @@ describe('MakeupBagDetails', () => {
         const ids = [
             'mocked-top-panel',
             'mocked-hero',
-            'mocked-stages',
-            'mocked-tools',
+            'mocked-makeup-bag-stages',
+            'mocked-makeup-bag-tools',
         ]
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())

@@ -1,4 +1,5 @@
 {
+    "emptyMessage": "Этап не найден",
     "emptyMessageList": "Этапы не найдены",
     "fields": {
         "title": {

@@ -14,7 +14,7 @@ vi.mock('@/features/lessons/api/lessonsApi')
 vi.mock('@/shared/components/ui/image/Image')
 vi.mock('@/shared/utils/youtube/getEmbedUrl')
 vi.mock('@/widgets/product/product-images/ProductImages')
-vi.mock('@/widgets/view/details/Details')
+vi.mock('./hooks/useLessonDetailsActions')
 
 describe('LessonDetails', () => {
     const mockDeleteLesson = vi.fn()
@@ -36,11 +36,11 @@ describe('LessonDetails', () => {
     it('renders lesson details', async () => {
         render(<LessonDetails />)
 
-        expect(screen.getByText(mockLesson1.title)).toBeInTheDocument()
+        expect(screen.getAllByText(mockLesson1.title)).toHaveLength(2)
 
-        expect(
-            screen.getByText(mockLesson1.shortDescription)
-        ).toBeInTheDocument()
+        expect(screen.getAllByText(mockLesson1.shortDescription)).toHaveLength(
+            2
+        )
 
         expect(
             screen.getByText(mockLesson1.fullDescription)

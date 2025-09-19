@@ -2,29 +2,24 @@ import { useTranslation } from 'react-i18next'
 
 import { ImageSection } from '@/shared/components/common/image-section/ImageSection'
 import { GoodsGrid } from '@/shared/components/gallery/goods-grid/GoodsGrid'
-import type { Stage } from '../../types'
-import style from './Stages.module.css'
+import type { Stage } from '../../../stages/types'
+import styles from './MakeupBagStages.module.css'
 
-export interface StagesProps {
+export interface MakeupBagStagesProps {
     stages?: Stage[]
 }
 
-export const Stages = ({ stages }: StagesProps) => {
+export const MakeupBagStages = ({ stages }: MakeupBagStagesProps) => {
     const { t } = useTranslation('stage')
 
     return (
         <section id="stages" className="scroll-mt-header sm:scroll-mt-0">
-            <h2 className="mb-6 pt-10 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl">
-                {t('titles.list')}
-            </h2>
-
             {stages?.map((stage, index) => (
-                <article
-                    key={index}
-                    className="my-4 bg-gray-100 py-4 dark:bg-gray-900 sm:rounded"
-                >
-                    <h3 className={style.title}>{stage.title}</h3>
-                    <h4 className={style.subtitle}>{stage.subtitle}</h4>
+                <article key={index} className="my-4 space-y-8 py-4">
+                    <div>
+                        <h3 className={styles.title}>{stage.title}</h3>
+                        <h4 className={styles.subtitle}>{stage.subtitle}</h4>
+                    </div>
 
                     <ImageSection name={stage?.title} url={stage?.imageUrl} />
 

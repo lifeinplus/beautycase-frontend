@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockTools } from '../../api/__mocks__/toolsApi'
-import { Tools } from './Tools'
+import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
+import { MakeupBagTools } from './MakeupBagTools'
 
 vi.mock('@/shared/components/gallery/goods-grid/GoodsGrid')
 
-describe('Tools', () => {
+describe('MakeupBagTools', () => {
     it('renders the component with heading', () => {
-        render(<Tools tools={mockTools} />)
+        render(<MakeupBagTools tools={mockTools} />)
 
         const heading = screen.getByRole('heading', {
             name: 'titles.list',
@@ -19,7 +19,7 @@ describe('Tools', () => {
     })
 
     it('renders GoodsGrid only for tools with products', () => {
-        render(<Tools tools={mockTools} />)
+        render(<MakeupBagTools tools={mockTools} />)
 
         const goodsGrids = screen.getAllByTestId('mocked-goods-grid')
         expect(goodsGrids).toHaveLength(1)

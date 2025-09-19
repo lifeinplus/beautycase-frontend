@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
-import { Category } from '@/features/categories/types'
+import type { CategoryWithCount } from '@/features/categories/api/categoriesApi'
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 
 export interface ProductCategoriesMobileViewProps {
-    categories?: Category[]
+    categories?: CategoryWithCount[]
 }
 
 export const ProductCategoriesMobileView = ({
@@ -15,8 +15,9 @@ export const ProductCategoriesMobileView = ({
     return (
         <MobileView
             items={categories}
-            getTitle={(category) => t(`categories.${category.name}`)}
-            getLink={(category) => `/products/category/${category.name}`}
+            getTitle={(c) => t(`categories.${c.name}`)}
+            getRightText={(c) => c.productCount.toString()}
+            getLink={(c) => `/products/category/${c.name}`}
         />
     )
 }

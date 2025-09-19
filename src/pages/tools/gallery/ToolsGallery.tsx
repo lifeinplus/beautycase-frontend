@@ -7,11 +7,11 @@ import styles from './ToolsGallery.module.css'
 
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
-    const { data: tools, isLoading, error } = useGetAllToolsQuery()
+    const { data: tools = [], isLoading, error } = useGetAllToolsQuery()
 
     return (
         <Gallery
-            title={t('titles.gallery')}
+            title={`${t('titles.gallery')} (${tools.length})`}
             subtitle={t('titles.gallerySubtitle')}
             isLoading={isLoading}
             error={error}

@@ -7,7 +7,7 @@ export interface Product {
     brand?: Pick<Brand, '_id' | 'name'>
     brandId: string
     category?: Pick<Category, '_id' | 'name'>
-    categoryId?: string
+    categoryId: string
     name: string
     imageUrl: string
     shade?: string

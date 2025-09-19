@@ -13,7 +13,7 @@ export const mockNavigate = vi.fn()
 
 vi.mocked(useLocation).mockReturnValue(mockLocation)
 vi.mocked(useNavigate).mockReturnValue(mockNavigate)
-vi.mocked(useParams).mockReturnValue({ id: '123' })
+vi.mocked(useParams).mockReturnValue({ id: '123', category: 'product' })
 
 const mockRouter = () => {
     vi.mock('react-router-dom', async (importOriginal) => {

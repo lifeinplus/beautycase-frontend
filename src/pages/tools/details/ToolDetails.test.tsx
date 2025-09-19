@@ -11,7 +11,7 @@ import { ToolDetails } from './ToolDetails'
 vi.mock('@/features/tools/api/toolsApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/widgets/store/store-links/StoreLinks')
-vi.mock('@/widgets/view/details/Details')
+vi.mock('./hooks/useToolDetailsActions')
 
 describe('ToolDetails', () => {
     const mockDeleteTool = vi.fn()
@@ -31,10 +31,7 @@ describe('ToolDetails', () => {
     it('renders tool details', async () => {
         render(<ToolDetails />)
 
-        const title = screen.getByText(mockTool1.name)
-        const subtitle = screen.getByText(mockTool1.brand?.name!)
-
-        expect(title).toBeInTheDocument()
-        expect(subtitle).toBeInTheDocument()
+        expect(screen.getAllByText(mockTool1.name)).toHaveLength(2)
+        expect(screen.getAllByText(mockTool1.brand?.name!)).toHaveLength(2)
     })
 })

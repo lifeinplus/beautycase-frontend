@@ -13,6 +13,8 @@ export const mockProduct1: Product = {
     _id: 'product1',
     brand: { _id: 'brand1', name: 'Brand 1' },
     brandId: 'brand1',
+    category: { _id: 'category1', name: 'Category 1' },
+    categoryId: 'category1',
     name: 'Product 1',
     imageUrl: 'https://example.com/foundation.jpg',
     shade: 'Natural Beige',
@@ -29,6 +31,7 @@ export const mockProduct1: Product = {
 export const mockProduct2: Product = {
     _id: 'product2',
     brandId: 'brand2',
+    categoryId: 'category2',
     name: 'Product 2',
     imageUrl: 'https://example.com/lipstick.jpg',
     comment: '',
@@ -43,7 +46,6 @@ export const useCreateProductMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()
 export const useGetProductsByCategoryQuery = vi.fn()
-export const useGetProductsWithoutCategoryQuery = vi.fn()
 export const useUpdateProductByIdMutation = vi.fn()
 export const useUpdateProductStoreLinksMutation = vi.fn()
 export const useDeleteProductByIdMutation = vi.fn()

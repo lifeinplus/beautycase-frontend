@@ -81,7 +81,7 @@ describe('MobileView', () => {
             <MobileView
                 items={mockItems}
                 getTitle={getTitle}
-                getSubtitle={getSubtitle}
+                getDescription={getSubtitle}
                 getLink={getLink}
             />
         )
@@ -96,7 +96,7 @@ describe('MobileView', () => {
             <MobileView
                 items={mockItems}
                 getTitle={getTitle}
-                getDate={getDate}
+                getRightText={getDate}
                 getLink={getLink}
             />
         )

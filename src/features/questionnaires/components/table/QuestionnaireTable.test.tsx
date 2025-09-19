@@ -5,7 +5,7 @@ import { mockQuestionnaires } from '../../api/__mocks__/questionnairesApi'
 import { QuestionnaireTable } from './QuestionnaireTable'
 
 vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/TableRow')
+vi.mock('@/shared/components/table/table-row/TableRow')
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('QuestionnaireTable', () => {

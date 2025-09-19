@@ -10,7 +10,7 @@ import pageStyles from '@/shared/components/ui/page/page.module.css'
 
 export const QuestionnaireList = () => {
     const { t } = useTranslation('questionnaire')
-    const { data, isLoading, error } = useGetAllQuestionnairesQuery()
+    const { data = [], isLoading, error } = useGetAllQuestionnairesQuery()
 
     return (
         <article>
@@ -18,7 +18,9 @@ export const QuestionnaireList = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('hero.headlineList')} />
+                    <Hero
+                        headline={`${t('hero.headlineList')} (${data?.length})`}
+                    />
 
                     <DataWrapper
                         isLoading={isLoading}

@@ -2,9 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
-import { useGetProductCategoriesQuery } from '@/features/categories/api/categoriesApi'
-import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
-import { useGetProductsWithoutCategoryQuery } from '@/features/products/api/productsApi'
+import { useGetProductCategoriesWithCountsQuery } from '@/features/categories/api/categoriesApi'
 import { ProductGallery } from './ProductGallery'
 
 vi.mock('@/features/categories/api/categoriesApi')
@@ -17,34 +15,26 @@ vi.mock('@/widgets/product/categories/table/ProductCategoriesTable')
 
 describe('ProductGallery', () => {
     beforeEach(() => {
-        vi.mocked(useGetProductCategoriesQuery as Mock).mockReturnValue({
+        vi.mocked(
+            useGetProductCategoriesWithCountsQuery as Mock
+        ).mockReturnValue({
             data: mockCategories,
-            isLoading: false,
-            error: null,
-        })
-
-        vi.mocked(useGetProductsWithoutCategoryQuery as Mock).mockReturnValue({
-            data: mockProducts,
             isLoading: false,
             error: null,
         })
     })
 
-    it('renders list of products when data is available', () => {
+    it('renders mobile-view and table when data is available', () => {
         render(<ProductGallery />)
 
         expect(screen.getByText('titles.gallery')).toBeInTheDocument()
 
-        mockProducts.forEach((product) => {
-            const imageCard = screen.getByTestId(
-                `mocked-image-card-${product._id}`
-            )
-            const title = screen.getByText(product.name)
-            const path = screen.getByText(`/products/${product._id}`)
+        expect(
+            screen.getByTestId('mocked-product-categories-mobile-view')
+        ).toBeInTheDocument()
 
-            expect(imageCard).toBeInTheDocument()
-            expect(title).toBeInTheDocument()
-            expect(path).toBeInTheDocument()
-        })
+        expect(
+            screen.getByTestId('mocked-product-categories-table')
+        ).toBeInTheDocument()
     })
 })

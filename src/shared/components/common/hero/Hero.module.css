@@ -14,14 +14,14 @@
     @apply mx-auto mt-3 text-center font-heading text-slate-700 sm:text-xl;
 }
 
+:global(.dark) .byline {
+    @apply text-slate-400;
+}
+
 .img {
     @apply mt-6 sm:rounded;
 }
 
 .content {
     @apply me-3 ms-3 mt-6;
-}
-
-:global(.dark) .byline {
-    @apply text-slate-400;
 }

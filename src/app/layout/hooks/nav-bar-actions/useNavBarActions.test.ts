@@ -6,14 +6,14 @@ import { mockLocation } from '@/tests/mocks/router'
 import { useNavBarActions } from './useNavBarActions'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/hooks/add-actions/useAddActions')
+vi.mock('@/app/layout/hooks/back-actions/useBackActions')
 vi.mock('@/features/auth/slice/authSlice')
 vi.mock('@/pages/lessons/details/hooks/useLessonDetailsActions')
 vi.mock('@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions')
 vi.mock('@/pages/products/details/hooks/useProductDetailsActions')
 vi.mock('@/pages/stages/details/hooks/useStageDetailsActions')
 vi.mock('@/pages/tools/details/hooks/useToolDetailsActions')
-vi.mock('@/shared/hooks/useAddActions')
-vi.mock('@/shared/hooks/useBackActions')
 vi.mock('@/shared/lib/access/canAccess')
 
 describe('useNavBarActions', () => {

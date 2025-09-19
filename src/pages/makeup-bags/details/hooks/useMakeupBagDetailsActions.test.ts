@@ -28,7 +28,7 @@ vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/makeup-bags/hooks/pdf/usePDFExport')
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/utils/pdf/generatePdfFilename')
-vi.mock('@/shared/components/common/spinner/SpinnerButton')
+vi.mock('@/shared/components/common/spinner-button/SpinnerButton')
 vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useMakeupBagDetailsActions', () => {

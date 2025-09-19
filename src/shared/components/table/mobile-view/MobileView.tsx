@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom'
 export interface MobileViewProps<T> {
     items?: T[]
     getTitle: (item: T) => string
-    getSubtitle?: (item: T) => string
-    getDate?: (item: T) => string
+    getDescription?: (item: T) => string
+    getRightText?: (item: T) => string
     getLink: (item: T) => string
 }
 
 export const MobileView = <T,>({
     items,
     getTitle,
-    getSubtitle,
-    getDate,
+    getDescription,
+    getRightText,
     getLink,
 }: MobileViewProps<T>) => (
     <div className="space-y-5 sm:hidden">
@@ -27,17 +27,17 @@ export const MobileView = <T,>({
                     <p className="text-black dark:text-white">
                         {getTitle(item)}
                     </p>
-                    {getSubtitle && (
+                    {getDescription && (
                         <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                            {getSubtitle(item)}
+                            {getDescription(item)}
                         </p>
                     )}
                 </div>
                 <div className="flex gap-5">
                     <div className="text-center">
-                        {getDate && (
+                        {getRightText && (
                             <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                                {getDate(item)}
+                                {getRightText(item)}
                             </p>
                         )}
                     </div>

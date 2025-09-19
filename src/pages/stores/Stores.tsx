@@ -30,7 +30,7 @@ export const Stores = () => {
     const [store, setStore] = useState<Store>()
 
     const dispatch = useAppDispatch()
-    const { data, isLoading, error } = useGetAllStoresQuery()
+    const { data = [], isLoading, error } = useGetAllStoresQuery()
     const [deleteStoreById] = useDeleteStoreByIdMutation()
 
     const handleBack = () => {
@@ -64,11 +64,17 @@ export const Stores = () => {
 
     return (
         <article>
-            <TopPanel title={t('titles.list')} onBack={handleBack} />
+            <TopPanel
+                title={`${t('titles.list')} (${data?.length})`}
+                onBack={handleBack}
+            />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('titles.list')} hideOnMobile />
+                    <Hero
+                        headline={`${t('titles.list')} (${data?.length})`}
+                        hideOnMobile
+                    />
 
                     <StoreForm ref={storeFormRef} />
 

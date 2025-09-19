@@ -8,11 +8,11 @@ import styles from './LessonGallery.module.css'
 export const LessonGallery = () => {
     const { t } = useTranslation('lesson')
 
-    const { data: lessons, isLoading, error } = useGetAllLessonsQuery()
+    const { data: lessons = [], isLoading, error } = useGetAllLessonsQuery()
 
     return (
         <Gallery
-            title={t('titles.gallery')}
+            title={`${t('titles.gallery')} (${lessons.length})`}
             isLoading={isLoading}
             error={error}
             mediaContent={

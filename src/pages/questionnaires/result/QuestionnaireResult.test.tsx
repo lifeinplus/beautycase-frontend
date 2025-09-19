@@ -31,7 +31,7 @@ describe('QuestionnaireResult', () => {
             screen.getByTestId('mocked-questionnaire-data')
         ).toBeInTheDocument()
 
-        expect(screen.getByText(mockQuestionnaire1.name)).toBeInTheDocument()
+        expect(screen.getAllByText(mockQuestionnaire1.name)).toHaveLength(3)
     })
 
     it('should navigate back when back button is clicked', async () => {

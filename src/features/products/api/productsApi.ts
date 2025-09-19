@@ -11,7 +11,7 @@ const productsApi = api.injectEndpoints({
                 method: 'POST',
                 body: cleanObject(data),
             }),
-            invalidatesTags: ['Product'],
+            invalidatesTags: ['Product', 'Category'],
         }),
 
         getAllProducts: builder.query<Product[], void>({
@@ -35,12 +35,10 @@ const productsApi = api.injectEndpoints({
 
         getProductsByCategory: builder.query<Product[], string>({
             query: (category) => `/products/category/${category}`,
-            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
-        }),
-
-        getProductsWithoutCategory: builder.query<Product[], void>({
-            query: () => '/products/without-category',
-            providesTags: [{ type: 'Product', id: 'LIST' }],
+            providesTags: (_result, _error, id) => [
+                { type: 'Product', id },
+                { type: 'Product', id: 'LIST' },
+            ],
         }),
 
         updateProductById: builder.mutation<
@@ -55,6 +53,7 @@ const productsApi = api.injectEndpoints({
             invalidatesTags: (_result, _error, { id }) => [
                 { type: 'Product', id: id },
                 { type: 'Product', id: 'LIST' },
+                { type: 'Category' },
             ],
         }),
 
@@ -78,7 +77,10 @@ const productsApi = api.injectEndpoints({
                 url: `/products/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: () => [{ type: 'Product', id: 'LIST' }],
+            invalidatesTags: () => [
+                { type: 'Product', id: 'LIST' },
+                { type: 'Category' },
+            ],
         }),
     }),
 })
@@ -88,7 +90,6 @@ export const {
     useGetAllProductsQuery,
     useGetProductByIdQuery,
     useGetProductsByCategoryQuery,
-    useGetProductsWithoutCategoryQuery,
     useUpdateProductByIdMutation,
     useUpdateProductStoreLinksMutation,
     useDeleteProductByIdMutation,

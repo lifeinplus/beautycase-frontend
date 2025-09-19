@@ -2,6 +2,10 @@ import { api } from '@/shared/api/api'
 import { MutationResult } from '@/shared/api/types'
 import type { Category } from '../types'
 
+export interface CategoryWithCount extends Category {
+    productCount: number
+}
+
 const categoriesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         createCategory: builder.mutation<MutationResult, Category>({
@@ -18,8 +22,21 @@ const categoriesApi = api.injectEndpoints({
             providesTags: ['Category'],
         }),
 
+        getMakeupBagCategories: builder.query<Category[], void>({
+            query: () => '/categories/makeup-bags',
+            providesTags: ['Category'],
+        }),
+
         getProductCategories: builder.query<Category[], void>({
             query: () => '/categories/products',
+            providesTags: ['Category'],
+        }),
+
+        getProductCategoriesWithCounts: builder.query<
+            CategoryWithCount[],
+            void
+        >({
+            query: () => '/categories/products/with-counts',
             providesTags: ['Category'],
         }),
 
@@ -48,7 +65,9 @@ const categoriesApi = api.injectEndpoints({
 export const {
     useCreateCategoryMutation,
     useGetAllCategoriesQuery,
+    useGetMakeupBagCategoriesQuery,
     useGetProductCategoriesQuery,
+    useGetProductCategoriesWithCountsQuery,
     useUpdateCategoryByIdMutation,
     useDeleteCategoryByIdMutation,
 } = categoriesApi

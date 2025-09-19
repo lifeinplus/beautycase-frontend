@@ -5,7 +5,7 @@ import { mockMakeupBags } from '../../api/__mocks__/makeupBagsApi'
 import { MakeupBagTable } from './MakeupBagTable'
 
 vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/TableRow')
+vi.mock('@/shared/components/table/table-row/TableRow')
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagTable', () => {

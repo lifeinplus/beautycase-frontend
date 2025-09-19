@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next'
 
+import type { Tool } from '@/features/tools/types'
 import { GoodsGrid } from '@/shared/components/gallery/goods-grid/GoodsGrid'
-import type { Tool } from '../../types'
 
-export interface ToolsProps {
+export interface MakeupBagToolsProps {
     tools?: Tool[]
 }
 
-export const Tools = ({ tools }: ToolsProps) => {
+export const MakeupBagTools = ({ tools }: MakeupBagToolsProps) => {
     const { t } = useTranslation('tool')
 
     return (
         <section id="tools" className="scroll-mt-header sm:scroll-mt-0">
-            <h2 className="mb-6 pt-10 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl">
+            <h2 className="my-10 text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl">
                 {t('titles.list')}
             </h2>
 

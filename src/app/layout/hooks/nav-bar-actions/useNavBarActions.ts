@@ -125,7 +125,7 @@ export const useNavBarActions = (): NavBarAction[] => {
 
         const referenceListRoutes = [
             {
-                pattern: /^\/reference-lists\/(brands|stores)$/i,
+                pattern: /^\/reference-lists\/(brands|categories|stores)$/i,
                 actions: backActions,
             },
         ]

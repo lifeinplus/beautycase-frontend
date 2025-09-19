@@ -34,7 +34,9 @@ export const StageList = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero headline={t('titles.list')} />
+                    <Hero
+                        headline={`${t('titles.list')} (${filteredStages.length})`}
+                    />
 
                     <StageFilter
                         onFilterChange={handleFilterChange}

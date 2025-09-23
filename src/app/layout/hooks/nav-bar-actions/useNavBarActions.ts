@@ -10,6 +10,7 @@ import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/us
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
 import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
+import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
 import { canAccess } from '@/shared/lib/access/canAccess'
 
 export interface NavBarAction {
@@ -20,13 +21,7 @@ export interface NavBarAction {
     onClick: () => void
     auth?: boolean
     roles?: string[]
-    modalProps?: {
-        isOpen: boolean
-        title: string
-        description: string
-        onConfirm: () => Promise<void> | void
-        onCancel: () => void
-    }
+    modalProps?: ModalDeleteProps
 }
 
 export const useNavBarActions = (): NavBarAction[] => {

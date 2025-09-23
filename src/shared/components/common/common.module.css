@@ -2,36 +2,44 @@
     @apply focus-visible:rounded focus-visible:outline-dashed focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600;
 }
 
-.hoverOutline {
-    @apply hover:rounded hover:outline-dashed hover:outline-4 hover:outline-offset-4 hover:outline-rose-400;
-}
-
-.textDanger {
-    @apply text-rose-500;
-}
-
-.textSuccess {
-    @apply text-lime-500;
-}
-
-.textWarning {
-    @apply text-amber-500;
-}
-
 :global(.dark) .focusOutline {
     @apply focus-visible:outline-rose-700;
+}
+
+.hoverOutline {
+    @apply hover:rounded hover:outline-dashed hover:outline-4 hover:outline-offset-4 hover:outline-rose-400;
 }
 
 :global(.dark) .hoverOutline {
     @apply hover:outline-rose-600;
 }
 
+.textDanger {
+    @apply text-rose-500;
+}
+
 :global(.dark) .textDanger {
     @apply text-rose-400;
 }
 
+.textSecondary {
+    @apply text-neutral-500;
+}
+
+:global(.dark) .textSecondary {
+    @apply text-neutral-400;
+}
+
+.textSuccess {
+    @apply text-lime-500;
+}
+
 :global(.dark) .textSuccess {
     @apply text-lime-400;
+}
+
+.textWarning {
+    @apply text-amber-500;
 }
 
 :global(.dark) .textWarning {

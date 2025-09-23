@@ -3,22 +3,26 @@ import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import commonStyles from '@/shared/components/common/common.module.css'
-import styles from '../modal.module.css'
+import modalStyles from '../modal.module.css'
 
 export interface ModalDeleteProps {
-    description: string
-    isOpen: boolean
-    onCancel: () => void
-    onConfirm: () => void
-    title: string
+    title?: string
+    description?: string
+    onConfirm?: () => void
+    onCancel?: () => void
+    isOpen?: boolean
+    isBlocked?: boolean
+    isDeleting?: boolean
 }
 
 export const ModalDelete = ({
-    description,
-    isOpen,
-    onCancel,
-    onConfirm,
-    title,
+    title = '',
+    description = '',
+    onConfirm = () => {},
+    onCancel = () => {},
+    isOpen = false,
+    isBlocked = false,
+    isDeleting = false,
 }: ModalDeleteProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')
@@ -40,27 +44,38 @@ export const ModalDelete = ({
     if (!isOpen) return null
 
     return (
-        <div className={styles.modal} onClick={handleClickOutside}>
-            <div className={styles.container} ref={modalRef}>
-                <div className={styles.content}>
-                    <h2 className={styles.title}>{title}</h2>
-                    <p className={styles.description}>{description}</p>
+        <div className={modalStyles.modal} onClick={handleClickOutside}>
+            <div className={modalStyles.container} ref={modalRef}>
+                <div className={modalStyles.content}>
+                    <h2 className={modalStyles.title}>{title}</h2>
+                    <p className={modalStyles.description}>{description}</p>
                 </div>
-                <div className={styles.btnGroup}>
+
+                <div className={modalStyles.btnGroup}>
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
-                        onClick={onConfirm}
                         className={classNames(
                             commonStyles.textDanger,
-                            styles.btn
+                            commonStyles.focusOutline,
+                            modalStyles.btn,
+                            isBlocked && commonStyles.textSecondary
                         )}
+                        disabled={isBlocked || isDeleting}
+                        onClick={onConfirm}
                     >
-                        {t('buttons.delete.text')}
+                        {isDeleting
+                            ? t('buttons.delete.loading')
+                            : t('buttons.delete.text')}
                     </button>
+
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
+                        className={classNames(
+                            commonStyles.focusOutline,
+                            modalStyles.btn,
+                            modalStyles.btnBottom
+                        )}
                         onClick={onCancel}
-                        className={classNames(styles.btn, styles.btnBottom)}
                     >
                         {t('buttons.cancel.text')}
                     </button>

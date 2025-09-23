@@ -1,7 +1,7 @@
 .navBar {
     @apply fixed bottom-0 left-0 z-20 flex w-full overflow-y-auto bg-white pb-safe-bottom;
     @apply border-t border-neutral-300 sm:border-e sm:border-t-0;
-    @apply sm:h-full sm:w-auto sm:flex-col sm:px-3 sm:pb-5 sm:pt-2 lg:w-navbar-left-open;
+    @apply lg:w-navbar-open sm:h-full sm:w-auto sm:flex-col sm:px-3 sm:pb-5 sm:pt-2;
 }
 
 :global(.dark) .navBar {

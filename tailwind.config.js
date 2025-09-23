@@ -21,18 +21,17 @@ export default {
                 logo: ['Sofia', ...defaultTheme.fontFamily.sans],
                 heading: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
-            lineHeight: {
-                4.5: '18px',
-            },
             margin: {
-                'navbar-left': '73px',
-                'navbar-left-open': '245px',
+                navbar: '73px',
+                'navbar-open': '245px',
             },
             maxWidth: {
                 login: '350px',
             },
             padding: {
                 13: '3.25rem' /* 52px */,
+                navbar: '73px',
+                'navbar-open': '245px',
             },
             scrollMargin: {
                 header: '61px',
@@ -44,7 +43,7 @@ export default {
                 'safe-right': 'env(safe-area-inset-right)',
             },
             width: {
-                'navbar-left-open': '245px',
+                'navbar-open': '245px',
                 58: '14.5rem',
             },
         },

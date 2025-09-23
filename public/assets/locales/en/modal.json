@@ -6,6 +6,7 @@
         },
         "delete": {
             "text": "Delete",
+            "loading": "Deleting...",
             "ariaLabel": "Delete button"
         },
         "duplicate": {
@@ -15,8 +16,8 @@
     },
     "delete": {
         "title": "Delete?",
+        "titleError": "Cannot Delete",
         "description": "Are you sure you want to delete {{name}}?",
-        "toast": "{{name}} deleted",
         "descriptionCategory": "Are you sure you want to delete category {{name}} of type {{type}}?"
     },
     "duplicate": {

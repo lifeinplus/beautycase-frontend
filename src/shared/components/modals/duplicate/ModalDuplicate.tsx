@@ -8,7 +8,7 @@ import styles from '../modal.module.css'
 export interface ModalDuplicateProps {
     description: string
     isOpen: boolean
-    onConfirm: () => void
+    onConfirm?: () => void
     onCancel: () => void
     title: string
 }

@@ -35,6 +35,8 @@ export const AppLayout = () => {
                     description={deleteAction.modalProps.description}
                     onConfirm={deleteAction.modalProps.onConfirm}
                     onCancel={deleteAction.modalProps.onCancel}
+                    isBlocked={deleteAction.modalProps.isBlocked}
+                    isDeleting={deleteAction.modalProps.isDeleting}
                 />
             )}
 

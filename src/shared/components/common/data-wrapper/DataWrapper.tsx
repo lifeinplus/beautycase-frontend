@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { LoadingOrError } from '../loading-or-error/LoadingOrError'
 
 export interface DataWrapperProps<T> {
@@ -25,9 +26,10 @@ export const DataWrapper = <T,>({
     }
 
     if (error) {
-        return <LoadingOrError message={emptyMessage} />
+        return <LoadingOrError message={getErrorMessage(error)} />
     }
 
+    // TODO: remove because of new error structure?
     if (!data || (Array.isArray(data) && data.length === 0)) {
         return <LoadingOrError message={emptyMessage} />
     }

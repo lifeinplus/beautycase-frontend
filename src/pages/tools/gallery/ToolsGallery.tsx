@@ -7,17 +7,21 @@ import styles from './ToolsGallery.module.css'
 
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
-    const { data: tools = [], isLoading, error } = useGetAllToolsQuery()
+    const { data = [], isLoading, error } = useGetAllToolsQuery()
+
+    const title = [t('titles.gallery'), data.length && `(${data.length})`]
+        .filter(Boolean)
+        .join(' ')
 
     return (
         <Gallery
-            title={`${t('titles.gallery')} (${tools.length})`}
+            title={title}
             subtitle={t('titles.gallerySubtitle')}
             isLoading={isLoading}
             error={error}
             mediaContent={
                 <section className={styles.container}>
-                    {tools?.map((tool) => (
+                    {data?.map((tool) => (
                         <ImageCard
                             key={tool._id}
                             data={tool}

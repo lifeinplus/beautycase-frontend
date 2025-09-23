@@ -58,14 +58,14 @@
         "selection": "Select Products"
     },
     "categories": {
-        "brow-products": "Brow products",
-        "cream-contouring": "Cream contouring",
-        "eyeshadows-and-pencils": "Eyeshadows and eye pencils",
-        "foundation-creams": "Foundation creams",
-        "lipsticks-glosses-pencils": "Lipsticks, glosses, and lip pencils",
+        "brow-products": "Brow Products",
+        "cream-contouring": "Cream Contouring",
+        "eyeshadows-and-pencils": "Eyeshadows and Eye Pencils",
+        "foundation-creams": "Foundation Creams",
+        "lipsticks-glosses-pencils": "Lipsticks, Glosses, and Lip Pencils",
         "mascaras": "Mascaras",
-        "powder-products": "Powder products",
-        "skin-preparation": "Skin preparation for makeup",
-        "sprays-and-fixers": "Sprays and fixers"
+        "powder-products": "Powder Products",
+        "skin-preparation": "Skin Preparation for Makeup",
+        "sprays-and-fixers": "Sprays and Fixers"
     }
 }

@@ -95,7 +95,7 @@ export const ImageUrlSection = <T extends FieldValues>({
             setValue(name, response.imageUrl as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
-            console.error(error)
+            console.error('Image upload failed', error)
             toast.error(getErrorMessage(error))
         } finally {
             setIsUploading(false)
@@ -115,7 +115,7 @@ export const ImageUrlSection = <T extends FieldValues>({
             setValue(name, response.imageUrl as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
-            console.error(error)
+            console.error('Image upload failed', error)
             toast.error(getErrorMessage(error))
         } finally {
             setIsUploading(false)

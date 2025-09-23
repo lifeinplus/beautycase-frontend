@@ -12,15 +12,17 @@ export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])
     const { data = [], isLoading, error } = useGetAllMakeupBagsQuery()
 
+    const title = [t('hero.headline'), data.length && `(${data.length})`]
+        .filter(Boolean)
+        .join(' ')
+
     return (
         <article>
             <Header />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero
-                        headline={`${t('hero.headline')} (${data?.length})`}
-                    />
+                    <Hero headline={title} />
 
                     <DataWrapper
                         isLoading={isLoading}

@@ -7,12 +7,11 @@ export const useRefreshAuth = () => {
     const dispatch = useAppDispatch()
 
     return async () => {
-        const response: AuthState = await axiosClient
-            .get('auth/refresh')
-            .then((response) => response.data)
+        const response = await axiosClient.get('auth/refresh')
+        const data: AuthState = response.data
 
-        dispatch(setCredentials(response))
+        dispatch(setCredentials(data))
 
-        return response.accessToken
+        return data.accessToken
     }
 }

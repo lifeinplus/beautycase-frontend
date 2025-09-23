@@ -57,13 +57,15 @@ export const UserSelection = () => {
         navigate(-1)
     }
 
+    const title = t('titles.selection')
+
     return (
         <article>
-            <TopPanel title={t('titles.selection')} onBack={handleBack} />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <TitleSection title={t('titles.selection')} hideOnMobile />
+                    <TitleSection title={title} hideOnMobile />
 
                     <DataWrapper
                         isLoading={isLoading}

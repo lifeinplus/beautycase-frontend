@@ -8,16 +8,20 @@ import styles from './LessonGallery.module.css'
 export const LessonGallery = () => {
     const { t } = useTranslation('lesson')
 
-    const { data: lessons = [], isLoading, error } = useGetAllLessonsQuery()
+    const { data = [], isLoading, error } = useGetAllLessonsQuery()
+
+    const title = [t('titles.gallery'), data.length && `(${data.length})`]
+        .filter(Boolean)
+        .join(' ')
 
     return (
         <Gallery
-            title={`${t('titles.gallery')} (${lessons.length})`}
+            title={title}
             isLoading={isLoading}
             error={error}
             mediaContent={
                 <section className={styles.container}>
-                    {lessons?.map((lesson) => (
+                    {data?.map((lesson) => (
                         <VideoCard
                             key={lesson._id}
                             data={lesson}

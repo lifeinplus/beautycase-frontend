@@ -47,4 +47,54 @@ describe('getErrorMessage', () => {
         expect(getErrorMessage('Some error')).toBe('UNKNOWN_ERROR')
         expect(getErrorMessage(123)).toBe('UNKNOWN_ERROR')
     })
+
+    it('returns PRODUCT_IN_USE without extra details if lessons/stages are empty', () => {
+        const error = {
+            data: {
+                code: 'PRODUCT_IN_USE',
+                name: 'BadRequestException',
+                details: {},
+            },
+            status: 400,
+        }
+        expect(getErrorMessage(error)).toBe('PRODUCT_IN_USE')
+    })
+
+    it('returns TOOL_IN_USE with makeupBags names', () => {
+        const error = {
+            data: {
+                code: 'TOOL_IN_USE',
+                name: 'BadRequestException',
+                details: {
+                    makeupBags: [{ name: 'brushes' }, { name: 'lipstick' }],
+                },
+            },
+            status: 400,
+        }
+
+        expect(getErrorMessage(error)).toBe(
+            'TOOL_IN_USE (categories.brushes.full, categories.lipstick.full)'
+        )
+    })
+
+    it('returns TOOL_IN_USE without extra details if no makeupBags', () => {
+        const error = {
+            data: {
+                code: 'TOOL_IN_USE',
+                name: 'BadRequestException',
+                details: {},
+            },
+            status: 400,
+        }
+
+        expect(getErrorMessage(error)).toBe('TOOL_IN_USE')
+    })
+
+    it('returns error property when present in FetchBaseQueryError', () => {
+        const error: FetchBaseQueryError = {
+            status: 'FETCH_ERROR',
+            error: 'Something went wrong',
+        }
+        expect(getErrorMessage(error)).toBe('Something went wrong')
+    })
 })

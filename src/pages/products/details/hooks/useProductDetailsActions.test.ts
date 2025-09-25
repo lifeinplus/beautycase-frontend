@@ -75,11 +75,34 @@ describe('useProductDetailsActions', () => {
         deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        act(() => {
-            onConfirm?.()
+        await act(async () => {
+            await onConfirm?.()
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith('/products')
+    })
+
+    it('closes modal when cancel is called', async () => {
+        const { result } = renderHook(() => useProductDetailsActions())
+
+        let deleteAction = result.current.find((a) => a.key === 'delete')
+
+        await act(async () => {
+            await deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
+        const { onCancel } = deleteAction?.modalProps || {}
+
+        await act(async () => {
+            await onCancel?.()
+        })
+
+        const updatedDeleteAction = result.current.find(
+            (a) => a.key === 'delete'
+        )
+        expect(updatedDeleteAction?.modalProps?.isOpen).toBe(false)
     })
 
     it('shows error toast if delete fails', async () => {
@@ -96,8 +119,8 @@ describe('useProductDetailsActions', () => {
         deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        act(() => {
-            onConfirm?.()
+        await act(async () => {
+            await onConfirm?.()
         })
 
         expect(mockDeleteProductById).toHaveBeenCalledWith('123')

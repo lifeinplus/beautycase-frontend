@@ -19,6 +19,17 @@ export function getErrorMessage(err: unknown): string {
             }
         }
 
+        if (code === 'TOOL_IN_USE' && details) {
+            const makeupBags =
+                (details as any).makeupBags?.map((b: any) =>
+                    i18n.t(`makeupBag:categories.${b.name}.full`)
+                ) ?? []
+
+            if (makeupBags.length) {
+                result += ` (${makeupBags.join(', ')})`
+            }
+        }
+
         return result
     }
 

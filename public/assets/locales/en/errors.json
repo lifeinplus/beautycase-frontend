@@ -20,6 +20,7 @@
     "STAGES_NOT_FOUND": "Stages not found",
     "STORE_NOT_FOUND": "Store not found",
     "STORES_NOT_FOUND": "Stores not found",
+    "TOOL_IN_USE": "Cannot delete tool, it is in use",
     "TOOL_NOT_FOUND": "Tool not found",
     "TOOLS_NOT_FOUND": "Tools not found",
     "VALIDATION_ERROR": "Invalid data provided",

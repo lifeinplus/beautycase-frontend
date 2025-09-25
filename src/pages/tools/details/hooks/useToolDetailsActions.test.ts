@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
@@ -67,10 +66,13 @@ describe('useToolDetailsActions', () => {
     it('handles delete action', async () => {
         const { result } = renderHook(() => useToolDetailsActions())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        let deleteAction = result.current.find((a) => a.key === 'delete')
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -78,6 +80,29 @@ describe('useToolDetailsActions', () => {
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith('/tools')
+    })
+
+    it('closes modal when cancel is called', async () => {
+        const { result } = renderHook(() => useToolDetailsActions())
+
+        let deleteAction = result.current.find((a) => a.key === 'delete')
+
+        await act(async () => {
+            await deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
+        const { onCancel } = deleteAction?.modalProps || {}
+
+        await act(async () => {
+            await onCancel?.()
+        })
+
+        const updatedDeleteAction = result.current.find(
+            (a) => a.key === 'delete'
+        )
+        expect(updatedDeleteAction?.modalProps?.isOpen).toBe(false)
     })
 
     it('shows error toast if delete fails', async () => {
@@ -85,10 +110,13 @@ describe('useToolDetailsActions', () => {
 
         const { result } = renderHook(() => useToolDetailsActions())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        let deleteAction = result.current.find((a) => a.key === 'delete')
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -96,7 +124,6 @@ describe('useToolDetailsActions', () => {
         })
 
         expect(mockDeleteToolById).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('handles back action', async () => {

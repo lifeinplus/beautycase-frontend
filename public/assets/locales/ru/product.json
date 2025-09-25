@@ -1,6 +1,4 @@
 {
-    "emptyMessage": "Продукт не найден",
-    "emptyMessageList": "Продукты не найдены",
     "error": "Ошибка при загрузке продуктов",
     "fields": {
         "brand": {

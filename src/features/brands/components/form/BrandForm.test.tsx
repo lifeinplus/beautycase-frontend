@@ -7,7 +7,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { mockBrand1 } from '../../api/__mocks__/brandsApi'
 import {
@@ -18,7 +18,6 @@ import { BrandForm } from './BrandForm'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/shared/components/forms/button/Button')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('../../api/brandsApi')
 
 describe('BrandForm', () => {
@@ -138,7 +137,7 @@ describe('BrandForm', () => {
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })
@@ -168,7 +167,7 @@ describe('BrandForm', () => {
 
         expect(mockUpdateBrandById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

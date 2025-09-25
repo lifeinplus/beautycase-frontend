@@ -20,7 +20,6 @@
             "ariaLabel": "Кнопка добавления ссылок"
         }
     },
-    "emptyMessageList": "Магазины не найдены",
     "fields": {
         "name": {
             "label": "Магазин",

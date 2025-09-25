@@ -19,7 +19,7 @@ import {
 } from '@/features/makeup-bags/api/makeupBagsApi'
 import { mockExportToPDF } from '@/features/makeup-bags/hooks/pdf/__mocks__/usePDFExport'
 import { usePDFExport } from '@/features/makeup-bags/hooks/pdf/usePDFExport'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useMakeupBagDetailsActions } from './useMakeupBagDetailsActions'
 
@@ -29,7 +29,6 @@ vi.mock('@/features/makeup-bags/hooks/pdf/usePDFExport')
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/utils/pdf/generatePdfFilename')
 vi.mock('@/shared/components/common/spinner-button/SpinnerButton')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useMakeupBagDetailsActions', () => {
     const mockDeleteMakeupBagById = vi.fn()
@@ -146,8 +145,8 @@ describe('useMakeupBagDetailsActions', () => {
 
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        await act(async () => {
-            await onConfirm?.()
+        act(() => {
+            onConfirm?.()
         })
 
         expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')

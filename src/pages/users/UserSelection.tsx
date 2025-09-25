@@ -67,12 +67,7 @@ export const UserSelection = () => {
                 <article className={pageStyles.container}>
                     <TitleSection title={title} hideOnMobile />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={clients}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
                             {clients.map(({ _id, username }) => {
                                 const isSelected = selectedIds.has(_id!)

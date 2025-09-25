@@ -36,12 +36,7 @@ export const MakeupBagDetails = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={[...stages, ...tools]}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <Hero
                             headline={title}
                             byline={t('hero.byline')}

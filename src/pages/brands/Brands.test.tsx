@@ -10,7 +10,7 @@ import {
 } from '@/features/brands/api/brandsApi'
 import type { Brand } from '@/features/brands/types'
 import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { Brands } from './Brands'
 
@@ -25,7 +25,6 @@ vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('Brands', () => {
     const mockBrands: Brand[] = [
@@ -136,7 +135,7 @@ describe('Brands', () => {
 
         expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

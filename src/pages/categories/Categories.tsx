@@ -76,12 +76,7 @@ export const Categories = () => {
 
                     <CategoryForm ref={categoryFormRef} />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         {data && (
                             <>
                                 <CategoriesMobileView

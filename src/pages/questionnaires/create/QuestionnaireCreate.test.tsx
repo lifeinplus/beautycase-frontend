@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { useCreateQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
 import { questions } from '@/features/questionnaires/utils/questions'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { QuestionnaireCreate } from './QuestionnaireCreate'
 
@@ -19,7 +19,6 @@ vi.mock('@/shared/components/forms/textarea/section/TextareaSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('QuestionnaireCreate', () => {
     const mockAddQuestionnaire = vi.fn()
@@ -115,7 +114,7 @@ describe('QuestionnaireCreate', () => {
 
         expect(mockAddQuestionnaire).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
 

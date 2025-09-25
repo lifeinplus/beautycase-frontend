@@ -1,6 +1,4 @@
 {
-    "emptyMessage": "Product not found",
-    "emptyMessageList": "No products found",
     "error": "Error loading products",
     "fields": {
         "brand": {

@@ -10,7 +10,7 @@ import {
     useGetMakeupBagByIdQuery,
     useUpdateMakeupBagByIdMutation,
 } from '@/features/makeup-bags/api/makeupBagsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagEdit } from './MakeupBagEdit'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/makeup-bags/components/form/MakeupBagForm')
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('MakeupBagEdit', () => {
     const mockUpdateMakeupBagById = vi.fn()
@@ -70,7 +69,7 @@ describe('MakeupBagEdit', () => {
 
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
 

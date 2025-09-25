@@ -76,12 +76,7 @@ export const Brands = () => {
 
                     <BrandForm ref={brandFormRef} />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         {data && (
                             <>
                                 <BrandsMobileView

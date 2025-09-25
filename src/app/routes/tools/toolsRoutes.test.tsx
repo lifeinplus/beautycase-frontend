@@ -5,6 +5,7 @@ import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/AppLayout')
 vi.mock('@/features/auth/components/persist-login/PersistLogin')
 vi.mock('@/features/auth/components/require-auth/RequireAuth')
 vi.mock('@/features/auth/components/require-role/RequireRole')
@@ -13,7 +14,6 @@ vi.mock('@/pages/tools/add/ToolAdd')
 vi.mock('@/pages/tools/details/ToolDetails')
 vi.mock('@/pages/tools/edit/ToolEdit')
 vi.mock('@/pages/tools/gallery/ToolsGallery')
-vi.mock('@/app/layout/AppLayout')
 
 describe('toolsRoutes', () => {
     it('renders the details page correctly', () => {

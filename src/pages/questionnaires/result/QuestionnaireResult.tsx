@@ -27,21 +27,13 @@ export const QuestionnaireResult = () => {
     return (
         <article>
             <TopPanel title={title} onBack={handleBack} />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} byline={createdAt} hideOnMobile />
-
                     <div className="sm:hidden">
                         <Hero byline={createdAt} />
                     </div>
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         {data && <QuestionnaireData data={data} />}
                     </DataWrapper>
                 </article>

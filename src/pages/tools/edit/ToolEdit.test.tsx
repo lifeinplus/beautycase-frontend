@@ -10,7 +10,7 @@ import {
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
 } from '@/features/tools/api/toolsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolEdit } from './ToolEdit'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/tools/components/form/ToolForm')
 vi.mock('@/features/tools/api/toolsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ToolEdit', () => {
     const mockUpdateToolById = vi.fn()
@@ -75,7 +74,7 @@ describe('ToolEdit', () => {
 
         expect(mockUpdateToolById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
 

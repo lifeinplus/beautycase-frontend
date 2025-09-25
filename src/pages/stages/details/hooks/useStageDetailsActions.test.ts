@@ -18,14 +18,13 @@ import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useStageDetailsActions } from './useStageDetailsActions'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useStageDetailsActions', () => {
     const mockDeleteStage = vi.fn()
@@ -125,7 +124,7 @@ describe('useStageDetailsActions', () => {
         })
 
         expect(mockDuplicateStage).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('handles delete action', async () => {
@@ -160,7 +159,7 @@ describe('useStageDetailsActions', () => {
         })
 
         expect(mockDeleteStage).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('returns empty array if no id is provided', () => {

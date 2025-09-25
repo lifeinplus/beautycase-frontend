@@ -19,21 +19,12 @@ export const MakeupBagList = () => {
     return (
         <article>
             <Header />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
-                        <>
-                            <MakeupBagMobileView makeupBags={data} />
-                            <MakeupBagTable makeupBags={data} />
-                        </>
+                    <DataWrapper isLoading={isLoading} error={error}>
+                        <MakeupBagMobileView makeupBags={data} />
+                        <MakeupBagTable makeupBags={data} />
                     </DataWrapper>
                 </article>
             </main>

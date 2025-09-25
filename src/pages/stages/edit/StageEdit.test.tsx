@@ -10,7 +10,7 @@ import {
     useGetStageByIdQuery,
     useUpdateStageByIdMutation,
 } from '@/features/stages/api/stagesApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageEdit } from './StageEdit'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/components/form/StageForm')
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('StageEdit', () => {
     const mockUpdateStageById = vi.fn()
@@ -77,7 +76,7 @@ describe('StageEdit', () => {
 
         expect(mockUpdateStageById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
 

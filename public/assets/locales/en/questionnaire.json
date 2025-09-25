@@ -5,8 +5,6 @@
         "byline": "Personalized Makeup Bag Selection",
         "content": "Hello! Thank you for choosing my service. In order for me to select exactly what you need, please answer a few questions."
     },
-    "emptyMessage": "Questionnaire not found",
-    "emptyMessageList": "No questionnaires found",
     "notSpecified": "Not specified",
     "requiredField": "* Required field",
     "send": "Send",

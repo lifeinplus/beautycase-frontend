@@ -5,6 +5,7 @@ import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/AppLayout')
 vi.mock('@/features/auth/components/persist-login/PersistLogin')
 vi.mock('@/features/auth/components/require-auth/RequireAuth')
 vi.mock('@/features/auth/components/require-role/RequireRole')
@@ -12,7 +13,6 @@ vi.mock('@/pages/makeup-bags/add/MakeupBagAdd')
 vi.mock('@/pages/makeup-bags/details/MakeupBagDetails')
 vi.mock('@/pages/makeup-bags/edit/MakeupBagEdit')
 vi.mock('@/pages/makeup-bags/list/MakeupBagList')
-vi.mock('@/app/layout/AppLayout')
 vi.mock('@/shared/components/scroll-to-top/ScrollToTop')
 vi.mock('@/widgets/stage/stage-selection/StageSelection')
 vi.mock('@/widgets/tool/tool-selection/ToolSelection')

@@ -22,7 +22,7 @@ import {
     mockStores,
 } from '@/features/stores/api/__mocks__/storesApi'
 import { useGetAllStoresQuery } from '@/features/stores/api/storesApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StoreLinksAdd } from './StoreLinksAdd'
 
@@ -33,7 +33,6 @@ vi.mock('@/shared/components/common/title-section/TitleSection')
 vi.mock('@/shared/components/forms/button/Button')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('StoreLinksAdd', () => {
     const mockFormData = {
@@ -216,7 +215,7 @@ describe('StoreLinksAdd', () => {
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(spyConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('does nothing if id is undefined in handleSave', async () => {

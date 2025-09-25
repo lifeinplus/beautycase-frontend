@@ -73,29 +73,18 @@ export const Stores = () => {
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} hideOnMobile />
-
                     <StoreForm ref={storeFormRef} />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
-                        {data && (
-                            <>
-                                <StoresMobileView
-                                    items={data}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                />
-                                <StoresTable
-                                    items={data}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                />
-                            </>
-                        )}
+                    <DataWrapper isLoading={isLoading} error={error}>
+                        <StoresMobileView
+                            items={data}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                        />
+                        <StoresTable
+                            items={data}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                        />
                     </DataWrapper>
                 </article>
             </main>

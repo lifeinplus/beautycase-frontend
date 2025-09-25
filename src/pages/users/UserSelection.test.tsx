@@ -11,7 +11,7 @@ import {
     mockUsers,
 } from '@/features/users/api/__mocks__/usersApi'
 import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { UserSelection } from './UserSelection'
 
@@ -59,7 +59,7 @@ describe('UserSelection', () => {
 
         render(<UserSelection />)
 
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 
     it('renders client items', () => {

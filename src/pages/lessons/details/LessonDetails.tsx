@@ -28,12 +28,7 @@ export const LessonDetails = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <TitleSection
                             title={data?.title}
                             subtitle={data?.shortDescription}

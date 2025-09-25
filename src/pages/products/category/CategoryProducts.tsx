@@ -34,19 +34,12 @@ export const CategoryProducts = () => {
     return (
         <article className={pageStyles.page}>
             <TopPanel title={title} onBack={handleBack} />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} hideOnMobile />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
-                            {data?.map((p) => (
+                            {data.map((p) => (
                                 <ImageCard
                                     key={p._id}
                                     data={p}

@@ -28,12 +28,7 @@ export const ToolDetails = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <TitleSection
                             title={title}
                             subtitle={data?.name}

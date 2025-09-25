@@ -5,6 +5,7 @@ import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/AppLayout')
 vi.mock('@/features/auth/components/persist-login/PersistLogin')
 vi.mock('@/features/auth/components/require-auth/RequireAuth')
 vi.mock('@/features/auth/components/require-role/RequireRole')
@@ -13,7 +14,6 @@ vi.mock('@/pages/stages/add/StageAdd')
 vi.mock('@/pages/stages/details/StageDetails')
 vi.mock('@/pages/stages/edit/StageEdit')
 vi.mock('@/pages/stages/list/StageList')
-vi.mock('@/app/layout/AppLayout')
 
 describe('stagesRoutes', () => {
     it('renders the list page correctly', () => {

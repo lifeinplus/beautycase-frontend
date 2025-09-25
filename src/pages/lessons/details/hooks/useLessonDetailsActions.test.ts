@@ -17,14 +17,13 @@ import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
 } from '@/features/lessons/api/lessonsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useLessonDetailsActions } from './useLessonDetailsActions'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/lessons/api/lessonsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useLessonDetailsActions', () => {
     const mockDeleteLessonById = vi.fn()
@@ -97,7 +96,7 @@ describe('useLessonDetailsActions', () => {
         })
 
         expect(mockDeleteLessonById).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('handles back action', async () => {

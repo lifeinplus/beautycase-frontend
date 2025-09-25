@@ -45,7 +45,11 @@ describe('StageList', () => {
 
     it('renders page components and list views', () => {
         render(<StageList />)
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+
+        expect(
+            screen.getByTestId('mocked-stage-mobile-view')
+        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stage-table')).toBeInTheDocument()
     })
 
     it('updates filtered stages when filter changes', async () => {

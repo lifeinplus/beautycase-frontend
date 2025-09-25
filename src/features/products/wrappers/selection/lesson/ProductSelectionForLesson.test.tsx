@@ -4,11 +4,10 @@ import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useUpdateLessonProductsMutation } from '@/features/lessons/api/lessonsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { ProductSelectionForLesson } from './ProductSelectionForLesson'
 
 vi.mock('@/features/lessons/api/lessonsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('@/widgets/product/product-selection/ProductSelection')
 
 describe('ProductSelectionForLesson', () => {
@@ -61,7 +60,7 @@ describe('ProductSelectionForLesson', () => {
 
         expect(mockUpdate).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

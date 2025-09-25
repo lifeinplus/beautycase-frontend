@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
@@ -17,14 +16,13 @@ import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
 } from '@/features/products/api/productsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useProductDetailsActions } from './useProductDetailsActions'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/products/api/productsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('useProductDetailsActions', () => {
     const mockDeleteProductById = vi.fn()
@@ -68,14 +66,17 @@ describe('useProductDetailsActions', () => {
     it('handles delete action', async () => {
         const { result } = renderHook(() => useProductDetailsActions())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        let deleteAction = result.current.find((a) => a.key === 'delete')
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        await act(async () => {
-            await onConfirm?.()
+        act(() => {
+            onConfirm?.()
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
@@ -86,18 +87,20 @@ describe('useProductDetailsActions', () => {
 
         const { result } = renderHook(() => useProductDetailsActions())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        let deleteAction = result.current.find((a) => a.key === 'delete')
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current.find((a) => a.key === 'delete')
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        await act(async () => {
-            await onConfirm?.()
+        act(() => {
+            onConfirm?.()
         })
 
         expect(mockDeleteProductById).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
     })
 
     it('handles back action', async () => {

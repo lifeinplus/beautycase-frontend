@@ -73,12 +73,7 @@ export const ToolSelection = () => {
                 <article className={pageStyles.container}>
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={tools}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
                             {tools?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)

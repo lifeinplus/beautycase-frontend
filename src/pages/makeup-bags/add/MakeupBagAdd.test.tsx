@@ -10,13 +10,12 @@ import {
     mockMakeupBagCreate,
 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
 import { useCreateMakeupBagMutation } from '@/features/makeup-bags/api/makeupBagsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagAdd } from './MakeupBagAdd'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/makeup-bags/components/form/MakeupBagForm')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 
 describe('MakeupBagAdd', () => {
@@ -65,7 +64,7 @@ describe('MakeupBagAdd', () => {
 
         expect(mockAddMakeupBag).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()

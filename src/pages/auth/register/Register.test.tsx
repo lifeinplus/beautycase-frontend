@@ -6,13 +6,12 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useRegisterUserMutation } from '@/features/auth/api/authApi'
 import type { AuthResultRegister } from '@/features/auth/types'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Register } from './Register'
 
 vi.mock('@/features/auth/api/authApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
@@ -180,7 +179,7 @@ describe('Register', () => {
 
         expect(mockRegisterUser).toHaveBeenCalledTimes(1)
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

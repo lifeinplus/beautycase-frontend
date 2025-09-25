@@ -7,7 +7,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { mockStore1 } from '../../api/__mocks__/storesApi'
 import {
@@ -18,7 +18,6 @@ import { StoreForm } from './StoreForm'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/shared/components/forms/button/Button')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('../../api/storesApi')
 
 describe('StoreForm', () => {
@@ -138,7 +137,7 @@ describe('StoreForm', () => {
 
         expect(mockCreateStore).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })
@@ -167,7 +166,7 @@ describe('StoreForm', () => {
 
         expect(mockUpdateStoreById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

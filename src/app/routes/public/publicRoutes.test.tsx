@@ -5,6 +5,7 @@ import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/AppLayout')
 vi.mock('@/features/auth/components/persist-login/PersistLogin')
 vi.mock('@/pages/auth/login/Login')
 vi.mock('@/pages/auth/register/Register')
@@ -13,7 +14,6 @@ vi.mock('@/pages/home/Home')
 vi.mock('@/pages/pricing/ui/Pricing')
 vi.mock('@/pages/questionnaires/confirmation/Confirmation')
 vi.mock('@/pages/questionnaires/create/QuestionnaireCreate')
-vi.mock('@/app/layout/AppLayout')
 
 describe('publicRoutes', () => {
     it('renders the home page correctly', () => {

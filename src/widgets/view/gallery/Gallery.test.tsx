@@ -5,7 +5,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { clearFormData } from '@/features/form/slice/formSlice'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { Gallery, type GalleryProps } from './Gallery'
 
@@ -66,7 +66,7 @@ describe('Gallery', () => {
     it('shows error message when error is present', () => {
         renderWithProviders(<Gallery {...mockProps} error={mockError} />)
 
-        expect(screen.getByText('emptyMessage')).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
         expect(screen.queryByTestId('media-content')).not.toBeInTheDocument()
     })
 })

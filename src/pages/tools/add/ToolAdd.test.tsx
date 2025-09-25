@@ -10,7 +10,7 @@ import {
     mockToolCreate,
 } from '@/features/tools/api/__mocks__/toolsApi'
 import { useCreateToolMutation } from '@/features/tools/api/toolsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolAdd } from './ToolAdd'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/tools/components/form/ToolForm')
 vi.mock('@/features/tools/api/toolsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ToolAdd', () => {
     const mockAddTool = vi.fn()
@@ -70,7 +69,7 @@ describe('ToolAdd', () => {
 
         expect(mockAddTool).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()

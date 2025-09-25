@@ -21,12 +21,7 @@ export const ProductGallery = () => {
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} />
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={title}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <ProductCategoriesMobileView categories={data} />
                         <ProductCategoriesTable categories={data} />
                     </DataWrapper>

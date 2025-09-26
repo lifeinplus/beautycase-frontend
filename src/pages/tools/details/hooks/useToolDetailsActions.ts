@@ -4,7 +4,6 @@ import {
     TrashIcon,
 } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
@@ -14,6 +13,7 @@ import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
 } from '@/features/tools/api/toolsApi'
+import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
 import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
@@ -24,7 +24,7 @@ export const useToolDetailsActions = () => {
     const { t } = useTranslation(['navigation', 'modal'])
 
     const dispatch = useAppDispatch()
-    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+    const [modalProps, setModalProps] = useState<ModalDeleteProps>({})
 
     const isToolDetailsPage = pathname.match(/^\/tools\/[a-f0-9]{24}$/i)
 
@@ -43,17 +43,28 @@ export const useToolDetailsActions = () => {
         }
     }, [dispatch, isToolDetailsPage])
 
+    useEffect(() => {
+        setModalProps((prev) => ({ ...prev, isDeleting }))
+    }, [isDeleting])
+
     const handleDelete = async () => {
         try {
             await deleteToolById(id!).unwrap()
-            toast.success(t('modal:delete.toast', { name: data?.name }))
+            setModalProps({})
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
-            toast.error(getErrorMessage(err))
-        } finally {
-            setIsModalDeleteOpen(false)
+            setModalProps((prev) => ({
+                ...prev,
+                title: t('modal:delete.titleError'),
+                description: getErrorMessage(err),
+                isBlocked: true,
+            }))
         }
+    }
+
+    const handleCancel = () => {
+        setModalProps((prev) => ({ ...prev, isOpen: false }))
     }
 
     if (!id || !isToolDetailsPage) return []
@@ -85,16 +96,17 @@ export const useToolDetailsActions = () => {
             icon: TrashIcon,
             label: t('actions.delete'),
             roles: ['admin', 'mua'],
-            onClick: () => setIsModalDeleteOpen(true),
-            modalProps: {
-                isOpen: isModalDeleteOpen,
-                title: t('modal:delete.title'),
-                description: t('modal:delete.description', {
-                    name: data?.name,
+            onClick: () =>
+                setModalProps({
+                    title: t('modal:delete.title'),
+                    description: t('modal:delete.description', {
+                        name: data?.name,
+                    }),
+                    onConfirm: handleDelete,
+                    onCancel: handleCancel,
+                    isOpen: true,
                 }),
-                onConfirm: isDeleting ? () => {} : handleDelete,
-                onCancel: () => setIsModalDeleteOpen(false),
-            },
+            modalProps,
         },
     ]
 }

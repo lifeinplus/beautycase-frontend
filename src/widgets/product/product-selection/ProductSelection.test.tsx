@@ -9,7 +9,7 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
 import { useGetAllProductsQuery } from '@/features/products/api/productsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ProductSelection } from './ProductSelection'
 
@@ -20,7 +20,6 @@ vi.mock('@/shared/components/common/title-section/TitleSection')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
 vi.mock('@/shared/components/ui/image/Image')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ProductSelection', () => {
     const mockFormData = {
@@ -60,7 +59,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 
     it('renders product items', () => {
@@ -123,7 +122,7 @@ describe('ProductSelection', () => {
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

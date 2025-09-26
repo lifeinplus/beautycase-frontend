@@ -10,7 +10,7 @@ import {
     useGetProductByIdQuery,
     useUpdateProductByIdMutation,
 } from '@/features/products/api/productsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ProductEdit } from './ProductEdit'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/products/api/productsApi')
 vi.mock('@/features/products/components/form/ProductForm')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ProductEdit', () => {
     const mockUpdate = vi.fn()
@@ -75,7 +74,7 @@ describe('ProductEdit', () => {
 
         expect(mockUpdate).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
 

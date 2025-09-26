@@ -62,42 +62,29 @@ export const Stores = () => {
         storeFormRef.current?.focusInput()
     }
 
+    const title = [t('titles.list'), data.length && `(${data.length})`]
+        .filter(Boolean)
+        .join(' ')
+
     return (
         <article>
-            <TopPanel
-                title={`${t('titles.list')} (${data?.length})`}
-                onBack={handleBack}
-            />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero
-                        headline={`${t('titles.list')} (${data?.length})`}
-                        hideOnMobile
-                    />
-
+                    <Hero headline={title} hideOnMobile />
                     <StoreForm ref={storeFormRef} />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessageList')}
-                    >
-                        {data && (
-                            <>
-                                <StoresMobileView
-                                    items={data}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                />
-                                <StoresTable
-                                    items={data}
-                                    onDelete={handleDelete}
-                                    onEdit={handleEdit}
-                                />
-                            </>
-                        )}
+                    <DataWrapper isLoading={isLoading} error={error}>
+                        <StoresMobileView
+                            items={data}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                        />
+                        <StoresTable
+                            items={data}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                        />
                     </DataWrapper>
                 </article>
             </main>

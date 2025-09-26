@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { act } from 'react'
 import { describe, expect, it } from 'vitest'
 
-import type { DataMessageError } from '@/shared/utils/error/types'
+import type { ApiErrorResponse } from '@/shared/utils/error/types'
 import { mockImageUrl1, mockImageUrl2 } from '@/tests/mocks/form'
 import server from '@/tests/mocks/server'
 import { renderHookWithProvider } from '@/tests/mocks/wrappers'
@@ -61,14 +61,14 @@ describe('uploadsApi', () => {
 
             const [uploadTempImageByFile] = result.current
 
-            let error: DataMessageError | undefined
+            let error: { status: number; data: ApiErrorResponse } | undefined
 
             try {
                 await act(async () => {
                     await uploadTempImageByFile(mockFileData).unwrap()
                 })
             } catch (err) {
-                error = err as DataMessageError
+                error = err as { status: number; data: ApiErrorResponse }
             }
 
             expect(error).toBeDefined()
@@ -110,14 +110,14 @@ describe('uploadsApi', () => {
 
             const [uploadTempImageByUrl] = result.current
 
-            let error: DataMessageError | undefined
+            let error: { status: number; data: ApiErrorResponse } | undefined
 
             try {
                 await act(async () => {
                     await uploadTempImageByUrl(mockUrlData).unwrap()
                 })
             } catch (err) {
-                error = err as DataMessageError
+                error = err as { status: number; data: ApiErrorResponse }
             }
 
             expect(error).toBeDefined()

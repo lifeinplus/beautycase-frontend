@@ -28,31 +28,26 @@ export const StageList = () => {
         setFilteredStages(filteredStages)
     }, [])
 
+    const title = [
+        t('titles.list'),
+        filteredStages.length && `(${filteredStages.length})`,
+    ]
+        .filter(Boolean)
+        .join(' ')
+
     return (
         <article>
             <Header />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero
-                        headline={`${t('titles.list')} (${filteredStages.length})`}
-                    />
-
+                    <Hero headline={title} />
                     <StageFilter
                         onFilterChange={handleFilterChange}
                         stages={stages}
                     />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={filteredStages}
-                        emptyMessage={t('emptyMessageList')}
-                    >
-                        <>
-                            <StageMobileView stages={filteredStages} />
-                            <StageTable stages={filteredStages} />
-                        </>
+                    <DataWrapper isLoading={isLoading} error={error}>
+                        <StageMobileView stages={filteredStages} />
+                        <StageTable stages={filteredStages} />
                     </DataWrapper>
                 </article>
             </main>

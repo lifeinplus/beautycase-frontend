@@ -8,7 +8,7 @@ import {
     mockUserResult,
 } from '@/features/users/api/__mocks__/usersApi'
 import { Account } from '@/pages/account/Account'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import {
     renderWithProviderAndRouter,
     renderWithProviders,
@@ -70,6 +70,6 @@ describe('Account', () => {
 
         renderWithProviders(<Account />)
 
-        expect(screen.getByText('emptyMessage')).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 })

@@ -1,6 +1,4 @@
 {
-    "emptyMessage": "Stage not found",
-    "emptyMessageList": "No stages found",
     "fields": {
         "title": {
             "label": "Title",

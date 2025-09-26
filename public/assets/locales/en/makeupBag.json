@@ -9,8 +9,6 @@
             "full": "Luxury Makeup Bag"
         }
     },
-    "emptyMessage": "No makeup bag found",
-    "emptyMessageList": "No makeup bags found",
     "fields": {
         "category": {
             "label": "Category",

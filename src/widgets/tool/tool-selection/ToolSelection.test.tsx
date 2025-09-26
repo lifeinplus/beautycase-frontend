@@ -7,7 +7,7 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
 import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolSelection } from './ToolSelection'
 
@@ -55,7 +55,7 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        expect(screen.getByText('emptyMessageList')).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 
     it('renders tool items', () => {

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
 import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { CategoryProducts } from './CategoryProducts'
 
@@ -36,17 +37,6 @@ describe('CategoryProducts', () => {
         expect(mockNavigate).toHaveBeenCalledWith('/products')
     })
 
-    it('renders empty message when no products', () => {
-        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
-            data: [],
-            isLoading: false,
-            error: null,
-        })
-
-        render(<CategoryProducts />)
-        expect(screen.getByText(/emptyMessageList/i)).toBeInTheDocument()
-    })
-
     it('shows loading state', () => {
         vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
             data: undefined,
@@ -63,11 +53,11 @@ describe('CategoryProducts', () => {
         vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
-            error: { message: 'Error!' },
+            error: mockError,
         })
 
         render(<CategoryProducts />)
 
-        expect(screen.getByText(/emptyMessageList/i)).toBeInTheDocument()
+        expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 })

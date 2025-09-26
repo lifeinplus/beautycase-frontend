@@ -6,19 +6,19 @@ import commonStyles from '@/shared/components/common/common.module.css'
 import styles from '../modal.module.css'
 
 export interface ModalDuplicateProps {
-    description: string
-    isOpen: boolean
-    onConfirm: () => void
-    onCancel: () => void
-    title: string
+    title?: string
+    description?: string
+    onConfirm?: () => void
+    onCancel?: () => void
+    isOpen?: boolean
 }
 
 export const ModalDuplicate = ({
-    description,
-    isOpen,
-    onCancel,
-    onConfirm,
-    title,
+    title = '',
+    description = '',
+    isOpen = false,
+    onCancel = () => {},
+    onConfirm = () => {},
 }: ModalDuplicateProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')

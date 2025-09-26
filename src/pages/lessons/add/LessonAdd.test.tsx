@@ -10,7 +10,7 @@ import {
     mockLessonCreate,
 } from '@/features/lessons/api/__mocks__/lessonsApi'
 import { useCreateLessonMutation } from '@/features/lessons/api/lessonsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { LessonAdd } from './LessonAdd'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/lessons/components/form/LessonForm')
 vi.mock('@/features/lessons/api/lessonsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('LessonAdd', () => {
     const mockAddLesson = vi.fn()
@@ -65,7 +64,7 @@ describe('LessonAdd', () => {
 
         expect(mockAddLesson).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

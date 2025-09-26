@@ -34,9 +34,7 @@ describe('PersistLogin', () => {
     it('renders Spinner while authentication is being refreshed', () => {
         renderWithRouter(<MockRoutes />)
 
-        const spinner = screen.getByTestId('mocked-spinner')
-        expect(spinner).toBeInTheDocument()
-
+        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
         expect(mockRefreshAuth).toHaveBeenCalledTimes(1)
     })
 
@@ -45,12 +43,38 @@ describe('PersistLogin', () => {
 
         renderWithRouter(<MockRoutes />)
 
-        const content = screen.getByTestId('mocked-content')
-        expect(content).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-content')).toBeInTheDocument()
 
-        const spinner = screen.queryByTestId('mocked-spinner')
-        expect(spinner).not.toBeInTheDocument()
-
+        expect(screen.queryByTestId('mocked-spinner')).not.toBeInTheDocument()
         expect(mockRefreshAuth).not.toHaveBeenCalled()
+    })
+
+    it('hides Spinner after successful refresh when no access token', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(undefined)
+        mockRefreshAuth.mockResolvedValueOnce('ok')
+
+        renderWithRouter(<MockRoutes />)
+
+        expect(await screen.findByTestId('mocked-content')).toBeInTheDocument()
+        expect(screen.queryByTestId('mocked-spinner')).not.toBeInTheDocument()
+        expect(mockRefreshAuth).toHaveBeenCalledTimes(1)
+    })
+
+    it('logs error when refreshAuth fails', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(undefined)
+        const consoleErrorSpy = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+        mockRefreshAuth.mockRejectedValueOnce(new Error('refresh failed'))
+
+        renderWithRouter(<MockRoutes />)
+
+        expect(await screen.findByTestId('mocked-content')).toBeInTheDocument()
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            'Refresh auth failed',
+            expect.any(Error)
+        )
+
+        consoleErrorSpy.mockRestore()
     })
 })

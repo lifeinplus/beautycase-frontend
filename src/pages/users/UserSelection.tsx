@@ -57,20 +57,17 @@ export const UserSelection = () => {
         navigate(-1)
     }
 
+    const title = t('titles.selection')
+
     return (
         <article>
-            <TopPanel title={t('titles.selection')} onBack={handleBack} />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <TitleSection title={t('titles.selection')} hideOnMobile />
+                    <TitleSection title={title} hideOnMobile />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={clients}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
                             {clients.map(({ _id, username }) => {
                                 const isSelected = selectedIds.has(_id!)

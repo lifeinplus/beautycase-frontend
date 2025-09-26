@@ -10,7 +10,6 @@
             "ariaLabel": "Edit brand button"
         }
     },
-    "emptyMessageList": "No brands found",
     "fields": {
         "name": {
             "label": "Brand",

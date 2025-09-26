@@ -1,9 +1,6 @@
-export interface DataMessageError {
-    data: {
-        name: string
-        message: string
-        details?: string[]
-        success?: boolean
-    }
-    status: number
+export interface ApiErrorResponse {
+    code: string
+    name: string
+    message?: string
+    details?: unknown
 }

@@ -1,45 +1,42 @@
 .modal {
     @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+    @apply sm:ps-navbar lg:ps-navbar-open;
 }
 
 .container {
-    @apply m-5 flex w-3/4 max-w-96 flex-col rounded-xl bg-white shadow-lg;
-}
-
-.content {
-    @apply mx-8 mb-4 mt-8 text-center;
-}
-
-.title {
-    @apply text-xl leading-none;
-}
-
-.description {
-    @apply pt-2.5 text-sm leading-4.5 text-neutral-500;
-}
-
-.btnGroup {
-    @apply mt-3 w-full;
-}
-
-.btn {
-    @apply min-h-12 w-full rounded border-t border-neutral-300 bg-transparent px-2 py-1 text-sm font-semibold;
-}
-
-.btnBottom {
-    @apply rounded-b-xl text-black;
+    @apply m-5 flex w-3/4 max-w-96 flex-col space-y-10 rounded-xl bg-white shadow-lg sm:w-1/2;
 }
 
 :global(.dark) .container {
     @apply bg-neutral-800;
 }
 
-:global(.dark) .description {
-    @apply text-neutral-400;
+.content {
+    @apply mt-8 space-y-3 px-5 text-center;
 }
 
-:global(.dark) .btn {
-    @apply border-neutral-700;
+.title {
+    @apply text-lg font-bold;
+}
+
+.description {
+    @apply text-base leading-snug text-neutral-500;
+}
+
+:global(.dark) .description {
+    @apply text-neutral-300;
+}
+
+.btnGroup {
+    @apply w-full space-y-2;
+}
+
+.btn {
+    @apply min-h-12 w-full bg-transparent px-2 text-lg font-bold;
+}
+
+.btnBottom {
+    @apply rounded-b-xl pb-2 font-light text-black;
 }
 
 :global(.dark) .btnBottom {

@@ -1,27 +1,45 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+import {
+    afterAll,
+    beforeAll,
+    beforeEach,
+    describe,
+    expect,
+    it,
+    Mock,
+    vi,
+} from 'vitest'
 
 import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useLogoutUserMutation } from '@/features/auth/api/authApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { logout } from '../../slice/authSlice'
 import { useAuthLogout } from './useAuthLogout'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('@/features/auth/api/authApi')
 
 describe('useAuthLogout', () => {
     const mockLogoutUser = vi.fn()
+    const mockLogoutUnwrap = vi.fn()
+
+    const spyConsoleError = vi.spyOn(console, 'error')
+
+    beforeAll(() => {
+        spyConsoleError.mockImplementation(() => {})
+    })
 
     beforeEach(() => {
         vi.mocked(useLogoutUserMutation as Mock).mockReturnValue([
             mockLogoutUser,
         ])
 
-        mockLogoutUser.mockResolvedValue({})
+        mockLogoutUser.mockReturnValue({ unwrap: mockLogoutUnwrap })
+    })
+
+    afterAll(() => {
+        spyConsoleError.mockRestore()
     })
 
     it('logs out user, dispatches logout, and navigates to the redirect path', async () => {
@@ -39,11 +57,7 @@ describe('useAuthLogout', () => {
     })
 
     it('handles errors correctly when logout fails', async () => {
-        mockLogoutUser.mockRejectedValue(mockError)
-
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
+        mockLogoutUnwrap.mockRejectedValue(mockError)
 
         const { result } = renderHook(() => useAuthLogout())
 
@@ -51,11 +65,12 @@ describe('useAuthLogout', () => {
             await result.current()
         })
 
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
-        expect(mockNavigate).not.toHaveBeenCalled()
-        expect(mockDispatch).not.toHaveBeenCalled()
+        expect(spyConsoleError).toHaveBeenCalledWith(
+            'Logout request failed',
+            mockError
+        )
 
-        mockConsoleError.mockRestore()
+        expect(mockNavigate).toHaveBeenCalled()
+        expect(mockDispatch).toHaveBeenCalled()
     })
 })

@@ -1,5 +1,4 @@
 import { ReactNode, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
@@ -23,7 +22,6 @@ export const Gallery = ({
     error,
     mediaContent,
 }: GalleryProps) => {
-    const { t } = useTranslation('component')
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -33,19 +31,10 @@ export const Gallery = ({
     return (
         <article className={pageStyles.page}>
             <Header />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero headline={title} byline={subtitle} />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={title}
-                        emptyMessage={t('emptyMessage', {
-                            value: title,
-                        })}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         {mediaContent}
                     </DataWrapper>
                 </article>

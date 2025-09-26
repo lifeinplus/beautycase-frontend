@@ -7,11 +7,11 @@ import { ModalDuplicate } from './ModalDuplicate'
 
 describe('ModalDuplicate', () => {
     const mockProps: ModalDuplicateProps = {
+        title: 'Test Title',
         description: 'Test Description',
-        isOpen: true,
         onCancel: vi.fn(),
         onConfirm: vi.fn(),
-        title: 'Test Title',
+        isOpen: true,
     }
 
     afterEach(() => {
@@ -30,8 +30,8 @@ describe('ModalDuplicate', () => {
     it('renders when isOpen is true', () => {
         render(<ModalDuplicate {...mockProps} />)
 
-        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.title!)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
         expect(screen.getByText('buttons.duplicate.text')).toBeInTheDocument()
         expect(screen.getByText('buttons.cancel.text')).toBeInTheDocument()
     })

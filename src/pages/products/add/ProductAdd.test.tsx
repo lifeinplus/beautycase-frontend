@@ -11,14 +11,13 @@ import {
 } from '@/features/products/api/__mocks__/productsApi'
 import { useCreateProductMutation } from '@/features/products/api/productsApi'
 import { ProductAdd } from '@/pages/products/add/ProductAdd'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/products/components/form/ProductForm')
 vi.mock('@/features/products/api/productsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('ProductAdd', () => {
     const mockCreate = vi.fn()
@@ -67,7 +66,7 @@ describe('ProductAdd', () => {
 
         expect(mockCreate).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()

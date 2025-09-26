@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import type { Questionnaire } from '@/features/questionnaires/types'
 import { mockUploadResult } from '@/features/uploads/api/__mocks__/uploadsApi'
 import { useUploadTempImageByFileMutation } from '@/features/uploads/api/uploadsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import {
     mockClearErrors,
     mockFieldError,
@@ -19,7 +19,6 @@ import {
     type ImageTextSectionProps,
 } from './ImageTextSection'
 
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('@/features/uploads/api/uploadsApi')
 vi.mock('../../label/Label')
 vi.mock('../preview/ImagePreview')
@@ -133,7 +132,7 @@ describe('ImageTextSection', () => {
         expect(mockClearErrors).not.toHaveBeenCalled()
 
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

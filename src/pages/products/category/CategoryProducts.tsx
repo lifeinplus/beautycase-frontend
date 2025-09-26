@@ -15,36 +15,31 @@ export const CategoryProducts = () => {
     const { t } = useTranslation('product')
 
     const {
-        data: products = [],
+        data = [],
         isLoading,
         error,
     } = useGetProductsByCategoryQuery(category!)
-
-    const title = t(`categories.${category}`)
 
     const handleBack = () => {
         navigate('/products')
     }
 
+    const title = [
+        t(`categories.${category}`),
+        data.length && `(${data.length})`,
+    ]
+        .filter(Boolean)
+        .join(' ')
+
     return (
         <article className={pageStyles.page}>
             <TopPanel title={title} onBack={handleBack} />
-
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <Hero
-                        headline={`${title} (${products?.length})`}
-                        hideOnMobile
-                    />
-
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={products}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <Hero headline={title} hideOnMobile />
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
-                            {products?.map((p) => (
+                            {data.map((p) => (
                                 <ImageCard
                                     key={p._id}
                                     data={p}

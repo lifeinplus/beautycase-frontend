@@ -19,9 +19,13 @@ export const PersistLogin = () => {
 
         if (effectRan.current || config.prod) {
             const verifyRefreshAuth = async () => {
-                await refreshAuth()
-                    .catch((error) => console.error(error))
-                    .finally(() => isMounted && setIsLoading(false))
+                try {
+                    await refreshAuth()
+                } catch (error) {
+                    console.error('Refresh auth failed', error)
+                } finally {
+                    if (isMounted) setIsLoading(false)
+                }
             }
 
             !accessToken ? verifyRefreshAuth() : setIsLoading(false)

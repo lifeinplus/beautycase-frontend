@@ -90,12 +90,7 @@ export const StageSelection = () => {
                 <article className={pageStyles.container}>
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={filteredStages}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
                             {filteredStages.map(
                                 ({ _id, title, subtitle, imageUrl }) => {

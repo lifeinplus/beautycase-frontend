@@ -6,6 +6,7 @@
         },
         "delete": {
             "text": "Удалить",
+            "loading": "Удаление...",
             "ariaLabel": "Кнопка удалить"
         },
         "duplicate": {
@@ -15,8 +16,8 @@
     },
     "delete": {
         "title": "Удалить?",
+        "titleError": "Невозможно удалить",
         "description": "Вы действительно хотите удалить {{name}}?",
-        "toast": "{{name}} удалён",
         "descriptionCategory": "Вы действительно хотите удалить категорию {{name}} типа {{type}}?"
     },
     "duplicate": {

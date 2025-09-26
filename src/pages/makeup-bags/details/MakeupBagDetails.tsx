@@ -19,14 +19,16 @@ export const MakeupBagDetails = () => {
     const { t } = useTranslation(['makeupBag', 'component', 'stage', 'tool'])
 
     const { data, isLoading, error } = useGetMakeupBagByIdQuery(id!)
+    const category = data?.category
     const stages = data?.stages || []
     const tools = data?.tools || []
 
     const actions = useMakeupBagDetailsActions()
     const backAction = actions.find((action) => action.key === 'back')
 
-    const categoryName = t(`categories.${data?.category?.name}.full`)
-    const title = categoryName || t('titles.details')
+    const title = category?.name
+        ? t(`categories.${category?.name}.full`)
+        : t('titles.details')
 
     return (
         <article className={pageStyles.page}>
@@ -34,12 +36,7 @@ export const MakeupBagDetails = () => {
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={[...stages, ...tools]}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <Hero
                             headline={title}
                             byline={t('hero.byline')}

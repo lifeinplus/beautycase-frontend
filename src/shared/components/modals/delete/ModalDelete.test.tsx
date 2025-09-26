@@ -6,11 +6,11 @@ import { ModalDelete, type ModalDeleteProps } from './ModalDelete'
 
 describe('ModalDelete', () => {
     const mockProps: ModalDeleteProps = {
+        title: 'Test Title',
         description: 'Test Description',
-        isOpen: true,
         onCancel: vi.fn(),
         onConfirm: vi.fn(),
-        title: 'Test Title',
+        isOpen: true,
     }
 
     afterEach(() => {
@@ -29,8 +29,8 @@ describe('ModalDelete', () => {
     it('renders when isOpen is true', () => {
         render(<ModalDelete {...mockProps} />)
 
-        expect(screen.getByText(mockProps.title)).toBeInTheDocument()
-        expect(screen.getByText(mockProps.description)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.title!)).toBeInTheDocument()
+        expect(screen.getByText(mockProps.description!)).toBeInTheDocument()
         expect(screen.getByText('buttons.delete.text')).toBeInTheDocument()
         expect(screen.getByText('buttons.cancel.text')).toBeInTheDocument()
     })

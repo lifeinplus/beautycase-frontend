@@ -5,7 +5,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { setCredentials } from '@/features/auth/slice/authSlice'
 import type { AuthState } from '@/features/auth/types'
 import axiosClient from '@/shared/api/axios/axiosClient.config'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { useRefreshAuth } from './useRefreshAuth'
 
 vi.mock('@/app/hooks/hooks')

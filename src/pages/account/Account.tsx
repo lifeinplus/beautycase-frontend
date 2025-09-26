@@ -24,12 +24,7 @@ export const Account = () => {
                         headline={t('hero.headline')}
                         byline={t('hero.byline')}
                     />
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={data}
-                        emptyMessage={t('emptyMessage')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         {data && <AccountFields data={data} />}
                     </DataWrapper>
                 </article>

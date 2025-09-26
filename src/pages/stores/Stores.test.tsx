@@ -10,7 +10,7 @@ import {
     useGetAllStoresQuery,
 } from '@/features/stores/api/storesApi'
 import type { Store } from '@/features/stores/types'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { Stores } from './Stores'
 
@@ -25,7 +25,6 @@ vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('Stores', () => {
     const mockStores: Store[] = [
@@ -137,7 +136,7 @@ describe('Stores', () => {
 
         expect(mockDeleteStoreById).toHaveBeenCalledWith('1')
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

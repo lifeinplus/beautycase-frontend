@@ -20,7 +20,6 @@
             "ariaLabel": "Links add button"
         }
     },
-    "emptyMessageList": "No stores found",
     "fields": {
         "name": {
             "label": "Store",

@@ -44,6 +44,7 @@ describe('MakeupBagDetails', () => {
 
         render(<MakeupBagDetails />)
 
-        expect(screen.getByText(/emptyMessage/)).toBeInTheDocument()
+        expect(screen.getByText(/0 stages/)).toBeInTheDocument()
+        expect(screen.getByText(/0 tools/)).toBeInTheDocument()
     })
 })

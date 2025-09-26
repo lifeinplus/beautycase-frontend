@@ -5,12 +5,12 @@ import App from '@/App'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
+vi.mock('@/app/layout/AppLayout')
 vi.mock('@/features/auth/components/persist-login/PersistLogin')
 vi.mock('@/features/auth/components/require-auth/RequireAuth')
 vi.mock('@/features/auth/components/require-role/RequireRole')
 vi.mock('@/pages/questionnaires/list/QuestionnaireList')
 vi.mock('@/pages/questionnaires/result/QuestionnaireResult')
-vi.mock('@/app/layout/AppLayout')
 
 describe('questionnairesRoutes', () => {
     it('renders the list page correctly', () => {

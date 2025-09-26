@@ -10,7 +10,7 @@ import {
     mockStageCreate,
 } from '@/features/stages/api/__mocks__/stagesApi'
 import { useCreateStageMutation } from '@/features/stages/api/stagesApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageAdd } from './StageAdd'
 
@@ -18,7 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/components/form/StageForm')
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 describe('StageAdd', () => {
     const mockAddStage = vi.fn()
@@ -68,7 +67,7 @@ describe('StageAdd', () => {
 
         expect(mockAddStage).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()

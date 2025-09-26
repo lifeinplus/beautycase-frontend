@@ -17,7 +17,7 @@ import {
     useUploadTempImageByFileMutation,
     useUploadTempImageByUrlMutation,
 } from '@/features/uploads/api/uploadsApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import {
     mockClearErrors,
     mockFieldError,
@@ -29,7 +29,6 @@ import {
 import { ImageUrlSection, type ImageUrlSectionProps } from './ImageUrlSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 vi.mock('../../label/Label')
 vi.mock('../preview/ImagePreview')
 
@@ -142,7 +141,7 @@ describe('ImageUrlSection', () => {
             expect(mockSetValue).toHaveBeenCalledWith('imageUrl', '')
             expect(mockUploadTempImageByFile).toHaveBeenCalledOnce()
             expect(mockClearErrors).not.toHaveBeenCalled()
-            expect(toast.error).toHaveBeenCalledWith(mockError.message)
+            expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
         })
 
         it('does nothing when file is empty', async () => {
@@ -216,7 +215,7 @@ describe('ImageUrlSection', () => {
 
             expect(mockUploadTempImageByUrl).toHaveBeenCalledOnce()
             expect(mockClearErrors).not.toHaveBeenCalled()
-            expect(toast.error).toHaveBeenCalledWith(mockError.message)
+            expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
         })
     })
 })

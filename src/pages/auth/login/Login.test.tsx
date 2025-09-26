@@ -10,14 +10,13 @@ import {
     mockLoginResult,
 } from '@/features/auth/api/__mocks__/authApi'
 import { useLoginUserMutation } from '@/features/auth/api/authApi'
-import { mockError } from '@/shared/utils/error/__mocks__/getErrorMessage'
+import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Login } from './Login'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/auth/api/authApi')
-vi.mock('@/shared/utils/error/getErrorMessage')
 
 const MockHome = () => <div data-testid="mocked-home-page">Home Page</div>
 
@@ -158,7 +157,7 @@ describe('Login', () => {
 
         expect(mockLoginUser).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()
     })

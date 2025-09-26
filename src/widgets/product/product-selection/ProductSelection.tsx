@@ -87,12 +87,7 @@ export const ProductSelection = ({
                 <article className={pageStyles.container}>
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
-                    <DataWrapper
-                        isLoading={isLoading}
-                        error={error}
-                        data={products}
-                        emptyMessage={t('emptyMessageList')}
-                    >
+                    <DataWrapper isLoading={isLoading} error={error}>
                         <article className={styles.container}>
                             {products?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)

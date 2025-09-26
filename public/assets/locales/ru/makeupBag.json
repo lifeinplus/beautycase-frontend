@@ -9,8 +9,6 @@
             "full": "Люксовая косметичка"
         }
     },
-    "emptyMessage": "Косметичка не найдена",
-    "emptyMessageList": "Косметички не найдены",
     "fields": {
         "category": {
             "label": "Категория",

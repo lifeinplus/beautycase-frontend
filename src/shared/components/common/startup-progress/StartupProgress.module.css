@@ -1,0 +1,83 @@
+.container {
+    @apply flex min-h-screen items-center justify-center bg-white;
+}
+
+.wrapper {
+    @apply mx-4 flex max-w-md flex-col items-center space-y-8 p-8;
+}
+
+:global(.dark) .container {
+    @apply bg-black;
+}
+
+.logoContainer {
+    @apply flex items-center justify-center;
+}
+
+.logo {
+    @apply mb-10 mt-4 font-logo text-5xl sm:text-6xl lg:text-7xl;
+}
+
+.progressBarContainer {
+    @apply h-1 w-64 overflow-hidden rounded-full bg-gray-200;
+}
+
+:global(.dark) .progressBarContainer {
+    @apply bg-gray-700;
+}
+
+.progressBar {
+    @apply h-1 rounded-full bg-gradient-to-r from-rose-400 to-pink-500 transition-all duration-1000 ease-out;
+}
+
+:global(.dark) .progressBar {
+    @apply from-rose-500 to-pink-600;
+}
+
+.progressIndicator {
+    @apply text-base text-black;
+}
+
+:global(.dark) .progressIndicator {
+    @apply text-white;
+}
+
+.primaryContainer {
+    @apply space-y-2 text-center;
+}
+
+.primary {
+    @apply text-xl font-semibold text-black;
+}
+
+:global(.dark) .primary {
+    @apply text-white;
+}
+
+.primaryDescription {
+    @apply text-gray-600;
+}
+
+:global(.dark) .primaryDescription {
+    @apply text-gray-400;
+}
+
+.secondaryContainer {
+    @apply space-y-1 text-center opacity-75;
+}
+
+.secondary {
+    @apply text-lg text-gray-600;
+}
+
+:global(.dark) .secondary {
+    @apply text-gray-400;
+}
+
+.secondaryDescription {
+    @apply text-gray-500;
+}
+
+:global(.dark) .secondaryDescription {
+    @apply text-gray-500;
+}

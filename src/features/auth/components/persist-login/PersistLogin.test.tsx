@@ -11,6 +11,7 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/app/config/config')
 vi.mock('@/features/auth/hooks/refresh-auth/useRefreshAuth')
 vi.mock('@/shared/components/common/spinner/Spinner')
+vi.mock('@/shared/components/common/startup-progress/StartupProgress')
 
 const MockRoutes = () => (
     <Routes>

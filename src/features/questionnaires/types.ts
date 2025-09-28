@@ -46,3 +46,11 @@ export interface Questionnaire {
     referral?: string
     skinType?: string
 }
+
+export interface Training {
+    name: string
+    contact: string
+    experience?: string
+    difficulties?: string
+    expectations: string
+}

@@ -162,5 +162,44 @@
                 "other": "Other"
             }
         }
+    },
+    "training": {
+        "hero": {
+            "headline": "Questionnaire",
+            "byline": "Pre-registration for training",
+            "content": "Hi! This is Inna, a makeup artist and your helper in makeup. I’m glad to see you among those who want to learn how to do makeup easily and with joy. Fill out this form if you’re interested in joining my online workshop, where we’ll do makeup together live, step by step. Stay tuned – I’ll send you all the details soon."
+        },
+        "fields": {
+            "name": {
+                "label": "Your name",
+                "errors": {
+                    "required": "Please enter your name"
+                }
+            },
+            "contact": {
+                "label": "Contact information",
+                "description": "Your preferred way to be contacted (Instagram, Telegram, or email)",
+                "errors": {
+                    "required": "Please provide your contact information"
+                }
+            },
+            "experience": {
+                "label": "Have you ever studied makeup before?",
+                "options": {
+                    "no": "No, never",
+                    "yesMyself": "Yes, a little (watched videos, practiced myself)",
+                    "yesCourses": "Yes, attended courses/lessons"
+                }
+            },
+            "difficulties": {
+                "label": "What is the most difficult part of makeup for you?"
+            },
+            "expectations": {
+                "label": "What would you like to gain from the practicum?",
+                "errors": {
+                    "required": "Please enter your expectations"
+                }
+            }
+        }
     }
 }

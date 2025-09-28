@@ -20,7 +20,8 @@
         "questionnaires": "Questionnaires",
         "referenceLists": "Reference Lists",
         "stages": "Stages",
-        "tools": "Tools"
+        "tools": "Tools",
+        "training": "Training"
     },
     "build": "Build"
 }

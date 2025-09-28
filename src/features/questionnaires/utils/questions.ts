@@ -277,3 +277,23 @@ export const questions: Questions = {
         ],
     },
 }
+
+export const trainingQuestions: Questions = {
+    name: {
+        label: 'training.fields.name.label',
+    },
+    contact: {
+        label: 'training.fields.contact.label',
+        description: 'training.fields.contact.description',
+    },
+    experience: {
+        label: 'training.fields.experience.label',
+        description: 'training.fields.experience.description',
+    },
+    difficulties: {
+        label: 'training.fields.difficulties.label',
+    },
+    expectations: {
+        label: 'training.fields.expectations.label',
+    },
+}

@@ -145,7 +145,7 @@ export const QuestionnaireCreate = () => {
                             <RadioButtonSection
                                 label={t(questions.skinType.label)}
                                 options={options.skinTypes}
-                                register={register}
+                                register={register('skinType')}
                             />
 
                             <TextareaSection
@@ -163,7 +163,7 @@ export const QuestionnaireCreate = () => {
                                 horizontal={true}
                                 label={t(questions.peeling.label)}
                                 options={options.peeling}
-                                register={register}
+                                register={register('peeling')}
                             />
 
                             <RadioButtonSection
@@ -173,7 +173,7 @@ export const QuestionnaireCreate = () => {
                                 horizontal={true}
                                 label={t(questions.pores.label)}
                                 options={options.pores}
-                                register={register}
+                                register={register('pores')}
                             />
 
                             <RadioButtonSection
@@ -183,7 +183,7 @@ export const QuestionnaireCreate = () => {
                                 horizontal={true}
                                 label={t(questions.oilyShine.label)}
                                 options={options.oilyShine}
-                                register={register}
+                                register={register('oilyShine')}
                             />
 
                             <TextareaSection
@@ -209,7 +209,7 @@ export const QuestionnaireCreate = () => {
                                 )}
                                 label={t(questions.makeupTime.label)}
                                 options={options.makeupTime}
-                                register={register}
+                                register={register('makeupTime')}
                             />
 
                             <RadioButtonSection
@@ -218,7 +218,7 @@ export const QuestionnaireCreate = () => {
                                 )}
                                 label={t(questions.budget.label)}
                                 options={options.budget}
-                                register={register}
+                                register={register('budget')}
                             />
 
                             <RadioButtonSection
@@ -228,7 +228,7 @@ export const QuestionnaireCreate = () => {
                                 horizontal={true}
                                 label={t(questions.brushes.label)}
                                 options={options.brushes}
-                                register={register}
+                                register={register('brushes')}
                             />
 
                             <CheckboxSection
@@ -246,7 +246,7 @@ export const QuestionnaireCreate = () => {
                                 )}
                                 label={t(questions.referral.label)}
                                 options={options.referral}
-                                register={register}
+                                register={register('referral')}
                             />
                         </article>
 

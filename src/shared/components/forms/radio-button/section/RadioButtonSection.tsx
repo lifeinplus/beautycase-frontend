@@ -1,7 +1,6 @@
-import { type UseFormRegister } from 'react-hook-form'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { Questionnaire } from '@/features/questionnaires/types'
 import { QuestionnaireOption } from '@/features/questionnaires/utils/options'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from '../../label/Label'
@@ -12,7 +11,7 @@ export interface RadioButtonSectionProps {
     horizontal?: boolean
     label: string
     options: QuestionnaireOption[]
-    register: UseFormRegister<Questionnaire>
+    register: UseFormRegisterReturn
 }
 
 export const RadioButtonSection = ({
@@ -37,7 +36,7 @@ export const RadioButtonSection = ({
                             key={o.id}
                             id={o.id}
                             label={t(o.label)}
-                            register={register(o.name)}
+                            register={register}
                             value={o.value}
                         />
                     ))}

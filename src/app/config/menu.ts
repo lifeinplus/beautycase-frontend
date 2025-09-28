@@ -27,6 +27,11 @@ export const menuItems: MenuItem[] = [
         icon: ClipboardIcon,
     },
     {
+        label: 'menu.training',
+        path: '/training',
+        icon: ClipboardIcon,
+    },
+    {
         auth: true,
         label: 'menu.questionnaires',
         path: '/questionnaires',

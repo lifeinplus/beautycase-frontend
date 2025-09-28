@@ -1,11 +1,11 @@
 import { Path } from 'react-hook-form'
 
-import type { Questionnaire } from '../types'
+import type { Questionnaire, Training } from '../types'
 
 export interface QuestionnaireOption {
     id: string
     label: string
-    name: Path<Questionnaire>
+    name: Path<Questionnaire | Training>
     value?: string
 }
 
@@ -26,6 +26,10 @@ interface Options {
     procedures: QuestionnaireOption[]
     referral: QuestionnaireOption[]
     skinTypes: QuestionnaireOption[]
+}
+
+interface TrainingOptions {
+    experience: QuestionnaireOption[]
 }
 
 export const options: Options = {
@@ -268,6 +272,29 @@ export const options: Options = {
             label: 'fields.skinType.options.sensitive',
             name: 'skinType',
             value: 'sensitive',
+        },
+    ],
+}
+
+export const trainingOptions: TrainingOptions = {
+    experience: [
+        {
+            id: 'experience-no',
+            label: 'training.fields.experience.options.no',
+            name: 'experience',
+            value: 'no',
+        },
+        {
+            id: 'experience-yes-myself',
+            label: 'training.fields.experience.options.yesMyself',
+            name: 'experience',
+            value: 'yesMyself',
+        },
+        {
+            id: 'experience-yes-courses',
+            label: 'training.fields.experience.options.yesCourses',
+            name: 'experience',
+            value: 'yesCourses',
         },
     ],
 }

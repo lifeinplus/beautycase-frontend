@@ -20,7 +20,8 @@
         "questionnaires": "Анкеты",
         "referenceLists": "Справочники",
         "stages": "Этапы",
-        "tools": "Инструменты"
+        "tools": "Инструменты",
+        "training": "Обучение"
     },
     "build": "Сборка"
 }

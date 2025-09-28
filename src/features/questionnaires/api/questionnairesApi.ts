@@ -1,13 +1,22 @@
 import { api } from '@/shared/api/api'
 import type { MutationResult } from '@/shared/api/types'
 import { cleanObject } from '@/shared/utils/object/cleanObject'
-import { Questionnaire } from '../types'
+import type { Questionnaire, Training } from '../types'
 
 const questionnairesApi = api.injectEndpoints({
     endpoints: (builder) => ({
         createQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
             query: (data) => ({
                 url: '/questionnaires',
+                method: 'POST',
+                body: cleanObject(data),
+            }),
+            invalidatesTags: ['Questionnaire'],
+        }),
+
+        createTraining: builder.mutation<MutationResult, Training>({
+            query: (data) => ({
+                url: '/questionnaires/training',
                 method: 'POST',
                 body: cleanObject(data),
             }),
@@ -28,6 +37,7 @@ const questionnairesApi = api.injectEndpoints({
 
 export const {
     useCreateQuestionnaireMutation,
+    useCreateTrainingMutation,
     useGetAllQuestionnairesQuery,
     useGetQuestionnaireByIdQuery,
 } = questionnairesApi

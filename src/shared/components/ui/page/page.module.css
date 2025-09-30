@@ -9,7 +9,7 @@
 
 .container {
     @apply mx-auto w-full pb-6;
-    @apply sm:max-w-lg sm:pt-6 md:max-w-2xl;
+    @apply sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4;
 }
 
 .image {

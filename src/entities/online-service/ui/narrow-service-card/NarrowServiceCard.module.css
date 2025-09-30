@@ -1,7 +1,9 @@
+/* TODO: fix paddin */
 .container {
     @apply relative flex flex-col rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
 }
 
+/* TODO: fix bg color */
 :global(.dark) .container {
     @apply bg-gray-900 ring-gray-700;
 }

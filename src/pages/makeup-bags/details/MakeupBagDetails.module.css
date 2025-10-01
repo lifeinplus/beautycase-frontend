@@ -1,9 +1,11 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply mt-5 sm:hidden;
 }
 
 .title {
-    @apply px-3 text-center font-heading text-lg text-slate-700;
+    @apply font-heading px-3 text-center text-lg text-slate-700;
 }
 
 :global(.dark) .title {

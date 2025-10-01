@@ -35,6 +35,7 @@ export const QuestionnaireGallery = () => {
                     <section className="space-y-8 px-7 sm:px-0">
                         {data?.map((item) => (
                             <Link
+                                key={item.path}
                                 to={`${item.path}`}
                                 className="relative block overflow-hidden rounded-xl ring-1 ring-gray-200 dark:ring-gray-700"
                             >
@@ -45,13 +46,13 @@ export const QuestionnaireGallery = () => {
                                 />
                                 <div
                                     className={classNames(
-                                        'absolute inset-0 bg-gradient-to-tr',
+                                        'absolute inset-0 bg-linear-to-tr',
                                         'from-black/40 from-40% via-black/20 via-40% to-transparent to-60%',
                                         'dark:from-black/50 dark:from-40% dark:via-black/30 dark:via-40% dark:to-transparent dark:to-60%'
                                     )}
                                 />
                                 <div className="absolute bottom-0 px-4 py-3 pr-28 text-white sm:px-5 sm:py-4">
-                                    <h2 className="text-pretty font-heading text-base font-semibold sm:text-lg">
+                                    <h2 className="font-heading text-base font-semibold text-pretty sm:text-lg">
                                         {item.title}
                                     </h2>
                                 </div>

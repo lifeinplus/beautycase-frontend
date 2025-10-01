@@ -27,11 +27,8 @@ export const TrainingCreate = () => {
     const { t } = useTranslation('questionnaire')
 
     const {
-        clearErrors,
         register,
         reset,
-        setValue,
-        watch,
         handleSubmit,
         formState: { errors },
     } = useForm<Training>({
@@ -121,7 +118,6 @@ export const TrainingCreate = () => {
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-48"
                                 isLoading={isLoading}
                                 label={isLoading ? t('sending') : t('send')}
                             />

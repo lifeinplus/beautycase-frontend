@@ -88,7 +88,7 @@ export const UserSelection = () => {
                                                 alt={username}
                                                 className={classNames(
                                                     imageStyles.img,
-                                                    'rounded'
+                                                    'rounded-sm'
                                                 )}
                                                 src={
                                                     config.cloudinary
@@ -120,7 +120,6 @@ export const UserSelection = () => {
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-48"
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}
                             />

@@ -39,7 +39,7 @@ export const SelectSection = ({
                         {...register}
                         className={classNames(
                             styles.select,
-                            error && formStyles.borderError
+                            error && styles.error
                         )}
                         value={value}
                     >

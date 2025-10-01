@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { Children, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -44,9 +44,18 @@ export const NavBar = ({ children }: NavBarProps) => {
         }
     }
 
+    const childrenArray = Children.toArray(children)
+
     return (
-        <aside className={styles.navBar}>
-            <div className={styles.logoContainer}>
+        <aside
+            className={classNames(
+                styles.container,
+                childrenArray.length
+                    ? styles.containerFlex
+                    : styles.containerMobile
+            )}
+        >
+            <div className={styles.logo}>
                 <h2 className={logoStyles.logo}>
                     <LogoLink>
                         <span className="lg:hidden">B</span>
@@ -55,17 +64,15 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className={classNames(styles.btnContainer)}>
+            <div className={classNames(styles.button)}>
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
                         <NavButton
                             key={index}
-                            className={
-                                isActive(item.path)
-                                    ? commonStyles.textDanger
-                                    : ''
-                            }
+                            className={classNames(
+                                isActive(item.path) && commonStyles.textDanger
+                            )}
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
                             label={t(item.label)}
@@ -73,16 +80,11 @@ export const NavBar = ({ children }: NavBarProps) => {
                     ))}
             </div>
 
-            <div
-                className={classNames(
-                    styles.btnContainer,
-                    'flex grow sm:my-10'
-                )}
-            >
+            <div className={classNames(styles.button, styles.buttonMobile)}>
                 {children}
             </div>
 
-            <div className={classNames(styles.btnContainer)}>
+            <div className={classNames(styles.button)}>
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />

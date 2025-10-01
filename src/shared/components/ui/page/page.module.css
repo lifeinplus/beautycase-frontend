@@ -1,9 +1,11 @@
+@reference '@/app/styles/index.css';
+
 .page {
     @apply pb-13 sm:pb-0;
 }
 
 .content {
-    @apply flex flex-col items-center justify-center pb-safe-bottom;
+    @apply pb-safe-bottom flex flex-col items-center justify-center;
     @apply sm:ms-navbar lg:ms-navbar-open;
 }
 

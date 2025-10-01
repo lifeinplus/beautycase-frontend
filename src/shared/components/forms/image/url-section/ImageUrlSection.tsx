@@ -17,6 +17,7 @@ import {
     useUploadTempImageByUrlMutation,
 } from '@/features/uploads/api/uploadsApi'
 import commonStyles from '@/shared/components/common/common.module.css'
+import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
 import formStyles from '@/shared/components/forms/form.module.css'
 import inputStyles from '@/shared/components/ui/input/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
@@ -146,8 +147,9 @@ export const ImageUrlSection = <T extends FieldValues>({
 
                 <label
                     className={classNames(
-                        'cursor-pointer',
-                        isUploading && 'cursor-not-allowed opacity-50'
+                        isUploading
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'cursor-pointer'
                     )}
                 >
                     <PhotoIcon
@@ -159,11 +161,7 @@ export const ImageUrlSection = <T extends FieldValues>({
 
                     <input
                         accept="image/*,.heic"
-                        className={classNames(
-                            inputStyles.input,
-                            'hidden',
-                            error && formStyles.borderError
-                        )}
+                        className="hidden"
                         disabled={isUploading}
                         onChange={handleUploadByFile}
                         ref={uploadRef}
@@ -177,7 +175,7 @@ export const ImageUrlSection = <T extends FieldValues>({
                     {...register}
                     className={classNames(
                         inputStyles.input,
-                        error && formStyles.borderError,
+                        error && inputStyles.error,
                         isUploading && 'opacity-50'
                     )}
                     disabled={isUploading}
@@ -186,8 +184,8 @@ export const ImageUrlSection = <T extends FieldValues>({
                 />
 
                 {isUploading && (
-                    <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-white bg-opacity-10">
-                        <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-rose-500"></div>
+                    <div className="absolute inset-0 mt-6 flex justify-center rounded-xl text-rose-500 dark:text-rose-400">
+                        <SpinnerButton />
                     </div>
                 )}
 

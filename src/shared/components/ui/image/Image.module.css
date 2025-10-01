@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply relative mx-auto w-full overflow-hidden;
 }

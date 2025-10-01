@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .image {
     @apply mx-auto mb-3 max-w-md;
 }

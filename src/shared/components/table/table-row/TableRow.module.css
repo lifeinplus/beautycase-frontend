@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .tr {
     @apply hover:bg-neutral-100;
 }

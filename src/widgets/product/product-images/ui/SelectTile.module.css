@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .tile {
     @apply flex items-center justify-center bg-white hover:bg-rose-500;
     @apply hover:border-white sm:rounded-md sm:border sm:border-gray-200;

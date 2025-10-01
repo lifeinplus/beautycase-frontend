@@ -35,6 +35,6 @@ describe('InputSection', () => {
         render(<InputSection {...mockProps} error={mockFieldError.message} />)
 
         expect(screen.getByText(mockFieldError.message!)).toHaveClass(/error/)
-        expect(screen.getByRole('textbox')).toHaveClass(/borderError/)
+        expect(screen.getByRole('textbox')).toHaveClass(/error/)
     })
 })

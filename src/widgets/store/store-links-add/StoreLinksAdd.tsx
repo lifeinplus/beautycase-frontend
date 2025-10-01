@@ -217,7 +217,6 @@ export const StoreLinksAdd = ({
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-48"
                                 isLoading={isSaving}
                                 label={
                                     isSaving

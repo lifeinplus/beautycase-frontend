@@ -8,7 +8,7 @@ import { useAuthLogout } from '@/features/auth/hooks/auth-logout/useAuthLogout'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { HomeTile } from '@/features/home/components/tile/HomeTile'
 import commonStyles from '@/shared/components/common/common.module.css'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
+import buttonSubmitStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import { LanguageSelect } from '@/shared/components/ui/language/select/LanguageSelect'
 import { canAccess } from '@/shared/lib/access/canAccess'
 import styles from './Home.module.css'
@@ -54,7 +54,7 @@ export const Home = () => {
                     ))}
                 </div>
 
-                <div className="mx-auto mt-16 w-full max-w-60 sm:mb-5">
+                <div className="mx-auto mt-16 w-full max-w-67 sm:mb-5">
                     {username ? (
                         <>
                             <div className="mb-4 text-center">
@@ -67,7 +67,7 @@ export const Home = () => {
                             </div>
                             <button
                                 className={classNames(
-                                    buttonStyles.btn,
+                                    buttonSubmitStyles.btn,
                                     commonStyles.focusOutline
                                 )}
                                 onClick={handleLogout}
@@ -105,7 +105,7 @@ export const Home = () => {
                 </div>
             </div>
 
-            <div className="mb-5 mt-10 flex">
+            <div className="mt-10 mb-5 flex">
                 <LanguageSelect />
             </div>
         </div>

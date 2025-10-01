@@ -72,7 +72,7 @@ export const Login = () => {
                             {...restUsername}
                             className={classNames(
                                 authStyles.input,
-                                errors.username && formStyles.borderError
+                                errors.username && authStyles.error
                             )}
                             placeholder={t('fields.username.label')}
                             ref={(e) => {
@@ -103,7 +103,7 @@ export const Login = () => {
                             {...register('password')}
                             className={classNames(
                                 authStyles.input,
-                                errors.password && formStyles.borderError
+                                errors.password && authStyles.error
                             )}
                             placeholder={t('fields.password.label')}
                             type="password"

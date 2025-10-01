@@ -1,6 +1,6 @@
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 import type {
     FieldValues,
     Path,
@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useUploadTempImageByFileMutation } from '@/features/uploads/api/uploadsApi'
 import commonStyles from '@/shared/components/common/common.module.css'
+import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
 import formStyles from '@/shared/components/forms/form.module.css'
 import inputStyles from '@/shared/components/ui/input/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
@@ -54,13 +55,16 @@ export const ImageTextSection = <T extends FieldValues>({
     valueUrl = '',
 }: ImageTextSectionProps<T>) => {
     const { t } = useTranslation('form')
+    const [isUploading, setIsUploading] = useState(false)
 
-    const [uploadImageTemp] = useUploadTempImageByFileMutation()
+    const [uploadTempImageByFile] = useUploadTempImageByFileMutation()
 
-    const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const handleUploadByFile = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
 
         if (!file) return
+
+        setIsUploading(true)
 
         function fallbackText(value: string) {
             const text = `[${t('photoAttached')}]`
@@ -72,14 +76,16 @@ export const ImageTextSection = <T extends FieldValues>({
             formData.append('folder', folder)
             formData.append('imageFile', file)
 
-            const response = await uploadImageTemp(formData).unwrap()
+            const response = await uploadTempImageByFile(formData).unwrap()
 
             setValue(name, fallbackText(value) as PathValue<T, Path<T>>)
             setValue(nameUrl, response.imageUrl as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
-            console.error(error)
+            console.error('Image upload failed', error)
             toast.error(getErrorMessage(error))
+        } finally {
+            setIsUploading(false)
         }
     }
 
@@ -88,59 +94,71 @@ export const ImageTextSection = <T extends FieldValues>({
             <div className="flex flex-row items-center justify-between">
                 <Label required={required} text={label} />
 
-                <label>
-                    <PhotoIcon className={classNames('h-6 w-6')} />
+                <label
+                    className={classNames(
+                        isUploading
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'cursor-pointer'
+                    )}
+                >
+                    <PhotoIcon
+                        className={classNames(
+                            'h-6 w-6',
+                            isUploading && 'animate-pulse'
+                        )}
+                    />
 
                     <input
                         accept="image/*,.heic"
-                        className={classNames(
-                            inputStyles.input,
-                            'hidden',
-                            error && formStyles.borderError
-                        )}
-                        onChange={handleUpload}
+                        className="hidden"
+                        disabled={isUploading}
+                        onChange={handleUploadByFile}
                         type="file"
                     />
                 </label>
             </div>
 
-            <textarea
-                {...register}
-                className={classNames(
-                    inputStyles.input,
-                    'peer',
-                    error && formStyles.borderError
-                )}
-                placeholder={label}
-            />
-
-            <textarea
-                {...registerUrl}
-                className={classNames(
-                    'hidden',
-                    inputStyles.input,
-                    'peer',
-                    error && formStyles.borderError
-                )}
-                placeholder={labelUrl}
-            />
-
-            {description && (
-                <p className={formStyles.description}>{description}</p>
-            )}
-
-            {error && (
-                <p
+            <div className="relative">
+                <textarea
+                    {...register}
                     className={classNames(
-                        commonStyles.textDanger,
-                        formStyles.error
+                        inputStyles.input,
+                        error && inputStyles.error,
+                        isUploading && 'opacity-50'
                     )}
-                >
-                    {error}
-                </p>
-            )}
+                    disabled={isUploading}
+                    placeholder={isUploading ? t('uploading') : label}
+                />
 
-            {valueUrl && <ImagePreview url={valueUrl} />}
+                {isUploading && (
+                    <div className="absolute inset-0 mt-6 flex justify-center rounded-xl text-rose-500 dark:text-rose-400">
+                        <SpinnerButton />
+                    </div>
+                )}
+
+                <textarea
+                    {...registerUrl}
+                    className="hidden"
+                    placeholder={labelUrl}
+                />
+
+                {description && (
+                    <p className={formStyles.description}>{description}</p>
+                )}
+
+                {error && (
+                    <p
+                        className={classNames(
+                            commonStyles.textDanger,
+                            formStyles.error
+                        )}
+                    >
+                        {error}
+                    </p>
+                )}
+
+                {valueUrl && <ImagePreview url={valueUrl} />}
+            </div>
         </div>
     )
 }

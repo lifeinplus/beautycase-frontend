@@ -47,7 +47,7 @@ describe('ButtonNavigateSection', () => {
         )
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('button')).toHaveClass(/borderError/)
+        expect(screen.getByRole('button')).toHaveClass(/error/)
     })
 
     it('calls onNavigate when button is clicked', async () => {

@@ -27,7 +27,7 @@ export const RadioButtonSection = ({
         <div>
             <Label text={label} />
 
-            <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
+            <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow-sm focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
                 <nav
                     className={`flex min-w-[240px] gap-1 p-2 ${horizontal ? 'flex-row' : 'flex-col'}`}
                 >

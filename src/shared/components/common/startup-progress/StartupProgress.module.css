@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply flex min-h-screen items-center justify-center bg-white;
 }
@@ -15,7 +17,7 @@
 }
 
 .logo {
-    @apply mb-10 mt-4 font-logo text-5xl sm:text-6xl lg:text-7xl;
+    @apply font-logo mt-4 mb-10 text-5xl sm:text-6xl lg:text-7xl;
 }
 
 .progressBarContainer {

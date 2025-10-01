@@ -44,11 +44,14 @@ export const GoodsGrid = <T extends Good>({
                     <div className="relative mx-auto aspect-square w-2/3 overflow-hidden">
                         <Image
                             alt={g.name}
-                            className={classNames(imageStyles.img, 'rounded')}
+                            className={classNames(
+                                imageStyles.img,
+                                'rounded-sm'
+                            )}
                             src={g.imageUrl}
                         />
                     </div>
-                    <h6 className="mt-4 text-center font-heading text-sm">
+                    <h6 className="font-heading mt-4 text-center text-sm">
                         {g.name}
                     </h6>
                     <p className="mt-2 text-center text-sm text-neutral-500 dark:text-neutral-400">

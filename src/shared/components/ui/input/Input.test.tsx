@@ -34,7 +34,7 @@ describe('Input', () => {
         expect(input).toHaveValue('Hello')
     })
 
-    it('handles blur events', () => {
+    it('handles blur-sm events', () => {
         const handleBlur = vi.fn()
 
         render(<Input data-testid="mocked-test-input" onBlur={handleBlur} />)

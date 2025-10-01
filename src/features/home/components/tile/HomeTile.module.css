@@ -1,6 +1,12 @@
+@reference '@/app/styles/index.css';
+
 .tile {
     @apply flex min-h-44 w-full min-w-36 flex-col items-center bg-white px-5 pt-8 hover:bg-rose-500;
     @apply rounded-md border border-gray-200 hover:border-white;
+}
+
+:global(.dark) .tile {
+    @apply border-neutral-700 bg-black hover:border-white hover:bg-rose-600;
 }
 
 .tile:hover .icon {
@@ -15,16 +21,12 @@
     @apply text-neutral-700;
 }
 
-.label {
-    @apply mt-8 text-center font-heading text-base font-normal leading-tight text-neutral-600;
-}
-
-:global(.dark) .tile {
-    @apply border-neutral-700 bg-black hover:border-white hover:bg-rose-600;
-}
-
 :global(.dark) .icon {
     @apply text-neutral-200;
+}
+
+.label {
+    @apply font-heading mt-8 text-center text-base leading-tight font-normal text-neutral-600;
 }
 
 :global(.dark) .label {

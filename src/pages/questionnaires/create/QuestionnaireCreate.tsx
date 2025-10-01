@@ -20,7 +20,7 @@ import { RadioButtonSection } from '@/shared/components/forms/radio-button/secti
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { Header } from '@/shared/components/layout/header/Header'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
+import buttonSubmitStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
@@ -250,9 +250,8 @@ export const QuestionnaireCreate = () => {
                             />
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section className={buttonSubmitStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-48"
                                 isLoading={isLoading}
                                 label={isLoading ? t('sending') : t('send')}
                             />

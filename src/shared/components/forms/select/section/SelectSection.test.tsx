@@ -50,6 +50,6 @@ describe('SelectSection', () => {
         render(<SelectSection {...mockProps} error={mockFieldError.message} />)
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('combobox')).toHaveClass(/borderError/)
+        expect(screen.getByRole('combobox')).toHaveClass(/error/)
     })
 })

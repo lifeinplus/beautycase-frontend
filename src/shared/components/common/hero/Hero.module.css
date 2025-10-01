@@ -1,5 +1,11 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply mb-6 flex flex-col items-center justify-center pt-6 sm:pt-0;
+}
+
+.mobile {
+    @apply hidden sm:block;
 }
 
 .title {
@@ -7,11 +13,11 @@
 }
 
 .headline {
-    @apply mx-auto text-center font-heading text-2xl font-bold md:text-3xl lg:text-4xl;
+    @apply font-heading mx-auto text-center text-2xl font-bold md:text-3xl lg:text-4xl;
 }
 
 .byline {
-    @apply mx-auto mt-3 text-center font-heading text-slate-700 sm:text-xl;
+    @apply font-heading mx-auto mt-3 text-center text-slate-700 sm:text-xl;
 }
 
 :global(.dark) .byline {
@@ -23,5 +29,5 @@
 }
 
 .content {
-    @apply me-3 ms-3 mt-6;
+    @apply ms-3 me-3 mt-6;
 }

@@ -89,7 +89,7 @@ export const CategoryForm = forwardRef<FormRef | null>(({}, ref) => {
     return (
         <form className="my-6 px-4 sm:px-0">
             <div className="flex gap-3">
-                <div className="flex flex-grow flex-col">
+                <div className="flex grow flex-col">
                     <input
                         {...register('type')}
                         className={inputStyles.input}
@@ -108,7 +108,7 @@ export const CategoryForm = forwardRef<FormRef | null>(({}, ref) => {
                     )}
                 </div>
 
-                <div className="flex flex-grow flex-col">
+                <div className="flex grow flex-col">
                     <input
                         {...restName}
                         className={inputStyles.input}

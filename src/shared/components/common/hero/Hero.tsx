@@ -19,10 +19,7 @@ export const Hero = ({
 }: HeroProps) => (
     <section
         id="hero"
-        className={classNames(
-            styles.container,
-            hideOnMobile && 'hidden sm:block'
-        )}
+        className={classNames(styles.container, hideOnMobile && styles.mobile)}
     >
         <div className={styles.title}>
             {headline && <h2 className={styles.headline}>{headline}</h2>}

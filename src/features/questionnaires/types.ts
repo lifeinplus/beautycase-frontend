@@ -1,3 +1,5 @@
+import { Path } from 'react-hook-form'
+
 interface DesiredSkillData {
     bright?: boolean
     delicate?: boolean
@@ -22,7 +24,7 @@ interface ProcedureData {
     none?: boolean
 }
 
-export interface Questionnaire {
+export interface MakeupBagQuestionnaire {
     _id?: string
     createdAt?: string
     age?: number
@@ -47,7 +49,7 @@ export interface Questionnaire {
     skinType?: string
 }
 
-export interface Training {
+export interface TrainingQuestionnaire {
     _id?: string
     createdAt?: string
     name: string
@@ -55,4 +57,26 @@ export interface Training {
     experience?: string
     difficulties?: string
     expectations: string
+}
+
+export interface QuestionnaireOption {
+    id: string
+    label: string
+    name: Path<MakeupBagQuestionnaire | TrainingQuestionnaire>
+    value?: string
+}
+
+export interface QuestionnaireResultOption {
+    label: string
+    value: string
+}
+
+interface Question {
+    description?: string
+    label: string
+    options?: QuestionnaireResultOption[]
+}
+
+export interface Questions {
+    [key: string]: Question
 }

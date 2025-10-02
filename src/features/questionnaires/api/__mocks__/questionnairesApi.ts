@@ -2,14 +2,14 @@ import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
 import type { MutationResult } from '@/shared/api/types'
-import type { Questionnaire, Training } from '../../types'
+import type { MakeupBagQuestionnaire, TrainingQuestionnaire } from '../../types'
 
 export const mockQuestionnaireCreated: MutationResult = {
     id: 'questionnaire3',
     message: 'Questionnaire created successfully',
 }
 
-export const mockQuestionnaireFull: Questionnaire = {
+export const mockQuestionnaireFull: MakeupBagQuestionnaire = {
     name: 'Anna Petrova',
     makeupBag: 'Foundation, mascara, lipstick, blush',
     age: 28,
@@ -48,7 +48,7 @@ export const mockQuestionnaireFull: Questionnaire = {
     skinType: 'combination',
 }
 
-export const mockQuestionnaire1: Questionnaire = {
+export const mockQuestionnaire1: MakeupBagQuestionnaire = {
     _id: 'questionnaire1',
     name: 'Client 1',
     instagram: '@client1',
@@ -57,18 +57,18 @@ export const mockQuestionnaire1: Questionnaire = {
     makeupBag: 'Brush',
 }
 
-export const mockQuestionnaire2: Questionnaire = {
+export const mockQuestionnaire2: MakeupBagQuestionnaire = {
     _id: 'questionnaire2',
     name: 'Client 2',
     makeupBag: 'Sponge',
 }
 
-export const mockQuestionnaires: Questionnaire[] = [
+export const mockQuestionnaires: MakeupBagQuestionnaire[] = [
     mockQuestionnaire1,
     mockQuestionnaire2,
 ]
 
-export const mockTraining1: Training = {
+export const mockTraining1: TrainingQuestionnaire = {
     name: 'Client 1',
     contact: '',
     expectations: 'I want to learn makeup',

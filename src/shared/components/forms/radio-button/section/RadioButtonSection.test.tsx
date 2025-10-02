@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import type { QuestionnaireOption } from '@/features/questionnaires/utils/options'
+import type { QuestionnaireOption } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
 import {
     RadioButtonSection,
     type RadioButtonSectionProps,

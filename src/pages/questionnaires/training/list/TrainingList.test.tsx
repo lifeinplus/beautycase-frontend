@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { mockQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
-import { useGetAllQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { useGetAllMakeupBagQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { TrainingList } from './TrainingList'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
@@ -15,7 +15,9 @@ vi.mock('@/shared/components/layout/header/Header')
 
 describe('TrainingList', () => {
     beforeEach(() => {
-        vi.mocked(useGetAllQuestionnairesQuery as Mock).mockReturnValue({
+        vi.mocked(
+            useGetAllMakeupBagQuestionnairesQuery as Mock
+        ).mockReturnValue({
             data: mockQuestionnaires,
             isLoading: false,
             error: null,

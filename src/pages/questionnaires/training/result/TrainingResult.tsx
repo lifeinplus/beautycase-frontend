@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { useGetTrainingByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
-import { TrainingData } from '@/features/questionnaires/components/training/data/TrainingData'
+import { useGetTrainingQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { TrainingData } from '@/features/questionnaires/training/components/data/TrainingData'
 import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
 import { Hero } from '@/shared/components/common/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
@@ -14,12 +14,12 @@ export const TrainingResult = () => {
     const { id } = useParams()
     const { t } = useTranslation(['questionnaire'])
 
-    const { data, isLoading, error } = useGetTrainingByIdQuery(id!)
+    const { data, isLoading, error } = useGetTrainingQuestionnaireByIdQuery(id!)
 
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate('/questionnaires/results/training')
+        navigate('/questionnaires/trainings')
     }
 
     const title = data?.name || t('hero.headline')

@@ -5,11 +5,12 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import { useCreateTrainingMutation } from '@/features/questionnaires/api/questionnairesApi'
-import type { Training } from '@/features/questionnaires/types'
-import { trainingOptions } from '@/features/questionnaires/utils/options'
-import { trainingQuestions } from '@/features/questionnaires/utils/questions'
-import { trainingSchema } from '@/features/questionnaires/validations'
+import config from '@/app/config/config'
+import { useCreateTrainingQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
+import { trainingQuestionnaireOptions } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
+import { trainingQuestionnaireQuestions } from '@/features/questionnaires/training/questions/trainingQuestionnaireQuestions'
+import { trainingQuestionnaireSchema } from '@/features/questionnaires/training/validations/trainingQuestionnaireSchema'
+import type { TrainingQuestionnaire } from '@/features/questionnaires/types'
 import commonStyles from '@/shared/components/common/common.module.css'
 import { Hero } from '@/shared/components/common/hero/Hero'
 import formStyles from '@/shared/components/forms/form.module.css'
@@ -31,15 +32,16 @@ export const TrainingCreate = () => {
         reset,
         handleSubmit,
         formState: { errors },
-    } = useForm<Training>({
-        resolver: yupResolver(trainingSchema),
+    } = useForm<TrainingQuestionnaire>({
+        resolver: yupResolver(trainingQuestionnaireSchema),
     })
 
-    const [createTraining, { isLoading }] = useCreateTrainingMutation()
+    const [createTrainingQuestionnaire, { isLoading }] =
+        useCreateTrainingQuestionnaireMutation()
 
-    const onSubmit = async (data: Training) => {
+    const onSubmit = async (data: TrainingQuestionnaire) => {
         try {
-            await createTraining(data).unwrap()
+            await createTrainingQuestionnaire(data).unwrap()
             reset()
             navigate('/confirmation')
         } catch (error) {
@@ -57,7 +59,7 @@ export const TrainingCreate = () => {
                     <Hero
                         headline={t('training.hero.headline')}
                         byline={t('training.hero.byline')}
-                        imgUrl="https://res.cloudinary.com/beautycase/image/upload/v1734995126/Questionnaire_cqv0mc.jpg"
+                        imgUrl={config.cloudinary.questionnaireTrainingHero}
                         content={t('training.hero.content')}
                     />
 
@@ -79,9 +81,12 @@ export const TrainingCreate = () => {
                             <InputSection
                                 error={t(errors.name?.message || '')}
                                 description={t(
-                                    trainingQuestions.name.description || ''
+                                    trainingQuestionnaireQuestions.name
+                                        .description || ''
                                 )}
-                                label={t(trainingQuestions.name.label)}
+                                label={t(
+                                    trainingQuestionnaireQuestions.name.label
+                                )}
                                 register={register('name')}
                                 required={true}
                                 type="text"
@@ -90,26 +95,37 @@ export const TrainingCreate = () => {
                             <InputSection
                                 error={t(errors.contact?.message || '')}
                                 description={t(
-                                    trainingQuestions.contact.description || ''
+                                    trainingQuestionnaireQuestions.contact
+                                        .description || ''
                                 )}
-                                label={t(trainingQuestions.contact.label)}
+                                label={t(
+                                    trainingQuestionnaireQuestions.contact.label
+                                )}
                                 register={register('contact')}
                                 required={true}
                                 type="text"
                             />
 
                             <RadioButtonSection
-                                label={t(trainingQuestions.experience.label)}
-                                options={trainingOptions.experience}
+                                label={t(
+                                    trainingQuestionnaireQuestions.experience
+                                        .label
+                                )}
+                                options={
+                                    trainingQuestionnaireOptions.experience
+                                }
                                 register={register('experience')}
                             />
 
                             <TextareaSection
                                 description={t(
-                                    trainingQuestions.difficulties
+                                    trainingQuestionnaireQuestions.difficulties
                                         .description || ''
                                 )}
-                                label={t(trainingQuestions.difficulties.label)}
+                                label={t(
+                                    trainingQuestionnaireQuestions.difficulties
+                                        .label
+                                )}
                                 register={register('difficulties')}
                                 rows={3}
                             />
@@ -117,10 +133,13 @@ export const TrainingCreate = () => {
                             <TextareaSection
                                 error={t(errors.expectations?.message || '')}
                                 description={t(
-                                    trainingQuestions.expectations
+                                    trainingQuestionnaireQuestions.expectations
                                         .description || ''
                                 )}
-                                label={t(trainingQuestions.expectations.label)}
+                                label={t(
+                                    trainingQuestionnaireQuestions.expectations
+                                        .label
+                                )}
                                 register={register('expectations')}
                                 required={true}
                                 rows={3}

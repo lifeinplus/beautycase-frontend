@@ -2,20 +2,22 @@ import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
-import { QuestionnaireList } from '@/pages/questionnaires/list/QuestionnaireList'
-import { QuestionnaireResult } from '@/pages/questionnaires/result/QuestionnaireResult'
+import { MakeupBagQuestionnaireList } from '@/pages/questionnaires/makeup-bag/list/MakeupBagQuestionnaireList'
+import { MakeupBagQuestionnaireResult } from '@/pages/questionnaires/makeup-bag/result/MakeupBagQuestionnaireResult'
 import { TrainingList } from '@/pages/questionnaires/training/list/TrainingList'
 import { TrainingResult } from '@/pages/questionnaires/training/result/TrainingResult'
 
 export const questionnaireRoutes = [
     <Route key="questionnaires" path="/questionnaires" element={<AppLayout />}>
         <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
-            <Route path="results">
-                <Route path="questionnaire" element={<QuestionnaireList />} />
-                <Route path="training" element={<TrainingList />} />
+            <Route path="makeup-bags">
+                <Route index element={<MakeupBagQuestionnaireList />} />
+                <Route path=":id" element={<MakeupBagQuestionnaireResult />} />
             </Route>
-            <Route path=":id" element={<QuestionnaireResult />} />
-            <Route path="trainings/:id" element={<TrainingResult />} />
+            <Route path="trainings">
+                <Route index element={<TrainingList />} />
+                <Route path=":id" element={<TrainingResult />} />
+            </Route>
         </Route>
     </Route>,
 ]

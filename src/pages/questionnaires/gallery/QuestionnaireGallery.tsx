@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config/config'
 import { QuestionnaireCard } from '@/entities/questionnaire/card/QuestionnaireCard'
 import { Hero } from '@/shared/components/common/hero/Hero'
 import { Header } from '@/shared/components/layout/header/Header'
@@ -10,16 +11,16 @@ export const QuestionnaireGallery = () => {
 
     const data = [
         {
-            type: 'questionnaire',
             title: t('hero.byline'),
-            imageUrl:
-                'https://res.cloudinary.com/beautycase/image/upload/v1734995126/Questionnaire_cqv0mc.jpg',
+            imageUrl: config.cloudinary.questionnaireMakeupBagHero,
+            createPath: 'makeup-bag',
+            resultsPath: 'makeup-bags',
         },
         {
-            type: 'training',
             title: t('training.hero.byline'),
-            imageUrl:
-                'https://thumbs.dreamstime.com/b/online-makeup-tutorials-woman-watches-video-training-herself-as-makeup-artist-laptop-online-makeup-tutorials-woman-227642563.jpg',
+            imageUrl: config.cloudinary.questionnaireTrainingHero,
+            createPath: 'training',
+            resultsPath: 'trainings',
         },
     ]
 
@@ -32,12 +33,13 @@ export const QuestionnaireGallery = () => {
                 <article className={pageStyles.container}>
                     <Hero headline={title} />
                     <section className="space-y-8 px-7 sm:px-0">
-                        {data?.map((item) => (
+                        {data?.map((item, i) => (
                             <QuestionnaireCard
-                                key={item.type}
-                                type={item.type}
-                                imageUrl={item.imageUrl}
+                                key={i}
                                 title={item.title}
+                                imageUrl={item.imageUrl}
+                                createPath={item.createPath}
+                                resultsPath={item.resultsPath}
                             />
                         ))}
                     </section>

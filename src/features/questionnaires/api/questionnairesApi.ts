@@ -1,44 +1,62 @@
 import { api } from '@/shared/api/api'
 import type { MutationResult } from '@/shared/api/types'
 import { cleanObject } from '@/shared/utils/object/cleanObject'
-import type { Questionnaire, Training } from '../types'
+import type { MakeupBagQuestionnaire, TrainingQuestionnaire } from '../types'
 
 const questionnairesApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        createQuestionnaire: builder.mutation<MutationResult, Questionnaire>({
+        createMakeupBagQuestionnaire: builder.mutation<
+            MutationResult,
+            MakeupBagQuestionnaire
+        >({
             query: (data) => ({
-                url: '/questionnaires',
+                url: '/questionnaires/makeup-bags',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Questionnaire'],
         }),
 
-        createTraining: builder.mutation<MutationResult, Training>({
+        createTrainingQuestionnaire: builder.mutation<
+            MutationResult,
+            TrainingQuestionnaire
+        >({
             query: (data) => ({
-                url: '/questionnaires/training',
+                url: '/questionnaires/trainings',
                 method: 'POST',
                 body: cleanObject(data),
             }),
             invalidatesTags: ['Questionnaire'],
         }),
 
-        getAllQuestionnaires: builder.query<Questionnaire[], void>({
-            query: () => '/questionnaires',
+        getAllMakeupBagQuestionnaires: builder.query<
+            MakeupBagQuestionnaire[],
+            void
+        >({
+            query: () => '/questionnaires/makeup-bags',
             providesTags: ['Questionnaire'],
         }),
 
-        getAllTrainings: builder.query<Training[], void>({
+        getAllTrainingQuestionnaires: builder.query<
+            TrainingQuestionnaire[],
+            void
+        >({
             query: () => `/questionnaires/trainings`,
             providesTags: ['Questionnaire'],
         }),
 
-        getQuestionnaireById: builder.query<Questionnaire, string>({
-            query: (id) => `/questionnaires/${id}`,
+        getMakeupBagQuestionnaireById: builder.query<
+            MakeupBagQuestionnaire,
+            string
+        >({
+            query: (id) => `/questionnaires/makeup-bags/${id}`,
             providesTags: ['Questionnaire'],
         }),
 
-        getTrainingById: builder.query<Training, string>({
+        getTrainingQuestionnaireById: builder.query<
+            TrainingQuestionnaire,
+            string
+        >({
             query: (id) => `/questionnaires/trainings/${id}`,
             providesTags: ['Questionnaire'],
         }),
@@ -46,10 +64,10 @@ const questionnairesApi = api.injectEndpoints({
 })
 
 export const {
-    useCreateQuestionnaireMutation,
-    useCreateTrainingMutation,
-    useGetAllQuestionnairesQuery,
-    useGetAllTrainingsQuery,
-    useGetQuestionnaireByIdQuery,
-    useGetTrainingByIdQuery,
+    useCreateMakeupBagQuestionnaireMutation,
+    useCreateTrainingQuestionnaireMutation,
+    useGetAllMakeupBagQuestionnairesQuery,
+    useGetAllTrainingQuestionnairesQuery,
+    useGetMakeupBagQuestionnaireByIdQuery,
+    useGetTrainingQuestionnaireByIdQuery,
 } = questionnairesApi

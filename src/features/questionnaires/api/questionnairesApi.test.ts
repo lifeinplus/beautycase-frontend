@@ -5,9 +5,9 @@ import { describe, expect, it } from 'vitest'
 import server from '@/tests/mocks/server'
 import { renderHookWithProvider } from '@/tests/mocks/wrappers'
 import {
-    useCreateQuestionnaireMutation,
-    useGetAllQuestionnairesQuery,
-    useGetQuestionnaireByIdQuery,
+    useCreateMakeupBagQuestionnaireMutation,
+    useGetAllMakeupBagQuestionnairesQuery,
+    useGetMakeupBagQuestionnaireByIdQuery,
 } from '../api/questionnairesApi'
 import {
     mockQuestionnaire1,
@@ -19,7 +19,7 @@ describe('questionnairesApi', () => {
     describe('createQuestionnaire', () => {
         it('creates a new questionnaire', async () => {
             const { result } = renderHookWithProvider(() =>
-                useCreateQuestionnaireMutation()
+                useCreateMakeupBagQuestionnaireMutation()
             )
 
             const [createQuestionnaire] = result.current
@@ -42,7 +42,7 @@ describe('questionnairesApi', () => {
             )
 
             const { result } = renderHookWithProvider(() =>
-                useCreateQuestionnaireMutation()
+                useCreateMakeupBagQuestionnaireMutation()
             )
 
             const [createQuestionnaire] = result.current
@@ -61,7 +61,7 @@ describe('questionnairesApi', () => {
     describe('getAllQuestionnaires', () => {
         it('gets all questionnaires', async () => {
             const { result } = renderHookWithProvider(() =>
-                useGetAllQuestionnairesQuery()
+                useGetAllMakeupBagQuestionnairesQuery()
             )
 
             expect(result.current.isLoading).toBe(true)
@@ -77,7 +77,7 @@ describe('questionnairesApi', () => {
     describe('getQuestionnaireById', () => {
         it('gets a questionnaire by id', async () => {
             const { result } = renderHookWithProvider(() =>
-                useGetQuestionnaireByIdQuery(mockQuestionnaire1._id!)
+                useGetMakeupBagQuestionnaireByIdQuery(mockQuestionnaire1._id!)
             )
 
             expect(result.current.isLoading).toBe(true)
@@ -90,7 +90,7 @@ describe('questionnairesApi', () => {
 
         it('handles 404 error when questionnaire is not found', async () => {
             const { result } = renderHookWithProvider(() =>
-                useGetQuestionnaireByIdQuery('999')
+                useGetMakeupBagQuestionnaireByIdQuery('999')
             )
 
             expect(result.current.isLoading).toBe(true)

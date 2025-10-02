@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockTraining1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
-import { useGetTrainingByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { useGetTrainingQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { TrainingResult } from './TrainingResult'
 
@@ -15,11 +15,13 @@ vi.mock('@/shared/utils/date/formatDate')
 
 describe('TrainingResult', () => {
     beforeEach(() => {
-        vi.mocked(useGetTrainingByIdQuery as Mock).mockReturnValue({
-            data: mockTraining1,
-            isLoading: false,
-            error: null,
-        })
+        vi.mocked(useGetTrainingQuestionnaireByIdQuery as Mock).mockReturnValue(
+            {
+                data: mockTraining1,
+                isLoading: false,
+                error: null,
+            }
+        )
     })
 
     it('renders questionnaire data', () => {

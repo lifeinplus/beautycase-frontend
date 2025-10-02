@@ -1,7 +1,7 @@
 import { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { QuestionnaireOption } from '@/features/questionnaires/utils/options'
+import { QuestionnaireOption } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
 import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from '../../label/Label'
 import { RadioButtonItem } from '../item/RadioButtonItem'

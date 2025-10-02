@@ -8,7 +8,8 @@ import { Home } from '@/pages/home/Home'
 import { Pricing } from '@/pages/pricing/ui/Pricing'
 import { Confirmation } from '@/pages/questionnaires/confirmation/Confirmation'
 import { QuestionnaireCreate } from '@/pages/questionnaires/create/QuestionnaireCreate'
-import { TrainingCreate } from '@/pages/questionnaires/create/training/TrainingCreate'
+import { QuestionnaireGallery } from '@/pages/questionnaires/gallery/QuestionnaireGallery'
+import { TrainingCreate } from '@/pages/questionnaires/training/create/TrainingCreate'
 
 export const publicRoutes = [
     <Route key="home" path="/" element={<Home />} />,
@@ -17,8 +18,12 @@ export const publicRoutes = [
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/questionnaire" element={<QuestionnaireCreate />} />
-        <Route path="/training" element={<TrainingCreate />} />
+        <Route
+            path="/questionnaires/questionnaire"
+            element={<QuestionnaireCreate />}
+        />
+        <Route path="/questionnaires" element={<QuestionnaireGallery />} />
+        <Route path="/questionnaires/training" element={<TrainingCreate />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,
 ]

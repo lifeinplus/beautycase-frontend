@@ -7,6 +7,7 @@
     },
     "notSpecified": "Not specified",
     "requiredField": "* Required field",
+    "results": "View Answers",
     "send": "Send",
     "sending": "Sending...",
     "table": {
@@ -171,13 +172,14 @@
         },
         "fields": {
             "name": {
-                "label": "Your name",
+                "label": "Name",
+                "description": "Your Name",
                 "errors": {
                     "required": "Please enter your name"
                 }
             },
             "contact": {
-                "label": "Contact information",
+                "label": "Contact Information",
                 "description": "Your preferred way to be contacted (Instagram, Telegram, or email)",
                 "errors": {
                     "required": "Please provide your contact information"
@@ -192,14 +194,22 @@
                 }
             },
             "difficulties": {
-                "label": "What is the most difficult part of makeup for you?"
+                "label": "Difficulties",
+                "description": "What is the most difficult part of makeup for you?"
             },
             "expectations": {
-                "label": "What would you like to gain from the practicum?",
+                "label": "Expectations",
+                "description": "What would you like to gain from the practicum?",
                 "errors": {
                     "required": "Please enter your expectations"
                 }
             }
+        },
+        "table": {
+            "date": "Date",
+            "time": "Time",
+            "clientName": "Client Name",
+            "contact": "Contact Information"
         }
     }
 }

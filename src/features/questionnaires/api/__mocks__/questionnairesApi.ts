@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
 import type { MutationResult } from '@/shared/api/types'
-import type { Questionnaire } from '../../types'
+import type { Questionnaire, Training } from '../../types'
 
 export const mockQuestionnaireCreated: MutationResult = {
     id: 'questionnaire3',
@@ -67,6 +67,12 @@ export const mockQuestionnaires: Questionnaire[] = [
     mockQuestionnaire1,
     mockQuestionnaire2,
 ]
+
+export const mockTraining1: Training = {
+    name: 'Client 1',
+    contact: '',
+    expectations: 'I want to learn makeup',
+}
 
 export const useCreateQuestionnaireMutation = vi.fn()
 export const useGetAllQuestionnairesQuery = vi.fn()

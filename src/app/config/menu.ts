@@ -1,6 +1,5 @@
 import {
     ClipboardDocumentListIcon,
-    ClipboardIcon,
     ComputerDesktopIcon,
     FilmIcon,
     ListBulletIcon,
@@ -22,20 +21,8 @@ interface MenuItem {
 
 export const menuItems: MenuItem[] = [
     {
-        label: 'menu.questionnaire',
-        path: '/questionnaire',
-        icon: ClipboardIcon,
-    },
-    {
-        label: 'menu.training',
-        path: '/training',
-        icon: ClipboardIcon,
-    },
-    {
-        auth: true,
         label: 'menu.questionnaires',
         path: '/questionnaires',
-        roles: ['admin', 'mua'],
         icon: ClipboardDocumentListIcon,
     },
     {

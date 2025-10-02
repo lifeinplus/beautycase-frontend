@@ -48,6 +48,8 @@ export interface Questionnaire {
 }
 
 export interface Training {
+    _id?: string
+    createdAt?: string
     name: string
     contact: string
     experience?: string

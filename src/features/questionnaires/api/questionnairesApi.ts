@@ -28,8 +28,18 @@ const questionnairesApi = api.injectEndpoints({
             providesTags: ['Questionnaire'],
         }),
 
+        getAllTrainings: builder.query<Training[], void>({
+            query: () => `/questionnaires/trainings`,
+            providesTags: ['Questionnaire'],
+        }),
+
         getQuestionnaireById: builder.query<Questionnaire, string>({
             query: (id) => `/questionnaires/${id}`,
+            providesTags: ['Questionnaire'],
+        }),
+
+        getTrainingById: builder.query<Training, string>({
+            query: (id) => `/questionnaires/trainings/${id}`,
             providesTags: ['Questionnaire'],
         }),
     }),
@@ -39,5 +49,7 @@ export const {
     useCreateQuestionnaireMutation,
     useCreateTrainingMutation,
     useGetAllQuestionnairesQuery,
+    useGetAllTrainingsQuery,
     useGetQuestionnaireByIdQuery,
+    useGetTrainingByIdQuery,
 } = questionnairesApi

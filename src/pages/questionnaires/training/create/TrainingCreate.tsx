@@ -78,6 +78,9 @@ export const TrainingCreate = () => {
 
                             <InputSection
                                 error={t(errors.name?.message || '')}
+                                description={t(
+                                    trainingQuestions.name.description || ''
+                                )}
                                 label={t(trainingQuestions.name.label)}
                                 register={register('name')}
                                 required={true}
@@ -102,6 +105,10 @@ export const TrainingCreate = () => {
                             />
 
                             <TextareaSection
+                                description={t(
+                                    trainingQuestions.difficulties
+                                        .description || ''
+                                )}
                                 label={t(trainingQuestions.difficulties.label)}
                                 register={register('difficulties')}
                                 rows={3}
@@ -109,6 +116,10 @@ export const TrainingCreate = () => {
 
                             <TextareaSection
                                 error={t(errors.expectations?.message || '')}
+                                description={t(
+                                    trainingQuestions.expectations
+                                        .description || ''
+                                )}
                                 label={t(trainingQuestions.expectations.label)}
                                 register={register('expectations')}
                                 required={true}

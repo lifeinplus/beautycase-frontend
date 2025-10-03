@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useGetTrainingQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
-import { TrainingData } from '@/features/questionnaires/training/components/data/TrainingData'
+import { TrainingQuestionnaireData } from '@/features/questionnaires/training/components/data/TrainingQuestionnaireData'
 import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
 import { Hero } from '@/shared/components/common/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { formatDate } from '@/shared/utils/date/formatDate'
 
-export const TrainingResult = () => {
+export const TrainingQuestionnaireResult = () => {
     const navigate = useNavigate()
     const { id } = useParams()
     const { t } = useTranslation(['questionnaire'])
@@ -22,7 +22,7 @@ export const TrainingResult = () => {
         navigate('/questionnaires/trainings')
     }
 
-    const title = data?.name || t('hero.headline')
+    const title = data?.name || t('training.hero.headline')
 
     return (
         <article>
@@ -34,7 +34,7 @@ export const TrainingResult = () => {
                         <Hero byline={createdAt} />
                     </div>
                     <DataWrapper isLoading={isLoading} error={error}>
-                        {data && <TrainingData data={data} />}
+                        {data && <TrainingQuestionnaireData data={data} />}
                     </DataWrapper>
                 </article>
             </main>

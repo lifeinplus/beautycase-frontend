@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockTraining1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { useGetTrainingQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
-import { TrainingResult } from './TrainingResult'
+import { TrainingQuestionnaireResult } from './TrainingQuestionnaireResult'
 
 vi.mock('@/features/questionnaires/components/data/TrainingData')
 vi.mock('@/features/questionnaires/api/questionnairesApi')
@@ -13,7 +13,7 @@ vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/utils/date/formatDate')
 
-describe('TrainingResult', () => {
+describe('TrainingQuestionnaireResult', () => {
     beforeEach(() => {
         vi.mocked(useGetTrainingQuestionnaireByIdQuery as Mock).mockReturnValue(
             {
@@ -25,7 +25,7 @@ describe('TrainingResult', () => {
     })
 
     it('renders questionnaire data', () => {
-        render(<TrainingResult />)
+        render(<TrainingQuestionnaireResult />)
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
@@ -39,7 +39,7 @@ describe('TrainingResult', () => {
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<TrainingResult />)
+        render(<TrainingQuestionnaireResult />)
         await user.click(screen.getByTestId('mocked-back-button'))
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')

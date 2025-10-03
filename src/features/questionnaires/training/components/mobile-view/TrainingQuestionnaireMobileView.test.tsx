@@ -2,14 +2,14 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { mockTrainings } from '../../../api/__mocks__/questionnairesApi'
-import { TrainingMobileView } from './TrainingMobileView'
+import { TrainingQuestionnaireMobileView } from './TrainingQuestionnaireMobileView'
 
 vi.mock('@/shared/components/table/mobile-view/MobileView')
 vi.mock('@/shared/utils/date/formatDate')
 
-describe('TrainingMobileView', () => {
+describe('TrainingQuestionnaireMobileView', () => {
     it('renders the MobileView component with correct props', () => {
-        render(<TrainingMobileView data={mockTrainings} />)
+        render(<TrainingQuestionnaireMobileView data={mockTrainings} />)
 
         const mobileView = screen.getByTestId('mocked-mobile-view')
         const dates = screen.getAllByText('2025.04.10 14:30')

@@ -19,7 +19,7 @@ import { ImageTextSection } from '@/shared/components/forms/image/text-section/I
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
-import { Header } from '@/shared/components/layout/header/Header'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import buttonSubmitStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import pageStyles from '@/shared/components/ui/page/page.module.css'
@@ -55,18 +55,36 @@ export const MakeupBagQuestionnaireCreate = () => {
         }
     }
 
+    const handleBack = () => {
+        navigate('/questionnaires')
+    }
+
+    const title = t('makeupBag.hero.headline')
+    const subtitle = t('makeupBag.hero.byline')
+
     return (
         <article>
-            <Header />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero
-                        headline={t('hero.headline')}
-                        byline={t('hero.byline')}
+                        headline={title}
+                        byline={subtitle}
                         imgUrl={config.cloudinary.questionnaireMakeupBagHero}
-                        content={t('hero.content')}
+                        content={t('makeupBag.hero.content')}
+                        hideOnMobile
                     />
+
+                    <div className="sm:hidden">
+                        <Hero
+                            byline={subtitle}
+                            imgUrl={
+                                config.cloudinary.questionnaireMakeupBagHero
+                            }
+                            content={t('makeupBag.hero.content')}
+                        />
+                    </div>
 
                     <form
                         className={classNames(formStyles.form)}

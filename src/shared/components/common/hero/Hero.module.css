@@ -9,7 +9,7 @@
 }
 
 .title {
-    @apply mx-auto w-11/12;
+    @apply mx-auto w-11/12 space-y-3;
 }
 
 .headline {
@@ -17,7 +17,7 @@
 }
 
 .byline {
-    @apply font-heading mx-auto mt-3 text-center text-slate-700 sm:text-xl;
+    @apply font-heading mx-auto text-center text-slate-700 sm:text-xl;
 }
 
 :global(.dark) .byline {

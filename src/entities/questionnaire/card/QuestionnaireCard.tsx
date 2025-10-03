@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { canAccess } from '@/shared/lib/access/canAccess'
 import styles from './QuestionnaireCard.module.css'
 
 export interface QuestionnaireCardProps {
@@ -18,6 +21,15 @@ export const QuestionnaireCard = ({
 }: QuestionnaireCardProps) => {
     const { t } = useTranslation('questionnaire')
 
+    const role = useAppSelector(selectRole)
+    const username = useAppSelector(selectUsername)
+
+    const showResults = canAccess(
+        { auth: true, roles: ['admin', 'mua'] },
+        username,
+        role
+    )
+
     return (
         <div>
             <Link
@@ -30,15 +42,17 @@ export const QuestionnaireCard = ({
                     <h2 className={styles.title}>{title}</h2>
                 </div>
             </Link>
-            <div className="my-2 flex justify-end">
-                <Link
-                    to={`/questionnaires/${resultsPath}`}
-                    className="flex gap-1 text-sm/6 font-semibold text-rose-400 hover:text-gray-100"
-                >
-                    {t('results')}
-                    <span aria-hidden="true">→</span>
-                </Link>
-            </div>
+            {showResults && (
+                <div className="my-2 flex justify-end">
+                    <Link
+                        to={`/questionnaires/${resultsPath}`}
+                        className="flex gap-1 text-sm/6 font-semibold text-rose-400 hover:text-gray-100"
+                    >
+                        {t('results')}
+                        <span aria-hidden="true">→</span>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

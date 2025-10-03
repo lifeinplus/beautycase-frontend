@@ -74,6 +74,17 @@ export const mockTraining1: TrainingQuestionnaire = {
     expectations: 'I want to learn makeup',
 }
 
+export const mockTraining2: TrainingQuestionnaire = {
+    name: 'Client 2',
+    contact: '',
+    expectations: 'I want to learn makeup',
+}
+
+export const mockTrainings: TrainingQuestionnaire[] = [
+    mockTraining1,
+    mockTraining2,
+]
+
 export const useCreateQuestionnaireMutation = vi.fn()
 export const useGetAllQuestionnairesQuery = vi.fn()
 export const useGetQuestionnaireByIdQuery = vi.fn()

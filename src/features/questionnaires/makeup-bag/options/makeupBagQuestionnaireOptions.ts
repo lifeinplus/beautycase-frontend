@@ -15,16 +15,17 @@ interface MakeupBagQuestionnaireOptions {
 }
 
 export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
+    // TODO: why two places for options? (2)
     brushes: [
         {
             id: 'brushes-yes',
-            label: 'fields.brushes.options.yes',
+            label: 'makeupBag.fields.brushes.options.yes',
             name: 'brushes',
             value: 'yes',
         },
         {
             id: 'brushes-no',
-            label: 'fields.brushes.options.no',
+            label: 'makeupBag.fields.brushes.options.no',
             name: 'brushes',
             value: 'no',
         },
@@ -32,19 +33,19 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     budget: [
         {
             id: 'budget-up-to-150',
-            label: 'fields.budget.options.150',
+            label: 'makeupBag.fields.budget.options.150',
             name: 'budget',
             value: '150',
         },
         {
             id: 'budget-150-250',
-            label: 'fields.budget.options.150-250',
+            label: 'makeupBag.fields.budget.options.150-250',
             name: 'budget',
             value: '150-250',
         },
         {
             id: 'budget-more-than-250',
-            label: 'fields.budget.options.250',
+            label: 'makeupBag.fields.budget.options.250',
             name: 'budget',
             value: '250',
         },
@@ -52,46 +53,46 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     desiredSkills: [
         {
             id: 'desired-skill-delicate',
-            label: 'fields.desiredSkills.options.delicate',
+            label: 'makeupBag.fields.desiredSkills.options.delicate',
             name: 'desiredSkills.delicate',
         },
         {
             id: 'desired-skill-evening',
-            label: 'fields.desiredSkills.options.evening',
+            label: 'makeupBag.fields.desiredSkills.options.evening',
             name: 'desiredSkills.evening',
         },
         {
             id: 'desired-skill-bright',
-            label: 'fields.desiredSkills.options.bright',
+            label: 'makeupBag.fields.desiredSkills.options.bright',
             name: 'desiredSkills.bright',
         },
         {
             id: 'desired-skill-office',
-            label: 'fields.desiredSkills.options.office',
+            label: 'makeupBag.fields.desiredSkills.options.office',
             name: 'desiredSkills.office',
         },
         {
             id: 'desired-skill-filming',
-            label: 'fields.desiredSkills.options.filming',
+            label: 'makeupBag.fields.desiredSkills.options.filming',
             name: 'desiredSkills.filming',
         },
     ],
     makeupTime: [
         {
             id: 'makeup-time-up-to-15-min',
-            label: 'fields.makeupTime.options.15',
+            label: 'makeupBag.fields.makeupTime.options.15',
             name: 'makeupTime',
             value: '15',
         },
         {
             id: 'makeup-time-15-30-min',
-            label: 'fields.makeupTime.options.15-30',
+            label: 'makeupBag.fields.makeupTime.options.15-30',
             name: 'makeupTime',
             value: '15-30',
         },
         {
             id: 'makeup-time-30-60-min',
-            label: 'fields.makeupTime.options.30-60',
+            label: 'makeupBag.fields.makeupTime.options.30-60',
             name: 'makeupTime',
             value: '30-60',
         },
@@ -99,13 +100,13 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     oilyShine: [
         {
             id: 'oily-shine-yes',
-            label: 'fields.oilyShine.options.yes',
+            label: 'makeupBag.fields.oilyShine.options.yes',
             name: 'oilyShine',
             value: 'yes',
         },
         {
             id: 'oily-shine-no',
-            label: 'fields.oilyShine.options.no',
+            label: 'makeupBag.fields.oilyShine.options.no',
             name: 'oilyShine',
             value: 'no',
         },
@@ -113,13 +114,13 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     peeling: [
         {
             id: 'peeling-yes',
-            label: 'fields.peeling.options.yes',
+            label: 'makeupBag.fields.peeling.options.yes',
             name: 'peeling',
             value: 'yes',
         },
         {
             id: 'peeling-no',
-            label: 'fields.peeling.options.no',
+            label: 'makeupBag.fields.peeling.options.no',
             name: 'peeling',
             value: 'no',
         },
@@ -127,13 +128,13 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     pores: [
         {
             id: 'pores-yes',
-            label: 'fields.pores.options.yes',
+            label: 'makeupBag.fields.pores.options.yes',
             name: 'pores',
             value: 'yes',
         },
         {
             id: 'pores-no',
-            label: 'fields.pores.options.no',
+            label: 'makeupBag.fields.pores.options.no',
             name: 'pores',
             value: 'no',
         },
@@ -141,85 +142,85 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     problems: [
         {
             id: 'problem-eyeshadow-crease',
-            label: 'fields.problems.options.eyeshadowCrease',
+            label: 'makeupBag.fields.problems.options.eyeshadowCrease',
             name: 'problems.eyeshadowCrease',
         },
         {
             id: 'problem-mascara-smudge',
-            label: 'fields.problems.options.mascaraSmudge',
+            label: 'makeupBag.fields.problems.options.mascaraSmudge',
             name: 'problems.mascaraSmudge',
         },
         {
             id: 'problem-foundation-pores',
-            label: 'fields.problems.options.foundationPores',
+            label: 'makeupBag.fields.problems.options.foundationPores',
             name: 'problems.foundationPores',
         },
         {
             id: 'problem-foundation-stay',
-            label: 'fields.problems.options.foundationStay',
+            label: 'makeupBag.fields.problems.options.foundationStay',
             name: 'problems.foundationStay',
         },
         {
             id: 'problem-sculpting',
-            label: 'fields.problems.options.sculpting',
+            label: 'makeupBag.fields.problems.options.sculpting',
             name: 'problems.sculpting',
         },
         {
             id: 'problem-eyeshadow-match',
-            label: 'fields.problems.options.eyeshadowMatch',
+            label: 'makeupBag.fields.problems.options.eyeshadowMatch',
             name: 'problems.eyeshadowMatch',
         },
     ],
     procedures: [
         {
             id: 'procedure-lash-extensions',
-            label: 'fields.procedures.options.lashExtensions',
+            label: 'makeupBag.fields.procedures.options.lashExtensions',
             name: 'procedures.lashExtensions',
         },
         {
             id: 'procedure-brow-correction',
-            label: 'fields.procedures.options.browCorrection',
+            label: 'makeupBag.fields.procedures.options.browCorrection',
             name: 'procedures.browCorrection',
         },
         {
             id: 'procedure-lash-lamination',
-            label: 'fields.procedures.options.lashLamination',
+            label: 'makeupBag.fields.procedures.options.lashLamination',
             name: 'procedures.lashLamination',
         },
         {
             id: 'procedure-none',
-            label: 'fields.procedures.options.none',
+            label: 'makeupBag.fields.procedures.options.none',
             name: 'procedures.none',
         },
     ],
     referral: [
         {
             id: 'referral-instagram',
-            label: 'fields.referral.options.instagram',
+            label: 'makeupBag.fields.referral.options.instagram',
             name: 'referral',
             value: 'instagram',
         },
         {
             id: 'referral-youtube',
-            label: 'fields.referral.options.youtube',
+            label: 'makeupBag.fields.referral.options.youtube',
             name: 'referral',
             value: 'youtube',
         },
         {
             id: 'referral-personal',
-            label: 'fields.referral.options.personal',
+            label: 'makeupBag.fields.referral.options.personal',
             name: 'referral',
             value: 'personal',
         },
         {
             id: 'referral-recommendation',
-            label: 'fields.referral.options.recommendation',
+            label: 'makeupBag.fields.referral.options.recommendation',
             name: 'referral',
             value: 'recommendation',
         },
         {
             id: 'referral-other',
-            label: 'fields.referral.options.other',
+            label: 'makeupBag.fields.referral.options.other',
             name: 'referral',
             value: 'other',
         },
@@ -227,31 +228,31 @@ export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     skinTypes: [
         {
             id: 'skin-type-dry',
-            label: 'fields.skinType.options.dry',
+            label: 'makeupBag.fields.skinType.options.dry',
             name: 'skinType',
             value: 'dry',
         },
         {
             id: 'skin-type-normal',
-            label: 'fields.skinType.options.normal',
+            label: 'makeupBag.fields.skinType.options.normal',
             name: 'skinType',
             value: 'normal',
         },
         {
             id: 'skin-type-combination',
-            label: 'fields.skinType.options.combination',
+            label: 'makeupBag.fields.skinType.options.combination',
             name: 'skinType',
             value: 'combination',
         },
         {
             id: 'skin-type-oily',
-            label: 'fields.skinType.options.oily',
+            label: 'makeupBag.fields.skinType.options.oily',
             name: 'skinType',
             value: 'oily',
         },
         {
             id: 'skin-type-sensitive',
-            label: 'fields.skinType.options.sensitive',
+            label: 'makeupBag.fields.skinType.options.sensitive',
             name: 'skinType',
             value: 'sensitive',
         },

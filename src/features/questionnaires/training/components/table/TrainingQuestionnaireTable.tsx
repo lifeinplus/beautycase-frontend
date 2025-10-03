@@ -6,11 +6,13 @@ import type { Header } from '@/shared/components/table/table/types'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { TrainingQuestionnaire } from '../../../types'
 
-export interface TrainingTableProps {
+export interface TrainingQuestionnaireTableProps {
     data?: TrainingQuestionnaire[]
 }
 
-export const TrainingTable = ({ data }: TrainingTableProps) => {
+export const TrainingQuestionnaireTable = ({
+    data,
+}: TrainingQuestionnaireTableProps) => {
     const { t } = useTranslation('questionnaire')
 
     const headers: Header[] = [

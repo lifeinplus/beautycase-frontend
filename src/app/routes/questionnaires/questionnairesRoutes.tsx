@@ -4,8 +4,8 @@ import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
 import { MakeupBagQuestionnaireList } from '@/pages/questionnaires/makeup-bag/list/MakeupBagQuestionnaireList'
 import { MakeupBagQuestionnaireResult } from '@/pages/questionnaires/makeup-bag/result/MakeupBagQuestionnaireResult'
-import { TrainingList } from '@/pages/questionnaires/training/list/TrainingList'
-import { TrainingResult } from '@/pages/questionnaires/training/result/TrainingResult'
+import { TrainingQuestionnaireList } from '@/pages/questionnaires/training/list/TrainingQuestionnaireList'
+import { TrainingQuestionnaireResult } from '@/pages/questionnaires/training/result/TrainingQuestionnaireResult'
 
 export const questionnaireRoutes = [
     <Route key="questionnaires" path="/questionnaires" element={<AppLayout />}>
@@ -15,8 +15,8 @@ export const questionnaireRoutes = [
                 <Route path=":id" element={<MakeupBagQuestionnaireResult />} />
             </Route>
             <Route path="trainings">
-                <Route index element={<TrainingList />} />
-                <Route path=":id" element={<TrainingResult />} />
+                <Route index element={<TrainingQuestionnaireList />} />
+                <Route path=":id" element={<TrainingQuestionnaireResult />} />
             </Route>
         </Route>
     </Route>,

@@ -21,10 +21,10 @@ export const MakeupBagQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate('/questionnaires')
+        navigate('/questionnaires/makeup-bags')
     }
 
-    const title = data?.name || t('hero.headline')
+    const title = data?.name || t('makeupBag.hero.headline')
 
     return (
         <article>

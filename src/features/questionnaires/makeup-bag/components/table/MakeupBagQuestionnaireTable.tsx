@@ -16,11 +16,11 @@ export const MakeupBagQuestionnaireTable = ({
     const { t } = useTranslation('questionnaire')
 
     const headers: Header[] = [
-        { label: t('table.date'), className: 'text-center' },
-        { label: t('table.time'), className: 'text-center' },
-        { label: t('table.clientName'), className: 'text-left' },
-        { label: t('table.age'), className: 'text-right' },
-        { label: t('table.city'), className: 'text-left' },
+        { label: t('makeupBag.table.date'), className: 'text-center' },
+        { label: t('makeupBag.table.time'), className: 'text-center' },
+        { label: t('makeupBag.table.clientName'), className: 'text-left' },
+        { label: t('makeupBag.table.age'), className: 'text-right' },
+        { label: t('makeupBag.table.city'), className: 'text-left' },
     ]
 
     const cellClasses = headers.map((h) => h.className)

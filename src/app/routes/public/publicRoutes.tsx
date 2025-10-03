@@ -9,7 +9,7 @@ import { Pricing } from '@/pages/pricing/ui/Pricing'
 import { Confirmation } from '@/pages/questionnaires/confirmation/Confirmation'
 import { QuestionnaireGallery } from '@/pages/questionnaires/gallery/QuestionnaireGallery'
 import { MakeupBagQuestionnaireCreate } from '@/pages/questionnaires/makeup-bag/create/MakeupBagQuestionnaireCreate'
-import { TrainingCreate } from '@/pages/questionnaires/training/create/TrainingCreate'
+import { TrainingQuestionnaireCreate } from '@/pages/questionnaires/training/create/TrainingQuestionnaireCreate'
 
 export const publicRoutes = [
     <Route key="home" path="/" element={<Home />} />,
@@ -24,7 +24,7 @@ export const publicRoutes = [
                 path="makeup-bag"
                 element={<MakeupBagQuestionnaireCreate />}
             />
-            <Route path="training" element={<TrainingCreate />} />
+            <Route path="training" element={<TrainingQuestionnaireCreate />} />
         </Route>
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,

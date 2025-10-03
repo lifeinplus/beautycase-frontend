@@ -2,11 +2,13 @@ import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { TrainingQuestionnaire } from '../../../types'
 
-export interface TrainingMobileViewProps {
+export interface TrainingQuestionnaireMobileViewProps {
     data?: TrainingQuestionnaire[]
 }
 
-export const TrainingMobileView = ({ data }: TrainingMobileViewProps) => (
+export const TrainingQuestionnaireMobileView = ({
+    data,
+}: TrainingQuestionnaireMobileViewProps) => (
     <MobileView
         items={data}
         getTitle={(item) => item.name}

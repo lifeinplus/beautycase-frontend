@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import config from '@/app/config/config'
+import { mockTraining1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 import { mockT } from '@/tests/mocks/translation'
-import { mockQuestionnaire1 } from '../../../api/__mocks__/questionnairesApi'
-import { QuestionnaireData } from './QuestionnaireData'
+import { TrainingQuestionnaireData } from './TrainingQuestionnaireData'
 
 vi.mock('@/app/config/config')
 vi.mock('@/shared/lib/cloudinary/cloudinary')
 
-describe('QuestionnaireData', () => {
+describe('TrainingQuestionnaireData', () => {
     it('renders all fields correctly', () => {
-        render(<QuestionnaireData data={mockQuestionnaire1} />)
+        render(<TrainingQuestionnaireData data={mockTraining1} />)
 
         expect(mockT).toHaveBeenCalledWith('fields.name.label')
         expect(mockT).toHaveBeenCalledWith('fields.instagram.label')
@@ -25,7 +25,7 @@ describe('QuestionnaireData', () => {
     })
 
     it('displays fallback for undefined values', () => {
-        render(<QuestionnaireData data={mockQuestionnaire1} />)
+        render(<TrainingQuestionnaireData data={mockTraining1} />)
 
         const notSpecifiedElements = screen.getAllByText('notSpecified')
         expect(notSpecifiedElements.length).toBe(19 - 6)
@@ -34,21 +34,14 @@ describe('QuestionnaireData', () => {
     it('renders an image when makeupBagPhotoId is provided', () => {
         const mockMakeupBagPhotoId = 'makeupBagPhoto1'
 
-        render(
-            <QuestionnaireData
-                data={{
-                    ...mockQuestionnaire1,
-                    makeupBagPhotoId: mockMakeupBagPhotoId,
-                }}
-            />
-        )
+        render(<TrainingQuestionnaireData data={mockTraining1} />)
 
         expect(cloudinary.image).toHaveBeenCalledWith(mockMakeupBagPhotoId)
         expect(screen.getByTestId('mocked-advanced-image')).toBeInTheDocument()
     })
 
     it('uses default image when makeupBagPhotoId is not provided', () => {
-        render(<QuestionnaireData data={mockQuestionnaire1} />)
+        render(<TrainingQuestionnaireData data={mockTraining1} />)
 
         expect(cloudinary.image).toHaveBeenCalledWith(
             config.cloudinary.defaultThumbnailName
@@ -62,11 +55,7 @@ describe('QuestionnaireData', () => {
             foundationPores: true,
         }
 
-        render(
-            <QuestionnaireData
-                data={{ ...mockQuestionnaire1, problems: mockData }}
-            />
-        )
+        render(<TrainingQuestionnaireData data={{ ...mockTraining1 }} />)
 
         expect(screen.getByText('fields.problems.label')).toBeInTheDocument()
 

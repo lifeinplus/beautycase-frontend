@@ -2,15 +2,15 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { mockTrainings } from '../../../api/__mocks__/questionnairesApi'
-import { TrainingTable } from './TrainingTable'
+import { TrainingQuestionnaireTable } from './TrainingQuestionnaireTable'
 
 vi.mock('@/shared/components/table/table/Table')
 vi.mock('@/shared/components/table/table-row/TableRow')
 vi.mock('@/shared/utils/date/formatDate')
 
-describe('TrainingTable', () => {
+describe('TrainingQuestionnaireTable', () => {
     it('renders the table headers correctly', () => {
-        render(<TrainingTable data={mockTrainings} />)
+        render(<TrainingQuestionnaireTable data={mockTrainings} />)
 
         const headers = [
             'table.date',
@@ -26,7 +26,7 @@ describe('TrainingTable', () => {
     })
 
     it('renders the table data correctly', () => {
-        render(<TrainingTable data={mockTrainings} />)
+        render(<TrainingQuestionnaireTable data={mockTrainings} />)
 
         const dates = screen.getAllByText('2025.04.10')
         const time = screen.getAllByText('14:30')

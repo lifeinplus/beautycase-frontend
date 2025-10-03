@@ -7,7 +7,7 @@ import type {
 } from '../../../types'
 import { trainingQuestionnaireQuestions } from '../../questions/trainingQuestionnaireQuestions'
 
-export interface TrainingDataProps {
+export interface TrainingQuestionnaireDataProps {
     data: TrainingQuestionnaire
 }
 
@@ -19,7 +19,9 @@ const fields: (keyof TrainingQuestionnaire)[] = [
     'expectations',
 ]
 
-export const TrainingData = ({ data }: TrainingDataProps) => {
+export const TrainingQuestionnaireData = ({
+    data,
+}: TrainingQuestionnaireDataProps) => {
     const { t } = useTranslation(['questionnaire'])
 
     const renderText = (

@@ -11,7 +11,7 @@ export const QuestionnaireGallery = () => {
 
     const data = [
         {
-            title: t('hero.byline'),
+            title: t('makeupBag.hero.byline'),
             imageUrl: config.cloudinary.questionnaireMakeupBagHero,
             createPath: 'makeup-bag',
             resultsPath: 'makeup-bags',
@@ -24,7 +24,7 @@ export const QuestionnaireGallery = () => {
         },
     ]
 
-    const title = t('hero.headlineList')
+    const title = t('headlineList')
 
     return (
         <article className={pageStyles.page}>

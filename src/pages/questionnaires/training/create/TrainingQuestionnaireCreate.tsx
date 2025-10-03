@@ -17,13 +17,13 @@ import formStyles from '@/shared/components/forms/form.module.css'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
-import { Header } from '@/shared/components/layout/header/Header'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
-export const TrainingCreate = () => {
+export const TrainingQuestionnaireCreate = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('questionnaire')
 
@@ -50,18 +50,34 @@ export const TrainingCreate = () => {
         }
     }
 
+    const handleBack = () => {
+        navigate('/questionnaires')
+    }
+
+    const title = t('training.hero.headline')
+    const subtitle = t('training.hero.byline')
+
     return (
         <article>
-            <Header />
+            <TopPanel title={title} onBack={handleBack} />
 
             <main className={pageStyles.content}>
                 <article className={pageStyles.container}>
                     <Hero
-                        headline={t('training.hero.headline')}
-                        byline={t('training.hero.byline')}
+                        headline={title}
+                        byline={subtitle}
                         imgUrl={config.cloudinary.questionnaireTrainingHero}
                         content={t('training.hero.content')}
+                        hideOnMobile
                     />
+
+                    <div className="sm:hidden">
+                        <Hero
+                            byline={subtitle}
+                            imgUrl={config.cloudinary.questionnaireTrainingHero}
+                            content={t('training.hero.content')}
+                        />
+                    </div>
 
                     <form
                         className={classNames(formStyles.form)}

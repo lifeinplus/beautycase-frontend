@@ -17,7 +17,6 @@ import {
 import { StoreForm } from './StoreForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/components/forms/button/Button')
 vi.mock('../../api/storesApi')
 
 describe('StoreForm', () => {
@@ -175,7 +174,7 @@ describe('StoreForm', () => {
         const user = userEvent.setup()
 
         render(<StoreForm ref={mockRef} />)
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(screen.getByText('fields.name.errors.required')).toHaveClass(
             /error/

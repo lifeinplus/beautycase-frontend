@@ -1,10 +1,7 @@
-export const Spinner = () => {
-    return (
-        <div
-            className="flex min-h-screen items-center justify-center"
-            role="presentation"
-        >
-            <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-t-2 border-rose-500"></div>
-        </div>
-    )
-}
+import styles from './Spinner.module.css'
+
+export const Spinner = () => (
+    <div className={styles.container} role="presentation">
+        <div className={styles.content}></div>
+    </div>
+)

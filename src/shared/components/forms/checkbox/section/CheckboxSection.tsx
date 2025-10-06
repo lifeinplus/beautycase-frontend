@@ -1,32 +1,31 @@
-import { UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
-import { Questionnaire } from '@/features/questionnaires/types'
-import { QuestionnaireOption } from '@/features/questionnaires/utils/options'
+import type { QuestionnaireOption } from '@/features/questionnaires/types'
 import { CheckboxItem } from '@/shared/components/forms/checkbox/item/CheckboxItem'
 import formStyles from '@/shared/components/forms/form.module.css'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { Label } from '../../label/Label'
 
-export interface CheckboxSectionProps {
+export interface CheckboxSectionProps<T extends FieldValues> {
     description?: string
     label: string
-    options: QuestionnaireOption[]
-    register: UseFormRegister<Questionnaire>
+    options: QuestionnaireOption<T>[]
+    register: UseFormRegister<T>
 }
 
-export const CheckboxSection = ({
+export const CheckboxSection = <T extends FieldValues>({
     description,
     label,
     options,
     register,
-}: CheckboxSectionProps) => {
+}: CheckboxSectionProps<T>) => {
     const { t } = useTranslation('questionnaire')
 
     return (
         <div>
             <Label text={label} />
 
-            <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
+            <div className="relative flex flex-col rounded-xl border border-neutral-200 bg-white shadow-sm focus-within:border-black dark:border-neutral-700 dark:bg-black dark:focus-within:border-white">
                 <nav className="flex min-w-[240px] flex-col gap-1 p-2">
                     {options.map((o) => (
                         <CheckboxItem

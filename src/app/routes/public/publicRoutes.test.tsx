@@ -13,7 +13,8 @@ vi.mock('@/pages/auth/unauthorized/Unauthorized')
 vi.mock('@/pages/home/Home')
 vi.mock('@/pages/pricing/ui/Pricing')
 vi.mock('@/pages/questionnaires/confirmation/Confirmation')
-vi.mock('@/pages/questionnaires/create/QuestionnaireCreate')
+vi.mock('@/pages/questionnaires/makeup-bag/create/MakeupBagQuestionnaireCreate')
+vi.mock('@/pages/questionnaires/training/create/TrainingQuestionnaireCreate')
 
 describe('publicRoutes', () => {
     it('renders the home page correctly', () => {
@@ -41,9 +42,18 @@ describe('publicRoutes', () => {
         expect(screen.getByTestId('mocked-pricing')).toBeInTheDocument()
     })
 
-    it('renders the questionnaire page correctly', () => {
-        renderWithRouter(<App />, ['/questionnaire'])
-        expect(screen.getByTestId('mocked-questionnaire')).toBeInTheDocument()
+    it('renders the makeup bag questionnaire page correctly', () => {
+        renderWithRouter(<App />, ['/questionnaires/makeup-bag'])
+        expect(
+            screen.getByTestId('mocked-makeup-bag-questionnaire-create')
+        ).toBeInTheDocument()
+    })
+
+    it('renders the training questionnaire page correctly', () => {
+        renderWithRouter(<App />, ['/questionnaires/training'])
+        expect(
+            screen.getByTestId('mocked-training-questionnaire-create')
+        ).toBeInTheDocument()
     })
 
     it('renders the unauthorized page correctly', () => {

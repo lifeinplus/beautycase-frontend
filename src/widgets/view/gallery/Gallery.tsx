@@ -15,6 +15,7 @@ export interface GalleryProps {
     mediaContent?: ReactNode
 }
 
+// TODO: get rid of this component
 export const Gallery = ({
     title,
     subtitle,

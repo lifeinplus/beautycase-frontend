@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply relative flex flex-col rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
 }
@@ -7,7 +9,7 @@
 }
 
 .name {
-    @apply text-pretty text-base/7 font-semibold text-black;
+    @apply text-base/7 font-semibold text-pretty text-black;
 }
 
 :global(.dark) .name {
@@ -15,7 +17,7 @@
 }
 
 .blurb {
-    @apply my-6 text-pretty text-base/7 text-neutral-700 sm:text-sm/7;
+    @apply my-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7;
 }
 
 :global(.dark) .blurb {

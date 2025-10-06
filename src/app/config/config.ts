@@ -6,6 +6,10 @@ const config = {
         defaultThumbnailName: import.meta.env.VITE_DEFAULT_THUMBNAIL_NAME,
         defaultThumbnailUrl: import.meta.env.VITE_DEFAULT_THUMBNAIL_URL,
         makeupBagHero: import.meta.env.VITE_MAKEUP_BAG_HERO,
+        questionnaireMakeupBagHero: import.meta.env
+            .VITE_QUESTIONNAIRE_MAKEUP_BAG_HERO,
+        questionnaireTrainingHero: import.meta.env
+            .VITE_QUESTIONNAIRE_TRAINING_HERO,
     },
     fonts: {
         robotoBold: import.meta.env.VITE_FONT_ROBOTO_BOLD,

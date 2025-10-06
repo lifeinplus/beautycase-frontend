@@ -6,7 +6,6 @@ import type { Brand } from '../../types'
 
 export const mockBrandCreate: MutationResult = {
     id: 'brand3',
-    message: 'Brand created successfully',
 }
 
 export const mockBrand1: Brand = {
@@ -32,10 +31,7 @@ const brandsHandlers = [
     http.get('api/brands', () => HttpResponse.json(mockBrands)),
 
     http.put('api/brands/:id', ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Brand updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/brands/:id', () =>

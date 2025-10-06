@@ -1,24 +1,25 @@
+@reference '@/app/styles/index.css';
+
 .section {
     @apply border-t border-gray-300 px-3 pt-6;
     @apply sm:flex sm:justify-end sm:border-0 sm:pt-0;
-}
-
-.btn {
-    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors;
-    @apply bg-rose-500;
-    @apply hover:bg-rose-600;
-}
-
-.loading {
-    @apply bg-rose-200 hover:bg-rose-200;
 }
 
 :global(.dark) .section {
     @apply border-gray-700;
 }
 
+.btn {
+    @apply flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:w-67;
+    @apply bg-rose-500 hover:bg-rose-600;
+}
+
 :global(.dark) .btn {
     @apply bg-rose-600 hover:bg-rose-700;
+}
+
+.loading {
+    @apply bg-rose-200 hover:bg-rose-200;
 }
 
 :global(.dark) .loading {

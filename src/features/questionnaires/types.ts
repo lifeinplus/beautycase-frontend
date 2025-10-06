@@ -1,3 +1,5 @@
+import { FieldValues, Path } from 'react-hook-form'
+
 interface DesiredSkillData {
     bright?: boolean
     delicate?: boolean
@@ -22,7 +24,7 @@ interface ProcedureData {
     none?: boolean
 }
 
-export interface Questionnaire {
+export interface MakeupBagQuestionnaire {
     _id?: string
     createdAt?: string
     age?: number
@@ -45,4 +47,36 @@ export interface Questionnaire {
     procedures?: ProcedureData
     referral?: string
     skinType?: string
+}
+
+export interface TrainingQuestionnaire {
+    _id?: string
+    createdAt?: string
+    name: string
+    contact: string
+    experience?: string
+    difficulties?: string
+    expectations: string
+}
+
+export interface QuestionnaireOption<T extends FieldValues> {
+    id: string
+    label: string
+    name: Path<T>
+    value?: string
+}
+
+export interface QuestionnaireResultOption {
+    label: string
+    value: string
+}
+
+interface Question {
+    description?: string
+    label: string
+    options?: QuestionnaireResultOption[]
+}
+
+export interface Questions {
+    [key: string]: Question
 }

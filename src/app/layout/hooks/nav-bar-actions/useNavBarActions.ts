@@ -113,7 +113,13 @@ export const useNavBarActions = (): NavBarAction[] => {
 
         const questionnaireRoutes = [
             {
-                pattern: /^\/questionnaires\/[a-f0-9]{24}$/i,
+                pattern:
+                    /^\/questionnaires\/(makeup-bag|makeup-bags|training|trainings)$/i,
+                actions: backActions,
+            },
+            {
+                pattern:
+                    /^\/questionnaires\/(makeup-bags|trainings)\/[a-f0-9]{24}$/i,
                 actions: backActions,
             },
         ]

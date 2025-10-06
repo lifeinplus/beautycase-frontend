@@ -1,7 +1,13 @@
+@reference '@/app/styles/index.css';
+
 .select {
-    @apply col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 pe-10 ps-4 focus:outline-none;
+    @apply col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none;
     @apply bg-white placeholder-neutral-500;
     @apply border border-neutral-200 focus:border-black;
+}
+
+:global(.dark) .select {
+    @apply border-neutral-700 bg-black placeholder-neutral-600 focus:border-white;
 }
 
 .icon {
@@ -9,10 +15,14 @@
     @apply text-neutral-600;
 }
 
-:global(.dark) .select {
-    @apply border-neutral-700 bg-black placeholder-neutral-600 focus:border-white;
-}
-
 :global(.dark) .icon {
     @apply text-neutral-400;
+}
+
+.error {
+    @apply border-rose-500;
+}
+
+:global(.dark) .error {
+    @apply border-rose-400;
 }

@@ -29,7 +29,7 @@ export const InputSection = ({
                 {...register}
                 className={classNames(
                     inputStyles.input,
-                    error && formStyles.borderError
+                    error && inputStyles.error
                 )}
                 placeholder={label}
                 type={type}

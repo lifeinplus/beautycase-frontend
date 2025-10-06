@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import type { Questionnaire } from '@/features/questionnaires/types'
+import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
 import { mockUploadResult } from '@/features/uploads/api/__mocks__/uploadsApi'
 import { useUploadTempImageByFileMutation } from '@/features/uploads/api/uploadsApi'
 import { mockError } from '@/tests/mocks'
@@ -20,11 +20,10 @@ import {
 } from './ImageTextSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('../../label/Label')
 vi.mock('../preview/ImagePreview')
 
 describe('ImageTextSection', () => {
-    const mockProps: ImageTextSectionProps<Questionnaire> = {
+    const mockProps: ImageTextSectionProps<MakeupBagQuestionnaire> = {
         clearErrors: mockClearErrors,
         folder: 'questionnaires',
         label: 'Makeup Bag',
@@ -131,7 +130,10 @@ describe('ImageTextSection', () => {
         expect(mockSetValue).not.toHaveBeenCalled()
         expect(mockClearErrors).not.toHaveBeenCalled()
 
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(mockConsoleError).toHaveBeenCalledWith(
+            'Image upload failed',
+            mockError
+        )
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()

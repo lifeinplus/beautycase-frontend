@@ -115,7 +115,7 @@ export const StageSelection = () => {
                                                     alt={title}
                                                     className={classNames(
                                                         imageStyles.img,
-                                                        'rounded'
+                                                        'rounded-sm'
                                                     )}
                                                     src={imageUrl}
                                                 />
@@ -146,7 +146,6 @@ export const StageSelection = () => {
 
                         <section className={buttonStyles.section}>
                             <ButtonSubmit
-                                className="sm:w-48"
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}
                             />

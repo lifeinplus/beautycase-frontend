@@ -1,5 +1,7 @@
+@reference '@/app/styles/index.css';
+
 .modal {
-    @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/50;
     @apply sm:ps-navbar lg:ps-navbar-open;
 }
 

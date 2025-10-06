@@ -1,5 +1,7 @@
+@reference '@/app/styles/index.css';
+
 .dlContainer {
-    @apply pb-4 sm:rounded-2.5xl sm:border sm:border-neutral-200 sm:pb-0;
+    @apply sm:rounded-2.5xl pb-4 sm:border sm:border-neutral-200 sm:pb-0;
 }
 
 .dl {

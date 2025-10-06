@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply relative rounded-xl p-2 shadow-md ring-1 ring-gray-200;
 }
@@ -7,7 +9,7 @@
 }
 
 .name {
-    @apply text-pretty text-2xl font-semibold text-black;
+    @apply text-2xl font-semibold text-pretty text-black;
 }
 
 :global(.dark) .name {
@@ -15,7 +17,7 @@
 }
 
 .blurb {
-    @apply mt-6 text-pretty text-base/7 text-neutral-700 sm:text-sm/7;
+    @apply mt-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7;
 }
 
 :global(.dark) .blurb {
@@ -39,7 +41,7 @@
 }
 
 .features {
-    @apply mt-8 grid grid-cols-1 gap-5 text-pretty text-base text-neutral-700 sm:mt-10 sm:grid-cols-2 sm:text-sm;
+    @apply mt-8 grid grid-cols-1 gap-5 text-base text-pretty text-neutral-700 sm:mt-10 sm:grid-cols-2 sm:text-sm;
 }
 
 :global(.dark) .features {

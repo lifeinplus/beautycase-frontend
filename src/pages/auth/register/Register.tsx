@@ -14,7 +14,7 @@ import formStyles from '@/shared/components/forms/form.module.css'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import styles from '../auth.module.css'
+import authStyles from '../auth.module.css'
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -56,21 +56,21 @@ export const Register = () => {
     const { ref: refUsername, ...restUsername } = register('username')
 
     return (
-        <section className={styles.section}>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <div className={styles.logoContainer}>
-                    <h1 className={styles.logo}>
+        <section className={authStyles.section}>
+            <form className={authStyles.form} onSubmit={handleSubmit(onSubmit)}>
+                <div className={authStyles.logoContainer}>
+                    <h1 className={authStyles.logo}>
                         <LogoLink />
                     </h1>
                 </div>
 
-                <div className={styles.inputContainer}>
-                    <div className={styles.inputGroup}>
+                <div className={authStyles.inputContainer}>
+                    <div className={authStyles.inputGroup}>
                         <input
                             {...restUsername}
                             className={classNames(
-                                styles.input,
-                                errors.username && formStyles.borderError
+                                authStyles.input,
+                                errors.username && authStyles.error
                             )}
                             placeholder={t('fields.username.label')}
                             ref={(e) => {
@@ -80,7 +80,7 @@ export const Register = () => {
                             type="text"
                         />
 
-                        <label htmlFor="username" className={styles.label}>
+                        <label htmlFor="username" className={authStyles.label}>
                             {t('fields.username.label')}
                         </label>
 
@@ -97,18 +97,18 @@ export const Register = () => {
                     </div>
                 </div>
 
-                <div className={styles.inputGroup}>
+                <div className={authStyles.inputGroup}>
                     <input
                         {...register('password')}
                         className={classNames(
-                            styles.input,
-                            errors.password && formStyles.borderError
+                            authStyles.input,
+                            errors.password && authStyles.error
                         )}
                         placeholder={t('fields.password.label')}
                         type="password"
                     />
 
-                    <label htmlFor="password" className={styles.label}>
+                    <label htmlFor="password" className={authStyles.label}>
                         {t('fields.password.label')}
                     </label>
 
@@ -124,18 +124,21 @@ export const Register = () => {
                     )}
                 </div>
 
-                <div className={styles.inputGroup}>
+                <div className={authStyles.inputGroup}>
                     <input
                         {...register('confirmPassword')}
                         className={classNames(
-                            styles.input,
-                            errors.confirmPassword && formStyles.borderError
+                            authStyles.input,
+                            errors.confirmPassword && authStyles.error
                         )}
                         placeholder={t('fields.confirmPassword.label')}
                         type="password"
                     />
 
-                    <label htmlFor="confirmPassword" className={styles.label}>
+                    <label
+                        htmlFor="confirmPassword"
+                        className={authStyles.label}
+                    >
                         {t('fields.confirmPassword.label')}
                     </label>
 
@@ -151,15 +154,15 @@ export const Register = () => {
                     )}
                 </div>
 
-                <div className={styles.submitContainer}>
+                <div className={authStyles.submitContainer}>
                     <ButtonSubmit
                         isLoading={isLoading}
                         label={isLoading ? t('regstering') : t('register')}
                     />
                 </div>
 
-                <div className={styles.questionContainer}>
-                    <p className={styles.question}>
+                <div className={authStyles.questionContainer}>
+                    <p className={authStyles.question}>
                         {t('registerQuestion')}{' '}
                         <Link
                             className={classNames(

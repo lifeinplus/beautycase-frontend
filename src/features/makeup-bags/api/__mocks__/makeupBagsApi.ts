@@ -12,7 +12,6 @@ import type { MakeupBag, MakeupBagData } from '../../types'
 
 export const mockMakeupBagCreate: MutationResult = {
     id: 'makeupBag3',
-    message: 'MakeupBag created successfully',
 }
 
 export const mockMakeupBagPDFData: MakeupBagData = {
@@ -60,17 +59,11 @@ const makeupBagsHandlers = [
         const makeupBag = mockMakeupBags.find((p) => p._id === params.id)
         return makeupBag
             ? HttpResponse.json(makeupBag)
-            : HttpResponse.json(
-                  { success: false, message: 'MakeupBag not found' },
-                  { status: 404 }
-              )
+            : HttpResponse.json({ success: false }, { status: 404 })
     }),
 
     http.put('api/makeup-bags/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'MakeupBag updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/makeup-bags/:id', () =>

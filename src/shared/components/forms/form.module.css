@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .form {
     @apply space-y-6;
 }
@@ -6,18 +8,10 @@
     @apply mt-2 text-xs text-neutral-500;
 }
 
-.error {
-    @apply mt-2 text-sm;
-}
-
-.borderError {
-    @apply border-rose-500 !important;
-}
-
 :global(.dark) .description {
     @apply text-neutral-400;
 }
 
-:global(.dark) .borderError {
-    @apply border-rose-400 !important;
+.error {
+    @apply mt-2 text-sm;
 }

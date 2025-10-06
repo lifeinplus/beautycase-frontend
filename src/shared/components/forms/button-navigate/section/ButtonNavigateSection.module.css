@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .buttonNavigate {
     @apply flex w-full items-center justify-between px-4 py-2.5;
     @apply bg-white;
@@ -7,4 +9,12 @@
 
 :global(.dark) .buttonNavigate {
     @apply border-neutral-700 bg-black focus:border-white;
+}
+
+.error {
+    @apply border-rose-500;
+}
+
+:global(.dark) .error {
+    @apply border-rose-400;
 }

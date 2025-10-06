@@ -1,7 +1,11 @@
+@reference '@/app/styles/index.css';
+
+/* TODO: fix paddin */
 .container {
     @apply relative flex flex-col rounded-xl p-8 shadow-md ring-1 ring-gray-200 sm:p-10;
 }
 
+/* TODO: fix bg color */
 :global(.dark) .container {
     @apply bg-gray-900 ring-gray-700;
 }
@@ -15,7 +19,7 @@
 }
 
 .name {
-    @apply text-pretty text-base/7 font-semibold text-black;
+    @apply text-base/7 font-semibold text-pretty text-black;
 }
 
 :global(.dark) .name {
@@ -47,7 +51,7 @@
 }
 
 .blurb {
-    @apply mt-6 text-pretty text-base/7 text-neutral-700 sm:text-sm/7;
+    @apply mt-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7;
 }
 
 :global(.dark) .blurb {
@@ -63,7 +67,7 @@
 }
 
 .features {
-    @apply my-8 space-y-3 text-pretty text-base text-neutral-700 sm:my-10 sm:text-sm;
+    @apply my-8 space-y-3 text-base text-pretty text-neutral-700 sm:my-10 sm:text-sm;
 }
 
 :global(.dark) .features {

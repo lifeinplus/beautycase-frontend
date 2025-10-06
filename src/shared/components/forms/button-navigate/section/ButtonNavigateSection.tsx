@@ -29,7 +29,7 @@ export const ButtonNavigateSection = ({
                 <button
                     className={classNames(
                         styles.buttonNavigate,
-                        error && formStyles.borderError
+                        error && styles.error
                     )}
                     onClick={onNavigate}
                     type="button"

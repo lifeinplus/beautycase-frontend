@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .container {
     @apply mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7;
 }

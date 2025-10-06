@@ -8,8 +8,6 @@ import {
 } from '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
 import { mockFieldError } from '@/tests/mocks/form'
 
-vi.mock('../Label')
-
 describe('ButtonNavigateSection', () => {
     const mockProps: ButtonNavigateSectionProps = {
         label: 'Test Label',
@@ -47,7 +45,7 @@ describe('ButtonNavigateSection', () => {
         )
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('button')).toHaveClass(/borderError/)
+        expect(screen.getByRole('button')).toHaveClass(/error/)
     })
 
     it('calls onNavigate when button is clicked', async () => {

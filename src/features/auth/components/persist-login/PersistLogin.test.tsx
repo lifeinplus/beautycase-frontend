@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -59,6 +59,23 @@ describe('PersistLogin', () => {
         expect(await screen.findByTestId('mocked-content')).toBeInTheDocument()
         expect(screen.queryByTestId('mocked-spinner')).not.toBeInTheDocument()
         expect(mockRefreshAuth).toHaveBeenCalledTimes(1)
+    })
+
+    it('renders StartupProgress after 1s of loading', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(undefined)
+
+        renderWithRouter(<MockRoutes />)
+
+        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
+
+        await waitFor(
+            () => {
+                expect(
+                    screen.getByTestId('mocked-startup-progress')
+                ).toBeInTheDocument()
+            },
+            { timeout: 1500 }
+        )
     })
 
     it('logs error when refreshAuth fails', async () => {

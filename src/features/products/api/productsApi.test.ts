@@ -118,10 +118,7 @@ describe('productsApi', () => {
                     product: mockProduct1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockProduct1._id!,
-                    message: 'Product updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockProduct1._id! })
             })
         })
     })
@@ -148,10 +145,7 @@ describe('productsApi', () => {
                     },
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockProduct1._id!,
-                    message: 'Product updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockProduct1._id! })
             })
         })
 

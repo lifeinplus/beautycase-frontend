@@ -7,7 +7,6 @@ import { type CategoryWithCount } from '../categoriesApi'
 
 export const mockCategoryCreate: MutationResult = {
     id: 'category3',
-    message: 'Category created successfully',
 }
 
 export const mockCategory1: Category = {
@@ -47,10 +46,7 @@ const categoriesHandlers = [
     ),
 
     http.put('api/categories/:id', ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Category updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/categories/:id', () =>

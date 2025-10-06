@@ -1,9 +1,11 @@
+@reference '@/app/styles/index.css';
+
 .title {
-    @apply text-center font-heading text-xl font-bold sm:text-xl md:text-3xl lg:text-4xl;
+    @apply font-heading text-center text-xl font-bold sm:text-xl md:text-3xl lg:text-4xl;
 }
 
 .subtitle {
-    @apply mb-6 mt-2 text-center font-heading text-lg text-slate-700 sm:text-lg md:text-xl lg:text-2xl;
+    @apply font-heading mt-2 mb-6 text-center text-lg text-slate-700 sm:text-lg md:text-xl lg:text-2xl;
 }
 
 :global(.dark) .subtitle {

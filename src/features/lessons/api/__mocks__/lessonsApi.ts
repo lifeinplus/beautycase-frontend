@@ -6,7 +6,6 @@ import type { Lesson } from '../../types'
 
 export const mockLessonCreate: MutationResult = {
     id: 'lesson3',
-    message: 'Lesson created successfully',
 }
 
 export const mockLesson1: Lesson = {
@@ -58,17 +57,11 @@ const lessonsHandlers = [
         const lesson = mockLessons.find((p) => p._id === params.id)
         return lesson
             ? HttpResponse.json(lesson)
-            : HttpResponse.json(
-                  { success: false, message: 'Lesson not found' },
-                  { status: 404 }
-              )
+            : HttpResponse.json({ success: false }, { status: 404 })
     }),
 
     http.put('api/lessons/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Lesson updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/lessons/:id', () =>

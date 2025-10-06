@@ -36,7 +36,7 @@ export const TextareaSection = ({
                 className={classNames(
                     inputStyles.input,
                     'peer',
-                    error && formStyles.borderError
+                    error && inputStyles.error
                 )}
                 placeholder={label}
                 rows={rows}

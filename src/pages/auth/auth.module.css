@@ -1,9 +1,15 @@
+@reference '@/app/styles/index.css';
+
 .section {
-    @apply mx-auto flex min-h-screen max-w-80 flex-1 flex-col justify-center py-2.5 sm:mx-auto sm:w-full sm:max-w-login;
+    @apply sm:max-w-login mx-auto flex min-h-screen max-w-80 flex-1 flex-col justify-center py-2.5 sm:mx-auto sm:w-full;
 }
 
 .form {
     @apply mb-2.5 py-2.5 sm:rounded-sm sm:border sm:border-neutral-300;
+}
+
+:global(.dark) .form {
+    @apply border-neutral-700;
 }
 
 .logoContainer {
@@ -11,7 +17,7 @@
 }
 
 .logo {
-    @apply text-center align-baseline font-logo text-5xl;
+    @apply font-logo text-center align-baseline text-5xl;
 }
 
 .inputContainer {
@@ -23,11 +29,19 @@
 }
 
 .input {
-    @apply w-full rounded-sm border bg-neutral-50 pb-1 ps-2 pt-4 text-base placeholder-transparent focus:outline-none;
+    @apply w-full rounded-sm border bg-neutral-50 ps-2 pt-4 pb-1 text-base placeholder-transparent focus:outline-none;
+}
+
+:global(.dark) .input {
+    @apply border-neutral-700 bg-neutral-900 text-neutral-200;
 }
 
 .label {
     @apply absolute start-2 top-1 transform text-xs text-neutral-400 transition-all;
+}
+
+:global(.dark) .label {
+    @apply text-neutral-400;
 }
 
 .input:placeholder-shown + .label {
@@ -39,7 +53,7 @@
 }
 
 .submitContainer {
-    @apply mx-3 mb-2 mt-6 sm:mx-10;
+    @apply mx-3 mt-6 mb-2 sm:mx-10;
 }
 
 .questionContainer {
@@ -50,18 +64,14 @@
     @apply text-center text-base text-neutral-500;
 }
 
-:global(.dark) .form {
-    @apply border-neutral-700;
-}
-
-:global(.dark) .input {
-    @apply border-neutral-700 bg-neutral-900 text-neutral-200;
-}
-
-:global(.dark) .label {
-    @apply text-neutral-400;
-}
-
 :global(.dark) .question {
     @apply text-neutral-400;
+}
+
+.error {
+    @apply border-rose-500;
+}
+
+:global(.dark) .error {
+    @apply border-rose-400;
 }

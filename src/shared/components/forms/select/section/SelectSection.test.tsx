@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import type { SelectOption } from '@/features/form/types'
 import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import { SelectSection, type SelectSectionProps } from './SelectSection'
-
-vi.mock('../../label/Label')
 
 describe('SelectSection', () => {
     const mockOptions: SelectOption[] = [
@@ -22,10 +20,7 @@ describe('SelectSection', () => {
 
     it('renders with the label correctly', () => {
         render(<SelectSection {...mockProps} />)
-
-        expect(screen.getByTestId('mocked-label')).toHaveTextContent(
-            mockProps.label
-        )
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
     })
 
     it('renders with options', () => {
@@ -50,6 +45,6 @@ describe('SelectSection', () => {
         render(<SelectSection {...mockProps} error={mockFieldError.message} />)
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('combobox')).toHaveClass(/borderError/)
+        expect(screen.getByRole('combobox')).toHaveClass(/error/)
     })
 })

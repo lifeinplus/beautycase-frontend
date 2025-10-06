@@ -1,5 +1,7 @@
+@reference '@/app/styles/index.css';
+
 .container {
-    @apply sticky left-0 top-0 z-10 w-full border-b border-neutral-300 bg-white pt-safe-top sm:hidden;
+    @apply pt-safe-top sticky top-0 left-0 z-10 w-full border-b border-neutral-300 bg-white sm:hidden;
 }
 
 .btn {

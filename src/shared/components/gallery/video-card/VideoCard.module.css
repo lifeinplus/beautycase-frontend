@@ -1,3 +1,5 @@
+@reference '@/app/styles/index.css';
+
 .card {
     @apply relative overflow-hidden border-t;
     @apply border-neutral-200;

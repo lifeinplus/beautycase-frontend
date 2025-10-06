@@ -1,5 +1,7 @@
+@reference '@/app/styles/index.css';
+
 .container {
-    @apply relative hidden h-full w-full flex-col overflow-scroll rounded-2.5xl border border-neutral-200 bg-white bg-clip-border text-neutral-700 sm:flex;
+    @apply rounded-2.5xl relative hidden h-full w-full flex-col overflow-scroll border border-neutral-200 bg-white bg-clip-border text-neutral-700 sm:flex;
 }
 
 .table {

@@ -1,6 +1,8 @@
+@reference '@/app/styles/index.css';
+
 .title {
-    @apply my-2 border-b-0.5 border-neutral-200 px-3;
-    @apply sm:mx-auto sm:mb-9 sm:mt-0 sm:block sm:w-11/12 sm:border-b-0 sm:px-0 sm:font-heading;
+    @apply border-b-0.5 my-2 border-neutral-200 px-3;
+    @apply sm:font-heading sm:mx-auto sm:mt-0 sm:mb-9 sm:block sm:w-11/12 sm:border-b-0 sm:px-0;
 }
 
 .headline {

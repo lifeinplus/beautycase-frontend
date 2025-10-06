@@ -5,8 +5,6 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Store } from '../../types'
 import { StoresMobileView } from './StoresMobileView'
 
-vi.mock('@/shared/components/forms/button/Button')
-
 describe('StoresMobileView', () => {
     const mockStores: Store[] = [
         { _id: '1', name: 'Store A' },
@@ -40,7 +38,7 @@ describe('StoresMobileView', () => {
             />
         )
 
-        const editButtons = screen.getAllByTestId('mocked-button')
+        const editButtons = screen.getAllByRole('button')
         const editStoreA = editButtons[0]
 
         await user.click(editStoreA)
@@ -60,7 +58,7 @@ describe('StoresMobileView', () => {
             />
         )
 
-        const deleteButtons = screen.getAllByTestId('mocked-button')
+        const deleteButtons = screen.getAllByRole('button')
         const deleteStoreB = deleteButtons[3]
 
         await user.click(deleteStoreB)

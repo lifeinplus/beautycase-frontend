@@ -20,7 +20,6 @@ import {
 } from './ImageTextSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('../../label/Label')
 vi.mock('../preview/ImagePreview')
 
 describe('ImageTextSection', () => {
@@ -131,7 +130,10 @@ describe('ImageTextSection', () => {
         expect(mockSetValue).not.toHaveBeenCalled()
         expect(mockClearErrors).not.toHaveBeenCalled()
 
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(mockConsoleError).toHaveBeenCalledWith(
+            'Image upload failed',
+            mockError
+        )
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         mockConsoleError.mockRestore()

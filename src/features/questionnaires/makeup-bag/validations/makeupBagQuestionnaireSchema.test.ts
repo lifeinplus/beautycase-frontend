@@ -2,21 +2,21 @@ import { describe, expect, it } from 'vitest'
 import { ValidationError } from 'yup'
 
 import {
-    mockQuestionnaire1,
-    mockQuestionnaireFull,
+    mockMakeupBagQuestionnaire1,
+    mockMakeupBagQuestionnaireFull,
 } from '../../api/__mocks__/questionnairesApi'
 import { makeupBagQuestionnaireSchema } from './makeupBagQuestionnaireSchema'
 
 describe('makeupBagQuestionnaireSchema', () => {
     it('should validate when required fields are present', async () => {
-        const data = { ...mockQuestionnaire1 }
+        const data = { ...mockMakeupBagQuestionnaire1 }
         await expect(
             makeupBagQuestionnaireSchema.validate(data)
         ).resolves.toMatchObject(data)
     })
 
     it('should validate a complete form submission', async () => {
-        const data = { ...mockQuestionnaireFull }
+        const data = { ...mockMakeupBagQuestionnaireFull }
         const result = await makeupBagQuestionnaireSchema.validate(data)
         expect(result).toMatchObject({
             ...data,
@@ -25,20 +25,20 @@ describe('makeupBagQuestionnaireSchema', () => {
     })
 
     it('should transform empty strings to undefined', async () => {
-        const data = { ...mockQuestionnaire1, age: '25', city: '' }
+        const data = { ...mockMakeupBagQuestionnaire1, age: '25', city: '' }
         const result = await makeupBagQuestionnaireSchema.validate(data)
         expect(result.age).toBe(25)
         expect(result.city).toBeUndefined()
     })
 
     it('should transform null values to undefined', async () => {
-        const data = { ...mockQuestionnaire1, instagram: null }
+        const data = { ...mockMakeupBagQuestionnaire1, instagram: null }
         const result = await makeupBagQuestionnaireSchema.validate(data)
         expect(result.instagram).toBeUndefined()
     })
 
     it('should transform age string to number', async () => {
-        const data = { ...mockQuestionnaire1, age: '30' }
+        const data = { ...mockMakeupBagQuestionnaire1, age: '30' }
         const result = await makeupBagQuestionnaireSchema.validate(data)
         expect(result.age).toBe(30)
         expect(typeof result.age).toBe('number')
@@ -46,7 +46,7 @@ describe('makeupBagQuestionnaireSchema', () => {
 
     it('should transform objects with all false values to undefined', async () => {
         const data = {
-            ...mockQuestionnaire1,
+            ...mockMakeupBagQuestionnaire1,
             desiredSkills: {
                 bright: false,
                 delicate: false,
@@ -62,7 +62,7 @@ describe('makeupBagQuestionnaireSchema', () => {
 
     it('should keep objects with at least one true value', async () => {
         const data = {
-            ...mockQuestionnaire1,
+            ...mockMakeupBagQuestionnaire1,
             desiredSkills: {
                 bright: true,
                 delicate: false,
@@ -85,7 +85,7 @@ describe('makeupBagQuestionnaireSchema', () => {
 
     it('should handle undefined values properly', async () => {
         const data = {
-            ...mockQuestionnaire1,
+            ...mockMakeupBagQuestionnaire1,
             age: undefined,
             desiredSkills: undefined,
         }
@@ -98,7 +98,7 @@ describe('makeupBagQuestionnaireSchema', () => {
 
     it('should reject when name is missing', async () => {
         const invalidData = {
-            ...mockQuestionnaire1,
+            ...mockMakeupBagQuestionnaire1,
             name: undefined,
         }
 
@@ -108,7 +108,7 @@ describe('makeupBagQuestionnaireSchema', () => {
 
     it('should reject when makeupBag is missing', async () => {
         const invalidData = {
-            ...mockQuestionnaire1,
+            ...mockMakeupBagQuestionnaire1,
             makeupBag: undefined,
         }
 
@@ -130,16 +130,16 @@ describe('makeupBagQuestionnaireSchema', () => {
         } catch (error) {
             const validationError = error as ValidationError
             expect(validationError.errors).toContain(
-                'fields.makeupBag.errors.required'
+                'makeupBag.fields.makeupBag.errors.required'
             )
             expect(validationError.errors).toContain(
-                'fields.name.errors.required'
+                'makeupBag.fields.name.errors.required'
             )
         }
     })
 
     it('should reject invalid age values', async () => {
-        const data = { ...mockQuestionnaire1, age: 'not-a-number' }
+        const data = { ...mockMakeupBagQuestionnaire1, age: 'not-a-number' }
         await expect(
             makeupBagQuestionnaireSchema.validate(data)
         ).rejects.toThrow()

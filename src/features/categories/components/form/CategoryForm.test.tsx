@@ -17,7 +17,6 @@ import {
 import { CategoryForm } from './CategoryForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/components/forms/button/Button')
 vi.mock('../../api/categoriesApi')
 
 describe('CategoryForm', () => {
@@ -57,11 +56,11 @@ describe('CategoryForm', () => {
 
         renderWithProviders(<CategoryForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
+        expect(
+            screen.getByPlaceholderText('fields.name.label')
+        ).toBeInTheDocument()
 
-        expect(input).toBeInTheDocument()
-        expect(button).toBeInTheDocument()
+        expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
     it('focuses input when focusInput method is called', () => {
@@ -90,7 +89,7 @@ describe('CategoryForm', () => {
             'New Category'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateCategory).toHaveBeenCalledWith({
             name: 'New Category',
@@ -121,7 +120,7 @@ describe('CategoryForm', () => {
         await user.clear(inputName)
         await user.type(inputName, category.name)
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateCategoryById).toHaveBeenCalledWith({
             id: '123',
@@ -152,7 +151,7 @@ describe('CategoryForm', () => {
             'New Category'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateCategory).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -187,7 +186,7 @@ describe('CategoryForm', () => {
             'New Category'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateCategoryById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -200,7 +199,7 @@ describe('CategoryForm', () => {
         const user = userEvent.setup()
 
         render(<CategoryForm ref={mockRef} />)
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(screen.getByText('fields.name.errors.required')).toHaveClass(
             /error/

@@ -8,8 +8,6 @@ import {
 } from '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
 import { mockFieldError } from '@/tests/mocks/form'
 
-vi.mock('../Label')
-
 describe('ButtonNavigateSection', () => {
     const mockProps: ButtonNavigateSectionProps = {
         label: 'Test Label',

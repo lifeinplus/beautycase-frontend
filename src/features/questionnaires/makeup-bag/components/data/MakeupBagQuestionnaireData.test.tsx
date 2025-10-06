@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import config from '@/app/config/config'
-import { mockQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { mockMakeupBagQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 import { mockT } from '@/tests/mocks/translation'
 import { MakeupBagQuestionnaireData } from './MakeupBagQuestionnaireData'
@@ -12,11 +12,13 @@ vi.mock('@/shared/lib/cloudinary/cloudinary')
 
 describe('MakeupBagQuestionnaireData', () => {
     it('renders all fields correctly', () => {
-        render(<MakeupBagQuestionnaireData data={mockQuestionnaire1} />)
+        render(
+            <MakeupBagQuestionnaireData data={mockMakeupBagQuestionnaire1} />
+        )
 
-        expect(mockT).toHaveBeenCalledWith('fields.name.label')
-        expect(mockT).toHaveBeenCalledWith('fields.instagram.label')
-        expect(mockT).toHaveBeenCalledWith('fields.city.label')
+        expect(mockT).toHaveBeenCalledWith('makeupBag.fields.name.label')
+        expect(mockT).toHaveBeenCalledWith('makeupBag.fields.instagram.label')
+        expect(mockT).toHaveBeenCalledWith('makeupBag.fields.city.label')
 
         expect(screen.getByText('Client 1')).toBeInTheDocument()
         expect(screen.getByText('City 1')).toBeInTheDocument()
@@ -25,7 +27,9 @@ describe('MakeupBagQuestionnaireData', () => {
     })
 
     it('displays fallback for undefined values', () => {
-        render(<MakeupBagQuestionnaireData data={mockQuestionnaire1} />)
+        render(
+            <MakeupBagQuestionnaireData data={mockMakeupBagQuestionnaire1} />
+        )
 
         const notSpecifiedElements = screen.getAllByText('notSpecified')
         expect(notSpecifiedElements.length).toBe(19 - 6)
@@ -37,7 +41,7 @@ describe('MakeupBagQuestionnaireData', () => {
         render(
             <MakeupBagQuestionnaireData
                 data={{
-                    ...mockQuestionnaire1,
+                    ...mockMakeupBagQuestionnaire1,
                     makeupBagPhotoId: mockMakeupBagPhotoId,
                 }}
             />
@@ -48,7 +52,9 @@ describe('MakeupBagQuestionnaireData', () => {
     })
 
     it('uses default image when makeupBagPhotoId is not provided', () => {
-        render(<MakeupBagQuestionnaireData data={mockQuestionnaire1} />)
+        render(
+            <MakeupBagQuestionnaireData data={mockMakeupBagQuestionnaire1} />
+        )
 
         expect(cloudinary.image).toHaveBeenCalledWith(
             config.cloudinary.defaultThumbnailName
@@ -64,11 +70,13 @@ describe('MakeupBagQuestionnaireData', () => {
 
         render(
             <MakeupBagQuestionnaireData
-                data={{ ...mockQuestionnaire1, problems: mockData }}
+                data={{ ...mockMakeupBagQuestionnaire1, problems: mockData }}
             />
         )
 
-        expect(screen.getByText('fields.problems.label')).toBeInTheDocument()
+        expect(
+            screen.getByText('makeupBag.fields.problems.label')
+        ).toBeInTheDocument()
 
         const problems = screen.getByText(/eyeshadowCrease.*foundationPores/i)
         expect(problems).toBeInTheDocument()

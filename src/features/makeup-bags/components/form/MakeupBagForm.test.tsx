@@ -18,9 +18,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/categories/api/categoriesApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/users/api/usersApi')
-vi.mock(
-    '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
-)
 vi.mock('@/shared/components/forms/select/section/SelectSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
@@ -72,7 +69,7 @@ describe('MakeupBagForm', () => {
 
         await user.click(
             screen.getByRole('button', {
-                name: 'fields.tools.label',
+                name: /fields.tools.label/,
             })
         )
 
@@ -88,7 +85,7 @@ describe('MakeupBagForm', () => {
 
         await user.click(
             screen.getByRole('button', {
-                name: 'fields.stages.label',
+                name: /fields.stages.label/,
             })
         )
 

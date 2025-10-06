@@ -30,16 +30,6 @@ export const TrainingQuestionnaireData = ({
     ): string => {
         let result = [value]
 
-        if (
-            typeof value === 'object' &&
-            !Array.isArray(value) &&
-            value !== null
-        ) {
-            result = Object.entries(value)
-                .filter(([_, value]) => value)
-                .map(([key]) => key)
-        }
-
         return (
             result
                 .map((r) => t(options?.find((o) => o.value === r)?.label || ''))

@@ -20,9 +20,9 @@ export const makeupBagQuestionnaireSchema = object({
         .optional()
         .default(undefined),
     instagram: string().transform(transformEmpty),
-    makeupBag: string().required('fields.makeupBag.errors.required'),
+    makeupBag: string().required('makeupBag.fields.makeupBag.errors.required'),
     makeupTime: string().transform(transformEmpty),
-    name: string().required('fields.name.errors.required'),
+    name: string().required('makeupBag.fields.name.errors.required'),
     oilyShine: string().transform(transformEmpty),
     peeling: string().transform(transformEmpty),
     pores: string().transform(transformEmpty),

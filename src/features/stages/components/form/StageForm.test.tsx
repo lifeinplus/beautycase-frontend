@@ -9,12 +9,7 @@ import { mockStage1 } from '../../api/__mocks__/stagesApi'
 import { StageForm } from './StageForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock(
-    '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
-)
-vi.mock('@/shared/components/forms/input/section/InputSection')
 vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
-vi.mock('@/shared/components/forms/textarea/section/TextareaSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')

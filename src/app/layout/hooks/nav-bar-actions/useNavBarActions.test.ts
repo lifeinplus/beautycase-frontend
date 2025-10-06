@@ -244,10 +244,22 @@ describe('useNavBarActions', () => {
     })
 
     describe('questionnaireRoutes', () => {
-        it('returns actions on /questionnaires/:id', () => {
+        it('returns actions on /questionnaires/makeup-bags/:id', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/questionnaires/123456789012345678901234',
+                pathname:
+                    '/questionnaires/makeup-bags/123456789012345678901234',
+            })
+
+            const { result } = renderHook(() => useNavBarActions())
+
+            expect(result.current[0].key).toEqual('back')
+        })
+
+        it('returns actions on /questionnaires/trainings/:id', () => {
+            vi.mocked(useLocation).mockReturnValue({
+                ...mockLocation,
+                pathname: '/questionnaires/trainings/123456789012345678901234',
             })
 
             const { result } = renderHook(() => useNavBarActions())

@@ -2,13 +2,15 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
-import { mockQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { mockMakeupBagQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { useGetMakeupBagQuestionnaireByIdQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagQuestionnaireResult } from './MakeupBagQuestionnaireResult'
 
-vi.mock('@/features/questionnaires/components/data/QuestionnaireData')
 vi.mock('@/features/questionnaires/api/questionnairesApi')
+vi.mock(
+    '@/features/questionnaires/makeup-bag/components/data/MakeupBagQuestionnaireData'
+)
 vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/utils/date/formatDate')
@@ -18,7 +20,7 @@ describe('MakeupBagQuestionnaireResult', () => {
         vi.mocked(
             useGetMakeupBagQuestionnaireByIdQuery as Mock
         ).mockReturnValue({
-            data: mockQuestionnaire1,
+            data: mockMakeupBagQuestionnaire1,
             isLoading: false,
             error: null,
         })
@@ -30,10 +32,12 @@ describe('MakeupBagQuestionnaireResult', () => {
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('mocked-questionnaire-data')
+            screen.getByTestId('mocked-makeup-bag-questionnaire-data')
         ).toBeInTheDocument()
 
-        expect(screen.getAllByText(mockQuestionnaire1.name)).toHaveLength(3)
+        expect(
+            screen.getAllByText(mockMakeupBagQuestionnaire1.name)
+        ).toHaveLength(3)
     })
 
     it('should navigate back when back button is clicked', async () => {
@@ -42,6 +46,6 @@ describe('MakeupBagQuestionnaireResult', () => {
         render(<MakeupBagQuestionnaireResult />)
         await user.click(screen.getByTestId('mocked-back-button'))
 
-        expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
+        expect(mockNavigate).toHaveBeenCalledWith('/questionnaires/makeup-bags')
     })
 })

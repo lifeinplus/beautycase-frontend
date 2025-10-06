@@ -1,14 +1,12 @@
 import { render, screen } from '@testing-library/react'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import { describe, expect, it, vi } from 'vitest'
 
-import { type QuestionnaireOption } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
+import type { QuestionnaireOption } from '@/features/questionnaires/types'
 import {
     CheckboxSection,
     type CheckboxSectionProps,
 } from '../../checkbox/section/CheckboxSection'
-
-vi.mock('../../label/Label')
-vi.mock('../item/CheckboxItem')
 
 describe('CheckboxSection', () => {
     const mockOptions: QuestionnaireOption[] = [
@@ -20,27 +18,25 @@ describe('CheckboxSection', () => {
     const mockProps: CheckboxSectionProps = {
         label: 'Test Label',
         options: mockOptions,
-        register: vi.fn(),
+        register: {
+            onChange: vi.fn(),
+            onBlur: vi.fn(),
+            name: 'mock-name',
+            ref: vi.fn(),
+        } as unknown as UseFormRegisterReturn,
     }
 
     it('renders with the label correctly', () => {
         render(<CheckboxSection {...mockProps} />)
-
-        const label = screen.getByTestId('mocked-label')
-        expect(label).toBeInTheDocument()
-        expect(label).toHaveTextContent(mockProps.label)
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
     })
 
     it('renders all options as checkbox items', () => {
         render(<CheckboxSection {...mockProps} />)
 
-        const option1 = screen.getByTestId('mocked-checkbox-item-option-1')
-        const option2 = screen.getByTestId('mocked-checkbox-item-option-2')
-        const option3 = screen.getByTestId('mocked-checkbox-item-option-3')
-
-        expect(option1).toBeInTheDocument()
-        expect(option2).toBeInTheDocument()
-        expect(option3).toBeInTheDocument()
+        expect(screen.getByText(mockOptions[0].label)).toBeInTheDocument()
+        expect(screen.getByText(mockOptions[1].label)).toBeInTheDocument()
+        expect(screen.getByText(mockOptions[2].label)).toBeInTheDocument()
     })
 
     it('renders description if provided', () => {

@@ -42,7 +42,7 @@ describe('NavBar', () => {
         renderWithProviders(<NavBar />)
 
         const buttons = [
-            'menu.questionnaire',
+            'menu.questionnaires',
             'menu.makeupBags',
             'menu.account',
         ]

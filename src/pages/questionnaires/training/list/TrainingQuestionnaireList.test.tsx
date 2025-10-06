@@ -1,45 +1,58 @@
 import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
-import { mockQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
-import { useGetAllMakeupBagQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { mockTrainingQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { useGetAllTrainingQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
+import { mockNavigate } from '@/tests/mocks/router'
+import userEvent from '@testing-library/user-event'
 import { TrainingQuestionnaireList } from './TrainingQuestionnaireList'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
 vi.mock(
-    '@/features/questionnaires/components/mobile-view/QuestionnaireMobileView'
+    '@/features/questionnaires/training/components/mobile-view/TrainingQuestionnaireMobileView'
 )
-vi.mock('@/features/questionnaires/components/table/QuestionnaireTable')
+vi.mock(
+    '@/features/questionnaires/training/components/table/TrainingQuestionnaireTable'
+)
 vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/header/Header')
+vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('TrainingQuestionnaireList', () => {
     beforeEach(() => {
-        vi.mocked(
-            useGetAllMakeupBagQuestionnairesQuery as Mock
-        ).mockReturnValue({
-            data: mockQuestionnaires,
-            isLoading: false,
-            error: null,
-        })
+        vi.mocked(useGetAllTrainingQuestionnairesQuery as Mock).mockReturnValue(
+            {
+                data: mockTrainingQuestionnaires,
+                isLoading: false,
+                error: null,
+            }
+        )
     })
 
     it('renders the component with correct structure', () => {
         render(<TrainingQuestionnaireList />)
 
-        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getAllByTestId('mocked-hero')).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {
         render(<TrainingQuestionnaireList />)
 
         expect(
-            screen.getByTestId('mocked-questionnaire-mobile-view')
+            screen.getByTestId('mocked-training-questionnaire-mobile-view')
         ).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('mocked-questionnaire-table')
+            screen.getByTestId('mocked-training-questionnaire-table')
         ).toBeInTheDocument()
+    })
+
+    it('calls navigate when back button is clicked', async () => {
+        const user = userEvent.setup()
+
+        render(<TrainingQuestionnaireList />)
+        await user.click(screen.getByTestId('mocked-back-button'))
+
+        expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
     })
 })

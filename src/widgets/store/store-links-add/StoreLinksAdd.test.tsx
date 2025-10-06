@@ -30,7 +30,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stores/api/storesApi')
 vi.mock('@/shared/components/common/title-section/TitleSection')
-vi.mock('@/shared/components/forms/button/Button')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
 

@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import type { QuestionnaireOption } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
+import type { QuestionnaireOption } from '@/features/questionnaires/types'
+import { UseFormRegisterReturn } from 'react-hook-form'
 import {
     RadioButtonSection,
     type RadioButtonSectionProps,
 } from './RadioButtonSection'
 
-vi.mock('../../label/Label')
 vi.mock('../item/RadioButtonItem')
 
 describe('RadioButtonSection', () => {
@@ -20,23 +20,30 @@ describe('RadioButtonSection', () => {
     const mockProps: RadioButtonSectionProps = {
         label: 'Test Label',
         options: mockOptions,
-        register: vi.fn(),
+        register: {
+            onChange: vi.fn(),
+            onBlur: vi.fn(),
+            name: 'mock-name',
+            ref: vi.fn(),
+        } as unknown as UseFormRegisterReturn,
     }
 
     it('renders label and radio buttons', () => {
         render(<RadioButtonSection {...mockProps} />)
 
-        const label = screen.getByTestId('mocked-label')
-        expect(label).toBeInTheDocument()
-        expect(label).toHaveTextContent(mockProps.label)
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
 
-        const option1 = screen.getByTestId('mocked-radio-item-option-1')
-        const option2 = screen.getByTestId('mocked-radio-item-option-2')
-        const option3 = screen.getByTestId('mocked-radio-item-option-3')
+        expect(
+            screen.getByTestId('mocked-radio-item-option-1')
+        ).toBeInTheDocument()
 
-        expect(option1).toBeInTheDocument()
-        expect(option2).toBeInTheDocument()
-        expect(option3).toBeInTheDocument()
+        expect(
+            screen.getByTestId('mocked-radio-item-option-2')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByTestId('mocked-radio-item-option-3')
+        ).toBeInTheDocument()
     })
 
     it('renders description if provided', () => {

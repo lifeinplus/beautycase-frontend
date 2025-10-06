@@ -9,10 +9,6 @@ import { mockLesson1 } from '../../api/__mocks__/lessonsApi'
 import { LessonForm } from './LessonForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock(
-    '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
-)
-vi.mock('@/shared/components/forms/textarea/section/TextareaSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')

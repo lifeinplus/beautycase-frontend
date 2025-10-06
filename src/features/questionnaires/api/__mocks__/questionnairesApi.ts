@@ -4,12 +4,11 @@ import { vi } from 'vitest'
 import type { MutationResult } from '@/shared/api/types'
 import type { MakeupBagQuestionnaire, TrainingQuestionnaire } from '../../types'
 
-export const mockQuestionnaireCreated: MutationResult = {
-    id: 'questionnaire3',
-    message: 'Questionnaire created successfully',
+export const mockMakeupBagQuestionnaireCreated: MutationResult = {
+    id: 'makeup-bag-questionnaire-3',
 }
 
-export const mockQuestionnaireFull: MakeupBagQuestionnaire = {
+export const mockMakeupBagQuestionnaireFull: MakeupBagQuestionnaire = {
     name: 'Anna Petrova',
     makeupBag: 'Foundation, mascara, lipstick, blush',
     age: 28,
@@ -48,8 +47,8 @@ export const mockQuestionnaireFull: MakeupBagQuestionnaire = {
     skinType: 'combination',
 }
 
-export const mockQuestionnaire1: MakeupBagQuestionnaire = {
-    _id: 'questionnaire1',
+export const mockMakeupBagQuestionnaire1: MakeupBagQuestionnaire = {
+    _id: 'makeup-bag-questionnaire-1',
     name: 'Client 1',
     instagram: '@client1',
     city: 'City 1',
@@ -57,55 +56,80 @@ export const mockQuestionnaire1: MakeupBagQuestionnaire = {
     makeupBag: 'Brush',
 }
 
-export const mockQuestionnaire2: MakeupBagQuestionnaire = {
-    _id: 'questionnaire2',
+export const mockMakeupBagQuestionnaire2: MakeupBagQuestionnaire = {
+    _id: 'makeup-bag-questionnaire-2',
     name: 'Client 2',
     makeupBag: 'Sponge',
 }
 
-export const mockQuestionnaires: MakeupBagQuestionnaire[] = [
-    mockQuestionnaire1,
-    mockQuestionnaire2,
+export const mockMakeupBagQuestionnaires: MakeupBagQuestionnaire[] = [
+    mockMakeupBagQuestionnaire1,
+    mockMakeupBagQuestionnaire2,
 ]
 
-export const mockTraining1: TrainingQuestionnaire = {
+export const mockTrainingQuestionnaireCreated: MutationResult = {
+    id: 'training-questionnaire-3',
+}
+
+export const mockTrainingQuestionnaire1: TrainingQuestionnaire = {
+    _id: 'training-questionnaire-1',
     name: 'Client 1',
-    contact: '',
+    contact: '@client1',
     expectations: 'I want to learn makeup',
 }
 
-export const mockTraining2: TrainingQuestionnaire = {
+export const mockTrainingQuestionnaire2: TrainingQuestionnaire = {
+    _id: 'training-questionnaire-2',
     name: 'Client 2',
-    contact: '',
-    expectations: 'I want to learn makeup',
+    contact: '@client2',
+    expectations: 'I want to improve my skills',
 }
 
-export const mockTrainings: TrainingQuestionnaire[] = [
-    mockTraining1,
-    mockTraining2,
+export const mockTrainingQuestionnaires: TrainingQuestionnaire[] = [
+    mockTrainingQuestionnaire1,
+    mockTrainingQuestionnaire2,
 ]
 
-export const useCreateQuestionnaireMutation = vi.fn()
-export const useGetAllQuestionnairesQuery = vi.fn()
-export const useGetQuestionnaireByIdQuery = vi.fn()
+export const useCreateMakeupBagQuestionnaireMutation = vi.fn()
+export const useCreateTrainingQuestionnaireMutation = vi.fn()
+export const useGetAllMakeupBagQuestionnairesQuery = vi.fn()
+export const useGetAllTrainingQuestionnairesQuery = vi.fn()
+export const useGetMakeupBagQuestionnaireByIdQuery = vi.fn()
+export const useGetTrainingQuestionnaireByIdQuery = vi.fn()
 
 const questionnairesHandlers = [
-    http.post('api/questionnaires', () =>
-        HttpResponse.json(mockQuestionnaireCreated)
+    http.post('api/questionnaires/makeup-bags', () =>
+        HttpResponse.json(mockMakeupBagQuestionnaireCreated)
     ),
 
-    http.get('api/questionnaires', () => HttpResponse.json(mockQuestionnaires)),
+    http.get('api/questionnaires/makeup-bags', () =>
+        HttpResponse.json(mockMakeupBagQuestionnaires)
+    ),
 
-    http.get('api/questionnaires/:id', ({ params }) => {
-        const questionnaire = mockQuestionnaires.find(
+    http.get('api/questionnaires/makeup-bags/:id', ({ params }) => {
+        const questionnaire = mockMakeupBagQuestionnaires.find(
             (q) => q._id === params.id
         )
         return questionnaire
             ? HttpResponse.json(questionnaire)
-            : HttpResponse.json(
-                  { success: false, message: 'Questionnaire not found' },
-                  { status: 404 }
-              )
+            : HttpResponse.json({ success: false }, { status: 404 })
+    }),
+
+    http.post('api/questionnaires/trainings', () =>
+        HttpResponse.json(mockTrainingQuestionnaireCreated)
+    ),
+
+    http.get('api/questionnaires/trainings', () =>
+        HttpResponse.json(mockTrainingQuestionnaires)
+    ),
+
+    http.get('api/questionnaires/trainings/:id', ({ params }) => {
+        const questionnaire = mockTrainingQuestionnaires.find(
+            (q) => q._id === params.id
+        )
+        return questionnaire
+            ? HttpResponse.json(questionnaire)
+            : HttpResponse.json({ success: false }, { status: 404 })
     }),
 ]
 

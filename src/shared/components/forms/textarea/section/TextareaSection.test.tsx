@@ -11,7 +11,6 @@ import {
 import { TextareaSection, type TextareaSectionProps } from './TextareaSection'
 
 vi.mock('../../image/preview/ImagePreview')
-vi.mock('../../label/Label')
 
 describe('TextareaSection', () => {
     const mockProps: TextareaSectionProps = {
@@ -22,9 +21,7 @@ describe('TextareaSection', () => {
     it('renders with the label correctly', () => {
         render(<TextareaSection {...mockProps} />)
 
-        expect(screen.getByTestId('mocked-label')).toHaveTextContent(
-            mockProps.label
-        )
+        expect(screen.getByText(mockProps.label)).toBeInTheDocument()
 
         expect(screen.getByPlaceholderText(mockProps.label)).toBeInTheDocument()
     })

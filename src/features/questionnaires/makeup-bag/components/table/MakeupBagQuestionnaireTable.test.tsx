@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { mockMakeupBagQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { MakeupBagQuestionnaireTable } from './MakeupBagQuestionnaireTable'
 
 vi.mock('@/shared/components/table/table/Table')
@@ -11,15 +11,17 @@ vi.mock('@/shared/utils/date/formatDate')
 describe('MakeupBagQuestionnaireTable', () => {
     it('renders the table headers correctly', () => {
         render(
-            <MakeupBagQuestionnaireTable questionnaires={mockQuestionnaires} />
+            <MakeupBagQuestionnaireTable
+                questionnaires={mockMakeupBagQuestionnaires}
+            />
         )
 
         const headers = [
-            'table.date',
-            'table.time',
-            'table.clientName',
-            'table.age',
-            'table.city',
+            'makeupBag.table.date',
+            'makeupBag.table.time',
+            'makeupBag.table.clientName',
+            'makeupBag.table.age',
+            'makeupBag.table.city',
         ]
 
         headers.forEach((header) =>
@@ -29,7 +31,9 @@ describe('MakeupBagQuestionnaireTable', () => {
 
     it('renders the table data correctly', () => {
         render(
-            <MakeupBagQuestionnaireTable questionnaires={mockQuestionnaires} />
+            <MakeupBagQuestionnaireTable
+                questionnaires={mockMakeupBagQuestionnaires}
+            />
         )
 
         const dates = screen.getAllByText('2025.04.10')

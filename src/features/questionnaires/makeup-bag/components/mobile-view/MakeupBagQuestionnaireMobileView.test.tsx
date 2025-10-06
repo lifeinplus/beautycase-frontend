@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { mockMakeupBagQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { MakeupBagQuestionnaireMobileView } from './MakeupBagQuestionnaireMobileView'
 
 vi.mock('@/shared/components/table/mobile-view/MobileView')
@@ -11,7 +11,7 @@ describe('MakeupBagQuestionnaireMobileView', () => {
     it('renders the MobileView component with correct props', () => {
         render(
             <MakeupBagQuestionnaireMobileView
-                questionnaires={mockQuestionnaires}
+                questionnaires={mockMakeupBagQuestionnaires}
             />
         )
 

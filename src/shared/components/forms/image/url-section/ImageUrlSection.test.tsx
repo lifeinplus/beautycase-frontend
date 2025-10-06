@@ -29,7 +29,6 @@ import {
 import { ImageUrlSection, type ImageUrlSectionProps } from './ImageUrlSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('../../label/Label')
 vi.mock('../preview/ImagePreview')
 
 describe('ImageUrlSection', () => {

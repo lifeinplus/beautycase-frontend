@@ -17,7 +17,6 @@ import {
 import { BrandForm } from './BrandForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/components/forms/button/Button')
 vi.mock('../../api/brandsApi')
 
 describe('BrandForm', () => {
@@ -57,11 +56,10 @@ describe('BrandForm', () => {
 
         renderWithProviders(<BrandForm ref={mockRef} />)
 
-        const input = screen.getByPlaceholderText('fields.name.label')
-        const button = screen.getByTestId('mocked-button')
-
-        expect(input).toBeInTheDocument()
-        expect(button).toBeInTheDocument()
+        expect(
+            screen.getByPlaceholderText('fields.name.label')
+        ).toBeInTheDocument()
+        expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
     it('focuses input when focusInput method is called', () => {
@@ -85,7 +83,7 @@ describe('BrandForm', () => {
             'New Brand'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateBrand).toHaveBeenCalledWith({ name: 'New Brand' })
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -107,7 +105,7 @@ describe('BrandForm', () => {
         await user.clear(input)
         await user.type(input, brand.name)
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateBrandById).toHaveBeenCalledWith({
             id: '123',
@@ -133,7 +131,7 @@ describe('BrandForm', () => {
             'New Brand'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockCreateBrand).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -163,7 +161,7 @@ describe('BrandForm', () => {
             'New Brand'
         )
 
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(mockUpdateBrandById).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -176,7 +174,7 @@ describe('BrandForm', () => {
         const user = userEvent.setup()
 
         render(<BrandForm ref={mockRef} />)
-        await user.click(screen.getByTestId('mocked-button'))
+        await user.click(screen.getByRole('button'))
 
         expect(screen.getByText('fields.name.errors.required')).toHaveClass(
             /error/

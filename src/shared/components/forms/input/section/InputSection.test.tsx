@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { mockFieldError, mockRegister } from '@/tests/mocks/form'
 import { InputSection, type InputSectionProps } from './InputSection'
-
-vi.mock('../Label')
 
 describe('InputSection', () => {
     const mockProps: InputSectionProps = {

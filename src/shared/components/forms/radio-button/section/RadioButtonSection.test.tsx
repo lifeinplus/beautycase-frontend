@@ -1,7 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import type { QuestionnaireOption } from '@/features/questionnaires/types'
+import type {
+    MakeupBagQuestionnaire,
+    QuestionnaireOption,
+} from '@/features/questionnaires/types'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import {
     RadioButtonSection,
@@ -11,13 +14,13 @@ import {
 vi.mock('../item/RadioButtonItem')
 
 describe('RadioButtonSection', () => {
-    const mockOptions: QuestionnaireOption[] = [
+    const mockOptions: QuestionnaireOption<MakeupBagQuestionnaire>[] = [
         { id: 'option-1', label: 'Option 1', name: 'age', value: 'value1' },
         { id: 'option-2', label: 'Option 2', name: 'brushes', value: 'value2' },
         { id: 'option-3', label: 'Option 3', name: 'city', value: 'value3' },
     ]
 
-    const mockProps: RadioButtonSectionProps = {
+    const mockProps: RadioButtonSectionProps<MakeupBagQuestionnaire> = {
         label: 'Test Label',
         options: mockOptions,
         register: {

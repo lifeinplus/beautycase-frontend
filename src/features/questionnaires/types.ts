@@ -1,4 +1,4 @@
-import { Path } from 'react-hook-form'
+import { FieldValues, Path } from 'react-hook-form'
 
 interface DesiredSkillData {
     bright?: boolean
@@ -59,10 +59,10 @@ export interface TrainingQuestionnaire {
     expectations: string
 }
 
-export interface QuestionnaireOption {
+export interface QuestionnaireOption<T extends FieldValues> {
     id: string
     label: string
-    name: Path<MakeupBagQuestionnaire | TrainingQuestionnaire>
+    name: Path<T>
     value?: string
 }
 

@@ -6,7 +6,6 @@ import type { Product } from '../../types'
 
 export const mockProductCreate: MutationResult = {
     id: 'product3',
-    message: 'Product created successfully',
 }
 
 export const mockProduct1: Product = {
@@ -59,10 +58,7 @@ const productsHandlers = [
         const product = mockProducts.find((p) => p._id === params.id)
         return product
             ? HttpResponse.json(product)
-            : HttpResponse.json(
-                  { success: false, message: 'Product not found' },
-                  { status: 404 }
-              )
+            : HttpResponse.json({ success: false }, { status: 404 })
     }),
 
     http.get('api/products/category/:category', ({}) => {
@@ -74,17 +70,11 @@ const productsHandlers = [
     }),
 
     http.put('api/products/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Product updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.patch('api/products/:id/store-links', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Product updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/products/:id', () =>

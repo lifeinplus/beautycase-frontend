@@ -1,24 +1,24 @@
-import { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { QuestionnaireOption } from '@/features/questionnaires/types'
 import { CheckboxItem } from '@/shared/components/forms/checkbox/item/CheckboxItem'
 import formStyles from '@/shared/components/forms/form.module.css'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { Label } from '../../label/Label'
 
-export interface CheckboxSectionProps {
+export interface CheckboxSectionProps<T extends FieldValues> {
     description?: string
     label: string
-    options: QuestionnaireOption[]
-    register: UseFormRegisterReturn
+    options: QuestionnaireOption<T>[]
+    register: UseFormRegister<T>
 }
 
-export const CheckboxSection = ({
+export const CheckboxSection = <T extends FieldValues>({
     description,
     label,
     options,
     register,
-}: CheckboxSectionProps) => {
+}: CheckboxSectionProps<T>) => {
     const { t } = useTranslation('questionnaire')
 
     return (
@@ -32,7 +32,7 @@ export const CheckboxSection = ({
                             key={o.id}
                             id={o.id}
                             label={t(o.label)}
-                            register={register}
+                            register={register(o.name)}
                         />
                     ))}
                 </nav>

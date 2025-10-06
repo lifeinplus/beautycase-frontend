@@ -1,29 +1,26 @@
 import { render, screen } from '@testing-library/react'
-import { UseFormRegisterReturn } from 'react-hook-form'
 import { describe, expect, it, vi } from 'vitest'
 
-import type { QuestionnaireOption } from '@/features/questionnaires/types'
+import type {
+    MakeupBagQuestionnaire,
+    QuestionnaireOption,
+} from '@/features/questionnaires/types'
 import {
     CheckboxSection,
     type CheckboxSectionProps,
 } from '../../checkbox/section/CheckboxSection'
 
 describe('CheckboxSection', () => {
-    const mockOptions: QuestionnaireOption[] = [
+    const mockOptions: QuestionnaireOption<MakeupBagQuestionnaire>[] = [
         { id: 'option-1', label: 'Option 1', name: 'age' },
         { id: 'option-2', label: 'Option 2', name: 'city' },
         { id: 'option-3', label: 'Option 3', name: 'referral' },
     ]
 
-    const mockProps: CheckboxSectionProps = {
+    const mockProps: CheckboxSectionProps<MakeupBagQuestionnaire> = {
         label: 'Test Label',
         options: mockOptions,
-        register: {
-            onChange: vi.fn(),
-            onBlur: vi.fn(),
-            name: 'mock-name',
-            ref: vi.fn(),
-        } as unknown as UseFormRegisterReturn,
+        register: vi.fn(),
     }
 
     it('renders with the label correctly', () => {

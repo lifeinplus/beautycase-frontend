@@ -113,10 +113,7 @@ describe('makeupBagsApi', () => {
                     makeupBag: mockMakeupBag1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockMakeupBag1._id!,
-                    message: 'MakeupBag updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockMakeupBag1._id! })
             })
         })
     })

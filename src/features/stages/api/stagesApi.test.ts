@@ -106,10 +106,7 @@ describe('stagesApi', () => {
                     stage: mockStage1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockStage1._id!,
-                    message: 'Stage updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockStage1._id! })
             })
         })
     })

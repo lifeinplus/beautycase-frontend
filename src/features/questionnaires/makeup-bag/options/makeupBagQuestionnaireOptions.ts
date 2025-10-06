@@ -1,18 +1,9 @@
-import type { QuestionnaireOption } from '../../types'
+import type { MakeupBagQuestionnaire, QuestionnaireOption } from '../../types'
 
-interface MakeupBagQuestionnaireOptions {
-    budget: QuestionnaireOption[]
-    brushes: QuestionnaireOption[]
-    desiredSkills: QuestionnaireOption[]
-    makeupTime: QuestionnaireOption[]
-    oilyShine: QuestionnaireOption[]
-    peeling: QuestionnaireOption[]
-    pores: QuestionnaireOption[]
-    problems: QuestionnaireOption[]
-    procedures: QuestionnaireOption[]
-    referral: QuestionnaireOption[]
-    skinTypes: QuestionnaireOption[]
-}
+type MakeupBagQuestionnaireOptions = Record<
+    string,
+    QuestionnaireOption<MakeupBagQuestionnaire>[]
+>
 
 export const makeupBagQuestionnaireOptions: MakeupBagQuestionnaireOptions = {
     // TODO: why two places for options? (2)

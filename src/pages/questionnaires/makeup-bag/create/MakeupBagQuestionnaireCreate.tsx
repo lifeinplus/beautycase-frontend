@@ -182,7 +182,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                 options={
                                     makeupBagQuestionnaireOptions.procedures
                                 }
-                                register={register('procedures')}
+                                register={register}
                             />
 
                             <RadioButtonSection
@@ -275,7 +275,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                 options={
                                     makeupBagQuestionnaireOptions.desiredSkills
                                 }
-                                register={register('desiredSkills')}
+                                register={register}
                             />
 
                             <RadioButtonSection
@@ -329,7 +329,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={makeupBagQuestionnaireOptions.problems}
-                                register={register('problems')}
+                                register={register}
                             />
 
                             <RadioButtonSection

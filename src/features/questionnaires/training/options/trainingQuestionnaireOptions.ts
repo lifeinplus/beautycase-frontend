@@ -1,8 +1,9 @@
-import type { QuestionnaireOption } from '../../types'
+import type { QuestionnaireOption, TrainingQuestionnaire } from '../../types'
 
-interface TrainingQuestionnaireOptions {
-    experience: QuestionnaireOption[]
-}
+type TrainingQuestionnaireOptions = Record<
+    string,
+    QuestionnaireOption<TrainingQuestionnaire>[]
+>
 
 export const trainingQuestionnaireOptions: TrainingQuestionnaireOptions = {
     experience: [

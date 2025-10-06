@@ -7,12 +7,10 @@ import type { Stage } from '../../types'
 
 export const mockStageCreate: MutationResult = {
     id: 'stage3',
-    message: 'Stage created successfully',
 }
 
 export const mockStageDuplicate: MutationResult = {
     id: 'stage1-copy',
-    message: 'Stage duplicated successfully',
 }
 
 export const mockStage1: Stage = {
@@ -59,17 +57,11 @@ const stagesHandlers = [
         const stage = mockStages.find((s) => s._id === params.id)
         return stage
             ? HttpResponse.json(stage)
-            : HttpResponse.json(
-                  { success: false, message: 'Stage not found' },
-                  { status: 404 }
-              )
+            : HttpResponse.json({ success: false }, { status: 404 })
     }),
 
     http.put('api/stages/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Stage updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
     http.delete('api/stages/:id', () =>

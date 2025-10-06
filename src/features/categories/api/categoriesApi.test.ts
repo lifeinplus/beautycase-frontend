@@ -88,10 +88,7 @@ describe('categoriesApi', () => {
                     category: mockCategory1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockCategory1._id!,
-                    message: 'Category updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockCategory1._id! })
             })
         })
     })

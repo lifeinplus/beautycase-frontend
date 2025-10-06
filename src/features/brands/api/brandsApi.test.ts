@@ -88,10 +88,7 @@ describe('brandsApi', () => {
                     brand: mockBrand1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockBrand1._id!,
-                    message: 'Brand updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockBrand1._id! })
             })
         })
     })

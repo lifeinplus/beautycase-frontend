@@ -118,10 +118,7 @@ describe('lessonsApi', () => {
                     lesson: mockLesson1,
                 }).unwrap()
 
-                expect(response).toMatchObject({
-                    id: mockLesson1._id!,
-                    message: 'Lesson updated successfully',
-                })
+                expect(response).toMatchObject({ id: mockLesson1._id! })
             })
         })
     })

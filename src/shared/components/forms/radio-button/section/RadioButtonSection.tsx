@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { FieldValues, UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { QuestionnaireOption } from '@/features/questionnaires/types'
@@ -6,21 +6,21 @@ import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from '../../label/Label'
 import { RadioButtonItem } from '../item/RadioButtonItem'
 
-export interface RadioButtonSectionProps {
+export interface RadioButtonSectionProps<T extends FieldValues> {
     description?: string
     horizontal?: boolean
     label: string
-    options: QuestionnaireOption[]
+    options: QuestionnaireOption<T>[]
     register: UseFormRegisterReturn
 }
 
-export const RadioButtonSection = ({
+export const RadioButtonSection = <T extends FieldValues>({
     description,
     horizontal = false,
     label,
     options,
     register,
-}: RadioButtonSectionProps) => {
+}: RadioButtonSectionProps<T>) => {
     const { t } = useTranslation('questionnaire')
 
     return (

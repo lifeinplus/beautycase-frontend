@@ -12,6 +12,7 @@
     "MAKEUP_BAGS_NOT_FOUND": "Makeup bags not found",
     "QUESTIONNAIRE_NOT_FOUND": "Questionnaire not found",
     "QUESTIONNAIRES_NOT_FOUND": "Questionnaires not found",
+    "PAYLOAD_TOO_LARGE": "File size exceeds the limit: 5MB",
     "PRODUCT_IN_USE": "Cannot delete product, it is in use",
     "PRODUCT_NOT_FOUND": "Product not found",
     "PRODUCTS_NOT_FOUND": "Products not found",

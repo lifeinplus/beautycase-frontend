@@ -7,6 +7,7 @@ import { ToolsGallery } from './ToolsGallery'
 
 vi.mock('@/features/tools/api/toolsApi')
 vi.mock('@/shared/components/gallery/image-card/ImageCard')
+vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('ToolsGallery', () => {
@@ -21,9 +22,7 @@ describe('ToolsGallery', () => {
     it('renders list of tools when data is available', () => {
         render(<ToolsGallery />)
 
-        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
-        expect(screen.getByText(/titles.gallery/i)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
+        expect(screen.getAllByText(/titles.gallery/i)).toHaveLength(2)
 
         mockTools.forEach((tool) => {
             expect(

@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 import config from '@/app/config/config'
 import { useCreateTrainingQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
-import { trainingQuestionnaireOptions } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
 import { trainingQuestionnaireQuestions } from '@/features/questionnaires/training/questions/trainingQuestionnaireQuestions'
 import { trainingQuestionnaireSchema } from '@/features/questionnaires/training/validations/trainingQuestionnaireSchema'
 import type { TrainingQuestionnaire } from '@/features/questionnaires/types'
@@ -128,7 +127,8 @@ export const TrainingQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    trainingQuestionnaireOptions.experience
+                                    trainingQuestionnaireQuestions.experience
+                                        .options
                                 }
                                 register={register('experience')}
                             />

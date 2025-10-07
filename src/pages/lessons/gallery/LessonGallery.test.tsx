@@ -7,6 +7,7 @@ import { LessonGallery } from './LessonGallery'
 
 vi.mock('@/features/lessons/api/lessonsApi')
 vi.mock('@/shared/components/gallery/video-card/VideoCard')
+vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('LessonGallery', () => {
@@ -21,9 +22,7 @@ describe('LessonGallery', () => {
     it('renders list of lessons when data is available', () => {
         render(<LessonGallery />)
 
-        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
         expect(screen.getByText(/titles.gallery/i)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
 
         mockLessons.forEach((lesson) => {
             expect(

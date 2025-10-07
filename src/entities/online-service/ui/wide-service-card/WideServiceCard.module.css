@@ -1,11 +1,15 @@
 @reference '@/app/styles/index.css';
 
 .container {
-    @apply relative rounded-xl p-2 shadow-md ring-1 ring-gray-200;
+    @apply relative rounded-xl p-2 shadow-md ring-1 ring-neutral-200;
 }
 
 :global(.dark) .container {
-    @apply bg-gray-900 ring-gray-700;
+    @apply ring-neutral-700;
+}
+
+.wrapper {
+    @apply p-6 pb-8;
 }
 
 .name {
@@ -33,11 +37,11 @@
 }
 
 .includedLine {
-    @apply h-px flex-auto bg-gray-200;
+    @apply h-px flex-auto bg-neutral-200;
 }
 
 :global(.dark) .includedLine {
-    @apply bg-gray-700;
+    @apply bg-neutral-700;
 }
 
 .features {
@@ -57,11 +61,11 @@
 }
 
 .pay {
-    @apply rounded-lg bg-gray-50 py-10 ring-1 ring-gray-200;
+    @apply rounded-lg bg-neutral-50 py-10 ring-1 ring-neutral-200;
 }
 
 :global(.dark) .pay {
-    @apply bg-gray-950 ring-gray-700;
+    @apply bg-neutral-950 ring-neutral-700;
 }
 
 .priceContainer {
@@ -85,9 +89,9 @@
 }
 
 .button {
-    @apply mt-8 block rounded-lg border border-rose-300 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100 sm:mt-10;
+    @apply mt-8 block rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-light text-rose-500 font-stretch-75% transition-colors hover:border-rose-700 hover:text-rose-700 sm:mt-10;
 }
 
 :global(.dark) .button {
-    @apply border-rose-600 bg-gray-900 hover:bg-black;
+    @apply border-rose-500 bg-black text-rose-500 hover:border-rose-400 hover:text-rose-400;
 }

@@ -10,7 +10,7 @@ export interface RadioButtonSectionProps<T extends FieldValues> {
     description?: string
     horizontal?: boolean
     label: string
-    options: QuestionnaireOption<T>[]
+    options?: QuestionnaireOption<T>[]
     register: UseFormRegisterReturn
 }
 
@@ -31,7 +31,7 @@ export const RadioButtonSection = <T extends FieldValues>({
                 <nav
                     className={`flex min-w-[240px] gap-1 p-2 ${horizontal ? 'flex-row' : 'flex-col'}`}
                 >
-                    {options.map((o) => (
+                    {options?.map((o) => (
                         <RadioButtonItem
                             key={o.id}
                             id={o.id}

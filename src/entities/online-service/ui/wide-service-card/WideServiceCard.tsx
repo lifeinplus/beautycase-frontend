@@ -25,7 +25,7 @@ export const WideServiceCard = ({
 
     return (
         <div className={styles.container}>
-            <div className="p-4 pb-8 sm:p-8">
+            <div className={styles.wrapper}>
                 <h4 className={styles.name}>{name}</h4>
                 <p className={styles.blurb}>{blurb}</p>
                 <div className="mt-10 flex items-center gap-4">

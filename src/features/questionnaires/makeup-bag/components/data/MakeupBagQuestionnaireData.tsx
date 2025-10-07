@@ -7,7 +7,7 @@ import config from '@/app/config/config'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import type {
     MakeupBagQuestionnaire,
-    QuestionnaireResultOption,
+    QuestionnaireOption,
 } from '@/features/questionnaires/types'
 import dlStyles from '@/shared/components/ui/description-list/description-list.module.css'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
@@ -55,7 +55,7 @@ export const MakeupBagQuestionnaireData = ({
 
     const renderText = (
         value: MakeupBagQuestionnaire[keyof MakeupBagQuestionnaire],
-        options?: QuestionnaireResultOption[]
+        options?: QuestionnaireOption<MakeupBagQuestionnaire>[]
     ): string => {
         let result = [value]
 

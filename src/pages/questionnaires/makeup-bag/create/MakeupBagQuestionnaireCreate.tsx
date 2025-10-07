@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 import config from '@/app/config/config'
 import { useCreateMakeupBagQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
-import { makeupBagQuestionnaireOptions } from '@/features/questionnaires/makeup-bag/options/makeupBagQuestionnaireOptions'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import { makeupBagQuestionnaireSchema } from '@/features/questionnaires/makeup-bag/validations/makeupBagQuestionnaireSchema'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
@@ -180,7 +179,8 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    makeupBagQuestionnaireOptions.procedures
+                                    makeupBagQuestionnaireQuestions.procedures
+                                        .options
                                 }
                                 register={register}
                             />
@@ -191,7 +191,8 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    makeupBagQuestionnaireOptions.skinTypes
+                                    makeupBagQuestionnaireQuestions.skinType
+                                        .options
                                 }
                                 register={register('skinType')}
                             />
@@ -218,7 +219,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                     makeupBagQuestionnaireQuestions.peeling
                                         .label
                                 )}
-                                options={makeupBagQuestionnaireOptions.peeling}
+                                options={
+                                    makeupBagQuestionnaireQuestions.peeling
+                                        .options
+                                }
                                 register={register('peeling')}
                             />
 
@@ -231,7 +235,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                 label={t(
                                     makeupBagQuestionnaireQuestions.pores.label
                                 )}
-                                options={makeupBagQuestionnaireOptions.pores}
+                                options={
+                                    makeupBagQuestionnaireQuestions.pores
+                                        .options
+                                }
                                 register={register('pores')}
                             />
 
@@ -246,7 +253,8 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    makeupBagQuestionnaireOptions.oilyShine
+                                    makeupBagQuestionnaireQuestions.oilyShine
+                                        .options
                                 }
                                 register={register('oilyShine')}
                             />
@@ -273,7 +281,8 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .desiredSkills.label
                                 )}
                                 options={
-                                    makeupBagQuestionnaireOptions.desiredSkills
+                                    makeupBagQuestionnaireQuestions
+                                        .desiredSkills.options
                                 }
                                 register={register}
                             />
@@ -288,7 +297,8 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    makeupBagQuestionnaireOptions.makeupTime
+                                    makeupBagQuestionnaireQuestions.makeupTime
+                                        .options
                                 }
                                 register={register('makeupTime')}
                             />
@@ -301,7 +311,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                 label={t(
                                     makeupBagQuestionnaireQuestions.budget.label
                                 )}
-                                options={makeupBagQuestionnaireOptions.budget}
+                                options={
+                                    makeupBagQuestionnaireQuestions.budget
+                                        .options
+                                }
                                 register={register('budget')}
                             />
 
@@ -315,7 +328,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                     makeupBagQuestionnaireQuestions.brushes
                                         .label
                                 )}
-                                options={makeupBagQuestionnaireOptions.brushes}
+                                options={
+                                    makeupBagQuestionnaireQuestions.brushes
+                                        .options
+                                }
                                 register={register('brushes')}
                             />
 
@@ -328,7 +344,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                     makeupBagQuestionnaireQuestions.problems
                                         .label
                                 )}
-                                options={makeupBagQuestionnaireOptions.problems}
+                                options={
+                                    makeupBagQuestionnaireQuestions.problems
+                                        .options
+                                }
                                 register={register}
                             />
 
@@ -341,7 +360,10 @@ export const MakeupBagQuestionnaireCreate = () => {
                                     makeupBagQuestionnaireQuestions.referral
                                         .label
                                 )}
-                                options={makeupBagQuestionnaireOptions.referral}
+                                options={
+                                    makeupBagQuestionnaireQuestions.referral
+                                        .options
+                                }
                                 register={register('referral')}
                             />
                         </article>

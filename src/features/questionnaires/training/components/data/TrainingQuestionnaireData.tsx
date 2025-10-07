@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import dlStyles from '@/shared/components/ui/description-list/description-list.module.css'
-import type {
-    QuestionnaireResultOption,
-    TrainingQuestionnaire,
-} from '../../../types'
+import type { QuestionnaireOption, TrainingQuestionnaire } from '../../../types'
 import { trainingQuestionnaireQuestions } from '../../questions/trainingQuestionnaireQuestions'
 
 export interface TrainingQuestionnaireDataProps {
@@ -26,7 +23,7 @@ export const TrainingQuestionnaireData = ({
 
     const renderText = (
         value: TrainingQuestionnaire[keyof TrainingQuestionnaire],
-        options?: QuestionnaireResultOption[]
+        options?: QuestionnaireOption<TrainingQuestionnaire>[]
     ): string => {
         let result = [value]
 

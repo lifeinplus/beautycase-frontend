@@ -12,6 +12,7 @@
     "MAKEUP_BAGS_NOT_FOUND": "Косметички не найдены",
     "QUESTIONNAIRE_NOT_FOUND": "Анкета не найдена",
     "QUESTIONNAIRES_NOT_FOUND": "Анкеты не найдены",
+    "PAYLOAD_TOO_LARGE": "Размер файла превышает лимит: 5MB",
     "PRODUCT_IN_USE": "Нельзя удалить продукт, он используется",
     "PRODUCT_NOT_FOUND": "Продукт не найден",
     "PRODUCTS_NOT_FOUND": "Продукты не найдены",

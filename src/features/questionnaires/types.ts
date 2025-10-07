@@ -66,17 +66,12 @@ export interface QuestionnaireOption<T extends FieldValues> {
     value?: string
 }
 
-export interface QuestionnaireResultOption {
-    label: string
-    value: string
-}
-
-interface Question {
+interface Question<T extends FieldValues> {
     description?: string
     label: string
-    options?: QuestionnaireResultOption[]
+    options?: QuestionnaireOption<T>[]
 }
 
-export interface Questions {
-    [key: string]: Question
+export interface Questions<T extends FieldValues> {
+    [key: string]: Question<T>
 }

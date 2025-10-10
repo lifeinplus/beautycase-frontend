@@ -11,7 +11,7 @@ import { mockNavigate } from '@/tests/mocks/router'
 import { TrainingQuestionnaireCreate } from './TrainingQuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
-vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/hero/Hero')
 vi.mock('@/shared/components/forms/radio-button/section/RadioButtonSection')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 

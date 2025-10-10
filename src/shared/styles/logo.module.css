@@ -1,5 +1,0 @@
-@reference '@/app/styles/index.css';
-
-.logo {
-    @apply font-logo text-2xl;
-}

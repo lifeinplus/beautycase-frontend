@@ -13,17 +13,11 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData, selectFormData } from '@/features/form/slice/formSlice'
 import { useGetAllStoresQuery } from '@/features/stores/api/storesApi'
 import { StoreLink } from '@/features/stores/types'
-import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
 import { Button } from '@/shared/components/forms/button/Button'
-import formStyles from '@/shared/components/forms/form.module.css'
-import selectStyles from '@/shared/components/forms/select/section/SelectSection.module.css'
+import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
-import inputStyles from '@/shared/components/ui/input/Input.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import styles from './StoreLinksAdd.module.css'
 
 export interface StoreLinksAddProps {
     onSave: (id: string, storeLinks: StoreLink[]) => Promise<void>
@@ -108,14 +102,11 @@ export const StoreLinksAdd = ({
         <article>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <TitleSection title={t('titles.add')} hideOnMobile />
 
-                    <form
-                        className={(formStyles.form, 'px-0')}
-                        onSubmit={handleSave}
-                    >
+                    <form className="space-y-6 px-0" onSubmit={handleSave}>
                         <article className="pb-4">
                             {storeLinks.map((storeLink, index) => {
                                 const { _id = '', link } = storeLink
@@ -123,14 +114,21 @@ export const StoreLinksAdd = ({
                                 return (
                                     <div
                                         key={index}
-                                        className={styles.container}
+                                        className={classNames(
+                                            'space-y-4 border-b border-neutral-100 px-3 py-4',
+                                            'sm:grid sm:grid-cols-12 sm:gap-4 sm:space-y-0 sm:border-b-0 sm:pt-0',
+                                            'dark:border-neutral-800'
+                                        )}
                                     >
-                                        <div className={styles.stores}>
-                                            <ChevronDownIcon
-                                                className={selectStyles.icon}
-                                            />
+                                        <div className="grid sm:col-span-3">
+                                            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
                                             <select
-                                                className={selectStyles.select}
+                                                className={classNames(
+                                                    'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',
+                                                    'bg-white placeholder-neutral-500',
+                                                    'border border-neutral-200 focus:border-black',
+                                                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
+                                                )}
                                                 name="stores"
                                                 onChange={(e) =>
                                                     handleChangeStore(e, index)
@@ -150,13 +148,16 @@ export const StoreLinksAdd = ({
                                                 ))}
                                             </select>
                                         </div>
-                                        <div className={styles.link}>
+                                        <div className="sm:col-span-7">
                                             <textarea
                                                 aria-label={t(
                                                     'fields.link.ariaLabel'
                                                 )}
                                                 className={classNames(
-                                                    inputStyles.input,
+                                                    'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
+                                                    'bg-white placeholder-neutral-500',
+                                                    'border border-neutral-200 focus:border-black',
+                                                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
                                                     'sm:hidden'
                                                 )}
                                                 name="links"
@@ -174,7 +175,10 @@ export const StoreLinksAdd = ({
                                                     'fields.link.ariaLabel'
                                                 )}
                                                 className={classNames(
-                                                    inputStyles.input,
+                                                    'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
+                                                    'bg-white placeholder-neutral-500',
+                                                    'border border-neutral-200 focus:border-black',
+                                                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
                                                     'hidden sm:block'
                                                 )}
                                                 onChange={(e) =>
@@ -191,7 +195,7 @@ export const StoreLinksAdd = ({
                                             aria-label={t(
                                                 'buttons.linkDelete.ariaLabel'
                                             )}
-                                            className={styles.delete}
+                                            className="w-full sm:col-span-2"
                                             onClick={() => handleDelete(index)}
                                             type="button"
                                             variant="danger"
@@ -202,7 +206,7 @@ export const StoreLinksAdd = ({
                                 )
                             })}
 
-                            <div className={styles.add}>
+                            <div className="mx-3 mt-4 sm:mt-0">
                                 <Button
                                     aria-label={t('buttons.linkAdd.ariaLabel')}
                                     className="w-full"
@@ -215,7 +219,13 @@ export const StoreLinksAdd = ({
                             </div>
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 isLoading={isSaving}
                                 label={

@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -9,16 +10,13 @@ import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
 import { useGetProductCategoriesQuery } from '@/features/categories/api/categoriesApi'
 import { selectFormData } from '@/features/form/slice/formSlice'
 import type { SelectOption } from '@/features/form/types'
-import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
-import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageUrlSection } from '@/shared/components/forms/image/url-section/ImageUrlSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
+import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
 import type { Product } from '../../types'
 import { productSchema } from '../../validations'
 
@@ -77,12 +75,12 @@ export const ProductForm = ({
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <TitleSection title={title} hideOnMobile />
 
                     <form
-                        className={formStyles.form}
+                        className="space-y-6"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
@@ -140,7 +138,13 @@ export const ProductForm = ({
                             />
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 isLoading={isSaving}
                                 label={

@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 
-import styles from './Table.module.css'
 import type { Header } from './types'
 
 export interface TableProps<T> {
@@ -10,14 +9,23 @@ export interface TableProps<T> {
 }
 
 export const Table = <T,>({ headers, data, renderRow }: TableProps<T>) => (
-    <div className={styles.container}>
-        <table className={styles.table}>
+    <div
+        className={classNames(
+            'rounded-2.5xl relative hidden h-full w-full flex-col overflow-scroll border border-neutral-200 bg-white bg-clip-border text-neutral-700 sm:flex',
+            'dark:border-neutral-800 dark:bg-black dark:text-neutral-300'
+        )}
+    >
+        <table className="w-full min-w-max table-auto text-left">
             <thead>
                 <tr>
                     {headers.map(({ label, className }) => (
                         <th
                             key={label}
-                            className={classNames(styles.th, className)}
+                            className={classNames(
+                                'border-b border-neutral-300 p-4 text-xs font-normal text-neutral-600',
+                                'dark:border-neutral-700 dark:text-neutral-400',
+                                className
+                            )}
                         >
                             {label}
                         </th>

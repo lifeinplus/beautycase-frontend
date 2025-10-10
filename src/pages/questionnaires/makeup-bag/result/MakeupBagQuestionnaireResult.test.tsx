@@ -11,7 +11,6 @@ vi.mock('@/features/questionnaires/api/questionnairesApi')
 vi.mock(
     '@/features/questionnaires/makeup-bag/components/data/MakeupBagQuestionnaireData'
 )
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/utils/date/formatDate')
 

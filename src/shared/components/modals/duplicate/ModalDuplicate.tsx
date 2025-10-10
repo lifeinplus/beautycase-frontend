@@ -2,9 +2,6 @@ import classNames from 'classnames'
 import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import styles from '../modal.module.css'
-
 export interface ModalDuplicateProps {
     title?: string
     description?: string
@@ -40,19 +37,27 @@ export const ModalDuplicate = ({
     if (!isOpen) return null
 
     return (
-        <div className={styles.modal} onClick={handleClickOutside}>
-            <div className={styles.container} ref={modalRef}>
-                <div className={styles.content}>
-                    <h2 className={styles.title}>{title}</h2>
-                    <p className={styles.description}>{description}</p>
+        <div
+            className="sm:ps-navbar lg:ps-navbar-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            onClick={handleClickOutside}
+        >
+            <div
+                className="m-5 flex w-3/4 max-w-96 flex-col space-y-10 rounded-xl bg-white shadow-lg sm:w-1/2 dark:bg-neutral-800"
+                ref={modalRef}
+            >
+                <div className="mt-8 space-y-3 px-5 text-center">
+                    <h2 className="text-lg font-bold">{title}</h2>
+                    <p className="text-base leading-snug text-neutral-500 dark:text-neutral-300">
+                        {description}
+                    </p>
                 </div>
-                <div className={styles.btnGroup}>
+                <div className="w-full space-y-2">
                     <button
                         aria-label={t('buttons.duplicate.ariaLabel')}
                         onClick={onConfirm}
                         className={classNames(
-                            commonStyles.textWarning,
-                            styles.btn
+                            'text-amber-500 dark:text-amber-400',
+                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold'
                         )}
                     >
                         {t('buttons.duplicate.text')}
@@ -60,7 +65,10 @@ export const ModalDuplicate = ({
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
                         onClick={onCancel}
-                        className={classNames(styles.btn, styles.btnBottom)}
+                        className={classNames(
+                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
+                            'rounded-b-xl pb-2 font-light text-black dark:text-white'
+                        )}
                     >
                         {t('buttons.cancel.text')}
                     </button>

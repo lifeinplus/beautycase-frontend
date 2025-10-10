@@ -2,13 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { useGetLessonByIdQuery } from '@/features/lessons/api/lessonsApi'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
-import { VideoSection } from '@/shared/components/common/video-section/VideoSection'
+import { VideoSection } from '@/pages/lessons/details/ui/VideoSection'
+import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ProductImages } from '@/widgets/product/product-images/ProductImages'
-import styles from './LessonDetails.module.css'
 import { useLessonDetailsActions } from './hooks/useLessonDetailsActions'
 
 export const LessonDetails = () => {
@@ -23,11 +21,11 @@ export const LessonDetails = () => {
     const title = data?.title || t('titles.details')
 
     return (
-        <article className={pageStyles.page}>
+        <article className="pb-13 sm:pb-0">
             <TopPanel title={title} onBack={backAction?.onClick} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <DataWrapper isLoading={isLoading} error={error}>
                         <TitleSection
                             title={data?.title}
@@ -35,15 +33,15 @@ export const LessonDetails = () => {
                             hideOnMobile
                         />
 
-                        <section className={styles.container}>
-                            <h2 className={styles.title}>
+                        <section className="mt-2 mb-3 sm:hidden">
+                            <h2 className="font-heading px-3 text-center text-lg text-slate-700 dark:text-slate-400">
                                 {data?.shortDescription}
                             </h2>
                         </section>
 
                         <VideoSection name={data?.title} url={data?.videoUrl} />
 
-                        <section className={pageStyles.description}>
+                        <section className="my-3 px-4 text-base">
                             <p>{data?.fullDescription}</p>
                         </section>
 

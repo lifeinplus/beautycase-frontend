@@ -1,7 +1,5 @@
 import { ReactNode } from 'react'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-
 export interface LabelProps {
     children?: ReactNode
     required?: boolean
@@ -12,7 +10,9 @@ export const Label = ({ children, required, text }: LabelProps) => (
     <label className="block">
         <span className="block py-4 font-bold">
             {text}
-            {required && <span className={commonStyles.textDanger}> *</span>}
+            {required && (
+                <span className={'text-rose-500 dark:text-rose-400'}> *</span>
+            )}
         </span>
 
         {children}

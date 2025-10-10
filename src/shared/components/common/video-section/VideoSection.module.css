@@ -1,9 +1,0 @@
-@reference '@/app/styles/index.css';
-
-.container {
-    @apply relative mb-6 aspect-video max-w-full overflow-hidden;
-}
-
-.container iframe {
-    @apply absolute top-0 left-0 h-full w-full;
-}

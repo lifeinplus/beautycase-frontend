@@ -16,7 +16,7 @@ vi.mock('@/shared/components/forms/image/text-section/ImageTextSection')
 vi.mock('@/shared/components/forms/radio-button/section/RadioButtonSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/layout/header/Header')
-vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/hero/Hero')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('MakeupBagQuestionnaireCreate', () => {

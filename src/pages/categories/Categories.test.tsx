@@ -20,7 +20,6 @@ vi.mock('@/features/categories/components/form/CategoryForm')
 vi.mock('@/features/categories/components/mobile-view/CategoriesMobileView')
 vi.mock('@/features/categories/components/table/CategoriesTable')
 vi.mock('@/features/form/slice/formSlice')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/navigation/nav-button/NavButton')
@@ -56,7 +55,6 @@ describe('Categories', () => {
         render(<Categories />)
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-category-form')).toBeInTheDocument()
 
         expect(
@@ -82,6 +80,8 @@ describe('Categories', () => {
         expect(
             screen.getByTestId('mocked-table-category-category2')
         ).toBeInTheDocument()
+
+        expect(screen.getAllByText(/titles.list/)).toHaveLength(2)
     })
 
     it('should navigate back when back button is clicked', async () => {

@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useGetAllMakeupBagQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { MakeupBagQuestionnaireMobileView } from '@/features/questionnaires/makeup-bag/components/mobile-view/MakeupBagQuestionnaireMobileView'
 import { MakeupBagQuestionnaireTable } from '@/features/questionnaires/makeup-bag/components/table/MakeupBagQuestionnaireTable'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { Hero } from '@/shared/components/common/hero/Hero'
+import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
 export const MakeupBagQuestionnaireList = () => {
     const navigate = useNavigate()
@@ -30,8 +29,8 @@ export const MakeupBagQuestionnaireList = () => {
     return (
         <article>
             <TopPanel title={title} onBack={handleBack} />
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
                         headline={title}
                         byline={t('makeupBag.hero.byline')}

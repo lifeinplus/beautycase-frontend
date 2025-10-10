@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 
 import { getThumbnail } from '@/shared/utils/youtube/getThumbnail'
 import { Image } from '../../ui/image/Image'
-import styles from './VideoCard.module.css'
 
 interface VideoData {
     _id?: string
@@ -17,17 +16,20 @@ export interface VideoCardProps {
 }
 
 export const VideoCard = ({ data, path }: VideoCardProps) => (
-    <Link to={path} className={styles.card}>
-        <div className={styles.thumbnail}>
+    <Link
+        to={path}
+        className="relative overflow-hidden border-t border-neutral-200 dark:border-neutral-800"
+    >
+        <div className="relative mx-auto aspect-video w-full overflow-hidden">
             <Image
                 alt={`${data.title} Thumbnail`}
                 src={getThumbnail(data.videoUrl)}
             />
         </div>
 
-        <div className={styles.metadata}>
-            <h3 className={styles.headline}>{data.title}</h3>
-            <p className={styles.byline}>{data.shortDescription}</p>
+        <div className="mx-3 mt-2">
+            <h3 className="text-sm">{data.title}</h3>
+            <p className="text-xs text-gray-400">{data.shortDescription}</p>
         </div>
     </Link>
 )

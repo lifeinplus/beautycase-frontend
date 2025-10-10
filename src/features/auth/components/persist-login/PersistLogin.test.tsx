@@ -10,8 +10,7 @@ import { PersistLogin } from './PersistLogin'
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/app/config/config')
 vi.mock('@/features/auth/hooks/refresh-auth/useRefreshAuth')
-vi.mock('@/shared/components/common/spinner/Spinner')
-vi.mock('@/shared/components/common/startup-progress/StartupProgress')
+vi.mock('./ui/startup-progress/StartupProgress')
 
 const MockRoutes = () => (
     <Routes>
@@ -35,7 +34,7 @@ describe('PersistLogin', () => {
     it('renders Spinner while authentication is being refreshed', () => {
         renderWithRouter(<MockRoutes />)
 
-        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
+        expect(screen.getByRole('presentation')).toBeInTheDocument()
         expect(mockRefreshAuth).toHaveBeenCalledTimes(1)
     })
 
@@ -66,7 +65,7 @@ describe('PersistLogin', () => {
 
         renderWithRouter(<MockRoutes />)
 
-        expect(screen.getByTestId('mocked-spinner')).toBeInTheDocument()
+        expect(screen.getByRole('presentation')).toBeInTheDocument()
 
         await waitFor(
             () => {

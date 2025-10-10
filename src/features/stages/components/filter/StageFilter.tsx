@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import selectStyles from '@/shared/components/forms/select/section/SelectSection.module.css'
+import classNames from 'classnames'
 import type { Stage } from '../../types'
 
 export interface StageFilterProps {
@@ -44,10 +44,15 @@ export const StageFilter = ({ onFilterChange, stages }: StageFilterProps) => {
     }, [selectedMakeupBagId, makeupBags, stages, onFilterChange])
 
     return (
-        <div className="mb-6 grid pe-5 ps-4 sm:p-0">
-            <ChevronDownIcon className={selectStyles.icon} />
+        <div className="mb-6 grid ps-4 pe-5 sm:p-0">
+            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
             <select
-                className={selectStyles.select}
+                className={classNames(
+                    'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',
+                    'bg-white placeholder-neutral-500',
+                    'border border-neutral-200 focus:border-black',
+                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
+                )}
                 onChange={(e) => setSelectedMakeupBagId(e.target.value)}
                 value={selectedMakeupBagId}
             >

@@ -1,10 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from '../../label/Label'
-import styles from './ButtonNavigateSection.module.css'
 
 export interface ButtonNavigateSectionProps {
     label: string
@@ -28,8 +25,10 @@ export const ButtonNavigateSection = ({
             <Label required={required} text={label}>
                 <button
                     className={classNames(
-                        styles.buttonNavigate,
-                        error && styles.error
+                        'flex w-full items-center justify-between bg-white px-4 py-2.5',
+                        'rounded-xl border border-neutral-200 focus:border-black focus:outline-none',
+                        'dark:border-neutral-700 dark:bg-black dark:focus:border-white',
+                        error && 'border-rose-500 dark:border-rose-400'
                     )}
                     onClick={onNavigate}
                     type="button"
@@ -40,14 +39,16 @@ export const ButtonNavigateSection = ({
             </Label>
 
             {description && (
-                <p className={formStyles.description}>{description}</p>
+                <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                    {description}
+                </p>
             )}
 
             {error && (
                 <p
                     className={classNames(
-                        commonStyles.textDanger,
-                        formStyles.error
+                        'text-rose-500 dark:text-rose-400',
+                        'mt-2 text-sm'
                     )}
                 >
                     {error}

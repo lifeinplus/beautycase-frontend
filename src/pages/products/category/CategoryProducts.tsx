@@ -2,12 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { Hero } from '@/shared/components/common/hero/Hero'
 import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
+import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
-import styles from './CategoryProducts.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
 export const CategoryProducts = () => {
     const navigate = useNavigate()
@@ -32,13 +30,13 @@ export const CategoryProducts = () => {
         .join(' ')
 
     return (
-        <article className={pageStyles.page}>
+        <article className="pb-13 sm:pb-0">
             <TopPanel title={title} onBack={handleBack} />
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero headline={title} hideOnMobile />
                     <DataWrapper isLoading={isLoading} error={error}>
-                        <article className={styles.container}>
+                        <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7">
                             {data.map((p) => (
                                 <ImageCard
                                     key={p._id}

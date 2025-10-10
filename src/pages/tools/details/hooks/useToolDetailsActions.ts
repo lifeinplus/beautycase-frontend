@@ -14,7 +14,6 @@ import {
     useGetToolByIdQuery,
 } from '@/features/tools/api/toolsApi'
 import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
-import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useToolDetailsActions = () => {
@@ -73,7 +72,7 @@ export const useToolDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navButtonStyles.navBtnBack,
+            className: 'hidden sm:flex',
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>

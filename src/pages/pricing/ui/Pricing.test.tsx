@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Pricing } from './Pricing'
 
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/online-services/ui/OnlineServices')
 
@@ -13,7 +12,8 @@ describe('Pricing page', () => {
         renderWithRouter(<Pricing />)
 
         expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByText('hero.headline')).toBeInTheDocument()
+        expect(screen.getByText('hero.byline')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-online-services')).toBeInTheDocument()
     })
 
@@ -26,11 +26,6 @@ describe('Pricing page', () => {
 
     it('applies correct CSS classes for layout', () => {
         renderWithRouter(<Pricing />)
-
-        const mainElement = screen.getByRole('main')
-        const containerElement = screen.getByTestId('mocked-hero').parentElement
-
-        expect(mainElement).toHaveClass(/_content_/)
-        expect(containerElement).toHaveClass(/_container_/)
+        expect(screen.getByRole('main')).toHaveClass(/_content_/)
     })
 })

@@ -1,5 +1,4 @@
 import config from '@/app/config/config'
-import imageStyles from '@/shared/components/ui/image/Image.module.css'
 
 export interface ImageProps {
     alt?: string
@@ -9,7 +8,7 @@ export interface ImageProps {
 
 export const Image = ({
     alt,
-    className = imageStyles.img,
+    className = 'h-full w-full object-cover sm:rounded',
     src,
 }: ImageProps) => {
     return (

@@ -2,7 +2,7 @@ import { FieldValues, UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { QuestionnaireOption } from '@/features/questionnaires/types'
-import formStyles from '@/shared/components/forms/form.module.css'
+
 import { Label } from '../../label/Label'
 import { RadioButtonItem } from '../item/RadioButtonItem'
 
@@ -44,7 +44,9 @@ export const RadioButtonSection = <T extends FieldValues>({
             </div>
 
             {description && (
-                <p className={formStyles.description}>{description}</p>
+                <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                    {description}
+                </p>
             )}
         </div>
     )

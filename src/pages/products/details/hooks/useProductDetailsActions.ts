@@ -14,7 +14,6 @@ import {
     useGetProductByIdQuery,
 } from '@/features/products/api/productsApi'
 import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
-import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useProductDetailsActions = () => {
@@ -73,7 +72,7 @@ export const useProductDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navButtonStyles.navBtnBack,
+            className: 'hidden sm:flex',
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>

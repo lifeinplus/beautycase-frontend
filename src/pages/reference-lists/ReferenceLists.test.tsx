@@ -7,7 +7,6 @@ vi.mock(
     '@/features/reference-lists/components/mobile-view/ReferenceListsMobileView'
 )
 vi.mock('@/features/reference-lists/components/table/ReferenceListsTable')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('ReferenceLists', () => {
@@ -15,7 +14,7 @@ describe('ReferenceLists', () => {
         render(<ReferenceLists />)
 
         expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByText(/hero.headline/)).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {

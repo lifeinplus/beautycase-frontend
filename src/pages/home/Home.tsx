@@ -7,11 +7,8 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { useAuthLogout } from '@/features/auth/hooks/auth-logout/useAuthLogout'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { HomeTile } from '@/features/home/components/tile/HomeTile'
-import commonStyles from '@/shared/components/common/common.module.css'
-import buttonSubmitStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import { LanguageSelect } from '@/shared/components/ui/language/select/LanguageSelect'
 import { canAccess } from '@/shared/lib/access/canAccess'
-import styles from './Home.module.css'
 
 export const Home = () => {
     const { t } = useTranslation('home')
@@ -27,11 +24,15 @@ export const Home = () => {
     const itemCount = accessibleMenuItems.length
 
     return (
-        <div className={styles.container}>
+        <div className="pt-safe-top pb-safe-bottom flex min-h-screen flex-col items-center justify-center">
             <div className="flex max-w-xs flex-grow flex-col sm:max-w-md">
                 <div className="my-10 text-center">
-                    <h2 className={styles.logo}>Beautycase</h2>
-                    <p className={styles.motto}>{t('motto')}</p>
+                    <h2 className="font-logo mt-4 mb-10 text-5xl sm:text-6xl lg:text-7xl">
+                        Beautycase
+                    </h2>
+                    <p className="font-heading text-lg text-gray-700 sm:text-xl lg:text-2xl dark:text-gray-400">
+                        {t('motto')}
+                    </p>
                 </div>
 
                 <div
@@ -67,8 +68,11 @@ export const Home = () => {
                             </div>
                             <button
                                 className={classNames(
-                                    buttonSubmitStyles.btn,
-                                    commonStyles.focusOutline
+                                    'flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:w-67',
+                                    'bg-rose-500 hover:bg-rose-600',
+                                    'dark:bg-rose-600 dark:hover:bg-rose-700',
+                                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                                    'dark:focus-visible:outline-rose-700'
                                 )}
                                 onClick={handleLogout}
                             >
@@ -83,8 +87,10 @@ export const Home = () => {
                             <div className="flex flex-col gap-3">
                                 <Link
                                     className={classNames(
-                                        commonStyles.focusOutline,
-                                        styles.btnLogin
+                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                                        'dark:focus-visible:outline-rose-700',
+                                        'rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600',
+                                        'dark:bg-rose-600 dark:hover:bg-rose-700'
                                     )}
                                     to="/login"
                                 >
@@ -92,8 +98,11 @@ export const Home = () => {
                                 </Link>
                                 <Link
                                     className={classNames(
-                                        commonStyles.focusOutline,
-                                        styles.btnRegister
+                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                                        'dark:focus-visible:outline-rose-700',
+                                        'bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100',
+                                        'rounded-lg border border-rose-500',
+                                        'dark:border-rose-600 dark:bg-black dark:hover:bg-neutral-800'
                                     )}
                                     to="/register"
                                 >

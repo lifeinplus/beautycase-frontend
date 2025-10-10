@@ -5,9 +5,6 @@ import {
     type SVGProps,
 } from 'react'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import styles from './NavButton.module.css'
-
 export interface NavButtonProps
     extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon: ComponentType<SVGProps<SVGSVGElement>>
@@ -23,8 +20,9 @@ export const NavButton = ({
     <button
         {...props}
         className={classNames(
-            styles.navBtn,
-            commonStyles.focusOutline,
+            'm-2 flex rounded-lg p-1 hover:bg-neutral-100 sm:m-0 sm:my-1 sm:p-3 lg:gap-4 dark:hover:bg-neutral-800',
+            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+            'dark:focus-visible:outline-rose-700',
             className
         )}
     >

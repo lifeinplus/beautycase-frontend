@@ -8,7 +8,6 @@ import { MakeupBagDetails } from './MakeupBagDetails'
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/components/stages/MakeupBagStages')
 vi.mock('@/features/makeup-bags/components/tools/MakeupBagTools')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/footer/Footer')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('./hooks/useMakeupBagDetailsActions')
@@ -27,12 +26,14 @@ describe('MakeupBagDetails', () => {
 
         const ids = [
             'mocked-top-panel',
-            'mocked-hero',
             'mocked-makeup-bag-stages',
             'mocked-makeup-bag-tools',
         ]
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
+
+        expect(screen.getAllByText(/categories.basic.full/)).toHaveLength(2)
+        expect(screen.getAllByText(/hero.byline/)).toHaveLength(2)
     })
 
     it('renders the page with no data', () => {

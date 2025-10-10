@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Confirmation } from './Confirmation'
 
-vi.mock('@/shared/components/common/hero/Hero')
+vi.mock('@/shared/components/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('Confirmation', () => {

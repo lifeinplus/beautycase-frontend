@@ -6,8 +6,6 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectRole } from '@/features/auth/slice/authSlice'
 import { setFormData } from '@/features/form/slice/formSlice'
 import type { Product } from '@/features/products/types'
-import imageStyles from '@/shared/components/ui/image/Image.module.css'
-import styles from './SelectTile.module.css'
 
 export interface SelectTileProps {
     products?: Product[]
@@ -33,13 +31,15 @@ export const SelectTile = ({ products }: SelectTileProps) => {
     return (
         <div
             className={classNames(
-                imageStyles.container,
-                imageStyles.square,
-                styles.tile
+                'relative mx-auto w-full overflow-hidden',
+                'aspect-square',
+                'group flex items-center justify-center bg-white hover:bg-rose-500',
+                'hover:border-white sm:rounded-md sm:border sm:border-gray-200',
+                'dark:bg-black dark:text-white dark:hover:border-white dark:hover:bg-rose-600 dark:sm:border-neutral-700'
             )}
             onClick={handleClick}
         >
-            <SquaresPlusIcon className={styles.icon} />
+            <SquaresPlusIcon className="h-32 w-32 stroke-[0.5] text-neutral-700 group-hover:text-white dark:text-neutral-200" />
         </div>
     )
 }

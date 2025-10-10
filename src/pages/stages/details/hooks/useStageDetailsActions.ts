@@ -16,7 +16,6 @@ import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
-import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useStageDetailsActions = () => {
@@ -80,7 +79,7 @@ export const useStageDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navButtonStyles.navBtnBack,
+            className: 'hidden sm:flex',
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>

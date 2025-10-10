@@ -5,14 +5,12 @@ import config from '@/app/config/config'
 import { useGetMakeupBagByIdQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagStages } from '@/features/makeup-bags/components/stages/MakeupBagStages'
 import { MakeupBagTools } from '@/features/makeup-bags/components/tools/MakeupBagTools'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { Hero } from '@/shared/components/common/hero/Hero'
+import { Hero } from '@/shared/components/hero/Hero'
 import { Footer } from '@/shared/components/layout/footer/Footer'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { Image } from '@/shared/components/ui/image/Image'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { useMakeupBagDetailsActions } from './hooks/useMakeupBagDetailsActions'
-import styles from './MakeupBagDetails.module.css'
 
 export const MakeupBagDetails = () => {
     const { id } = useParams()
@@ -31,11 +29,11 @@ export const MakeupBagDetails = () => {
         : t('titles.details')
 
     return (
-        <article className={pageStyles.page}>
+        <article className="pb-13 sm:pb-0">
             <TopPanel title={title} onBack={backAction?.onClick} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <DataWrapper isLoading={isLoading} error={error}>
                         <Hero
                             headline={title}
@@ -43,11 +41,13 @@ export const MakeupBagDetails = () => {
                             imgUrl={config.cloudinary.makeupBagHero}
                             hideOnMobile
                         />
-                        <section className={styles.container}>
-                            <h2 className={styles.title}>{t('hero.byline')}</h2>
+                        <section className="mt-5 sm:hidden">
+                            <h2 className="font-heading px-3 text-center text-lg text-slate-700 dark:text-slate-400">
+                                {t('hero.byline')}
+                            </h2>
                             <Image
                                 alt={title}
-                                className={styles.img}
+                                className="mt-6"
                                 src={config.cloudinary.makeupBagHero}
                             />
                         </section>

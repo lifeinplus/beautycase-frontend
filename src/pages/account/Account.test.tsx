@@ -17,7 +17,6 @@ import {
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/account/components/fields/AccountFields')
 vi.mock('@/features/users/api/usersApi')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/layout/header/Header')
 
@@ -50,15 +49,14 @@ describe('Account', () => {
     it('renders the page title and subtitle', () => {
         renderWithProviderAndRouter(<Account />)
 
-        const matchers = [
-            'mocked-header',
-            'mocked-hero',
-            'mocked-account-fields',
-        ]
+        const matchers = ['mocked-header', 'mocked-account-fields']
 
         matchers.forEach((m) =>
             expect(screen.getByTestId(m)).toBeInTheDocument()
         )
+
+        expect(screen.getByText(/hero.headline/)).toBeInTheDocument()
+        expect(screen.getByText(/hero.byline/)).toBeInTheDocument()
     })
 
     it('handles error state', () => {

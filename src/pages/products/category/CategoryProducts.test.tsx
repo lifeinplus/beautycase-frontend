@@ -9,7 +9,6 @@ import { mockNavigate } from '@/tests/mocks/router'
 import { CategoryProducts } from './CategoryProducts'
 
 vi.mock('@/features/products/api/productsApi')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/gallery/image-card/ImageCard')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 

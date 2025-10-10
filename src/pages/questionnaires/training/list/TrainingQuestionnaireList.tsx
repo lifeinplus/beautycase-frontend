@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { useGetAllTrainingQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
 import { TrainingQuestionnaireMobileView } from '@/features/questionnaires/training/components/mobile-view/TrainingQuestionnaireMobileView'
 import { TrainingQuestionnaireTable } from '@/features/questionnaires/training/components/table/TrainingQuestionnaireTable'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { Hero } from '@/shared/components/common/hero/Hero'
+import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
 export const TrainingQuestionnaireList = () => {
     const navigate = useNavigate()
@@ -30,8 +29,8 @@ export const TrainingQuestionnaireList = () => {
     return (
         <article>
             <TopPanel title={title} onBack={handleBack} />
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
                         headline={title}
                         byline={t('training.hero.byline')}

@@ -14,7 +14,6 @@ vi.mock(
 vi.mock(
     '@/features/questionnaires/training/components/table/TrainingQuestionnaireTable'
 )
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('TrainingQuestionnaireList', () => {
@@ -32,7 +31,8 @@ describe('TrainingQuestionnaireList', () => {
         render(<TrainingQuestionnaireList />)
 
         expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getAllByTestId('mocked-hero')).toHaveLength(2)
+        expect(screen.getAllByText(/headlineList/)).toHaveLength(2)
+        expect(screen.getAllByText(/training.hero.byline/)).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {

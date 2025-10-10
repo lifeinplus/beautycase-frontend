@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { mockStages } from '../../../stages/api/__mocks__/stagesApi'
 import { MakeupBagStages } from './MakeupBagStages'
 
-vi.mock('@/shared/components/common/image-section/ImageSection')
 vi.mock('@/shared/components/gallery/goods-grid/GoodsGrid')
 
 describe('MakeupBagStages', () => {
@@ -36,7 +35,7 @@ describe('MakeupBagStages', () => {
 
     it('renders image sections for each stage', () => {
         render(<MakeupBagStages stages={mockStages} />)
-        expect(screen.getAllByTestId('mocked-image-section')).toHaveLength(2)
+        expect(screen.getAllByRole('img')).toHaveLength(2)
     })
 
     it('renders steps for each stage', () => {

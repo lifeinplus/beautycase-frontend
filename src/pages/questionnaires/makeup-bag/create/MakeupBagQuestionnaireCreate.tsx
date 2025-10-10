@@ -10,18 +10,14 @@ import { useCreateMakeupBagQuestionnaireMutation } from '@/features/questionnair
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import { makeupBagQuestionnaireSchema } from '@/features/questionnaires/makeup-bag/validations/makeupBagQuestionnaireSchema'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
-import commonStyles from '@/shared/components/common/common.module.css'
-import { Hero } from '@/shared/components/common/hero/Hero'
 import { CheckboxSection } from '@/shared/components/forms/checkbox/section/CheckboxSection'
-import formStyles from '@/shared/components/forms/form.module.css'
 import { ImageTextSection } from '@/shared/components/forms/image/text-section/ImageTextSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
+import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonSubmitStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagQuestionnaireCreate = () => {
@@ -65,8 +61,8 @@ export const MakeupBagQuestionnaireCreate = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
                         headline={title}
                         byline={subtitle}
@@ -86,14 +82,14 @@ export const MakeupBagQuestionnaireCreate = () => {
                     </div>
 
                     <form
-                        className={classNames(formStyles.form)}
+                        className="space-y-6"
                         encType="multipart/form-data"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
                             <p
                                 className={classNames(
-                                    commonStyles.textDanger,
+                                    'text-rose-500 dark:text-rose-400',
                                     'text-sm'
                                 )}
                             >
@@ -368,7 +364,13 @@ export const MakeupBagQuestionnaireCreate = () => {
                             />
                         </article>
 
-                        <section className={buttonSubmitStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 isLoading={isLoading}
                                 label={isLoading ? t('sending') : t('send')}

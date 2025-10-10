@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -10,14 +9,12 @@ import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/catego
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { SelectOption } from '@/features/form/types'
 import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
-import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
 import { ButtonNavigateSection } from '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
-import formStyles from '@/shared/components/forms/form.module.css'
 import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
+import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
+import classNames from 'classnames'
 import type { MakeupBag } from '../../types'
 import { makeupBagSchema } from '../../validations'
 
@@ -94,12 +91,12 @@ export const MakeupBagForm = ({
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <TitleSection title={title} hideOnMobile />
 
                     <form
-                        className={classNames(formStyles.form)}
+                        className="space-y-6"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
@@ -138,7 +135,13 @@ export const MakeupBagForm = ({
                             />
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 isLoading={isSaving}
                                 label={

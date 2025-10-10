@@ -16,13 +16,10 @@ import {
     useUploadTempImageByFileMutation,
     useUploadTempImageByUrlMutation,
 } from '@/features/uploads/api/uploadsApi'
-import commonStyles from '@/shared/components/common/common.module.css'
-import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
-import formStyles from '@/shared/components/forms/form.module.css'
-import inputStyles from '@/shared/components/ui/input/Input.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { Label } from '../../label/Label'
 import { ImagePreview } from '../preview/ImagePreview'
+import { Spinner } from '../ui/Spinner'
 
 export interface ImageUrlSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
@@ -174,8 +171,11 @@ export const ImageUrlSection = <T extends FieldValues>({
                 <textarea
                     {...register}
                     className={classNames(
-                        inputStyles.input,
-                        error && inputStyles.error,
+                        'peer block w-full rounded-xl px-4 py-2.5 focus:outline-none',
+                        'bg-white placeholder-neutral-500',
+                        'border border-neutral-200 focus:border-black',
+                        'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
+                        error && 'border-rose-500 dark:border-rose-400',
                         isUploading && 'opacity-50'
                     )}
                     disabled={isUploading}
@@ -183,21 +183,19 @@ export const ImageUrlSection = <T extends FieldValues>({
                     placeholder={isUploading ? t('uploading') : label}
                 />
 
-                {isUploading && (
-                    <div className="absolute inset-0 mt-6 flex justify-center rounded-xl text-rose-500 dark:text-rose-400">
-                        <SpinnerButton />
-                    </div>
-                )}
+                {isUploading && <Spinner />}
 
                 {description && (
-                    <p className={formStyles.description}>{description}</p>
+                    <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                        {description}
+                    </p>
                 )}
 
                 {error && (
                     <p
                         className={classNames(
-                            commonStyles.textDanger,
-                            formStyles.error
+                            'text-rose-500 dark:text-rose-400',
+                            'mt-2 text-sm'
                         )}
                     >
                         {error}

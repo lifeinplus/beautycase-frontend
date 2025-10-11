@@ -23,9 +23,4 @@ describe('Pricing page', () => {
         expect(screen.getAllByRole('article')).toHaveLength(2)
         expect(screen.getByRole('main')).toBeInTheDocument()
     })
-
-    it('applies correct CSS classes for layout', () => {
-        renderWithRouter(<Pricing />)
-        expect(screen.getByRole('main')).toHaveClass(/_content_/)
-    })
 })

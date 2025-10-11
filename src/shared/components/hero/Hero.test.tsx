@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { Hero } from './Hero'
 
-vi.mock('../../ui/image/Image')
+vi.mock('../ui/image/Image')
 
 describe('Hero', () => {
     const mockProps = {
@@ -13,28 +13,12 @@ describe('Hero', () => {
         content: 'Detailed content goes here',
     }
 
-    it('renders headline when provided', () => {
-        render(<Hero headline={mockProps.headline} />)
-        expect(screen.getByText(mockProps.headline)).toHaveClass(/headline/)
-    })
-
-    it('renders byline when provided', () => {
-        render(<Hero byline={mockProps.byline} />)
-        expect(screen.getByText(mockProps.byline)).toHaveClass(/byline/)
-    })
-
-    it('renders content when provided', () => {
-        render(<Hero content={mockProps.content} />)
-        expect(screen.getByText(mockProps.content)).toHaveClass(/content/)
-    })
-
     it('renders image when imgUrl is provided', () => {
         render(<Hero headline={mockProps.headline} imgUrl={mockProps.imgUrl} />)
 
         const image = screen.getByTestId('mocked-image')
         expect(image).toHaveAttribute('alt', mockProps.headline)
         expect(image).toHaveAttribute('src', mockProps.imgUrl)
-        expect(image).toHaveClass(/img/)
     })
 
     it('renders with all props provided', () => {

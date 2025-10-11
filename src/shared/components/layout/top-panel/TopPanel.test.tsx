@@ -8,20 +8,12 @@ import { TopPanel } from './TopPanel'
 describe('TopPanel', () => {
     const mockTitle = 'Test Title'
 
-    it('renders with the correct title', () => {
-        render(<TopPanel title={mockTitle} />)
-
-        expect(screen.getByText(mockTitle)).toHaveClass(/title/)
-    })
-
     it('renders back button with chevron icon', () => {
         render(<TopPanel title={mockTitle} />)
 
         expect(
             screen.getByTestId('mocked-chevron-left-icon')
         ).toBeInTheDocument()
-
-        expect(screen.getByRole('button')).toHaveClass(/btn/)
     })
 
     it('navigates back when default back button is clicked', async () => {

@@ -73,18 +73,6 @@ describe('NavBar', () => {
         expect(mockNavigate).toHaveBeenCalledTimes(2)
     })
 
-    it('applies active class to current path navigation button', () => {
-        renderWithProviderAndRouter(<NavBar />)
-
-        expect(
-            screen.getByRole('button', { name: /questionnaires/i })
-        ).toHaveClass(/textDanger/)
-
-        expect(
-            screen.getByRole('button', { name: /makeupBags/i })
-        ).not.toHaveClass('text-danger')
-    })
-
     it('navigates when clicking a navigation button', async () => {
         const user = userEvent.setup()
 

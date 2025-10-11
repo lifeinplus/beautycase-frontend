@@ -79,12 +79,18 @@ describe('ToolSelection', () => {
 
         await user.click(imgContainers[0]!)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
 
-        const finalSelected = document.querySelectorAll("[class*='numbered']")
+        const finalSelected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(finalSelected.length).toBe(1)
     })
 
@@ -121,7 +127,9 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(0)
     })
 })

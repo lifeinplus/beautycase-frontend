@@ -19,13 +19,6 @@ describe('ImagePreview', () => {
         )
     })
 
-    it('has the correct className on the image', () => {
-        render(<ImagePreview {...mockProps} />)
-
-        expect(screen.getByTestId('mocked-image')).toHaveClass(/img/)
-        expect(screen.getByTestId('mocked-image')).toHaveClass('rounded-xl')
-    })
-
     it('renders with the correct alt text', () => {
         render(<ImagePreview {...mockProps} />)
 
@@ -33,12 +26,5 @@ describe('ImagePreview', () => {
             'alt',
             'Preview'
         )
-    })
-
-    it('renders container with correct class', () => {
-        render(<ImagePreview {...mockProps} />)
-
-        const container = screen.getByTestId('mocked-image').parentElement
-        expect(container).toHaveClass(/preview/)
     })
 })

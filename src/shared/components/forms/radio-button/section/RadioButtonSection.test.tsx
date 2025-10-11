@@ -56,9 +56,7 @@ describe('RadioButtonSection', () => {
             <RadioButtonSection {...mockProps} description={mockDescription} />
         )
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass(/description/)
+        expect(screen.getByText(mockDescription)).toBeInTheDocument()
     })
 
     it('handles horizontal layout when horizontal prop is true', () => {

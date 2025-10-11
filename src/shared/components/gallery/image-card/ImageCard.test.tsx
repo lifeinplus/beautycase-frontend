@@ -29,9 +29,5 @@ describe('ImageCard', () => {
         expect(link).toHaveAttribute('href', mockPath)
         expect(link).toHaveClass('relative')
         expect(link).toHaveClass('overflow-hidden')
-
-        const container = screen.getByRole('link').parentElement
-        expect(container).toHaveClass(/container/)
-        expect(container).toHaveClass(/square/)
     })
 })

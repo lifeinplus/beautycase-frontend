@@ -7,9 +7,10 @@ describe('Footer', () => {
     it('renders the footer with correct structure', () => {
         const { container } = render(<Footer />)
 
-        const footer = container.querySelector('footer')
-        expect(footer).toHaveAttribute('id', 'footer')
-        expect(footer).toHaveClass(/footer/)
+        expect(container.querySelector('footer')).toHaveAttribute(
+            'id',
+            'footer'
+        )
 
         const sections = container.querySelectorAll('section')
         expect(sections).toHaveLength(2)

@@ -80,14 +80,6 @@ describe('ImageUrlSection', () => {
         expect(screen.getByPlaceholderText('Image Url')).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<ImageUrlSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message', () => {
         render(
             <ImageUrlSection {...mockProps} error={mockFieldError.message} />

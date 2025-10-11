@@ -59,7 +59,7 @@ describe('ModalDuplicate', () => {
 
         render(<ModalDuplicate {...mockProps} />)
 
-        const modal = document.querySelector("[class*='modal']")
+        const modal = document.querySelector("[class*='fixed']")
         expect(modal).toBeInTheDocument()
 
         await user.click(modal!)

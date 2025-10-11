@@ -16,7 +16,7 @@ describe('ProductImages', () => {
         const { container } = render(<ProductImages products={mockProducts} />)
 
         const image = container.querySelector(
-            "[class*='container'][class*='square']"
+            "[class*='relative'][class*='aspect-square']"
         )
 
         expect(image).not.toBeNull()

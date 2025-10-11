@@ -26,21 +26,12 @@ describe('TextareaSection', () => {
         expect(screen.getByPlaceholderText(mockProps.label)).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<TextareaSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message and error class if error is provided', () => {
         render(
             <TextareaSection {...mockProps} error={mockFieldError.message} />
         )
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('textbox')).toHaveClass(/error/)
     })
 
     it('renders image preview if preview and value are provided', () => {

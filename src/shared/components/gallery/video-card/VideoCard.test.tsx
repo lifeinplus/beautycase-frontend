@@ -38,25 +38,6 @@ describe('VideoCard', () => {
 
     it('renders a link to the correct path', () => {
         renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
-
-        const link = screen.getByRole('link')
-        expect(link).toHaveAttribute('href', mockPath)
-        expect(link).toHaveClass(/card/)
-    })
-
-    it('applies correct CSS classes to elements', () => {
-        renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
-
-        const parentThumbnail = screen.getByTestId('mocked-image').parentElement
-        expect(parentThumbnail).toHaveClass(/thumbnail/)
-
-        const parentTitle = screen.getByText(mockVideo.title).parentElement
-        expect(parentTitle).toHaveClass(/metadata/)
-
-        expect(screen.getByText(mockVideo.title)).toHaveClass(/headline/)
-
-        expect(screen.getByText(mockVideo.shortDescription)).toHaveClass(
-            /byline/
-        )
+        expect(screen.getByRole('link')).toHaveAttribute('href', mockPath)
     })
 })

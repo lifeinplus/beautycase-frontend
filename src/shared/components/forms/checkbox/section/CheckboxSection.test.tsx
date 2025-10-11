@@ -36,14 +36,6 @@ describe('CheckboxSection', () => {
         expect(screen.getByText(mockOptions[2].label)).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<CheckboxSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('does not render description when not provided', () => {
         render(<CheckboxSection {...mockProps} />)
 

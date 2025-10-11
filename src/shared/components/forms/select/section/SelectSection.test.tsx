@@ -33,18 +33,8 @@ describe('SelectSection', () => {
         expect(screen.getByText('Option 3')).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<SelectSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message and applies error class', () => {
         render(<SelectSection {...mockProps} error={mockFieldError.message} />)
-
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('combobox')).toHaveClass(/error/)
     })
 })

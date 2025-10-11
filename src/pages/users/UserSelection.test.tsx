@@ -70,7 +70,9 @@ describe('UserSelection', () => {
 
     it('shows selected state for preselected clients', () => {
         render(<UserSelection />)
-        const selected = document.querySelectorAll("[class*='selected']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(1)
     })
 
@@ -82,11 +84,15 @@ describe('UserSelection', () => {
         expect(aliceRow).toBeInTheDocument()
 
         await user.click(aliceRow!)
-        const selected = document.querySelectorAll("[class*='selected']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(2)
 
         await user.click(aliceRow!)
-        const selectedAfter = document.querySelectorAll("[class*='selected']")
+        const selectedAfter = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selectedAfter.length).toBe(1)
     })
 

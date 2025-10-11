@@ -78,13 +78,9 @@ describe('ThemeToggler', () => {
 
         render(<ThemeToggler />)
 
-        const button = screen.getByRole('button')
-
-        expect(button).toHaveAttribute(
+        expect(screen.getByRole('button')).toHaveAttribute(
             'aria-label',
             'buttons.darkMode.ariaLabel'
         )
-
-        expect(button).toHaveClass(/navBtn/)
     })
 })

@@ -16,10 +16,7 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/ui/image/Image')
 
 describe('StageSelection', () => {
     const mockFormData = {
@@ -43,30 +40,14 @@ describe('StageSelection', () => {
 
     it('renders the page with title', () => {
         render(<StageSelection />)
-
-        expect(
-            screen.getByRole('heading', {
-                level: 1,
-                name: 'titles.selection',
-            })
-        ).toBeInTheDocument()
-
-        expect(
-            screen.getByRole('heading', {
-                level: 2,
-                name: 'titles.selection',
-            })
-        ).toBeInTheDocument()
+        expect(screen.getAllByText('titles.selection')).toHaveLength(2)
     })
 
     it('renders stage items', () => {
         render(<StageSelection />)
 
-        const stage1 = screen.getByAltText(mockStages[0].title)
-        const stage2 = screen.getByAltText(mockStages[1].title)
-
-        expect(stage1).toBeInTheDocument()
-        expect(stage2).toBeInTheDocument()
+        expect(screen.getByAltText(mockStages[0].title)).toBeInTheDocument()
+        expect(screen.getByAltText(mockStages[1].title)).toBeInTheDocument()
     })
 
     it('toggles stage selection on click', async () => {
@@ -75,17 +56,23 @@ describe('StageSelection', () => {
         render(<StageSelection />)
 
         const imgContainers = screen
-            .getAllByTestId('mocked-image')
+            .getAllByRole('img')
             .map((img) => img.parentElement)
 
         await user.click(imgContainers[0]!)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
 
-        const finalSelected = document.querySelectorAll("[class*='numbered']")
+        const finalSelected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(finalSelected.length).toBe(1)
     })
 
@@ -94,8 +81,9 @@ describe('StageSelection', () => {
 
         render(<StageSelection />)
 
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -122,7 +110,9 @@ describe('StageSelection', () => {
 
         render(<StageSelection />)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(0)
     })
 })

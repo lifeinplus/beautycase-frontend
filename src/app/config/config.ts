@@ -17,6 +17,7 @@ const config = {
     },
     prod: import.meta.env.PROD,
     contactLink: import.meta.env.VITE_CONTACT_LINK,
+    contactPhone: import.meta.env.VITE_CONTACT_PHONE,
 }
 
 export default config

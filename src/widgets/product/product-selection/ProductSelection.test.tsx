@@ -17,9 +17,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/products/api/productsApi')
 vi.mock('@/shared/components/common/title-section/TitleSection')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
-vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
-vi.mock('@/shared/components/ui/image/Image')
 
 describe('ProductSelection', () => {
     const mockFormData = {
@@ -73,15 +70,19 @@ describe('ProductSelection', () => {
         render(<ProductSelection onSave={mockOnSave} />)
 
         const imgContainers = screen
-            .getAllByTestId('mocked-image')
+            .getAllByRole('img')
             .map((img) => img.parentElement)
 
         await user.click(imgContainers[0]!)
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
-        const finalSelected = document.querySelectorAll("[class*='numbered']")
+        const finalSelected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(finalSelected.length).toBe(1)
     })
 
@@ -89,8 +90,9 @@ describe('ProductSelection', () => {
         const user = userEvent.setup()
         render(<ProductSelection onSave={mockOnSave} />)
 
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -100,7 +102,9 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockOnSave).toHaveBeenCalledWith('123', ['product2'])
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -118,7 +122,9 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(mockConsoleError).toHaveBeenCalledWith(mockError)
@@ -134,7 +140,9 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockOnSave).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
@@ -146,15 +154,17 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(0)
     })
 
     it('shows saving label when isSaving is true', () => {
         render(<ProductSelection onSave={mockOnSave} isSaving={true} />)
 
-        expect(screen.getByTestId('mocked-button-submit')).toHaveTextContent(
-            'navigation:actions.saving'
-        )
+        expect(
+            screen.getByRole('button', { name: 'navigation:actions.saving' })
+        ).toBeInTheDocument()
     })
 })

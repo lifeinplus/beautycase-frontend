@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { ImagePreview, type ImagePreviewProps } from './ImagePreview'
-
-vi.mock('@/shared/components/ui/image/Image')
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {
@@ -13,32 +11,12 @@ describe('ImagePreview', () => {
     it('renders with the correct URL', () => {
         render(<ImagePreview {...mockProps} />)
 
-        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
-            'src',
-            mockProps.url
-        )
-    })
-
-    it('has the correct className on the image', () => {
-        render(<ImagePreview {...mockProps} />)
-
-        expect(screen.getByTestId('mocked-image')).toHaveClass(/img/)
-        expect(screen.getByTestId('mocked-image')).toHaveClass('rounded-xl')
+        expect(screen.getByRole('img')).toHaveAttribute('src', mockProps.url)
     })
 
     it('renders with the correct alt text', () => {
         render(<ImagePreview {...mockProps} />)
 
-        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
-            'alt',
-            'Preview'
-        )
-    })
-
-    it('renders container with correct class', () => {
-        render(<ImagePreview {...mockProps} />)
-
-        const container = screen.getByTestId('mocked-image').parentElement
-        expect(container).toHaveClass(/preview/)
+        expect(screen.getByRole('img')).toHaveAttribute('alt', 'Preview')
     })
 })

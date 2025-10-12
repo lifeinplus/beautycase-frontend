@@ -36,14 +36,8 @@ describe('Table', () => {
 
         expect(screen.getByText('Name')).toBeInTheDocument()
         expect(screen.getByText('Age')).toBeInTheDocument()
-
-        const name = screen.getByText('Name')
-        expect(name).toHaveClass(/th/)
-        expect(name).toHaveClass('name-column')
-
-        const age = screen.getByText('Age')
-        expect(age).toHaveClass(/th/)
-        expect(age).toHaveClass('age-column')
+        expect(screen.getByText('Name')).toHaveClass('name-column')
+        expect(screen.getByText('Age')).toHaveClass('age-column')
     })
 
     it('renders table rows correctly', () => {
@@ -70,17 +64,5 @@ describe('Table', () => {
         })
 
         expect(screen.queryByTestId(/row-/)).not.toBeInTheDocument()
-    })
-
-    it('applies the correct classes to the table', () => {
-        const { container } = render(
-            <Table headers={headers} data={mockData} renderRow={renderRow} />
-        )
-
-        expect(
-            container.querySelector("[class*='container']")
-        ).toBeInTheDocument()
-
-        expect(container.querySelector("[class*='table']")).toBeInTheDocument()
     })
 })

@@ -14,10 +14,7 @@ import { ToolSelection } from './ToolSelection'
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/tools/api/toolsApi')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/ui/image/Image')
 
 describe('ToolSelection', () => {
     const mockFormData = {
@@ -74,17 +71,23 @@ describe('ToolSelection', () => {
         render(<ToolSelection />)
 
         const imgContainers = screen
-            .getAllByTestId('mocked-image')
+            .getAllByRole('img')
             .map((img) => img.parentElement)
 
         await user.click(imgContainers[0]!)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(selected.length).toBe(2)
 
         await user.click(imgContainers[1]!)
 
-        const finalSelected = document.querySelectorAll("[class*='numbered']")
+        const finalSelected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
+
         expect(finalSelected.length).toBe(1)
     })
 
@@ -93,8 +96,9 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -121,7 +125,9 @@ describe('ToolSelection', () => {
 
         render(<ToolSelection />)
 
-        const selected = document.querySelectorAll("[class*='numbered']")
+        const selected = document.querySelectorAll(
+            "[class*='bg-rose-500 text-white']"
+        )
         expect(selected.length).toBe(0)
     })
 })

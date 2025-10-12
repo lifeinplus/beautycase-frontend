@@ -18,10 +18,7 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/categories/api/categoriesApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/users/api/usersApi')
-vi.mock('@/shared/components/forms/select/section/SelectSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('MakeupBagForm', () => {
     const mockTitle = 'Test Title'
@@ -41,6 +38,8 @@ describe('MakeupBagForm', () => {
     it('renders all required form fields', () => {
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+
         const fields = [
             'fields.category.label',
             'fields.client.label',
@@ -49,15 +48,16 @@ describe('MakeupBagForm', () => {
         ]
 
         fields.forEach((f) => expect(screen.getByText(f)).toBeInTheDocument())
-
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<MakeupBagForm title={mockTitle} onSubmit={mockOnSubmit} />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })

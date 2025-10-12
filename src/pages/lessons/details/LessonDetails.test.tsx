@@ -6,13 +6,12 @@ import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
 } from '@/features/lessons/api/lessonsApi'
-import { getEmbedUrl } from '@/shared/utils/youtube/getEmbedUrl'
+import { getEmbedUrl } from '@/shared/utils/youtube/embed-url/getEmbedUrl'
 import { mockYouTubeUrl } from '@/tests/mocks/form'
 import { LessonDetails } from './LessonDetails'
 
 vi.mock('@/features/lessons/api/lessonsApi')
-vi.mock('@/shared/components/ui/image/Image')
-vi.mock('@/shared/utils/youtube/getEmbedUrl')
+vi.mock('@/shared/utils/youtube/embed-url/getEmbedUrl')
 vi.mock('@/widgets/product/product-images/ProductImages')
 vi.mock('./hooks/useLessonDetailsActions')
 
@@ -63,6 +62,6 @@ describe('LessonDetails', () => {
 
         render(<LessonDetails />)
 
-        expect(screen.getByTestId('mocked-image')).toBeInTheDocument()
+        expect(screen.getByRole('img')).toBeInTheDocument()
     })
 })

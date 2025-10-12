@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config/config'
+
 export const Footer = () => {
     const { t } = useTranslation('component')
 
@@ -21,7 +23,7 @@ export const Footer = () => {
                 <p>
                     <span>{t('footer.questions')}:</span>{' '}
                     <a
-                        href="tel:+381629446904"
+                        href={`tel:${config.contactPhone}`}
                         className={classNames(
                             'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
                             'dark:focus-visible:outline-rose-700',

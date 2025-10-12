@@ -11,13 +11,10 @@ import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagQuestionnaireCreate } from './MakeupBagQuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
-vi.mock('@/shared/components/forms/checkbox/section/CheckboxSection')
 vi.mock('@/shared/components/forms/image/text-section/ImageTextSection')
-vi.mock('@/shared/components/forms/radio-button/section/RadioButtonSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/shared/components/hero/Hero')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('MakeupBagQuestionnaireCreate', () => {
     const mockCreate = vi.fn()
@@ -41,24 +38,57 @@ describe('MakeupBagQuestionnaireCreate', () => {
             'makeupBag.fields.city.label',
             'makeupBag.fields.age.label',
             'makeupBag.fields.makeupBag.label',
-            'makeupBag.fields.procedures.label',
-            'makeupBag.fields.skinType.label',
             'makeupBag.fields.allergies.label',
-            'makeupBag.fields.peeling.label',
-            'makeupBag.fields.pores.label',
-            'makeupBag.fields.oilyShine.label',
             'makeupBag.fields.currentSkills.label',
-            'makeupBag.fields.desiredSkills.label',
-            'makeupBag.fields.makeupTime.label',
-            'makeupBag.fields.budget.label',
-            'makeupBag.fields.brushes.label',
-            'makeupBag.fields.problems.label',
-            'makeupBag.fields.referral.label',
         ]
 
         placeholders.forEach((placeholder) => {
             expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument()
         })
+
+        expect(
+            screen.getByText('makeupBag.fields.referral.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.brushes.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.budget.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.makeupTime.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.oilyShine.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.pores.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.peeling.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.skinType.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.procedures.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.desiredSkills.label')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('makeupBag.fields.problems.label')
+        ).toBeInTheDocument()
     })
 
     it('calls addQuestionnaire and navigates on successful submission', async () => {
@@ -95,7 +125,10 @@ describe('MakeupBagQuestionnaireCreate', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagQuestionnaireCreate />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getAllByRole('navigation')[0].querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
     })

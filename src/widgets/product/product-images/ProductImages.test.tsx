@@ -6,7 +6,6 @@ import { mockNavigate } from '@/tests/mocks/router'
 import userEvent from '@testing-library/user-event'
 import { ProductImages } from './ProductImages'
 
-vi.mock('@/shared/components/ui/image/Image')
 vi.mock('./ui/SelectTile')
 
 describe('ProductImages', () => {
@@ -16,7 +15,7 @@ describe('ProductImages', () => {
         const { container } = render(<ProductImages products={mockProducts} />)
 
         const image = container.querySelector(
-            "[class*='container'][class*='square']"
+            "[class*='relative'][class*='aspect-square']"
         )
 
         expect(image).not.toBeNull()

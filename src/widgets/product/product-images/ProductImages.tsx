@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { Product } from '@/features/products/types'
@@ -24,10 +23,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
             {products?.map((p) => (
                 <div
                     key={p._id}
-                    className={classNames(
-                        'relative mx-auto w-full overflow-hidden',
-                        'aspect-square'
-                    )}
+                    className="relative mx-auto aspect-square w-full overflow-hidden"
                     onClick={() => handleProduct(p._id)}
                 >
                     <Image alt={p.name} src={p.imageUrl} />

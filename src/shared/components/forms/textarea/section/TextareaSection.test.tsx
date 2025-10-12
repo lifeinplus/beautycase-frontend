@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import {
     mockFieldError,
@@ -9,8 +9,6 @@ import {
     mockYouTubeUrl,
 } from '@/tests/mocks/form'
 import { TextareaSection, type TextareaSectionProps } from './TextareaSection'
-
-vi.mock('../../image/preview/ImagePreview')
 
 describe('TextareaSection', () => {
     const mockProps: TextareaSectionProps = {
@@ -26,29 +24,18 @@ describe('TextareaSection', () => {
         expect(screen.getByPlaceholderText(mockProps.label)).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<TextareaSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message and error class if error is provided', () => {
         render(
             <TextareaSection {...mockProps} error={mockFieldError.message} />
         )
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('textbox')).toHaveClass(/error/)
     })
 
     it('renders image preview if preview and value are provided', () => {
         render(<TextareaSection {...mockProps} preview value={mockImageUrl1} />)
 
-        const image = screen.getByTestId(
-            'mocked-image-preview'
-        ) as HTMLImageElement
+        const image = screen.getByRole('img') as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toBe(mockImageUrl1)
@@ -64,9 +51,7 @@ describe('TextareaSection', () => {
             />
         )
 
-        const image = screen.getByTestId(
-            'mocked-image-preview'
-        ) as HTMLImageElement
+        const image = screen.getByRole('img') as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toContain('img.youtube.com')

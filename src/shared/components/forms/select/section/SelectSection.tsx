@@ -4,7 +4,6 @@ import type { UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { SelectOption } from '@/features/form/types'
-
 import { Label } from '../../label/Label'
 
 export interface SelectSectionProps {

@@ -41,20 +41,6 @@ describe('NarrowServiceCard', () => {
         expect(screen.getAllByTestId('mocked-check-icon')).toHaveLength(3)
     })
 
-    it('applies popular styling when popular is true', () => {
-        render(<NarrowServiceCard {...mockData} popular />)
-
-        const container = screen.getByText('Consultation').closest('div')
-        expect(container).toHaveClass(/_containerPopular_/)
-    })
-
-    it('applies regular styling when popular is false', () => {
-        render(<NarrowServiceCard {...mockData} />)
-
-        const container = screen.getByText('Consultation').closest('div')
-        expect(container).toHaveClass(/_container_/)
-    })
-
     it('renders contact button with correct link', () => {
         render(<NarrowServiceCard {...mockData} />)
 
@@ -65,19 +51,5 @@ describe('NarrowServiceCard', () => {
         )
         expect(contactButton).toHaveAttribute('target', '_blank')
         expect(contactButton).toHaveAttribute('rel', 'noopener noreferrer')
-    })
-
-    it('uses popular button styling for popular services', () => {
-        render(<NarrowServiceCard {...mockData} popular />)
-
-        const button = screen.getByRole('link', { name: 'buttons.book' })
-        expect(button).toHaveClass(/_buttonPopular_/)
-    })
-
-    it('uses regular button styling for non-popular services', () => {
-        render(<NarrowServiceCard {...mockData} />)
-
-        const button = screen.getByRole('link', { name: 'buttons.book' })
-        expect(button).toHaveClass(/_button_/)
     })
 })

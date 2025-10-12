@@ -22,8 +22,6 @@ vi.mock('@/features/categories/components/table/CategoriesTable')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('Categories', () => {
     const mockCategories: Category[] = [
@@ -54,7 +52,7 @@ describe('Categories', () => {
     it('renders the page', () => {
         render(<Categories />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-category-form')).toBeInTheDocument()
 
         expect(
@@ -88,7 +86,10 @@ describe('Categories', () => {
         const user = userEvent.setup()
 
         render(<Categories />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
     })

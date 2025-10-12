@@ -4,8 +4,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { mockMakeupBagQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { MakeupBagQuestionnaireTable } from './MakeupBagQuestionnaireTable'
 
-vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/table-row/TableRow')
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagQuestionnaireTable', () => {

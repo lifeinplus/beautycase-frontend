@@ -7,7 +7,6 @@ vi.mock('@/app/layout/hooks/nav-bar-actions/useNavBarActions')
 vi.mock('@/app/layout/nav-bar/NavBar')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/modals/duplicate/ModalDuplicate')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
 
 describe('AppLayout', () => {
     it('renders NavBar with NavButtons', () => {

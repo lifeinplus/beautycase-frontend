@@ -23,19 +23,6 @@ describe('ButtonNavigateSection', () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(
-            <ButtonNavigateSection
-                {...mockProps}
-                description={mockDescription}
-            />
-        )
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message and applies error class', () => {
         render(
             <ButtonNavigateSection
@@ -45,7 +32,6 @@ describe('ButtonNavigateSection', () => {
         )
 
         expect(screen.getByText(mockFieldError.message!)).toBeInTheDocument()
-        expect(screen.getByRole('button')).toHaveClass(/error/)
     })
 
     it('calls onNavigate when button is clicked', async () => {

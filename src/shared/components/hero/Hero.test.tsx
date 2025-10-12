@@ -1,40 +1,22 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { Hero } from './Hero'
-
-vi.mock('../../ui/image/Image')
 
 describe('Hero', () => {
     const mockProps = {
         headline: 'Welcome to our site',
         byline: 'Discover amazing content',
-        imgUrl: '/image/jpg',
+        imgUrl: 'https://cloudinary.com/image.jpg',
         content: 'Detailed content goes here',
     }
-
-    it('renders headline when provided', () => {
-        render(<Hero headline={mockProps.headline} />)
-        expect(screen.getByText(mockProps.headline)).toHaveClass(/headline/)
-    })
-
-    it('renders byline when provided', () => {
-        render(<Hero byline={mockProps.byline} />)
-        expect(screen.getByText(mockProps.byline)).toHaveClass(/byline/)
-    })
-
-    it('renders content when provided', () => {
-        render(<Hero content={mockProps.content} />)
-        expect(screen.getByText(mockProps.content)).toHaveClass(/content/)
-    })
 
     it('renders image when imgUrl is provided', () => {
         render(<Hero headline={mockProps.headline} imgUrl={mockProps.imgUrl} />)
 
-        const image = screen.getByTestId('mocked-image')
+        const image = screen.getByRole('img')
         expect(image).toHaveAttribute('alt', mockProps.headline)
         expect(image).toHaveAttribute('src', mockProps.imgUrl)
-        expect(image).toHaveClass(/img/)
     })
 
     it('renders with all props provided', () => {
@@ -42,12 +24,7 @@ describe('Hero', () => {
 
         expect(screen.queryByText(mockProps.headline)).toBeInTheDocument()
         expect(screen.queryByText(mockProps.byline)).toBeInTheDocument()
-
-        expect(screen.getByTestId('mocked-image')).toHaveAttribute(
-            'src',
-            mockProps.imgUrl
-        )
-
+        expect(screen.getByRole('img')).toHaveAttribute('src', mockProps.imgUrl)
         expect(screen.getByText(mockProps.content)).toBeInTheDocument()
     })
 

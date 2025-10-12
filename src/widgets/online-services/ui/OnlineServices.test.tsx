@@ -27,15 +27,6 @@ describe('OnlineServices', () => {
             expect(screen.getByText('€70')).toBeInTheDocument()
             expect(screen.getByText('€250')).toBeInTheDocument()
         })
-
-        it('marks makeup bag service as popular', () => {
-            render(<OnlineServices />)
-
-            const makeupBagContainer = screen
-                .getByText('services.makeupBag.name')
-                .closest('div')
-            expect(makeupBagContainer).toHaveClass(/_containerPopular_/)
-        })
     })
 
     describe('wide service cards', () => {

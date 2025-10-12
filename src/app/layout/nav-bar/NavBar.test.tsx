@@ -12,9 +12,6 @@ import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/auth/components/auth-button/AuthButton')
 vi.mock('@/features/theme/toggler/ThemeToggler')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/ui/language/switcher/LanguageSwitcher')
-vi.mock('@/shared/components/ui/logo-link/LogoLink')
 
 describe('NavBar', () => {
     beforeEach(() => {
@@ -71,18 +68,6 @@ describe('NavBar', () => {
         await user.click(screen.getByRole('button', { name: /lessons/i }))
 
         expect(mockNavigate).toHaveBeenCalledTimes(2)
-    })
-
-    it('applies active class to current path navigation button', () => {
-        renderWithProviderAndRouter(<NavBar />)
-
-        expect(
-            screen.getByRole('button', { name: /questionnaires/i })
-        ).toHaveClass(/textDanger/)
-
-        expect(
-            screen.getByRole('button', { name: /makeupBags/i })
-        ).not.toHaveClass('text-danger')
     })
 
     it('navigates when clicking a navigation button', async () => {

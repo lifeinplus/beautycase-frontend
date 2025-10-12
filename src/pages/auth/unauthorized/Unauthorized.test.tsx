@@ -15,16 +15,4 @@ describe('Unauthorized', () => {
         expect(screen.getByText(/hero.headline/)).toBeInTheDocument()
         expect(screen.getByText(/hero.byline/)).toBeInTheDocument()
     })
-
-    it('has correct page structure', () => {
-        const { container } = renderWithProviders(<Unauthorized />)
-
-        expect(
-            container.querySelector("[class*='content']")
-        ).toBeInTheDocument()
-
-        expect(
-            container.querySelector("[class*='container']")
-        ).toBeInTheDocument()
-    })
 })

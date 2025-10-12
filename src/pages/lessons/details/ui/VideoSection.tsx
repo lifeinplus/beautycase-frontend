@@ -1,5 +1,5 @@
 import { Image } from '@/shared/components/ui/image/Image'
-import { getEmbedUrl } from '@/shared/utils/youtube/getEmbedUrl'
+import { getEmbedUrl } from '@/shared/utils/youtube/embed-url/getEmbedUrl'
 
 export interface VideoSectionProps {
     name?: string

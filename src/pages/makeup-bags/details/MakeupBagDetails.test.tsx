@@ -8,8 +8,6 @@ import { MakeupBagDetails } from './MakeupBagDetails'
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/components/stages/MakeupBagStages')
 vi.mock('@/features/makeup-bags/components/tools/MakeupBagTools')
-vi.mock('@/shared/components/layout/footer/Footer')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('./hooks/useMakeupBagDetailsActions')
 
 describe('MakeupBagDetails', () => {
@@ -24,11 +22,9 @@ describe('MakeupBagDetails', () => {
     it('renders the page with correct data', () => {
         render(<MakeupBagDetails />)
 
-        const ids = [
-            'mocked-top-panel',
-            'mocked-makeup-bag-stages',
-            'mocked-makeup-bag-tools',
-        ]
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+
+        const ids = ['mocked-makeup-bag-stages', 'mocked-makeup-bag-tools']
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
 

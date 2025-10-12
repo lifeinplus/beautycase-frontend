@@ -11,8 +11,6 @@ import {
     type RadioButtonSectionProps,
 } from './RadioButtonSection'
 
-vi.mock('../item/RadioButtonItem')
-
 describe('RadioButtonSection', () => {
     const mockOptions: QuestionnaireOption<MakeupBagQuestionnaire>[] = [
         { id: 'option-1', label: 'Option 1', name: 'age', value: 'value1' },
@@ -35,18 +33,9 @@ describe('RadioButtonSection', () => {
         render(<RadioButtonSection {...mockProps} />)
 
         expect(screen.getByText(mockProps.label)).toBeInTheDocument()
-
-        expect(
-            screen.getByTestId('mocked-radio-item-option-1')
-        ).toBeInTheDocument()
-
-        expect(
-            screen.getByTestId('mocked-radio-item-option-2')
-        ).toBeInTheDocument()
-
-        expect(
-            screen.getByTestId('mocked-radio-item-option-3')
-        ).toBeInTheDocument()
+        expect(screen.getByText('Option 1')).toBeInTheDocument()
+        expect(screen.getByText('Option 2')).toBeInTheDocument()
+        expect(screen.getByText('Option 3')).toBeInTheDocument()
     })
 
     it('renders description if provided', () => {
@@ -56,9 +45,7 @@ describe('RadioButtonSection', () => {
             <RadioButtonSection {...mockProps} description={mockDescription} />
         )
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass(/description/)
+        expect(screen.getByText(mockDescription)).toBeInTheDocument()
     })
 
     it('handles horizontal layout when horizontal prop is true', () => {

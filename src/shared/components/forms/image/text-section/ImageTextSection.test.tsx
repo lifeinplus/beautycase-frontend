@@ -20,7 +20,6 @@ import {
 } from './ImageTextSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('../preview/ImagePreview')
 
 describe('ImageTextSection', () => {
     const mockProps: ImageTextSectionProps<MakeupBagQuestionnaire> = {
@@ -60,9 +59,7 @@ describe('ImageTextSection', () => {
             <ImageTextSection {...mockProps} description={mockDescription} />
         )
 
-        const description = screen.getByText(mockDescription)
-        expect(description).toBeInTheDocument()
-        expect(description).toHaveClass(/description/)
+        expect(screen.getByText(mockDescription)).toBeInTheDocument()
     })
 
     it('renders error message', () => {
@@ -77,9 +74,7 @@ describe('ImageTextSection', () => {
     it('renders image preview if valueUrl is present', () => {
         render(<ImageTextSection {...mockProps} valueUrl={mockImageUrl1} />)
 
-        const image = screen.getByTestId(
-            'mocked-image-preview'
-        ) as HTMLImageElement
+        const image = screen.getByRole('img') as HTMLImageElement
 
         expect(image).toBeInTheDocument()
         expect(image.src).toBe(mockImageUrl1)

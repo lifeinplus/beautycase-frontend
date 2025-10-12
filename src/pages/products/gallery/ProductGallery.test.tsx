@@ -7,7 +7,6 @@ import { ProductGallery } from './ProductGallery'
 
 vi.mock('@/features/categories/api/categoriesApi')
 vi.mock('@/features/products/api/productsApi')
-vi.mock('@/shared/components/gallery/image-card/ImageCard')
 vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/product/categories/mobile-view/ProductCategoriesMobileView')
 vi.mock('@/widgets/product/categories/table/ProductCategoriesTable')

@@ -10,16 +10,14 @@ export const Image = ({
     alt,
     className = 'h-full w-full object-cover sm:rounded',
     src,
-}: ImageProps) => {
-    return (
-        <img
-            alt={alt}
-            className={className}
-            onError={(e) => {
-                e.currentTarget.alt = 'Default Image'
-                e.currentTarget.src = config.cloudinary.defaultThumbnailUrl
-            }}
-            src={src}
-        />
-    )
-}
+}: ImageProps) => (
+    <img
+        alt={alt}
+        className={className}
+        onError={(e) => {
+            e.currentTarget.alt = 'Default Image'
+            e.currentTarget.src = config.cloudinary.defaultThumbnailUrl
+        }}
+        src={src}
+    />
+)

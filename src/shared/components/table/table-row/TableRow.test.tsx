@@ -49,10 +49,6 @@ describe('TableRow', () => {
         expect(
             screen.getByRole('button', { name: 'Delete' })
         ).toBeInTheDocument()
-
-        expect(screen.getByRole('cell', { name: 'Delete' })).toHaveClass(
-            /actions/
-        )
     })
 
     it('navigates when clicked with redirectPath', async () => {

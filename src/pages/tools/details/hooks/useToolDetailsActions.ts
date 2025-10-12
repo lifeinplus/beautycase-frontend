@@ -43,7 +43,7 @@ export const useToolDetailsActions = () => {
     }, [dispatch, isToolDetailsPage])
 
     useEffect(() => {
-        setModalProps((prev) => ({ ...prev, isDeleting }))
+        setModalProps((prev) => ({ ...prev, isLoading: isDeleting }))
     }, [isDeleting])
 
     const handleDelete = async () => {

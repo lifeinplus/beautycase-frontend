@@ -8,6 +8,8 @@ export interface ModalDuplicateProps {
     onConfirm?: () => void
     onCancel?: () => void
     isOpen?: boolean
+    isBlocked?: boolean
+    isLoading?: boolean
 }
 
 export const ModalDuplicate = ({
@@ -16,6 +18,8 @@ export const ModalDuplicate = ({
     isOpen = false,
     onCancel = () => {},
     onConfirm = () => {},
+    isBlocked = false,
+    isLoading = false,
 }: ModalDuplicateProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')
@@ -54,21 +58,31 @@ export const ModalDuplicate = ({
                 <div className="w-full space-y-2">
                     <button
                         aria-label={t('buttons.duplicate.ariaLabel')}
-                        onClick={onConfirm}
                         className={classNames(
                             'text-amber-500 dark:text-amber-400',
-                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold'
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                            'dark:focus-visible:outline-rose-700',
+                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
+                            isBlocked &&
+                                'text-neutral-500 dark:text-neutral-400'
                         )}
+                        disabled={isBlocked || isLoading}
+                        onClick={onConfirm}
                     >
-                        {t('buttons.duplicate.text')}
+                        {isLoading
+                            ? t('buttons.duplicate.loading')
+                            : t('buttons.duplicate.text')}
                     </button>
+
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
-                        onClick={onCancel}
                         className={classNames(
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                            'dark:focus-visible:outline-rose-700',
                             'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
                             'rounded-b-xl pb-2 font-light text-black dark:text-white'
                         )}
+                        onClick={onCancel}
                     >
                         {t('buttons.cancel.text')}
                     </button>

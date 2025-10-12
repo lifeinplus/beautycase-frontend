@@ -9,7 +9,7 @@ export interface ModalDeleteProps {
     onCancel?: () => void
     isOpen?: boolean
     isBlocked?: boolean
-    isDeleting?: boolean
+    isLoading?: boolean
 }
 
 export const ModalDelete = ({
@@ -19,7 +19,7 @@ export const ModalDelete = ({
     onCancel = () => {},
     isOpen = false,
     isBlocked = false,
-    isDeleting = false,
+    isLoading = false,
 }: ModalDeleteProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')
@@ -67,10 +67,10 @@ export const ModalDelete = ({
                             isBlocked &&
                                 'text-neutral-500 dark:text-neutral-400'
                         )}
-                        disabled={isBlocked || isDeleting}
+                        disabled={isBlocked || isLoading}
                         onClick={onConfirm}
                     >
-                        {isDeleting
+                        {isLoading
                             ? t('buttons.delete.loading')
                             : t('buttons.delete.text')}
                     </button>

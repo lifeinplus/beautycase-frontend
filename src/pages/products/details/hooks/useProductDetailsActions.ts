@@ -1,5 +1,6 @@
 import {
     ArrowLeftIcon,
+    DocumentDuplicateIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/react/24/outline'
@@ -11,19 +12,20 @@ import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteProductByIdMutation,
+    useDuplicateProductByIdMutation,
     useGetProductByIdQuery,
 } from '@/features/products/api/productsApi'
-import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
+import type { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
+import type { ModalDuplicateProps } from '@/shared/components/modals/duplicate/ModalDuplicate'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useProductDetailsActions = () => {
-    const { pathname, state } = useLocation()
+    const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
     const dispatch = useAppDispatch()
-    const [modalProps, setModalProps] = useState<ModalDeleteProps>({})
 
     const isProductDetailsPage = pathname.match(/^\/products\/[a-f0-9]{24}$/i)
 
@@ -31,10 +33,7 @@ export const useProductDetailsActions = () => {
         skip: !id || !isProductDetailsPage,
     })
 
-    const [deleteProductById, { isLoading: isDeleting }] =
-        useDeleteProductByIdMutation()
-
-    const redirectPath = '/products'
+    const productCategoryPath = `/products/category/${data?.category?.name}`
 
     useEffect(() => {
         if (isProductDetailsPage) {
@@ -42,18 +41,38 @@ export const useProductDetailsActions = () => {
         }
     }, [dispatch, isProductDetailsPage])
 
+    const [modalDeleteProps, setModalDeleteProps] = useState<ModalDeleteProps>(
+        {}
+    )
+
+    const [modalDuplicateProps, setModalDuplicateProps] =
+        useState<ModalDuplicateProps>({})
+
+    const [deleteProductById, { isLoading: isDeleting }] =
+        useDeleteProductByIdMutation()
+
+    const [duplicateProductById, { isLoading: isDuplicating }] =
+        useDuplicateProductByIdMutation()
+
     useEffect(() => {
-        setModalProps((prev) => ({ ...prev, isDeleting }))
+        setModalDeleteProps((prev) => ({ ...prev, isLoading: isDeleting }))
     }, [isDeleting])
+
+    useEffect(() => {
+        setModalDuplicateProps((prev) => ({
+            ...prev,
+            isLoading: isDuplicating,
+        }))
+    }, [isDuplicating])
 
     const handleDelete = async () => {
         try {
             await deleteProductById(id!).unwrap()
-            setModalProps({})
-            navigate(redirectPath)
+            setModalDeleteProps({})
+            navigate(productCategoryPath)
         } catch (err) {
             console.error(err)
-            setModalProps((prev) => ({
+            setModalDeleteProps((prev) => ({
                 ...prev,
                 title: t('modal:delete.titleError'),
                 description: getErrorMessage(err),
@@ -62,8 +81,25 @@ export const useProductDetailsActions = () => {
         }
     }
 
+    const handleDuplicate = async () => {
+        try {
+            await duplicateProductById(id!).unwrap()
+            setModalDuplicateProps({})
+            navigate(productCategoryPath)
+        } catch (err) {
+            console.error(err)
+            setModalDuplicateProps((prev) => ({
+                ...prev,
+                title: t('modal:duplicate.titleError'),
+                description: getErrorMessage(err),
+                isBlocked: true,
+            }))
+        }
+    }
+
     const handleCancel = () => {
-        setModalProps((prev) => ({ ...prev, isOpen: false }))
+        setModalDeleteProps((prev) => ({ ...prev, isOpen: false }))
+        setModalDuplicateProps((prev) => ({ ...prev, isOpen: false }))
     }
 
     if (!id || !isProductDetailsPage) return []
@@ -76,7 +112,7 @@ export const useProductDetailsActions = () => {
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>
-                navigate(state?.fromPathname || redirectPath, {
+                navigate(productCategoryPath, {
                     replace: true,
                     state: { scrollId: id },
                 }),
@@ -87,7 +123,25 @@ export const useProductDetailsActions = () => {
             icon: PencilSquareIcon,
             label: t('actions.edit'),
             roles: ['admin', 'mua'],
-            onClick: () => navigate(`${redirectPath}/${id}/edit`),
+            onClick: () => navigate(`/products/${id}/edit`),
+        },
+        {
+            key: 'duplicate',
+            auth: true,
+            icon: DocumentDuplicateIcon,
+            label: t('actions.duplicate'),
+            roles: ['admin', 'mua'],
+            onClick: () =>
+                setModalDuplicateProps({
+                    title: t('modal:duplicate.title'),
+                    description: t('modal:duplicate.description', {
+                        name: data?.name,
+                    }),
+                    onConfirm: handleDuplicate,
+                    onCancel: handleCancel,
+                    isOpen: true,
+                }),
+            modalProps: modalDuplicateProps,
         },
         {
             key: 'delete',
@@ -96,7 +150,7 @@ export const useProductDetailsActions = () => {
             label: t('actions.delete'),
             roles: ['admin', 'mua'],
             onClick: () =>
-                setModalProps({
+                setModalDeleteProps({
                     title: t('modal:delete.title'),
                     description: t('modal:delete.description', {
                         name: data?.name,
@@ -105,7 +159,7 @@ export const useProductDetailsActions = () => {
                     onCancel: handleCancel,
                     isOpen: true,
                 }),
-            modalProps,
+            modalProps: modalDeleteProps,
         },
     ]
 }

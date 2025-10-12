@@ -8,11 +8,15 @@ export const mockProductCreate: MutationResult = {
     id: 'product3',
 }
 
+export const mockProductDuplicate: MutationResult = {
+    id: 'product1-copy',
+}
+
 export const mockProduct1: Product = {
     _id: 'product1',
     brand: { _id: 'brand1', name: 'Brand 1' },
     brandId: 'brand1',
-    category: { _id: 'category1', name: 'Category 1' },
+    category: { _id: 'category1', name: 'category-1' },
     categoryId: 'category1',
     name: 'Product 1',
     imageUrl: 'https://example.com/foundation.jpg',
@@ -42,6 +46,7 @@ export const mockProducts: Product[] = [mockProduct1, mockProduct2]
 export const mockProductIds: string[] = ['product1', 'product2']
 
 export const useCreateProductMutation = vi.fn()
+export const useDuplicateProductByIdMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()
 export const useGetProductsByCategoryQuery = vi.fn()
@@ -51,6 +56,10 @@ export const useDeleteProductByIdMutation = vi.fn()
 
 const productsHandlers = [
     http.post('api/products', () => HttpResponse.json(mockProductCreate)),
+
+    http.post('api/products/duplicate/:id', ({ params }) =>
+        HttpResponse.json({ ...mockProductDuplicate, id: `${params.id}-copy` })
+    ),
 
     http.get('api/products', () => HttpResponse.json(mockProducts)),
 

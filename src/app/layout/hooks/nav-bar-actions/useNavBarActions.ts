@@ -7,6 +7,7 @@ import { useBackActions } from '@/app/layout/hooks/back-actions/useBackActions'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLessonDetailsActions'
 import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
+import { useProductCategoryActions } from '@/pages/products/category/hooks/useProductCategoryActions'
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
 import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
@@ -36,6 +37,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const lessonDetailsActions = useLessonDetailsActions()
     const makeupBagDetailsActions = useMakeupBagDetailsActions()
     const productDetailsActions = useProductDetailsActions()
+    const productCategoryActions = useProductCategoryActions()
     const stageDetailsActions = useStageDetailsActions()
     const toolDetailsActions = useToolDetailsActions()
 
@@ -107,7 +109,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
             {
                 pattern: /^\/products\/category\/[^/]+$/i,
-                actions: [...backActions, ...addActions],
+                actions: productCategoryActions,
             },
         ]
 

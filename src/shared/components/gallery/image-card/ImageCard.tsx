@@ -8,12 +8,12 @@ export interface ImageCardProps {
         imageUrl: string
         name: string
     }
-    path: string
+    to: string
 }
 
-export const ImageCard = ({ data, path }: ImageCardProps) => (
+export const ImageCard = ({ data, to }: ImageCardProps) => (
     <div className="relative mx-auto aspect-square w-full overflow-hidden">
-        <Link className="relative overflow-hidden" to={path}>
+        <Link className="relative overflow-hidden" to={to}>
             <Image alt={data.name} src={data.imageUrl} />
         </Link>
     </div>

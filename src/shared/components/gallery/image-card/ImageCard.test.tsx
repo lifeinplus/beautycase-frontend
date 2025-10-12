@@ -13,7 +13,7 @@ describe('ImageCard', () => {
     const mockPath = '/image/1'
 
     it('renders the image correctly', () => {
-        renderWithRouter(<ImageCard data={mockData} path={mockPath} />)
+        renderWithRouter(<ImageCard data={mockData} to={mockPath} />)
 
         const image = screen.getByRole('img')
         expect(image).toBeInTheDocument()
@@ -22,7 +22,7 @@ describe('ImageCard', () => {
     })
 
     it('renders a link to the correct path', () => {
-        renderWithRouter(<ImageCard data={mockData} path={mockPath} />)
+        renderWithRouter(<ImageCard data={mockData} to={mockPath} />)
         const link = screen.getByRole('link')
         expect(link).toHaveAttribute('href', mockPath)
         expect(link).toHaveClass('relative')

@@ -29,7 +29,7 @@ export const ToolsGallery = () => {
                                 <ImageCard
                                     key={tool._id}
                                     data={tool}
-                                    path={`/tools/${tool._id}`}
+                                    to={`/tools/${tool._id}`}
                                 />
                             ))}
                         </section>

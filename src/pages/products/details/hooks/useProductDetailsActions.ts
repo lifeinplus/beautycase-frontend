@@ -20,7 +20,7 @@ import type { ModalDuplicateProps } from '@/shared/components/modals/duplicate/M
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useProductDetailsActions = () => {
-    const { pathname } = useLocation()
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
@@ -112,7 +112,7 @@ export const useProductDetailsActions = () => {
             icon: ArrowLeftIcon,
             label: t('actions.back'),
             onClick: () =>
-                navigate(productCategoryPath, {
+                navigate(state?.fromPathname || productCategoryPath, {
                     replace: true,
                     state: { scrollId: id },
                 }),

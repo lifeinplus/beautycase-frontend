@@ -11,9 +11,7 @@ import { mockNavigate } from '@/tests/mocks/router'
 import { TrainingQuestionnaireCreate } from './TrainingQuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/forms/radio-button/section/RadioButtonSection')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
+vi.mock('@/shared/components/hero/Hero')
 
 describe('TrainingQuestionnaireCreate', () => {
     const mockCreate = vi.fn()
@@ -34,7 +32,6 @@ describe('TrainingQuestionnaireCreate', () => {
         const placeholders = [
             'training.fields.name.label',
             'training.fields.contact.label',
-            'training.fields.experience.label',
             'training.fields.difficulties.label',
             'training.fields.expectations.label',
         ]
@@ -42,6 +39,10 @@ describe('TrainingQuestionnaireCreate', () => {
         placeholders.forEach((placeholder) => {
             expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument()
         })
+
+        expect(
+            screen.getByText('training.fields.experience.label')
+        ).toBeInTheDocument()
     })
 
     it('calls addQuestionnaire and navigates on successful submission', async () => {
@@ -86,7 +87,10 @@ describe('TrainingQuestionnaireCreate', () => {
         const user = userEvent.setup()
 
         render(<TrainingQuestionnaireCreate />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getAllByRole('navigation')[0].querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
     })

@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom'
 import config from '@/app/config/config'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useRefreshAuth } from '@/features/auth/hooks/refresh-auth/useRefreshAuth'
-import { Spinner } from '@/shared/components/common/spinner/Spinner'
-import { StartupProgress } from '@/shared/components/common/startup-progress/StartupProgress'
 import { selectAccessToken } from '../../slice/authSlice'
+import { Spinner } from './ui/spinner/Spinner'
+import { StartupProgress } from './ui/startup-progress/StartupProgress'
 
 export const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true)

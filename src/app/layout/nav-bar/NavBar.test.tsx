@@ -7,15 +7,11 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { NavBar } from '@/app/layout/nav-bar/NavBar'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
-import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/auth/components/auth-button/AuthButton')
 vi.mock('@/features/theme/toggler/ThemeToggler')
-vi.mock('@/shared/components/common/app-info/AppInfo')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/ui/language/switcher/LanguageSwitcher')
-vi.mock('@/shared/components/ui/logo-link/LogoLink')
 
 describe('NavBar', () => {
     beforeEach(() => {
@@ -32,14 +28,14 @@ describe('NavBar', () => {
     })
 
     it('renders the brand logo with responsive behavior', () => {
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
 
         expect(screen.getByText('B')).toBeInTheDocument()
-        expect(screen.getByText('Beautycase')).toBeInTheDocument()
+        expect(screen.getAllByText('Beautycase')).toHaveLength(2)
     })
 
     it('renders navigation buttons for accessible menu items', () => {
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
 
         const buttons = [
             'menu.questionnaires',
@@ -57,7 +53,7 @@ describe('NavBar', () => {
     })
 
     it('renders ThemeToggler and AuthButton', () => {
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
 
         expect(screen.getByTestId('mocked-auth-button')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-theme-toggler')).toBeInTheDocument()
@@ -66,7 +62,7 @@ describe('NavBar', () => {
     it('calls navigate when a menu item is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
 
         await user.click(screen.getByRole('button', { name: /stages/i }))
         await user.click(screen.getByRole('button', { name: /lessons/i }))
@@ -74,22 +70,10 @@ describe('NavBar', () => {
         expect(mockNavigate).toHaveBeenCalledTimes(2)
     })
 
-    it('applies active class to current path navigation button', () => {
-        renderWithProviders(<NavBar />)
-
-        expect(
-            screen.getByRole('button', { name: /questionnaires/i })
-        ).toHaveClass(/textDanger/)
-
-        expect(
-            screen.getByRole('button', { name: /makeupBags/i })
-        ).not.toHaveClass('text-danger')
-    })
-
     it('navigates when clicking a navigation button', async () => {
         const user = userEvent.setup()
 
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
         await user.click(screen.getByRole('button', { name: /makeupBags/i }))
 
         expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags')
@@ -98,7 +82,7 @@ describe('NavBar', () => {
     it('scrolls to top when clicking the active navigation button', async () => {
         const user = userEvent.setup()
 
-        renderWithProviders(<NavBar />)
+        renderWithProviderAndRouter(<NavBar />)
 
         await user.click(
             screen.getByRole('button', { name: /questionnaires/i })
@@ -113,12 +97,27 @@ describe('NavBar', () => {
     })
 
     it('renders children content', () => {
-        renderWithProviders(
+        renderWithProviderAndRouter(
             <NavBar>
                 <button data-testid="mocked-child-button">Child Button</button>
             </NavBar>
         )
 
         expect(screen.getByTestId('mocked-child-button')).toBeInTheDocument()
+    })
+
+    describe('AppInfo', () => {
+        it('renders app name and motto', () => {
+            renderWithProviderAndRouter(<NavBar />)
+
+            expect(screen.getAllByText(/Beautycase/i)).toHaveLength(2)
+            expect(screen.getByText(/home:motto/i)).toBeInTheDocument()
+        })
+
+        it('renders build version from package.json', () => {
+            renderWithProviderAndRouter(<NavBar />)
+            const buildRegex = /build \d{4}\.\d+\.\d+/
+            expect(screen.getByText(buildRegex)).toBeInTheDocument()
+        })
     })
 })

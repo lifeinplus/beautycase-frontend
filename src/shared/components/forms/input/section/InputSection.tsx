@@ -1,9 +1,6 @@
 import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import formStyles from '@/shared/components/forms/form.module.css'
-import inputStyles from '@/shared/components/ui/input/Input.module.css'
 import { Label } from '../../label/Label'
 
 export interface InputSectionProps {
@@ -28,21 +25,28 @@ export const InputSection = ({
             <input
                 {...register}
                 className={classNames(
-                    inputStyles.input,
-                    error && inputStyles.error
+                    'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
+                    'bg-white placeholder-neutral-500',
+                    'border border-neutral-200 focus:border-black',
+                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
+                    error && 'border-rose-500 dark:border-rose-400'
                 )}
                 placeholder={label}
                 type={type}
             />
         </Label>
 
-        {description && <p className={formStyles.description}>{description}</p>}
+        {description && (
+            <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                {description}
+            </p>
+        )}
 
         {error && (
             <p
                 className={classNames(
-                    commonStyles.textDanger,
-                    formStyles.error
+                    'text-rose-500 dark:text-rose-400',
+                    'mt-2 text-sm'
                 )}
             >
                 {error}

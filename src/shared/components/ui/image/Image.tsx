@@ -1,5 +1,4 @@
 import config from '@/app/config/config'
-import imageStyles from '@/shared/components/ui/image/Image.module.css'
 
 export interface ImageProps {
     alt?: string
@@ -9,18 +8,16 @@ export interface ImageProps {
 
 export const Image = ({
     alt,
-    className = imageStyles.img,
+    className = 'h-full w-full object-cover sm:rounded',
     src,
-}: ImageProps) => {
-    return (
-        <img
-            alt={alt}
-            className={className}
-            onError={(e) => {
-                e.currentTarget.alt = 'Default Image'
-                e.currentTarget.src = config.cloudinary.defaultThumbnailUrl
-            }}
-            src={src}
-        />
-    )
-}
+}: ImageProps) => (
+    <img
+        alt={alt}
+        className={className}
+        onError={(e) => {
+            e.currentTarget.alt = 'Default Image'
+            e.currentTarget.src = config.cloudinary.defaultThumbnailUrl
+        }}
+        src={src}
+    />
+)

@@ -7,20 +7,16 @@ import { useNavigate } from 'react-router-dom'
 
 import config from '@/app/config/config'
 import { useCreateTrainingQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
-import { trainingQuestionnaireOptions } from '@/features/questionnaires/training/options/trainingQuestionnaireOptions'
 import { trainingQuestionnaireQuestions } from '@/features/questionnaires/training/questions/trainingQuestionnaireQuestions'
 import { trainingQuestionnaireSchema } from '@/features/questionnaires/training/validations/trainingQuestionnaireSchema'
 import type { TrainingQuestionnaire } from '@/features/questionnaires/types'
-import commonStyles from '@/shared/components/common/common.module.css'
-import { Hero } from '@/shared/components/common/hero/Hero'
-import formStyles from '@/shared/components/forms/form.module.css'
+
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
+import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const TrainingQuestionnaireCreate = () => {
@@ -61,8 +57,8 @@ export const TrainingQuestionnaireCreate = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
                         headline={title}
                         byline={subtitle}
@@ -80,14 +76,14 @@ export const TrainingQuestionnaireCreate = () => {
                     </div>
 
                     <form
-                        className={classNames(formStyles.form)}
+                        className="space-y-6"
                         encType="multipart/form-data"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
                             <p
                                 className={classNames(
-                                    commonStyles.textDanger,
+                                    'text-rose-500 dark:text-rose-400',
                                     'text-sm'
                                 )}
                             >
@@ -128,7 +124,8 @@ export const TrainingQuestionnaireCreate = () => {
                                         .label
                                 )}
                                 options={
-                                    trainingQuestionnaireOptions.experience
+                                    trainingQuestionnaireQuestions.experience
+                                        .options
                                 }
                                 register={register('experience')}
                             />
@@ -162,7 +159,13 @@ export const TrainingQuestionnaireCreate = () => {
                             />
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 isLoading={isLoading}
                                 label={isLoading ? t('sending') : t('send')}

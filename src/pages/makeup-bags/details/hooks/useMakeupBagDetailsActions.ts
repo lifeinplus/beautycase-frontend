@@ -17,8 +17,7 @@ import {
 } from '@/features/makeup-bags/api/makeupBagsApi'
 import { usePDFExport } from '@/features/makeup-bags/hooks/pdf/usePDFExport'
 import { generatePdfFilename } from '@/features/makeup-bags/utils/pdf/generatePdfFilename'
-import { SpinnerButton } from '@/shared/components/common/spinner-button/SpinnerButton'
-import navButtonStyles from '@/shared/components/navigation/nav-button/NavButton.module.css'
+import { Spinner } from '@/shared/components/ui/button-submit/ui/Spinner'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useMakeupBagDetailsActions = () => {
@@ -112,7 +111,7 @@ export const useMakeupBagDetailsActions = () => {
         {
             key: 'back',
             auth: true,
-            className: navButtonStyles.navBtnBack,
+            className: 'hidden sm:flex',
             icon: ArrowLeftIcon,
             label: t('navigation:actions.back'),
             onClick: () =>
@@ -125,7 +124,7 @@ export const useMakeupBagDetailsActions = () => {
             key: 'export',
             auth: true,
             className: isExporting ? 'opacity-50 cursor-not-allowed' : '',
-            icon: isExporting ? SpinnerButton : DocumentArrowDownIcon,
+            icon: isExporting ? Spinner : DocumentArrowDownIcon,
             label: isExporting
                 ? t('navigation:actions.exporting')
                 : t('navigation:actions.export'),

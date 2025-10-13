@@ -36,7 +36,7 @@ export const AppLayout = () => {
                     onConfirm={deleteAction.modalProps.onConfirm}
                     onCancel={deleteAction.modalProps.onCancel}
                     isBlocked={deleteAction.modalProps.isBlocked}
-                    isDeleting={deleteAction.modalProps.isDeleting}
+                    isLoading={deleteAction.modalProps.isLoading}
                 />
             )}
 
@@ -47,6 +47,8 @@ export const AppLayout = () => {
                     description={duplicateAction.modalProps.description}
                     onConfirm={duplicateAction.modalProps.onConfirm}
                     onCancel={duplicateAction.modalProps.onCancel}
+                    isBlocked={duplicateAction.modalProps.isBlocked}
+                    isLoading={duplicateAction.modalProps.isLoading}
                 />
             )}
 

@@ -22,24 +22,6 @@ describe('NavButton', () => {
         expect(screen.getByTestId('mocked-icon')).toBeInTheDocument()
     })
 
-    it('applies custom className', () => {
-        render(<NavButton {...mockProps} className="custom-class" />)
-
-        const button = screen.getByRole('button')
-
-        expect(button).toHaveClass(/navBtn/)
-        expect(button).toHaveClass('custom-class')
-    })
-
-    it('renders with default className', () => {
-        render(<NavButton {...mockProps} />)
-
-        const button = screen.getByRole('button')
-
-        expect(button).toHaveClass(/navBtn/)
-        expect(button).not.toHaveClass('custom-class')
-    })
-
     it('calls onClick when clicked', async () => {
         const user = userEvent.setup()
 

@@ -6,10 +6,10 @@ import { useAppSelector } from './app/hooks/hooks'
 import { renderWithProviderAndRouter } from './tests/mocks/wrappers'
 
 vi.mock('./app/hooks/hooks')
+vi.mock('./app/ui/scroll-to-top/ScrollToTop')
 vi.mock('./features/auth/components/persist-login/PersistLogin')
 vi.mock('./features/auth/components/require-auth/RequireAuth')
 vi.mock('./features/auth/components/require-role/RequireRole')
-vi.mock('./shared/components/common/scroll-to-top/ScrollToTop')
 
 describe('App', () => {
     beforeEach(() => {

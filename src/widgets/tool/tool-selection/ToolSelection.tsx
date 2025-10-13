@@ -6,16 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
-import { DataWrapper } from '@/shared/components/common/data-wrapper/DataWrapper'
-import { TitleSection } from '@/shared/components/common/title-section/TitleSection'
+import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import buttonStyles from '@/shared/components/ui/button-submit/ButtonSubmit.module.css'
 import { Image } from '@/shared/components/ui/image/Image'
-import imageStyles from '@/shared/components/ui/image/Image.module.css'
-import orderStyles from '@/shared/components/ui/order/order.module.css'
-import pageStyles from '@/shared/components/ui/page/page.module.css'
-import styles from './ToolSelection.module.css'
+import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
 export const ToolSelection = () => {
     const navigate = useNavigate()
@@ -69,12 +64,12 @@ export const ToolSelection = () => {
         <article>
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
-            <main className={pageStyles.content}>
-                <article className={pageStyles.container}>
+            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper isLoading={isLoading} error={error}>
-                        <article className={styles.container}>
+                        <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 px-3 sm:gap-7">
                             {tools?.map(({ _id, name, imageUrl }) => {
                                 const isSelected = orderedIds.has(_id!)
                                 const order = orderedIds.get(_id!)
@@ -84,18 +79,18 @@ export const ToolSelection = () => {
                                         key={_id}
                                         onClick={() => toggleOrderedIds(_id!)}
                                         className={classNames(
-                                            imageStyles.container,
-                                            imageStyles.square
+                                            'relative mx-auto w-full overflow-hidden',
+                                            'aspect-square'
                                         )}
                                     >
                                         <Image alt={name} src={imageUrl} />
 
                                         <span
                                             className={classNames(
-                                                orderStyles.order,
+                                                'absolute top-1 right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
                                                 isSelected
-                                                    ? orderStyles.numbered
-                                                    : orderStyles.default
+                                                    ? 'bg-rose-500 text-white'
+                                                    : 'bg-transparent text-gray-400'
                                             )}
                                         >
                                             {order ?? ''}
@@ -105,7 +100,13 @@ export const ToolSelection = () => {
                             })}
                         </article>
 
-                        <section className={buttonStyles.section}>
+                        <section
+                            className={classNames(
+                                'border-t border-gray-300 px-3 pt-6',
+                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'dark:border-gray-700'
+                            )}
+                        >
                             <ButtonSubmit
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}

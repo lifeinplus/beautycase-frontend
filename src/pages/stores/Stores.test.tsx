@@ -20,11 +20,8 @@ vi.mock('@/features/stores/api/storesApi')
 vi.mock('@/features/stores/components/form/StoreForm')
 vi.mock('@/features/stores/components/mobile-view/StoresMobileView')
 vi.mock('@/features/stores/components/table/StoresTable')
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
 
 describe('Stores', () => {
     const mockStores: Store[] = [
@@ -55,9 +52,9 @@ describe('Stores', () => {
     it('renders the page title', () => {
         render(<Stores />)
 
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+
         const ids = [
-            'mocked-top-panel',
-            'mocked-hero',
             'mocked-store-form',
             'mocked-stores-mobile-view',
             'mocked-stores-table',
@@ -68,6 +65,8 @@ describe('Stores', () => {
         ]
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
+
+        expect(screen.getAllByText(/titles.list/)).toHaveLength(2)
     })
 
     it('should navigate back when back button is clicked', async () => {
@@ -75,8 +74,9 @@ describe('Stores', () => {
 
         render(<Stores />)
 
-        const backButton = screen.getByTestId('mocked-back-button')
-        await user.click(backButton)
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
     })

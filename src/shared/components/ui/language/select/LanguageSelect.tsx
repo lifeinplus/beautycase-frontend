@@ -2,8 +2,6 @@ import classNames from 'classnames'
 import { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-
 const languages = [
     { code: 'ru', name: 'Русский' },
     { code: 'en', name: 'English' },
@@ -19,7 +17,8 @@ export const LanguageSelect = () => {
     return (
         <select
             className={classNames(
-                commonStyles.focusOutline,
+                'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                'dark:focus-visible:outline-rose-700',
                 'bg-white py-2 pe-1 text-right text-sm text-gray-700 dark:bg-black dark:text-gray-400'
             )}
             onChange={handleLanguageChange}

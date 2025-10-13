@@ -1,12 +1,13 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
 import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { ToolsGallery } from './ToolsGallery'
 
 vi.mock('@/features/tools/api/toolsApi')
-vi.mock('@/shared/components/gallery/image-card/ImageCard')
+vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('ToolsGallery', () => {
@@ -19,19 +20,9 @@ describe('ToolsGallery', () => {
     })
 
     it('renders list of tools when data is available', () => {
-        render(<ToolsGallery />)
+        renderWithRouter(<ToolsGallery />)
 
-        expect(screen.getByTestId('mocked-gallery-page')).toBeInTheDocument()
-        expect(screen.getByText(/titles.gallery/i)).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-media-content')).toBeInTheDocument()
-
-        mockTools.forEach((tool) => {
-            expect(
-                screen.getByTestId(`mocked-image-card-${tool._id}`)
-            ).toBeInTheDocument()
-
-            expect(screen.getByText(tool.name)).toBeInTheDocument()
-            expect(screen.getByText(`/tools/${tool._id}`)).toBeInTheDocument()
-        })
+        expect(screen.getAllByText(/titles.gallery/i)).toHaveLength(2)
+        expect(screen.getAllByRole('img')).toHaveLength(3)
     })
 })

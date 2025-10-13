@@ -1,11 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import type { ReferenceList } from '../../types'
 import { ReferenceListsTable } from './ReferenceListsTable'
-
-vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/table-row/TableRow')
 
 describe('ReferenceListsTable', () => {
     const data: ReferenceList[] = [

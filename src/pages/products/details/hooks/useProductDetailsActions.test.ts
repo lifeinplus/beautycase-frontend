@@ -14,6 +14,7 @@ import {
 import { mockProduct1 } from '@/features/products/api/__mocks__/productsApi'
 import {
     useDeleteProductByIdMutation,
+    useDuplicateProductByIdMutation,
     useGetProductByIdQuery,
 } from '@/features/products/api/productsApi'
 import { mockError } from '@/tests/mocks'
@@ -25,8 +26,12 @@ vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/products/api/productsApi')
 
 describe('useProductDetailsActions', () => {
-    const mockDeleteProductById = vi.fn()
+    const mockDelete = vi.fn()
     const mockDeleteUnwrap = vi.fn()
+    const mockDuplicate = vi.fn()
+    const mockDuplicateUnwrap = vi.fn()
+
+    const mockFromPathname = '/products/category/category-1'
 
     const spyConsoleError = vi.spyOn(console, 'error')
 
@@ -40,18 +45,25 @@ describe('useProductDetailsActions', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useDeleteProductByIdMutation as Mock).mockReturnValue([
-            mockDeleteProductById,
-            { isLoading: false },
-        ])
-
-        mockDeleteProductById.mockReturnValue({ unwrap: mockDeleteUnwrap })
-
         vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
             data: mockProduct1,
             isLoading: false,
             error: null,
         })
+
+        vi.mocked(useDeleteProductByIdMutation as Mock).mockReturnValue([
+            mockDelete,
+            { isLoading: false },
+        ])
+
+        mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
+
+        vi.mocked(useDuplicateProductByIdMutation as Mock).mockReturnValue([
+            mockDuplicate,
+            { isLoading: false },
+        ])
+
+        mockDuplicate.mockReturnValue({ unwrap: mockDuplicateUnwrap })
     })
 
     afterAll(() => {
@@ -60,7 +72,69 @@ describe('useProductDetailsActions', () => {
 
     it('returns correct number of actions', () => {
         const { result } = renderHook(() => useProductDetailsActions())
-        expect(result.current).toHaveLength(3)
+        expect(result.current).toHaveLength(4)
+    })
+
+    it('handles back action', async () => {
+        const { result } = renderHook(() => useProductDetailsActions())
+
+        const backAction = result.current.find(
+            (action) => action.key === 'back'
+        )
+
+        expect(backAction).toBeDefined()
+
+        await act(async () => {
+            await backAction!.onClick()
+        })
+
+        expect(mockNavigate).toHaveBeenCalledWith(mockFromPathname, {
+            replace: true,
+            state: { scrollId: '123' },
+        })
+    })
+
+    it('handles duplicate action', async () => {
+        const { result } = renderHook(() => useProductDetailsActions())
+
+        let duplicateAction = result.current.find((a) => a.key === 'duplicate')
+
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current.find((a) => a.key === 'duplicate')
+        const { onConfirm } = duplicateAction?.modalProps || {}
+
+        await act(async () => {
+            await onConfirm?.()
+        })
+
+        expect(mockDuplicateUnwrap).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith(mockFromPathname)
+    })
+
+    it('shows error toast if duplicate fails', async () => {
+        mockDuplicateUnwrap.mockRejectedValue(mockError)
+
+        const { result } = renderHook(() => useProductDetailsActions())
+
+        let duplicateAction = result.current.find(
+            (action) => action.key === 'duplicate'
+        )
+
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current.find((a) => a.key === 'duplicate')
+        const { onConfirm } = duplicateAction?.modalProps || {}
+
+        await act(async () => {
+            await onConfirm?.()
+        })
+
+        expect(mockDuplicate).toHaveBeenCalledWith('123')
     })
 
     it('handles delete action', async () => {
@@ -80,7 +154,7 @@ describe('useProductDetailsActions', () => {
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/products')
+        expect(mockNavigate).toHaveBeenCalledWith(mockFromPathname)
     })
 
     it('closes modal when cancel is called', async () => {
@@ -123,26 +197,7 @@ describe('useProductDetailsActions', () => {
             await onConfirm?.()
         })
 
-        expect(mockDeleteProductById).toHaveBeenCalledWith('123')
-    })
-
-    it('handles back action', async () => {
-        const { result } = renderHook(() => useProductDetailsActions())
-
-        const backAction = result.current.find(
-            (action) => action.key === 'back'
-        )
-
-        expect(backAction).toBeDefined()
-
-        await act(async () => {
-            await backAction!.onClick()
-        })
-
-        expect(mockNavigate).toHaveBeenCalledWith('/products', {
-            replace: true,
-            state: { scrollId: '123' },
-        })
+        expect(mockDelete).toHaveBeenCalledWith('123')
     })
 
     it('returns empty array if no id is provided', () => {

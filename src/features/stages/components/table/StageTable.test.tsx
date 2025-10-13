@@ -4,8 +4,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { mockStage1, mockStages } from '../../api/__mocks__/stagesApi'
 import { StageTable } from './StageTable'
 
-vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/table-row/TableRow')
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('StageTable', () => {

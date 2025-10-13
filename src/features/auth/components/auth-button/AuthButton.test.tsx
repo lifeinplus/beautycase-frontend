@@ -77,14 +77,6 @@ describe('AuthButton', () => {
         expect(mockHandleLogout).toHaveBeenCalledTimes(1)
     })
 
-    it('applies correct button classes', () => {
-        vi.mocked(useAppSelector).mockReturnValue(null)
-
-        render(<AuthButton />)
-
-        expect(screen.getByRole('button')).toHaveClass(/navBtn/)
-    })
-
     it('applies correct responsive classes to the text', () => {
         vi.mocked(useAppSelector).mockReturnValue(null)
 

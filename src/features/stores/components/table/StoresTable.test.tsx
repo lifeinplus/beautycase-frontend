@@ -5,9 +5,6 @@ import { describe, expect, it, vi } from 'vitest'
 import type { Store } from '../../types'
 import { StoresTable } from './StoresTable'
 
-vi.mock('@/shared/components/table/table/Table')
-vi.mock('@/shared/components/table/table-row/TableRow')
-
 describe('StoresTable', () => {
     const mockStores: Store[] = [
         { _id: '1', name: 'Store A' },

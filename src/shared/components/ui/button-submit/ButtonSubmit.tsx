@@ -1,9 +1,7 @@
 import classNames from 'classnames'
 import { ButtonHTMLAttributes } from 'react'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import { SpinnerButton } from '../../common/spinner-button/SpinnerButton'
-import styles from './ButtonSubmit.module.css'
+import { Spinner } from './ui/Spinner'
 
 export interface ButtonSubmitProps
     extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,15 +18,19 @@ export const ButtonSubmit = ({
     <button
         {...props}
         className={classNames(
-            styles.btn,
-            commonStyles.focusOutline,
+            'flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:w-67',
+            'bg-rose-500 hover:bg-rose-600',
+            'dark:bg-rose-600 dark:hover:bg-rose-700',
+            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+            'dark:focus-visible:outline-rose-700',
             className,
-            isLoading && `${styles.loading} cursor-not-allowed`
+            isLoading &&
+                'cursor-not-allowed bg-rose-200 hover:bg-rose-200 dark:bg-rose-950 dark:hover:bg-rose-950'
         )}
         disabled={isLoading}
         type="submit"
     >
-        {isLoading && <SpinnerButton />}
+        {isLoading && <Spinner />}
         {label}
     </button>
 )

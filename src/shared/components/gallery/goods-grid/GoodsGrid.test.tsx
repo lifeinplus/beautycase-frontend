@@ -1,11 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { mockNavigate } from '@/tests/mocks/router'
 import { type Good, GoodsGrid } from './GoodsGrid'
-
-vi.mock('../../ui/image/Image')
 
 const mockGoods: Good[] = [
     {
@@ -46,8 +44,7 @@ describe('GoodsGrid', () => {
             'gap-y-8'
         )
 
-        const images = screen.getAllByTestId('mocked-image')
-        expect(images).toHaveLength(3)
+        expect(screen.getAllByRole('img')).toHaveLength(3)
     })
 
     it('renders the correct number of goods', () => {

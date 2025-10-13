@@ -14,6 +14,14 @@ const productsApi = api.injectEndpoints({
             invalidatesTags: ['Product', 'Category'],
         }),
 
+        duplicateProductById: builder.mutation<MutationResult, string>({
+            query: (id) => ({
+                url: `/products/duplicate/${id}`,
+                method: 'POST',
+            }),
+            invalidatesTags: ['Product'],
+        }),
+
         getAllProducts: builder.query<Product[], void>({
             query: () => '/products',
             providesTags: (result) =>
@@ -87,6 +95,7 @@ const productsApi = api.injectEndpoints({
 
 export const {
     useCreateProductMutation,
+    useDuplicateProductByIdMutation,
     useGetAllProductsQuery,
     useGetProductByIdQuery,
     useGetProductsByCategoryQuery,

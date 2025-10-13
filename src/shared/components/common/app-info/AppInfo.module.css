@@ -1,5 +1,0 @@
-@reference '@/app/styles/index.css';
-
-.info {
-    @apply mx-auto hidden px-4 pt-4 text-xs text-neutral-500 lg:flex lg:flex-col lg:gap-2 dark:text-neutral-400;
-}

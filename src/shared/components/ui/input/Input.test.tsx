@@ -5,12 +5,6 @@ import { describe, expect, it, vi } from 'vitest'
 import { Input } from './Input'
 
 describe('Input', () => {
-    it('renders with default className', () => {
-        render(<Input data-testid="mocked-test-input" />)
-
-        expect(screen.getByTestId('mocked-test-input')).toHaveClass(/input/)
-    })
-
     it('renders with custom className', () => {
         const customClass = 'custom-input'
 

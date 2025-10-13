@@ -17,7 +17,6 @@ vi.mock('@/features/stages/components/filter/StageFilter')
 vi.mock('@/features/stages/components/mobile-view/StageMobileView')
 vi.mock('@/features/stages/components/table/StageTable')
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('StageList', () => {
@@ -36,11 +35,13 @@ describe('StageList', () => {
     })
 
     it('renders the component with correct structure', () => {
-        const ids = ['mocked-header', 'mocked-hero', 'mocked-stage-filter']
+        const ids = ['mocked-header', 'mocked-stage-filter']
 
         render(<StageList />)
 
         ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
+
+        expect(screen.getByText(/titles.list/)).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {

@@ -15,10 +15,7 @@ vi.mock('@/features/brands/api/brandsApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/shared/components/common/title-section/TitleSection')
 vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
-vi.mock('@/shared/components/forms/select/section/SelectSection')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
 
 describe('ToolForm', () => {
     const mockTitle = 'Test Title'
@@ -34,15 +31,13 @@ describe('ToolForm', () => {
     it('renders all required form fields', () => {
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const testIds = [
-            'mocked-top-panel',
-            'mocked-select-section',
-            'mocked-image-url-section',
-        ]
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
 
-        testIds.forEach((id) =>
-            expect(screen.getByTestId(id)).toBeInTheDocument()
-        )
+        expect(
+            screen.getByTestId('mocked-image-url-section')
+        ).toBeInTheDocument()
+
+        expect(screen.getByRole('combobox')).toBeInTheDocument()
 
         const placeholders = ['fields.name.label', 'fields.comment.label']
 
@@ -55,7 +50,10 @@ describe('ToolForm', () => {
         const user = userEvent.setup()
 
         render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })

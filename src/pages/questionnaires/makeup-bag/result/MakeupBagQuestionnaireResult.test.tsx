@@ -11,8 +11,6 @@ vi.mock('@/features/questionnaires/api/questionnairesApi')
 vi.mock(
     '@/features/questionnaires/makeup-bag/components/data/MakeupBagQuestionnaireData'
 )
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagQuestionnaireResult', () => {
@@ -29,7 +27,7 @@ describe('MakeupBagQuestionnaireResult', () => {
     it('renders questionnaire data', () => {
         render(<MakeupBagQuestionnaireResult />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
 
         expect(
             screen.getByTestId('mocked-makeup-bag-questionnaire-data')
@@ -44,7 +42,10 @@ describe('MakeupBagQuestionnaireResult', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagQuestionnaireResult />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires/makeup-bags')
     })

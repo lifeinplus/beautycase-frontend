@@ -11,8 +11,7 @@ vi.mock('@/features/questionnaires/api/questionnairesApi')
 vi.mock(
     '@/features/questionnaires/training/components/data/TrainingQuestionnaireData'
 )
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
+
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('TrainingQuestionnaireResult', () => {
@@ -29,7 +28,7 @@ describe('TrainingQuestionnaireResult', () => {
     it('renders questionnaire data', () => {
         render(<TrainingQuestionnaireResult />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
 
         expect(
             screen.getByTestId('mocked-training-questionnaire-data')
@@ -44,7 +43,10 @@ describe('TrainingQuestionnaireResult', () => {
         const user = userEvent.setup()
 
         render(<TrainingQuestionnaireResult />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires/trainings')
     })

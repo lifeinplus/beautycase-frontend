@@ -1,10 +1,8 @@
 import { screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { ImageCard } from './ImageCard'
-
-vi.mock('../../ui/image/Image')
 
 describe('ImageCard', () => {
     const mockData = {
@@ -15,23 +13,19 @@ describe('ImageCard', () => {
     const mockPath = '/image/1'
 
     it('renders the image correctly', () => {
-        renderWithRouter(<ImageCard data={mockData} path={mockPath} />)
+        renderWithRouter(<ImageCard data={mockData} to={mockPath} />)
 
-        const image = screen.getByTestId('mocked-image')
+        const image = screen.getByRole('img')
         expect(image).toBeInTheDocument()
         expect(image).toHaveAttribute('alt', mockData.name)
         expect(image).toHaveAttribute('src', mockData.imageUrl)
     })
 
     it('renders a link to the correct path', () => {
-        renderWithRouter(<ImageCard data={mockData} path={mockPath} />)
+        renderWithRouter(<ImageCard data={mockData} to={mockPath} />)
         const link = screen.getByRole('link')
         expect(link).toHaveAttribute('href', mockPath)
         expect(link).toHaveClass('relative')
         expect(link).toHaveClass('overflow-hidden')
-
-        const container = screen.getByRole('link').parentElement
-        expect(container).toHaveClass(/container/)
-        expect(container).toHaveClass(/square/)
     })
 })

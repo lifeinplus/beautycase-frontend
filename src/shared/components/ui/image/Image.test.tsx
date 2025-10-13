@@ -15,11 +15,6 @@ describe('Image', () => {
         )
     })
 
-    it('applies default className when none is provided', () => {
-        render(<Image src="test.jpg" alt="Test" />)
-        expect(screen.getByAltText('Test')).toHaveClass(/img/)
-    })
-
     it('applies custom className when provided', () => {
         const customClass = 'custom-image-class'
 
@@ -39,10 +34,5 @@ describe('Image', () => {
             'src',
             config.cloudinary.defaultThumbnailUrl
         )
-    })
-
-    it('handles empty props gracefully', () => {
-        render(<Image />)
-        expect(screen.getByRole('img')).toHaveClass(/img/)
     })
 })

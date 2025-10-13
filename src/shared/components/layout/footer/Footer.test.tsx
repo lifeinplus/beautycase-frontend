@@ -7,9 +7,10 @@ describe('Footer', () => {
     it('renders the footer with correct structure', () => {
         const { container } = render(<Footer />)
 
-        const footer = container.querySelector('footer')
-        expect(footer).toHaveAttribute('id', 'footer')
-        expect(footer).toHaveClass(/footer/)
+        expect(container.querySelector('footer')).toHaveAttribute(
+            'id',
+            'footer'
+        )
 
         const sections = container.querySelectorAll('section')
         expect(sections).toHaveLength(2)
@@ -44,7 +45,7 @@ describe('Footer', () => {
         render(<Footer />)
 
         const phone = screen.getByRole('link')
-        expect(phone).toHaveAttribute('href', 'tel:+381629446904')
+        expect(phone).toHaveAttribute('href', 'tel:+123456789012')
         expect(phone).toHaveTextContent('footer.phone')
 
         expect(screen.getByText(/questions/)).toBeInTheDocument()

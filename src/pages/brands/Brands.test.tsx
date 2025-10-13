@@ -20,11 +20,8 @@ vi.mock('@/features/brands/components/form/BrandForm')
 vi.mock('@/features/brands/components/mobile-view/BrandsMobileView')
 vi.mock('@/features/brands/components/table/BrandsTable')
 vi.mock('@/features/form/slice/formSlice')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/modals/delete/ModalDelete')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('Brands', () => {
     const mockBrands: Brand[] = [
@@ -55,8 +52,7 @@ describe('Brands', () => {
     it('renders the page', () => {
         render(<Brands />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
         expect(screen.getByTestId('mocked-brand-form')).toBeInTheDocument()
 
         expect(
@@ -80,13 +76,18 @@ describe('Brands', () => {
         expect(
             screen.getByTestId('mocked-table-brand-brand2')
         ).toBeInTheDocument()
+
+        expect(screen.getAllByText(/titles.list/)).toHaveLength(2)
     })
 
     it('should navigate back when back button is clicked', async () => {
         const user = userEvent.setup()
 
         render(<Brands />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
     })

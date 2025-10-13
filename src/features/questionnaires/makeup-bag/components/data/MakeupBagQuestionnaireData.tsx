@@ -7,9 +7,9 @@ import config from '@/app/config/config'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import type {
     MakeupBagQuestionnaire,
-    QuestionnaireResultOption,
+    QuestionnaireOption,
 } from '@/features/questionnaires/types'
-import dlStyles from '@/shared/components/ui/description-list/description-list.module.css'
+
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 
 export interface MakeupBagQuestionnaireDataProps {
@@ -55,7 +55,7 @@ export const MakeupBagQuestionnaireData = ({
 
     const renderText = (
         value: MakeupBagQuestionnaire[keyof MakeupBagQuestionnaire],
-        options?: QuestionnaireResultOption[]
+        options?: QuestionnaireOption<MakeupBagQuestionnaire>[]
     ): string => {
         let result = [value]
 
@@ -79,14 +79,17 @@ export const MakeupBagQuestionnaireData = ({
     }
 
     return (
-        <div className={dlStyles.dlContainer}>
-            <dl className={dlStyles.dl}>
+        <div className="sm:rounded-2.5xl pb-4 sm:border sm:border-neutral-200 sm:pb-0 dark:sm:border-neutral-700">
+            <dl className="divide-y divide-neutral-100 dark:divide-neutral-800">
                 {fields.map((f) => (
-                    <div key={f} className={dlStyles.dlGrid}>
-                        <dt className={dlStyles.dt}>
+                    <div
+                        key={f}
+                        className="px-3 py-3 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-4"
+                    >
+                        <dt className="text-xs font-medium text-neutral-600 sm:text-xs/6 dark:text-neutral-400">
                             {t(makeupBagQuestionnaireQuestions[f]?.label)}
                         </dt>
-                        <dd className={dlStyles.dd}>
+                        <dd className="pt-1 sm:col-span-2 sm:pt-0">
                             {f === 'makeupBagPhotoId'
                                 ? renderImage(data?.[f])
                                 : renderText(

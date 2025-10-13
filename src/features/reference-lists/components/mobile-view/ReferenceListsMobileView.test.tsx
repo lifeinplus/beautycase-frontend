@@ -1,10 +1,9 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
 
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import type { ReferenceList } from '../../types'
 import { ReferenceListsMobileView } from './ReferenceListsMobileView'
-
-vi.mock('@/shared/components/table/mobile-view/MobileView')
 
 describe('ReferenceListMobileView', () => {
     const mockReferenceLists: ReferenceList[] = [
@@ -13,9 +12,7 @@ describe('ReferenceListMobileView', () => {
     ]
 
     it('renders the MobileView component with correct props', () => {
-        render(<ReferenceListsMobileView data={mockReferenceLists} />)
-
-        expect(screen.getByTestId('mocked-mobile-view')).toBeInTheDocument()
+        renderWithRouter(<ReferenceListsMobileView data={mockReferenceLists} />)
         expect(screen.getByText('names.brands')).toBeInTheDocument()
     })
 })

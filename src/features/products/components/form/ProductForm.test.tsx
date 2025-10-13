@@ -17,10 +17,7 @@ vi.mock('@/features/categories/api/categoriesApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/shared/components/common/title-section/TitleSection')
 vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
-vi.mock('@/shared/components/forms/select/section/SelectSection')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
 
 describe('ProductForm', () => {
     const mockTitle = 'Test Title'
@@ -40,9 +37,9 @@ describe('ProductForm', () => {
     it('renders all required form fields', () => {
         render(<ProductForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
 
-        expect(screen.getAllByTestId('mocked-select-section')).toHaveLength(2)
+        expect(screen.getAllByRole('combobox')).toHaveLength(2)
 
         const placeholders = [
             'fields.name.label',
@@ -62,7 +59,10 @@ describe('ProductForm', () => {
         const user = userEvent.setup()
 
         render(<ProductForm title={mockTitle} onSubmit={mockOnSubmit} />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })

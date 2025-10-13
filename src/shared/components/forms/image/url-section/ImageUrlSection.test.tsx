@@ -29,7 +29,6 @@ import {
 import { ImageUrlSection, type ImageUrlSectionProps } from './ImageUrlSection'
 
 vi.mock('@/features/uploads/api/uploadsApi')
-vi.mock('../preview/ImagePreview')
 
 describe('ImageUrlSection', () => {
     const mockProps: ImageUrlSectionProps<Product> = {
@@ -80,14 +79,6 @@ describe('ImageUrlSection', () => {
         expect(screen.getByPlaceholderText('Image Url')).toBeInTheDocument()
     })
 
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<ImageUrlSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
     it('renders error message', () => {
         render(
             <ImageUrlSection {...mockProps} error={mockFieldError.message} />
@@ -100,9 +91,7 @@ describe('ImageUrlSection', () => {
     it('renders image preview if value is provided', () => {
         render(<ImageUrlSection {...mockProps} value={mockImageUrl1} />)
 
-        const image = screen.getByTestId(
-            'mocked-image-preview'
-        ) as HTMLImageElement
+        const image = screen.getByRole('img') as HTMLImageElement
 
         expect(image.src).toBe(mockImageUrl1)
     })

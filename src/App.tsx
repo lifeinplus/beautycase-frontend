@@ -12,10 +12,10 @@ import { questionnaireRoutes } from './app/routes/questionnaires/questionnairesR
 import { referenceListRoutes } from './app/routes/reference-lists/referenceListsRoutes'
 import { stageRoutes } from './app/routes/stages/stagesRoutes'
 import { toolRoutes } from './app/routes/tools/toolsRoutes'
+import { ScrollToTop } from './app/ui/scroll-to-top/ScrollToTop'
 import { PersistLogin } from './features/auth/components/persist-login/PersistLogin'
 import { RequireAuth } from './features/auth/components/require-auth/RequireAuth'
 import { selectDarkMode } from './features/theme/slice/themeSlice'
-import { ScrollToTop } from './shared/components/common/scroll-to-top/ScrollToTop'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)

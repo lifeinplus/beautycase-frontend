@@ -14,8 +14,6 @@ vi.mock(
 vi.mock(
     '@/features/questionnaires/makeup-bag/components/table/MakeupBagQuestionnaireTable'
 )
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('MakeupBagQuestionnaireList', () => {
     beforeEach(() => {
@@ -31,8 +29,9 @@ describe('MakeupBagQuestionnaireList', () => {
     it('renders the component with correct structure', () => {
         render(<MakeupBagQuestionnaireList />)
 
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
-        expect(screen.getAllByTestId('mocked-hero')).toHaveLength(2)
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+        expect(screen.getAllByText(/headlineList/)).toHaveLength(2)
+        expect(screen.getAllByText(/makeupBag.hero.byline/)).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {
@@ -51,7 +50,10 @@ describe('MakeupBagQuestionnaireList', () => {
         const user = userEvent.setup()
 
         render(<MakeupBagQuestionnaireList />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/questionnaires')
     })

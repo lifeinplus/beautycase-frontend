@@ -11,8 +11,7 @@ import { StageForm } from './StageForm'
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
-vi.mock('@/shared/components/navigation/nav-button/NavButton')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
+
 vi.mock('@/features/form/slice/formSlice')
 
 describe('StageForm', () => {
@@ -25,11 +24,11 @@ describe('StageForm', () => {
     it('renders all required form fields', () => {
         render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
 
-        const testIds = ['mocked-top-panel', 'mocked-image-url-section']
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
 
-        testIds.forEach((id) =>
-            expect(screen.getByTestId(id)).toBeInTheDocument()
-        )
+        expect(
+            screen.getByTestId('mocked-image-url-section')
+        ).toBeInTheDocument()
 
         const placeholders = [
             'fields.title.label',
@@ -47,7 +46,10 @@ describe('StageForm', () => {
         const user = userEvent.setup()
 
         render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })

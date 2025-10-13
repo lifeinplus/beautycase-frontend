@@ -13,12 +13,11 @@ describe('LanguageSwitcher', () => {
     it('renders the language switcher button', () => {
         render(<LanguageSwitcher />)
 
-        const button = screen.getByRole('button', {
-            name: 'buttons.language.ariaLabel',
-        })
-
-        expect(button).toBeInTheDocument()
-        expect(button).toHaveClass(/navBtn/)
+        expect(
+            screen.getByRole('button', {
+                name: 'buttons.language.ariaLabel',
+            })
+        ).toBeInTheDocument()
     })
 
     it('switches to Russian when button is clicked', async () => {

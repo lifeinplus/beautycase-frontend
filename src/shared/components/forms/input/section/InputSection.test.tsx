@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { mockFieldError, mockRegister } from '@/tests/mocks/form'
+import { mockRegister } from '@/tests/mocks/form'
 import { InputSection, type InputSectionProps } from './InputSection'
 
 describe('InputSection', () => {
@@ -19,20 +19,5 @@ describe('InputSection', () => {
             'type',
             'text'
         )
-    })
-
-    it('renders description if provided', () => {
-        const mockDescription = 'Test Description'
-
-        render(<InputSection {...mockProps} description={mockDescription} />)
-
-        expect(screen.getByText(mockDescription)).toHaveClass(/description/)
-    })
-
-    it('renders error message and applies error class', () => {
-        render(<InputSection {...mockProps} error={mockFieldError.message} />)
-
-        expect(screen.getByText(mockFieldError.message!)).toHaveClass(/error/)
-        expect(screen.getByRole('textbox')).toHaveClass(/error/)
     })
 })

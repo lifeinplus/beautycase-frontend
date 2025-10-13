@@ -27,9 +27,9 @@ vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/api/stagesApi')
 
 describe('useStageDetailsActions', () => {
-    const mockDeleteStage = vi.fn()
+    const mockDelete = vi.fn()
     const mockDeleteUnwrap = vi.fn()
-    const mockDuplicateStage = vi.fn()
+    const mockDuplicate = vi.fn()
     const mockDuplicateUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
@@ -51,17 +51,17 @@ describe('useStageDetailsActions', () => {
         })
 
         vi.mocked(useDeleteStageByIdMutation as Mock).mockReturnValue([
-            mockDeleteStage,
+            mockDelete,
             { isLoading: false },
         ])
 
-        mockDeleteStage.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
 
         vi.mocked(useDuplicateStageByIdMutation as Mock).mockReturnValue([
-            mockDuplicateStage,
+            mockDuplicate,
         ])
 
-        mockDuplicateStage.mockReturnValue({ unwrap: mockDuplicateUnwrap })
+        mockDuplicate.mockReturnValue({ unwrap: mockDuplicateUnwrap })
     })
 
     afterAll(() => {
@@ -123,7 +123,7 @@ describe('useStageDetailsActions', () => {
             await onConfirm?.()
         })
 
-        expect(mockDuplicateStage).toHaveBeenCalledWith('123')
+        expect(mockDuplicate).toHaveBeenCalledWith('123')
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
@@ -158,7 +158,7 @@ describe('useStageDetailsActions', () => {
             await onConfirm?.()
         })
 
-        expect(mockDeleteStage).toHaveBeenCalledWith('123')
+        expect(mockDelete).toHaveBeenCalledWith('123')
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 

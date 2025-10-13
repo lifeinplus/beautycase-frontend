@@ -8,7 +8,6 @@ import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { QuestionnaireGallery } from './QuestionnaireGallery'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('QuestionnaireGallery', () => {
@@ -16,7 +15,7 @@ describe('QuestionnaireGallery', () => {
         renderWithRouter(<QuestionnaireGallery />)
 
         expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
-        expect(screen.getByTestId('mocked-hero')).toBeInTheDocument()
+        expect(screen.getByText(/headlineList/)).toBeInTheDocument()
     })
 
     it('renders two QuestionnaireCard components', () => {

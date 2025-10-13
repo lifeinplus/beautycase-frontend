@@ -195,14 +195,14 @@ describe('CategoryForm', () => {
         mockConsoleError.mockRestore()
     })
 
-    it('renders error message and applies error class', async () => {
+    it('renders error message', async () => {
         const user = userEvent.setup()
 
         render(<CategoryForm ref={mockRef} />)
         await user.click(screen.getByRole('button'))
 
-        expect(screen.getByText('fields.name.errors.required')).toHaveClass(
-            /error/
-        )
+        expect(
+            screen.getByText('fields.name.errors.required')
+        ).toBeInTheDocument()
     })
 })

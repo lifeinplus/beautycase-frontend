@@ -6,12 +6,10 @@ import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
 import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { CategoryProducts } from './CategoryProducts'
 
 vi.mock('@/features/products/api/productsApi')
-vi.mock('@/shared/components/common/hero/Hero')
-vi.mock('@/shared/components/gallery/image-card/ImageCard')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
 
 describe('CategoryProducts', () => {
     beforeEach(() => {
@@ -23,16 +21,19 @@ describe('CategoryProducts', () => {
     })
 
     it('renders products with title and subtitle', () => {
-        render(<CategoryProducts />)
+        renderWithRouter(<CategoryProducts />)
         expect(screen.getAllByText(/categories.product/i)).toHaveLength(2)
-        expect(screen.getByText(mockProducts[0].name)).toBeInTheDocument()
+        expect(screen.getAllByRole('img')).toHaveLength(2)
     })
 
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<CategoryProducts />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+        renderWithRouter(<CategoryProducts />)
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith('/products')
     })

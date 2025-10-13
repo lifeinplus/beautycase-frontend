@@ -11,6 +11,7 @@
         },
         "duplicate": {
             "text": "Duplicate",
+            "loading": "Duplicating...",
             "ariaLabel": "Duplicate button"
         }
     },
@@ -22,7 +23,7 @@
     },
     "duplicate": {
         "title": "Duplicate?",
-        "description": "Are you sure you want to duplicate {{name}}?",
-        "toast": "{{name}} duplicated"
+        "titleError": "Cannot Duplicate",
+        "description": "Are you sure you want to duplicate {{name}}?"
     }
 }

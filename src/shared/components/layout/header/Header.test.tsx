@@ -1,16 +1,15 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Header } from './Header'
 
 vi.mock('@/features/auth/components/auth-button/AuthButton')
 vi.mock('@/features/theme/toggler/ThemeToggler')
-vi.mock('../../ui/logo-link/LogoLink')
-vi.mock('../../LanguageSwitcher')
 
 describe('Header', () => {
     it('renders the header with correct structure', () => {
-        const { container } = render(<Header />)
+        const { container } = renderWithRouter(<Header />)
 
         const navElement = container.querySelector('nav')
         expect(navElement).toBeInTheDocument()
@@ -34,7 +33,7 @@ describe('Header', () => {
     })
 
     it('displays the logo with correct text and styling', () => {
-        render(<Header />)
+        renderWithRouter(<Header />)
 
         expect(screen.getByRole('heading', { level: 1 })).toHaveClass(/logo/)
 
@@ -45,7 +44,7 @@ describe('Header', () => {
     })
 
     it('includes the AuthButton component', () => {
-        render(<Header />)
+        renderWithRouter(<Header />)
 
         const authButton = screen.getByTestId('mocked-auth-button')
         expect(authButton).toHaveTextContent('Sign In')
@@ -53,7 +52,7 @@ describe('Header', () => {
     })
 
     it('applies responsive classes correctly', () => {
-        const { container } = render(<Header />)
+        const { container } = renderWithRouter(<Header />)
 
         expect(container.querySelector('nav')).toHaveClass('sm:hidden')
 

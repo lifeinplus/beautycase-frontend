@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { AddonServiceCard } from '@/entities/online-service/ui/addon-service-card/AddonServiceCard'
 import { NarrowServiceCard } from '@/entities/online-service/ui/narrow-service-card/NarrowServiceCard'
 import { WideServiceCard } from '@/entities/online-service/ui/wide-service-card/WideServiceCard'
-import styles from './OnlineServices.module.css'
 
 export const OnlineServices = () => {
     const { t } = useTranslation('pricing')
@@ -24,7 +23,7 @@ export const OnlineServices = () => {
 
     return (
         <div className="space-y-8">
-            <div className={styles.narrow}>
+            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 sm:px-0 md:grid-cols-2">
                 {services.map((s) => (
                     <NarrowServiceCard
                         key={s.key}
@@ -43,8 +42,10 @@ export const OnlineServices = () => {
                 ))}
             </div>
 
-            <p className={styles.title}>{t('workshops.title')}</p>
-            <div className={styles.wide}>
+            <p className="font-heading mx-auto w-11/12 pt-4 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
+                {t('workshops.title')}
+            </p>
+            <div className="mx-auto grid max-w-2xl items-stretch gap-7 px-7 sm:px-0">
                 {workshops.map((w) => (
                     <WideServiceCard
                         key={w.key}
@@ -61,8 +62,10 @@ export const OnlineServices = () => {
                 ))}
             </div>
 
-            <p className={styles.title}>{t('addons.title')}</p>
-            <div className={styles.addons}>
+            <p className="font-heading mx-auto w-11/12 pt-4 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
+                {t('addons.title')}
+            </p>
+            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 sm:grid-cols-2 sm:px-0">
                 {addons.map((a) => (
                     <AddonServiceCard
                         key={a.key}

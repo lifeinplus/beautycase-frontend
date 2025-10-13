@@ -5,17 +5,14 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { menuItems } from '@/app/config/menu'
 import { useAppSelector } from '@/app/hooks/hooks'
+import AppInfo from '@/app/layout/nav-bar/ui/AppInfo'
 import { AuthButton } from '@/features/auth/components/auth-button/AuthButton'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { ThemeToggler } from '@/features/theme/toggler/ThemeToggler'
-import AppInfo from '@/shared/components/common/app-info/AppInfo'
-import commonStyles from '@/shared/components/common/common.module.css'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
 import { LanguageSwitcher } from '@/shared/components/ui/language/switcher/LanguageSwitcher'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
 import { canAccess } from '@/shared/lib/access/canAccess'
-import logoStyles from '@/shared/styles/logo.module.css'
-import styles from './NavBar.module.css'
 
 export interface NavBarProps {
     children?: ReactNode
@@ -49,14 +46,16 @@ export const NavBar = ({ children }: NavBarProps) => {
     return (
         <aside
             className={classNames(
-                styles.container,
-                childrenArray.length
-                    ? styles.containerFlex
-                    : styles.containerMobile
+                'pb-safe-bottom fixed bottom-0 left-0 z-20 w-full overflow-y-auto bg-white',
+                'border-t border-neutral-200 sm:border-e sm:border-t-0',
+                'sm:h-full sm:w-auto sm:flex-col sm:px-3 sm:pt-2 sm:pb-5',
+                'lg:w-navbar-open',
+                'dark:border-neutral-700 dark:bg-black',
+                childrenArray.length ? 'flex' : 'hidden md:flex'
             )}
         >
-            <div className={styles.logo}>
-                <h2 className={logoStyles.logo}>
+            <div className="mt-3 hidden flex-col ps-4 pe-3 pt-3 pb-10 sm:flex">
+                <h2 className="font-logo text-2xl">
                     <LogoLink>
                         <span className="lg:hidden">B</span>
                         <span className="hidden lg:inline">Beautycase</span>
@@ -64,14 +63,15 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className={classNames(styles.button)}>
+            <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
                         <NavButton
                             key={index}
                             className={classNames(
-                                isActive(item.path) && commonStyles.textDanger
+                                isActive(item.path) &&
+                                    'text-rose-500 dark:text-rose-400'
                             )}
                             icon={item.icon}
                             onClick={() => handleClick(item.path)}
@@ -80,11 +80,15 @@ export const NavBar = ({ children }: NavBarProps) => {
                     ))}
             </div>
 
-            <div className={classNames(styles.button, styles.buttonMobile)}>
+            <div
+                className={classNames(
+                    'flex w-full grow flex-row justify-evenly sm:my-10 sm:flex sm:flex-col sm:justify-start'
+                )}
+            >
                 {children}
             </div>
 
-            <div className={classNames(styles.button)}>
+            <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />

@@ -8,7 +8,6 @@ import { MakeupBagList } from './MakeupBagList'
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/components/mobile-view/MakeupBagMobileView')
 vi.mock('@/features/makeup-bags/components/table/MakeupBagTable')
-vi.mock('@/shared/components/common/hero/Hero')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('MakeupBagList', () => {
@@ -23,9 +22,8 @@ describe('MakeupBagList', () => {
     it('renders the component with correct structure', () => {
         render(<MakeupBagList />)
 
-        const ids = ['mocked-header', 'mocked-hero']
-
-        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
+        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
+        expect(screen.getByText(/hero.headline/)).toBeInTheDocument()
     })
 
     it('renders page components and list views', () => {

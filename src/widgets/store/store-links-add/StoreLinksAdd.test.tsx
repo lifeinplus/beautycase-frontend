@@ -30,8 +30,6 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stores/api/storesApi')
 vi.mock('@/shared/components/common/title-section/TitleSection')
-vi.mock('@/shared/components/layout/top-panel/TopPanel')
-vi.mock('@/shared/components/ui/button-submit/ButtonSubmit')
 
 describe('StoreLinksAdd', () => {
     const mockFormData = {
@@ -61,7 +59,7 @@ describe('StoreLinksAdd', () => {
 
     it('renders the page with correct title', () => {
         render(<StoreLinksAdd onSave={mockOnSave} />)
-        expect(screen.getByTestId('mocked-top-panel')).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
     })
 
     it('renders initial empty store link form', () => {
@@ -181,7 +179,10 @@ describe('StoreLinksAdd', () => {
         const user = userEvent.setup()
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
-        await user.click(screen.getByTestId('mocked-back-button'))
+
+        await user.click(
+            screen.getByRole('navigation').querySelector('button')!
+        )
 
         expect(mockNavigate).toHaveBeenCalledWith(-1)
     })
@@ -198,7 +199,9 @@ describe('StoreLinksAdd', () => {
         }) as HTMLInputElement[]
 
         await user.type(linkInputs[0], 'https://example.com')
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -210,7 +213,9 @@ describe('StoreLinksAdd', () => {
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(spyConsoleError).toHaveBeenCalledWith(mockError)
@@ -224,7 +229,9 @@ describe('StoreLinksAdd', () => {
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
-        await user.click(screen.getByTestId('mocked-button-submit'))
+        await user.click(
+            screen.getByRole('button', { name: 'navigation:actions.save' })
+        )
 
         expect(mockOnSave).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
@@ -234,8 +241,8 @@ describe('StoreLinksAdd', () => {
     it('shows saving label when isSaving is true', () => {
         render(<StoreLinksAdd onSave={mockOnSave} isSaving={true} />)
 
-        expect(screen.getByTestId('mocked-button-submit')).toHaveTextContent(
-            'navigation:actions.saving'
-        )
+        expect(
+            screen.getByRole('button', { name: 'navigation:actions.saving' })
+        ).toBeInTheDocument()
     })
 })

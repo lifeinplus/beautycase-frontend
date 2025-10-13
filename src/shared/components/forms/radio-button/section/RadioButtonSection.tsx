@@ -2,7 +2,6 @@ import { FieldValues, UseFormRegisterReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import type { QuestionnaireOption } from '@/features/questionnaires/types'
-import formStyles from '@/shared/components/forms/form.module.css'
 import { Label } from '../../label/Label'
 import { RadioButtonItem } from '../item/RadioButtonItem'
 
@@ -10,7 +9,7 @@ export interface RadioButtonSectionProps<T extends FieldValues> {
     description?: string
     horizontal?: boolean
     label: string
-    options: QuestionnaireOption<T>[]
+    options?: QuestionnaireOption<T>[]
     register: UseFormRegisterReturn
 }
 
@@ -31,7 +30,7 @@ export const RadioButtonSection = <T extends FieldValues>({
                 <nav
                     className={`flex min-w-[240px] gap-1 p-2 ${horizontal ? 'flex-row' : 'flex-col'}`}
                 >
-                    {options.map((o) => (
+                    {options?.map((o) => (
                         <RadioButtonItem
                             key={o.id}
                             id={o.id}
@@ -44,7 +43,9 @@ export const RadioButtonSection = <T extends FieldValues>({
             </div>
 
             {description && (
-                <p className={formStyles.description}>{description}</p>
+                <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
+                    {description}
+                </p>
             )}
         </div>
     )

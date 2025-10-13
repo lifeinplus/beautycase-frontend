@@ -2,9 +2,6 @@ import classNames from 'classnames'
 import { MouseEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import commonStyles from '@/shared/components/common/common.module.css'
-import modalStyles from '../modal.module.css'
-
 export interface ModalDeleteProps {
     title?: string
     description?: string
@@ -12,7 +9,7 @@ export interface ModalDeleteProps {
     onCancel?: () => void
     isOpen?: boolean
     isBlocked?: boolean
-    isDeleting?: boolean
+    isLoading?: boolean
 }
 
 export const ModalDelete = ({
@@ -22,7 +19,7 @@ export const ModalDelete = ({
     onCancel = () => {},
     isOpen = false,
     isBlocked = false,
-    isDeleting = false,
+    isLoading = false,
 }: ModalDeleteProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')
@@ -44,26 +41,36 @@ export const ModalDelete = ({
     if (!isOpen) return null
 
     return (
-        <div className={modalStyles.modal} onClick={handleClickOutside}>
-            <div className={modalStyles.container} ref={modalRef}>
-                <div className={modalStyles.content}>
-                    <h2 className={modalStyles.title}>{title}</h2>
-                    <p className={modalStyles.description}>{description}</p>
+        <div
+            className="sm:ps-navbar lg:ps-navbar-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            onClick={handleClickOutside}
+        >
+            <div
+                className="m-5 flex w-3/4 max-w-96 flex-col space-y-10 rounded-xl bg-white shadow-lg sm:w-1/2 dark:bg-neutral-800"
+                ref={modalRef}
+            >
+                <div className="mt-8 space-y-3 px-5 text-center">
+                    <h2 className="text-lg font-bold">{title}</h2>
+                    <p className="text-base leading-snug text-neutral-500 dark:text-neutral-300">
+                        {description}
+                    </p>
                 </div>
 
-                <div className={modalStyles.btnGroup}>
+                <div className="w-full space-y-2">
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
                         className={classNames(
-                            commonStyles.textDanger,
-                            commonStyles.focusOutline,
-                            modalStyles.btn,
-                            isBlocked && commonStyles.textSecondary
+                            'text-rose-500 dark:text-rose-400',
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                            'dark:focus-visible:outline-rose-700',
+                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
+                            isBlocked &&
+                                'text-neutral-500 dark:text-neutral-400'
                         )}
-                        disabled={isBlocked || isDeleting}
+                        disabled={isBlocked || isLoading}
                         onClick={onConfirm}
                     >
-                        {isDeleting
+                        {isLoading
                             ? t('buttons.delete.loading')
                             : t('buttons.delete.text')}
                     </button>
@@ -71,9 +78,10 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
                         className={classNames(
-                            commonStyles.focusOutline,
-                            modalStyles.btn,
-                            modalStyles.btnBottom
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
+                            'dark:focus-visible:outline-rose-700',
+                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
+                            'rounded-b-xl pb-2 font-light text-black dark:text-white'
                         )}
                         onClick={onCancel}
                     >

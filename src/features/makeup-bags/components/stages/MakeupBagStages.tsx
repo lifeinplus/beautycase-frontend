@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
-import { ImageSection } from '@/shared/components/common/image-section/ImageSection'
+import { ImageSection } from '@/shared/components/forms/image-section/ImageSection'
 import { GoodsGrid } from '@/shared/components/gallery/goods-grid/GoodsGrid'
 import type { Stage } from '../../../stages/types'
-import styles from './MakeupBagStages.module.css'
 
 export interface MakeupBagStagesProps {
     stages?: Stage[]
@@ -17,8 +16,12 @@ export const MakeupBagStages = ({ stages }: MakeupBagStagesProps) => {
             {stages?.map((stage, index) => (
                 <article key={index} className="my-4 space-y-8 py-4">
                     <div>
-                        <h3 className={styles.title}>{stage.title}</h3>
-                        <h4 className={styles.subtitle}>{stage.subtitle}</h4>
+                        <h3 className="font-heading text-center text-xl font-bold sm:text-xl md:text-3xl lg:text-4xl">
+                            {stage.title}
+                        </h3>
+                        <h4 className="font-heading mt-2 mb-6 text-center text-lg text-slate-700 sm:text-lg md:text-xl lg:text-2xl dark:text-slate-400">
+                            {stage.subtitle}
+                        </h4>
                     </div>
 
                     <ImageSection name={stage?.title} url={stage?.imageUrl} />

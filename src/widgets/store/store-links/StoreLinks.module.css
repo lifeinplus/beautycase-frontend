@@ -1,9 +1,0 @@
-@reference '@/app/styles/index.css';
-
-.title {
-    @apply mb-3 font-bold;
-}
-
-.items {
-    @apply flex flex-col gap-3 sm:flex-row;
-}

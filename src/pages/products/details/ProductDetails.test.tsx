@@ -10,7 +10,7 @@ import { ProductDetails } from './ProductDetails'
 
 vi.mock('@/features/products/api/productsApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
-vi.mock('@/widgets/store/store-links/StoreLinks')
+vi.mock('@/widgets/store/links/StoreLinks')
 vi.mock('./hooks/useProductDetailsActions')
 
 describe('ProductDetails', () => {

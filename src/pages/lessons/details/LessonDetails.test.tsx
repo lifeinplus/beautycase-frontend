@@ -12,7 +12,7 @@ import { LessonDetails } from './LessonDetails'
 
 vi.mock('@/features/lessons/api/lessonsApi')
 vi.mock('@/shared/utils/youtube/embed-url/getEmbedUrl')
-vi.mock('@/widgets/product/product-images/ProductImages')
+vi.mock('@/widgets/product/images/ProductImages')
 vi.mock('./hooks/useLessonDetailsActions')
 
 describe('LessonDetails', () => {

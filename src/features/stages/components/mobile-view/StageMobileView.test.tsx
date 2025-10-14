@@ -8,7 +8,7 @@ import { StageMobileView } from './StageMobileView'
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('StageMobileView', () => {
-    it('renders the MobileView component with correct props', () => {
+    it('renders the mobile view component with correct props', () => {
         renderWithRouter(<StageMobileView stages={mockStages} />)
 
         expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(2)

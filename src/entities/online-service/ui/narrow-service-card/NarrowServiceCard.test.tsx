@@ -38,7 +38,7 @@ describe('NarrowServiceCard', () => {
             expect(screen.getByText(feature)).toBeInTheDocument()
         })
 
-        expect(screen.getAllByTestId('mocked-check-icon')).toHaveLength(3)
+        expect(screen.getAllByTestId('mocked-icon')).toHaveLength(3)
     })
 
     it('renders contact button with correct link', () => {

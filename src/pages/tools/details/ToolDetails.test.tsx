@@ -10,7 +10,7 @@ import { ToolDetails } from './ToolDetails'
 
 vi.mock('@/features/tools/api/toolsApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
-vi.mock('@/widgets/store/store-links/StoreLinks')
+vi.mock('@/widgets/store/links/StoreLinks')
 vi.mock('./hooks/useToolDetailsActions')
 
 describe('ToolDetails', () => {

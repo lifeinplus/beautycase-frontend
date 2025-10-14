@@ -130,7 +130,6 @@ describe('MobileView', () => {
             />
         )
 
-        const icons = screen.getAllByTestId('mocked-chevron-right-icon')
-        expect(icons).toHaveLength(3)
+        expect(screen.getAllByTestId('mocked-icon')).toHaveLength(3)
     })
 })

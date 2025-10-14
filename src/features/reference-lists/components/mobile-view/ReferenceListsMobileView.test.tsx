@@ -11,7 +11,7 @@ describe('ReferenceListMobileView', () => {
         { id: 'stores', name: '' },
     ]
 
-    it('renders the MobileView component with correct props', () => {
+    it('renders the mobile view component with correct props', () => {
         renderWithRouter(<ReferenceListsMobileView data={mockReferenceLists} />)
         expect(screen.getByText('names.brands')).toBeInTheDocument()
     })

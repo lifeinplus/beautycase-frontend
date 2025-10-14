@@ -9,7 +9,7 @@ import { mockStoreLinks } from '../../../api/__mocks__/storesApi'
 import { StoreLinksAddForTool } from './StoreLinksAddForTool'
 
 vi.mock('@/features/tools/api/toolsApi')
-vi.mock('@/widgets/store/store-links-add/StoreLinksAdd')
+vi.mock('@/widgets/store/links-add/StoreLinksAdd')
 
 describe('StoreLinksAddForTool', () => {
     const mockUpdate = vi.fn()

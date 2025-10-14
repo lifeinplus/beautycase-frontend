@@ -12,6 +12,7 @@ import { questionnaireRoutes } from './app/routes/questionnaires/questionnairesR
 import { referenceListRoutes } from './app/routes/reference-lists/referenceListsRoutes'
 import { stageRoutes } from './app/routes/stages/stagesRoutes'
 import { toolRoutes } from './app/routes/tools/toolsRoutes'
+import { usersRoutes } from './app/routes/users/usersRoutes'
 import { ScrollToTop } from './app/ui/scroll-to-top/ScrollToTop'
 import { PersistLogin } from './features/auth/components/persist-login/PersistLogin'
 import { RequireAuth } from './features/auth/components/require-auth/RequireAuth'
@@ -53,6 +54,7 @@ const App = () => {
                         {referenceListRoutes}
                         {stageRoutes}
                         {toolRoutes}
+                        {usersRoutes}
                     </Route>
                 </Route>
             </Routes>

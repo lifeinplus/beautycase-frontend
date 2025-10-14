@@ -8,6 +8,7 @@ import {
     RectangleGroupIcon,
     ShoppingBagIcon,
     UserCircleIcon,
+    UsersIcon,
 } from '@heroicons/react/24/outline'
 import { ComponentType, SVGProps } from 'react'
 
@@ -66,6 +67,13 @@ export const menuItems: MenuItem[] = [
         path: '/reference-lists',
         roles: ['admin'],
         icon: ListBulletIcon,
+    },
+    {
+        auth: true,
+        label: 'menu.users',
+        path: '/users',
+        roles: ['admin'],
+        icon: UsersIcon,
     },
     {
         label: 'menu.pricing',

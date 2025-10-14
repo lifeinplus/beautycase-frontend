@@ -6,8 +6,8 @@ import { MakeupBagAdd } from '@/pages/makeup-bags/add/MakeupBagAdd'
 import { MakeupBagDetails } from '@/pages/makeup-bags/details/MakeupBagDetails'
 import { MakeupBagEdit } from '@/pages/makeup-bags/edit/MakeupBagEdit'
 import { MakeupBagList } from '@/pages/makeup-bags/list/MakeupBagList'
-import { StageSelection } from '@/widgets/stage/stage-selection/StageSelection'
-import { ToolSelection } from '@/widgets/tool/tool-selection/ToolSelection'
+import { StageSelection } from '@/widgets/stage/selection/StageSelection'
+import { ToolSelection } from '@/widgets/tool/selection/ToolSelection'
 
 export const makeupBagRoutes = [
     <Route key="makeup-bags" path="/makeup-bags" element={<AppLayout />}>

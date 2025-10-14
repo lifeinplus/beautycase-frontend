@@ -8,7 +8,7 @@ import { mockError } from '@/tests/mocks'
 import { ProductSelectionForStage } from './ProductSelectionForStage'
 
 vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/widgets/product/product-selection/ProductSelection')
+vi.mock('@/widgets/product/selection/ProductSelection')
 
 describe('ProductSelectionForStage', () => {
     const mockUpdate = vi.fn()

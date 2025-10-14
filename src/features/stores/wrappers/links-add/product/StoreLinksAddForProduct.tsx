@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 
 import { useUpdateProductStoreLinksMutation } from '@/features/products/api/productsApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { StoreLinksAdd } from '@/widgets/store/store-links-add/StoreLinksAdd'
+import { StoreLinksAdd } from '@/widgets/store/links-add/StoreLinksAdd'
 import type { StoreLink } from '../../../types'
 
 export const StoreLinksAddForProduct = () => {

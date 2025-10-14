@@ -7,7 +7,7 @@ import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
 import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
 import { LessonGallery } from '@/pages/lessons/gallery/LessonGallery'
-import { UserSelection } from '@/pages/users/UserSelection'
+import { UserSelection } from '@/widgets/user/selection/UserSelection'
 
 export const lessonRoutes = [
     <Route key="lessons" path="/lessons" element={<AppLayout />}>

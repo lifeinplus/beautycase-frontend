@@ -1,0 +1,11 @@
+{
+    "hero": {
+        "headline": "Users"
+    },
+    "table": {
+        "created": "Creation Date",
+        "username": "Username",
+        "role": "Role",
+        "updated": "Update Date"
+    }
+}

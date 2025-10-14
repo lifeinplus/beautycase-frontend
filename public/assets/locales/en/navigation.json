@@ -21,7 +21,8 @@
         "referenceLists": "Reference Lists",
         "stages": "Stages",
         "tools": "Tools",
-        "training": "Training"
+        "training": "Training",
+        "users": "Users"
     },
     "build": "Build"
 }

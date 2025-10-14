@@ -6,7 +6,7 @@ import { VideoSection } from '@/pages/lessons/details/ui/VideoSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { ProductImages } from '@/widgets/product/product-images/ProductImages'
+import { ProductImages } from '@/widgets/product/images/ProductImages'
 import { useLessonDetailsActions } from './hooks/useLessonDetailsActions'
 
 export const LessonDetails = () => {

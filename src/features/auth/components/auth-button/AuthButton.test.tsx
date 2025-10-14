@@ -22,19 +22,10 @@ describe('AuthButton', () => {
 
         render(<AuthButton />)
 
-        expect(screen.getByRole('button')).toBeInTheDocument()
-
-        expect(
-            screen.getByTestId('mocked-arrow-right-end-on-rectangle-icon')
-        ).toBeInTheDocument()
-
-        expect(screen.getByText('login')).toBeInTheDocument()
-
-        expect(
-            screen.queryByTestId('mocked-arrow-left-start-on-rectangle-icon')
-        ).not.toBeInTheDocument()
-
-        expect(screen.queryByText('logout')).not.toBeInTheDocument()
+        const button = screen.getByRole('button')
+        expect(button.querySelector('svg')).toBeInTheDocument()
+        expect(button.textContent).toContain('login')
+        expect(button.textContent).not.toContain('logout')
     })
 
     it('renders logout button when user is logged in', () => {
@@ -42,19 +33,10 @@ describe('AuthButton', () => {
 
         render(<AuthButton />)
 
-        expect(screen.getByRole('button')).toBeInTheDocument()
-
-        expect(
-            screen.getByTestId('mocked-arrow-left-start-on-rectangle-icon')
-        ).toBeInTheDocument()
-
-        expect(screen.getByText('logout')).toBeInTheDocument()
-
-        expect(
-            screen.queryByTestId('arrow-right-end-on-rectangle-icon')
-        ).not.toBeInTheDocument()
-
-        expect(screen.queryByText('login')).not.toBeInTheDocument()
+        const button = screen.getByRole('button')
+        expect(button.querySelector('svg')).toBeInTheDocument()
+        expect(button.textContent).toContain('logout')
+        expect(button.textContent).not.toContain('login')
     })
 
     it('navigates to login page when login button is clicked', async () => {

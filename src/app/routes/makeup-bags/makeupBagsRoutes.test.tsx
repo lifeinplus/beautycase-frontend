@@ -14,8 +14,8 @@ vi.mock('@/pages/makeup-bags/details/MakeupBagDetails')
 vi.mock('@/pages/makeup-bags/edit/MakeupBagEdit')
 vi.mock('@/pages/makeup-bags/list/MakeupBagList')
 vi.mock('@/shared/components/scroll-to-top/ScrollToTop')
-vi.mock('@/widgets/stage/stage-selection/StageSelection')
-vi.mock('@/widgets/tool/tool-selection/ToolSelection')
+vi.mock('@/widgets/stage/selection/StageSelection')
+vi.mock('@/widgets/tool/selection/ToolSelection')
 
 describe('makeupBagsRoutes', () => {
     it('renders the list page correctly', () => {

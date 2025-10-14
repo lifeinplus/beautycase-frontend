@@ -28,9 +28,7 @@ describe('SelectTile', () => {
     it('renders SelectTile correctly', () => {
         render(<SelectTile products={mockProducts} />)
 
-        expect(
-            screen.getByTestId('mocked-squares-plus-icon')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-icon')).toBeInTheDocument()
     })
 
     it('renders null if there has no access', () => {
@@ -48,7 +46,7 @@ describe('SelectTile', () => {
 
         render(<SelectTile products={mockProducts} />)
 
-        await user.click(screen.getByTestId('mocked-squares-plus-icon'))
+        await user.click(screen.getByTestId('mocked-icon'))
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

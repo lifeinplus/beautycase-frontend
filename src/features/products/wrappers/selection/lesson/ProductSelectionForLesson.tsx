@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 
 import { useUpdateLessonProductsMutation } from '@/features/lessons/api/lessonsApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { ProductSelection } from '@/widgets/product/product-selection/ProductSelection'
+import { ProductSelection } from '@/widgets/product/selection/ProductSelection'
 
 export const ProductSelectionForLesson = () => {
     const [updateLessonProducts, { isLoading }] =

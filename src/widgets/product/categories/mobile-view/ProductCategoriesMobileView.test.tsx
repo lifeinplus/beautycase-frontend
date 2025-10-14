@@ -8,7 +8,7 @@ import { ProductCategoriesMobileView } from './ProductCategoriesMobileView'
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('ProductCategoriesMobileView', () => {
-    it('renders the MobileView component with correct props', () => {
+    it('renders the mobile view component with correct props', () => {
         renderWithRouter(
             <ProductCategoriesMobileView categories={[mockCategoryWithCount]} />
         )

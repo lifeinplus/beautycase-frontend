@@ -11,7 +11,7 @@ import { StageDetails } from './StageDetails'
 
 vi.mock('@/features/stages/api/stagesApi')
 vi.mock('@/shared/components/common/image-section/ImageSection')
-vi.mock('@/widgets/product/product-images/ProductImages')
+vi.mock('@/widgets/product/images/ProductImages')
 vi.mock('./hooks/useStageDetailsActions')
 
 describe('StageDetails', () => {

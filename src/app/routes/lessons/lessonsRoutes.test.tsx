@@ -16,8 +16,8 @@ vi.mock('@/pages/lessons/add/LessonAdd')
 vi.mock('@/pages/lessons/details/LessonDetails')
 vi.mock('@/pages/lessons/edit/LessonEdit')
 vi.mock('@/pages/lessons/gallery/LessonGallery')
-vi.mock('@/pages/users/UserSelection')
 vi.mock('@/shared/components/scroll-to-top/ScrollToTop')
+vi.mock('@/widgets/user/selection/UserSelection')
 
 describe('lessonsRoutes', () => {
     it('renders the details page correctly', () => {

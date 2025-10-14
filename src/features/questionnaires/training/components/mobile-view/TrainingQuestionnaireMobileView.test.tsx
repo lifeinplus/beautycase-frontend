@@ -8,7 +8,7 @@ import { TrainingQuestionnaireMobileView } from './TrainingQuestionnaireMobileVi
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('TrainingQuestionnaireMobileView', () => {
-    it('renders the MobileView component with correct props', () => {
+    it('renders the mobile view component with correct props', () => {
         renderWithRouter(
             <TrainingQuestionnaireMobileView
                 data={mockTrainingQuestionnaires}

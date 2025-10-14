@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Hero } from '@/shared/components/hero/Hero'
 import { Header } from '@/shared/components/layout/header/Header'
-import { OnlineServices } from '@/widgets/online-services/ui/OnlineServices'
+import { OnlineServices } from '@/widgets/online-services/OnlineServices'
 
 export const Pricing = () => {
     const { t } = useTranslation('pricing')

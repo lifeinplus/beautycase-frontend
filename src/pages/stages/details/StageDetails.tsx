@@ -6,7 +6,7 @@ import { ImageSection } from '@/shared/components/forms/image-section/ImageSecti
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { ProductImages } from '@/widgets/product/product-images/ProductImages'
+import { ProductImages } from '@/widgets/product/images/ProductImages'
 import { useStageDetailsActions } from './hooks/useStageDetailsActions'
 
 export const StageDetails = () => {

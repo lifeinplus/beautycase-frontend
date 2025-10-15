@@ -11,6 +11,7 @@ import { useProductCategoryActions } from '@/pages/products/category/hooks/usePr
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
 import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
+import { useUserDetailsActions } from '@/pages/users/details/hooks/useUserDetailsActions'
 import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
 import { canAccess } from '@/shared/lib/access/canAccess'
 
@@ -40,6 +41,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const productCategoryActions = useProductCategoryActions()
     const stageDetailsActions = useStageDetailsActions()
     const toolDetailsActions = useToolDetailsActions()
+    const userDetailsActions = useUserDetailsActions()
 
     const getActionsForRoute = () => {
         const { pathname } = location
@@ -175,6 +177,13 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const userRoutes = [
+            {
+                pattern: /^\/users\/[a-f0-9]{24}$/i,
+                actions: userDetailsActions,
+            },
+        ]
+
         const match = [
             ...lessonRoutes,
             ...makeupBagRoutes,
@@ -183,6 +192,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             ...referenceListRoutes,
             ...stageRoutes,
             ...toolRoutes,
+            ...userRoutes,
         ].find((route) => route.pattern.test(pathname))
 
         return match?.actions || []

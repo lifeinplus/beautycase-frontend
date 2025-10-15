@@ -17,12 +17,12 @@
         },
         "makeupBags": {
             "label": "Makeup Bags",
-            "emptyMessage": "You have no available makeup bags",
+            "emptyMessage": "No makeup bags available",
             "link": "Open"
         },
         "lessons": {
             "label": "Lessons",
-            "emptyMessage": "You have no available lessons",
+            "emptyMessage": "No lessons available",
             "link": "Open"
         }
     }

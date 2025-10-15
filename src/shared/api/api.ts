@@ -50,6 +50,7 @@ export const api = createApi({
         'Stage',
         'Store',
         'Tool',
+        'User',
     ],
     endpoints: () => ({}),
 })

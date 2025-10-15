@@ -3,9 +3,9 @@
         "headline": "Users"
     },
     "table": {
-        "created": "Creation Date",
+        "createdAt": "Creation Date",
         "username": "Username",
         "role": "Role",
-        "updated": "Update Date"
+        "updatedAt": "Update Date"
     }
 }

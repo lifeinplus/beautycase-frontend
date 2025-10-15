@@ -14,10 +14,10 @@ export const UsersTable = ({ data }: UsersTableProps) => {
     const { t } = useTranslation('user')
 
     const headers: Header[] = [
-        { label: t('table.created'), className: 'text-center' },
+        { label: t('table.createdAt'), className: 'text-center' },
         { label: t('table.username'), className: 'text-left' },
         { label: t('table.role'), className: 'text-left' },
-        { label: t('table.updated'), className: 'text-center' },
+        { label: t('table.updatedAt'), className: 'text-center' },
     ]
 
     const cellClasses = headers.map((h) => h.className)

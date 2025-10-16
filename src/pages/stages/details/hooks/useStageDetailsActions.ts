@@ -50,7 +50,6 @@ export const useStageDetailsActions = () => {
     const handleDelete = async () => {
         try {
             await deleteStageById(id!).unwrap()
-            toast.success(t('modal:delete.toast', { name: data?.title }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)

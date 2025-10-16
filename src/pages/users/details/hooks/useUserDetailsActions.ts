@@ -41,9 +41,6 @@ export const useUserDetailsActions = () => {
     const handleDelete = async () => {
         try {
             await deleteUserById(id!).unwrap()
-            toast.success(
-                t('modal:delete.toast', { name: data?.user.username })
-            )
             navigate(redirectPath)
         } catch (err) {
             console.error(err)

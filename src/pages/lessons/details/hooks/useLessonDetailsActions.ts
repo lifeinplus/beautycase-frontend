@@ -45,7 +45,6 @@ export const useLessonDetailsActions = () => {
     const handleDelete = async () => {
         try {
             await deleteLessonById(id!).unwrap()
-            toast.success(t('modal:delete.toast', { name: data?.title }))
             navigate(redirectPath)
         } catch (err) {
             console.error(err)

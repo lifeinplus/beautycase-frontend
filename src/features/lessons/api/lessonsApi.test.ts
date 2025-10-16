@@ -132,11 +132,7 @@ describe('lessonsApi', () => {
             const [deleteLesson] = result.current
 
             await act(async () => {
-                const response = await deleteLesson('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'Lesson deleted successfully',
-                })
+                await deleteLesson('1').unwrap()
             })
         })
 

@@ -64,8 +64,8 @@ const lessonsHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/lessons/:id', () =>
-        HttpResponse.json({ message: 'Lesson deleted successfully' })
+    http.delete('api/lessons/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

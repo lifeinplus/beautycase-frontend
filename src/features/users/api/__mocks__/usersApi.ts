@@ -39,6 +39,8 @@ export const mockUserResult: UserResult = {
 export const mockUseGetUserByIdQuery = vi.fn()
 
 export const useGetAllUsersQuery = vi.fn()
+export const useDeleteUserByIdMutation = vi.fn()
+
 export const useGetUserByIdQuery = () => mockUseGetUserByIdQuery()
 
 const usersHandlers = [

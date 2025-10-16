@@ -49,8 +49,8 @@ const categoriesHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/categories/:id', () =>
-        HttpResponse.json({ message: 'Category deleted successfully' })
+    http.delete('api/categories/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

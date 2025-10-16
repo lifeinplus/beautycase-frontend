@@ -66,8 +66,8 @@ const makeupBagsHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/makeup-bags/:id', () =>
-        HttpResponse.json({ message: 'MakeupBag deleted successfully' })
+    http.delete('api/makeup-bags/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

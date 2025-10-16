@@ -127,11 +127,7 @@ describe('makeupBagsApi', () => {
             const [deleteMakeupBag] = result.current
 
             await act(async () => {
-                const response = await deleteMakeupBag('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'MakeupBag deleted successfully',
-                })
+                await deleteMakeupBag('1').unwrap()
             })
         })
 

@@ -64,8 +64,8 @@ const stagesHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/stages/:id', () =>
-        HttpResponse.json({ message: 'Stage deleted successfully' })
+    http.delete('api/stages/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

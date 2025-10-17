@@ -4,8 +4,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectUserId } from '@/features/auth/slice/authSlice'
 import {
-    mockUseGetUserByIdQuery,
     mockUserResult,
+    useGetUserByIdQuery,
 } from '@/features/users/api/__mocks__/usersApi'
 import { Account } from '@/pages/account/Account'
 import { mockError } from '@/tests/mocks'
@@ -27,7 +27,7 @@ describe('Account', () => {
             return null
         })
 
-        mockUseGetUserByIdQuery.mockReturnValue({
+        useGetUserByIdQuery.mockReturnValue({
             data: mockUserResult,
             isLoading: false,
             error: null,
@@ -35,7 +35,7 @@ describe('Account', () => {
     })
 
     it('renders loading state correctly', () => {
-        mockUseGetUserByIdQuery.mockReturnValue({
+        useGetUserByIdQuery.mockReturnValue({
             data: null,
             isLoading: true,
             error: null,
@@ -60,7 +60,7 @@ describe('Account', () => {
     })
 
     it('handles error state', () => {
-        mockUseGetUserByIdQuery.mockReturnValue({
+        useGetUserByIdQuery.mockReturnValue({
             data: null,
             isLoading: false,
             error: mockError,

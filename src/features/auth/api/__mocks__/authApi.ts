@@ -5,7 +5,6 @@ import type {
     AuthQueryLogin,
     AuthQueryRegister,
     AuthResultLogin,
-    AuthResultRegister,
     AuthState,
 } from '../../types'
 
@@ -30,10 +29,6 @@ export const mockRegisterParams: AuthQueryRegister = {
     username: 'testuser',
     password: 'password123',
     confirmPassword: 'password123',
-}
-
-export const mockRegisterResult: AuthResultRegister = {
-    message: 'User registered successfully',
 }
 
 export const useLoginUserMutation = vi.fn()
@@ -62,7 +57,7 @@ const authHandlers = [
         const requestBody = (await request.json()) as AuthQueryRegister
 
         if (requestBody.password === requestBody.confirmPassword) {
-            return HttpResponse.json(mockRegisterResult, { status: 201 })
+            return HttpResponse.json({ status: 201 })
         }
 
         return HttpResponse.json('Passwords do not match', { status: 400 })

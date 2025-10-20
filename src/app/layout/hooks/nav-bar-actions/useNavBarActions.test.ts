@@ -14,6 +14,7 @@ vi.mock('@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions')
 vi.mock('@/pages/products/details/hooks/useProductDetailsActions')
 vi.mock('@/pages/stages/details/hooks/useStageDetailsActions')
 vi.mock('@/pages/tools/details/hooks/useToolDetailsActions')
+vi.mock('@/pages/users/details/hooks/useUserDetailsActions')
 vi.mock('@/shared/lib/access/canAccess')
 
 describe('useNavBarActions', () => {

@@ -1,8 +1,4 @@
-import {
-    ArrowLeftIcon,
-    PencilSquareIcon,
-    TrashIcon,
-} from '@heroicons/react/24/outline'
+import { ArrowLeftIcon, TrashIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -11,40 +7,40 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import {
-    useDeleteLessonByIdMutation,
-    useGetLessonByIdQuery,
-} from '@/features/lessons/api/lessonsApi'
+    useDeleteUserByIdMutation,
+    useGetUserByIdQuery,
+} from '@/features/users/api/usersApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
-export const useLessonDetailsActions = () => {
+export const useUserDetailsActions = () => {
     const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['navigation', 'modal'])
+    const { t } = useTranslation(['user', 'modal'])
 
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const isLessonDetailsPage = pathname.match(/^\/lessons\/[a-f0-9]{24}$/i)
+    const isUserDetailsPage = pathname.match(/^\/users\/[a-f0-9]{24}$/i)
 
-    const { data } = useGetLessonByIdQuery(id!, {
-        skip: !id || !isLessonDetailsPage,
+    const { data } = useGetUserByIdQuery(id!, {
+        skip: !id || !isUserDetailsPage,
     })
 
-    const [deleteLessonById, { isLoading: isDeleting }] =
-        useDeleteLessonByIdMutation()
+    const [deleteUserById, { isLoading: isDeleting }] =
+        useDeleteUserByIdMutation()
 
-    const redirectPath = '/lessons'
+    const redirectPath = '/users'
 
     useEffect(() => {
-        if (isLessonDetailsPage) {
+        if (isUserDetailsPage) {
             dispatch(clearFormData())
         }
-    }, [dispatch, isLessonDetailsPage])
+    }, [dispatch, isUserDetailsPage])
 
     const handleDelete = async () => {
         try {
-            await deleteLessonById(id!).unwrap()
+            await deleteUserById(id!).unwrap()
             navigate(redirectPath)
         } catch (err) {
             console.error(err)
@@ -54,7 +50,7 @@ export const useLessonDetailsActions = () => {
         }
     }
 
-    if (!id || !isLessonDetailsPage) return []
+    if (!id || !isUserDetailsPage) return []
 
     return [
         {
@@ -62,7 +58,7 @@ export const useLessonDetailsActions = () => {
             auth: true,
             className: 'hidden sm:flex',
             icon: ArrowLeftIcon,
-            label: t('actions.back'),
+            label: t('navigation:actions.back'),
             onClick: () =>
                 navigate(state?.fromPathname || redirectPath, {
                     replace: true,
@@ -70,25 +66,17 @@ export const useLessonDetailsActions = () => {
                 }),
         },
         {
-            key: 'edit',
-            auth: true,
-            icon: PencilSquareIcon,
-            label: t('actions.edit'),
-            roles: ['admin', 'mua'],
-            onClick: () => navigate(`${redirectPath}/${id}/edit`),
-        },
-        {
             key: 'delete',
             auth: true,
             icon: TrashIcon,
-            label: t('actions.delete'),
+            label: t('navigation:actions.delete'),
             roles: ['admin', 'mua'],
             onClick: () => setIsModalDeleteOpen(true),
             modalProps: {
                 isOpen: isModalDeleteOpen,
                 title: t('modal:delete.title'),
                 description: t('modal:delete.description', {
-                    name: data?.title,
+                    name: data?.user.username,
                 }),
                 onConfirm: isDeleting ? () => {} : handleDelete,
                 onCancel: () => setIsModalDeleteOpen(false),

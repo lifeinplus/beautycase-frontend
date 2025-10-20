@@ -102,11 +102,7 @@ describe('brandsApi', () => {
             const [deleteBrand] = result.current
 
             await act(async () => {
-                const response = await deleteBrand('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'Brand deleted successfully',
-                })
+                await deleteBrand('1').unwrap()
             })
         })
 

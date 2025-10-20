@@ -11,10 +11,10 @@ describe('UsersTable', () => {
         render(<UsersTable data={mockUsers} />)
 
         const columns = [
-            'table.created',
+            'table.createdAt',
             'table.username',
             'table.role',
-            'table.updated',
+            'table.updatedAt',
         ]
 
         columns.forEach((c) => expect(screen.getByText(c)).toBeInTheDocument())

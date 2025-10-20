@@ -82,14 +82,11 @@ const toolsHandlers = [
     }),
 
     http.put('api/tools/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Tool successfully changed',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/tools/:id', () =>
-        HttpResponse.json({ message: 'Tool successfully deleted' })
+    http.delete('api/tools/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

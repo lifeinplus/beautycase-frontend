@@ -83,7 +83,6 @@ describe('toolsApi', () => {
 
                 expect(response).toMatchObject({
                     id: mockTool1._id!,
-                    message: 'Tool successfully changed',
                 })
             })
         })
@@ -98,11 +97,7 @@ describe('toolsApi', () => {
             const [deleteTool] = result.current
 
             await act(async () => {
-                const response = await deleteTool(mockTool1._id!).unwrap()
-
-                expect(response).toEqual({
-                    message: 'Tool successfully deleted',
-                })
+                await deleteTool(mockTool1._id!).unwrap()
             })
         })
     })

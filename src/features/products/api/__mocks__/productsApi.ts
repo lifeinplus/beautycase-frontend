@@ -86,8 +86,8 @@ const productsHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/products/:id', () =>
-        HttpResponse.json({ message: 'Product deleted successfully' })
+    http.delete('api/products/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

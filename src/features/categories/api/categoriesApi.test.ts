@@ -102,11 +102,7 @@ describe('categoriesApi', () => {
             const [deleteCategory] = result.current
 
             await act(async () => {
-                const response = await deleteCategory('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'Category deleted successfully',
-                })
+                await deleteCategory('1').unwrap()
             })
         })
 

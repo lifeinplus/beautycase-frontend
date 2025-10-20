@@ -36,13 +36,12 @@ export const Register = () => {
         const { username, password, confirmPassword } = data
 
         try {
-            const response = await registerUser({
+            await registerUser({
                 username,
                 password,
                 confirmPassword,
-            }).unwrap()
+            })
 
-            toast.success(response.message)
             navigate('/login')
         } catch (error) {
             console.error(error)

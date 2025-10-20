@@ -46,7 +46,6 @@ export const Stores = () => {
 
         try {
             await deleteStoreById(store._id).unwrap()
-            toast.success(t('modal:delete.toast', { name: store.name }))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)

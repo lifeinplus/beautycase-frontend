@@ -36,10 +36,9 @@ export const mockUserResult: UserResult = {
     lessons: [mockUserLesson1, mockUserLesson2],
 }
 
-export const mockUseGetUserByIdQuery = vi.fn()
-
 export const useGetAllUsersQuery = vi.fn()
-export const useGetUserByIdQuery = () => mockUseGetUserByIdQuery()
+export const useGetUserByIdQuery = vi.fn()
+export const useDeleteUserByIdMutation = vi.fn()
 
 const usersHandlers = [
     http.get('api/users', async () => HttpResponse.json(mockUsers)),

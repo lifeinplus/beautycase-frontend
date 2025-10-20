@@ -185,11 +185,7 @@ describe('productsApi', () => {
             const [deleteProduct] = result.current
 
             await act(async () => {
-                const response = await deleteProduct('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'Product deleted successfully',
-                })
+                await deleteProduct('1').unwrap()
             })
         })
 

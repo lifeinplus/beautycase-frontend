@@ -46,7 +46,6 @@ export const Categories = () => {
 
         try {
             await deleteCategoryById(category._id).unwrap()
-            toast.success(t('modal:delete.toast', { name: category.name }))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)

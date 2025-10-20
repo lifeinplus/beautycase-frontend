@@ -5,7 +5,6 @@ import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useRegisterUserMutation } from '@/features/auth/api/authApi'
-import type { AuthResultRegister } from '@/features/auth/types'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
@@ -28,10 +27,6 @@ const MockRoutes = () => (
 describe('Register', () => {
     const initialEntries = ['/register']
 
-    const mockRegisterResult: AuthResultRegister = {
-        message: 'Account created successfully',
-    }
-
     const mockParams = {
         username: 'testuser',
         password: 'password123',
@@ -39,19 +34,12 @@ describe('Register', () => {
     }
 
     const mockRegisterUser = vi.fn()
-    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
             mockRegisterUser,
             { isLoading: false },
         ])
-
-        mockRegisterUser.mockReturnValue({
-            unwrap: mockUnwrap,
-        })
-
-        mockUnwrap.mockResolvedValue(mockRegisterResult)
     })
 
     it('renders the registration form correctly', () => {
@@ -122,7 +110,6 @@ describe('Register', () => {
         )
 
         expect(mockRegisterUser).toHaveBeenCalledWith(mockParams)
-        expect(toast.success).toHaveBeenCalledWith(expect.any(String))
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
 
@@ -152,7 +139,7 @@ describe('Register', () => {
             .spyOn(console, 'error')
             .mockImplementation(() => {})
 
-        mockUnwrap.mockRejectedValue(mockError)
+        mockRegisterUser.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
 

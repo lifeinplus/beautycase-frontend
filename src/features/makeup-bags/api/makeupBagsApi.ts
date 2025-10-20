@@ -45,6 +45,7 @@ const makeupBagsApi = api.injectEndpoints({
             invalidatesTags: (_result, _error, { id }) => [
                 { type: 'MakeupBag', id: id },
                 { type: 'MakeupBag', id: 'LIST' },
+                { type: 'User' },
             ],
         }),
 

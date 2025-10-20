@@ -117,7 +117,6 @@ describe('Categories', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteCategoryById).toHaveBeenCalledWith('category1')
-        expect(toast.success).toHaveBeenCalledWith('modal:delete.toast')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
     })

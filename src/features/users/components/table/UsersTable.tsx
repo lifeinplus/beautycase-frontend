@@ -36,7 +36,7 @@ export const UsersTable = ({ data }: UsersTableProps) => {
                         t(`account:fields.role.types.${item?.role}`),
                         formatDate(item.updatedAt, 'yyyy.MM.dd HH:mm'),
                     ]}
-                    redirectPath={`/users/${item._id}`}
+                    redirectPath={`/control-center/users/${item._id}`}
                 />
             )}
         />

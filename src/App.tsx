@@ -4,15 +4,14 @@ import { Route, Routes } from 'react-router-dom'
 
 import { useAppSelector } from './app/hooks/hooks'
 import { accountRoutes } from './app/routes/account/accountRoutes'
+import { controlCenterRoutes } from './app/routes/control-center/controlCenterRoutes'
 import { lessonRoutes } from './app/routes/lessons/lessonsRoutes'
 import { makeupBagRoutes } from './app/routes/makeup-bags/makeupBagsRoutes'
 import { productRoutes } from './app/routes/products/productsRoutes'
 import { publicRoutes } from './app/routes/public/publicRoutes'
 import { questionnaireRoutes } from './app/routes/questionnaires/questionnairesRoutes'
-import { referenceListRoutes } from './app/routes/reference-lists/referenceListsRoutes'
 import { stageRoutes } from './app/routes/stages/stagesRoutes'
 import { toolRoutes } from './app/routes/tools/toolsRoutes'
-import { usersRoutes } from './app/routes/users/usersRoutes'
 import { ScrollToTop } from './app/ui/scroll-to-top/ScrollToTop'
 import { PersistLogin } from './features/auth/components/persist-login/PersistLogin'
 import { RequireAuth } from './features/auth/components/require-auth/RequireAuth'
@@ -47,14 +46,13 @@ const App = () => {
 
                     <Route element={<RequireAuth />}>
                         {accountRoutes}
+                        {controlCenterRoutes}
                         {lessonRoutes}
                         {makeupBagRoutes}
                         {productRoutes}
                         {questionnaireRoutes}
-                        {referenceListRoutes}
                         {stageRoutes}
                         {toolRoutes}
-                        {usersRoutes}
                     </Route>
                 </Route>
             </Routes>

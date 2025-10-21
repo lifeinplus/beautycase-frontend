@@ -3,6 +3,7 @@ import { vi } from 'vitest'
 const mockIcon = () => <svg data-testid="mocked-icon" />
 
 const icons = {
+    AdjustmentsHorizontalIcon: mockIcon,
     ArrowDownCircleIcon: mockIcon,
     ArrowDownTrayIcon: mockIcon,
     ArrowLeftIcon: mockIcon,

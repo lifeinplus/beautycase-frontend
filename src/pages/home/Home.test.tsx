@@ -8,7 +8,7 @@ import { Home } from './Home'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/auth/hooks/auth-logout/useAuthLogout')
-vi.mock('@/features/home/components/tile/HomeTile')
+vi.mock('@/features/home/components/tile/Tile')
 
 describe('Home', () => {
     beforeEach(() => {

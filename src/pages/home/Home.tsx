@@ -6,7 +6,7 @@ import { menuItems } from '@/app/config/menu'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useAuthLogout } from '@/features/auth/hooks/auth-logout/useAuthLogout'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
-import { HomeTile } from '@/features/home/components/tile/HomeTile'
+import { Tile } from '@/shared/components/tile/Tile'
 import { LanguageSelect } from '@/shared/components/ui/language/select/LanguageSelect'
 import { canAccess } from '@/shared/lib/access/canAccess'
 
@@ -46,7 +46,7 @@ export const Home = () => {
                     )}
                 >
                     {accessibleMenuItems.map((item, index) => (
-                        <HomeTile
+                        <Tile
                             key={index}
                             to={item.path}
                             label={t(`navigation:${item.label}`)}

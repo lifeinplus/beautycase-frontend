@@ -21,7 +21,7 @@ export const UsersMobileView = ({ data }: UsersMobileViewProps) => {
             getRightText={(item) =>
                 formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')
             }
-            getLink={(item) => `/users/${item._id}`}
+            getLink={(item) => `/control-center/users/${item._id}`}
         />
     )
 }

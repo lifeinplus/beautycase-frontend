@@ -1,14 +1,13 @@
 import {
+    AdjustmentsHorizontalIcon,
     ClipboardDocumentListIcon,
     ComputerDesktopIcon,
     FilmIcon,
-    ListBulletIcon,
     PaintBrushIcon,
     QueueListIcon,
     RectangleGroupIcon,
     ShoppingBagIcon,
     UserCircleIcon,
-    UsersIcon,
 } from '@heroicons/react/24/outline'
 import { ComponentType, SVGProps } from 'react'
 
@@ -63,17 +62,10 @@ export const menuItems: MenuItem[] = [
     },
     {
         auth: true,
-        label: 'menu.referenceLists',
-        path: '/reference-lists',
+        label: 'menu.controlCenter',
+        path: '/control-center',
         roles: ['admin'],
-        icon: ListBulletIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.users',
-        path: '/users',
-        roles: ['admin'],
-        icon: UsersIcon,
+        icon: AdjustmentsHorizontalIcon,
     },
     {
         label: 'menu.pricing',

@@ -6,15 +6,12 @@ import { mockLocation } from '@/tests/mocks/router'
 import { useNavBarActions } from './useNavBarActions'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/app/layout/hooks/add-actions/useAddActions')
-vi.mock('@/app/layout/hooks/back-actions/useBackActions')
-vi.mock('@/features/auth/slice/authSlice')
+vi.mock('@/pages/control-center/users/details/hooks/useDeleteUserAction')
 vi.mock('@/pages/lessons/details/hooks/useLessonDetailsActions')
 vi.mock('@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions')
 vi.mock('@/pages/products/details/hooks/useProductDetailsActions')
 vi.mock('@/pages/stages/details/hooks/useStageDetailsActions')
 vi.mock('@/pages/tools/details/hooks/useToolDetailsActions')
-vi.mock('@/pages/users/details/hooks/useUserDetailsActions')
 vi.mock('@/shared/lib/access/canAccess')
 
 describe('useNavBarActions', () => {
@@ -273,7 +270,7 @@ describe('useNavBarActions', () => {
         it('returns actions on /reference-lists/brands', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/reference-lists/brands',
+                pathname: '/control-center/reference-lists/brands',
             })
 
             const { result } = renderHook(() => useNavBarActions())
@@ -284,7 +281,7 @@ describe('useNavBarActions', () => {
         it('returns actions on /reference-lists/stores', () => {
             vi.mocked(useLocation).mockReturnValue({
                 ...mockLocation,
-                pathname: '/reference-lists/stores',
+                pathname: '/control-center/reference-lists/stores',
             })
 
             const { result } = renderHook(() => useNavBarActions())

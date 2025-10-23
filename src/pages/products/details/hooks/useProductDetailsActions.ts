@@ -17,6 +17,7 @@ import {
 } from '@/features/products/api/productsApi'
 import type { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
 import type { ModalDuplicateProps } from '@/shared/components/modals/duplicate/ModalDuplicate'
+import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useProductDetailsActions = () => {
@@ -122,7 +123,7 @@ export const useProductDetailsActions = () => {
             auth: true,
             icon: PencilSquareIcon,
             label: t('actions.edit'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => navigate(`/products/${id}/edit`),
         },
         {
@@ -130,7 +131,7 @@ export const useProductDetailsActions = () => {
             auth: true,
             icon: DocumentDuplicateIcon,
             label: t('actions.duplicate'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () =>
                 setModalDuplicateProps({
                     title: t('modal:duplicate.title'),
@@ -148,7 +149,7 @@ export const useProductDetailsActions = () => {
             auth: true,
             icon: TrashIcon,
             label: t('actions.delete'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () =>
                 setModalDeleteProps({
                     title: t('modal:delete.title'),

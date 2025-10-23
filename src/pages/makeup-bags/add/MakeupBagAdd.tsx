@@ -7,6 +7,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import { useCreateMakeupBagMutation } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagForm } from '@/features/makeup-bags/components/form/MakeupBagForm'
 import type { MakeupBag } from '@/features/makeup-bags/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagAdd = () => {
@@ -20,7 +21,7 @@ export const MakeupBagAdd = () => {
         try {
             const response = await createMakeupBag(makeupBag).unwrap()
             dispatch(clearFormData())
-            navigate(`/makeup-bags/${response.id}`)
+            navigate(ROUTES.backstage.makeupBags(response.id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

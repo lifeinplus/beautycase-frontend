@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
+import { Role } from '@/shared/model/role'
 import type { NavBarAction } from '../types'
 
 export const useAddAction = (): NavBarAction => {
@@ -19,7 +20,7 @@ export const useAddAction = (): NavBarAction => {
     return {
         key: 'add',
         auth: true,
-        roles: ['admin', 'mua'],
+        roles: [Role.ADMIN, Role.MUA],
         icon: PlusIcon,
         label: t('actions.add'),
         onClick: () => navigate('add'),

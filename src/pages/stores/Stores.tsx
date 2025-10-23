@@ -18,7 +18,8 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { useBackToReferenceListsAction } from '../control-center/reference-lists/hooks/useBackToReferenceListsAction'
+import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { useToReferenceListsAction } from '../control-center/reference-lists/hooks/useToReferenceListsAction'
 
 export const Stores = () => {
     const storeFormRef = useRef<FormRef | null>(null)
@@ -31,7 +32,7 @@ export const Stores = () => {
     const { data = [], isLoading, error } = useGetAllStoresQuery()
     const [deleteStoreById] = useDeleteStoreByIdMutation()
 
-    const backAction = useBackToReferenceListsAction()
+    const backAction = useToReferenceListsAction()
 
     const handleDelete = async (data: Store) => {
         setStore(data)
@@ -57,9 +58,7 @@ export const Stores = () => {
         storeFormRef.current?.focusInput()
     }
 
-    const title = [t('titles.list'), data.length && `(${data.length})`]
-        .filter(Boolean)
-        .join(' ')
+    const title = getTitleWithCount(t('titles.list'), data.length)
 
     return (
         <article>
@@ -67,7 +66,7 @@ export const Stores = () => {
 
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
-                    <Hero headline={title} hideOnMobile />
+                    <Hero title={title} hideOnMobile />
                     <StoreForm ref={storeFormRef} />
                     <DataWrapper isLoading={isLoading} error={error}>
                         <StoresMobileView

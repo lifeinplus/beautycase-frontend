@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { MakeupBag } from '../../types'
 
@@ -23,7 +24,7 @@ export const MakeupBagMobileView = ({
             getRightText={(item) =>
                 formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')
             }
-            getLink={(item) => `/makeup-bags/${item._id}`}
+            getLink={(item) => ROUTES.backstage.makeupBags(item._id)}
         />
     )
 }

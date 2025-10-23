@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectRole } from '@/features/auth/slice/authSlice'
 import { setFormData } from '@/features/form/slice/formSlice'
 import type { Product } from '@/features/products/types'
+import { Role } from '@/shared/model/role'
 
 export interface SelectTileProps {
     products?: Product[]
@@ -17,8 +18,8 @@ export const SelectTile = ({ products }: SelectTileProps) => {
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
 
-    const allowedRoles = ['admin', 'mua']
-    const hasAccess = allowedRoles.includes(role || '')
+    const allowedRoles = [Role.ADMIN, Role.MUA]
+    const hasAccess = !!role && allowedRoles.includes(role)
 
     const handleClick = () => {
         const productIds = products?.map((p) => p._id!)

@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
+import { Role } from '@/shared/model/role'
 import type {
     AuthQueryLogin,
     AuthQueryRegister,
@@ -20,7 +21,7 @@ export const mockLoginResult: AuthResultLogin = {
 
 export const mockRefreshResult: AuthState = {
     accessToken: 'token1',
-    role: 'role1',
+    role: Role.CLIENT,
     userId: 'user1',
     username: 'testuser',
 }

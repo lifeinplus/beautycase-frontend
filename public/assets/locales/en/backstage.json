@@ -1,0 +1,10 @@
+{
+    "title": "Backstage",
+    "tiles": {
+        "makeupBags": "Makeup Bags",
+        "stages": "Stages",
+        "products": "Products",
+        "tools": "Tools",
+        "lessons": "Lessons"
+    }
+}

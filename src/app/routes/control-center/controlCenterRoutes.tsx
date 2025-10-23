@@ -9,10 +9,11 @@ import { ReferenceLists } from '@/pages/control-center/reference-lists/Reference
 import { UserDetails } from '@/pages/control-center/users/details/UserDetails'
 import { UsersList } from '@/pages/control-center/users/list/UsersList'
 import { Stores } from '@/pages/stores/Stores'
+import { Role } from '@/shared/model/role'
 
 export const controlCenterRoutes = [
     <Route key="control-center" path="/control-center" element={<AppLayout />}>
-        <Route element={<RequireRole allowedRoles={['admin']} />}>
+        <Route element={<RequireRole allowedRoles={[Role.ADMIN]} />}>
             <Route index element={<ControlCenterGallery />} />
             <Route path="reference-lists">
                 <Route index element={<ReferenceLists />} />

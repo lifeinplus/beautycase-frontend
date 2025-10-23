@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +15,7 @@ import { SelectSection } from '@/shared/components/forms/select/section/SelectSe
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import classNames from 'classnames'
+import { ROUTES } from '@/shared/config/routes'
 import type { MakeupBag } from '../../types'
 import { makeupBagSchema } from '../../validations'
 
@@ -79,7 +80,7 @@ export const MakeupBagForm = ({
         : t('fields.tools.select')
 
     const handleBack = () => {
-        navigate(-1)
+        navigate(ROUTES.backstage.makeupBags(id))
     }
 
     const handleNavigate = (path: string) => {

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks/hooks'
+import { Role } from '@/shared/model/role'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { RequireRole } from './RequireRole'
 
@@ -20,7 +21,7 @@ const MockRoutes = () => (
     <Routes>
         <Route
             path="/"
-            element={<RequireRole allowedRoles={['admin', 'mua']} />}
+            element={<RequireRole allowedRoles={[Role.ADMIN, Role.MUA]} />}
         >
             <Route path="protected" element={<MockProtected />} />
         </Route>
@@ -32,7 +33,7 @@ describe('RequireRole', () => {
     const initialEntries = ['/protected']
 
     it('renders Outlet if user has an allowed role', () => {
-        vi.mocked(useAppSelector).mockReturnValue('admin')
+        vi.mocked(useAppSelector).mockReturnValue(Role.ADMIN)
 
         renderWithRouter(<MockRoutes />, initialEntries)
 

@@ -7,6 +7,7 @@ import { TrainingQuestionnaireTable } from '@/features/questionnaires/training/c
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 
 export const TrainingQuestionnaireList = () => {
     const navigate = useNavigate()
@@ -18,9 +19,7 @@ export const TrainingQuestionnaireList = () => {
         error,
     } = useGetAllTrainingQuestionnairesQuery()
 
-    const title = [t('headlineList'), data.length && `(${data.length})`]
-        .filter(Boolean)
-        .join(' ')
+    const title = getTitleWithCount(t('headlineList'), data.length)
 
     const handleBack = () => {
         navigate('/questionnaires')
@@ -32,12 +31,12 @@ export const TrainingQuestionnaireList = () => {
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
-                        headline={title}
-                        byline={t('training.hero.byline')}
+                        title={title}
+                        subtitle={t('training.hero.byline')}
                         hideOnMobile
                     />
                     <div className="sm:hidden">
-                        <Hero byline={t('training.hero.byline')} />
+                        <Hero subtitle={t('training.hero.byline')} />
                     </div>
                     <DataWrapper isLoading={isLoading} error={error}>
                         <TrainingQuestionnaireMobileView data={data} />

@@ -8,9 +8,11 @@ import { StageFilter } from '@/features/stages/components/filter/StageFilter'
 import { StageMobileView } from '@/features/stages/components/mobile-view/StageMobileView'
 import { StageTable } from '@/features/stages/components/table/StageTable'
 import type { Stage } from '@/features/stages/types'
+import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { Hero } from '@/shared/components/hero/Hero'
-import { Header } from '@/shared/components/layout/header/Header'
+import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 
 export const StageList = () => {
     const { t } = useTranslation(['stage', 'component'])
@@ -18,6 +20,8 @@ export const StageList = () => {
 
     const [filteredStages, setFilteredStages] = useState<Stage[]>([])
     const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
+
+    const backAction = useToBackstageGalleryAction()
 
     useEffect(() => {
         dispatch(clearFormData())
@@ -27,19 +31,14 @@ export const StageList = () => {
         setFilteredStages(filteredStages)
     }, [])
 
-    const title = [
-        t('titles.list'),
-        filteredStages.length && `(${filteredStages.length})`,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    const title = getTitleWithCount(t('titles.list'), filteredStages.length)
 
     return (
         <article>
-            <Header />
+            <TopPanel title={title} onBack={backAction.onClick} />
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
-                    <Hero headline={title} />
+                <article className="mx-auto my-6 w-full pb-6 sm:my-0 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+                    <Hero title={title} hideOnMobile />
                     <StageFilter
                         onFilterChange={handleFilterChange}
                         stages={stages}

@@ -4,17 +4,24 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { useAddAction } from '@/app/layout/hooks/add-action/useAddAction'
 import { useBackAction } from '@/app/layout/hooks/back-action/useBackAction'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
-import { useBackToControlCenterAction } from '@/pages/control-center/gallery/hooks/useBackToControlCenterAction'
-import { useBackToReferenceListsAction } from '@/pages/control-center/reference-lists/hooks/useBackToReferenceListsAction'
+import { useToAccountAction } from '@/pages/account/hooks/useToAccountAction'
+import { useToControlCenterGalleryAction } from '@/pages/control-center/gallery/hooks/useToControlCenterGalleryAction'
+import { useToReferenceListsAction } from '@/pages/control-center/reference-lists/hooks/useToReferenceListsAction'
 import { useDeleteUserAction } from '@/pages/control-center/users/details/hooks/useDeleteUserAction'
-import { useBackToUsersAction } from '@/pages/control-center/users/list/hooks/useBackToUsersAction'
+import { useToUsersListAction } from '@/pages/control-center/users/list/hooks/useToUsersListAction'
 import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLessonDetailsActions'
-import { useMakeupBagDetailsActions } from '@/pages/makeup-bags/details/hooks/useMakeupBagDetailsActions'
+import { useToMakeupBagAddAction } from '@/pages/makeup-bags/add/hooks/useToMakeupBagAddAction'
+import { useToMakeupBagEditAction } from '@/pages/makeup-bags/edit/hooks/useToMakeupBagEditAction'
+import { useToMakeupBagListAction } from '@/pages/makeup-bags/list/hooks/useToMakeupBagListAction'
 import { useProductCategoryActions } from '@/pages/products/category/hooks/useProductCategoryActions'
 import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
 import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
 import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
+import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
+import { useDeleteMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useDeleteMakeupBagAction'
+import { useExportMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useExportMakeupBagAction'
+import { useToMakeupBagDetailsAction } from '@/widgets/makeup-bag/details/hooks/useToMakeupBagDetailsAction'
 import type { NavBarAction } from '../types'
 
 export const useNavBarActions = (): NavBarAction[] => {
@@ -26,17 +33,26 @@ export const useNavBarActions = (): NavBarAction[] => {
     const addAction = useAddAction()
     const backAction = useBackAction()
 
-    const backToControlCenterAction = useBackToControlCenterAction()
-    const backToReferenceListsAction = useBackToReferenceListsAction()
-    const backToUsersAction = useBackToUsersAction()
+    const toControlCenterGalleryAction = useToControlCenterGalleryAction()
+    const toReferenceListsAction = useToReferenceListsAction()
+    const toUsersListAction = useToUsersListAction()
     const deleteUserAction = useDeleteUserAction()
 
     const lessonDetailsActions = useLessonDetailsActions()
-    const makeupBagDetailsActions = useMakeupBagDetailsActions()
+
+    const toMakeupBagAddAction = useToMakeupBagAddAction()
+    const toMakeupBagDetailsAction = useToMakeupBagDetailsAction()
+    const toMakeupBagEditAction = useToMakeupBagEditAction()
+    const toMakeupBagListAction = useToMakeupBagListAction()
+    const exportMakeupBagAction = useExportMakeupBagAction()
+    const deleteMakeupBagAction = useDeleteMakeupBagAction()
+
     const productDetailsActions = useProductDetailsActions()
     const productCategoryActions = useProductCategoryActions()
     const stageDetailsActions = useStageDetailsActions()
     const toolDetailsActions = useToolDetailsActions()
+
+    const toAccountAction = useToAccountAction()
 
     const getActionsForRoute = (): NavBarAction[] => {
         const { pathname } = location
@@ -44,16 +60,16 @@ export const useNavBarActions = (): NavBarAction[] => {
         const controlCenterRoutes = [
             {
                 pattern: /^\/control-center\/(reference-lists|users)$/i,
-                actions: [backToControlCenterAction],
+                actions: [toControlCenterGalleryAction],
             },
             {
                 pattern:
                     /^\/control-center\/reference-lists\/(brands|categories|stores)$/i,
-                actions: [backToReferenceListsAction],
+                actions: [toReferenceListsAction],
             },
             {
                 pattern: /^\/control-center\/users\/[a-f0-9]{24}$/i,
-                actions: [backToUsersAction, deleteUserAction],
+                actions: [toUsersListAction, deleteUserAction],
             },
         ]
 
@@ -80,25 +96,36 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const makeupBagBase = ROUTES.backstage.makeupBags()
+
         const makeupBagRoutes = [
             {
-                pattern: /^\/makeup-bags$/i,
-                actions: [addAction],
+                pattern: new RegExp(`^${makeupBagBase}$`),
+                actions: [toMakeupBagAddAction],
             },
             {
-                pattern: /^\/makeup-bags\/[a-f0-9]{24}$/i,
-                actions: makeupBagDetailsActions,
+                pattern: new RegExp(`^${makeupBagBase}/[a-f0-9]{24}$`),
+                actions: [
+                    toMakeupBagListAction,
+                    exportMakeupBagAction,
+                    toMakeupBagEditAction,
+                    deleteMakeupBagAction,
+                ],
             },
             {
-                pattern: /^\/makeup-bags\/[a-f0-9]{24}\/edit$/i,
+                pattern: new RegExp(`^${makeupBagBase}/[a-f0-9]{24}/edit$`),
+                actions: [toMakeupBagDetailsAction],
+            },
+            {
+                pattern: new RegExp(
+                    `^${makeupBagBase}/[a-f0-9]{24}/edit/(stages|tools)$`
+                ),
                 actions: [backAction],
             },
             {
-                pattern: /^\/makeup-bags\/[a-f0-9]{24}\/edit\/(stages|tools)$/i,
-                actions: [backAction],
-            },
-            {
-                pattern: /^\/makeup-bags\/(add|add\/(stages|tools))$/i,
+                pattern: new RegExp(
+                    `^${makeupBagBase}/(add|add/(stages|tools))$`
+                ),
                 actions: [backAction],
             },
         ]
@@ -123,6 +150,15 @@ export const useNavBarActions = (): NavBarAction[] => {
             {
                 pattern: /^\/products\/category\/[^/]+$/i,
                 actions: productCategoryActions,
+            },
+        ]
+
+        const publicRoutes = [
+            {
+                pattern: new RegExp(
+                    `^${ROUTES.public.makeupBags.root}/[a-f0-9]{24}$`
+                ),
+                actions: [toAccountAction],
             },
         ]
 
@@ -186,6 +222,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             ...lessonRoutes,
             ...makeupBagRoutes,
             ...productRoutes,
+            ...publicRoutes,
             ...questionnaireRoutes,
             ...stageRoutes,
             ...toolRoutes,

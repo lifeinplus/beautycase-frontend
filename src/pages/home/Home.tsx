@@ -6,9 +6,9 @@ import { menuItems } from '@/app/config/menu'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useAuthLogout } from '@/features/auth/hooks/auth-logout/useAuthLogout'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
-import { Tile } from '@/shared/components/tile/Tile'
 import { LanguageSelect } from '@/shared/components/ui/language/select/LanguageSelect'
 import { canAccess } from '@/shared/lib/access/canAccess'
+import { TileSection } from '@/widgets/tile-section/TileSection'
 
 export const Home = () => {
     const { t } = useTranslation('home')
@@ -21,41 +21,21 @@ export const Home = () => {
         canAccess(item, username, role)
     )
 
-    const itemCount = accessibleMenuItems.length
-
     return (
         <div className="pt-safe-top pb-safe-bottom flex min-h-screen flex-col items-center justify-center">
-            <div className="flex max-w-xs flex-grow flex-col sm:max-w-md">
+            <div className="flex max-w-xs flex-grow flex-col md:max-w-md">
                 <div className="my-10 text-center">
-                    <h2 className="font-logo mt-4 mb-10 text-5xl sm:text-6xl lg:text-7xl">
+                    <h2 className="font-logo mt-4 mb-10 text-5xl md:text-6xl lg:text-7xl">
                         Beautycase
                     </h2>
-                    <p className="font-heading text-lg text-gray-700 sm:text-xl lg:text-2xl dark:text-gray-400">
+                    <p className="font-heading text-lg text-gray-700 md:text-xl lg:text-2xl dark:text-gray-400">
                         {t('motto')}
                     </p>
                 </div>
 
-                <div
-                    className={classNames(
-                        'mx-auto grid gap-x-4 gap-y-3',
-                        itemCount === 1
-                            ? 'max-w-36 grid-cols-1'
-                            : itemCount === 2
-                              ? 'max-w-xs grid-cols-2'
-                              : 'max-w-4xl grid-cols-2 sm:grid-cols-3'
-                    )}
-                >
-                    {accessibleMenuItems.map((item, index) => (
-                        <Tile
-                            key={index}
-                            to={item.path}
-                            label={t(`navigation:${item.label}`)}
-                            icon={item.icon}
-                        />
-                    ))}
-                </div>
+                <TileSection items={accessibleMenuItems} />
 
-                <div className="mx-auto mt-16 w-full max-w-67 sm:mb-5">
+                <div className="mx-auto mt-16 w-full max-w-67 md:mb-5">
                     {username ? (
                         <>
                             <div className="mb-4 text-center">

@@ -15,6 +15,7 @@ import {
 } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagForm } from '@/features/makeup-bags/components/form/MakeupBagForm'
 import type { MakeupBag } from '@/features/makeup-bags/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagEdit = () => {
@@ -53,7 +54,7 @@ export const MakeupBagEdit = () => {
                 },
             }).unwrap()
             dispatch(clearFormData())
-            navigate(`/makeup-bags/${id}`)
+            navigate(ROUTES.backstage.makeupBags(id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

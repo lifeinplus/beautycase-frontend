@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { Role } from '@/shared/model/role'
 import { canAccess } from './canAccess'
 
 describe('canAccess', () => {
@@ -31,13 +32,17 @@ describe('canAccess', () => {
     it('grants access if user has a matching role', () => {
         expect(
             canAccess(
-                { auth: true, roles: ['admin', 'mua'] },
+                { auth: true, roles: [Role.ADMIN, Role.MUA] },
                 'user123',
                 'admin'
             )
         ).toBe(true)
         expect(
-            canAccess({ auth: true, roles: ['admin', 'mua'] }, 'user123', 'mua')
+            canAccess(
+                { auth: true, roles: [Role.ADMIN, Role.MUA] },
+                'user123',
+                'mua'
+            )
         ).toBe(true)
     })
 

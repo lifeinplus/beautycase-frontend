@@ -60,8 +60,8 @@ export const TrainingQuestionnaireCreate = () => {
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
-                        headline={title}
-                        byline={subtitle}
+                        title={title}
+                        subtitle={subtitle}
                         imgUrl={config.cloudinary.questionnaireTrainingHero}
                         content={t('training.hero.content')}
                         hideOnMobile
@@ -69,7 +69,7 @@ export const TrainingQuestionnaireCreate = () => {
 
                     <div className="sm:hidden">
                         <Hero
-                            byline={subtitle}
+                            subtitle={subtitle}
                             imgUrl={config.cloudinary.questionnaireTrainingHero}
                             content={t('training.hero.content')}
                         />

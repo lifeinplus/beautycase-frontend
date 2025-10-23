@@ -1,3 +1,4 @@
+import { Role } from '@/shared/model/role'
 import { ArrowLeftIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -18,7 +19,7 @@ export const useProductCategoryActions = () => {
         {
             key: 'add',
             auth: true,
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             icon: PlusIcon,
             label: t('actions.add'),
             onClick: () => navigate('add'),

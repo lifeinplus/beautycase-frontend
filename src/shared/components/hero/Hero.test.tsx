@@ -12,7 +12,7 @@ describe('Hero', () => {
     }
 
     it('renders image when imgUrl is provided', () => {
-        render(<Hero headline={mockProps.headline} imgUrl={mockProps.imgUrl} />)
+        render(<Hero title={mockProps.headline} imgUrl={mockProps.imgUrl} />)
 
         const image = screen.getByRole('img')
         expect(image).toHaveAttribute('alt', mockProps.headline)

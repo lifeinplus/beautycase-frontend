@@ -14,6 +14,7 @@ import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
 } from '@/features/lessons/api/lessonsApi'
+import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useLessonDetailsActions = () => {
@@ -74,7 +75,7 @@ export const useLessonDetailsActions = () => {
             auth: true,
             icon: PencilSquareIcon,
             label: t('actions.edit'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => navigate(`${redirectPath}/${id}/edit`),
         },
         {
@@ -82,7 +83,7 @@ export const useLessonDetailsActions = () => {
             auth: true,
             icon: TrashIcon,
             label: t('actions.delete'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => setIsModalDeleteOpen(true),
             modalProps: {
                 isOpen: isModalDeleteOpen,

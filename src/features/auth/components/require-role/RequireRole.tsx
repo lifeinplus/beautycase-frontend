@@ -1,10 +1,11 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
+import { Role } from '@/shared/model/role'
 import { selectRole } from '../../slice/authSlice'
 
 export interface RequireRoleProps {
-    allowedRoles: string[]
+    allowedRoles: Role[]
 }
 
 export const RequireRole = ({ allowedRoles }: RequireRoleProps) => {

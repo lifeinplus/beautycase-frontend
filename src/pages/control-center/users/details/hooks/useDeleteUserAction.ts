@@ -10,6 +10,7 @@ import {
     useDeleteUserByIdMutation,
     useGetUserByIdQuery,
 } from '@/features/users/api/usersApi'
+import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useDeleteUserAction = () => {
@@ -57,7 +58,7 @@ export const useDeleteUserAction = () => {
         auth: true,
         icon: TrashIcon,
         label: t('actions.delete'),
-        roles: ['admin', 'mua'],
+        roles: [Role.ADMIN, Role.MUA],
         onClick: () => setIsModalDeleteOpen(true),
         modalProps: {
             isOpen: isModalDeleteOpen,

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectRole } from '@/features/auth/slice/authSlice'
 import { setFormData } from '@/features/form/slice/formSlice'
 import type { StoreLink } from '@/features/stores/types'
+import { Role } from '@/shared/model/role'
 import { PlusIcon } from '@heroicons/react/24/outline'
 
 export interface AddButtonProps {
@@ -19,8 +20,8 @@ export const AddButton = ({ storeLinks }: AddButtonProps) => {
     const dispatch = useAppDispatch()
     const role = useAppSelector(selectRole)
 
-    const allowedRoles = ['admin', 'mua']
-    const hasAccess = allowedRoles.includes(role || '')
+    const allowedRoles = [Role.ADMIN, Role.MUA]
+    const hasAccess = !!role && allowedRoles.includes(role)
 
     const handleClick = () => {
         dispatch(setFormData({ storeLinks }))

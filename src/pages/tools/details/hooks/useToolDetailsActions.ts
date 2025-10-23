@@ -14,6 +14,7 @@ import {
     useGetToolByIdQuery,
 } from '@/features/tools/api/toolsApi'
 import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
+import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useToolDetailsActions = () => {
@@ -86,7 +87,7 @@ export const useToolDetailsActions = () => {
             auth: true,
             icon: PencilSquareIcon,
             label: t('actions.edit'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => navigate(`${redirectPath}/${id}/edit`),
         },
         {
@@ -94,7 +95,7 @@ export const useToolDetailsActions = () => {
             auth: true,
             icon: TrashIcon,
             label: t('actions.delete'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () =>
                 setModalProps({
                     title: t('modal:delete.title'),

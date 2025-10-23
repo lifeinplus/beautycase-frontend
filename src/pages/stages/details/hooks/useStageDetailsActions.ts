@@ -16,6 +16,7 @@ import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
+import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const useStageDetailsActions = () => {
@@ -92,7 +93,7 @@ export const useStageDetailsActions = () => {
             auth: true,
             icon: PencilSquareIcon,
             label: t('actions.edit'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => navigate(`${redirectPath}/${id}/edit`),
         },
         {
@@ -100,7 +101,7 @@ export const useStageDetailsActions = () => {
             auth: true,
             icon: DocumentDuplicateIcon,
             label: t('actions.duplicate'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => setIsModalDuplicateOpen(true),
             modalProps: {
                 isOpen: isModalDuplicateOpen,
@@ -117,7 +118,7 @@ export const useStageDetailsActions = () => {
             auth: true,
             icon: TrashIcon,
             label: t('actions.delete'),
-            roles: ['admin', 'mua'],
+            roles: [Role.ADMIN, Role.MUA],
             onClick: () => setIsModalDeleteOpen(true),
             modalProps: {
                 isOpen: isModalDeleteOpen,

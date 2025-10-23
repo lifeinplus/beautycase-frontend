@@ -1,6 +1,8 @@
+import { Role } from '@/shared/model/role'
+
 export interface AuthState {
     accessToken?: string
-    role?: string
+    role?: Role
     userId?: string
     username?: string
 }

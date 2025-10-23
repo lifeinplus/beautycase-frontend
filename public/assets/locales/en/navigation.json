@@ -11,19 +11,11 @@
         "saving": "Saving..."
     },
     "menu": {
-        "account": "Account",
-        "controlCenter": "Control Center",
-        "lessons": "Lessons",
-        "makeupBags": "Makeup Bags",
-        "products": "Products",
-        "pricing": "Online Services",
-        "questionnaire": "Questionnaire",
         "questionnaires": "Questionnaires",
-        "referenceLists": "Reference Lists",
-        "stages": "Stages",
-        "tools": "Tools",
-        "training": "Training",
-        "users": "Users"
+        "pricing": "Online Services",
+        "backstage": "Backstage",
+        "controlCenter": "Control Center",
+        "account": "Account"
     },
     "build": "Build"
 }

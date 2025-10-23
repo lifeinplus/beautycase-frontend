@@ -1,10 +1,11 @@
+import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { canAccess } from '@/shared/lib/access/canAccess'
-import classNames from 'classnames'
+import { Role } from '@/shared/model/role'
 
 export interface QuestionnaireCardProps {
     title: string
@@ -25,7 +26,7 @@ export const QuestionnaireCard = ({
     const username = useAppSelector(selectUsername)
 
     const showResults = canAccess(
-        { auth: true, roles: ['admin', 'mua'] },
+        { auth: true, roles: [Role.ADMIN, Role.MUA] },
         username,
         role
     )

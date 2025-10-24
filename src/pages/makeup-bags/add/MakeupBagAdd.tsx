@@ -21,7 +21,7 @@ export const MakeupBagAdd = () => {
         try {
             const response = await createMakeupBag(makeupBag).unwrap()
             dispatch(clearFormData())
-            navigate(ROUTES.backstage.makeupBags(response.id))
+            navigate(ROUTES.backstage.makeupBags.details(response.id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

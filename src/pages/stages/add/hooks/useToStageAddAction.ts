@@ -8,7 +8,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 
-export const useToMakeupBagAddAction = () => {
+export const useToStageAddAction = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('navigation')
     const dispatch = useAppDispatch()
@@ -23,6 +23,6 @@ export const useToMakeupBagAddAction = () => {
         roles: [Role.ADMIN, Role.MUA],
         icon: PlusIcon,
         label: t('actions.add'),
-        onClick: () => navigate(ROUTES.backstage.makeupBags.add),
+        onClick: () => navigate(ROUTES.backstage.stages.add),
     }
 }

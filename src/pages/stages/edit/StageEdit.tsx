@@ -15,6 +15,7 @@ import {
 } from '@/features/stages/api/stagesApi'
 import { StageForm } from '@/features/stages/components/form/StageForm'
 import type { Stage } from '@/features/stages/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const StageEdit = () => {
@@ -55,7 +56,7 @@ export const StageEdit = () => {
             }).unwrap()
 
             dispatch(clearFormData())
-            navigate(`/stages/${id}`)
+            navigate(ROUTES.backstage.stages.details(id!))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

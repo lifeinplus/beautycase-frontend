@@ -7,45 +7,45 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import {
-    useDeleteMakeupBagByIdMutation,
-    useGetMakeupBagByIdQuery,
-} from '@/features/makeup-bags/api/makeupBagsApi'
+    useDeleteStageByIdMutation,
+    useGetStageByIdQuery,
+} from '@/features/stages/api/stagesApi'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
-export const useDeleteMakeupBagAction = () => {
+export const useDeleteStageAction = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['makeupBag', 'modal'])
+    const { t } = useTranslation(['stage', 'modal'])
 
     const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
-    const isMakeupBagDetailsPage = pathname.match(
-        new RegExp(`^${ROUTES.backstage.makeupBags.root}/[a-f0-9]{24}$`)
+    const stagesRoot = ROUTES.backstage.stages.root
+
+    const isStageDetailsPage = pathname.match(
+        new RegExp(`^${stagesRoot}/[a-f0-9]{24}$`)
     )
 
-    const { data } = useGetMakeupBagByIdQuery(id!, {
-        skip: !id || !isMakeupBagDetailsPage,
+    const { data } = useGetStageByIdQuery(id!, {
+        skip: !id || !isStageDetailsPage,
     })
 
-    const [deleteMakeupBagById, { isLoading: isDeleting }] =
-        useDeleteMakeupBagByIdMutation()
-
-    const categoryName = t(`categories.${data?.category?.name}.full`)
+    const [deleteStageById, { isLoading: isDeleting }] =
+        useDeleteStageByIdMutation()
 
     useEffect(() => {
-        if (isMakeupBagDetailsPage) {
+        if (isStageDetailsPage) {
             dispatch(clearFormData())
         }
-    }, [dispatch, isMakeupBagDetailsPage])
+    }, [dispatch, isStageDetailsPage])
 
     const handleDelete = async () => {
         try {
-            await deleteMakeupBagById(id!).unwrap()
-            navigate(ROUTES.backstage.makeupBags.root)
+            await deleteStageById(id!).unwrap()
+            navigate(stagesRoot)
         } catch (err) {
             console.error(err)
             toast.error(getErrorMessage(err))
@@ -54,7 +54,7 @@ export const useDeleteMakeupBagAction = () => {
         }
     }
 
-    if (!id || !isMakeupBagDetailsPage) return null
+    if (!id || !isStageDetailsPage) return null
 
     return {
         key: 'delete',
@@ -67,7 +67,7 @@ export const useDeleteMakeupBagAction = () => {
             isOpen: isModalDeleteOpen,
             title: t('modal:delete.title'),
             description: t('modal:delete.description', {
-                name: categoryName,
+                name: data?.title,
             }),
             onConfirm: isDeleting ? () => {} : handleDelete,
             onCancel: () => setIsModalDeleteOpen(false),

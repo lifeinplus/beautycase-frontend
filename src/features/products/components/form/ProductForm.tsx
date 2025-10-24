@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
@@ -17,6 +17,7 @@ import { TextareaSection } from '@/shared/components/forms/textarea/section/Text
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import { ROUTES } from '@/shared/config/routes'
 import type { Product } from '../../types'
 import { productSchema } from '../../validations'
 
@@ -32,6 +33,7 @@ export const ProductForm = ({
     isSaving = false,
 }: ProductFormProps) => {
     const navigate = useNavigate()
+    const { id } = useParams()
     const { t } = useTranslation('product')
 
     const {
@@ -68,7 +70,10 @@ export const ProductForm = ({
     )
 
     const handleBack = () => {
-        navigate(-1)
+        const path = id
+            ? ROUTES.backstage.products.details(id)
+            : ROUTES.backstage.products.root
+        navigate(path)
     }
 
     return (

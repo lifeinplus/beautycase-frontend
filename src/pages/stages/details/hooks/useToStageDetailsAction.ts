@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { ROUTES } from '@/shared/config/routes'
 
-export const useToMakeupBagDetailsAction = () => {
+export const useToStageDetailsAction = () => {
     const navigate = useNavigate()
     const { id } = useParams()
     const { t } = useTranslation('navigation')
@@ -16,7 +16,7 @@ export const useToMakeupBagDetailsAction = () => {
         icon: ArrowLeftIcon,
         label: t('actions.back'),
         onClick: () =>
-            navigate(ROUTES.backstage.makeupBags.details(id!), {
+            navigate(ROUTES.backstage.stages.details(id!), {
                 replace: true,
             }),
     }

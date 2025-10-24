@@ -15,6 +15,7 @@ import {
 } from '@/features/products/api/productsApi'
 import { ProductForm } from '@/features/products/components/form/ProductForm'
 import type { Product } from '@/features/products/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ProductEdit = () => {
@@ -48,7 +49,7 @@ export const ProductEdit = () => {
         try {
             await updateProductById({ id: id!, product }).unwrap()
             dispatch(clearFormData())
-            navigate(`/products/${id}`)
+            navigate(ROUTES.backstage.products.details(id!))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

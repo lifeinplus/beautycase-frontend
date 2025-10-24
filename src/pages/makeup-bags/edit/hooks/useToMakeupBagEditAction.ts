@@ -24,6 +24,6 @@ export const useToMakeupBagEditAction = () => {
         roles: [Role.ADMIN, Role.MUA],
         icon: PencilSquareIcon,
         label: t('actions.edit'),
-        onClick: () => navigate(`${ROUTES.backstage.makeupBags(id)}/edit`),
+        onClick: () => navigate(ROUTES.backstage.makeupBags.edit(id!)),
     }
 }

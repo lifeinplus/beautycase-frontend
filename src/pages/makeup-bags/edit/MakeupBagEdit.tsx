@@ -54,7 +54,7 @@ export const MakeupBagEdit = () => {
                 },
             }).unwrap()
             dispatch(clearFormData())
-            navigate(ROUTES.backstage.makeupBags(id))
+            navigate(ROUTES.backstage.makeupBags.details(id!))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

@@ -19,14 +19,14 @@ import {
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
 import { mockError } from '@/tests/mocks'
-import { mockLocation, mockNavigate } from '@/tests/mocks/router'
-import { useStageDetailsActions } from './useStageDetailsActions'
+import { mockLocation } from '@/tests/mocks/router'
+import { useDuplicateProductAction } from './useDuplicateProductAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/api/stagesApi')
 
-describe('useStageDetailsActions', () => {
+describe('useDuplicateProductAction', () => {
     const mockDelete = vi.fn()
     const mockDeleteUnwrap = vi.fn()
     const mockDuplicate = vi.fn()
@@ -69,35 +69,14 @@ describe('useStageDetailsActions', () => {
     })
 
     it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useStageDetailsActions())
+        const { result } = renderHook(() => useDuplicateProductAction())
         expect(result.current).toHaveLength(4)
     })
 
-    it('handles back action', async () => {
-        const { result } = renderHook(() => useStageDetailsActions())
-
-        const backAction = result.current.find(
-            (action) => action.key === 'back'
-        )
-
-        expect(backAction).toBeDefined()
-
-        await act(async () => {
-            await backAction!.onClick()
-        })
-
-        expect(mockNavigate).toHaveBeenCalledWith('/stages', {
-            replace: true,
-            state: { scrollId: '123' },
-        })
-    })
-
     it('handles duplicate action', async () => {
-        const { result } = renderHook(() => useStageDetailsActions())
+        const { result } = renderHook(() => useDuplicateProductAction())
 
-        const duplicateAction = result.current.find(
-            (a) => a.key === 'duplicate'
-        )
+        const duplicateAction = result.current
 
         const { onConfirm } = duplicateAction?.modalProps || {}
 
@@ -111,11 +90,9 @@ describe('useStageDetailsActions', () => {
     it('shows error toast if duplicate fails', async () => {
         mockDuplicateUnwrap.mockRejectedValue(mockError)
 
-        const { result } = renderHook(() => useStageDetailsActions())
+        const { result } = renderHook(() => useDuplicateProductAction())
 
-        const duplicateAction = result.current.find(
-            (action) => action.key === 'duplicate'
-        )
+        const duplicateAction = result.current
 
         const { onConfirm } = duplicateAction?.modalProps || {}
 
@@ -127,44 +104,9 @@ describe('useStageDetailsActions', () => {
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
-    it('handles delete action', async () => {
-        const { result } = renderHook(() => useStageDetailsActions())
-
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
-
-        const { onConfirm } = deleteAction?.modalProps || {}
-
-        await act(async () => {
-            await onConfirm?.()
-        })
-
-        expect(mockDeleteUnwrap).toHaveBeenCalled()
-    })
-
-    it('shows error toast if delete fails', async () => {
-        mockDeleteUnwrap.mockRejectedValue(mockError)
-
-        const { result } = renderHook(() => useStageDetailsActions())
-
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
-
-        const { onConfirm } = deleteAction?.modalProps || {}
-
-        await act(async () => {
-            await onConfirm?.()
-        })
-
-        expect(mockDelete).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-    })
-
     it('returns empty array if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useStageDetailsActions())
+        const { result } = renderHook(() => useDuplicateProductAction())
         expect(result.current).toEqual([])
     })
 })

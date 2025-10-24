@@ -14,6 +14,6 @@ export const useToMakeupBagListAction = () => {
         className: 'hidden sm:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
-        onClick: () => navigate(ROUTES.backstage.makeupBags()),
+        onClick: () => navigate(ROUTES.backstage.makeupBags.root),
     }
 }

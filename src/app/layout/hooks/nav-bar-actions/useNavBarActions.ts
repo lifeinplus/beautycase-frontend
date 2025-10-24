@@ -5,6 +5,7 @@ import { useAddAction } from '@/app/layout/hooks/add-action/useAddAction'
 import { useBackAction } from '@/app/layout/hooks/back-action/useBackAction'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { useToAccountAction } from '@/pages/account/hooks/useToAccountAction'
+import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { useToControlCenterGalleryAction } from '@/pages/control-center/gallery/hooks/useToControlCenterGalleryAction'
 import { useToReferenceListsAction } from '@/pages/control-center/reference-lists/hooks/useToReferenceListsAction'
 import { useDeleteUserAction } from '@/pages/control-center/users/details/hooks/useDeleteUserAction'
@@ -13,15 +14,25 @@ import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLesson
 import { useToMakeupBagAddAction } from '@/pages/makeup-bags/add/hooks/useToMakeupBagAddAction'
 import { useToMakeupBagEditAction } from '@/pages/makeup-bags/edit/hooks/useToMakeupBagEditAction'
 import { useToMakeupBagListAction } from '@/pages/makeup-bags/list/hooks/useToMakeupBagListAction'
-import { useProductCategoryActions } from '@/pages/products/category/hooks/useProductCategoryActions'
-import { useProductDetailsActions } from '@/pages/products/details/hooks/useProductDetailsActions'
-import { useStageDetailsActions } from '@/pages/stages/details/hooks/useStageDetailsActions'
+import { useToProductAddAction } from '@/pages/products/add/hooks/useToProductAddAction'
+import { useToCategoryProductsAction } from '@/pages/products/category/hooks/toCategoryProductsAction'
+import { useToProductEditAction } from '@/pages/products/edit/hooks/useToProductEditAction'
+import { useToProductGalleryAction } from '@/pages/products/gallery/hooks/useToProductGalleryAction'
+import { useToStageAddAction } from '@/pages/stages/add/hooks/useToStageAddAction'
+import { useDeleteStageAction } from '@/pages/stages/details/hooks/useDeleteStageAction'
+import { useDuplicateStageAction } from '@/pages/stages/details/hooks/useDuplicateStageAction'
+import { useToStageDetailsAction } from '@/pages/stages/details/hooks/useToStageDetailsAction'
+import { useToStageEditAction } from '@/pages/stages/edit/hooks/useToStageEditAction'
+import { useToStageListAction } from '@/pages/stages/list/hooks/useToStageListAction'
 import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
 import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
 import { useDeleteMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useDeleteMakeupBagAction'
 import { useExportMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useExportMakeupBagAction'
 import { useToMakeupBagDetailsAction } from '@/widgets/makeup-bag/details/hooks/useToMakeupBagDetailsAction'
+import { useDeleteProductAction } from '@/widgets/product/details/hooks/useDeleteProductAction'
+import { useDuplicateProductAction } from '@/widgets/product/details/hooks/useDuplicateProductAction'
+import { useToProductDetailsAction } from '@/widgets/product/details/hooks/useToProductDetailsAction'
 import type { NavBarAction } from '../types'
 
 export const useNavBarActions = (): NavBarAction[] => {
@@ -38,6 +49,8 @@ export const useNavBarActions = (): NavBarAction[] => {
     const toUsersListAction = useToUsersListAction()
     const deleteUserAction = useDeleteUserAction()
 
+    const toBackstageGalleryAction = useToBackstageGalleryAction()
+
     const lessonDetailsActions = useLessonDetailsActions()
 
     const toMakeupBagAddAction = useToMakeupBagAddAction()
@@ -47,9 +60,21 @@ export const useNavBarActions = (): NavBarAction[] => {
     const exportMakeupBagAction = useExportMakeupBagAction()
     const deleteMakeupBagAction = useDeleteMakeupBagAction()
 
-    const productDetailsActions = useProductDetailsActions()
-    const productCategoryActions = useProductCategoryActions()
-    const stageDetailsActions = useStageDetailsActions()
+    const toProductAddAction = useToProductAddAction()
+    const toProductDetailsAction = useToProductDetailsAction()
+    const toProductEditAction = useToProductEditAction()
+    const toCategoryProductsAction = useToCategoryProductsAction()
+    const deleteProductAction = useDeleteProductAction()
+    const duplicateProductAction = useDuplicateProductAction()
+    const toProductGalleryAction = useToProductGalleryAction()
+
+    const toStageAddAction = useToStageAddAction()
+    const toStageDetailsAction = useToStageDetailsAction()
+    const toStageEditAction = useToStageEditAction()
+    const toStageListAction = useToStageListAction()
+    const deleteStageAction = useDeleteStageAction()
+    const duplicateStageAction = useDuplicateStageAction()
+
     const toolDetailsActions = useToolDetailsActions()
 
     const toAccountAction = useToAccountAction()
@@ -96,15 +121,14 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
-        const makeupBagBase = ROUTES.backstage.makeupBags()
-
+        const makeupBagsRoot = ROUTES.backstage.makeupBags.root
         const makeupBagRoutes = [
             {
-                pattern: new RegExp(`^${makeupBagBase}$`),
-                actions: [toMakeupBagAddAction],
+                pattern: new RegExp(`^${makeupBagsRoot}$`),
+                actions: [toBackstageGalleryAction, toMakeupBagAddAction],
             },
             {
-                pattern: new RegExp(`^${makeupBagBase}/[a-f0-9]{24}$`),
+                pattern: new RegExp(`^${makeupBagsRoot}/[a-f0-9]{24}$`),
                 actions: [
                     toMakeupBagListAction,
                     exportMakeupBagAction,
@@ -113,43 +137,51 @@ export const useNavBarActions = (): NavBarAction[] => {
                 ],
             },
             {
-                pattern: new RegExp(`^${makeupBagBase}/[a-f0-9]{24}/edit$`),
+                pattern: new RegExp(`^${makeupBagsRoot}/[a-f0-9]{24}/edit$`),
                 actions: [toMakeupBagDetailsAction],
             },
             {
                 pattern: new RegExp(
-                    `^${makeupBagBase}/[a-f0-9]{24}/edit/(stages|tools)$`
+                    `^${makeupBagsRoot}/[a-f0-9]{24}/edit/(stages|tools)$`
                 ),
                 actions: [backAction],
             },
             {
                 pattern: new RegExp(
-                    `^${makeupBagBase}/(add|add/(stages|tools))$`
+                    `^${makeupBagsRoot}/(add|add/(stages|tools))$`
                 ),
                 actions: [backAction],
             },
         ]
 
+        const productsRoot = ROUTES.backstage.products.root
         const productRoutes = [
             {
-                pattern: /^\/products$/i,
-                actions: [addAction],
+                pattern: new RegExp(`^${productsRoot}$`),
+                actions: [toBackstageGalleryAction, toProductAddAction],
             },
             {
-                pattern: /^\/products\/[a-f0-9]{24}$/i,
-                actions: productDetailsActions,
+                pattern: new RegExp(`^${productsRoot}/[a-f0-9]{24}$`),
+                actions: [
+                    toCategoryProductsAction,
+                    toProductEditAction,
+                    duplicateProductAction,
+                    deleteProductAction,
+                ],
             },
             {
-                pattern: /^\/products\/[a-f0-9]{24}\/(edit|links)$/i,
-                actions: [backAction],
+                pattern: new RegExp(
+                    `^${productsRoot}/[a-f0-9]{24}/(edit|links)$`
+                ),
+                actions: [toProductDetailsAction],
             },
             {
-                pattern: /^\/products\/add$/i,
-                actions: [backAction],
+                pattern: new RegExp(`^${productsRoot}/add$`),
+                actions: [toProductGalleryAction],
             },
             {
-                pattern: /^\/products\/category\/[^/]+$/i,
-                actions: productCategoryActions,
+                pattern: new RegExp(`^${productsRoot}/category/[^/]+$`),
+                actions: [toProductGalleryAction, toProductAddAction],
             },
         ]
 
@@ -157,6 +189,12 @@ export const useNavBarActions = (): NavBarAction[] => {
             {
                 pattern: new RegExp(
                     `^${ROUTES.public.makeupBags.root}/[a-f0-9]{24}$`
+                ),
+                actions: [toAccountAction],
+            },
+            {
+                pattern: new RegExp(
+                    `^${ROUTES.public.products.root}/[a-f0-9]{24}$`
                 ),
                 actions: [toAccountAction],
             },
@@ -175,21 +213,29 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const stagesRoot = ROUTES.backstage.stages.root
         const stageRoutes = [
             {
-                pattern: /^\/stages$/i,
-                actions: [addAction],
+                pattern: new RegExp(`^${stagesRoot}$`),
+                actions: [toBackstageGalleryAction, toStageAddAction],
             },
             {
-                pattern: /^\/stages\/[a-f0-9]{24}$/i,
-                actions: stageDetailsActions,
+                pattern: new RegExp(`^${stagesRoot}/[a-f0-9]{24}$`),
+                actions: [
+                    toStageListAction,
+                    toStageEditAction,
+                    duplicateStageAction,
+                    deleteStageAction,
+                ],
             },
             {
-                pattern: /^\/stages\/[a-f0-9]{24}\/(edit|products)$/i,
-                actions: [backAction],
+                pattern: new RegExp(
+                    `^${stagesRoot}/[a-f0-9]{24}/(edit|products)$`
+                ),
+                actions: [toStageDetailsAction],
             },
             {
-                pattern: /^\/stages\/add$/i,
+                pattern: new RegExp(`^${stagesRoot}/add$`),
                 actions: [backAction],
             },
         ]

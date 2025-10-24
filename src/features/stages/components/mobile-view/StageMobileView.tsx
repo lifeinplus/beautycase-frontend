@@ -1,4 +1,5 @@
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { Stage } from '../../types'
 
@@ -11,6 +12,6 @@ export const StageMobileView = ({ stages }: StageMobileViewProps) => (
         items={stages}
         getTitle={(item) => item.title}
         getRightText={(item) => formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')}
-        getLink={(item) => `/stages/${item._id}`}
+        getLink={(item) => ROUTES.backstage.stages.details(item._id!)}
     />
 )

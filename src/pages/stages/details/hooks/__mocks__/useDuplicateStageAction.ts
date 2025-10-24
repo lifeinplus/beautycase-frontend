@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-export const useStageDetailsActions = vi.fn(() => [
+export const useDuplicateStageAction = vi.fn(() => [
     {
         key: 'edit',
         label: 'Edit',

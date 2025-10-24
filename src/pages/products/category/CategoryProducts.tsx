@@ -6,8 +6,9 @@ import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
-import { useProductCategoryActions } from './hooks/useProductCategoryActions'
+import { useToProductGalleryAction } from '../gallery/hooks/useToProductGalleryAction'
 
 export const CategoryProducts = () => {
     const { category } = useParams()
@@ -19,8 +20,7 @@ export const CategoryProducts = () => {
         error,
     } = useGetProductsByCategoryQuery(category!)
 
-    const actions = useProductCategoryActions()
-    const backAction = actions.find((action) => action.key === 'back')
+    const backAction = useToProductGalleryAction()
 
     const title = getTitleWithCount(t(`categories.${category}`), data.length)
 
@@ -36,7 +36,9 @@ export const CategoryProducts = () => {
                                 <ImageCard
                                     key={p._id}
                                     data={p}
-                                    to={`/products/${p._id}`}
+                                    to={ROUTES.backstage.products.details(
+                                        p._id!
+                                    )}
                                 />
                             ))}
                         </article>

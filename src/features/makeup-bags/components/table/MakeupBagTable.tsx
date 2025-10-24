@@ -37,7 +37,9 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                         t(`categories.${item.category?.name}.short`),
                         item.client?.username || '–',
                     ]}
-                    redirectPath={ROUTES.backstage.makeupBags(item._id)}
+                    redirectPath={ROUTES.backstage.makeupBags.details(
+                        item._id!
+                    )}
                 />
             )}
         />

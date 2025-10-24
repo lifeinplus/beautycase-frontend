@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-export const useProductDetailsActions = vi.fn(() => [
+export const useDuplicateProductAction = vi.fn(() => [
     {
         key: 'edit',
         label: 'Edit',

@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { Product } from '@/features/products/types'
 import { Image } from '@/shared/components/ui/image/Image'
+import { ROUTES } from '@/shared/config/routes'
 import { SelectTile } from './ui/SelectTile'
 
 export interface ProductImagesProps {
@@ -13,7 +14,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
     const navigate = useNavigate()
 
     const handleProduct = (id?: string) => {
-        navigate(`/products/${id}`, {
+        navigate(ROUTES.backstage.products.details(id!), {
             state: { fromPathname: pathname },
         })
     }

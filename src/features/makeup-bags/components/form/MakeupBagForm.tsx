@@ -80,7 +80,10 @@ export const MakeupBagForm = ({
         : t('fields.tools.select')
 
     const handleBack = () => {
-        navigate(ROUTES.backstage.makeupBags(id))
+        const path = id
+            ? ROUTES.backstage.makeupBags.details(id)
+            : ROUTES.backstage.makeupBags.root
+        navigate(path)
     }
 
     const handleNavigate = (path: string) => {

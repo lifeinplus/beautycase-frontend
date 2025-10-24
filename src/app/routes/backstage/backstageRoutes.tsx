@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
 import { MakeupBagDetailsForBackstage } from '@/features/makeup-bags/wrappers/details/backstage/MakeupBagDetailsForBackstage'
+import { ProductDetailsForBackstage } from '@/features/products/wrappers/details/backstage/ProductDetailsForBackstage'
 import { ProductSelectionForLesson } from '@/features/products/wrappers/selection/lesson/ProductSelectionForLesson'
 import { ProductSelectionForStage } from '@/features/products/wrappers/selection/stage/ProductSelectionForStage'
 import { StoreLinksAddForProduct } from '@/features/stores/wrappers/links-add/product/StoreLinksAddForProduct'
@@ -17,7 +18,6 @@ import { MakeupBagEdit } from '@/pages/makeup-bags/edit/MakeupBagEdit'
 import { MakeupBagList } from '@/pages/makeup-bags/list/MakeupBagList'
 import { ProductAdd } from '@/pages/products/add/ProductAdd'
 import { CategoryProducts } from '@/pages/products/category/CategoryProducts'
-import { ProductDetails } from '@/pages/products/details/ProductDetails'
 import { ProductEdit } from '@/pages/products/edit/ProductEdit'
 import { ProductGallery } from '@/pages/products/gallery/ProductGallery'
 import { StageAdd } from '@/pages/stages/add/StageAdd'
@@ -65,8 +65,7 @@ export const backstageRoutes = [
 
             <Route path="products">
                 <Route index element={<ProductGallery />} />
-                {/* TODO: shoud be public */}
-                <Route path=":id" element={<ProductDetails />} />
+                <Route path=":id" element={<ProductDetailsForBackstage />} />
                 <Route path=":id/edit" element={<ProductEdit />} />
                 <Route path=":id/links" element={<StoreLinksAddForProduct />} />
                 <Route path="add" element={<ProductAdd />} />

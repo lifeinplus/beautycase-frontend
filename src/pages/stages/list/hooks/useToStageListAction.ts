@@ -1,12 +1,11 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { ROUTES } from '@/shared/config/routes'
 
-export const useToMakeupBagDetailsAction = () => {
+export const useToStageListAction = () => {
     const navigate = useNavigate()
-    const { id } = useParams()
     const { t } = useTranslation('navigation')
 
     return {
@@ -15,9 +14,6 @@ export const useToMakeupBagDetailsAction = () => {
         className: 'hidden sm:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
-        onClick: () =>
-            navigate(ROUTES.backstage.makeupBags.details(id!), {
-                replace: true,
-            }),
+        onClick: () => navigate(ROUTES.backstage.stages.root),
     }
 }

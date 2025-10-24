@@ -24,7 +24,7 @@ export const MakeupBagMobileView = ({
             getRightText={(item) =>
                 formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')
             }
-            getLink={(item) => ROUTES.backstage.makeupBags(item._id)}
+            getLink={(item) => ROUTES.backstage.makeupBags.details(item._id!)}
         />
     )
 }

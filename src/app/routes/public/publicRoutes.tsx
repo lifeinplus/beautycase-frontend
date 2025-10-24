@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
 import { MakeupBagDetailsForAccount } from '@/features/makeup-bags/wrappers/details/account/MakeupBagDetailsForAccount'
+import { ProductDetailsForPublic } from '@/features/products/wrappers/details/public/ProductDetailsForPublic'
 import { Login } from '@/pages/auth/login/Login'
 import { Register } from '@/pages/auth/register/Register'
 import { Unauthorized } from '@/pages/auth/unauthorized/Unauthorized'
@@ -22,6 +23,7 @@ export const publicRoutes = [
             path="/makeup-bags/:id"
             element={<MakeupBagDetailsForAccount />}
         />
+        <Route path="/products/:id" element={<ProductDetailsForPublic />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/questionnaires">
             <Route index element={<QuestionnaireGallery />} />

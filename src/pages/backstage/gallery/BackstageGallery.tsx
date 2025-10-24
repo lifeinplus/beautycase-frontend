@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Hero } from '@/shared/components/hero/Hero'
 import { Header } from '@/shared/components/layout/header/Header'
+import { ROUTES } from '@/shared/config/routes'
 import { TileSection } from '@/widgets/tile-section/TileSection'
 
 export const BackstageGallery = () => {
@@ -17,12 +18,12 @@ export const BackstageGallery = () => {
     const items = [
         {
             label: t('tiles.makeupBags'),
-            to: 'makeup-bags',
+            to: ROUTES.backstage.makeupBags.root,
             icon: ShoppingBagIcon,
         },
         {
             label: t('tiles.stages'),
-            to: 'stages',
+            to: ROUTES.backstage.stages.root,
             icon: QueueListIcon,
         },
         {

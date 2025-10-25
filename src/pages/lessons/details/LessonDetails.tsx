@@ -7,7 +7,7 @@ import { TitleSection } from '@/shared/components/forms/title-section/TitleSecti
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
-import { useLessonDetailsActions } from './hooks/useLessonDetailsActions'
+import { useToLessonGalleryAction } from '../gallery/hooks/useToLessonGalleryAction'
 
 export const LessonDetails = () => {
     const { id } = useParams()
@@ -15,8 +15,7 @@ export const LessonDetails = () => {
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
 
-    const actions = useLessonDetailsActions()
-    const backAction = actions.find((action) => action.key === 'back')
+    const backAction = useToLessonGalleryAction()
 
     const title = data?.title || t('titles.details')
 

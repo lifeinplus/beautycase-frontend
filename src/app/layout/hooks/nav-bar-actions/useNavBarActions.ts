@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
-import { useAddAction } from '@/app/layout/hooks/add-action/useAddAction'
 import { useBackAction } from '@/app/layout/hooks/back-action/useBackAction'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { useToAccountAction } from '@/pages/account/hooks/useToAccountAction'
@@ -10,7 +9,11 @@ import { useToControlCenterGalleryAction } from '@/pages/control-center/gallery/
 import { useToReferenceListsAction } from '@/pages/control-center/reference-lists/hooks/useToReferenceListsAction'
 import { useDeleteUserAction } from '@/pages/control-center/users/details/hooks/useDeleteUserAction'
 import { useToUsersListAction } from '@/pages/control-center/users/list/hooks/useToUsersListAction'
-import { useLessonDetailsActions } from '@/pages/lessons/details/hooks/useLessonDetailsActions'
+import { useToLessonAddAction } from '@/pages/lessons/add/hooks/useToLessonAddAction'
+import { useDeleteLessonAction } from '@/pages/lessons/details/hooks/useDeleteLessonAction'
+import { useToLessonDetailsAction } from '@/pages/lessons/details/hooks/useToLessonDetailsAction'
+import { useToLessonEditAction } from '@/pages/lessons/edit/hooks/useToLessonEditAction'
+import { useToLessonGalleryAction } from '@/pages/lessons/gallery/hooks/useToLessonGalleryAction'
 import { useToMakeupBagAddAction } from '@/pages/makeup-bags/add/hooks/useToMakeupBagAddAction'
 import { useToMakeupBagEditAction } from '@/pages/makeup-bags/edit/hooks/useToMakeupBagEditAction'
 import { useToMakeupBagListAction } from '@/pages/makeup-bags/list/hooks/useToMakeupBagListAction'
@@ -45,7 +48,6 @@ export const useNavBarActions = (): NavBarAction[] => {
     const role = useAppSelector(selectRole)
     const username = useAppSelector(selectUsername)
 
-    const addAction = useAddAction()
     const backAction = useBackAction()
     const toAccountAction = useToAccountAction()
 
@@ -56,7 +58,11 @@ export const useNavBarActions = (): NavBarAction[] => {
 
     const toBackstageGalleryAction = useToBackstageGalleryAction()
 
-    const lessonDetailsActions = useLessonDetailsActions()
+    const toLessonAddAction = useToLessonAddAction()
+    const toLessonDetailsAction = useToLessonDetailsAction()
+    const toLessonEditAction = useToLessonEditAction()
+    const toLessonGalleryAction = useToLessonGalleryAction()
+    const deleteLessonAction = useDeleteLessonAction()
 
     const toMakeupBagAddAction = useToMakeupBagAddAction()
     const toMakeupBagDetailsAction = useToMakeupBagDetailsAction()
@@ -105,26 +111,39 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const lessonsRoot = ROUTES.backstage.lessons.root
         const lessonRoutes = [
             {
-                pattern: /^\/lessons$/i,
-                actions: [addAction],
+                pattern: new RegExp(`^${lessonsRoot}$`),
+                actions: [toBackstageGalleryAction, toLessonAddAction],
             },
             {
-                pattern: /^\/lessons\/[a-f0-9]{24}$/i,
-                actions: lessonDetailsActions,
+                pattern: new RegExp(`^${lessonsRoot}/[a-f0-9]{24}$`),
+                actions: [
+                    toLessonGalleryAction,
+                    toLessonEditAction,
+                    deleteLessonAction,
+                ],
             },
             {
-                pattern: /^\/lessons\/[a-f0-9]{24}\/(edit|products)$/i,
-                actions: [backAction],
+                pattern: new RegExp(
+                    `^${lessonsRoot}/[a-f0-9]{24}/(edit|products)$`
+                ),
+                actions: [toLessonDetailsAction],
             },
             {
-                pattern: /^\/lessons\/[a-f0-9]{24}\/edit\/clients$/i,
-                actions: [backAction],
+                pattern: new RegExp(
+                    `^${lessonsRoot}/[a-f0-9]{24}/edit/clients$`
+                ),
+                actions: [toLessonEditAction],
             },
             {
-                pattern: /^\/lessons\/(add|add\/clients)$/i,
-                actions: [backAction],
+                pattern: new RegExp(`^${lessonsRoot}/add$`),
+                actions: [toLessonGalleryAction],
+            },
+            {
+                pattern: new RegExp(`^${lessonsRoot}/add/clients$`),
+                actions: [toLessonAddAction],
             },
         ]
 

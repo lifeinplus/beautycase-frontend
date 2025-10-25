@@ -19,13 +19,13 @@ import {
 } from '@/features/lessons/api/lessonsApi'
 import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
-import { useLessonDetailsActions } from './useLessonDetailsActions'
+import { useDeleteLessonAction } from './useDeleteLessonAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/lessons/api/lessonsApi')
 
-describe('useLessonDetailsActions', () => {
+describe('useDeleteLessonAction', () => {
     const mockDeleteLessonById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
@@ -60,16 +60,14 @@ describe('useLessonDetailsActions', () => {
     })
 
     it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useDeleteLessonAction())
         expect(result.current).toHaveLength(3)
     })
 
     it('handles delete action', async () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useDeleteLessonAction())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        const deleteAction = result.current
 
         const { onConfirm } = deleteAction?.modalProps || {}
 
@@ -83,11 +81,9 @@ describe('useLessonDetailsActions', () => {
     it('shows error toast if delete fails', async () => {
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useDeleteLessonAction())
 
-        const deleteAction = result.current.find(
-            (action) => action.key === 'delete'
-        )
+        const deleteAction = result.current
 
         const { onConfirm } = deleteAction?.modalProps || {}
 
@@ -100,11 +96,9 @@ describe('useLessonDetailsActions', () => {
     })
 
     it('handles back action', async () => {
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useDeleteLessonAction())
 
-        const backAction = result.current.find(
-            (action) => action.key === 'back'
-        )
+        const backAction = result.current
 
         expect(backAction).toBeDefined()
 
@@ -120,7 +114,7 @@ describe('useLessonDetailsActions', () => {
 
     it('returns empty array if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useLessonDetailsActions())
+        const { result } = renderHook(() => useDeleteLessonAction())
         expect(result.current).toEqual([])
     })
 })

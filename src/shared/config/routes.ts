@@ -2,6 +2,12 @@ export const ROUTES = {
     account: '/account',
     backstage: {
         root: '/backstage',
+        lessons: {
+            root: '/backstage/lessons',
+            add: '/backstage/lessons/add',
+            details: (id: string) => `/backstage/lessons/${id}`,
+            edit: (id: string) => `/backstage/lessons/${id}/edit`,
+        },
         makeupBags: {
             root: '/backstage/makeup-bags',
             add: '/backstage/makeup-bags/add',

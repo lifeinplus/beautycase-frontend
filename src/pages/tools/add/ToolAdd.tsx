@@ -7,6 +7,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import { useCreateToolMutation } from '@/features/tools/api/toolsApi'
 import { ToolForm } from '@/features/tools/components/form/ToolForm'
 import type { Tool } from '@/features/tools/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ToolAdd = () => {
@@ -20,7 +21,7 @@ export const ToolAdd = () => {
         try {
             const response = await createTool(tool).unwrap()
             dispatch(clearFormData())
-            navigate(`/tools/${response.id}`)
+            navigate(ROUTES.backstage.tools.details(response.id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

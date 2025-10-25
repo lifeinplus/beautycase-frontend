@@ -17,7 +17,6 @@ export const ProductDetails = ({ onBack }: ProductDetailsProps) => {
     const { t } = useTranslation(['product', 'store'])
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
-
     const title = data?.brand?.name || t('titles.details')
 
     return (

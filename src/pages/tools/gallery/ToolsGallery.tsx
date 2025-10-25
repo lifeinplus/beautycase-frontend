@@ -6,6 +6,7 @@ import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 
 export const ToolsGallery = () => {
@@ -30,11 +31,11 @@ export const ToolsGallery = () => {
 
                     <DataWrapper isLoading={isLoading} error={error}>
                         <section className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7">
-                            {data?.map((tool) => (
+                            {data?.map((d) => (
                                 <ImageCard
-                                    key={tool._id}
-                                    data={tool}
-                                    to={`/tools/${tool._id}`}
+                                    key={d._id}
+                                    data={d}
+                                    to={ROUTES.backstage.tools.details(d._id!)}
                                 />
                             ))}
                         </section>

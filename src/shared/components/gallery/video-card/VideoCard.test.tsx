@@ -16,14 +16,14 @@ describe('VideoCard', () => {
     const mockPath = '/videos/1'
 
     it('renders the video title and description', () => {
-        renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
+        renderWithRouter(<VideoCard data={mockVideo} to={mockPath} />)
 
         expect(screen.getByText(mockVideo.title)).toBeInTheDocument()
         expect(screen.getByText(mockVideo.shortDescription)).toBeInTheDocument()
     })
 
     it('renders the video thumbnail correctly', () => {
-        renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
+        renderWithRouter(<VideoCard data={mockVideo} to={mockPath} />)
 
         const image = screen.getByRole('img')
 
@@ -36,7 +36,7 @@ describe('VideoCard', () => {
     })
 
     it('renders a link to the correct path', () => {
-        renderWithRouter(<VideoCard data={mockVideo} path={mockPath} />)
+        renderWithRouter(<VideoCard data={mockVideo} to={mockPath} />)
         expect(screen.getByRole('link')).toHaveAttribute('href', mockPath)
     })
 })

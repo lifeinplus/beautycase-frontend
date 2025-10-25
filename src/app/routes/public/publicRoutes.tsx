@@ -1,8 +1,10 @@
 import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
-import { MakeupBagDetailsForAccount } from '@/features/makeup-bags/wrappers/details/account/MakeupBagDetailsForAccount'
-import { ProductDetailsForPublic } from '@/features/products/wrappers/details/public/ProductDetailsForPublic'
+import { LessonDetailsForClient } from '@/features/lessons/wrappers/details/client/LessonDetailsForClient'
+import { MakeupBagDetailsForClient } from '@/features/makeup-bags/wrappers/details/client/MakeupBagDetailsForClient'
+import { ProductDetailsForClient } from '@/features/products/wrappers/details/client/ProductDetailsForClient'
+import { ToolDetailsForClient } from '@/features/tools/wrappers/details/client/ToolDetailsForClient'
 import { Login } from '@/pages/auth/login/Login'
 import { Register } from '@/pages/auth/register/Register'
 import { Unauthorized } from '@/pages/auth/unauthorized/Unauthorized'
@@ -19,12 +21,17 @@ export const publicRoutes = [
     <Route key="register" path="/register" element={<Register />} />,
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
+
+        <Route path="/lessons/:id" element={<LessonDetailsForClient />} />
+
         <Route
             path="/makeup-bags/:id"
-            element={<MakeupBagDetailsForAccount />}
+            element={<MakeupBagDetailsForClient />}
         />
-        <Route path="/products/:id" element={<ProductDetailsForPublic />} />
+
+        <Route path="/products/:id" element={<ProductDetailsForClient />} />
         <Route path="/pricing" element={<Pricing />} />
+
         <Route path="/questionnaires">
             <Route index element={<QuestionnaireGallery />} />
             <Route
@@ -33,6 +40,8 @@ export const publicRoutes = [
             />
             <Route path="training" element={<TrainingQuestionnaireCreate />} />
         </Route>
+
+        <Route path="/tools/:id" element={<ToolDetailsForClient />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,
 ]

@@ -14,7 +14,7 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
     const navigate = useNavigate()
 
     const handleProduct = (id?: string) => {
-        navigate(ROUTES.backstage.products.details(id!), {
+        navigate(ROUTES.public.products.details(id!), {
             state: { fromPathname: pathname },
         })
     }

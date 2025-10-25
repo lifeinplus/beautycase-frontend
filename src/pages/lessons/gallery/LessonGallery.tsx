@@ -6,6 +6,7 @@ import { VideoCard } from '@/shared/components/gallery/video-card/VideoCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 
 export const LessonGallery = () => {
@@ -24,11 +25,13 @@ export const LessonGallery = () => {
                     <Hero title={title} hideOnMobile />
                     <DataWrapper isLoading={isLoading} error={error}>
                         <section className="mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 md:grid-cols-2">
-                            {data?.map((lesson) => (
+                            {data?.map((d) => (
                                 <VideoCard
-                                    key={lesson._id}
-                                    data={lesson}
-                                    path={`/lessons/${lesson._id}`}
+                                    key={d._id}
+                                    data={d}
+                                    to={ROUTES.backstage.lessons.details(
+                                        d._id!
+                                    )}
                                 />
                             ))}
                         </section>

@@ -2,15 +2,16 @@ import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
+import { LessonDetailsForBackstage } from '@/features/lessons/wrappers/details/backstage/LessonDetailsForBackstage'
 import { MakeupBagDetailsForBackstage } from '@/features/makeup-bags/wrappers/details/backstage/MakeupBagDetailsForBackstage'
 import { ProductDetailsForBackstage } from '@/features/products/wrappers/details/backstage/ProductDetailsForBackstage'
 import { ProductSelectionForLesson } from '@/features/products/wrappers/selection/lesson/ProductSelectionForLesson'
 import { ProductSelectionForStage } from '@/features/products/wrappers/selection/stage/ProductSelectionForStage'
 import { StoreLinksAddForProduct } from '@/features/stores/wrappers/links-add/product/StoreLinksAddForProduct'
 import { StoreLinksAddForTool } from '@/features/stores/wrappers/links-add/tool/StoreLinksAddForTool'
+import { ToolDetailsForBackstage } from '@/features/tools/wrappers/details/backstage/ToolDetailsForBackstage'
 import { BackstageGallery } from '@/pages/backstage/gallery/BackstageGallery'
 import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
-import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
 import { LessonGallery } from '@/pages/lessons/gallery/LessonGallery'
 import { MakeupBagAdd } from '@/pages/makeup-bags/add/MakeupBagAdd'
@@ -25,7 +26,6 @@ import { StageDetails } from '@/pages/stages/details/StageDetails'
 import { StageEdit } from '@/pages/stages/edit/StageEdit'
 import { StageList } from '@/pages/stages/list/StageList'
 import { ToolAdd } from '@/pages/tools/add/ToolAdd'
-import { ToolDetails } from '@/pages/tools/details/ToolDetails'
 import { ToolEdit } from '@/pages/tools/edit/ToolEdit'
 import { ToolsGallery } from '@/pages/tools/gallery/ToolsGallery'
 import { Role } from '@/shared/model/role'
@@ -40,8 +40,7 @@ export const backstageRoutes = [
 
             <Route path="lessons">
                 <Route index element={<LessonGallery />} />
-                {/* TODO: shoud be public */}
-                <Route path=":id" element={<LessonDetails />} />
+                <Route path=":id" element={<LessonDetailsForBackstage />} />
                 <Route path=":id/edit" element={<LessonEdit />} />
                 <Route path=":id/edit/clients" element={<UserSelection />} />
                 <Route
@@ -88,8 +87,7 @@ export const backstageRoutes = [
 
             <Route path="tools">
                 <Route index element={<ToolsGallery />} />
-                {/* TODO: shoud be public */}
-                <Route path=":id" element={<ToolDetails />} />
+                <Route path=":id" element={<ToolDetailsForBackstage />} />
                 <Route path=":id/edit" element={<ToolEdit />} />
                 <Route path=":id/links" element={<StoreLinksAddForTool />} />
                 <Route path="add" element={<ToolAdd />} />

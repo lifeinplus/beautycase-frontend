@@ -7,6 +7,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import { useCreateLessonMutation } from '@/features/lessons/api/lessonsApi'
 import { LessonForm } from '@/features/lessons/components/form/LessonForm'
 import { Lesson } from '@/features/lessons/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const LessonAdd = () => {
@@ -20,7 +21,7 @@ export const LessonAdd = () => {
         try {
             const response = await createLesson(lesson).unwrap()
             dispatch(clearFormData())
-            navigate(`/lessons/${response.id}`)
+            navigate(ROUTES.backstage.lessons.details(response.id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

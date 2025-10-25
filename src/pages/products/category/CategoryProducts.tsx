@@ -32,12 +32,12 @@ export const CategoryProducts = () => {
                     <Hero title={title} hideOnMobile />
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7">
-                            {data.map((p) => (
+                            {data.map((d) => (
                                 <ImageCard
-                                    key={p._id}
-                                    data={p}
+                                    key={d._id}
+                                    data={d}
                                     to={ROUTES.backstage.products.details(
-                                        p._id!
+                                        d._id!
                                     )}
                                 />
                             ))}

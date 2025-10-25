@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
+import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
-import type { NavBarAction } from '../types'
 
-export const useAddAction = (): NavBarAction => {
+export const useToLessonAddAction = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('navigation')
     const dispatch = useAppDispatch()
@@ -23,6 +23,6 @@ export const useAddAction = (): NavBarAction => {
         roles: [Role.ADMIN, Role.MUA],
         icon: PlusIcon,
         label: t('actions.add'),
-        onClick: () => navigate('add'),
+        onClick: () => navigate(ROUTES.backstage.lessons.add),
     }
 }

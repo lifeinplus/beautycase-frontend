@@ -7,22 +7,21 @@ import { TitleSection } from '@/shared/components/forms/title-section/TitleSecti
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { StoreLinks } from '@/widgets/store/links/StoreLinks'
-import { useToolDetailsActions } from './hooks/useToolDetailsActions'
 
-export const ToolDetails = () => {
+export interface ToolDetailsProps {
+    onBack?: () => void
+}
+
+export const ToolDetails = ({ onBack }: ToolDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation(['tool', 'store'])
 
     const { data, isLoading, error } = useGetToolByIdQuery(id!)
-
-    const actions = useToolDetailsActions()
-    const backAction = actions.find((action) => action.key === 'back')
-
     const title = data?.brand?.name || t('titles.details')
 
     return (
         <article className="pb-13 sm:pb-0">
-            <TopPanel title={title} onBack={backAction?.onClick} />
+            <TopPanel title={title} onBack={onBack} />
 
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">

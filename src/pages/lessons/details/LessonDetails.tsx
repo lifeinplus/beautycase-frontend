@@ -7,22 +7,22 @@ import { TitleSection } from '@/shared/components/forms/title-section/TitleSecti
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
-import { useLessonDetailsActions } from './hooks/useLessonDetailsActions'
 
-export const LessonDetails = () => {
+export interface LessonDetailsProps {
+    onBack: () => void
+}
+
+export const LessonDetails = ({ onBack }: LessonDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation('lesson')
 
     const { data, isLoading, error } = useGetLessonByIdQuery(id!)
 
-    const actions = useLessonDetailsActions()
-    const backAction = actions.find((action) => action.key === 'back')
-
     const title = data?.title || t('titles.details')
 
     return (
         <article className="pb-13 sm:pb-0">
-            <TopPanel title={title} onBack={backAction?.onClick} />
+            <TopPanel title={title} onBack={onBack} />
 
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">

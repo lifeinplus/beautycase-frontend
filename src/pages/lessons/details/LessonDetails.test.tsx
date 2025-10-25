@@ -16,6 +16,7 @@ vi.mock('@/widgets/product/images/ProductImages')
 vi.mock('./hooks/useLessonDetailsActions')
 
 describe('LessonDetails', () => {
+    const mockOnBack = () => {}
     const mockDeleteLesson = vi.fn()
 
     beforeEach(() => {
@@ -33,7 +34,7 @@ describe('LessonDetails', () => {
     })
 
     it('renders lesson details', async () => {
-        render(<LessonDetails />)
+        render(<LessonDetails onBack={mockOnBack} />)
 
         expect(screen.getAllByText(mockLesson1.title)).toHaveLength(2)
 
@@ -47,7 +48,7 @@ describe('LessonDetails', () => {
     })
 
     it('renders product images', async () => {
-        render(<LessonDetails />)
+        render(<LessonDetails onBack={mockOnBack} />)
         expect(screen.getByTestId('mocked-product-images')).toBeInTheDocument()
     })
 
@@ -60,7 +61,7 @@ describe('LessonDetails', () => {
             error: null,
         })
 
-        render(<LessonDetails />)
+        render(<LessonDetails onBack={mockOnBack} />)
 
         expect(screen.getByRole('img')).toBeInTheDocument()
     })

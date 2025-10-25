@@ -135,7 +135,7 @@ export const useNavBarActions = (): NavBarAction[] => {
                 pattern: new RegExp(
                     `^${lessonsRoot}/[a-f0-9]{24}/edit/clients$`
                 ),
-                actions: [toLessonEditAction],
+                actions: [backAction],
             },
             {
                 pattern: new RegExp(`^${lessonsRoot}/add$`),
@@ -143,7 +143,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
             {
                 pattern: new RegExp(`^${lessonsRoot}/add/clients$`),
-                actions: [toLessonAddAction],
+                actions: [backAction],
             },
         ]
 
@@ -212,6 +212,12 @@ export const useNavBarActions = (): NavBarAction[] => {
         ]
 
         const publicRoutes = [
+            {
+                pattern: new RegExp(
+                    `^${ROUTES.public.lessons.root}/[a-f0-9]{24}$`
+                ),
+                actions: [toAccountAction],
+            },
             {
                 pattern: new RegExp(
                     `^${ROUTES.public.makeupBags.root}/[a-f0-9]{24}$`

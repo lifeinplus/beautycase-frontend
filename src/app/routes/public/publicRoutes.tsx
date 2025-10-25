@@ -1,6 +1,7 @@
 import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
+import { LessonDetailsForClient } from '@/features/lessons/wrappers/details/client/LessonDetailsForClient'
 import { MakeupBagDetailsForClient } from '@/features/makeup-bags/wrappers/details/client/MakeupBagDetailsForClient'
 import { ProductDetailsForClient } from '@/features/products/wrappers/details/client/ProductDetailsForClient'
 import { ToolDetailsForClient } from '@/features/tools/wrappers/details/client/ToolDetailsForClient'
@@ -20,6 +21,8 @@ export const publicRoutes = [
     <Route key="register" path="/register" element={<Register />} />,
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
+
+        <Route path="/lessons/:id" element={<LessonDetailsForClient />} />
 
         <Route
             path="/makeup-bags/:id"

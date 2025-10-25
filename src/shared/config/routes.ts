@@ -36,12 +36,16 @@ export const ROUTES = {
         },
     },
     public: {
+        lessons: {
+            root: '/lessons',
+        },
         makeupBags: {
             root: '/makeup-bags',
             details: (id: string) => `/makeup-bags/${id}`,
         },
         products: {
             root: '/products',
+            details: (id: string) => `/products/${id}`,
         },
         tools: {
             root: '/tools',

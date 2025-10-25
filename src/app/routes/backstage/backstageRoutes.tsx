@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
+import { LessonDetailsForBackstage } from '@/features/lessons/wrappers/details/backstage/LessonDetailsForBackstage'
 import { MakeupBagDetailsForBackstage } from '@/features/makeup-bags/wrappers/details/backstage/MakeupBagDetailsForBackstage'
 import { ProductDetailsForBackstage } from '@/features/products/wrappers/details/backstage/ProductDetailsForBackstage'
 import { ProductSelectionForLesson } from '@/features/products/wrappers/selection/lesson/ProductSelectionForLesson'
@@ -11,7 +12,6 @@ import { StoreLinksAddForTool } from '@/features/stores/wrappers/links-add/tool/
 import { ToolDetailsForBackstage } from '@/features/tools/wrappers/details/backstage/ToolDetailsForBackstage'
 import { BackstageGallery } from '@/pages/backstage/gallery/BackstageGallery'
 import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
-import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
 import { LessonGallery } from '@/pages/lessons/gallery/LessonGallery'
 import { MakeupBagAdd } from '@/pages/makeup-bags/add/MakeupBagAdd'
@@ -40,8 +40,7 @@ export const backstageRoutes = [
 
             <Route path="lessons">
                 <Route index element={<LessonGallery />} />
-                {/* TODO: shoud be public */}
-                <Route path=":id" element={<LessonDetails />} />
+                <Route path=":id" element={<LessonDetailsForBackstage />} />
                 <Route path=":id/edit" element={<LessonEdit />} />
                 <Route path=":id/edit/clients" element={<UserSelection />} />
                 <Route

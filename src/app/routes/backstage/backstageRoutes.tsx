@@ -8,6 +8,7 @@ import { ProductSelectionForLesson } from '@/features/products/wrappers/selectio
 import { ProductSelectionForStage } from '@/features/products/wrappers/selection/stage/ProductSelectionForStage'
 import { StoreLinksAddForProduct } from '@/features/stores/wrappers/links-add/product/StoreLinksAddForProduct'
 import { StoreLinksAddForTool } from '@/features/stores/wrappers/links-add/tool/StoreLinksAddForTool'
+import { ToolDetailsForBackstage } from '@/features/tools/wrappers/details/backstage/ToolDetailsForBackstage'
 import { BackstageGallery } from '@/pages/backstage/gallery/BackstageGallery'
 import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
 import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
@@ -25,7 +26,6 @@ import { StageDetails } from '@/pages/stages/details/StageDetails'
 import { StageEdit } from '@/pages/stages/edit/StageEdit'
 import { StageList } from '@/pages/stages/list/StageList'
 import { ToolAdd } from '@/pages/tools/add/ToolAdd'
-import { ToolDetails } from '@/pages/tools/details/ToolDetails'
 import { ToolEdit } from '@/pages/tools/edit/ToolEdit'
 import { ToolsGallery } from '@/pages/tools/gallery/ToolsGallery'
 import { Role } from '@/shared/model/role'
@@ -88,8 +88,7 @@ export const backstageRoutes = [
 
             <Route path="tools">
                 <Route index element={<ToolsGallery />} />
-                {/* TODO: shoud be public */}
-                <Route path=":id" element={<ToolDetails />} />
+                <Route path=":id" element={<ToolDetailsForBackstage />} />
                 <Route path=":id/edit" element={<ToolEdit />} />
                 <Route path=":id/links" element={<StoreLinksAddForTool />} />
                 <Route path="add" element={<ToolAdd />} />

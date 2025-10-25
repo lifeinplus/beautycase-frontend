@@ -22,6 +22,12 @@ export const ROUTES = {
             details: (id: string) => `/backstage/stages/${id}`,
             edit: (id: string) => `/backstage/stages/${id}/edit`,
         },
+        tools: {
+            root: '/backstage/tools',
+            add: '/backstage/tools/add',
+            details: (id: string) => `/backstage/tools/${id}`,
+            edit: (id: string) => `/backstage/tools/${id}/edit`,
+        },
     },
     public: {
         makeupBags: {
@@ -30,6 +36,9 @@ export const ROUTES = {
         },
         products: {
             root: '/products',
+        },
+        tools: {
+            root: '/tools',
         },
     },
 }

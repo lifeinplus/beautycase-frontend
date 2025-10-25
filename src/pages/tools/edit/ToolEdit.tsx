@@ -15,6 +15,7 @@ import {
 } from '@/features/tools/api/toolsApi'
 import { ToolForm } from '@/features/tools/components/form/ToolForm'
 import type { Tool } from '@/features/tools/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ToolEdit = () => {
@@ -47,7 +48,7 @@ export const ToolEdit = () => {
         try {
             await updateToolById({ id: id!, tool }).unwrap()
             dispatch(clearFormData())
-            navigate(`/tools/${id}`)
+            navigate(ROUTES.backstage.tools.details(id!))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

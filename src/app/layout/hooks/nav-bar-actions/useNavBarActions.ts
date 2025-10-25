@@ -24,7 +24,9 @@ import { useDuplicateStageAction } from '@/pages/stages/details/hooks/useDuplica
 import { useToStageDetailsAction } from '@/pages/stages/details/hooks/useToStageDetailsAction'
 import { useToStageEditAction } from '@/pages/stages/edit/hooks/useToStageEditAction'
 import { useToStageListAction } from '@/pages/stages/list/hooks/useToStageListAction'
-import { useToolDetailsActions } from '@/pages/tools/details/hooks/useToolDetailsActions'
+import { useToToolAddAction } from '@/pages/tools/add/hooks/useToToolAddAction'
+import { useToToolEditAction } from '@/pages/tools/edit/hooks/useToToolEditAction'
+import { useToToolGalleryAction } from '@/pages/tools/gallery/hooks/useToToolGalleryAction'
 import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
 import { useDeleteMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useDeleteMakeupBagAction'
@@ -33,6 +35,8 @@ import { useToMakeupBagDetailsAction } from '@/widgets/makeup-bag/details/hooks/
 import { useDeleteProductAction } from '@/widgets/product/details/hooks/useDeleteProductAction'
 import { useDuplicateProductAction } from '@/widgets/product/details/hooks/useDuplicateProductAction'
 import { useToProductDetailsAction } from '@/widgets/product/details/hooks/useToProductDetailsAction'
+import { useDeleteToolAction } from '@/widgets/tool/details/hooks/useDeleteToolAction'
+import { useToToolDetailsAction } from '@/widgets/tool/details/hooks/useToToolDetailsAction'
 import type { NavBarAction } from '../types'
 
 export const useNavBarActions = (): NavBarAction[] => {
@@ -43,6 +47,7 @@ export const useNavBarActions = (): NavBarAction[] => {
 
     const addAction = useAddAction()
     const backAction = useBackAction()
+    const toAccountAction = useToAccountAction()
 
     const toControlCenterGalleryAction = useToControlCenterGalleryAction()
     const toReferenceListsAction = useToReferenceListsAction()
@@ -63,10 +68,10 @@ export const useNavBarActions = (): NavBarAction[] => {
     const toProductAddAction = useToProductAddAction()
     const toProductDetailsAction = useToProductDetailsAction()
     const toProductEditAction = useToProductEditAction()
+    const toProductGalleryAction = useToProductGalleryAction()
     const toCategoryProductsAction = useToCategoryProductsAction()
     const deleteProductAction = useDeleteProductAction()
     const duplicateProductAction = useDuplicateProductAction()
-    const toProductGalleryAction = useToProductGalleryAction()
 
     const toStageAddAction = useToStageAddAction()
     const toStageDetailsAction = useToStageDetailsAction()
@@ -75,9 +80,11 @@ export const useNavBarActions = (): NavBarAction[] => {
     const deleteStageAction = useDeleteStageAction()
     const duplicateStageAction = useDuplicateStageAction()
 
-    const toolDetailsActions = useToolDetailsActions()
-
-    const toAccountAction = useToAccountAction()
+    const toToolAddAction = useToToolAddAction()
+    const toToolDetailsAction = useToToolDetailsAction()
+    const toToolEditAction = useToToolEditAction()
+    const toToolGalleryAction = useToToolGalleryAction()
+    const deleteToolAction = useDeleteToolAction()
 
     const getActionsForRoute = (): NavBarAction[] => {
         const { pathname } = location
@@ -198,6 +205,12 @@ export const useNavBarActions = (): NavBarAction[] => {
                 ),
                 actions: [toAccountAction],
             },
+            {
+                pattern: new RegExp(
+                    `^${ROUTES.public.tools.root}/[a-f0-9]{24}$`
+                ),
+                actions: [toAccountAction],
+            },
         ]
 
         const questionnaireRoutes = [
@@ -240,26 +253,27 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
         ]
 
+        const toolsRoot = ROUTES.backstage.tools.root
         const toolRoutes = [
             {
-                pattern: /^\/tools$/i,
-                actions: [addAction],
+                pattern: new RegExp(`^${toolsRoot}$`),
+                actions: [toBackstageGalleryAction, toToolAddAction],
             },
             {
-                pattern: /^\/tools\/[a-f0-9]{24}$/i,
-                actions: toolDetailsActions,
+                pattern: new RegExp(`^${toolsRoot}/[a-f0-9]{24}$`),
+                actions: [
+                    toToolGalleryAction,
+                    toToolEditAction,
+                    deleteToolAction,
+                ],
             },
             {
-                pattern: /^\/tools\/[a-f0-9]{24}\/edit$/i,
-                actions: [backAction],
+                pattern: new RegExp(`^${toolsRoot}/[a-f0-9]{24}/(edit|links)$`),
+                actions: [toToolDetailsAction],
             },
             {
-                pattern: /^\/tools\/[a-f0-9]{24}\/links$/i,
-                actions: [backAction],
-            },
-            {
-                pattern: /^\/tools\/add$/i,
-                actions: [backAction],
+                pattern: new RegExp(`^${toolsRoot}/add$`),
+                actions: [toToolGalleryAction],
             },
         ]
 

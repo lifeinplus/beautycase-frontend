@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 
-export const useToolDetailsActions = vi.fn(() => [
+export const useDeleteToolAction = vi.fn(() => [
     {
         key: 'edit',
         label: 'Edit',

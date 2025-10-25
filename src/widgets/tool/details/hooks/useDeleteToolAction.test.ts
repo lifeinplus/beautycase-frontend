@@ -18,13 +18,13 @@ import {
 } from '@/features/tools/api/toolsApi'
 import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
-import { useToolDetailsActions } from './useToolDetailsActions'
+import { useDeleteToolAction } from './useDeleteToolAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/tools/api/toolsApi')
 
-describe('useToolDetailsActions', () => {
+describe('useDeleteToolAction', () => {
     const mockDeleteToolById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
@@ -59,20 +59,20 @@ describe('useToolDetailsActions', () => {
     })
 
     it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
         expect(result.current).toHaveLength(3)
     })
 
     it('handles delete action', async () => {
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
 
-        let deleteAction = result.current.find((a) => a.key === 'delete')
+        let deleteAction = result.current
 
         act(() => {
             deleteAction?.onClick()
         })
 
-        deleteAction = result.current.find((a) => a.key === 'delete')
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -84,39 +84,37 @@ describe('useToolDetailsActions', () => {
     })
 
     it('closes modal when cancel is called', async () => {
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
 
-        let deleteAction = result.current.find((a) => a.key === 'delete')
+        let deleteAction = result.current
 
         await act(async () => {
             await deleteAction?.onClick()
         })
 
-        deleteAction = result.current.find((a) => a.key === 'delete')
+        deleteAction = result.current
         const { onCancel } = deleteAction?.modalProps || {}
 
         await act(async () => {
             await onCancel?.()
         })
 
-        const updatedDeleteAction = result.current.find(
-            (a) => a.key === 'delete'
-        )
+        const updatedDeleteAction = result.current
         expect(updatedDeleteAction?.modalProps?.isOpen).toBe(false)
     })
 
     it('shows error toast if delete fails', async () => {
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
 
-        let deleteAction = result.current.find((a) => a.key === 'delete')
+        let deleteAction = result.current
 
         act(() => {
             deleteAction?.onClick()
         })
 
-        deleteAction = result.current.find((a) => a.key === 'delete')
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -127,11 +125,9 @@ describe('useToolDetailsActions', () => {
     })
 
     it('handles back action', async () => {
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
 
-        const backAction = result.current.find(
-            (action) => action.key === 'back'
-        )
+        const backAction = result.current
 
         expect(backAction).toBeDefined()
 
@@ -147,7 +143,7 @@ describe('useToolDetailsActions', () => {
 
     it('returns empty array if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useToolDetailsActions())
+        const { result } = renderHook(() => useDeleteToolAction())
         expect(result.current).toEqual([])
     })
 })

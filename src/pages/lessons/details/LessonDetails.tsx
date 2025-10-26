@@ -9,10 +9,14 @@ import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
 
 export interface LessonDetailsProps {
+    viewMode?: boolean
     onBack: () => void
 }
 
-export const LessonDetails = ({ onBack }: LessonDetailsProps) => {
+export const LessonDetails = ({
+    viewMode = false,
+    onBack,
+}: LessonDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation('lesson')
 
@@ -45,7 +49,10 @@ export const LessonDetails = ({ onBack }: LessonDetailsProps) => {
                             <p>{data?.fullDescription}</p>
                         </section>
 
-                        <ProductImages products={data?.products} />
+                        <ProductImages
+                            products={data?.products}
+                            viewMode={viewMode}
+                        />
                     </DataWrapper>
                 </article>
             </main>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Hero } from '@/shared/components/hero/Hero'
 import { Header } from '@/shared/components/layout/header/Header'
+import { ROUTES } from '@/shared/config/routes'
 import { TileSection } from '@/widgets/tile-section/TileSection'
 
 export const ControlCenterGallery = () => {
@@ -11,12 +12,12 @@ export const ControlCenterGallery = () => {
     const items = [
         {
             label: t('tiles.referenceLists.label'),
-            to: 'reference-lists',
+            to: ROUTES.controlCenter.referenceLists,
             icon: ListBulletIcon,
         },
         {
             label: t('tiles.users.label'),
-            to: 'users',
+            to: ROUTES.controlCenter.users,
             icon: UsersIcon,
         },
     ]

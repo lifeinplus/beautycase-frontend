@@ -30,7 +30,7 @@ export const useToCategoryProductsAction = () => {
         label: t('actions.back'),
         onClick: () =>
             navigate(
-                state?.fromPathname ||
+                state?.prev ||
                     ROUTES.backstage.products.category(data?.category?.name!),
                 {
                     replace: true,

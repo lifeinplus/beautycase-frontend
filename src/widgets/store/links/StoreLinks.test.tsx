@@ -9,7 +9,9 @@ vi.mock('./ui/ItemLink')
 
 describe('StoreLinks', () => {
     it('renders StoreLinks correctly', () => {
-        render(<StoreLinks storeLinks={mockStoreLinks} type="product" />)
+        render(
+            <StoreLinks storeLinks={mockStoreLinks} type="product" viewMode />
+        )
 
         expect(screen.getByText('titles.links.product')).toBeInTheDocument()
     })

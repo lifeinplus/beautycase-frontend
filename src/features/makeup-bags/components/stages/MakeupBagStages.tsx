@@ -40,7 +40,7 @@ export const MakeupBagStages = ({ stages }: MakeupBagStagesProps) => {
 
                     {stage.products && (
                         <GoodsGrid
-                            basePath={ROUTES.public.products.root}
+                            basePath={ROUTES.products.root}
                             goods={stage.products}
                         />
                     )}

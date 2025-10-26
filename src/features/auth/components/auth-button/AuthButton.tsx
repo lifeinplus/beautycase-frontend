@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
+import { ROUTES } from '@/shared/config/routes'
 import { useAuthLogout } from '../../hooks/auth-logout/useAuthLogout'
 import { selectUsername } from '../../slice/authSlice'
 
@@ -14,11 +15,11 @@ export const AuthButton = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('auth')
 
-    const handleLogout = useAuthLogout('/login')
+    const handleLogout = useAuthLogout(ROUTES.login)
     const username = useAppSelector(selectUsername)
 
     const handleLogin = () => {
-        navigate('/login')
+        navigate(ROUTES.login)
     }
 
     return (

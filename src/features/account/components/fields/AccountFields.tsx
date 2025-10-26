@@ -72,9 +72,11 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={ROUTES.public.makeupBags.details(
-                                        bag._id
-                                    )}
+                                    to={ROUTES.makeupBags.details(bag._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('fields.makeupBags.link')}
                                 </Link>
@@ -119,8 +121,11 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={`/lessons/${lesson._id}`}
-                                    state={{ fromPathname: pathname }}
+                                    to={ROUTES.lessons.details(lesson._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('fields.lessons.link')}
                                 </Link>

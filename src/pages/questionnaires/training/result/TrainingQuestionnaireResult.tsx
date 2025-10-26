@@ -6,6 +6,7 @@ import { TrainingQuestionnaireData } from '@/features/questionnaires/training/co
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 
 export const TrainingQuestionnaireResult = () => {
@@ -18,7 +19,7 @@ export const TrainingQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate('/questionnaires/trainings')
+        navigate(ROUTES.questionnaires.trainings)
     }
 
     const title = data?.name || t('training.hero.headline')

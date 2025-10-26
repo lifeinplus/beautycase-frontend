@@ -12,7 +12,9 @@ describe('ProductImages', () => {
     it('navigates to product details when product is clicked', async () => {
         const user = userEvent.setup()
 
-        const { container } = render(<ProductImages products={mockProducts} />)
+        const { container } = render(
+            <ProductImages products={mockProducts} viewMode />
+        )
 
         const image = container.querySelector(
             "[class*='relative'][class*='aspect-square']"
@@ -23,7 +25,7 @@ describe('ProductImages', () => {
         await user.click(image as HTMLElement)
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/product1', {
-            state: { fromPathname: '/test-pathname' },
+            state: { prev: '/test-pathname' },
         })
     })
 })

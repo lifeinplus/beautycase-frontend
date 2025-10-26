@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { ROUTES } from '@/shared/config/routes'
 
-export const useToAccountAction = () => {
+export const useToHomeAction = () => {
     const { state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
@@ -17,10 +17,17 @@ export const useToAccountAction = () => {
         icon: ArrowLeftIcon,
         label: t('actions.back'),
         onClick: () => {
-            navigate(state?.prev || state?.origin || ROUTES.account, {
-                replace: true,
-                state: { scrollId: id },
-            })
+            if (state?.prev) {
+                navigate(state?.prev, {
+                    replace: true,
+                    state: { origin: state.origin, scrollId: id },
+                })
+            } else {
+                navigate(state?.origin || ROUTES.home, {
+                    replace: true,
+                    state: { scrollId: id },
+                })
+            }
         },
     }
 }

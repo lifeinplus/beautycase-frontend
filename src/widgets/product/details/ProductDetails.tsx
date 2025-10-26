@@ -9,10 +9,14 @@ import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { StoreLinks } from '@/widgets/store/links/StoreLinks'
 
 export interface ProductDetailsProps {
+    viewMode?: boolean
     onBack?: () => void
 }
 
-export const ProductDetails = ({ onBack }: ProductDetailsProps) => {
+export const ProductDetails = ({
+    viewMode = false,
+    onBack,
+}: ProductDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation(['product', 'store'])
 
@@ -55,6 +59,7 @@ export const ProductDetails = ({ onBack }: ProductDetailsProps) => {
                         <StoreLinks
                             storeLinks={data?.storeLinks}
                             type="product"
+                            viewMode={viewMode}
                         />
                     </DataWrapper>
                 </article>

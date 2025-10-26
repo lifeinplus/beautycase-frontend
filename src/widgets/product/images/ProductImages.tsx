@@ -7,15 +7,22 @@ import { SelectTile } from './ui/SelectTile'
 
 export interface ProductImagesProps {
     products?: Product[]
+    viewMode?: boolean
 }
 
-export const ProductImages = ({ products }: ProductImagesProps) => {
-    const { pathname } = useLocation()
+export const ProductImages = ({
+    products,
+    viewMode = false,
+}: ProductImagesProps) => {
+    const { pathname, state } = useLocation()
     const navigate = useNavigate()
 
-    const handleProduct = (id?: string) => {
-        navigate(ROUTES.public.products.details(id!), {
-            state: { fromPathname: pathname },
+    const handleClick = (id?: string) => {
+        navigate(ROUTES.products.details(id!), {
+            state: {
+                origin: state?.origin || pathname,
+                prev: pathname,
+            },
         })
     }
 
@@ -25,13 +32,13 @@ export const ProductImages = ({ products }: ProductImagesProps) => {
                 <div
                     key={p._id}
                     className="relative mx-auto aspect-square w-full overflow-hidden"
-                    onClick={() => handleProduct(p._id)}
+                    onClick={() => handleClick(p._id)}
                 >
                     <Image alt={p.name} src={p.imageUrl} />
                 </div>
             ))}
 
-            <SelectTile products={products} />
+            {!viewMode && <SelectTile products={products} />}
         </div>
     )
 }

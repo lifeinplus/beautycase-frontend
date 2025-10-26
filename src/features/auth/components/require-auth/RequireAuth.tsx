@@ -1,6 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
+import { ROUTES } from '@/shared/config/routes'
 import { selectUsername } from '../../slice/authSlice'
 
 export const RequireAuth = () => {
@@ -10,6 +11,6 @@ export const RequireAuth = () => {
     return username ? (
         <Outlet />
     ) : (
-        <Navigate to="/login" state={{ from: location }} replace />
+        <Navigate to={ROUTES.login} state={{ from: location }} replace />
     )
 }

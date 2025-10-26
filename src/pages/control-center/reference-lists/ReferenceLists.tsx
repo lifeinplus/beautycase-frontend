@@ -5,7 +5,6 @@ import { ReferenceListsTable } from '@/features/reference-lists/components/table
 import type { ReferenceList } from '@/features/reference-lists/types'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 import { useToControlCenterGalleryAction } from '../gallery/hooks/useToControlCenterGalleryAction'
 
 export const ReferenceLists = () => {
@@ -19,7 +18,7 @@ export const ReferenceLists = () => {
 
     const backAction = useToControlCenterGalleryAction()
 
-    const title = getTitleWithCount(t('hero.headline'), data.length)
+    const title = t('hero.headline')
 
     return (
         <article>

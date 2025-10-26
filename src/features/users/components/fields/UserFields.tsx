@@ -73,10 +73,11 @@ export const UserFields = ({ data }: UserFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={ROUTES.public.makeupBags.details(
-                                        bag._id
-                                    )}
-                                    state={{ fromPathname: pathname }}
+                                    to={ROUTES.makeupBags.details(bag._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('account:fields.makeupBags.link')}
                                 </Link>
@@ -121,8 +122,11 @@ export const UserFields = ({ data }: UserFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={`/lessons/${lesson._id}`}
-                                    state={{ fromPathname: pathname }}
+                                    to={ROUTES.lessons.details(lesson._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('account:fields.lessons.link')}
                                 </Link>

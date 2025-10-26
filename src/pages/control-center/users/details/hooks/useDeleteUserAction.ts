@@ -10,6 +10,7 @@ import {
     useDeleteUserByIdMutation,
     useGetUserByIdQuery,
 } from '@/features/users/api/usersApi'
+import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
@@ -42,7 +43,7 @@ export const useDeleteUserAction = () => {
     const handleDelete = async () => {
         try {
             await deleteUserById(id!).unwrap()
-            navigate('/control-center/users')
+            navigate(ROUTES.controlCenter.users)
         } catch (err) {
             console.error(err)
             toast.error(getErrorMessage(err))

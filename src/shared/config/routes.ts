@@ -1,5 +1,6 @@
 export const ROUTES = {
     account: '/account',
+    home: '/',
     backstage: {
         root: '/backstage',
         lessons: {
@@ -35,20 +36,32 @@ export const ROUTES = {
             edit: (id: string) => `/backstage/tools/${id}/edit`,
         },
     },
-    public: {
-        lessons: {
-            root: '/lessons',
-        },
-        makeupBags: {
-            root: '/makeup-bags',
-            details: (id: string) => `/makeup-bags/${id}`,
-        },
-        products: {
-            root: '/products',
-            details: (id: string) => `/products/${id}`,
-        },
-        tools: {
-            root: '/tools',
-        },
+    confirmation: '/confirmation',
+    controlCenter: {
+        root: '/control-center',
+        referenceLists: '/control-center/reference-lists',
+        users: '/control-center/users',
     },
+    lessons: {
+        root: '/lessons',
+        details: (id: string) => `/lessons/${id}`,
+    },
+    login: '/login',
+    makeupBags: {
+        root: '/makeup-bags',
+        details: (id: string) => `/makeup-bags/${id}`,
+    },
+    products: {
+        root: '/products',
+        details: (id: string) => `/products/${id}`,
+    },
+    pricing: '/pricing',
+    questionnaires: {
+        root: '/questionnaires',
+        makeupBags: '/questionnaires/makeup-bags',
+        trainings: '/questionnaires/trainings',
+    },
+    register: '/register',
+    tools: '/tools',
+    unauthorized: '/unauthorized',
 }

@@ -7,6 +7,7 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { useAuthLogout } from '@/features/auth/hooks/auth-logout/useAuthLogout'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
 import { LanguageSelect } from '@/shared/components/ui/language/select/LanguageSelect'
+import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
 import { TileSection } from '@/widgets/tile-section/TileSection'
 
@@ -72,7 +73,7 @@ export const Home = () => {
                                         'rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600',
                                         'dark:bg-rose-600 dark:hover:bg-rose-700'
                                     )}
-                                    to="/login"
+                                    to={ROUTES.login}
                                 >
                                     {t('link.login')}
                                 </Link>
@@ -84,7 +85,7 @@ export const Home = () => {
                                         'rounded-lg border border-rose-500',
                                         'dark:border-rose-600 dark:bg-black dark:hover:bg-neutral-800'
                                     )}
-                                    to="/register"
+                                    to={ROUTES.register}
                                 >
                                     {t('link.register')}
                                 </Link>

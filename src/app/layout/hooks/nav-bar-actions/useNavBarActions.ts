@@ -9,6 +9,7 @@ import { useToControlCenterGalleryAction } from '@/pages/control-center/gallery/
 import { useToReferenceListsAction } from '@/pages/control-center/reference-lists/hooks/useToReferenceListsAction'
 import { useDeleteUserAction } from '@/pages/control-center/users/details/hooks/useDeleteUserAction'
 import { useToUsersListAction } from '@/pages/control-center/users/list/hooks/useToUsersListAction'
+import { useToHomeAction } from '@/pages/home/hooks/useToHomeAction'
 import { useToLessonAddAction } from '@/pages/lessons/add/hooks/useToLessonAddAction'
 import { useDeleteLessonAction } from '@/pages/lessons/details/hooks/useDeleteLessonAction'
 import { useToLessonDetailsAction } from '@/pages/lessons/details/hooks/useToLessonDetailsAction'
@@ -50,6 +51,7 @@ export const useNavBarActions = (): NavBarAction[] => {
 
     const backAction = useBackAction()
     const toAccountAction = useToAccountAction()
+    const toHomeAction = useToHomeAction()
 
     const toControlCenterGalleryAction = useToControlCenterGalleryAction()
     const toReferenceListsAction = useToReferenceListsAction()
@@ -213,28 +215,20 @@ export const useNavBarActions = (): NavBarAction[] => {
 
         const publicRoutes = [
             {
-                pattern: new RegExp(
-                    `^${ROUTES.public.lessons.root}/[a-f0-9]{24}$`
-                ),
+                pattern: new RegExp(`^${ROUTES.lessons.root}/[a-f0-9]{24}$`),
                 actions: [toAccountAction],
             },
             {
-                pattern: new RegExp(
-                    `^${ROUTES.public.makeupBags.root}/[a-f0-9]{24}$`
-                ),
+                pattern: new RegExp(`^${ROUTES.makeupBags.root}/[a-f0-9]{24}$`),
                 actions: [toAccountAction],
             },
             {
-                pattern: new RegExp(
-                    `^${ROUTES.public.products.root}/[a-f0-9]{24}$`
-                ),
-                actions: [toAccountAction],
+                pattern: new RegExp(`^${ROUTES.products.root}/[a-f0-9]{24}$`),
+                actions: [toHomeAction],
             },
             {
-                pattern: new RegExp(
-                    `^${ROUTES.public.tools.root}/[a-f0-9]{24}$`
-                ),
-                actions: [toAccountAction],
+                pattern: new RegExp(`^${ROUTES.tools}/[a-f0-9]{24}$`),
+                actions: [toHomeAction],
             },
         ]
 

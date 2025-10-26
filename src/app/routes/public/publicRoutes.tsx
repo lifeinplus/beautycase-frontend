@@ -1,10 +1,10 @@
 import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
-import { LessonDetailsForClient } from '@/features/lessons/wrappers/details/client/LessonDetailsForClient'
-import { MakeupBagDetailsForClient } from '@/features/makeup-bags/wrappers/details/client/MakeupBagDetailsForClient'
-import { ProductDetailsForClient } from '@/features/products/wrappers/details/client/ProductDetailsForClient'
-import { ToolDetailsForClient } from '@/features/tools/wrappers/details/client/ToolDetailsForClient'
+import { LessonDetailsViewMode } from '@/features/lessons/wrappers/details/view-mode/LessonDetailsViewMode'
+import { MakeupBagDetailsViewMode } from '@/features/makeup-bags/wrappers/details/view-mode/MakeupBagDetailsViewMode'
+import { ProductDetailsViewMode } from '@/features/products/wrappers/details/view-mode/ProductDetailsViewMode'
+import { ToolDetailsViewMode } from '@/features/tools/wrappers/details/view-mode/ToolDetailsViewMode'
 import { Login } from '@/pages/auth/login/Login'
 import { Register } from '@/pages/auth/register/Register'
 import { Unauthorized } from '@/pages/auth/unauthorized/Unauthorized'
@@ -21,15 +21,9 @@ export const publicRoutes = [
     <Route key="register" path="/register" element={<Register />} />,
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
-
-        <Route path="/lessons/:id" element={<LessonDetailsForClient />} />
-
-        <Route
-            path="/makeup-bags/:id"
-            element={<MakeupBagDetailsForClient />}
-        />
-
-        <Route path="/products/:id" element={<ProductDetailsForClient />} />
+        <Route path="/lessons/:id" element={<LessonDetailsViewMode />} />
+        <Route path="/makeup-bags/:id" element={<MakeupBagDetailsViewMode />} />
+        <Route path="/products/:id" element={<ProductDetailsViewMode />} />
         <Route path="/pricing" element={<Pricing />} />
 
         <Route path="/questionnaires">
@@ -41,7 +35,7 @@ export const publicRoutes = [
             <Route path="training" element={<TrainingQuestionnaireCreate />} />
         </Route>
 
-        <Route path="/tools/:id" element={<ToolDetailsForClient />} />
+        <Route path="/tools/:id" element={<ToolDetailsViewMode />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,
 ]

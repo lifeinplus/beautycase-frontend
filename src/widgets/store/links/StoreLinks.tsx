@@ -7,9 +7,14 @@ import { ItemLink } from './ui/ItemLink'
 export interface StoreLinksProps {
     storeLinks?: StoreLink[]
     type: 'product' | 'tool'
+    viewMode: boolean
 }
 
-export const StoreLinks = ({ storeLinks, type }: StoreLinksProps) => {
+export const StoreLinks = ({
+    storeLinks,
+    type,
+    viewMode = false,
+}: StoreLinksProps) => {
     const { t } = useTranslation('store')
 
     return (
@@ -19,7 +24,7 @@ export const StoreLinks = ({ storeLinks, type }: StoreLinksProps) => {
                 {storeLinks?.map((link, i) => (
                     <ItemLink key={i} item={link} />
                 ))}
-                <AddButton storeLinks={storeLinks} />
+                {!viewMode && <AddButton storeLinks={storeLinks} />}
             </div>
         </section>
     )

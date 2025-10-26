@@ -7,6 +7,7 @@ import { MakeupBagQuestionnaireTable } from '@/features/questionnaires/makeup-ba
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
 
 export const MakeupBagQuestionnaireList = () => {
@@ -22,7 +23,7 @@ export const MakeupBagQuestionnaireList = () => {
     const title = getTitleWithCount(t('headlineList'), data.length)
 
     const handleBack = () => {
-        navigate('/questionnaires')
+        navigate(ROUTES.questionnaires.root)
     }
 
     return (

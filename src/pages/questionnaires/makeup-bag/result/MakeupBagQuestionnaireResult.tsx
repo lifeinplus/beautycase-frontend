@@ -6,6 +6,7 @@ import { MakeupBagQuestionnaireData } from '@/features/questionnaires/makeup-bag
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 
 export const MakeupBagQuestionnaireResult = () => {
@@ -20,7 +21,7 @@ export const MakeupBagQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate('/questionnaires/makeup-bags')
+        navigate(ROUTES.questionnaires.makeupBags)
     }
 
     const title = data?.name || t('makeupBag.hero.headline')

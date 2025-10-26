@@ -17,6 +17,7 @@ import { TextareaSection } from '@/shared/components/forms/textarea/section/Text
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const TrainingQuestionnaireCreate = () => {
@@ -39,7 +40,7 @@ export const TrainingQuestionnaireCreate = () => {
         try {
             await createTrainingQuestionnaire(data).unwrap()
             reset()
-            navigate('/confirmation')
+            navigate(ROUTES.confirmation)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))
@@ -47,7 +48,7 @@ export const TrainingQuestionnaireCreate = () => {
     }
 
     const handleBack = () => {
-        navigate('/questionnaires')
+        navigate(ROUTES.questionnaires.root)
     }
 
     const title = t('training.hero.headline')

@@ -1,3 +1,4 @@
+import { ROUTES } from '@/shared/config/routes'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +13,6 @@ export const useToControlCenterGalleryAction = () => {
         className: 'hidden sm:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
-        onClick: () => navigate('/control-center'),
+        onClick: () => navigate(ROUTES.controlCenter.root),
     }
 }

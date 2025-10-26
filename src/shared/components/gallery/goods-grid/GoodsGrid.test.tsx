@@ -84,14 +84,14 @@ describe('GoodsGrid', () => {
         await user.click(parent1)
 
         expect(mockNavigate).toHaveBeenCalledWith('/goods/1', {
-            state: { fromPathname: '/test-pathname' },
+            state: { prev: '/test-pathname' },
         })
 
         const parent2 = productItems[1].parentElement!
         await user.click(parent2)
 
         expect(mockNavigate).toHaveBeenCalledWith('/goods/2', {
-            state: { fromPathname: '/test-pathname' },
+            state: { prev: '/test-pathname' },
         })
     })
 

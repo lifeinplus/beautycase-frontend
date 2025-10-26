@@ -28,17 +28,17 @@ export const BackstageGallery = () => {
         },
         {
             label: t('tiles.products'),
-            to: 'products',
+            to: ROUTES.backstage.products.root,
             icon: RectangleGroupIcon,
         },
         {
             label: t('tiles.tools'),
-            to: 'tools',
+            to: ROUTES.backstage.tools.root,
             icon: PaintBrushIcon,
         },
         {
             label: t('tiles.lessons'),
-            to: 'lessons',
+            to: ROUTES.backstage.lessons.root,
             icon: FilmIcon,
         },
     ]

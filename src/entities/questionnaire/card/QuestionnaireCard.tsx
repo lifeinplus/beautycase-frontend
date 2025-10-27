@@ -1,10 +1,12 @@
+import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
-import classNames from 'classnames'
+import { Role } from '@/shared/model/role'
 
 export interface QuestionnaireCardProps {
     title: string
@@ -25,15 +27,17 @@ export const QuestionnaireCard = ({
     const username = useAppSelector(selectUsername)
 
     const showResults = canAccess(
-        { auth: true, roles: ['admin', 'mua'] },
+        { auth: true, roles: [Role.ADMIN, Role.MUA] },
         username,
         role
     )
 
+    const questionnairesRoot = ROUTES.questionnaires.root
+
     return (
         <div>
             <Link
-                to={`/questionnaires/${createPath}`}
+                to={`${questionnairesRoot}/${createPath}`}
                 className={classNames(
                     'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
                     'dark:focus-visible:outline-rose-700',
@@ -66,7 +70,7 @@ export const QuestionnaireCard = ({
                             'hover:rounded hover:outline-4 hover:outline-offset-4 hover:outline-rose-400 hover:outline-dashed dark:hover:outline-rose-600',
                             'flex gap-1 text-sm/6 font-semibold text-rose-500 hover:text-rose-600 dark:text-rose-400 hover:dark:text-rose-500'
                         )}
-                        to={`/questionnaires/${resultsPath}`}
+                        to={`${questionnairesRoot}/${resultsPath}`}
                     >
                         {t('results')}
                         <span aria-hidden="true">→</span>

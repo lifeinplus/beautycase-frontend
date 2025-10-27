@@ -10,6 +10,7 @@ import {
     useGetMakeupBagByIdQuery,
     useUpdateMakeupBagByIdMutation,
 } from '@/features/makeup-bags/api/makeupBagsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagEdit } from './MakeupBagEdit'
@@ -52,7 +53,9 @@ describe('MakeupBagEdit', () => {
         expect(mockUpdateMakeupBagById).toHaveBeenCalled()
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags/123')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.makeupBags.details('123')
+        )
     })
 
     it('shows error toast on failure', async () => {

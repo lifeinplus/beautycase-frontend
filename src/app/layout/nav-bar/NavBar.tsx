@@ -70,11 +70,11 @@ export const NavBar = ({ children }: NavBarProps) => {
                         <NavButton
                             key={index}
                             className={classNames(
-                                isActive(item.path) &&
+                                isActive(item.to) &&
                                     'text-rose-500 dark:text-rose-400'
                             )}
                             icon={item.icon}
-                            onClick={() => handleClick(item.path)}
+                            onClick={() => handleClick(item.to)}
                             label={t(item.label)}
                         />
                     ))}

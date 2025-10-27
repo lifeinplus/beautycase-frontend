@@ -10,6 +10,7 @@ import {
     useGetStageByIdQuery,
     useUpdateStageByIdMutation,
 } from '@/features/stages/api/stagesApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageEdit } from './StageEdit'
@@ -59,7 +60,9 @@ describe('StageEdit', () => {
 
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/stages/123')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.stages.details('123')
+        )
     })
 
     it('shows error toast on failure', async () => {

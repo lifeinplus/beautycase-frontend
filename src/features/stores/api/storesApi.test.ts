@@ -60,7 +60,6 @@ describe('storesApi', () => {
 
                 expect(response).toMatchObject({
                     id: mockStore1._id!,
-                    message: 'Store updated successfully',
                 })
             })
         })
@@ -75,11 +74,7 @@ describe('storesApi', () => {
             const [deleteStore] = result.current
 
             await act(async () => {
-                const response = await deleteStore(mockStore1._id!).unwrap()
-
-                expect(response).toEqual({
-                    message: 'Store deleted successfully',
-                })
+                await deleteStore(mockStore1._id!).unwrap()
             })
         })
     })

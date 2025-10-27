@@ -13,6 +13,7 @@ import type { AuthQueryLogin } from '@/features/auth/types'
 import { loginSchema } from '@/features/auth/validations'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const Login = () => {
@@ -161,7 +162,7 @@ export const Login = () => {
                                 'text-rose-500 dark:text-rose-400',
                                 'font-semibold'
                             )}
-                            to="/register"
+                            to={ROUTES.register}
                         >
                             {t('register')}
                         </Link>

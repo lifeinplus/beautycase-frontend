@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { ROUTES } from '@/shared/config/routes'
 import packageJson from '../../../../../package.json'
 
 function AppInfo() {
@@ -18,7 +19,7 @@ function AppInfo() {
                         'dark:hover:outline-rose-600',
                         'text-rose-500 dark:text-rose-400'
                     )}
-                    to="/"
+                    to={ROUTES.home}
                 >
                     Beautycase
                 </Link>{' '}

@@ -21,9 +21,8 @@ describe('MakeupBagList', () => {
 
     it('renders the component with correct structure', () => {
         render(<MakeupBagList />)
-
-        expect(screen.getByTestId('mocked-header')).toBeInTheDocument()
-        expect(screen.getByText(/hero.headline/)).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+        expect(screen.getAllByText(/hero.headline/)).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {

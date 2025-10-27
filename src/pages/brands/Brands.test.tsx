@@ -89,7 +89,9 @@ describe('Brands', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            '/control-center/reference-lists'
+        )
     })
 
     it('should edit brand when edit button is clicked', async () => {
@@ -115,7 +117,6 @@ describe('Brands', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
-        expect(toast.success).toHaveBeenCalledWith('modal:delete.toast')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
     })

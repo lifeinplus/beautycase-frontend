@@ -18,6 +18,7 @@ import { TextareaSection } from '@/shared/components/forms/textarea/section/Text
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const MakeupBagQuestionnaireCreate = () => {
@@ -43,7 +44,7 @@ export const MakeupBagQuestionnaireCreate = () => {
         try {
             await createMakeupBagQuestionnaire(data).unwrap()
             reset()
-            navigate('/confirmation')
+            navigate(ROUTES.confirmation)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))
@@ -51,7 +52,7 @@ export const MakeupBagQuestionnaireCreate = () => {
     }
 
     const handleBack = () => {
-        navigate('/questionnaires')
+        navigate(ROUTES.questionnaires.root)
     }
 
     const title = t('makeupBag.hero.headline')
@@ -64,8 +65,8 @@ export const MakeupBagQuestionnaireCreate = () => {
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
                     <Hero
-                        headline={title}
-                        byline={subtitle}
+                        title={title}
+                        subtitle={subtitle}
                         imgUrl={config.cloudinary.questionnaireMakeupBagHero}
                         content={t('makeupBag.hero.content')}
                         hideOnMobile
@@ -73,7 +74,7 @@ export const MakeupBagQuestionnaireCreate = () => {
 
                     <div className="sm:hidden">
                         <Hero
-                            byline={subtitle}
+                            subtitle={subtitle}
                             imgUrl={
                                 config.cloudinary.questionnaireMakeupBagHero
                             }

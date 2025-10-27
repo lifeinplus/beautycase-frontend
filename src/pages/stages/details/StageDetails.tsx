@@ -6,8 +6,8 @@ import { ImageSection } from '@/shared/components/forms/image-section/ImageSecti
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { ProductImages } from '@/widgets/product/product-images/ProductImages'
-import { useStageDetailsActions } from './hooks/useStageDetailsActions'
+import { ProductImages } from '@/widgets/product/images/ProductImages'
+import { useToStageListAction } from '../list/hooks/useToStageListAction'
 
 export const StageDetails = () => {
     const { id } = useParams()
@@ -15,8 +15,7 @@ export const StageDetails = () => {
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
 
-    const actions = useStageDetailsActions()
-    const backAction = actions.find((action) => action.key === 'back')
+    const backAction = useToStageListAction()
 
     const title = data?.title || t('titles.details')
 

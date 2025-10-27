@@ -11,6 +11,7 @@ import {
 } from '@/features/products/api/__mocks__/productsApi'
 import { useCreateProductMutation } from '@/features/products/api/productsApi'
 import { ProductAdd } from '@/pages/products/add/ProductAdd'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 
@@ -49,7 +50,9 @@ describe('ProductAdd', () => {
         expect(mockCreate).toHaveBeenCalledWith(mockProduct1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/products/product3')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.products.details('product3')
+        )
     })
 
     it('displays an error toast if submission fails', async () => {

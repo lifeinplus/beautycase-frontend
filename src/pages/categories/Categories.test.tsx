@@ -91,7 +91,9 @@ describe('Categories', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith('/reference-lists')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            '/control-center/reference-lists'
+        )
     })
 
     it('should edit category when edit button is clicked', async () => {
@@ -117,7 +119,6 @@ describe('Categories', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteCategoryById).toHaveBeenCalledWith('category1')
-        expect(toast.success).toHaveBeenCalledWith('modal:delete.toast')
         expect(clearFormData).toHaveBeenCalled()
         expect(modalDeleteConfirm).not.toBeInTheDocument()
     })

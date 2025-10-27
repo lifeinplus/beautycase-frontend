@@ -27,7 +27,7 @@ export const ReferenceListsTable = ({ data }: ReferenceListsTableProps) => {
                     key={item.id}
                     cellClasses={cellClasses}
                     cellData={[item.name]}
-                    redirectPath={`/reference-lists/${item.id}`}
+                    redirectPath={`/control-center/reference-lists/${item.id}`}
                 />
             )}
         />

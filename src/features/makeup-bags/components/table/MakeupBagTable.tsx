@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { TableRow } from '@/shared/components/table/table-row/TableRow'
 import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { MakeupBag } from '../../types'
 
@@ -36,7 +37,9 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                         t(`categories.${item.category?.name}.short`),
                         item.client?.username || '–',
                     ]}
-                    redirectPath={`/makeup-bags/${item._id}`}
+                    redirectPath={ROUTES.backstage.makeupBags.details(
+                        item._id!
+                    )}
                 />
             )}
         />

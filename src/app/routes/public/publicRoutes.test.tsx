@@ -2,7 +2,11 @@ import { screen } from '@testing-library/dom'
 import { describe, expect, it, vi } from 'vitest'
 
 import App from '@/App'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { ROUTES } from '@/shared/config/routes'
+import {
+    renderWithProviderAndRouter,
+    renderWithRouter,
+} from '@/tests/mocks/wrappers'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/app/layout/AppLayout')
@@ -15,49 +19,75 @@ vi.mock('@/pages/pricing/ui/Pricing')
 vi.mock('@/pages/questionnaires/confirmation/Confirmation')
 vi.mock('@/pages/questionnaires/makeup-bag/create/MakeupBagQuestionnaireCreate')
 vi.mock('@/pages/questionnaires/training/create/TrainingQuestionnaireCreate')
+vi.mock('@/widgets/lesson/details/LessonDetails')
+vi.mock('@/widgets/makeup-bag/details/MakeupBagDetails')
+vi.mock('@/widgets/product/details/ProductDetails')
+vi.mock('@/widgets/tool/details/ToolDetails')
 
 describe('publicRoutes', () => {
     it('renders the home page correctly', () => {
-        renderWithRouter(<App />, ['/'])
+        renderWithRouter(<App />, [ROUTES.home])
         expect(screen.getByTestId('mocked-home')).toBeInTheDocument()
     })
 
     it('renders the login page correctly', () => {
-        renderWithRouter(<App />, ['/login'])
+        renderWithRouter(<App />, [ROUTES.login])
         expect(screen.getByTestId('mocked-login')).toBeInTheDocument()
     })
 
     it('renders the register page correctly', () => {
-        renderWithRouter(<App />, ['/register'])
+        renderWithRouter(<App />, [ROUTES.register])
         expect(screen.getByTestId('mocked-register')).toBeInTheDocument()
     })
 
     it('renders the confirmation page correctly', () => {
-        renderWithRouter(<App />, ['/confirmation'])
+        renderWithRouter(<App />, [ROUTES.confirmation])
         expect(screen.getByTestId('mocked-confirmation')).toBeInTheDocument()
     })
 
+    it('renders the LessonDetailsViewMode page correctly', () => {
+        renderWithProviderAndRouter(<App />, [ROUTES.lessons.details('123')])
+        expect(screen.getByTestId('mocked-lesson-details')).toBeInTheDocument()
+    })
+
+    it('renders the MakeupBagDetailsViewMode page correctly', () => {
+        renderWithProviderAndRouter(<App />, [ROUTES.makeupBags.details('123')])
+        expect(
+            screen.getByTestId('mocked-makeup-bag-details')
+        ).toBeInTheDocument()
+    })
+
+    it('renders the ProductDetailsViewMode page correctly', () => {
+        renderWithProviderAndRouter(<App />, [ROUTES.products.details('123')])
+        expect(screen.getByTestId('mocked-product-details')).toBeInTheDocument()
+    })
+
     it('renders the pricing page correctly', () => {
-        renderWithRouter(<App />, ['/pricing'])
+        renderWithRouter(<App />, [ROUTES.pricing])
         expect(screen.getByTestId('mocked-pricing')).toBeInTheDocument()
     })
 
     it('renders the makeup bag questionnaire page correctly', () => {
-        renderWithRouter(<App />, ['/questionnaires/makeup-bag'])
+        renderWithRouter(<App />, [ROUTES.questionnaires.makeupBags.create])
         expect(
             screen.getByTestId('mocked-makeup-bag-questionnaire-create')
         ).toBeInTheDocument()
     })
 
     it('renders the training questionnaire page correctly', () => {
-        renderWithRouter(<App />, ['/questionnaires/training'])
+        renderWithRouter(<App />, [ROUTES.questionnaires.trainings.create])
         expect(
             screen.getByTestId('mocked-training-questionnaire-create')
         ).toBeInTheDocument()
     })
 
+    it('renders the ToolDetailsViewMode page correctly', () => {
+        renderWithProviderAndRouter(<App />, [ROUTES.tools.details('123')])
+        expect(screen.getByTestId('mocked-tool-details')).toBeInTheDocument()
+    })
+
     it('renders the unauthorized page correctly', () => {
-        renderWithRouter(<App />, ['/unauthorized'])
+        renderWithRouter(<App />, [ROUTES.unauthorized])
         expect(screen.getByTestId('mocked-unauthorized')).toBeInTheDocument()
     })
 })

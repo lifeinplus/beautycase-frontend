@@ -1,0 +1,67 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import toast from 'react-hot-toast'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
+
+import { useUpdateStageProductsMutation } from '@/features/stages/api/stagesApi'
+import { mockError } from '@/tests/mocks'
+import { ProductSelectionStage } from './ProductSelectionStage'
+
+vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/widgets/product/selection/ProductSelection')
+
+describe('ProductSelectionStage', () => {
+    const mockUpdate = vi.fn()
+    const mockUnwrap = vi.fn()
+
+    beforeEach(() => {
+        vi.mocked(useUpdateStageProductsMutation as Mock).mockReturnValue([
+            mockUpdate,
+            { isLoading: false },
+        ])
+
+        mockUpdate.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue({})
+    })
+
+    it('renders ProductSelection successfully', async () => {
+        render(<ProductSelectionStage />)
+
+        expect(
+            screen.getByTestId('mocked-product-selection')
+        ).toBeInTheDocument()
+    })
+
+    it('passes correct onSave handler', async () => {
+        const user = userEvent.setup()
+
+        render(<ProductSelectionStage />)
+        await user.click(screen.getByTestId('mocked-submit-button'))
+
+        expect(mockUpdate).toHaveBeenCalledWith({
+            id: '123',
+            data: { productIds: ['product1', 'product2'] },
+        })
+
+        expect(mockUnwrap).toHaveBeenCalled()
+    })
+
+    it('shows error toast on failure', async () => {
+        const user = userEvent.setup()
+
+        const spyConsoleError = vi
+            .spyOn(console, 'error')
+            .mockImplementation(() => {})
+
+        mockUnwrap.mockRejectedValue(mockError)
+
+        render(<ProductSelectionStage />)
+        await user.click(screen.getByTestId('mocked-submit-button'))
+
+        expect(mockUpdate).toHaveBeenCalled()
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
+
+        spyConsoleError.mockRestore()
+    })
+})

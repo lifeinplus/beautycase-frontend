@@ -11,12 +11,12 @@
     --border-width-0_5: 0.5px;
     --border-width-1_5: 1.5px;
 
-    --font-logo: Sofia, ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
-    --font-heading: Montserrat, ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+    --font-logo:
+        Sofia, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading:
+        Montserrat, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --margin-navbar: 73px;
     --margin-navbar-open: 245px;
@@ -24,6 +24,7 @@
     --container-login: 350px;
 
     --padding-13: 3.25rem; /* 52px */
+    --padding-18: 4.5rem; /* 72px */
     --padding-navbar: 73px;
     --padding-navbar-open: 245px;
 

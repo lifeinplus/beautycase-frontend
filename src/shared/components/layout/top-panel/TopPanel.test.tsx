@@ -10,10 +10,7 @@ describe('TopPanel', () => {
 
     it('renders back button with chevron icon', () => {
         render(<TopPanel title={mockTitle} />)
-
-        expect(
-            screen.getByTestId('mocked-chevron-left-icon')
-        ).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-icon')).toBeInTheDocument()
     })
 
     it('navigates back when default back button is clicked', async () => {

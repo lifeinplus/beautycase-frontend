@@ -1,0 +1,11 @@
+{
+    "title": "Control Center",
+    "tiles": {
+        "referenceLists": {
+            "label": "Reference Lists"
+        },
+        "users": {
+            "label": "Users"
+        }
+    }
+}

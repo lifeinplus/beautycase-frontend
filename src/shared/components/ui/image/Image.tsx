@@ -8,7 +8,7 @@ export interface ImageProps {
 
 export const Image = ({
     alt,
-    className = 'h-full w-full object-cover sm:rounded',
+    className = 'h-full w-full object-cover md:rounded',
     src,
 }: ImageProps) => (
     <img

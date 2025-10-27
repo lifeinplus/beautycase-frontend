@@ -18,7 +18,7 @@ describe('Header', () => {
             'top-0',
             'z-10',
             'border-b',
-            'sm:hidden'
+            'md:hidden'
         )
 
         const headerElement = container.querySelector('header')
@@ -54,7 +54,7 @@ describe('Header', () => {
     it('applies responsive classes correctly', () => {
         const { container } = renderWithRouter(<Header />)
 
-        expect(container.querySelector('nav')).toHaveClass('sm:hidden')
+        expect(container.querySelector('nav')).toHaveClass('md:hidden')
 
         expect(
             screen.getByTestId('mocked-auth-button').parentElement

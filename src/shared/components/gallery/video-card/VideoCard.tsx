@@ -10,12 +10,12 @@ export interface VideoCardProps {
         title: string
         videoUrl: string
     }
-    path: string
+    to: string
 }
 
-export const VideoCard = ({ data, path }: VideoCardProps) => (
+export const VideoCard = ({ data, to }: VideoCardProps) => (
     <Link
-        to={path}
+        to={to}
         className="relative overflow-hidden border-t border-neutral-200 dark:border-neutral-800"
     >
         <div className="relative mx-auto aspect-video w-full overflow-hidden">

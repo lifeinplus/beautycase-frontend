@@ -6,6 +6,7 @@ import { MakeupBagQuestionnaireData } from '@/features/questionnaires/makeup-bag
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 
 export const MakeupBagQuestionnaireResult = () => {
@@ -20,7 +21,7 @@ export const MakeupBagQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate('/questionnaires/makeup-bags')
+        navigate(ROUTES.questionnaires.makeupBags.root)
     }
 
     const title = data?.name || t('makeupBag.hero.headline')
@@ -30,9 +31,9 @@ export const MakeupBagQuestionnaireResult = () => {
             <TopPanel title={title} onBack={handleBack} />
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
-                    <Hero headline={title} byline={createdAt} hideOnMobile />
+                    <Hero title={title} subtitle={createdAt} hideOnMobile />
                     <div className="sm:hidden">
-                        <Hero byline={createdAt} />
+                        <Hero subtitle={createdAt} />
                     </div>
                     <DataWrapper isLoading={isLoading} error={error}>
                         {data && <MakeupBagQuestionnaireData data={data} />}

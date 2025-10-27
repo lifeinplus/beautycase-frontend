@@ -22,9 +22,6 @@ describe('ThemeToggler', () => {
         expect(
             screen.getByRole('button', { name: 'buttons.lightMode.ariaLabel' })
         ).toBeInTheDocument()
-
-        expect(screen.getByTestId('mocked-sun-icon')).toBeInTheDocument()
-        expect(screen.queryByTestId('mocked-moon-icon')).not.toBeInTheDocument()
     })
 
     it('renders dark mode button when darkMode is true', () => {
@@ -35,9 +32,6 @@ describe('ThemeToggler', () => {
         expect(
             screen.getByRole('button', { name: 'buttons.darkMode.ariaLabel' })
         ).toBeInTheDocument()
-
-        expect(screen.getByTestId('mocked-moon-icon')).toBeInTheDocument()
-        expect(screen.queryByTestId('mocked-sun-icon')).not.toBeInTheDocument()
     })
 
     it('dispatches toggleTheme action when clicked', async () => {

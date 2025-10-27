@@ -10,6 +10,7 @@ import {
     mockMakeupBagCreate,
 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
 import { useCreateMakeupBagMutation } from '@/features/makeup-bags/api/makeupBagsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { MakeupBagAdd } from './MakeupBagAdd'
@@ -47,7 +48,9 @@ describe('MakeupBagAdd', () => {
         expect(mockAddMakeupBag).toHaveBeenCalledWith(mockMakeupBag1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags/makeupBag3')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.makeupBags.details('makeupBag3')
+        )
     })
 
     it('displays an error toast if submission fails', async () => {

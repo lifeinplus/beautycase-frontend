@@ -1,6 +1,10 @@
 import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
+import { LessonDetailsViewMode } from '@/features/lessons/wrappers/details/view-mode/LessonDetailsViewMode'
+import { MakeupBagDetailsViewMode } from '@/features/makeup-bags/wrappers/details/view-mode/MakeupBagDetailsViewMode'
+import { ProductDetailsViewMode } from '@/features/products/wrappers/details/view-mode/ProductDetailsViewMode'
+import { ToolDetailsViewMode } from '@/features/tools/wrappers/details/view-mode/ToolDetailsViewMode'
 import { Login } from '@/pages/auth/login/Login'
 import { Register } from '@/pages/auth/register/Register'
 import { Unauthorized } from '@/pages/auth/unauthorized/Unauthorized'
@@ -17,7 +21,11 @@ export const publicRoutes = [
     <Route key="register" path="/register" element={<Register />} />,
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/lessons/:id" element={<LessonDetailsViewMode />} />
+        <Route path="/makeup-bags/:id" element={<MakeupBagDetailsViewMode />} />
+        <Route path="/products/:id" element={<ProductDetailsViewMode />} />
         <Route path="/pricing" element={<Pricing />} />
+
         <Route path="/questionnaires">
             <Route index element={<QuestionnaireGallery />} />
             <Route
@@ -26,6 +34,8 @@ export const publicRoutes = [
             />
             <Route path="training" element={<TrainingQuestionnaireCreate />} />
         </Route>
+
+        <Route path="/tools/:id" element={<ToolDetailsViewMode />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,
 ]

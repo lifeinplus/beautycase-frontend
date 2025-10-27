@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { TableRow } from '@/shared/components/table/table-row/TableRow'
 import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
+import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
 import type { Stage } from '../../types'
 
@@ -36,7 +37,7 @@ export const StageTable = ({ stages }: StageTableProps) => {
                         item.title,
                         item.subtitle,
                     ]}
-                    redirectPath={`/stages/${item._id}`}
+                    redirectPath={ROUTES.backstage.stages.details(item._id!)}
                 />
             )}
         />

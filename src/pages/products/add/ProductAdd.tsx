@@ -7,6 +7,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import { useCreateProductMutation } from '@/features/products/api/productsApi'
 import { ProductForm } from '@/features/products/components/form/ProductForm'
 import type { Product } from '@/features/products/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const ProductAdd = () => {
@@ -20,7 +21,7 @@ export const ProductAdd = () => {
         try {
             const response = await createProduct(product).unwrap()
             dispatch(clearFormData())
-            navigate(`/products/${response.id}`)
+            navigate(ROUTES.backstage.products.details(response.id))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

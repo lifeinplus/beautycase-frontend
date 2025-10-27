@@ -6,10 +6,11 @@ import { MakeupBagQuestionnaireList } from '@/pages/questionnaires/makeup-bag/li
 import { MakeupBagQuestionnaireResult } from '@/pages/questionnaires/makeup-bag/result/MakeupBagQuestionnaireResult'
 import { TrainingQuestionnaireList } from '@/pages/questionnaires/training/list/TrainingQuestionnaireList'
 import { TrainingQuestionnaireResult } from '@/pages/questionnaires/training/result/TrainingQuestionnaireResult'
+import { Role } from '@/shared/model/role'
 
 export const questionnaireRoutes = [
     <Route key="questionnaires" path="/questionnaires" element={<AppLayout />}>
-        <Route element={<RequireRole allowedRoles={['admin', 'mua']} />}>
+        <Route element={<RequireRole allowedRoles={[Role.ADMIN, Role.MUA]} />}>
             <Route path="makeup-bags">
                 <Route index element={<MakeupBagQuestionnaireList />} />
                 <Route path=":id" element={<MakeupBagQuestionnaireResult />} />

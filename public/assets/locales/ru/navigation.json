@@ -11,17 +11,11 @@
         "saving": "Сохранение..."
     },
     "menu": {
-        "account": "Личный кабинет",
-        "lessons": "Уроки",
-        "makeupBags": "Косметички",
-        "products": "Продукты",
-        "pricing": "Онлайн-услуги",
-        "questionnaire": "Анкета",
         "questionnaires": "Анкеты",
-        "referenceLists": "Справочники",
-        "stages": "Этапы",
-        "tools": "Инструменты",
-        "training": "Обучение"
+        "pricing": "Онлайн-услуги",
+        "backstage": "Гримёрка",
+        "controlCenter": "Центр управления",
+        "account": "Личный кабинет"
     },
     "build": "Сборка"
 }

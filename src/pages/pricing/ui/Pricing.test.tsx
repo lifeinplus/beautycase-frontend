@@ -5,7 +5,7 @@ import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Pricing } from './Pricing'
 
 vi.mock('@/shared/components/layout/header/Header')
-vi.mock('@/widgets/online-services/ui/OnlineServices')
+vi.mock('@/widgets/online-services/OnlineServices')
 
 describe('Pricing page', () => {
     it('renders all main components', () => {

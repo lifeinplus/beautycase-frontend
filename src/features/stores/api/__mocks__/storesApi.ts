@@ -39,14 +39,11 @@ const storesHandlers = [
     http.get('api/stores', () => HttpResponse.json(mockStores)),
 
     http.put('api/stores/:id', async ({ params }) =>
-        HttpResponse.json({
-            id: params.id,
-            message: 'Store updated successfully',
-        })
+        HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/stores/:id', () =>
-        HttpResponse.json({ message: 'Store deleted successfully' })
+    http.delete('api/stores/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 export default storesHandlers

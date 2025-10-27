@@ -11,6 +11,7 @@ import {
 } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks/hooks'
+import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockLesson1 } from '../../api/__mocks__/lessonsApi'
@@ -63,6 +64,8 @@ describe('LessonForm', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith(-1)
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.lessons.details('123')
+        )
     })
 })

@@ -5,6 +5,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { setCredentials } from '@/features/auth/slice/authSlice'
 import type { AuthState } from '@/features/auth/types'
 import axiosClient from '@/shared/api/axios/axiosClient.config'
+import { Role } from '@/shared/model/role'
 import { mockError } from '@/tests/mocks'
 import { useRefreshAuth } from './useRefreshAuth'
 
@@ -14,7 +15,7 @@ vi.mock('@/shared/api/axios/axiosClient.config')
 describe('useRefreshAuth', () => {
     const mockAuthResponse: AuthState = {
         accessToken: 'mock-access-token',
-        role: 'admin',
+        role: Role.ADMIN,
         userId: '123',
         username: 'testuser',
     }

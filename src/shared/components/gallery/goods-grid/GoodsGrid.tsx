@@ -27,7 +27,10 @@ export const GoodsGrid = <T extends Good>({
 
     const handleClick = (id?: string) => {
         navigate(`${basePath}/${id}`, {
-            state: { fromPathname: pathname },
+            state: {
+                origin: state?.origin || pathname,
+                prev: pathname,
+            },
         })
     }
 

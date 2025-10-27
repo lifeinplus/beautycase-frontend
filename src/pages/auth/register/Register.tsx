@@ -11,6 +11,7 @@ import type { AuthQueryRegister } from '@/features/auth/types'
 import { registerSchema } from '@/features/auth/validations'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const Register = () => {
@@ -36,14 +37,13 @@ export const Register = () => {
         const { username, password, confirmPassword } = data
 
         try {
-            const response = await registerUser({
+            await registerUser({
                 username,
                 password,
                 confirmPassword,
-            }).unwrap()
+            })
 
-            toast.success(response.message)
-            navigate('/login')
+            navigate(ROUTES.login)
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))
@@ -195,7 +195,7 @@ export const Register = () => {
                                 'text-rose-500 dark:text-rose-400',
                                 'font-semibold'
                             )}
-                            to="/login"
+                            to={ROUTES.login}
                         >
                             {t('login')}
                         </Link>

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
@@ -16,6 +16,7 @@ import { TextareaSection } from '@/shared/components/forms/textarea/section/Text
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
+import { ROUTES } from '@/shared/config/routes'
 import type { Tool } from '../../types'
 import { toolSchema } from '../../validations'
 
@@ -31,6 +32,7 @@ export const ToolForm = ({
     isSaving = false,
 }: ToolFormProps) => {
     const navigate = useNavigate()
+    const { id } = useParams()
     const { t } = useTranslation('tool')
 
     const {
@@ -59,7 +61,10 @@ export const ToolForm = ({
     }))
 
     const handleBack = () => {
-        navigate(-1)
+        const path = id
+            ? ROUTES.backstage.tools.details(id)
+            : ROUTES.backstage.tools.root
+        navigate(path)
     }
 
     return (

@@ -10,6 +10,7 @@ import {
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
 } from '@/features/tools/api/toolsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolEdit } from './ToolEdit'
@@ -57,7 +58,9 @@ describe('ToolEdit', () => {
 
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/tools/123')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.tools.details('123')
+        )
     })
 
     it('shows error toast on failure', async () => {

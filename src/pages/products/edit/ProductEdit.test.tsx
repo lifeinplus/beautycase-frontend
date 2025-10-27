@@ -10,6 +10,7 @@ import {
     useGetProductByIdQuery,
     useUpdateProductByIdMutation,
 } from '@/features/products/api/productsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ProductEdit } from './ProductEdit'
@@ -57,7 +58,9 @@ describe('ProductEdit', () => {
 
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/products/123')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.products.details('123')
+        )
     })
 
     it('shows error toast on failure', async () => {

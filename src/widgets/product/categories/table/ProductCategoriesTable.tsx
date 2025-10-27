@@ -4,6 +4,7 @@ import { CategoryWithCount } from '@/features/categories/api/categoriesApi'
 import { TableRow } from '@/shared/components/table/table-row/TableRow'
 import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
+import { ROUTES } from '@/shared/config/routes'
 
 export interface ProductCategoriesTableProps {
     categories?: CategoryWithCount[]
@@ -25,15 +26,15 @@ export const ProductCategoriesTable = ({
         <Table
             headers={headers}
             data={categories}
-            renderRow={(category) => (
+            renderRow={(c) => (
                 <TableRow
-                    key={category._id}
+                    key={c._id}
                     cellClasses={cellClasses}
                     cellData={[
-                        t(`categories.${category.name}`),
-                        String(category.productCount ?? 0),
+                        t(`categories.${c.name}`),
+                        String(c.productCount ?? 0),
                     ]}
-                    redirectPath={`/products/category/${category.name}`}
+                    redirectPath={ROUTES.backstage.products.category(c.name)}
                 />
             )}
         />

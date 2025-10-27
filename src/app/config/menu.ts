@@ -1,20 +1,18 @@
 import {
+    AdjustmentsHorizontalIcon,
     ClipboardDocumentListIcon,
     ComputerDesktopIcon,
-    FilmIcon,
-    ListBulletIcon,
-    PaintBrushIcon,
-    QueueListIcon,
-    RectangleGroupIcon,
-    ShoppingBagIcon,
+    StarIcon,
     UserCircleIcon,
 } from '@heroicons/react/24/outline'
 import { ComponentType, SVGProps } from 'react'
 
+import { ROUTES } from '@/shared/config/routes'
+
 interface MenuItem {
     auth?: boolean
     label: string
-    path: string
+    to: string
     roles?: string[]
     icon: ComponentType<SVGProps<SVGSVGElement>>
 }
@@ -22,60 +20,32 @@ interface MenuItem {
 export const menuItems: MenuItem[] = [
     {
         label: 'menu.questionnaires',
-        path: '/questionnaires',
+        to: ROUTES.questionnaires.root,
         icon: ClipboardDocumentListIcon,
     },
     {
-        auth: true,
-        label: 'menu.makeupBags',
-        path: '/makeup-bags',
-        roles: ['admin', 'mua'],
-        icon: ShoppingBagIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.stages',
-        path: '/stages',
-        roles: ['admin', 'mua'],
-        icon: QueueListIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.products',
-        path: '/products',
-        roles: ['admin', 'mua'],
-        icon: RectangleGroupIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.tools',
-        path: '/tools',
-        roles: ['admin', 'mua'],
-        icon: PaintBrushIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.lessons',
-        path: '/lessons',
-        roles: ['admin', 'mua'],
-        icon: FilmIcon,
-    },
-    {
-        auth: true,
-        label: 'menu.referenceLists',
-        path: '/reference-lists',
-        roles: ['admin'],
-        icon: ListBulletIcon,
-    },
-    {
         label: 'menu.pricing',
-        path: '/pricing',
+        to: ROUTES.pricing,
         icon: ComputerDesktopIcon,
     },
     {
         auth: true,
+        label: 'menu.backstage',
+        to: ROUTES.backstage.root,
+        roles: ['admin'],
+        icon: StarIcon,
+    },
+    {
+        auth: true,
+        label: 'menu.controlCenter',
+        to: ROUTES.controlCenter.root,
+        roles: ['admin'],
+        icon: AdjustmentsHorizontalIcon,
+    },
+    {
+        auth: true,
         label: 'menu.account',
-        path: '/account',
+        to: ROUTES.account,
         icon: UserCircleIcon,
     },
 ]

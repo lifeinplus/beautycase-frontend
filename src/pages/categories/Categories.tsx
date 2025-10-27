@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
 import {
@@ -19,9 +18,10 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { useToReferenceListsAction } from '../control-center/reference-lists/hooks/useToReferenceListsAction'
 
 export const Categories = () => {
-    const navigate = useNavigate()
     const categoryFormRef = useRef<FormRef | null>(null)
     const { t } = useTranslation(['category', 'modal'])
 
@@ -32,9 +32,7 @@ export const Categories = () => {
     const { data = [], isLoading, error } = useGetAllCategoriesQuery()
     const [deleteCategoryById] = useDeleteCategoryByIdMutation()
 
-    const handleBack = () => {
-        navigate('/reference-lists')
-    }
+    const backAction = useToReferenceListsAction()
 
     const handleDelete = async (data: Category) => {
         setCategory(data)
@@ -46,7 +44,6 @@ export const Categories = () => {
 
         try {
             await deleteCategoryById(category._id).unwrap()
-            toast.success(t('modal:delete.toast', { name: category.name }))
             dispatch(clearFormData())
         } catch (err) {
             console.error(err)
@@ -61,20 +58,16 @@ export const Categories = () => {
         categoryFormRef.current?.focusInput()
     }
 
-    const title = [t('titles.list'), data.length && `(${data.length})`]
-        .filter(Boolean)
-        .join(' ')
+    const title = getTitleWithCount(t('titles.list'), data.length)
 
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} onBack={backAction.onClick} />
 
             <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
-                    <Hero headline={title} hideOnMobile />
-
+                    <Hero title={title} hideOnMobile />
                     <CategoryForm ref={categoryFormRef} />
-
                     <DataWrapper isLoading={isLoading} error={error}>
                         {data && (
                             <>

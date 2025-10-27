@@ -3,7 +3,6 @@ import type {
     AuthQueryLogin,
     AuthQueryRegister,
     AuthResultLogin,
-    AuthResultRegister,
 } from '../types'
 
 const authApi = api.injectEndpoints({
@@ -21,7 +20,7 @@ const authApi = api.injectEndpoints({
                 method: 'POST',
             }),
         }),
-        registerUser: builder.mutation<AuthResultRegister, AuthQueryRegister>({
+        registerUser: builder.mutation<void, AuthQueryRegister>({
             query: (credentials) => ({
                 url: 'auth/register',
                 method: 'POST',

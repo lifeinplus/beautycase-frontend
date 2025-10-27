@@ -9,7 +9,7 @@ import { MakeupBagMobileView } from './MakeupBagMobileView'
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagMobileView', () => {
-    it('renders the MobileView component with correct props', () => {
+    it('renders the mobile view component with correct props', () => {
         renderWithRouter(<MakeupBagMobileView makeupBags={mockMakeupBags} />)
 
         expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(2)

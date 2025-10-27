@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
 import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
@@ -35,7 +36,9 @@ describe('CategoryProducts', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith('/products')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.products.root
+        )
     })
 
     it('shows loading state', () => {

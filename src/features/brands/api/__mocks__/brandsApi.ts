@@ -34,8 +34,8 @@ const brandsHandlers = [
         HttpResponse.json({ id: params.id })
     ),
 
-    http.delete('api/brands/:id', () =>
-        HttpResponse.json({ message: 'Brand deleted successfully' })
+    http.delete('api/brands/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
     ),
 ]
 

@@ -120,11 +120,7 @@ describe('stagesApi', () => {
             const [deleteStage] = result.current
 
             await act(async () => {
-                const response = await deleteStage('1').unwrap()
-
-                expect(response).toEqual({
-                    message: 'Stage deleted successfully',
-                })
+                await deleteStage('1').unwrap()
             })
         })
     })

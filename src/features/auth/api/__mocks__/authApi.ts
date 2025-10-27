@@ -1,11 +1,11 @@
 import { http, HttpResponse } from 'msw'
 import { vi } from 'vitest'
 
+import { Role } from '@/shared/model/role'
 import type {
     AuthQueryLogin,
     AuthQueryRegister,
     AuthResultLogin,
-    AuthResultRegister,
     AuthState,
 } from '../../types'
 
@@ -21,7 +21,7 @@ export const mockLoginResult: AuthResultLogin = {
 
 export const mockRefreshResult: AuthState = {
     accessToken: 'token1',
-    role: 'role1',
+    role: Role.CLIENT,
     userId: 'user1',
     username: 'testuser',
 }
@@ -30,10 +30,6 @@ export const mockRegisterParams: AuthQueryRegister = {
     username: 'testuser',
     password: 'password123',
     confirmPassword: 'password123',
-}
-
-export const mockRegisterResult: AuthResultRegister = {
-    message: 'User registered successfully',
 }
 
 export const useLoginUserMutation = vi.fn()
@@ -62,7 +58,7 @@ const authHandlers = [
         const requestBody = (await request.json()) as AuthQueryRegister
 
         if (requestBody.password === requestBody.confirmPassword) {
-            return HttpResponse.json(mockRegisterResult, { status: 201 })
+            return HttpResponse.json({ status: 201 })
         }
 
         return HttpResponse.json('Passwords do not match', { status: 400 })

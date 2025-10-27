@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
 import type { User, UserResult } from '@/features/users/types'
+import { ROUTES } from '@/shared/config/routes'
 
 interface Field {
     label: string
@@ -41,7 +42,7 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
             content: makeupBags?.length && (
                 <ul
                     role="list"
-                    className="mt-1 divide-y divide-neutral-100 rounded-2xl border border-neutral-200 sm:mt-0 dark:divide-neutral-800 dark:border-neutral-700"
+                    className="mt-1 divide-y divide-neutral-100 rounded-2xl border border-neutral-200 md:mt-0 dark:divide-neutral-800 dark:border-neutral-700"
                 >
                     {makeupBags.map((bag) => (
                         <li
@@ -71,8 +72,11 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={`/makeup-bags/${bag._id}`}
-                                    state={{ fromPathname: pathname }}
+                                    to={ROUTES.makeupBags.details(bag._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('fields.makeupBags.link')}
                                 </Link>
@@ -89,7 +93,7 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
             content: lessons?.length && (
                 <ul
                     role="list"
-                    className="mt-1 divide-y divide-neutral-100 rounded-2xl border border-neutral-200 sm:mt-0 dark:divide-neutral-800 dark:border-neutral-700"
+                    className="mt-1 divide-y divide-neutral-100 rounded-2xl border border-neutral-200 md:mt-0 dark:divide-neutral-800 dark:border-neutral-700"
                 >
                     {lessons.map((lesson) => (
                         <li
@@ -117,8 +121,11 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
                                         'text-rose-500 dark:text-rose-400',
                                         'font-medium'
                                     )}
-                                    to={`/lessons/${lesson._id}`}
-                                    state={{ fromPathname: pathname }}
+                                    to={ROUTES.lessons.details(lesson._id)}
+                                    state={{
+                                        origin: pathname,
+                                        prev: pathname,
+                                    }}
                                 >
                                     {t('fields.lessons.link')}
                                 </Link>
@@ -131,17 +138,17 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
     ]
 
     return (
-        <div className="sm:rounded-2.5xl pb-4 sm:border sm:border-neutral-200 sm:pb-0 dark:sm:border-neutral-700">
+        <div className="md:rounded-2.5xl pb-4 md:border md:border-neutral-200 md:pb-0 dark:md:border-neutral-700">
             <dl className="divide-y divide-neutral-100 dark:divide-neutral-800">
                 {fields.map((f) => (
                     <div
                         key={f.sysname}
-                        className="px-3 py-3 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-4"
+                        className="px-3 py-3 md:grid md:grid-cols-3 md:gap-2 md:px-4"
                     >
-                        <dt className="text-xs font-medium text-neutral-600 sm:text-xs/6 dark:text-neutral-400">
+                        <dt className="text-xs font-medium text-neutral-600 md:text-xs/6 dark:text-neutral-400">
                             {f.label}
                         </dt>
-                        <dd className="pt-1 sm:col-span-2 sm:pt-0">
+                        <dd className="pt-1 md:col-span-2 md:pt-0">
                             {f.content || f.emptyMessage}
                         </dd>
                     </div>

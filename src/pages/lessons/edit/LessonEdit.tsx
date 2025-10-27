@@ -15,6 +15,7 @@ import {
 } from '@/features/lessons/api/lessonsApi'
 import { LessonForm } from '@/features/lessons/components/form/LessonForm'
 import type { Lesson } from '@/features/lessons/types'
+import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 
 export const LessonEdit = () => {
@@ -47,7 +48,7 @@ export const LessonEdit = () => {
         try {
             await updateLessonById({ id: id!, lesson }).unwrap()
             dispatch(clearFormData())
-            navigate(`/lessons/${id}`)
+            navigate(ROUTES.backstage.lessons.details(id!))
         } catch (error) {
             console.error(error)
             toast.error(getErrorMessage(error))

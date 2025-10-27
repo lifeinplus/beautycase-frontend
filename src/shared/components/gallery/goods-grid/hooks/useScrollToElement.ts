@@ -22,7 +22,7 @@ export const useScrollToElement = () => {
 
     useEffect(() => {
         if (scrolled) {
-            navigate(pathname, { replace: true })
+            navigate(pathname, { replace: true, state })
         }
     }, [scrolled, navigate, pathname])
 

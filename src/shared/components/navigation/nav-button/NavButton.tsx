@@ -20,13 +20,13 @@ export const NavButton = ({
     <button
         {...props}
         className={classNames(
-            'm-2 flex rounded-lg p-1 hover:bg-neutral-100 sm:m-0 sm:my-1 sm:p-3 lg:gap-4 dark:hover:bg-neutral-800',
-            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-            'dark:focus-visible:outline-rose-700',
+            'm-2 flex rounded-lg p-1 md:m-0 md:my-1 md:p-3 lg:gap-4',
+            'hover:bg-neutral-200 dark:hover:bg-neutral-800',
+            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',
             className
         )}
     >
-        <Icon className="h-7 w-7 sm:h-6 sm:w-6" />
+        <Icon className="h-7 w-7 md:h-6 md:w-6" />
         <span className="hidden lg:inline">{label}</span>
     </button>
 )

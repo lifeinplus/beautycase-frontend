@@ -37,11 +37,7 @@ describe('NavBar', () => {
     it('renders navigation buttons for accessible menu items', () => {
         renderWithProviderAndRouter(<NavBar />)
 
-        const buttons = [
-            'menu.questionnaires',
-            'menu.makeupBags',
-            'menu.account',
-        ]
+        const buttons = ['menu.questionnaires', 'menu.pricing', 'menu.account']
 
         buttons.forEach((b) =>
             expect(screen.getByRole('button', { name: b })).toBeInTheDocument()
@@ -64,8 +60,8 @@ describe('NavBar', () => {
 
         renderWithProviderAndRouter(<NavBar />)
 
-        await user.click(screen.getByRole('button', { name: /stages/i }))
-        await user.click(screen.getByRole('button', { name: /lessons/i }))
+        await user.click(screen.getByRole('button', { name: /pricing/i }))
+        await user.click(screen.getByRole('button', { name: /account/i }))
 
         expect(mockNavigate).toHaveBeenCalledTimes(2)
     })
@@ -74,9 +70,9 @@ describe('NavBar', () => {
         const user = userEvent.setup()
 
         renderWithProviderAndRouter(<NavBar />)
-        await user.click(screen.getByRole('button', { name: /makeupBags/i }))
+        await user.click(screen.getByRole('button', { name: /pricing/i }))
 
-        expect(mockNavigate).toHaveBeenCalledWith('/makeup-bags')
+        expect(mockNavigate).toHaveBeenCalledWith('/pricing')
     })
 
     it('scrolls to top when clicking the active navigation button', async () => {

@@ -10,6 +10,7 @@ import {
     mockStageCreate,
 } from '@/features/stages/api/__mocks__/stagesApi'
 import { useCreateStageMutation } from '@/features/stages/api/stagesApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageAdd } from './StageAdd'
@@ -50,7 +51,9 @@ describe('StageAdd', () => {
         expect(mockAddStage).toHaveBeenCalledWith(restStage)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/stages/stage3')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.stages.details('stage3')
+        )
     })
 
     it('displays an error toast if submission fails', async () => {

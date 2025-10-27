@@ -13,6 +13,6 @@ export const useToReferenceListsAction = () => {
         className: 'hidden sm:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
-        onClick: () => navigate(ROUTES.controlCenter.referenceLists),
+        onClick: () => navigate(ROUTES.controlCenter.referenceLists.root),
     }
 }

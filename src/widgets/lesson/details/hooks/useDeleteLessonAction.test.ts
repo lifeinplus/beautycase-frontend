@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
+import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
@@ -11,32 +12,29 @@ import {
     vi,
 } from 'vitest'
 
-import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
+import { mockLesson1 } from '@/features/lessons/api/__mocks__/lessonsApi'
 import {
-    useDeleteStageByIdMutation,
-    useGetStageByIdQuery,
-} from '@/features/stages/api/stagesApi'
+    useDeleteLessonByIdMutation,
+    useGetLessonByIdQuery,
+} from '@/features/lessons/api/lessonsApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockLocation } from '@/tests/mocks/router'
-import { useDeleteStageAction } from './useDeleteStageAction'
+import { useDeleteLessonAction } from './useDeleteLessonAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
-vi.mock('@/features/stages/hooks/pdf/usePDFExport')
-vi.mock('@/features/stages/api/stagesApi')
-vi.mock('@/features/stages/utils/pdf/generatePdfFilename')
-vi.mock('@/shared/components/common/spinner-button/SpinnerButton')
+vi.mock('@/features/lessons/api/lessonsApi')
 
-describe('useDeleteStageAction', () => {
-    const mockDeleteStageById = vi.fn()
+describe('useDeleteLessonAction', () => {
+    const mockDeleteLessonById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
 
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
-        pathname: ROUTES.backstage.stages.details('123456789012345678901234'),
+        pathname: ROUTES.backstage.lessons.details('123456789012345678901234'),
     })
 
     beforeAll(() => {
@@ -44,15 +42,15 @@ describe('useDeleteStageAction', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useDeleteStageByIdMutation as Mock).mockReturnValue([
-            mockDeleteStageById,
+        vi.mocked(useDeleteLessonByIdMutation as Mock).mockReturnValue([
+            mockDeleteLessonById,
             { isLoading: false },
         ])
 
-        mockDeleteStageById.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDeleteLessonById.mockReturnValue({ unwrap: mockDeleteUnwrap })
 
-        vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
-            data: mockStage1,
+        vi.mocked(useGetLessonByIdQuery as Mock).mockReturnValue({
+            data: mockLesson1,
             isLoading: false,
             error: null,
         })
@@ -63,7 +61,7 @@ describe('useDeleteStageAction', () => {
     })
 
     it('handles delete action', async () => {
-        const { result } = renderHook(() => useDeleteStageAction())
+        const { result } = renderHook(() => useDeleteLessonAction())
 
         const deleteAction = result.current
 
@@ -79,22 +77,23 @@ describe('useDeleteStageAction', () => {
     it('shows error toast if delete fails', async () => {
         mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        const { result } = renderHook(() => useDeleteStageAction())
+        const { result } = renderHook(() => useDeleteLessonAction())
 
         const deleteAction = result.current
 
         const { onConfirm } = deleteAction?.modalProps || {}
 
-        act(() => {
-            onConfirm?.()
+        await act(async () => {
+            await onConfirm?.()
         })
 
-        expect(mockDeleteStageById).toHaveBeenCalledWith('123')
+        expect(mockDeleteLessonById).toHaveBeenCalledWith('123')
+        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useDeleteStageAction())
+        const { result } = renderHook(() => useDeleteLessonAction())
         expect(result.current).toEqual(null)
     })
 })

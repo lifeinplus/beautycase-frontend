@@ -9,6 +9,7 @@ import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/catego
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockUsers } from '@/features/users/api/__mocks__/usersApi'
 import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockMakeupBag1 } from '../../api/__mocks__/makeupBagsApi'
@@ -59,7 +60,9 @@ describe('MakeupBagForm', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith(-1)
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.makeupBags.details('123')
+        )
     })
 
     it('navigates to tools selection and saves form data', async () => {

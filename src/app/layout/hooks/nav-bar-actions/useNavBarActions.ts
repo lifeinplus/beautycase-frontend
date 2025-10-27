@@ -11,15 +11,13 @@ import { useDeleteUserAction } from '@/pages/control-center/users/details/hooks/
 import { useToUsersListAction } from '@/pages/control-center/users/list/hooks/useToUsersListAction'
 import { useToHomeAction } from '@/pages/home/hooks/useToHomeAction'
 import { useToLessonAddAction } from '@/pages/lessons/add/hooks/useToLessonAddAction'
-import { useDeleteLessonAction } from '@/pages/lessons/details/hooks/useDeleteLessonAction'
-import { useToLessonDetailsAction } from '@/pages/lessons/details/hooks/useToLessonDetailsAction'
 import { useToLessonEditAction } from '@/pages/lessons/edit/hooks/useToLessonEditAction'
 import { useToLessonGalleryAction } from '@/pages/lessons/gallery/hooks/useToLessonGalleryAction'
 import { useToMakeupBagAddAction } from '@/pages/makeup-bags/add/hooks/useToMakeupBagAddAction'
 import { useToMakeupBagEditAction } from '@/pages/makeup-bags/edit/hooks/useToMakeupBagEditAction'
 import { useToMakeupBagListAction } from '@/pages/makeup-bags/list/hooks/useToMakeupBagListAction'
 import { useToProductAddAction } from '@/pages/products/add/hooks/useToProductAddAction'
-import { useToCategoryProductsAction } from '@/pages/products/category/hooks/toCategoryProductsAction'
+import { useToCategoryProductsAction } from '@/pages/products/category/hooks/useToCategoryProductsAction'
 import { useToProductEditAction } from '@/pages/products/edit/hooks/useToProductEditAction'
 import { useToProductGalleryAction } from '@/pages/products/gallery/hooks/useToProductGalleryAction'
 import { useToStageAddAction } from '@/pages/stages/add/hooks/useToStageAddAction'
@@ -33,6 +31,8 @@ import { useToToolEditAction } from '@/pages/tools/edit/hooks/useToToolEditActio
 import { useToToolGalleryAction } from '@/pages/tools/gallery/hooks/useToToolGalleryAction'
 import { ROUTES } from '@/shared/config/routes'
 import { canAccess } from '@/shared/lib/access/canAccess'
+import { useDeleteLessonAction } from '@/widgets/lesson/details/hooks/useDeleteLessonAction'
+import { useToLessonDetailsAction } from '@/widgets/lesson/details/hooks/useToLessonDetailsAction'
 import { useDeleteMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useDeleteMakeupBagAction'
 import { useExportMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useExportMakeupBagAction'
 import { useToMakeupBagDetailsAction } from '@/widgets/makeup-bag/details/hooks/useToMakeupBagDetailsAction'
@@ -227,7 +227,7 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: [toHomeAction],
             },
             {
-                pattern: new RegExp(`^${ROUTES.tools}/[a-f0-9]{24}$`),
+                pattern: new RegExp(`^${ROUTES.tools.root}/[a-f0-9]{24}$`),
                 actions: [toHomeAction],
             },
         ]

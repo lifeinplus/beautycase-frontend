@@ -6,6 +6,7 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { mockBrands } from '@/features/brands/api/__mocks__/brandsApi'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
 import { useGetProductCategoriesQuery } from '@/features/categories/api/categoriesApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockProduct1 } from '../../api/__mocks__/productsApi'
@@ -64,6 +65,8 @@ describe('ProductForm', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith(-1)
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.products.details('123')
+        )
     })
 })

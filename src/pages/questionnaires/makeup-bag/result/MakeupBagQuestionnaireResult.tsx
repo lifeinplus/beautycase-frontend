@@ -21,7 +21,7 @@ export const MakeupBagQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate(ROUTES.questionnaires.makeupBags)
+        navigate(ROUTES.questionnaires.makeupBags.root)
     }
 
     const title = data?.name || t('makeupBag.hero.headline')

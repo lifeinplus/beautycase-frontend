@@ -17,10 +17,13 @@ import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
 } from '@/features/makeup-bags/api/makeupBagsApi'
+import {
+    mockExportToPDF,
+    usePDFExport,
+} from '@/features/makeup-bags/hooks/pdf/__mocks__/usePDFExport'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockLocation } from '@/tests/mocks/router'
-import { useDeleteMakeupBagAction } from './useDeleteMakeupBagAction'
 import { useExportMakeupBagAction } from './useExportMakeupBagAction'
 
 vi.mock('@/app/hooks/hooks')
@@ -30,7 +33,7 @@ vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/features/makeup-bags/utils/pdf/generatePdfFilename')
 vi.mock('@/shared/components/common/spinner-button/SpinnerButton')
 
-describe('useDeleteMakeupBagAction', () => {
+describe('useExportMakeupBagAction', () => {
     const mockDeleteMakeupBagById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
@@ -66,34 +69,69 @@ describe('useDeleteMakeupBagAction', () => {
         spyConsoleError.mockRestore()
     })
 
-    it('handles delete action', async () => {
-        const { result } = renderHook(() => useDeleteMakeupBagAction())
+    it('handles export success', async () => {
+        const { result } = renderHook(() => useExportMakeupBagAction())
 
-        const deleteAction = result.current
+        const exportAction = result.current
 
-        const { onConfirm } = deleteAction?.modalProps || {}
+        expect(exportAction).toBeDefined()
 
         await act(async () => {
-            await onConfirm?.()
+            await exportAction!.onClick()
         })
 
-        expect(mockDeleteUnwrap).toHaveBeenCalled()
+        expect(mockExportToPDF).toHaveBeenCalled()
     })
 
-    it('shows error toast if delete fails', async () => {
-        mockDeleteUnwrap.mockRejectedValue(mockError)
+    it('disables export when exporting', () => {
+        const { result, rerender } = renderHook(() =>
+            useExportMakeupBagAction()
+        )
 
-        const { result } = renderHook(() => useDeleteMakeupBagAction())
+        result.current?.onClick()
 
-        const deleteAction = result.current
+        rerender()
 
-        const { onConfirm } = deleteAction?.modalProps || {}
+        const exportAction = result.current
+        expect(exportAction?.className).toContain('opacity-50')
+    })
 
-        act(() => {
-            onConfirm?.()
+    it('handles export error', async () => {
+        vi.mocked(usePDFExport as Mock).mockReturnValue({
+            exportToPDF: vi.fn().mockRejectedValue(mockError),
+            error: mockError.message,
+            clearError: vi.fn(),
         })
 
-        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
+        const { result } = renderHook(() => useExportMakeupBagAction())
+
+        const exportAction = result.current
+
+        await act(async () => {
+            await exportAction!.onClick()
+        })
+
+        expect(mockExportToPDF).not.toHaveBeenCalled()
+    })
+
+    it('does throw toast error when data is null', async () => {
+        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
+            data: null,
+            isLoading: false,
+            error: null,
+        })
+
+        const { result } = renderHook(() => useExportMakeupBagAction())
+
+        const exportAction = result.current
+
+        expect(exportAction).toBeDefined()
+
+        await act(async () => {
+            await exportAction!.onClick()
+        })
+
+        expect(toast.error).toHaveBeenCalledWith('toast.noExportData')
     })
 
     it('does throw toast error when data is null', async () => {
@@ -118,7 +156,7 @@ describe('useDeleteMakeupBagAction', () => {
 
     it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
-        const { result } = renderHook(() => useDeleteMakeupBagAction())
+        const { result } = renderHook(() => useExportMakeupBagAction())
         expect(result.current).toEqual(null)
     })
 })

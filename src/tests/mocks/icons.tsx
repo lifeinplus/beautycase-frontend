@@ -34,6 +34,7 @@ const icons = {
     RectangleGroupIcon: mockIcon,
     ShoppingBagIcon: mockIcon,
     SquaresPlusIcon: mockIcon,
+    StarIcon: mockIcon,
     SunIcon: mockIcon,
     TrashIcon: mockIcon,
     UserCircleIcon: mockIcon,

@@ -16,13 +16,14 @@ describe('BackstageGallery', () => {
         expect(screen.getByText(/title/)).toBeInTheDocument()
     })
 
-    it('renders two tile components', () => {
+    it('renders tile components', () => {
         renderWithRouter(<BackstageGallery />)
 
-        expect(
-            screen.getByText('tiles.referenceLists.label')
-        ).toBeInTheDocument()
-        expect(screen.getByText('tiles.users.label')).toBeInTheDocument()
+        expect(screen.getByText('tiles.makeupBags')).toBeInTheDocument()
+        expect(screen.getByText('tiles.stages')).toBeInTheDocument()
+        expect(screen.getByText('tiles.products')).toBeInTheDocument()
+        expect(screen.getByText('tiles.tools')).toBeInTheDocument()
+        expect(screen.getByText('tiles.lessons')).toBeInTheDocument()
     })
 
     it('translates headline title', () => {

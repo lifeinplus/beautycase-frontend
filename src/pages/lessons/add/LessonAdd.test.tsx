@@ -10,6 +10,7 @@ import {
     mockLessonCreate,
 } from '@/features/lessons/api/__mocks__/lessonsApi'
 import { useCreateLessonMutation } from '@/features/lessons/api/lessonsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { LessonAdd } from './LessonAdd'
@@ -47,7 +48,9 @@ describe('LessonAdd', () => {
 
         expect(mockAddLesson).toHaveBeenCalledWith(mockLesson1)
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/lessons/lesson3')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.lessons.details('lesson3')
+        )
     })
 
     it('displays error toast on failure', async () => {

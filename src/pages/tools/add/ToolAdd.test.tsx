@@ -10,6 +10,7 @@ import {
     mockToolCreate,
 } from '@/features/tools/api/__mocks__/toolsApi'
 import { useCreateToolMutation } from '@/features/tools/api/toolsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolAdd } from './ToolAdd'
@@ -52,7 +53,9 @@ describe('ToolAdd', () => {
         expect(mockAddTool).toHaveBeenCalledWith(mockTool1)
         expect(mockUnwrap).toHaveBeenCalled()
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/tools/tool3')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.tools.details('tool3')
+        )
     })
 
     it('displays an error toast if submission fails', async () => {

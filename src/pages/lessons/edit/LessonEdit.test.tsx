@@ -10,6 +10,7 @@ import {
     useGetLessonByIdQuery,
     useUpdateLessonByIdMutation,
 } from '@/features/lessons/api/lessonsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { LessonEdit } from './LessonEdit'
@@ -55,7 +56,9 @@ describe('LessonEdit', () => {
         })
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
-        expect(mockNavigate).toHaveBeenCalledWith('/lessons/123')
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.lessons.details('123')
+        )
     })
 
     it('shows error toast if edit fails', async () => {

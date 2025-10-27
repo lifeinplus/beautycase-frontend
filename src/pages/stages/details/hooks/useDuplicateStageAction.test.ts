@@ -18,6 +18,7 @@ import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockLocation } from '@/tests/mocks/router'
 import { useDuplicateStageAction } from './useDuplicateStageAction'
@@ -36,7 +37,7 @@ describe('useDuplicateStageAction', () => {
 
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
-        pathname: '/stages/123456789012345678901234',
+        pathname: ROUTES.backstage.stages.details('123456789012345678901234'),
     })
 
     beforeAll(() => {
@@ -66,11 +67,6 @@ describe('useDuplicateStageAction', () => {
 
     afterAll(() => {
         spyConsoleError.mockRestore()
-    })
-
-    it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useDuplicateStageAction())
-        expect(result.current).toHaveLength(4)
     })
 
     it('handles duplicate action', async () => {
@@ -104,9 +100,9 @@ describe('useDuplicateStageAction', () => {
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
-    it('returns empty array if no id is provided', () => {
+    it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
         const { result } = renderHook(() => useDuplicateStageAction())
-        expect(result.current).toEqual([])
+        expect(result.current).toEqual(null)
     })
 })

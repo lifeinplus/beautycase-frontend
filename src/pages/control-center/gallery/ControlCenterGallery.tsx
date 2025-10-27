@@ -12,7 +12,7 @@ export const ControlCenterGallery = () => {
     const items = [
         {
             label: t('tiles.referenceLists.label'),
-            to: ROUTES.controlCenter.referenceLists,
+            to: ROUTES.controlCenter.referenceLists.root,
             icon: ListBulletIcon,
         },
         {

@@ -21,8 +21,7 @@ describe('ToolsGallery', () => {
 
     it('renders list of tools when data is available', () => {
         renderWithRouter(<ToolsGallery />)
-
-        expect(screen.getAllByText(/titles.gallery/i)).toHaveLength(2)
+        expect(screen.getAllByText(/titles.gallery\b/i)).toHaveLength(2)
         expect(screen.getAllByRole('img')).toHaveLength(3)
     })
 })

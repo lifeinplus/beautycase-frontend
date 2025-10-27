@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
@@ -12,23 +11,21 @@ import {
     vi,
 } from 'vitest'
 
-import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
+import { mockProduct1 } from '@/features/products/api/__mocks__/productsApi'
 import {
-    useDeleteStageByIdMutation,
-    useDuplicateStageByIdMutation,
-    useGetStageByIdQuery,
-} from '@/features/stages/api/stagesApi'
+    useDuplicateProductByIdMutation,
+    useGetProductByIdQuery,
+} from '@/features/products/api/productsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockLocation } from '@/tests/mocks/router'
 import { useDuplicateProductAction } from './useDuplicateProductAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
-vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/features/products/api/productsApi')
 
 describe('useDuplicateProductAction', () => {
-    const mockDelete = vi.fn()
-    const mockDeleteUnwrap = vi.fn()
     const mockDuplicate = vi.fn()
     const mockDuplicateUnwrap = vi.fn()
 
@@ -36,7 +33,7 @@ describe('useDuplicateProductAction', () => {
 
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
-        pathname: '/stages/123456789012345678901234',
+        pathname: ROUTES.backstage.products.details('123456789012345678901234'),
     })
 
     beforeAll(() => {
@@ -44,21 +41,15 @@ describe('useDuplicateProductAction', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useGetStageByIdQuery as Mock).mockReturnValue({
-            data: mockStage1,
+        vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
+            data: mockProduct1,
             isLoading: false,
             error: null,
         })
 
-        vi.mocked(useDeleteStageByIdMutation as Mock).mockReturnValue([
-            mockDelete,
-            { isLoading: false },
-        ])
-
-        mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
-
-        vi.mocked(useDuplicateStageByIdMutation as Mock).mockReturnValue([
+        vi.mocked(useDuplicateProductByIdMutation as Mock).mockReturnValue([
             mockDuplicate,
+            { isLoading: false },
         ])
 
         mockDuplicate.mockReturnValue({ unwrap: mockDuplicateUnwrap })
@@ -68,16 +59,16 @@ describe('useDuplicateProductAction', () => {
         spyConsoleError.mockRestore()
     })
 
-    it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useDuplicateProductAction())
-        expect(result.current).toHaveLength(4)
-    })
-
     it('handles duplicate action', async () => {
         const { result } = renderHook(() => useDuplicateProductAction())
 
-        const duplicateAction = result.current
+        let duplicateAction = result.current
 
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current
         const { onConfirm } = duplicateAction?.modalProps || {}
 
         await act(async () => {
@@ -92,8 +83,13 @@ describe('useDuplicateProductAction', () => {
 
         const { result } = renderHook(() => useDuplicateProductAction())
 
-        const duplicateAction = result.current
+        let duplicateAction = result.current
 
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current
         const { onConfirm } = duplicateAction?.modalProps || {}
 
         await act(async () => {
@@ -101,12 +97,11 @@ describe('useDuplicateProductAction', () => {
         })
 
         expect(mockDuplicate).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
-    it('returns empty array if no id is provided', () => {
+    it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
         const { result } = renderHook(() => useDuplicateProductAction())
-        expect(result.current).toEqual([])
+        expect(result.current).toEqual(null)
     })
 })

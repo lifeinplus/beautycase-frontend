@@ -62,6 +62,9 @@ describe('useScrollToElement', () => {
 
         expect(mockNavigate).toHaveBeenCalledWith('/test-pathname', {
             replace: true,
+            state: {
+                scrollId: '123',
+            },
         })
 
         vi.useRealTimers()

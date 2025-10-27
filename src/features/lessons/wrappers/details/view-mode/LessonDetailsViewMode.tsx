@@ -1,5 +1,5 @@
 import { useToAccountAction } from '@/pages/account/hooks/useToAccountAction'
-import { LessonDetails } from '@/pages/lessons/details/LessonDetails'
+import { LessonDetails } from '@/widgets/lesson/details/LessonDetails'
 
 export const LessonDetailsViewMode = () => {
     const action = useToAccountAction()

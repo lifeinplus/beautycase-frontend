@@ -35,13 +35,11 @@ describe('StageList', () => {
     })
 
     it('renders the component with correct structure', () => {
-        const ids = ['mocked-header', 'mocked-stage-filter']
-
         render(<StageList />)
 
-        ids.forEach((id) => expect(screen.getByTestId(id)).toBeInTheDocument())
-
-        expect(screen.getByText(/titles.list/)).toBeInTheDocument()
+        expect(screen.getByRole('navigation')).toBeInTheDocument()
+        expect(screen.getByTestId('mocked-stage-filter')).toBeInTheDocument()
+        expect(screen.getAllByText(/titles.list/)).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {

@@ -25,7 +25,7 @@ describe('ProductGallery', () => {
     it('renders mobile-view and table when data is available', () => {
         render(<ProductGallery />)
 
-        expect(screen.getByText('titles.gallery')).toBeInTheDocument()
+        expect(screen.getAllByText('titles.gallery')).toHaveLength(2)
 
         expect(
             screen.getByTestId('mocked-product-categories-mobile-view')

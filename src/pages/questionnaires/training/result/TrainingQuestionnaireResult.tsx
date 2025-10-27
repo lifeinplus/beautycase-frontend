@@ -19,7 +19,7 @@ export const TrainingQuestionnaireResult = () => {
     const createdAt = formatDate(data?.createdAt, 'dd.MM.yyyy HH:mm')
 
     const handleBack = () => {
-        navigate(ROUTES.questionnaires.trainings)
+        navigate(ROUTES.questionnaires.trainings.root)
     }
 
     const title = data?.name || t('training.hero.headline')

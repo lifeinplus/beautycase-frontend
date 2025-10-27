@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { mockBrands } from '@/features/brands/api/__mocks__/brandsApi'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
 import { mockTool1 } from '../../api/__mocks__/toolsApi'
@@ -55,6 +56,8 @@ describe('ToolForm', () => {
             screen.getByRole('navigation').querySelector('button')!
         )
 
-        expect(mockNavigate).toHaveBeenCalledWith(-1)
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.tools.details('123')
+        )
     })
 })

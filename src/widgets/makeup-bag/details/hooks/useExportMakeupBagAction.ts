@@ -70,6 +70,8 @@ export const useExportMakeupBagAction = () => {
         }
     }
 
+    if (!id || !isMakeupBagDetailsPage) return null
+
     return {
         key: 'export',
         auth: true,

@@ -25,7 +25,10 @@ describe('ProductImages', () => {
         await user.click(image as HTMLElement)
 
         expect(mockNavigate).toHaveBeenCalledWith('/products/product1', {
-            state: { prev: '/test-pathname' },
+            state: {
+                origin: '/test-pathname',
+                prev: '/test-pathname',
+            },
         })
     })
 })

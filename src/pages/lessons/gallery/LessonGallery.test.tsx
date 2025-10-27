@@ -40,8 +40,7 @@ describe('LessonGallery', () => {
 
     it('renders list of lessons when data is available', () => {
         renderWithRouter(<LessonGallery />)
-
-        expect(screen.getByText(/titles.gallery/i)).toBeInTheDocument()
+        expect(screen.getAllByText(/titles.gallery/i)).toHaveLength(2)
         expect(screen.getAllByRole('img')).toHaveLength(2)
     })
 })

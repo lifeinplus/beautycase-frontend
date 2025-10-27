@@ -1,5 +1,4 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import {
     afterAll,
@@ -12,31 +11,32 @@ import {
     vi,
 } from 'vitest'
 
-import { mockMakeupBag1 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
+import { mockProduct1 } from '@/features/products/api/__mocks__/productsApi'
 import {
-    useDeleteMakeupBagByIdMutation,
-    useGetMakeupBagByIdQuery,
-} from '@/features/makeup-bags/api/makeupBagsApi'
+    useDeleteProductByIdMutation,
+    useGetProductByIdQuery,
+} from '@/features/products/api/productsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
-import { mockLocation } from '@/tests/mocks/router'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useDeleteProductAction } from './useDeleteProductAction'
 
 vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/form/slice/formSlice')
-vi.mock('@/features/makeup-bags/hooks/pdf/usePDFExport')
-vi.mock('@/features/makeup-bags/api/makeupBagsApi')
-vi.mock('@/features/makeup-bags/utils/pdf/generatePdfFilename')
+vi.mock('@/features/products/hooks/pdf/usePDFExport')
+vi.mock('@/features/products/api/productsApi')
+vi.mock('@/features/products/utils/pdf/generatePdfFilename')
 vi.mock('@/shared/components/common/spinner-button/SpinnerButton')
 
 describe('useDeleteProductAction', () => {
-    const mockDeleteMakeupBagById = vi.fn()
+    const mockDeleteProductById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
     const spyConsoleError = vi.spyOn(console, 'error')
 
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
-        pathname: '/makeup-bags/123456789012345678901234',
+        pathname: ROUTES.backstage.products.details('123456789012345678901234'),
     })
 
     beforeAll(() => {
@@ -44,15 +44,15 @@ describe('useDeleteProductAction', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useDeleteMakeupBagByIdMutation as Mock).mockReturnValue([
-            mockDeleteMakeupBagById,
+        vi.mocked(useDeleteProductByIdMutation as Mock).mockReturnValue([
+            mockDeleteProductById,
             { isLoading: false },
         ])
 
-        mockDeleteMakeupBagById.mockReturnValue({ unwrap: mockDeleteUnwrap })
+        mockDeleteProductById.mockReturnValue({ unwrap: mockDeleteUnwrap })
 
-        vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
-            data: mockMakeupBag1,
+        vi.mocked(useGetProductByIdQuery as Mock).mockReturnValue({
+            data: mockProduct1,
             isLoading: false,
             error: null,
         })
@@ -62,16 +62,16 @@ describe('useDeleteProductAction', () => {
         spyConsoleError.mockRestore()
     })
 
-    it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useDeleteProductAction())
-        expect(result.current).toHaveLength(4)
-    })
-
     it('handles delete action', async () => {
         const { result } = renderHook(() => useDeleteProductAction())
 
-        const deleteAction = result.current
+        let deleteAction = result.current
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -79,6 +79,9 @@ describe('useDeleteProductAction', () => {
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith(
+            ROUTES.backstage.products.category(mockProduct1.category?.name!)
+        )
     })
 
     it('shows error toast if delete fails', async () => {
@@ -86,21 +89,25 @@ describe('useDeleteProductAction', () => {
 
         const { result } = renderHook(() => useDeleteProductAction())
 
-        const deleteAction = result.current
+        let deleteAction = result.current
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         act(() => {
             onConfirm?.()
         })
 
-        expect(mockDeleteMakeupBagById).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith(mockError.message)
+        expect(mockDeleteProductById).toHaveBeenCalledWith('123')
     })
 
-    it('returns empty array if no id is provided', () => {
+    it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
         const { result } = renderHook(() => useDeleteProductAction())
-        expect(result.current).toEqual([])
+        expect(result.current).toEqual(null)
     })
 })

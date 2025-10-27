@@ -16,6 +16,7 @@ import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
 } from '@/features/tools/api/toolsApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useDeleteToolAction } from './useDeleteToolAction'
@@ -32,7 +33,7 @@ describe('useDeleteToolAction', () => {
 
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
-        pathname: '/tools/123456789012345678901234',
+        pathname: ROUTES.backstage.tools.details('123456789012345678901234'),
     })
 
     beforeAll(() => {
@@ -58,11 +59,6 @@ describe('useDeleteToolAction', () => {
         spyConsoleError.mockRestore()
     })
 
-    it('returns correct number of actions', () => {
-        const { result } = renderHook(() => useDeleteToolAction())
-        expect(result.current).toHaveLength(3)
-    })
-
     it('handles delete action', async () => {
         const { result } = renderHook(() => useDeleteToolAction())
 
@@ -80,7 +76,7 @@ describe('useDeleteToolAction', () => {
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/tools')
+        expect(mockNavigate).toHaveBeenCalledWith(ROUTES.backstage.tools.root)
     })
 
     it('closes modal when cancel is called', async () => {
@@ -124,26 +120,9 @@ describe('useDeleteToolAction', () => {
         expect(mockDeleteToolById).toHaveBeenCalledWith('123')
     })
 
-    it('handles back action', async () => {
-        const { result } = renderHook(() => useDeleteToolAction())
-
-        const backAction = result.current
-
-        expect(backAction).toBeDefined()
-
-        await act(async () => {
-            await backAction!.onClick()
-        })
-
-        expect(mockNavigate).toHaveBeenCalledWith('/tools', {
-            replace: true,
-            state: { scrollId: '123' },
-        })
-    })
-
-    it('returns empty array if no id is provided', () => {
+    it('returns null if no id is provided', () => {
         vi.mocked(useParams).mockReturnValue({})
         const { result } = renderHook(() => useDeleteToolAction())
-        expect(result.current).toEqual([])
+        expect(result.current).toEqual(null)
     })
 })

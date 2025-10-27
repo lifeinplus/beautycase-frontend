@@ -2,14 +2,14 @@ import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
 import { RequireRole } from '@/features/auth/components/require-role/RequireRole'
-import { LessonDetailsForBackstage } from '@/features/lessons/wrappers/details/backstage/LessonDetailsForBackstage'
-import { MakeupBagDetailsForBackstage } from '@/features/makeup-bags/wrappers/details/backstage/MakeupBagDetailsForBackstage'
-import { ProductDetailsForBackstage } from '@/features/products/wrappers/details/backstage/ProductDetailsForBackstage'
-import { ProductSelectionForLesson } from '@/features/products/wrappers/selection/lesson/ProductSelectionForLesson'
-import { ProductSelectionForStage } from '@/features/products/wrappers/selection/stage/ProductSelectionForStage'
-import { StoreLinksAddForProduct } from '@/features/stores/wrappers/links-add/product/StoreLinksAddForProduct'
-import { StoreLinksAddForTool } from '@/features/stores/wrappers/links-add/tool/StoreLinksAddForTool'
-import { ToolDetailsForBackstage } from '@/features/tools/wrappers/details/backstage/ToolDetailsForBackstage'
+import { LessonDetailsBackstage } from '@/features/lessons/wrappers/details/backstage/LessonDetailsBackstage'
+import { MakeupBagDetailsBackstage } from '@/features/makeup-bags/wrappers/details/backstage/MakeupBagDetailsBackstage'
+import { ProductDetailsBackstage } from '@/features/products/wrappers/details/backstage/ProductDetailsBackstage'
+import { ProductSelectionLesson } from '@/features/products/wrappers/selection/lesson/ProductSelectionLesson'
+import { ProductSelectionStage } from '@/features/products/wrappers/selection/stage/ProductSelectionStage'
+import { StoreLinksAddProduct } from '@/features/stores/wrappers/links-add/product/StoreLinksAddProduct'
+import { StoreLinksAddTool } from '@/features/stores/wrappers/links-add/tool/StoreLinksAddTool'
+import { ToolDetailsBackstage } from '@/features/tools/wrappers/details/backstage/ToolDetailsBackstage'
 import { BackstageGallery } from '@/pages/backstage/gallery/BackstageGallery'
 import { LessonAdd } from '@/pages/lessons/add/LessonAdd'
 import { LessonEdit } from '@/pages/lessons/edit/LessonEdit'
@@ -40,12 +40,12 @@ export const backstageRoutes = [
 
             <Route path="lessons">
                 <Route index element={<LessonGallery />} />
-                <Route path=":id" element={<LessonDetailsForBackstage />} />
+                <Route path=":id" element={<LessonDetailsBackstage />} />
                 <Route path=":id/edit" element={<LessonEdit />} />
                 <Route path=":id/edit/clients" element={<UserSelection />} />
                 <Route
                     path=":id/products"
-                    element={<ProductSelectionForLesson />}
+                    element={<ProductSelectionLesson />}
                 />
                 <Route path="add" element={<LessonAdd />} />
                 <Route path="add/clients" element={<UserSelection />} />
@@ -53,7 +53,7 @@ export const backstageRoutes = [
 
             <Route path="makeup-bags">
                 <Route index element={<MakeupBagList />} />
-                <Route path=":id" element={<MakeupBagDetailsForBackstage />} />
+                <Route path=":id" element={<MakeupBagDetailsBackstage />} />
                 <Route path=":id/edit" element={<MakeupBagEdit />} />
                 <Route path=":id/edit/stages" element={<StageSelection />} />
                 <Route path=":id/edit/tools" element={<ToolSelection />} />
@@ -64,9 +64,9 @@ export const backstageRoutes = [
 
             <Route path="products">
                 <Route index element={<ProductGallery />} />
-                <Route path=":id" element={<ProductDetailsForBackstage />} />
+                <Route path=":id" element={<ProductDetailsBackstage />} />
                 <Route path=":id/edit" element={<ProductEdit />} />
-                <Route path=":id/links" element={<StoreLinksAddForProduct />} />
+                <Route path=":id/links" element={<StoreLinksAddProduct />} />
                 <Route path="add" element={<ProductAdd />} />
                 <Route
                     path="category/:category"
@@ -80,16 +80,16 @@ export const backstageRoutes = [
                 <Route path=":id/edit" element={<StageEdit />} />
                 <Route
                     path=":id/products"
-                    element={<ProductSelectionForStage />}
+                    element={<ProductSelectionStage />}
                 />
                 <Route path="add" element={<StageAdd />} />
             </Route>
 
             <Route path="tools">
                 <Route index element={<ToolsGallery />} />
-                <Route path=":id" element={<ToolDetailsForBackstage />} />
+                <Route path=":id" element={<ToolDetailsBackstage />} />
                 <Route path=":id/edit" element={<ToolEdit />} />
-                <Route path=":id/links" element={<StoreLinksAddForTool />} />
+                <Route path=":id/links" element={<StoreLinksAddTool />} />
                 <Route path="add" element={<ToolAdd />} />
             </Route>
         </Route>

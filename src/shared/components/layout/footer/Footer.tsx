@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
 import config from '@/app/config/config'
+import { Link } from '../../ui/link/Link'
 
 export const Footer = () => {
     const { t } = useTranslation('component')
@@ -22,18 +23,10 @@ export const Footer = () => {
             <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:flex-row sm:justify-between">
                 <p>
                     <span>{t('footer.questions')}:</span>{' '}
-                    <a
-                        href={`tel:${config.contactPhone}`}
-                        className={classNames(
-                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                            'dark:focus-visible:outline-rose-700',
-                            'hover:rounded hover:outline-4 hover:outline-offset-4 hover:outline-rose-400 hover:outline-dashed',
-                            'dark:hover:outline-rose-600',
-                            'text-rose-500 dark:text-rose-400'
-                        )}
-                    >
-                        {t('footer.phone')}
-                    </a>{' '}
+                    <Link
+                        url={`tel:${config.contactPhone}`}
+                        text={`${t('footer.phone')}`}
+                    />{' '}
                     <span className={'text-rose-500 dark:text-rose-400'}>
                         ({t('footer.country')})
                     </span>{' '}

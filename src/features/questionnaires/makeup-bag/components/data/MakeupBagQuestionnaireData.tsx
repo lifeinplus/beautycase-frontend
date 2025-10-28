@@ -10,7 +10,9 @@ import type {
     QuestionnaireOption,
 } from '@/features/questionnaires/types'
 
+import { Link } from '@/shared/components/ui/link/Link'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
+import { NotSpecified } from '../../../ui/NotSpecified'
 
 export interface MakeupBagQuestionnaireDataProps {
     data: MakeupBagQuestionnaire
@@ -56,7 +58,7 @@ export const MakeupBagQuestionnaireData = ({
     const renderText = (
         value: MakeupBagQuestionnaire[keyof MakeupBagQuestionnaire],
         options?: QuestionnaireOption<MakeupBagQuestionnaire>[]
-    ): string => {
+    ): ReactNode => {
         let result = [value]
 
         if (
@@ -69,13 +71,27 @@ export const MakeupBagQuestionnaireData = ({
                 .map(([key]) => key)
         }
 
-        return (
+        const text =
             result
                 .map((r) => t(options?.find((o) => o.value === r)?.label || ''))
                 .join(' • ') ||
             value?.toString() ||
             t('notSpecified')
-        )
+
+        const isNotSpecified = text === t('notSpecified')
+
+        return isNotSpecified ? <NotSpecified /> : text
+    }
+
+    const renderInstagramLink = (username?: string): ReactNode => {
+        if (!username) return <NotSpecified />
+
+        const cleanUsername = username.startsWith('@')
+            ? username.slice(1)
+            : username
+        const url = `https://instagram.com/${cleanUsername}`
+
+        return <Link url={url} text={`@${cleanUsername}`} />
     }
 
     return (
@@ -92,11 +108,13 @@ export const MakeupBagQuestionnaireData = ({
                         <dd className="pt-1 sm:col-span-2 sm:pt-0">
                             {f === 'makeupBagPhotoId'
                                 ? renderImage(data?.[f])
-                                : renderText(
-                                      data?.[f],
-                                      makeupBagQuestionnaireQuestions[f]
-                                          ?.options
-                                  )}
+                                : f === 'instagram'
+                                  ? renderInstagramLink(data?.[f] as string)
+                                  : renderText(
+                                        data?.[f],
+                                        makeupBagQuestionnaireQuestions[f]
+                                            ?.options
+                                    )}
                         </dd>
                     </div>
                 ))}

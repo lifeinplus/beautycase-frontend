@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { NotSpecified } from '@/features/questionnaires/ui/NotSpecified'
 import type { QuestionnaireOption, TrainingQuestionnaire } from '../../../types'
 import { trainingQuestionnaireQuestions } from '../../questions/trainingQuestionnaireQuestions'
 
@@ -23,15 +25,14 @@ export const TrainingQuestionnaireData = ({
     const renderText = (
         value: TrainingQuestionnaire[keyof TrainingQuestionnaire],
         options?: QuestionnaireOption<TrainingQuestionnaire>[]
-    ): string => {
+    ): ReactNode => {
         let result = [value]
 
         return (
             result
                 .map((r) => t(options?.find((o) => o.value === r)?.label || ''))
                 .join(' • ') ||
-            value?.toString() ||
-            t('notSpecified')
+            value?.toString() || <NotSpecified />
         )
     }
 

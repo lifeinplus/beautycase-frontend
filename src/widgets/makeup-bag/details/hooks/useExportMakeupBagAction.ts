@@ -21,7 +21,9 @@ export const useExportMakeupBagAction = () => {
     const { exportToPDF, error: exportError, clearError } = usePDFExport()
 
     const isMakeupBagDetailsPage = pathname.match(
-        new RegExp(`^${ROUTES.backstage.makeupBags.root}/[a-f0-9]{24}$`)
+        new RegExp(
+            `^(${ROUTES.backstage.makeupBags.root}|${ROUTES.makeupBags.root})/[a-f0-9]{24}$`
+        )
     )
 
     const { data } = useGetMakeupBagByIdQuery(id!, {

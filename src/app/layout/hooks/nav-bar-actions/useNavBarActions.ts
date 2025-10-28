@@ -220,7 +220,7 @@ export const useNavBarActions = (): NavBarAction[] => {
             },
             {
                 pattern: new RegExp(`^${ROUTES.makeupBags.root}/[a-f0-9]{24}$`),
-                actions: [toAccountAction],
+                actions: [toAccountAction, exportMakeupBagAction],
             },
             {
                 pattern: new RegExp(`^${ROUTES.products.root}/[a-f0-9]{24}$`),

@@ -32,7 +32,7 @@ export const menuItems: MenuItem[] = [
         auth: true,
         label: 'menu.backstage',
         to: ROUTES.backstage.root,
-        roles: ['admin'],
+        roles: ['admin', 'mua'],
         icon: StarIcon,
     },
     {

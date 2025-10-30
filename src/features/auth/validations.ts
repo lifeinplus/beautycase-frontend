@@ -1,4 +1,5 @@
 import { object, ref, string } from 'yup'
+import { transformEmpty } from '../questionnaires/utils'
 
 export const loginSchema = object({
     username: string().required('fields.username.errors.required'),
@@ -16,4 +17,7 @@ export const registerSchema = object({
     confirmPassword: string()
         .oneOf([ref('password')], 'fields.confirmPassword.errors.match')
         .required('fields.confirmPassword.errors.required'),
+    role: string()
+        .required('fields.role.errors.required')
+        .transform(transformEmpty),
 })

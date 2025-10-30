@@ -27,6 +27,7 @@ describe('RadioButtonSection', () => {
             name: 'mock-name',
             ref: vi.fn(),
         } as unknown as UseFormRegisterReturn,
+        t: (key) => key,
     }
 
     it('renders label and radio buttons', () => {

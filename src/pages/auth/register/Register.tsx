@@ -1,18 +1,20 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import classNames from 'classnames'
-import { useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useRegisterUserMutation } from '@/features/auth/api/authApi'
+import { authRegisterFields } from '@/features/auth/register/fields/authRegisterFields'
 import type { AuthQueryRegister } from '@/features/auth/types'
 import { registerSchema } from '@/features/auth/validations'
+import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { InputSection } from './ui/InputSection'
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -26,22 +28,18 @@ export const Register = () => {
         resolver: yupResolver(registerSchema),
     })
 
-    const usernameRef = useRef<HTMLInputElement | null>(null)
     const [registerUser, { isLoading }] = useRegisterUserMutation()
 
-    useEffect(() => {
-        usernameRef.current?.focus()
-    }, [])
-
     const onSubmit = async (data: AuthQueryRegister) => {
-        const { username, password, confirmPassword } = data
+        const { username, password, confirmPassword, role } = data
 
         try {
             await registerUser({
                 username,
                 password,
                 confirmPassword,
-            })
+                role,
+            }).unwrap()
 
             navigate(ROUTES.login)
         } catch (error) {
@@ -50,142 +48,63 @@ export const Register = () => {
         }
     }
 
-    const { ref: refUsername, ...restUsername } = register('username')
-
     return (
-        <section className="sm:max-w-login mx-auto flex min-h-screen max-w-80 flex-1 flex-col justify-center py-2.5 sm:mx-auto sm:w-full">
+        <section className="md:max-w-register mx-auto flex min-h-screen max-w-96 flex-1 flex-col justify-center md:mx-auto md:w-full">
             <form
-                className="mb-2.5 py-2.5 sm:rounded-sm sm:border sm:border-neutral-300 dark:border-neutral-700"
+                className="px-7 md:rounded-xl md:border md:border-neutral-300 md:px-10 dark:border-neutral-700"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <div className="sm:mx-auto sm:mt-10 sm:w-full">
+                <div className="mb-14 md:mx-auto md:mt-12 md:w-full">
                     <h1 className="font-logo text-center align-baseline text-5xl">
                         <LogoLink />
                     </h1>
                 </div>
 
-                <div className="mt-14">
-                    <div className="relative mx-3 mb-2 sm:mx-10">
-                        <input
-                            {...restUsername}
-                            className={classNames(
-                                'peer w-full rounded-sm border bg-neutral-50 ps-2 pt-4 pb-1 text-base placeholder-transparent focus:outline-none',
-                                'dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200',
-                                errors.username &&
-                                    'border-rose-500 dark:border-rose-400'
-                            )}
-                            placeholder={t('fields.username.label')}
-                            ref={(e) => {
-                                refUsername(e)
-                                usernameRef.current = e
-                            }}
-                            type="text"
-                        />
+                <InputSection
+                    id="username"
+                    register={register('username')}
+                    label={t(authRegisterFields.username.label)}
+                    error={t(errors.username?.message || '')}
+                    autoComplete="username"
+                    type="text"
+                />
 
-                        <label
-                            htmlFor="username"
-                            className={classNames(
-                                'pointer-events-none absolute start-2 top-1 transform text-xs text-neutral-400 transition-all dark:text-neutral-400',
-                                'peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base',
-                                'peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs'
-                            )}
-                        >
-                            {t('fields.username.label')}
-                        </label>
+                <InputSection
+                    id="password"
+                    register={register('password')}
+                    label={t(authRegisterFields.password.label)}
+                    error={t(errors.password?.message || '')}
+                    autoComplete="new-password"
+                    type="password"
+                />
 
-                        {errors.username?.message && (
-                            <p
-                                className={classNames(
-                                    'text-rose-500 dark:text-rose-400',
-                                    'mt-2 text-sm'
-                                )}
-                            >
-                                {t(errors.username.message)}
-                            </p>
-                        )}
-                    </div>
-                </div>
+                <InputSection
+                    id="confirmPassword"
+                    register={register('confirmPassword')}
+                    label={t(authRegisterFields.confirmPassword.label)}
+                    error={t(errors.confirmPassword?.message || '')}
+                    autoComplete="new-password"
+                    type="password"
+                />
 
-                <div className="relative mx-3 mb-2 sm:mx-10">
-                    <input
-                        {...register('password')}
-                        className={classNames(
-                            'peer w-full rounded-sm border bg-neutral-50 ps-2 pt-4 pb-1 text-base placeholder-transparent focus:outline-none',
-                            'dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200',
-                            errors.password &&
-                                'border-rose-500 dark:border-rose-400'
-                        )}
-                        placeholder={t('fields.password.label')}
-                        type="password"
-                    />
+                <RadioButtonSection
+                    register={register('role')}
+                    label={authRegisterFields.role.label}
+                    error={errors.role?.message}
+                    options={authRegisterFields.role.options}
+                    center
+                    horizontal
+                    t={t}
+                />
 
-                    <label
-                        htmlFor="password"
-                        className={classNames(
-                            'pointer-events-none absolute start-2 top-1 transform text-xs text-neutral-400 transition-all dark:text-neutral-400',
-                            'peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base',
-                            'peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs'
-                        )}
-                    >
-                        {t('fields.password.label')}
-                    </label>
-
-                    {errors.password?.message && (
-                        <p
-                            className={classNames(
-                                'text-rose-500 dark:text-rose-400',
-                                'mt-2 text-sm'
-                            )}
-                        >
-                            {t(errors.password.message)}
-                        </p>
-                    )}
-                </div>
-
-                <div className="relative mx-3 mb-2 sm:mx-10">
-                    <input
-                        {...register('confirmPassword')}
-                        className={classNames(
-                            'peer w-full rounded-sm border bg-neutral-50 ps-2 pt-4 pb-1 text-base placeholder-transparent focus:outline-none',
-                            'dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200',
-                            errors.confirmPassword &&
-                                'border-rose-500 dark:border-rose-400'
-                        )}
-                        placeholder={t('fields.confirmPassword.label')}
-                        type="password"
-                    />
-
-                    <label
-                        htmlFor="confirmPassword"
-                        className={classNames(
-                            'pointer-events-none absolute start-2 top-1 transform text-xs text-neutral-400 transition-all dark:text-neutral-400',
-                            'peer-placeholder-shown:start-2.5 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base',
-                            'peer-focus:start-2 peer-focus:top-1 peer-focus:text-xs'
-                        )}
-                    >
-                        {t('fields.confirmPassword.label')}
-                    </label>
-
-                    {errors.confirmPassword?.message && (
-                        <p
-                            className={classNames(
-                                'text-rose-500 dark:text-rose-400',
-                                'mt-2 text-sm'
-                            )}
-                        >
-                            {t(errors.confirmPassword.message)}
-                        </p>
-                    )}
-                </div>
-
-                <div className="mx-3 mt-6 mb-2 sm:mx-10">
+                <section className="mt-9">
                     <ButtonSubmit
                         isLoading={isLoading}
                         label={isLoading ? t('regstering') : t('register')}
                     />
-                </div>
+                </section>
 
-                <div className="mt-12 sm:mb-6">
+                <section className="mt-12 md:mb-6">
                     <p className="text-center text-base text-neutral-500 dark:text-neutral-400">
                         {t('registerQuestion')}{' '}
                         <Link
@@ -200,7 +119,7 @@ export const Register = () => {
                             {t('login')}
                         </Link>
                     </p>
-                </div>
+                </section>
             </form>
         </section>
     )

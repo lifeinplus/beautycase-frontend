@@ -18,7 +18,7 @@ export const ButtonSubmit = ({
     <button
         {...props}
         className={classNames(
-            'flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:w-67',
+            'flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:max-w-80',
             'bg-rose-500 hover:bg-rose-600',
             'dark:bg-rose-600 dark:hover:bg-rose-700',
             'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',

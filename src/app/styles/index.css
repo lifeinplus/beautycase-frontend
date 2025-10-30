@@ -6,6 +6,9 @@
     --aspect-4\/5: 4 / 5;
     --aspect-5\/4: 5 / 4;
 
+    --container-login: 22rem; /* 352px */
+    --container-register: 25.25rem; /* 404px */
+
     --radius-2_5xl: 1.25rem; /* 20px */
 
     --border-width-0_5: 0.5px;
@@ -20,8 +23,6 @@
 
     --margin-navbar: 73px;
     --margin-navbar-open: 245px;
-
-    --container-login: 350px;
 
     --padding-13: 3.25rem; /* 52px */
     --padding-18: 4.5rem; /* 72px */
@@ -38,22 +39,4 @@
     --width-58: 14.5rem; /* 232px */
     --width-67: 16.75rem; /* 268px */
     --width-navbar-open: 245px;
-}
-
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentcolor);
-    }
 }

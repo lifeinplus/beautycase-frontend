@@ -192,6 +192,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('skinType')}
+                                t={t}
                             />
 
                             <TextareaSection
@@ -221,6 +222,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('peeling')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -237,6 +239,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('pores')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -254,6 +257,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('oilyShine')}
+                                t={t}
                             />
 
                             <TextareaSection
@@ -298,6 +302,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('makeupTime')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -313,6 +318,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('budget')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -330,6 +336,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('brushes')}
+                                t={t}
                             />
 
                             <CheckboxSection
@@ -362,6 +369,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('referral')}
+                                t={t}
                             />
                         </article>
 

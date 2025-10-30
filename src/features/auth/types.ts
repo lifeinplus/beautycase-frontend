@@ -1,4 +1,5 @@
 import { Role } from '@/shared/model/role'
+import { Path } from 'react-hook-form'
 
 export interface AuthState {
     accessToken?: string
@@ -19,4 +20,21 @@ export interface AuthQueryRegister {
     username: string
     password: string
     confirmPassword: string
+    role: string
+}
+
+interface FieldOption {
+    id: string
+    label: string
+    name: Path<AuthQueryRegister>
+    value?: string
+}
+
+interface Field {
+    label: string
+    options?: FieldOption[]
+}
+
+export interface AuthFields {
+    [key: string]: Field
 }

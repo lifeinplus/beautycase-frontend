@@ -75,7 +75,7 @@ export const useDeleteMakeupBagQuestionnaireAction = () => {
         auth: true,
         icon: TrashIcon,
         label: t('actions.delete'),
-        roles: [Role.ADMIN, Role.MUA],
+        roles: [Role.ADMIN],
         onClick: () =>
             setModalDeleteProps({
                 title: t('modal:delete.title'),

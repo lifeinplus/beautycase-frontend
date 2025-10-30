@@ -20,6 +20,11 @@ import { useToProductAddAction } from '@/pages/products/add/hooks/useToProductAd
 import { useToCategoryProductsAction } from '@/pages/products/category/hooks/useToCategoryProductsAction'
 import { useToProductEditAction } from '@/pages/products/edit/hooks/useToProductEditAction'
 import { useToProductGalleryAction } from '@/pages/products/gallery/hooks/useToProductGalleryAction'
+import { useToQuestionnaireGalleryAction } from '@/pages/questionnaires/gallery/hooks/useToQuestionnaireGalleryAction'
+import { useToMakeupBagQuestionnaireListAction } from '@/pages/questionnaires/makeup-bag/list/hooks/useToMakeupBagQuestionnaireListAction'
+import { useDeleteMakeupBagQuestionnaireAction } from '@/pages/questionnaires/makeup-bag/result/hooks/useDeleteMakeupBagQuestionnaireAction'
+import { useToTrainingQuestionnaireListAction } from '@/pages/questionnaires/training/list/hooks/useToTrainingQuestionnaireListAction'
+import { useDeleteTrainingQuestionnaireAction } from '@/pages/questionnaires/training/result/hooks/useDeleteTrainingQuestionnaireAction'
 import { useToStageAddAction } from '@/pages/stages/add/hooks/useToStageAddAction'
 import { useDeleteStageAction } from '@/pages/stages/details/hooks/useDeleteStageAction'
 import { useDuplicateStageAction } from '@/pages/stages/details/hooks/useDuplicateStageAction'
@@ -80,6 +85,16 @@ export const useNavBarActions = (): NavBarAction[] => {
     const toCategoryProductsAction = useToCategoryProductsAction()
     const deleteProductAction = useDeleteProductAction()
     const duplicateProductAction = useDuplicateProductAction()
+
+    const toQuestionnaireGalleryAction = useToQuestionnaireGalleryAction()
+    const toMakeupBagQuestionnaireListAction =
+        useToMakeupBagQuestionnaireListAction()
+    const toTrainingQuestionnaireListAction =
+        useToTrainingQuestionnaireListAction()
+    const deleteMakeupBagQuestionnaireAction =
+        useDeleteMakeupBagQuestionnaireAction()
+    const deleteTrainingQuestionnaireAction =
+        useDeleteTrainingQuestionnaireAction()
 
     const toStageAddAction = useToStageAddAction()
     const toStageDetailsAction = useToStageDetailsAction()
@@ -236,12 +251,21 @@ export const useNavBarActions = (): NavBarAction[] => {
             {
                 pattern:
                     /^\/questionnaires\/(makeup-bag|makeup-bags|training|trainings)$/i,
-                actions: [backAction],
+                actions: [toQuestionnaireGalleryAction],
             },
             {
-                pattern:
-                    /^\/questionnaires\/(makeup-bags|trainings)\/[a-f0-9]{24}$/i,
-                actions: [backAction],
+                pattern: /^\/questionnaires\/makeup-bags\/[a-f0-9]{24}$/i,
+                actions: [
+                    toMakeupBagQuestionnaireListAction,
+                    deleteMakeupBagQuestionnaireAction,
+                ],
+            },
+            {
+                pattern: /^\/questionnaires\/trainings\/[a-f0-9]{24}$/i,
+                actions: [
+                    toTrainingQuestionnaireListAction,
+                    deleteTrainingQuestionnaireAction,
+                ],
             },
         ]
 

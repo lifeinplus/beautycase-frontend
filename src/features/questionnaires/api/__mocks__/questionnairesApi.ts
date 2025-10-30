@@ -96,6 +96,8 @@ export const useGetAllMakeupBagQuestionnairesQuery = vi.fn()
 export const useGetAllTrainingQuestionnairesQuery = vi.fn()
 export const useGetMakeupBagQuestionnaireByIdQuery = vi.fn()
 export const useGetTrainingQuestionnaireByIdQuery = vi.fn()
+export const useDeleteMakeupBagQuestionnaireByIdMutation = vi.fn()
+export const useDeleteTrainingQuestionnaireByIdMutation = vi.fn()
 
 const questionnairesHandlers = [
     http.post('api/questionnaires/makeup-bags', () =>
@@ -131,6 +133,14 @@ const questionnairesHandlers = [
             ? HttpResponse.json(questionnaire)
             : HttpResponse.json({ success: false }, { status: 404 })
     }),
+
+    http.delete('api/questionnaires/makeup-bags/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
+    ),
+
+    http.delete('api/questionnaires/trainings/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id })
+    ),
 ]
 
 export default questionnairesHandlers

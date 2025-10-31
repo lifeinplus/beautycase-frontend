@@ -10,6 +10,7 @@ export interface TrainingQuestionnaireDataProps {
 }
 
 const fields: (keyof TrainingQuestionnaire)[] = [
+    'mua',
     'name',
     'contact',
     'experience',
@@ -26,14 +27,14 @@ export const TrainingQuestionnaireData = ({
         value: TrainingQuestionnaire[keyof TrainingQuestionnaire],
         options?: QuestionnaireOption<TrainingQuestionnaire>[]
     ): ReactNode => {
-        let result = [value]
+        if (!value) return <NotSpecified />
 
-        return (
-            result
-                .map((r) => t(options?.find((o) => o.value === r)?.label || ''))
-                .join(' • ') ||
-            value?.toString() || <NotSpecified />
-        )
+        const stringValue = value.toString()
+
+        const translated =
+            options?.find((o) => o.value === value)?.label || stringValue
+
+        return translated ? t(translated) : <NotSpecified />
     }
 
     return (
@@ -48,10 +49,12 @@ export const TrainingQuestionnaireData = ({
                             {t(trainingQuestionnaireQuestions[f]?.label)}
                         </dt>
                         <dd className="pt-1 sm:col-span-2 sm:pt-0">
-                            {renderText(
-                                data?.[f],
-                                trainingQuestionnaireQuestions[f]?.options
-                            )}
+                            {f === 'mua'
+                                ? renderText(data?.[f]?.username)
+                                : renderText(
+                                      data?.[f],
+                                      trainingQuestionnaireQuestions[f]?.options
+                                  )}
                         </dd>
                     </div>
                 ))}

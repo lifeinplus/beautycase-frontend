@@ -2,6 +2,9 @@ import { MakeupBagQuestionnaire, Questions } from '../../types'
 
 export const makeupBagQuestionnaireQuestions: Questions<MakeupBagQuestionnaire> =
     {
+        mua: {
+            label: 'makeupBag.fields.mua.label',
+        },
         name: {
             label: 'makeupBag.fields.name.label',
         },

@@ -6,14 +6,17 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import config from '@/app/config/config'
+import { SelectOption } from '@/features/form/types'
 import { useCreateMakeupBagQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import { makeupBagQuestionnaireSchema } from '@/features/questionnaires/makeup-bag/validations/makeupBagQuestionnaireSchema'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { CheckboxSection } from '@/shared/components/forms/checkbox/section/CheckboxSection'
 import { ImageTextSection } from '@/shared/components/forms/image/text-section/ImageTextSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
+import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
@@ -39,6 +42,13 @@ export const MakeupBagQuestionnaireCreate = () => {
 
     const [createMakeupBagQuestionnaire, { isLoading }] =
         useCreateMakeupBagQuestionnaireMutation()
+
+    const { data: muas } = useGetAllMuasQuery()
+
+    const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
+        text: m.username,
+        value: m._id!,
+    }))
 
     const onSubmit = async (data: MakeupBagQuestionnaire) => {
         try {
@@ -88,14 +98,20 @@ export const MakeupBagQuestionnaireCreate = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p
-                                className={classNames(
-                                    'text-rose-500 dark:text-rose-400',
-                                    'text-sm'
-                                )}
-                            >
+                            <p className="text-sm text-rose-500 dark:text-rose-400">
                                 {t('requiredField')}
                             </p>
+
+                            <SelectSection
+                                error={t(errors.muaId?.message || '')}
+                                label={t(
+                                    makeupBagQuestionnaireQuestions.mua.label
+                                )}
+                                options={muaOptions}
+                                register={register('muaId')}
+                                required={true}
+                                value={watch('muaId')}
+                            />
 
                             <InputSection
                                 error={t(errors.name?.message || '')}

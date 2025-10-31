@@ -11,8 +11,11 @@ import { trainingQuestionnaireQuestions } from '@/features/questionnaires/traini
 import { trainingQuestionnaireSchema } from '@/features/questionnaires/training/validations/trainingQuestionnaireSchema'
 import type { TrainingQuestionnaire } from '@/features/questionnaires/types'
 
+import { SelectOption } from '@/features/form/types'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
+import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
@@ -27,6 +30,7 @@ export const TrainingQuestionnaireCreate = () => {
     const {
         register,
         reset,
+        watch,
         handleSubmit,
         formState: { errors },
     } = useForm<TrainingQuestionnaire>({
@@ -35,6 +39,13 @@ export const TrainingQuestionnaireCreate = () => {
 
     const [createTrainingQuestionnaire, { isLoading }] =
         useCreateTrainingQuestionnaireMutation()
+
+    const { data: muas } = useGetAllMuasQuery()
+
+    const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
+        text: m.username,
+        value: m._id!,
+    }))
 
     const onSubmit = async (data: TrainingQuestionnaire) => {
         try {
@@ -82,14 +93,20 @@ export const TrainingQuestionnaireCreate = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p
-                                className={classNames(
-                                    'text-rose-500 dark:text-rose-400',
-                                    'text-sm'
-                                )}
-                            >
+                            <p className="text-sm text-rose-500 dark:text-rose-400">
                                 {t('requiredField')}
                             </p>
+
+                            <SelectSection
+                                error={t(errors.muaId?.message || '')}
+                                label={t(
+                                    trainingQuestionnaireQuestions.mua.label
+                                )}
+                                options={muaOptions}
+                                register={register('muaId')}
+                                required={true}
+                                value={watch('muaId')}
+                            />
 
                             <InputSection
                                 error={t(errors.name?.message || '')}

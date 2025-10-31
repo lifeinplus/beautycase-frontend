@@ -6,8 +6,10 @@
     --aspect-4\/5: 4 / 5;
     --aspect-5\/4: 5 / 4;
 
-    --container-login: 22rem; /* 352px */
-    --container-register: 25.25rem; /* 404px */
+    --container-login: 23rem; /* 368px */
+    --container-register: 24.375rem; /* 390px */
+    --container-register-md: 25.875rem; /* 414px */
+    --container-submit: 20.75rem; /* 332px */
 
     --radius-2_5xl: 1.25rem; /* 20px */
 

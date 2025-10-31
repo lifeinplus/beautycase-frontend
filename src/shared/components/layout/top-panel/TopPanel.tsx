@@ -17,7 +17,7 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
     return (
         <nav
             className={classNames(
-                'pt-safe-top sticky top-0 left-0 z-10 w-full border-b border-neutral-300 bg-white sm:hidden',
+                'pt-safe-top sticky top-0 left-0 z-10 w-full border-b border-neutral-300 bg-white md:hidden',
                 'dark:border-neutral-700 dark:bg-black'
             )}
         >

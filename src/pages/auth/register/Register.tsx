@@ -1,12 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import classNames from 'classnames'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useRegisterUserMutation } from '@/features/auth/api/authApi'
-import { authRegisterFields } from '@/features/auth/register/fields/authRegisterFields'
+import { registerFields } from '@/features/auth/register/fields/registerFields'
 import type { AuthQueryRegister } from '@/features/auth/types'
 import { registerSchema } from '@/features/auth/validations'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
@@ -14,16 +14,19 @@ import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { LogoLink } from '@/shared/components/ui/logo-link/LogoLink'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { InputSection } from './ui/InputSection'
+import { ApiError } from '../ui/ApiError'
+import { InputSection } from '../ui/InputSection'
 
 export const Register = () => {
     const navigate = useNavigate()
     const { t } = useTranslation('auth')
+    const [apiError, setFormError] = useState<string>()
 
     const {
         register,
         handleSubmit,
         formState: { errors },
+        watch,
     } = useForm<AuthQueryRegister>({
         resolver: yupResolver(registerSchema),
     })
@@ -31,6 +34,7 @@ export const Register = () => {
     const [registerUser, { isLoading }] = useRegisterUserMutation()
 
     const onSubmit = async (data: AuthQueryRegister) => {
+        setFormError('')
         const { username, password, confirmPassword, role } = data
 
         try {
@@ -44,26 +48,34 @@ export const Register = () => {
             navigate(ROUTES.login)
         } catch (error) {
             console.error(error)
-            toast.error(getErrorMessage(error))
+            setFormError(getErrorMessage(error))
         }
     }
 
+    watch(() => {
+        if (apiError) setFormError('')
+    })
+
     return (
-        <section className="md:max-w-register mx-auto flex min-h-screen max-w-96 flex-1 flex-col justify-center md:mx-auto md:w-full">
+        <section className="max-w-register md:max-w-register-md mx-auto flex min-h-screen flex-1 flex-col justify-center md:mx-auto md:w-full">
             <form
                 className="px-7 md:rounded-xl md:border md:border-neutral-300 md:px-10 dark:border-neutral-700"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <div className="mb-14 md:mx-auto md:mt-12 md:w-full">
+                <section className="mb-14 md:mx-auto md:mt-12 md:w-full">
                     <h1 className="font-logo text-center align-baseline text-5xl">
                         <LogoLink />
                     </h1>
-                </div>
+                </section>
+
+                <section className="mb-10">
+                    <ApiError text={apiError} />
+                </section>
 
                 <InputSection
                     id="username"
                     register={register('username')}
-                    label={t(authRegisterFields.username.label)}
+                    label={t(registerFields.username.label)}
                     error={t(errors.username?.message || '')}
                     autoComplete="username"
                     type="text"
@@ -72,7 +84,7 @@ export const Register = () => {
                 <InputSection
                     id="password"
                     register={register('password')}
-                    label={t(authRegisterFields.password.label)}
+                    label={t(registerFields.password.label)}
                     error={t(errors.password?.message || '')}
                     autoComplete="new-password"
                     type="password"
@@ -81,7 +93,7 @@ export const Register = () => {
                 <InputSection
                     id="confirmPassword"
                     register={register('confirmPassword')}
-                    label={t(authRegisterFields.confirmPassword.label)}
+                    label={t(registerFields.confirmPassword.label)}
                     error={t(errors.confirmPassword?.message || '')}
                     autoComplete="new-password"
                     type="password"
@@ -89,9 +101,9 @@ export const Register = () => {
 
                 <RadioButtonSection
                     register={register('role')}
-                    label={authRegisterFields.role.label}
+                    label={registerFields.role.label}
                     error={errors.role?.message}
-                    options={authRegisterFields.role.options}
+                    options={registerFields.role.options}
                     center
                     horizontal
                     t={t}
@@ -100,7 +112,7 @@ export const Register = () => {
                 <section className="mt-9">
                     <ButtonSubmit
                         isLoading={isLoading}
-                        label={isLoading ? t('regstering') : t('register')}
+                        label={isLoading ? t('registering') : t('register')}
                     />
                 </section>
 

@@ -1,6 +1,6 @@
 import type { AuthFields } from '../../types'
 
-export const authRegisterFields: AuthFields = {
+export const registerFields: AuthFields = {
     username: {
         label: 'fields.username.label',
     },

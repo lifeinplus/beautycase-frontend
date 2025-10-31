@@ -10,6 +10,7 @@ import {
     mockLoginResult,
 } from '@/features/auth/api/__mocks__/authApi'
 import { useLoginUserMutation } from '@/features/auth/api/authApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
@@ -114,7 +115,9 @@ describe('Login', () => {
         })
 
         expect(mockDispatch).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
+        expect(mockNavigate).toHaveBeenCalledWith(ROUTES.home, {
+            replace: true,
+        })
     })
 
     it('shows validation errors when fields are empty', async () => {

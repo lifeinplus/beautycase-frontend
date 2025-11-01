@@ -16,7 +16,10 @@ export const UserDetails = () => {
 
     const backAction = useToUsersListAction()
 
-    const title = data?.user.username || t('titles.details')
+    const firstName = data?.user.firstName || '—'
+    const lastName = data?.user.lastName || '—'
+    const title = `${firstName} ${lastName}`
+
     const subtitle = t(`account:fields.role.types.${data?.user.role}`)
 
     return (

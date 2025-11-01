@@ -14,10 +14,11 @@ export const UsersTable = ({ data }: UsersTableProps) => {
     const { t } = useTranslation('user')
 
     const headers: Header[] = [
-        { label: t('table.createdAt'), className: 'text-center' },
+        { label: t('table.updatedAt'), className: 'text-center' },
+        { label: t('table.firstName'), className: 'text-left' },
+        { label: t('table.lastName'), className: 'text-left' },
         { label: t('table.username'), className: 'text-left' },
         { label: t('table.role'), className: 'text-left' },
-        { label: t('table.updatedAt'), className: 'text-center' },
     ]
 
     const cellClasses = headers.map((h) => h.className)
@@ -31,10 +32,11 @@ export const UsersTable = ({ data }: UsersTableProps) => {
                     key={item._id}
                     cellClasses={cellClasses}
                     cellData={[
-                        formatDate(item.createdAt, 'yyyy.MM.dd HH:mm'),
+                        formatDate(item.updatedAt, 'yyyy.MM.dd HH:mm'),
+                        item.firstName || '—',
+                        item.lastName || '—',
                         item.username,
                         t(`account:fields.role.types.${item?.role}`),
-                        formatDate(item.updatedAt, 'yyyy.MM.dd HH:mm'),
                     ]}
                     redirectPath={`/control-center/users/${item._id}`}
                 />

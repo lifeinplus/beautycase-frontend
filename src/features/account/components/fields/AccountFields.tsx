@@ -26,9 +26,19 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
 
     const fields: Field[] = [
         {
+            sysname: 'firstName',
+            label: t('fields.firstName.label'),
+            content: user.firstName ? user.firstName : '—',
+        },
+        {
+            sysname: 'lastName',
+            label: t('fields.lastName.label'),
+            content: user.lastName ? user.lastName : '—',
+        },
+        {
             sysname: 'username',
             label: t('fields.username.label'),
-            content: user && user.username,
+            content: user.username ? user.username : '—',
         },
         {
             sysname: 'role',

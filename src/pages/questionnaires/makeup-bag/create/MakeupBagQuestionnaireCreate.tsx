@@ -46,7 +46,7 @@ export const MakeupBagQuestionnaireCreate = () => {
     const { data: muas } = useGetAllMuasQuery()
 
     const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
-        text: m.username,
+        text: `${m.firstName} ${m.lastName} | @${m.username}`,
         value: m._id!,
     }))
 

@@ -19,7 +19,7 @@ export const UsersMobileView = ({ data }: UsersMobileViewProps) => {
                 t(`account:fields.role.types.${item?.role}`)
             }
             getRightText={(item) =>
-                formatDate(item.createdAt, 'yyyy.MM.dd HH:mm')
+                formatDate(item.updatedAt, 'yyyy.MM.dd HH:mm')
             }
             getLink={(item) => `/control-center/users/${item._id}`}
         />

@@ -4,8 +4,14 @@
         "byline": "Сведения о вас и доступный контент"
     },
     "fields": {
+        "firstName": {
+            "label": "Имя"
+        },
+        "lastName": {
+            "label": "Фамилия"
+        },
         "username": {
-            "label": "Имя пользователя"
+            "label": "Логин"
         },
         "role": {
             "label": "Роль",

@@ -37,6 +37,11 @@ export const UserFields = ({ data }: UserFieldsProps) => {
             content: formatDate(user.updatedAt, 'yyyy.MM.dd HH:mm'),
         },
         {
+            sysname: 'username',
+            label: t('account:fields.username.label'),
+            content: user.username ? user.username : '—',
+        },
+        {
             sysname: 'makeupBags',
             label: t('account:fields.makeupBags.label'),
             emptyMessage: t('account:fields.makeupBags.emptyMessage'),

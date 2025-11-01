@@ -1,6 +1,12 @@
 import type { AuthFields } from '../../types'
 
 export const registerFields: AuthFields = {
+    firstName: {
+        label: 'fields.firstName.label',
+    },
+    lastName: {
+        label: 'fields.lastName.label',
+    },
     username: {
         label: 'fields.username.label',
     },

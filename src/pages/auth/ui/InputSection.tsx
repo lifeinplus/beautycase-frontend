@@ -16,10 +16,11 @@ export const InputSection = ({
     register,
     label,
     error,
-    autoComplete,
+    autoCapitalize,
+    autoComplete = 'off',
     type,
 }: InputSectionProps) => (
-    <section className="relative mb-5">
+    <section className="relative">
         <input
             {...register}
             id={id}
@@ -31,6 +32,7 @@ export const InputSection = ({
                     : 'border-neutral-300 dark:border-neutral-700'
             )}
             placeholder={label}
+            autoCapitalize={autoCapitalize}
             autoComplete={autoComplete}
             type={type}
         />

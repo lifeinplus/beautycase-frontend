@@ -2,12 +2,21 @@ import type { Category } from '@/features/categories/types'
 
 export interface User {
     _id: string
-    createdAt?: string
-    updatedAt?: string
     role: string
+    firstName: string
+    lastName: string
     username: string
     makeupBags?: string[]
     lessons?: string[]
+    createdAt?: string
+    updatedAt?: string
+}
+
+export interface Mua {
+    _id: string
+    firstName: string
+    lastName: string
+    username: string
 }
 
 export interface UserMakeupBag {

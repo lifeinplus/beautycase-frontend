@@ -17,6 +17,8 @@ export interface AuthResultLogin
     extends Pick<AuthState, 'accessToken' | 'userId'> {}
 
 export interface AuthQueryRegister {
+    firstName: string
+    lastName: string
     username: string
     password: string
     confirmPassword: string

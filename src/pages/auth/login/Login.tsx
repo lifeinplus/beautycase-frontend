@@ -68,27 +68,31 @@ export const Login = () => {
                     </h1>
                 </section>
 
-                <section className="mb-10">
-                    <ApiError text={apiError} />
-                </section>
+                {apiError && (
+                    <section className="mb-10">
+                        <ApiError text={apiError} />
+                    </section>
+                )}
 
-                <InputSection
-                    id="username"
-                    register={register('username')}
-                    label={t(loginFields.username.label)}
-                    error={t(errors.username?.message || '')}
-                    autoComplete="username"
-                    type="text"
-                />
+                <div className="space-y-5">
+                    <InputSection
+                        id="username"
+                        register={register('username')}
+                        label={t(loginFields.username.label)}
+                        error={t(errors.username?.message || '')}
+                        autoComplete="username"
+                        type="text"
+                    />
 
-                <InputSection
-                    id="password"
-                    register={register('password')}
-                    label={t(loginFields.password.label)}
-                    error={t(errors.password?.message || '')}
-                    autoComplete="current-password"
-                    type="password"
-                />
+                    <InputSection
+                        id="password"
+                        register={register('password')}
+                        label={t(loginFields.password.label)}
+                        error={t(errors.password?.message || '')}
+                        autoComplete="current-password"
+                        type="password"
+                    />
+                </div>
 
                 <section className="mt-9">
                     <ButtonSubmit

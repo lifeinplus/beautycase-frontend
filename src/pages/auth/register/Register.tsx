@@ -35,16 +35,9 @@ export const Register = () => {
 
     const onSubmit = async (data: AuthQueryRegister) => {
         setFormError('')
-        const { username, password, confirmPassword, role } = data
 
         try {
-            await registerUser({
-                username,
-                password,
-                confirmPassword,
-                role,
-            }).unwrap()
-
+            await registerUser(data).unwrap()
             navigate(ROUTES.login)
         } catch (error) {
             console.error(error)
@@ -68,46 +61,69 @@ export const Register = () => {
                     </h1>
                 </section>
 
-                <section className="mb-10">
-                    <ApiError text={apiError} />
-                </section>
+                {apiError && (
+                    <section className="mb-10">
+                        <ApiError text={apiError} />
+                    </section>
+                )}
 
-                <InputSection
-                    id="username"
-                    register={register('username')}
-                    label={t(registerFields.username.label)}
-                    error={t(errors.username?.message || '')}
-                    autoComplete="username"
-                    type="text"
-                />
+                <div className="space-y-5">
+                    <RadioButtonSection
+                        register={register('role')}
+                        label={registerFields.role.label}
+                        error={errors.role?.message}
+                        options={registerFields.role.options}
+                        center
+                        horizontal
+                        t={t}
+                    />
 
-                <InputSection
-                    id="password"
-                    register={register('password')}
-                    label={t(registerFields.password.label)}
-                    error={t(errors.password?.message || '')}
-                    autoComplete="new-password"
-                    type="password"
-                />
+                    <InputSection
+                        id="firstName"
+                        register={register('firstName')}
+                        label={t(registerFields.firstName.label)}
+                        error={t(errors.firstName?.message || '')}
+                        autoComplete="name"
+                        type="text"
+                    />
 
-                <InputSection
-                    id="confirmPassword"
-                    register={register('confirmPassword')}
-                    label={t(registerFields.confirmPassword.label)}
-                    error={t(errors.confirmPassword?.message || '')}
-                    autoComplete="new-password"
-                    type="password"
-                />
+                    <InputSection
+                        id="lastName"
+                        register={register('lastName')}
+                        label={t(registerFields.lastName.label)}
+                        error={t(errors.lastName?.message || '')}
+                        autoComplete="family-name"
+                        type="text"
+                    />
 
-                <RadioButtonSection
-                    register={register('role')}
-                    label={registerFields.role.label}
-                    error={errors.role?.message}
-                    options={registerFields.role.options}
-                    center
-                    horizontal
-                    t={t}
-                />
+                    <InputSection
+                        id="username"
+                        register={register('username')}
+                        label={t(registerFields.username.label)}
+                        error={t(errors.username?.message || '')}
+                        autoCapitalize="none"
+                        autoComplete="username"
+                        type="text"
+                    />
+
+                    <InputSection
+                        id="password"
+                        register={register('password')}
+                        label={t(registerFields.password.label)}
+                        error={t(errors.password?.message || '')}
+                        autoComplete="new-password"
+                        type="password"
+                    />
+
+                    <InputSection
+                        id="confirmPassword"
+                        register={register('confirmPassword')}
+                        label={t(registerFields.confirmPassword.label)}
+                        error={t(errors.confirmPassword?.message || '')}
+                        autoComplete="new-password"
+                        type="password"
+                    />
+                </div>
 
                 <section className="mt-9">
                     <ButtonSubmit

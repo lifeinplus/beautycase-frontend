@@ -27,6 +27,8 @@ export const mockRefreshResult: AuthState = {
 }
 
 export const mockRegisterParams: AuthQueryRegister = {
+    firstName: 'Test',
+    lastName: 'User',
     username: 'testuser',
     password: 'password123',
     confirmPassword: 'password123',

@@ -5,7 +5,7 @@
     },
     "fields": {
         "username": {
-            "label": "Имя пользователя"
+            "label": "Логин"
         },
         "role": {
             "label": "Роль",

@@ -6,12 +6,16 @@ import type { User, UserMakeupBag, UserResult } from '../../types'
 export const mockUser1: User = {
     _id: 'user1',
     role: 'admin',
+    firstName: 'Alice',
+    lastName: 'Smith',
     username: 'Alice',
 }
 
 export const mockUser2: User = {
     _id: 'user2',
     role: 'mua',
+    firstName: 'Bob',
+    lastName: 'Johnson',
     username: 'Bob',
 }
 

@@ -1,6 +1,6 @@
 import { FieldValues, Path } from 'react-hook-form'
 
-import type { User } from '../users/types'
+import type { Mua } from '../users/types'
 
 interface DesiredSkillData {
     bright?: boolean
@@ -41,7 +41,7 @@ export interface MakeupBagQuestionnaire {
     makeupBagPhotoId?: string
     makeupBagPhotoUrl?: string
     makeupTime?: string
-    mua?: Pick<User, '_id' | 'username'>
+    mua?: Mua
     muaId: string
     name: string
     oilyShine?: string
@@ -56,7 +56,7 @@ export interface MakeupBagQuestionnaire {
 export interface TrainingQuestionnaire {
     _id?: string
     createdAt?: string
-    mua?: Pick<User, '_id' | 'username'>
+    mua?: Mua
     muaId: string
     name: string
     contact: string

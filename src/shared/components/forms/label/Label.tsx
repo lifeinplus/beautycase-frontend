@@ -15,7 +15,7 @@ export const Label = ({
     center = false,
 }: LabelProps) => (
     <label className={classNames('block', center && 'text-center')}>
-        <span className="block py-4 font-bold">
+        <span className="my-4 block font-bold">
             {text}
             {required && (
                 <span className={'text-rose-500 dark:text-rose-400'}> *</span>

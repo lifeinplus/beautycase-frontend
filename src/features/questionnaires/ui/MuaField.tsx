@@ -1,5 +1,6 @@
 import { Mua } from '@/features/users/types'
 
+import { getFullName } from '@/shared/utils/ui/getFullName'
 import { NotSpecified } from './NotSpecified'
 
 interface MuaFieldProps {
@@ -8,5 +9,5 @@ interface MuaFieldProps {
 
 export const MuaField = ({ mua }: MuaFieldProps) => {
     if (!mua) return <NotSpecified />
-    return `${mua.firstName} ${mua.lastName} | @${mua.username}`
+    return `${getFullName(mua.firstName, mua.lastName)} | @${mua.username}`
 }

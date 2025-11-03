@@ -23,6 +23,7 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { getFullName } from '@/shared/utils/ui/getFullName'
 
 export const MakeupBagQuestionnaireCreate = () => {
     const navigate = useNavigate()
@@ -46,7 +47,7 @@ export const MakeupBagQuestionnaireCreate = () => {
     const { data: muas } = useGetAllMuasQuery()
 
     const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
-        text: `${m.firstName} ${m.lastName} | @${m.username}`,
+        text: `${getFullName(m.firstName, m.lastName)} | @${m.username}`,
         value: m._id!,
     }))
 

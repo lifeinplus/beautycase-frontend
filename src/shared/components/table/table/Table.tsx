@@ -11,7 +11,7 @@ export interface TableProps<T> {
 export const Table = <T,>({ headers, data, renderRow }: TableProps<T>) => (
     <div
         className={classNames(
-            'rounded-2.5xl relative hidden h-full w-full flex-col overflow-scroll border border-neutral-200 bg-white bg-clip-border text-neutral-700 sm:flex',
+            'rounded-2.5xl relative hidden h-full w-full flex-col overflow-scroll border border-neutral-200 bg-white bg-clip-border text-neutral-700 md:flex',
             'dark:border-neutral-800 dark:bg-black dark:text-neutral-300'
         )}
     >

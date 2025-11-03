@@ -12,6 +12,7 @@ export const Account = () => {
     const { t } = useTranslation(['account', 'makeupBag'])
     const userId = useAppSelector(selectUserId)
 
+    // TODO: change to useGetMeQuery (don't send userId)
     const { data, isLoading, error } = useGetUserByIdQuery(userId)
 
     return (

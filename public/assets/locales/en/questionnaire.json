@@ -167,9 +167,10 @@
         "table": {
             "date": "Date",
             "time": "Time",
-            "clientName": "Client Name",
+            "clientName": "Client",
             "age": "Age",
-            "city": "City"
+            "city": "City",
+            "muaName": "Makeup Artist"
         }
     },
     "training": {
@@ -222,8 +223,9 @@
         "table": {
             "date": "Date",
             "time": "Time",
-            "clientName": "Client Name",
-            "contact": "Contact Information"
+            "clientName": "Client",
+            "contact": "Contact Information",
+            "muaName": "Makeup Artist"
         }
     }
 }

@@ -167,9 +167,10 @@
         "table": {
             "date": "Дата",
             "time": "Время",
-            "clientName": "Имя клиента",
+            "clientName": "Клиент",
             "age": "Возраст",
-            "city": "Город"
+            "city": "Город",
+            "muaName": "Визажист"
         }
     },
     "training": {
@@ -222,8 +223,9 @@
         "table": {
             "date": "Дата",
             "time": "Время",
-            "clientName": "Имя клиента",
-            "contact": "Контакт для связи"
+            "clientName": "Клиент",
+            "contact": "Контакт для связи",
+            "muaName": "Визажист"
         }
     }
 }

@@ -6,6 +6,7 @@ import { UserFields } from '@/features/users/components/fields/UserFields'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { getFullName } from '@/shared/utils/ui/getFullName'
 import { useToUsersListAction } from '../list/hooks/useToUsersListAction'
 
 export const UserDetails = () => {
@@ -16,10 +17,7 @@ export const UserDetails = () => {
 
     const backAction = useToUsersListAction()
 
-    const firstName = data?.user.firstName || '—'
-    const lastName = data?.user.lastName || '—'
-    const title = `${firstName} ${lastName}`
-
+    const title = getFullName(data?.user.firstName, data?.user.lastName)
     const subtitle = t(`account:fields.role.types.${data?.user.role}`)
 
     return (

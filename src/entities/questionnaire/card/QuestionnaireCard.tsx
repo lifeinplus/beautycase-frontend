@@ -62,8 +62,9 @@ export const QuestionnaireCard = ({
                     </h2>
                 </div>
             </Link>
+
             {showResults && (
-                <div className="my-2 flex justify-end">
+                <div className="my-4 flex justify-end">
                     <Link
                         className={classNames(
                             'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',

@@ -28,22 +28,22 @@ export const AccountFields = ({ data }: AccountFieldsProps) => {
         {
             sysname: 'firstName',
             label: t('fields.firstName.label'),
-            content: user.firstName ? user.firstName : '—',
+            content: user.firstName || '—',
         },
         {
             sysname: 'lastName',
             label: t('fields.lastName.label'),
-            content: user.lastName ? user.lastName : '—',
+            content: user.lastName || '—',
         },
         {
             sysname: 'username',
             label: t('fields.username.label'),
-            content: user.username ? user.username : '—',
+            content: user.username,
         },
         {
             sysname: 'role',
             label: t('fields.role.label'),
-            content: user?.role && t(`fields.role.types.${user?.role}`),
+            content: t(`fields.role.types.${user.role}`),
         },
         {
             sysname: 'makeupBags',

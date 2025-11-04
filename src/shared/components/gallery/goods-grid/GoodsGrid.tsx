@@ -35,7 +35,7 @@ export const GoodsGrid = <T extends Good>({
     }
 
     return (
-        <article className="mx-auto mt-5 grid max-w-2xl gap-y-8 sm:grid-cols-2">
+        <article className="mx-auto mt-5 grid max-w-2xl gap-y-8 md:grid-cols-2">
             {goods.map((g) => (
                 <div
                     key={g._id}
@@ -47,7 +47,7 @@ export const GoodsGrid = <T extends Good>({
                         <Image
                             alt={g.name}
                             className={classNames(
-                                'h-full w-full object-cover sm:rounded',
+                                'h-full w-full object-cover md:rounded',
                                 'rounded-sm'
                             )}
                             src={g.imageUrl}

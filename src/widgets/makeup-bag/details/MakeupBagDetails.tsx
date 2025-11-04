@@ -29,11 +29,11 @@ export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
         : t('titles.details')
 
     return (
-        <article className="pb-13 sm:pb-0">
+        <article className="pb-13 md:pb-0">
             <TopPanel title={title} onBack={onBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <DataWrapper isLoading={isLoading} error={error}>
                         <Hero
                             title={title}
@@ -41,7 +41,7 @@ export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
                             imgUrl={config.cloudinary.makeupBagHero}
                             hideOnMobile
                         />
-                        <section className="mt-5 sm:hidden">
+                        <section className="mt-5 md:hidden">
                             <h2 className="font-heading px-3 text-center text-lg text-slate-700 dark:text-slate-400">
                                 {t('hero.byline')}
                             </h2>

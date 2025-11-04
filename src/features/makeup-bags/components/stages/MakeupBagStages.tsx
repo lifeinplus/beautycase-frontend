@@ -13,14 +13,14 @@ export const MakeupBagStages = ({ stages }: MakeupBagStagesProps) => {
     const { t } = useTranslation('stage')
 
     return (
-        <section id="stages" className="scroll-mt-header sm:scroll-mt-0">
+        <section id="stages" className="scroll-mt-header md:scroll-mt-0">
             {stages?.map((stage, index) => (
                 <article key={index} className="my-4 space-y-8 py-4">
                     <div>
-                        <h3 className="font-heading text-center text-xl font-bold sm:text-xl md:text-3xl lg:text-4xl">
+                        <h3 className="font-heading text-center text-xl font-bold md:text-3xl">
                             {stage.title}
                         </h3>
-                        <h4 className="font-heading mt-2 mb-6 text-center text-lg text-slate-700 sm:text-lg md:text-xl lg:text-2xl dark:text-slate-400">
+                        <h4 className="font-heading mt-2 mb-6 text-center text-lg text-slate-700 md:text-lg dark:text-slate-400">
                             {stage.subtitle}
                         </h4>
                     </div>
@@ -28,7 +28,7 @@ export const MakeupBagStages = ({ stages }: MakeupBagStagesProps) => {
                     <ImageSection name={stage?.title} url={stage?.imageUrl} />
 
                     <section className="px-4">
-                        <p className="my-2 font-bold sm:text-left">
+                        <p className="my-2 font-bold md:text-left">
                             {t('steps')}
                         </p>
                         <ul className="ms-5 list-outside list-decimal">

@@ -16,6 +16,7 @@ import { TitleSection } from '@/shared/components/forms/title-section/TitleSecti
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { ROUTES } from '@/shared/config/routes'
+import { getFullName } from '@/shared/utils/ui/getFullName'
 import type { MakeupBag } from '../../types'
 import { makeupBagSchema } from '../../validations'
 
@@ -63,7 +64,7 @@ export const MakeupBagForm = ({
 
     const clientOptions = users.map(
         (u): SelectOption => ({
-            text: u.username,
+            text: `${getFullName(u.firstName, u.lastName)} | @${u.username}`,
             value: u._id,
         })
     )

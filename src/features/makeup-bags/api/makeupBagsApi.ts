@@ -28,6 +28,20 @@ const makeupBagsApi = api.injectEndpoints({
                     : [{ type: 'MakeupBag', id: 'LIST' }],
         }),
 
+        getMineMakeupBags: builder.query<MakeupBag[], void>({
+            query: () => '/makeup-bags/mine',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'MakeupBag' as const,
+                              id: _id,
+                          })),
+                          { type: 'MakeupBag', id: 'LIST' },
+                      ]
+                    : [{ type: 'MakeupBag', id: 'LIST' }],
+        }),
+
         getMakeupBagById: builder.query<MakeupBag, string>({
             query: (id) => `/makeup-bags/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'MakeupBag', id }],
@@ -62,6 +76,7 @@ const makeupBagsApi = api.injectEndpoints({
 export const {
     useCreateMakeupBagMutation,
     useGetAllMakeupBagsQuery,
+    useGetMineMakeupBagsQuery,
     useGetMakeupBagByIdQuery,
     useUpdateMakeupBagByIdMutation,
     useDeleteMakeupBagByIdMutation,

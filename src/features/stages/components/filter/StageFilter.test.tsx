@@ -7,7 +7,8 @@ import {
     mockMakeupBags,
 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
 import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import { mockStage1, mockStages } from '../../api/__mocks__/stagesApi'
+import { getFullName } from '@/shared/utils/ui/getFullName'
+import { mockStage1 } from '../../api/__mocks__/stagesApi'
 import { StageFilter } from './StageFilter'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
@@ -23,14 +24,12 @@ describe('StageFilter', () => {
 
     it('renders select dropdown with makeup bag options', () => {
         const category = `makeupBag:categories.${mockMakeupBag1.category?.name}.short`
-        const client = mockMakeupBag1.client?.username
-
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
+        const client = getFullName(
+            mockMakeupBag1.client?.firstName,
+            mockMakeupBag1.client?.lastName
         )
+
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         expect(screen.getByRole('combobox')).toBeInTheDocument()
         expect(screen.getByText('noMakeupBag')).toBeInTheDocument()
@@ -42,12 +41,7 @@ describe('StageFilter', () => {
             data: [],
         })
 
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
-        )
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         const combobox = screen.getByRole('combobox')
         expect(combobox).toBeInTheDocument()
@@ -59,12 +53,7 @@ describe('StageFilter', () => {
     it('filters stages correctly when a makeup bag is selected', async () => {
         const user = userEvent.setup()
 
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
-        )
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         mockOnFilterChange.mockReset()
 

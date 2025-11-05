@@ -11,7 +11,7 @@ import {
 } from 'vitest'
 
 import { mockLessons } from '@/features/lessons/api/__mocks__/lessonsApi'
-import { useGetAllLessonsQuery } from '@/features/lessons/api/lessonsApi'
+import { useGetMineLessonsQuery } from '@/features/lessons/api/lessonsApi'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { LessonGallery } from './LessonGallery'
 
@@ -27,7 +27,7 @@ describe('LessonGallery', () => {
     })
 
     beforeEach(() => {
-        vi.mocked(useGetAllLessonsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineLessonsQuery as Mock).mockReturnValue({
             data: mockLessons,
             isLoading: false,
             error: null,

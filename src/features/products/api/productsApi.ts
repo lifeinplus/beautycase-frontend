@@ -36,17 +36,31 @@ const productsApi = api.injectEndpoints({
                     : [{ type: 'Product', id: 'LIST' }],
         }),
 
-        getProductById: builder.query<Product, string>({
-            query: (id) => `/products/${id}`,
-            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
+        getMineProducts: builder.query<Product[], void>({
+            query: () => '/products/mine',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Product' as const,
+                              id: _id,
+                          })),
+                          { type: 'Product', id: 'LIST' },
+                      ]
+                    : [{ type: 'Product', id: 'LIST' }],
         }),
 
-        getProductsByCategory: builder.query<Product[], string>({
-            query: (category) => `/products/category/${category}`,
+        getMineProductsByCategory: builder.query<Product[], string>({
+            query: (category) => `/products/mine/category/${category}`,
             providesTags: (_result, _error, id) => [
                 { type: 'Product', id },
                 { type: 'Product', id: 'LIST' },
             ],
+        }),
+
+        getProductById: builder.query<Product, string>({
+            query: (id) => `/products/${id}`,
+            providesTags: (_result, _error, id) => [{ type: 'Product', id }],
         }),
 
         updateProductById: builder.mutation<
@@ -97,8 +111,9 @@ export const {
     useCreateProductMutation,
     useDuplicateProductByIdMutation,
     useGetAllProductsQuery,
+    useGetMineProductsQuery,
+    useGetMineProductsByCategoryQuery,
     useGetProductByIdQuery,
-    useGetProductsByCategoryQuery,
     useUpdateProductByIdMutation,
     useUpdateProductStoreLinksMutation,
     useDeleteProductByIdMutation,

@@ -18,6 +18,20 @@ const usersApi = api.injectEndpoints({
                     : [{ type: 'User', id: 'LIST' }],
         }),
 
+        getAllClients: builder.query<User[], void>({
+            query: () => '/users/clients',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'User' as const,
+                              id: _id,
+                          })),
+                          { type: 'User', id: 'LIST' },
+                      ]
+                    : [{ type: 'User', id: 'LIST' }],
+        }),
+
         getAllMuas: builder.query<User[], void>({
             query: () => '/users/muas',
             providesTags: (result) =>
@@ -50,6 +64,7 @@ const usersApi = api.injectEndpoints({
 export const {
     useGetAllUsersQuery,
     useGetAllMuasQuery,
+    useGetAllClientsQuery,
     useGetUserByIdQuery,
     useDeleteUserByIdMutation,
 } = usersApi

@@ -25,7 +25,7 @@ export const mockMakeupBag1: MakeupBag = {
     createdAt: '2025-04-10T10:00:00Z',
     category: mockCategory1,
     categoryId: 'category1',
-    client: { _id: 'client1', username: 'Test Client 1' },
+    client: { _id: 'client1', firstName: 'Jane', lastName: 'Doe' },
     clientId: 'client1',
     stages: [mockStage1],
     stageIds: ['stage1', 'stage2'],

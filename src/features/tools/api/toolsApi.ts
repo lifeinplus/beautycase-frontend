@@ -14,8 +14,8 @@ const toolsApi = api.injectEndpoints({
             invalidatesTags: ['Tool'],
         }),
 
-        getAllTools: builder.query<Tool[], void>({
-            query: () => '/tools',
+        getMineTools: builder.query<Tool[], void>({
+            query: () => '/tools/mine',
             providesTags: (result) =>
                 result
                     ? [
@@ -72,7 +72,7 @@ const toolsApi = api.injectEndpoints({
 
 export const {
     useCreateToolMutation,
-    useGetAllToolsQuery,
+    useGetMineToolsQuery,
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
     useUpdateToolStoreLinksMutation,

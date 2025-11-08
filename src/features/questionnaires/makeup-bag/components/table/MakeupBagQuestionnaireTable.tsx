@@ -8,7 +8,7 @@ import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
 import { Role } from '@/shared/model/role'
 import { formatDate } from '@/shared/utils/date/formatDate'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 
 export interface MakeupBagQuestionnaireTableProps {
     questionnaires?: MakeupBagQuestionnaire[]
@@ -48,10 +48,7 @@ export const MakeupBagQuestionnaireTable = ({
                         item.name,
                         item.age || '—',
                         isAdmin
-                            ? getFullName(
-                                  item.mua?.firstName,
-                                  item.mua?.lastName
-                              )
+                            ? fullName(item.mua?.firstName, item.mua?.lastName)
                             : item.city || '—',
                     ]}
                     redirectPath={`/questionnaires/makeup-bags/${item._id}`}

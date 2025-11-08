@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { mockTrainingQuestionnaires } from '../../../api/__mocks__/questionnairesApi'
 import { TrainingQuestionnaireMobileView } from './TrainingQuestionnaireMobileView'
 
@@ -9,7 +9,7 @@ vi.mock('@/shared/utils/date/formatDate')
 
 describe('TrainingQuestionnaireMobileView', () => {
     it('renders the mobile view component with correct props', () => {
-        renderWithRouter(
+        renderWithProviderAndRouter(
             <TrainingQuestionnaireMobileView
                 data={mockTrainingQuestionnaires}
             />

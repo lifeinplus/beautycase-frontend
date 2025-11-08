@@ -12,6 +12,7 @@ import {
 import type { Store } from '@/features/stores/types'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { Stores } from './Stores'
 
 vi.mock('@/app/hooks/hooks')
@@ -117,10 +118,6 @@ describe('Stores', () => {
     it('shows error toast if delete fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<Stores />)
@@ -136,9 +133,7 @@ describe('Stores', () => {
         await user.click(modalDeleteConfirm)
 
         expect(mockDeleteStoreById).toHaveBeenCalledWith('1')
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 })

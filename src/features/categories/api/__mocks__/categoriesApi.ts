@@ -33,6 +33,7 @@ export const useGetAllCategoriesQuery = vi.fn()
 export const useGetMakeupBagCategoriesQuery = vi.fn()
 export const useGetProductCategoriesQuery = vi.fn()
 export const useGetProductCategoriesWithCountsQuery = vi.fn()
+export const useGetMineProductCategoriesWithCountsQuery = vi.fn()
 export const useUpdateCategoryByIdMutation = vi.fn()
 export const useDeleteCategoryByIdMutation = vi.fn()
 
@@ -41,7 +42,19 @@ const categoriesHandlers = [
 
     http.get('api/categories', () => HttpResponse.json(mockCategories)),
 
+    http.get('api/categories/makeup-bags', () =>
+        HttpResponse.json(mockCategories)
+    ),
+
     http.get('api/categories/products', () =>
+        HttpResponse.json(mockCategories)
+    ),
+
+    http.get('api/categories/products/with-counts', () =>
+        HttpResponse.json(mockCategories)
+    ),
+
+    http.get('api/categories/products/mine/with-counts', () =>
         HttpResponse.json(mockCategories)
     ),
 

@@ -13,6 +13,7 @@ import { useCreateLessonMutation } from '@/features/lessons/api/lessonsApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { LessonAdd } from './LessonAdd'
 
 vi.mock('@/app/hooks/hooks')
@@ -56,19 +57,13 @@ describe('LessonAdd', () => {
     it('displays error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<LessonAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddLesson).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 })

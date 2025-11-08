@@ -14,7 +14,7 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const MakeupBagQuestionnaireList = () => {
     const navigate = useNavigate()
@@ -30,7 +30,7 @@ export const MakeupBagQuestionnaireList = () => {
         ? useGetAllMakeupBagQuestionnairesQuery()
         : useGetMineMakeupBagQuestionnairesQuery()
 
-    const title = getTitleWithCount(t('headlineList'), data.length)
+    const title = titleWithCount(t('headlineList'), data.length)
     const subtitle = t('makeupBag.hero.byline')
 
     const handleBack = () => {

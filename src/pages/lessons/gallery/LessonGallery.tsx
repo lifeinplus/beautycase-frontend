@@ -7,7 +7,7 @@ import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ROUTES } from '@/shared/config/routes'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const LessonGallery = () => {
     const { t } = useTranslation('lesson')
@@ -15,7 +15,7 @@ export const LessonGallery = () => {
 
     const { data = [], isLoading, error } = useGetMineLessonsQuery()
 
-    const title = getTitleWithCount(t('titles.gallery'), data.length)
+    const title = titleWithCount(t('titles.gallery'), data.length)
 
     return (
         <article className="pb-13 md:pb-0">

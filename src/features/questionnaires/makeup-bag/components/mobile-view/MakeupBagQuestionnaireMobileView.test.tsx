@@ -2,14 +2,14 @@ import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { mockMakeupBagQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { MakeupBagQuestionnaireMobileView } from './MakeupBagQuestionnaireMobileView'
 
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagQuestionnaireMobileView', () => {
     it('renders the mobile view component with correct props', () => {
-        renderWithRouter(
+        renderWithProviderAndRouter(
             <MakeupBagQuestionnaireMobileView
                 questionnaires={mockMakeupBagQuestionnaires}
             />

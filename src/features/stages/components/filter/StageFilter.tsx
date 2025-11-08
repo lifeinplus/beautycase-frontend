@@ -4,7 +4,7 @@ import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 
 export interface StageFilterProps {
     onSelectMakeupBag: (makeupBagId: string) => void
@@ -39,7 +39,7 @@ export const StageFilter = ({ onSelectMakeupBag }: StageFilterProps) => {
                 <option value="noMakeupBag">{t('noMakeupBag')}</option>
                 {makeupBags.map(({ _id, category, client }) => (
                     <option key={_id} value={_id}>
-                        {`${t(`makeupBag:categories.${category?.name}.short`)} - ${getFullName(client?.firstName, client?.lastName)}`}
+                        {`${t(`makeupBag:categories.${category?.name}.short`)} - ${fullName(client?.firstName, client?.lastName)}`}
                     </option>
                 ))}
             </select>

@@ -7,7 +7,7 @@ import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ROUTES } from '@/shared/config/routes'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
@@ -15,7 +15,7 @@ export const ToolsGallery = () => {
 
     const { data = [], isLoading, error } = useGetMineToolsQuery()
 
-    const title = getTitleWithCount(t('titles.gallery'), data.length)
+    const title = titleWithCount(t('titles.gallery'), data.length)
     const subtitle = t('titles.gallerySubtitle')
 
     return (

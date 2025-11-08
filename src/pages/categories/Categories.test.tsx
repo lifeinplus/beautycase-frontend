@@ -12,6 +12,7 @@ import type { Category } from '@/features/categories/types'
 import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { Categories } from './Categories'
 
 vi.mock('@/app/hooks/hooks')
@@ -126,10 +127,6 @@ describe('Categories', () => {
     it('shows error toast if delete fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<Categories />)
@@ -138,9 +135,7 @@ describe('Categories', () => {
         await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
 
         expect(mockDeleteCategoryById).toHaveBeenCalledWith('category1')
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 })

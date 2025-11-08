@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { getEmbedUrl } from './getEmbedUrl'
 
@@ -21,12 +21,6 @@ describe('getEmbedUrl', () => {
     })
 
     it('returns undefined for invalid URL', () => {
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         expect(getEmbedUrl('invalid-url')).toBeUndefined()
-
-        mockConsoleError.mockRestore()
     })
 })

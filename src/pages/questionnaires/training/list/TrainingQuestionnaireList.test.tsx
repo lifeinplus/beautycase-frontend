@@ -1,9 +1,13 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { mockTrainingQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
-import { useGetAllTrainingQuestionnairesQuery } from '@/features/questionnaires/api/questionnairesApi'
+import {
+    useGetAllTrainingQuestionnairesQuery,
+    useGetMineTrainingQuestionnairesQuery,
+} from '@/features/questionnaires/api/questionnairesApi'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import userEvent from '@testing-library/user-event'
 import { TrainingQuestionnaireList } from './TrainingQuestionnaireList'
 
@@ -24,10 +28,18 @@ describe('TrainingQuestionnaireList', () => {
                 error: null,
             }
         )
+
+        vi.mocked(
+            useGetMineTrainingQuestionnairesQuery as Mock
+        ).mockReturnValue({
+            data: mockTrainingQuestionnaires,
+            isLoading: false,
+            error: null,
+        })
     })
 
     it('renders the component with correct structure', () => {
-        render(<TrainingQuestionnaireList />)
+        renderWithProviders(<TrainingQuestionnaireList />)
 
         expect(screen.getByRole('navigation')).toBeInTheDocument()
         expect(screen.getAllByText(/headlineList/)).toHaveLength(2)
@@ -35,7 +47,7 @@ describe('TrainingQuestionnaireList', () => {
     })
 
     it('renders page components and list views', () => {
-        render(<TrainingQuestionnaireList />)
+        renderWithProviders(<TrainingQuestionnaireList />)
 
         expect(
             screen.getByTestId('mocked-training-questionnaire-mobile-view')
@@ -49,7 +61,7 @@ describe('TrainingQuestionnaireList', () => {
     it('calls navigate when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<TrainingQuestionnaireList />)
+        renderWithProviders(<TrainingQuestionnaireList />)
 
         await user.click(
             screen.getByRole('navigation').querySelector('button')!

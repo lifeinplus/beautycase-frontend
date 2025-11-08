@@ -4,7 +4,7 @@ import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 import { Role } from '@/shared/model/role'
 import { formatDate } from '@/shared/utils/date/formatDate'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 
 export interface MakeupBagQuestionnaireMobileViewProps {
     questionnaires?: MakeupBagQuestionnaire[]
@@ -21,7 +21,7 @@ export const MakeupBagQuestionnaireMobileView = ({
             getTitle={(item) => item.name}
             getDescription={(item) =>
                 role === Role.ADMIN
-                    ? getFullName(item.mua?.firstName, item.mua?.lastName)
+                    ? fullName(item.mua?.firstName, item.mua?.lastName)
                     : item.city || '—'
             }
             getRightText={(item) =>

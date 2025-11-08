@@ -10,7 +10,7 @@ import { generatePdfFilename } from '@/features/makeup-bags/utils/pdf/generatePd
 import { Spinner } from '@/shared/components/ui/button-submit/ui/Spinner'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 
 export const useExportMakeupBagAction = () => {
     const { pathname } = useLocation()
@@ -52,7 +52,7 @@ export const useExportMakeupBagAction = () => {
         setIsExporting(true)
 
         try {
-            const clientName = getFullName(
+            const clientName = fullName(
                 data?.client?.firstName,
                 data?.client?.lastName
             )

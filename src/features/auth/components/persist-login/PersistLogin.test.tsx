@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useRefreshAuth } from '@/features/auth/hooks/refresh-auth/useRefreshAuth'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { PersistLogin } from './PersistLogin'
 
 vi.mock('@/app/hooks/hooks')
@@ -79,19 +80,14 @@ describe('PersistLogin', () => {
 
     it('logs error when refreshAuth fails', async () => {
         vi.mocked(useAppSelector).mockReturnValue(undefined)
-        const consoleErrorSpy = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
         mockRefreshAuth.mockRejectedValueOnce(new Error('refresh failed'))
 
         renderWithRouter(<MockRoutes />)
 
         expect(await screen.findByTestId('mocked-content')).toBeInTheDocument()
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
+        expect(spyConsoleError).toHaveBeenCalledWith(
             'Refresh auth failed',
             expect.any(Error)
         )
-
-        consoleErrorSpy.mockRestore()
     })
 })

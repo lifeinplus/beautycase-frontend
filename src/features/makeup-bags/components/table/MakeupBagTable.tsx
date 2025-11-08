@@ -5,7 +5,7 @@ import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
 import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 import type { MakeupBag } from '../../types'
 
 export interface MakeupBagTableProps {
@@ -36,10 +36,7 @@ export const MakeupBagTable = ({ makeupBags }: MakeupBagTableProps) => {
                         formatDate(item.createdAt, 'yyyy.MM.dd'),
                         formatDate(item.createdAt, 'HH:mm'),
                         t(`categories.${item.category?.name}.short`),
-                        getFullName(
-                            item.client?.firstName,
-                            item.client?.lastName
-                        ),
+                        fullName(item.client?.firstName, item.client?.lastName),
                     ]}
                     redirectPath={ROUTES.backstage.makeupBags.details(
                         item._id!

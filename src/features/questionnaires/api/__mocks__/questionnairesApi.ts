@@ -11,7 +11,7 @@ export const mockMakeupBagQuestionnaireCreated: MutationResult = {
 export const mockMakeupBagQuestionnaireFull: MakeupBagQuestionnaire = {
     name: 'Anna Petrova',
     makeupBag: 'Foundation, mascara, lipstick, blush',
-    muaId: 'mua-123',
+    muaId: 'mua-1',
     age: 28,
     allergies: 'None',
     budget: '150-250',
@@ -50,7 +50,7 @@ export const mockMakeupBagQuestionnaireFull: MakeupBagQuestionnaire = {
 
 export const mockMakeupBagQuestionnaire1: MakeupBagQuestionnaire = {
     _id: 'makeup-bag-questionnaire-1',
-    muaId: 'mua-123',
+    muaId: 'mua-1',
     name: 'Client 1',
     instagram: '@client1',
     city: 'City 1',
@@ -60,7 +60,7 @@ export const mockMakeupBagQuestionnaire1: MakeupBagQuestionnaire = {
 
 export const mockMakeupBagQuestionnaire2: MakeupBagQuestionnaire = {
     _id: 'makeup-bag-questionnaire-2',
-    muaId: 'mua-123',
+    muaId: 'mua-1',
     name: 'Client 2',
     makeupBag: 'Sponge',
 }
@@ -76,7 +76,13 @@ export const mockTrainingQuestionnaireCreated: MutationResult = {
 
 export const mockTrainingQuestionnaire1: TrainingQuestionnaire = {
     _id: 'training-questionnaire-1',
-    muaId: 'mua-123',
+    muaId: 'mua-1',
+    mua: {
+        _id: 'mua-1',
+        firstName: 'Jane',
+        lastName: 'Doe',
+        username: 'jane',
+    },
     name: 'Client 1',
     contact: '@client1',
     expectations: 'I want to learn makeup',
@@ -84,7 +90,7 @@ export const mockTrainingQuestionnaire1: TrainingQuestionnaire = {
 
 export const mockTrainingQuestionnaire2: TrainingQuestionnaire = {
     _id: 'training-questionnaire-2',
-    muaId: 'mua-123',
+    muaId: 'mua-1',
     name: 'Client 2',
     contact: '@client2',
     expectations: 'I want to improve my skills',
@@ -99,6 +105,8 @@ export const useCreateMakeupBagQuestionnaireMutation = vi.fn()
 export const useCreateTrainingQuestionnaireMutation = vi.fn()
 export const useGetAllMakeupBagQuestionnairesQuery = vi.fn()
 export const useGetAllTrainingQuestionnairesQuery = vi.fn()
+export const useGetMineMakeupBagQuestionnairesQuery = vi.fn()
+export const useGetMineTrainingQuestionnairesQuery = vi.fn()
 export const useGetMakeupBagQuestionnaireByIdQuery = vi.fn()
 export const useGetTrainingQuestionnaireByIdQuery = vi.fn()
 export const useDeleteMakeupBagQuestionnaireByIdMutation = vi.fn()
@@ -109,7 +117,15 @@ const questionnairesHandlers = [
         HttpResponse.json(mockMakeupBagQuestionnaireCreated)
     ),
 
+    http.post('api/questionnaires/trainings', () =>
+        HttpResponse.json(mockTrainingQuestionnaireCreated)
+    ),
+
     http.get('api/questionnaires/makeup-bags', () =>
+        HttpResponse.json(mockMakeupBagQuestionnaires)
+    ),
+
+    http.get('api/questionnaires/makeup-bags/mine', () =>
         HttpResponse.json(mockMakeupBagQuestionnaires)
     ),
 
@@ -122,11 +138,11 @@ const questionnairesHandlers = [
             : HttpResponse.json({ success: false }, { status: 404 })
     }),
 
-    http.post('api/questionnaires/trainings', () =>
-        HttpResponse.json(mockTrainingQuestionnaireCreated)
+    http.get('api/questionnaires/trainings', () =>
+        HttpResponse.json(mockTrainingQuestionnaires)
     ),
 
-    http.get('api/questionnaires/trainings', () =>
+    http.get('api/questionnaires/trainings/mine', () =>
         HttpResponse.json(mockTrainingQuestionnaires)
     ),
 

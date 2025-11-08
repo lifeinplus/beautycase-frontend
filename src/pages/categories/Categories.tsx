@@ -18,7 +18,7 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 import { useToReferenceListsAction } from '../control-center/reference-lists/hooks/useToReferenceListsAction'
 
 export const Categories = () => {
@@ -58,7 +58,7 @@ export const Categories = () => {
         categoryFormRef.current?.focusInput()
     }
 
-    const title = getTitleWithCount(t('titles.list'), data.length)
+    const title = titleWithCount(t('titles.list'), data.length)
 
     return (
         <article>

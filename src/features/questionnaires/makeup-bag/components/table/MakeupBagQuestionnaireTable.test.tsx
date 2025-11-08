@@ -1,14 +1,15 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { mockMakeupBagQuestionnaires } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { MakeupBagQuestionnaireTable } from './MakeupBagQuestionnaireTable'
 
 vi.mock('@/shared/utils/date/formatDate')
 
 describe('MakeupBagQuestionnaireTable', () => {
     it('renders the table headers correctly', () => {
-        render(
+        renderWithProviders(
             <MakeupBagQuestionnaireTable
                 questionnaires={mockMakeupBagQuestionnaires}
             />
@@ -28,7 +29,7 @@ describe('MakeupBagQuestionnaireTable', () => {
     })
 
     it('renders the table data correctly', () => {
-        render(
+        renderWithProviders(
             <MakeupBagQuestionnaireTable
                 questionnaires={mockMakeupBagQuestionnaires}
             />

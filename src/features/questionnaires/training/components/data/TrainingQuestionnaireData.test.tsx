@@ -27,6 +27,6 @@ describe('TrainingQuestionnaireData', () => {
         render(<TrainingQuestionnaireData data={mockTrainingQuestionnaire1} />)
 
         const notSpecifiedElements = screen.getAllByText('notSpecified')
-        expect(notSpecifiedElements.length).toBe(5 - 3)
+        expect(notSpecifiedElements.length).toBe(6 - 4)
     })
 })

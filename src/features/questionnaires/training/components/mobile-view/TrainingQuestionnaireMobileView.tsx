@@ -3,7 +3,7 @@ import { selectRole } from '@/features/auth/slice/authSlice'
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 import { Role } from '@/shared/model/role'
 import { formatDate } from '@/shared/utils/date/formatDate'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 import type { TrainingQuestionnaire } from '../../../types'
 
 export interface TrainingQuestionnaireMobileViewProps {
@@ -21,7 +21,7 @@ export const TrainingQuestionnaireMobileView = ({
             getTitle={(item) => item.name}
             getDescription={(item) =>
                 role === Role.ADMIN
-                    ? getFullName(item.mua?.firstName, item.mua?.lastName)
+                    ? fullName(item.mua?.firstName, item.mua?.lastName)
                     : item.contact
             }
             getRightText={(item) =>

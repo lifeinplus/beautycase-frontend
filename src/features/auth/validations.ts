@@ -1,3 +1,4 @@
+import { Role } from '@/shared/model/role'
 import { object, ref, string } from 'yup'
 import { transformEmpty } from '../questionnaires/utils'
 
@@ -35,6 +36,7 @@ export const registerSchema = object({
         .oneOf([ref('password')], 'fields.confirmPassword.errors.match')
         .required('fields.confirmPassword.errors.required'),
     role: string()
+        .oneOf(Object.values(Role))
         .required('fields.role.errors.required')
         .transform(transformEmpty),
 })

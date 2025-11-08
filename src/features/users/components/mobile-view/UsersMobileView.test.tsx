@@ -12,7 +12,7 @@ describe('UsersMobileView', () => {
         renderWithRouter(<UsersMobileView data={mockUsers} />)
 
         expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(2)
-        expect(screen.getByText('Alice')).toBeInTheDocument()
+        expect(screen.getByText(mockUser1.username)).toBeInTheDocument()
         expect(
             screen.getByText(`account:fields.role.types.${mockUser1.role}`)
         ).toBeInTheDocument()

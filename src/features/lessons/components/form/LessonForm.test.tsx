@@ -1,14 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { ROUTES } from '@/shared/config/routes'
@@ -24,18 +16,8 @@ vi.mock('@/features/form/slice/formSlice')
 describe('LessonForm', () => {
     const mockTitle = 'Test Title'
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
-
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockLesson1)
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('renders all required form fields', () => {

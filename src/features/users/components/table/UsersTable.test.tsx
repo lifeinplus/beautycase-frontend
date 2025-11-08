@@ -11,10 +11,11 @@ describe('UsersTable', () => {
         render(<UsersTable data={mockUsers} />)
 
         const columns = [
-            'table.createdAt',
+            'table.updatedAt',
+            'table.firstName',
+            'table.lastName',
             'table.username',
             'table.role',
-            'table.updatedAt',
         ]
 
         columns.forEach((c) => expect(screen.getByText(c)).toBeInTheDocument())
@@ -23,7 +24,7 @@ describe('UsersTable', () => {
     it('renders the table data correctly', () => {
         render(<UsersTable data={mockUsers} />)
 
-        expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(4)
+        expect(screen.getAllByText('2025.04.10 14:30')).toHaveLength(2)
         expect(
             screen.getByText(`account:fields.role.types.${mockUser1.role}`)
         ).toBeInTheDocument()

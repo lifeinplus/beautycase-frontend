@@ -46,6 +46,7 @@ export const mockMakeupBags: MakeupBag[] = [mockMakeupBag1, mockMakeupBag2]
 
 export const useCreateMakeupBagMutation = vi.fn()
 export const useGetAllMakeupBagsQuery = vi.fn()
+export const useGetMineMakeupBagsQuery = vi.fn()
 export const useGetMakeupBagByIdQuery = vi.fn()
 export const useUpdateMakeupBagByIdMutation = vi.fn()
 export const useDeleteMakeupBagByIdMutation = vi.fn()
@@ -54,6 +55,8 @@ const makeupBagsHandlers = [
     http.post('api/makeup-bags', () => HttpResponse.json(mockMakeupBagCreate)),
 
     http.get('api/makeup-bags', () => HttpResponse.json(mockMakeupBags)),
+
+    http.get('api/makeup-bags/mine', () => HttpResponse.json(mockMakeupBags)),
 
     http.get('api/makeup-bags/:id', ({ params }) => {
         const makeupBag = mockMakeupBags.find((p) => p._id === params.id)

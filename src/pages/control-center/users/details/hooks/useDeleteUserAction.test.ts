@@ -1,16 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import {
     mockUserResult,
@@ -29,15 +20,9 @@ describe('useDeleteUserAction', () => {
     const mockDelete = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
         pathname: '/control-center/users/123456789012345678901234',
-    })
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -53,10 +38,6 @@ describe('useDeleteUserAction', () => {
         ])
 
         mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('handles delete action', async () => {

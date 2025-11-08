@@ -1,15 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { useLocation, useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockMakeupBagQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import {
@@ -29,17 +20,11 @@ describe('useDeleteMakeupBagQuestionnaireAction', () => {
     const mockDeleteMakeupBagQuestionnaireById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
         pathname: ROUTES.questionnaires.makeupBags.result(
             '123456789012345678901234'
         ),
-    })
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -61,10 +46,6 @@ describe('useDeleteMakeupBagQuestionnaireAction', () => {
             isLoading: false,
             error: null,
         })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('handles delete action', async () => {

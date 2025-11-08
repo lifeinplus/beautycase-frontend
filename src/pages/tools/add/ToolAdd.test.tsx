@@ -13,6 +13,7 @@ import { useCreateToolMutation } from '@/features/tools/api/toolsApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { ToolAdd } from './ToolAdd'
 
 vi.mock('@/app/hooks/hooks')
@@ -61,22 +62,16 @@ describe('ToolAdd', () => {
     it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ToolAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddTool).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()
-
-        mockConsoleError.mockRestore()
     })
 })

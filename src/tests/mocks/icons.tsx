@@ -20,6 +20,7 @@ const icons = {
     DocumentArrowDownIcon: mockIcon,
     DocumentDuplicateIcon: mockIcon,
     EllipsisHorizontalCircleIcon: mockIcon,
+    ExclamationCircleIcon: mockIcon,
     FilmIcon: mockIcon,
     LanguageIcon: mockIcon,
     ListBulletIcon: mockIcon,

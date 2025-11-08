@@ -11,7 +11,7 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { Image } from '@/shared/components/ui/image/Image'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 
 export const UserSelection = () => {
     const navigate = useNavigate()
@@ -88,7 +88,13 @@ export const UserSelection = () => {
                                             </div>
 
                                             <div className="col-span-3 flex items-center">
-                                                <h2>{`${getFullName(firstName, lastName)} | @${username}`}</h2>
+                                                <h2>
+                                                    {fullNameWithUsername(
+                                                        firstName,
+                                                        lastName,
+                                                        username
+                                                    )}
+                                                </h2>
                                             </div>
 
                                             <div className="flex items-center justify-center">

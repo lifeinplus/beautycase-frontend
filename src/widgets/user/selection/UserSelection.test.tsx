@@ -10,7 +10,8 @@ import {
     mockUser2,
     mockUsers,
 } from '@/features/users/api/__mocks__/usersApi'
-import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
+import { useGetAllClientsQuery } from '@/features/users/api/usersApi'
+import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { UserSelection } from './UserSelection'
@@ -26,7 +27,7 @@ describe('UserSelection', () => {
     }
 
     beforeEach(() => {
-        vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllClientsQuery as Mock).mockReturnValue({
             data: mockUsers,
             isLoading: false,
             error: null,
@@ -36,7 +37,7 @@ describe('UserSelection', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllClientsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -48,7 +49,7 @@ describe('UserSelection', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({
+        vi.mocked(useGetAllClientsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,
@@ -61,8 +62,26 @@ describe('UserSelection', () => {
 
     it('renders client items', () => {
         render(<UserSelection />)
-        expect(screen.getByText(mockUser1.username)).toBeInTheDocument()
-        expect(screen.getByText(mockUser2.username)).toBeInTheDocument()
+
+        expect(
+            screen.getByText(
+                fullNameWithUsername(
+                    mockUser1.firstName,
+                    mockUser1.lastName,
+                    mockUser1.username
+                )
+            )
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText(
+                fullNameWithUsername(
+                    mockUser2.firstName,
+                    mockUser2.lastName,
+                    mockUser2.username
+                )
+            )
+        ).toBeInTheDocument()
     })
 
     it('shows selected state for preselected clients', () => {
@@ -77,7 +96,16 @@ describe('UserSelection', () => {
         const user = userEvent.setup()
         render(<UserSelection />)
 
-        const aliceRow = screen.getByText(mockUser1.username).closest('.grid')
+        const aliceRow = screen
+            .getByText(
+                fullNameWithUsername(
+                    mockUser1.firstName,
+                    mockUser1.lastName,
+                    mockUser1.username
+                )
+            )
+            .closest('.grid')
+
         expect(aliceRow).toBeInTheDocument()
 
         await user.click(aliceRow!)

@@ -32,7 +32,7 @@ export const mockRegisterParams: AuthQueryRegister = {
     username: 'testuser',
     password: 'password123',
     confirmPassword: 'password123',
-    role: 'client',
+    role: Role.CLIENT,
 }
 
 export const useLoginUserMutation = vi.fn()

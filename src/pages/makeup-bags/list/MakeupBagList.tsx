@@ -7,7 +7,7 @@ import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/use
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])
@@ -15,7 +15,7 @@ export const MakeupBagList = () => {
 
     const backAction = useToBackstageGalleryAction()
 
-    const title = getTitleWithCount(t('hero.headline'), data.length)
+    const title = titleWithCount(t('hero.headline'), data.length)
 
     return (
         <article>

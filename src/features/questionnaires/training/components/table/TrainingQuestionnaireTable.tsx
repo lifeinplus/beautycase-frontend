@@ -7,7 +7,7 @@ import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
 import { Role } from '@/shared/model/role'
 import { formatDate } from '@/shared/utils/date/formatDate'
-import { getFullName } from '@/shared/utils/ui/getFullName'
+import { fullName } from '@/shared/utils/ui/fullName'
 import type { TrainingQuestionnaire } from '../../../types'
 
 export interface TrainingQuestionnaireTableProps {
@@ -46,10 +46,7 @@ export const TrainingQuestionnaireTable = ({
                         formatDate(item.createdAt, 'HH:mm'),
                         item.name,
                         isAdmin
-                            ? getFullName(
-                                  item.mua?.firstName,
-                                  item.mua?.lastName
-                              )
+                            ? fullName(item.mua?.firstName, item.mua?.lastName)
                             : item.contact,
                     ]}
                     redirectPath={`/questionnaires/trainings/${item._id}`}

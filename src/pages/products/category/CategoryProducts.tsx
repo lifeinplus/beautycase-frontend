@@ -7,7 +7,7 @@ import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ROUTES } from '@/shared/config/routes'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 import { useToProductGalleryAction } from '../gallery/hooks/useToProductGalleryAction'
 
 export const CategoryProducts = () => {
@@ -21,7 +21,7 @@ export const CategoryProducts = () => {
         error,
     } = useGetMineProductsByCategoryQuery(category!)
 
-    const title = getTitleWithCount(t(`categories.${category}`), data.length)
+    const title = titleWithCount(t(`categories.${category}`), data.length)
 
     return (
         <article className="pb-13 md:pb-0">

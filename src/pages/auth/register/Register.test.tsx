@@ -1,13 +1,15 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useRegisterUserMutation } from '@/features/auth/api/authApi'
+import type { AuthQueryRegister } from '@/features/auth/types'
+import { Role } from '@/shared/model/role'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { Register } from './Register'
 
 vi.mock('@/features/auth/api/authApi')
@@ -27,19 +29,26 @@ const MockRoutes = () => (
 describe('Register', () => {
     const initialEntries = ['/register']
 
-    const mockParams = {
+    const mockParams: AuthQueryRegister = {
+        firstName: 'Test',
+        lastName: 'User',
         username: 'testuser',
         password: 'password123',
         confirmPassword: 'password123',
+        role: Role.CLIENT,
     }
 
-    const mockRegisterUser = vi.fn()
+    const mockRegister = vi.fn()
+    const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
-            mockRegisterUser,
+            mockRegister,
             { isLoading: false },
         ])
+
+        mockRegister.mockReturnValue({ unwrap: mockUnwrap })
+        mockUnwrap.mockResolvedValue({})
     })
 
     it('renders the registration form correctly', () => {
@@ -88,6 +97,18 @@ describe('Register', () => {
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
+        await user.click(screen.getByLabelText('fields.role.options.client'))
+
+        await user.type(
+            screen.getByPlaceholderText('fields.firstName.label'),
+            mockParams.firstName
+        )
+
+        await user.type(
+            screen.getByPlaceholderText('fields.lastName.label'),
+            mockParams.lastName
+        )
+
         await user.type(
             screen.getByPlaceholderText('fields.username.label'),
             mockParams.username
@@ -109,7 +130,7 @@ describe('Register', () => {
             })
         )
 
-        expect(mockRegisterUser).toHaveBeenCalledWith(mockParams)
+        expect(mockRegister).toHaveBeenCalledWith(mockParams)
         expect(mockNavigate).toHaveBeenCalledWith('/login')
     })
 
@@ -135,13 +156,21 @@ describe('Register', () => {
     it('handles registration error', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
-        mockRegisterUser.mockRejectedValue(mockError)
+        mockUnwrap.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
+
+        await user.click(screen.getByLabelText('fields.role.options.client'))
+
+        await user.type(
+            screen.getByPlaceholderText('fields.firstName.label'),
+            mockParams.firstName
+        )
+
+        await user.type(
+            screen.getByPlaceholderText('fields.lastName.label'),
+            mockParams.lastName
+        )
 
         await user.type(
             screen.getByPlaceholderText('fields.username.label'),
@@ -164,22 +193,21 @@ describe('Register', () => {
             })
         )
 
-        expect(mockRegisterUser).toHaveBeenCalledTimes(1)
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
+        expect(mockRegister).toHaveBeenCalledTimes(1)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
     })
 
     it('disables submit button while loading', async () => {
         vi.mocked(useRegisterUserMutation as Mock).mockReturnValue([
-            mockRegisterUser,
+            mockRegister,
             { isLoading: true },
         ])
 
         renderWithRouter(<MockRoutes />, initialEntries)
 
-        expect(screen.getByRole('button')).toBeDisabled()
+        expect(
+            screen.getByRole('button', { name: 'registering' })
+        ).toBeDisabled()
     })
 
     it('navigates to login page when login link is clicked', async () => {

@@ -12,7 +12,7 @@ import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/use
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const StageList = () => {
     const { t } = useTranslation(['stage', 'component'])
@@ -51,7 +51,7 @@ export const StageList = () => {
         )
     }, [stages, makeupBags, selectedMakeupBagId])
 
-    const title = getTitleWithCount(t('titles.list'), filteredStages.length)
+    const title = titleWithCount(t('titles.list'), filteredStages.length)
 
     const handleSelectMakeupBag = useCallback((id: string) => {
         setSelectedMakeupBagId(id)

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagList } from './MakeupBagList'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
@@ -12,7 +12,7 @@ vi.mock('@/shared/components/layout/header/Header')
 
 describe('MakeupBagList', () => {
     beforeEach(() => {
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
             isLoading: false,
             error: null,

@@ -37,12 +37,13 @@ export const mockStage2: Stage = {
 export const mockStages: Stage[] = [mockStage1, mockStage2]
 
 export const useCreateStageMutation = vi.fn()
-export const useDeleteStageByIdMutation = vi.fn()
 export const useDuplicateStageByIdMutation = vi.fn()
 export const useGetAllStagesQuery = vi.fn()
+export const useGetMineStagesQuery = vi.fn()
 export const useGetStageByIdQuery = vi.fn()
 export const useUpdateStageByIdMutation = vi.fn()
 export const useUpdateStageProductsMutation = vi.fn()
+export const useDeleteStageByIdMutation = vi.fn()
 
 const stagesHandlers = [
     http.post('api/stages', () => HttpResponse.json(mockStageCreate)),
@@ -53,6 +54,8 @@ const stagesHandlers = [
 
     http.get('api/stages', () => HttpResponse.json(mockStages)),
 
+    http.get('api/stages/mine', () => HttpResponse.json(mockStages)),
+
     http.get('api/stages/:id', ({ params }) => {
         const stage = mockStages.find((s) => s._id === params.id)
         return stage
@@ -61,6 +64,10 @@ const stagesHandlers = [
     }),
 
     http.put('api/stages/:id', async ({ params }) =>
+        HttpResponse.json({ id: params.id })
+    ),
+
+    http.patch('api/stages/:id/products', async ({ params }) =>
         HttpResponse.json({ id: params.id })
     ),
 

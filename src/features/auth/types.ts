@@ -22,7 +22,7 @@ export interface AuthQueryRegister {
     username: string
     password: string
     confirmPassword: string
-    role: string
+    role: Role
 }
 
 interface FieldOption {

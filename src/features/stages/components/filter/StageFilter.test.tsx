@@ -6,9 +6,8 @@ import {
     mockMakeupBag1,
     mockMakeupBags,
 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import { getFullName } from '@/shared/utils/ui/getFullName'
-import { mockStage1 } from '../../api/__mocks__/stagesApi'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { fullName } from '@/shared/utils/ui/fullName'
 import { StageFilter } from './StageFilter'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
@@ -17,14 +16,14 @@ describe('StageFilter', () => {
     const mockOnFilterChange = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
     })
 
     it('renders select dropdown with makeup bag options', () => {
         const category = `makeupBag:categories.${mockMakeupBag1.category?.name}.short`
-        const client = getFullName(
+        const client = fullName(
             mockMakeupBag1.client?.firstName,
             mockMakeupBag1.client?.lastName
         )
@@ -37,7 +36,7 @@ describe('StageFilter', () => {
     })
 
     it('handles empty makeup bags list correctly', () => {
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: [],
         })
 
@@ -57,10 +56,9 @@ describe('StageFilter', () => {
 
         mockOnFilterChange.mockReset()
 
-        const select = screen.getByRole('combobox')
-        await user.selectOptions(select, 'makeupBag1')
+        await user.selectOptions(screen.getByRole('combobox'), 'makeupBag1')
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1)
-        expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage1])
+        expect(mockOnFilterChange).toHaveBeenLastCalledWith(mockMakeupBag1._id)
     })
 })

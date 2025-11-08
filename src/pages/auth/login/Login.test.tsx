@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import toast from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
@@ -10,9 +9,11 @@ import {
     mockLoginResult,
 } from '@/features/auth/api/__mocks__/authApi'
 import { useLoginUserMutation } from '@/features/auth/api/authApi'
+import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { Login } from './Login'
 
 vi.mock('@/app/hooks/hooks')
@@ -35,16 +36,16 @@ const MockRoutes = () => (
 describe('Login', () => {
     const initialEntries = ['/login']
 
-    const mockLoginUser = vi.fn()
+    const mockLogin = vi.fn()
     const mockUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
-            mockLoginUser,
+            mockLogin,
             { isLoading: false },
         ])
 
-        mockLoginUser.mockReturnValue({ unwrap: mockUnwrap })
+        mockLogin.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue(mockLoginResult)
     })
 
@@ -66,14 +67,6 @@ describe('Login', () => {
         ).toBeInTheDocument()
 
         expect(screen.getByText('register')).toBeInTheDocument()
-    })
-
-    it('focuses username input on mount', () => {
-        renderWithRouter(<MockRoutes />, initialEntries)
-
-        expect(document.activeElement).toBe(
-            screen.getByPlaceholderText('fields.username.label')
-        )
     })
 
     it('allows user to type in the fields', async () => {
@@ -108,13 +101,15 @@ describe('Login', () => {
 
         await user.click(screen.getByRole('button', { name: 'login' }))
 
-        expect(mockLoginUser).toHaveBeenCalledWith({
+        expect(mockLogin).toHaveBeenCalledWith({
             username: mockLoginParams.username,
             password: mockLoginParams.password,
         })
 
         expect(mockDispatch).toHaveBeenCalled()
-        expect(mockNavigate).toHaveBeenCalledWith('/', { replace: true })
+        expect(mockNavigate).toHaveBeenCalledWith(ROUTES.home, {
+            replace: true,
+        })
     })
 
     it('shows validation errors when fields are empty', async () => {
@@ -135,10 +130,6 @@ describe('Login', () => {
     it('handles login error', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         renderWithRouter(<MockRoutes />, initialEntries)
@@ -155,16 +146,13 @@ describe('Login', () => {
 
         await user.click(screen.getByRole('button', { name: 'login' }))
 
-        expect(mockLoginUser).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
+        expect(mockLogin).toHaveBeenCalled()
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
     })
 
     it('disables submit button while loading', () => {
         vi.mocked(useLoginUserMutation as Mock).mockReturnValue([
-            mockLoginUser,
+            mockLogin,
             { isLoading: true },
         ])
 

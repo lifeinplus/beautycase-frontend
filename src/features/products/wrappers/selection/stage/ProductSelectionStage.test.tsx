@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useUpdateStageProductsMutation } from '@/features/stages/api/stagesApi'
 import { mockError } from '@/tests/mocks'
+import { spyConsoleError } from '@/tests/setup'
 import { ProductSelectionStage } from './ProductSelectionStage'
 
 vi.mock('@/features/stages/api/stagesApi')
@@ -49,10 +50,6 @@ describe('ProductSelectionStage', () => {
     it('shows error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const spyConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ProductSelectionStage />)
@@ -61,7 +58,5 @@ describe('ProductSelectionStage', () => {
         expect(mockUpdate).toHaveBeenCalled()
         expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        spyConsoleError.mockRestore()
     })
 })

@@ -2,6 +2,9 @@ import type { Questions, TrainingQuestionnaire } from '../../types'
 
 export const trainingQuestionnaireQuestions: Questions<TrainingQuestionnaire> =
     {
+        mua: {
+            label: 'training.fields.mua.label',
+        },
         name: {
             label: 'training.fields.name.label',
             description: 'training.fields.name.description',

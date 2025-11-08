@@ -60,12 +60,11 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.delete.ariaLabel')}
                         className={classNames(
-                            'text-rose-500 dark:text-rose-400',
-                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                            'dark:focus-visible:outline-rose-700',
                             'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
-                            isBlocked &&
-                                'text-neutral-500 dark:text-neutral-400'
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',
+                            isBlocked
+                                ? 'text-neutral-500 dark:text-neutral-400'
+                                : 'text-rose-500 dark:text-rose-400'
                         )}
                         disabled={isBlocked || isLoading}
                         onClick={onConfirm}
@@ -78,10 +77,8 @@ export const ModalDelete = ({
                     <button
                         aria-label={t('buttons.cancel.ariaLabel')}
                         className={classNames(
-                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                            'dark:focus-visible:outline-rose-700',
-                            'min-h-12 w-full bg-transparent px-2 text-lg font-bold',
-                            'rounded-b-xl pb-2 font-light text-black dark:text-white'
+                            'min-h-12 w-full rounded-b-xl bg-transparent px-2 pb-2 text-lg font-light text-black dark:text-white',
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
                         )}
                         onClick={onCancel}
                     >

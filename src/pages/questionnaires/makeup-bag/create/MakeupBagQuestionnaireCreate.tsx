@@ -6,20 +6,24 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import config from '@/app/config/config'
+import { SelectOption } from '@/features/form/types'
 import { useCreateMakeupBagQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import { makeupBagQuestionnaireSchema } from '@/features/questionnaires/makeup-bag/validations/makeupBagQuestionnaireSchema'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { CheckboxSection } from '@/shared/components/forms/checkbox/section/CheckboxSection'
 import { ImageTextSection } from '@/shared/components/forms/image/text-section/ImageTextSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
+import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 
 export const MakeupBagQuestionnaireCreate = () => {
     const navigate = useNavigate()
@@ -39,6 +43,13 @@ export const MakeupBagQuestionnaireCreate = () => {
 
     const [createMakeupBagQuestionnaire, { isLoading }] =
         useCreateMakeupBagQuestionnaireMutation()
+
+    const { data: muas } = useGetAllMuasQuery()
+
+    const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
+        text: fullNameWithUsername(m.firstName, m.lastName, m.username),
+        value: m._id!,
+    }))
 
     const onSubmit = async (data: MakeupBagQuestionnaire) => {
         try {
@@ -62,8 +73,8 @@ export const MakeupBagQuestionnaireCreate = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero
                         title={title}
                         subtitle={subtitle}
@@ -72,7 +83,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                         hideOnMobile
                     />
 
-                    <div className="sm:hidden">
+                    <div className="md:hidden">
                         <Hero
                             subtitle={subtitle}
                             imgUrl={
@@ -88,14 +99,20 @@ export const MakeupBagQuestionnaireCreate = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p
-                                className={classNames(
-                                    'text-rose-500 dark:text-rose-400',
-                                    'text-sm'
-                                )}
-                            >
+                            <p className="text-sm text-rose-500 dark:text-rose-400">
                                 {t('requiredField')}
                             </p>
+
+                            <SelectSection
+                                error={t(errors.muaId?.message || '')}
+                                label={t(
+                                    makeupBagQuestionnaireQuestions.mua.label
+                                )}
+                                options={muaOptions}
+                                register={register('muaId')}
+                                required={true}
+                                value={watch('muaId')}
+                            />
 
                             <InputSection
                                 error={t(errors.name?.message || '')}
@@ -192,6 +209,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('skinType')}
+                                t={t}
                             />
 
                             <TextareaSection
@@ -221,6 +239,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('peeling')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -237,6 +256,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('pores')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -254,6 +274,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('oilyShine')}
+                                t={t}
                             />
 
                             <TextareaSection
@@ -298,6 +319,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('makeupTime')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -313,6 +335,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('budget')}
+                                t={t}
                             />
 
                             <RadioButtonSection
@@ -330,6 +353,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('brushes')}
+                                t={t}
                             />
 
                             <CheckboxSection
@@ -362,13 +386,14 @@ export const MakeupBagQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('referral')}
+                                t={t}
                             />
                         </article>
 
                         <section
                             className={classNames(
                                 'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'md:flex md:justify-end md:border-0 md:pt-0',
                                 'dark:border-gray-700'
                             )}
                         >

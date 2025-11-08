@@ -16,7 +16,7 @@
     "PRODUCT_IN_USE": "Cannot delete product, it is in use",
     "PRODUCT_NOT_FOUND": "Product not found",
     "PRODUCTS_NOT_FOUND": "Products not found",
-    "REGISTER_ERROR": "Username already in use",
+    "REGISTER_ERROR": "This username is already taken",
     "STAGE_NOT_FOUND": "Stage not found",
     "STAGES_NOT_FOUND": "Stages not found",
     "STORE_NOT_FOUND": "Store not found",

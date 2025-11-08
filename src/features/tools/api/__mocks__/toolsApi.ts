@@ -60,7 +60,7 @@ export const mockTool3: Tool = {
 export const mockTools: Tool[] = [mockTool1, mockTool2, mockTool3]
 
 export const useCreateToolMutation = vi.fn()
-export const useGetAllToolsQuery = vi.fn()
+export const useGetMineToolsQuery = vi.fn()
 export const useGetToolByIdQuery = vi.fn()
 export const useDeleteToolByIdMutation = vi.fn()
 export const useUpdateToolByIdMutation = vi.fn()
@@ -69,7 +69,7 @@ export const useUpdateToolStoreLinksMutation = vi.fn()
 const toolsHandlers = [
     http.post('api/tools', () => HttpResponse.json(mockToolCreate)),
 
-    http.get('api/tools', () => HttpResponse.json(mockTools)),
+    http.get('api/tools/mine', () => HttpResponse.json(mockTools)),
 
     http.get('api/tools/:id', ({ params }) => {
         const tool = mockTools.find((t) => t._id === params.id)
@@ -82,6 +82,10 @@ const toolsHandlers = [
     }),
 
     http.put('api/tools/:id', async ({ params }) =>
+        HttpResponse.json({ id: params.id })
+    ),
+
+    http.put('api/tools/:id/store-links', async ({ params }) =>
         HttpResponse.json({ id: params.id })
     ),
 

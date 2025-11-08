@@ -1,15 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { useLocation, useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
 import {
@@ -32,15 +23,9 @@ describe('useDeleteStageAction', () => {
     const mockDeleteStageById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
         pathname: ROUTES.backstage.stages.details('123456789012345678901234'),
-    })
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -56,10 +41,6 @@ describe('useDeleteStageAction', () => {
             isLoading: false,
             error: null,
         })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('handles delete action', async () => {

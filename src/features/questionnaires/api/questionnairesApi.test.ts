@@ -7,9 +7,13 @@ import { renderHookWithProvider } from '@/tests/mocks/wrappers'
 import {
     useCreateMakeupBagQuestionnaireMutation,
     useCreateTrainingQuestionnaireMutation,
+    useDeleteMakeupBagQuestionnaireByIdMutation,
+    useDeleteTrainingQuestionnaireByIdMutation,
     useGetAllMakeupBagQuestionnairesQuery,
     useGetAllTrainingQuestionnairesQuery,
     useGetMakeupBagQuestionnaireByIdQuery,
+    useGetMineMakeupBagQuestionnairesQuery,
+    useGetMineTrainingQuestionnairesQuery,
     useGetTrainingQuestionnaireByIdQuery,
 } from '../api/questionnairesApi'
 import {
@@ -86,6 +90,21 @@ describe('questionnairesApi', () => {
             })
         })
 
+        describe('getMineMakeupBagQuestionnaires', () => {
+            it('gets only mine makeup bag questionnaires', async () => {
+                const { result } = renderHookWithProvider(() =>
+                    useGetMineMakeupBagQuestionnairesQuery()
+                )
+
+                expect(result.current.isLoading).toBe(true)
+
+                await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+                expect(result.current.data).toEqual(mockMakeupBagQuestionnaires)
+                expect(result.current.data?.length).toBe(2)
+            })
+        })
+
         describe('getMakeupBagQuestionnaireById', () => {
             it('gets a questionnaire by id', async () => {
                 const { result } = renderHookWithProvider(() =>
@@ -115,6 +134,25 @@ describe('questionnairesApi', () => {
 
                 expect(result.current.error).toBeDefined()
                 expect(result.current.error).toHaveProperty('status', 404)
+            })
+        })
+
+        describe('deleteMakeupBagQuestionnaireById', () => {
+            it('deletes a questionnaire successfully', async () => {
+                const { result } = renderHookWithProvider(() =>
+                    useDeleteMakeupBagQuestionnaireByIdMutation()
+                )
+
+                const [deleteMakeupBagQuestionnaire] = result.current
+
+                await act(async () => {
+                    const response = await deleteMakeupBagQuestionnaire(
+                        mockMakeupBagQuestionnaire1._id!
+                    ).unwrap()
+                    expect(response).toEqual({
+                        id: mockMakeupBagQuestionnaire1._id,
+                    })
+                })
             })
         })
     })
@@ -183,6 +221,21 @@ describe('questionnairesApi', () => {
             })
         })
 
+        describe('getMineTrainingQuestionnaires', () => {
+            it('gets only mine training questionnaires', async () => {
+                const { result } = renderHookWithProvider(() =>
+                    useGetMineTrainingQuestionnairesQuery()
+                )
+
+                expect(result.current.isLoading).toBe(true)
+
+                await waitFor(() => expect(result.current.isSuccess).toBe(true))
+
+                expect(result.current.data).toEqual(mockTrainingQuestionnaires)
+                expect(result.current.data?.length).toBe(2)
+            })
+        })
+
         describe('getTrainingQuestionnaireById', () => {
             it('gets a questionnaire by id', async () => {
                 const { result } = renderHookWithProvider(() =>
@@ -212,6 +265,25 @@ describe('questionnairesApi', () => {
 
                 expect(result.current.error).toBeDefined()
                 expect(result.current.error).toHaveProperty('status', 404)
+            })
+        })
+
+        describe('deleteTrainingQuestionnaireById', () => {
+            it('deletes a questionnaire successfully', async () => {
+                const { result } = renderHookWithProvider(() =>
+                    useDeleteTrainingQuestionnaireByIdMutation()
+                )
+
+                const [deleteTrainingQuestionnaire] = result.current
+
+                await act(async () => {
+                    const response = await deleteTrainingQuestionnaire(
+                        mockTrainingQuestionnaire1._id!
+                    ).unwrap()
+                    expect(response).toEqual({
+                        id: mockTrainingQuestionnaire1._id,
+                    })
+                })
             })
         })
     })

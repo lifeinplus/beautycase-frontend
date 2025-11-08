@@ -10,7 +10,7 @@ const lessonsApi = api.injectEndpoints({
                 shortDescription,
                 videoUrl,
                 fullDescription,
-                productIds,
+                clientIds,
             }) => ({
                 url: '/lessons',
                 method: 'POST',
@@ -19,14 +19,14 @@ const lessonsApi = api.injectEndpoints({
                     shortDescription,
                     videoUrl,
                     fullDescription,
-                    productIds,
+                    clientIds,
                 },
             }),
             invalidatesTags: ['Lesson'],
         }),
 
-        getAllLessons: builder.query<Lesson[], void>({
-            query: () => '/lessons',
+        getMineLessons: builder.query<Lesson[], void>({
+            query: () => '/lessons/mine',
             providesTags: (result) =>
                 result
                     ? [
@@ -86,7 +86,7 @@ const lessonsApi = api.injectEndpoints({
 
 export const {
     useCreateLessonMutation,
-    useGetAllLessonsQuery,
+    useGetMineLessonsQuery,
     useGetLessonByIdQuery,
     useUpdateLessonByIdMutation,
     useUpdateLessonProductsMutation,

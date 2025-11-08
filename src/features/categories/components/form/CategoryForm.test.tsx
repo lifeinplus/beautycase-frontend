@@ -9,6 +9,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
 import { mockError } from '@/tests/mocks'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { mockCategory1 } from '../../api/__mocks__/categoriesApi'
 import {
     useCreateCategoryMutation,
@@ -133,10 +134,6 @@ describe('CategoryForm', () => {
     it('handles createCategory error', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockCreateUnwrap.mockRejectedValue(mockError)
 
         render(<CategoryForm ref={mockRef} />)
@@ -154,18 +151,12 @@ describe('CategoryForm', () => {
         await user.click(screen.getByRole('button'))
 
         expect(mockCreateCategory).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('handles updateCategory error', async () => {
         const user = userEvent.setup()
-
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
 
         mockUpdateUnwrap.mockRejectedValue(mockError)
 
@@ -189,10 +180,8 @@ describe('CategoryForm', () => {
         await user.click(screen.getByRole('button'))
 
         expect(mockUpdateCategoryById).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('renders error message', async () => {

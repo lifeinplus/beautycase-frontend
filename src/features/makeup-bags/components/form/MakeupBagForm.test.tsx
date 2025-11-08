@@ -8,7 +8,10 @@ import { mockCategories } from '@/features/categories/api/__mocks__/categoriesAp
 import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/categoriesApi'
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockUsers } from '@/features/users/api/__mocks__/usersApi'
-import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
+import {
+    useGetAllClientsQuery,
+    useGetAllUsersQuery,
+} from '@/features/users/api/usersApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
@@ -29,6 +32,10 @@ describe('MakeupBagForm', () => {
 
         vi.mocked(useGetMakeupBagCategoriesQuery as Mock).mockReturnValue({
             data: mockCategories,
+        })
+
+        vi.mocked(useGetAllClientsQuery as Mock).mockReturnValue({
+            data: mockUsers,
         })
 
         vi.mocked(useGetAllUsersQuery as Mock).mockReturnValue({

@@ -6,8 +6,8 @@ import {
     mockMakeupBag1,
     mockMakeupBags,
 } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import { mockStage1, mockStages } from '../../api/__mocks__/stagesApi'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { fullName } from '@/shared/utils/ui/fullName'
 import { StageFilter } from './StageFilter'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
@@ -16,21 +16,19 @@ describe('StageFilter', () => {
     const mockOnFilterChange = vi.fn()
 
     beforeEach(() => {
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
     })
 
     it('renders select dropdown with makeup bag options', () => {
         const category = `makeupBag:categories.${mockMakeupBag1.category?.name}.short`
-        const client = mockMakeupBag1.client?.username
-
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
+        const client = fullName(
+            mockMakeupBag1.client?.firstName,
+            mockMakeupBag1.client?.lastName
         )
+
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         expect(screen.getByRole('combobox')).toBeInTheDocument()
         expect(screen.getByText('noMakeupBag')).toBeInTheDocument()
@@ -38,16 +36,11 @@ describe('StageFilter', () => {
     })
 
     it('handles empty makeup bags list correctly', () => {
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: [],
         })
 
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
-        )
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         const combobox = screen.getByRole('combobox')
         expect(combobox).toBeInTheDocument()
@@ -59,19 +52,13 @@ describe('StageFilter', () => {
     it('filters stages correctly when a makeup bag is selected', async () => {
         const user = userEvent.setup()
 
-        render(
-            <StageFilter
-                onFilterChange={mockOnFilterChange}
-                stages={mockStages}
-            />
-        )
+        render(<StageFilter onSelectMakeupBag={mockOnFilterChange} />)
 
         mockOnFilterChange.mockReset()
 
-        const select = screen.getByRole('combobox')
-        await user.selectOptions(select, 'makeupBag1')
+        await user.selectOptions(screen.getByRole('combobox'), 'makeupBag1')
 
         expect(mockOnFilterChange).toHaveBeenCalledTimes(1)
-        expect(mockOnFilterChange).toHaveBeenLastCalledWith([mockStage1])
+        expect(mockOnFilterChange).toHaveBeenLastCalledWith(mockMakeupBag1._id)
     })
 })

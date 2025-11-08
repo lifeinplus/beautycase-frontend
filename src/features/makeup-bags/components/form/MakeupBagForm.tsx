@@ -9,13 +9,14 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { useGetMakeupBagCategoriesQuery } from '@/features/categories/api/categoriesApi'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import type { SelectOption } from '@/features/form/types'
-import { useGetAllUsersQuery } from '@/features/users/api/usersApi'
+import { useGetAllClientsQuery } from '@/features/users/api/usersApi'
 import { ButtonNavigateSection } from '@/shared/components/forms/button-navigate/section/ButtonNavigateSection'
 import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { ROUTES } from '@/shared/config/routes'
+import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 import type { MakeupBag } from '../../types'
 import { makeupBagSchema } from '../../validations'
 
@@ -52,7 +53,7 @@ export const MakeupBagForm = ({
     }, [formData])
 
     const { data: categories = [] } = useGetMakeupBagCategoriesQuery()
-    const { data: users = [] } = useGetAllUsersQuery()
+    const { data: clients = [] } = useGetAllClientsQuery()
 
     const categoryOptions = categories.map(
         (c): SelectOption => ({
@@ -61,10 +62,10 @@ export const MakeupBagForm = ({
         })
     )
 
-    const clientOptions = users.map(
-        (u): SelectOption => ({
-            text: u.username,
-            value: u._id,
+    const clientOptions = clients.map(
+        (c): SelectOption => ({
+            text: fullNameWithUsername(c.firstName, c.lastName, c.username),
+            value: c._id,
         })
     )
 
@@ -95,8 +96,8 @@ export const MakeupBagForm = ({
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={title} hideOnMobile />
 
                     <form
@@ -142,7 +143,7 @@ export const MakeupBagForm = ({
                         <section
                             className={classNames(
                                 'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'md:flex md:justify-end md:border-0 md:pt-0',
                                 'dark:border-gray-700'
                             )}
                         >

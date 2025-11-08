@@ -1,17 +1,8 @@
 import { screen } from '@testing-library/react'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockLessons } from '@/features/lessons/api/__mocks__/lessonsApi'
-import { useGetAllLessonsQuery } from '@/features/lessons/api/lessonsApi'
+import { useGetMineLessonsQuery } from '@/features/lessons/api/lessonsApi'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { LessonGallery } from './LessonGallery'
 
@@ -20,22 +11,12 @@ vi.mock('@/shared/components/layout/header/Header')
 vi.mock('@/widgets/view/gallery/Gallery')
 
 describe('LessonGallery', () => {
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
-
     beforeEach(() => {
-        vi.mocked(useGetAllLessonsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineLessonsQuery as Mock).mockReturnValue({
             data: mockLessons,
             isLoading: false,
             error: null,
         })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('renders list of lessons when data is available', () => {

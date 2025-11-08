@@ -50,7 +50,41 @@ const questionnairesApi = api.injectEndpoints({
             TrainingQuestionnaire[],
             void
         >({
-            query: () => `/questionnaires/trainings`,
+            query: () => '/questionnaires/trainings',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Questionnaire' as const,
+                              id: _id,
+                          })),
+                          { type: 'Questionnaire', id: 'LIST' },
+                      ]
+                    : [{ type: 'Questionnaire', id: 'LIST' }],
+        }),
+
+        getMineMakeupBagQuestionnaires: builder.query<
+            MakeupBagQuestionnaire[],
+            void
+        >({
+            query: () => '/questionnaires/makeup-bags/mine',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Questionnaire' as const,
+                              id: _id,
+                          })),
+                          { type: 'Questionnaire', id: 'LIST' },
+                      ]
+                    : [{ type: 'Questionnaire', id: 'LIST' }],
+        }),
+
+        getMineTrainingQuestionnaires: builder.query<
+            TrainingQuestionnaire[],
+            void
+        >({
+            query: () => '/questionnaires/trainings/mine',
             providesTags: (result) =>
                 result
                     ? [
@@ -112,6 +146,8 @@ export const {
     useCreateTrainingQuestionnaireMutation,
     useGetAllMakeupBagQuestionnairesQuery,
     useGetAllTrainingQuestionnairesQuery,
+    useGetMineMakeupBagQuestionnairesQuery,
+    useGetMineTrainingQuestionnairesQuery,
     useGetMakeupBagQuestionnaireByIdQuery,
     useGetTrainingQuestionnaireByIdQuery,
     useDeleteMakeupBagQuestionnaireByIdMutation,

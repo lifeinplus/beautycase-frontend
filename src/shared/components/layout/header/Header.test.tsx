@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { ROUTES } from '@/shared/config/routes'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { Header } from './Header'
 
@@ -39,7 +40,7 @@ describe('Header', () => {
 
         const logoLink = screen.getByRole('link', { name: /beautycase/i })
         expect(logoLink).toBeInTheDocument()
-        expect(logoLink).toHaveAttribute('href', '/')
+        expect(logoLink).toHaveAttribute('href', ROUTES.home)
         expect(logoLink.textContent).toBe('Beautycase')
     })
 

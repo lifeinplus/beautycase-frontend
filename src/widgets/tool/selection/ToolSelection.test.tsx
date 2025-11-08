@@ -6,7 +6,7 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
-import { useGetAllToolsQuery } from '@/features/tools/api/toolsApi'
+import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
 import { ToolSelection } from './ToolSelection'
@@ -22,7 +22,7 @@ describe('ToolSelection', () => {
     }
 
     beforeEach(() => {
-        vi.mocked(useGetAllToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineToolsQuery as Mock).mockReturnValue({
             data: mockTools,
             isLoading: false,
             error: null,
@@ -32,7 +32,7 @@ describe('ToolSelection', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetAllToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -44,7 +44,7 @@ describe('ToolSelection', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetAllToolsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineToolsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,

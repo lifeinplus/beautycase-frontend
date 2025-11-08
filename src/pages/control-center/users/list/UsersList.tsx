@@ -7,7 +7,7 @@ import { useToControlCenterGalleryAction } from '@/pages/control-center/gallery/
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { getTitleWithCount } from '@/shared/utils/ui/getTitleWithCount'
+import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const UsersList = () => {
     const { t } = useTranslation(['user', 'account'])
@@ -15,7 +15,7 @@ export const UsersList = () => {
 
     const backAction = useToControlCenterGalleryAction()
 
-    const title = getTitleWithCount(t('hero.headline'), data.length)
+    const title = titleWithCount(t('hero.headline'), data.length)
 
     return (
         <article>

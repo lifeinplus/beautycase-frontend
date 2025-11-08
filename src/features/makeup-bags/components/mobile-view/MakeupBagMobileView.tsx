@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { MobileView } from '@/shared/components/table/mobile-view/MobileView'
 import { ROUTES } from '@/shared/config/routes'
 import { formatDate } from '@/shared/utils/date/formatDate'
+import { fullName } from '@/shared/utils/ui/fullName'
 import type { MakeupBag } from '../../types'
 
 export interface MakeupBagMobileViewProps {
@@ -17,7 +18,9 @@ export const MakeupBagMobileView = ({
     return (
         <MobileView
             items={makeupBags}
-            getTitle={(item) => item.client?.username || ''}
+            getTitle={(item) =>
+                fullName(item.client?.firstName, item.client?.lastName)
+            }
             getDescription={(item) =>
                 t(`categories.${item.category?.name}.short`)
             }

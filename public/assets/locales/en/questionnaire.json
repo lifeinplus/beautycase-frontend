@@ -12,6 +12,12 @@
             "content": "Hello! Thank you for choosing my service. In order for me to select exactly what you need, please answer a few questions."
         },
         "fields": {
+            "mua": {
+                "label": "Makeup Artist",
+                "errors": {
+                    "required": "Please select a makeup artist"
+                }
+            },
             "name": {
                 "label": "Name",
                 "errors": {
@@ -161,9 +167,10 @@
         "table": {
             "date": "Date",
             "time": "Time",
-            "clientName": "Client Name",
+            "clientName": "Client",
             "age": "Age",
-            "city": "City"
+            "city": "City",
+            "muaName": "Makeup Artist"
         }
     },
     "training": {
@@ -173,6 +180,12 @@
             "content": "Hi! This is Inna, a makeup artist and your helper in makeup. I’m glad to see you among those who want to learn how to do makeup easily and with joy. Fill out this form if you’re interested in joining my online workshop, where we’ll do makeup together live, step by step. Stay tuned – I’ll send you all the details soon."
         },
         "fields": {
+            "mua": {
+                "label": "Makeup Artist",
+                "errors": {
+                    "required": "Please select a makeup artist"
+                }
+            },
             "name": {
                 "label": "Name",
                 "description": "Your Name",
@@ -210,8 +223,9 @@
         "table": {
             "date": "Date",
             "time": "Time",
-            "clientName": "Client Name",
-            "contact": "Contact Information"
+            "clientName": "Client",
+            "contact": "Contact Information",
+            "muaName": "Makeup Artist"
         }
     }
 }

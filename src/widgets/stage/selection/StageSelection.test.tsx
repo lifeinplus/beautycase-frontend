@@ -6,9 +6,9 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { setFormData } from '@/features/form/slice/formSlice'
 import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
-import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { mockStages } from '@/features/stages/api/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
+import { useGetMineStagesQuery } from '@/features/stages/api/stagesApi'
 import { mockNavigate } from '@/tests/mocks/router'
 import { StageSelection } from './StageSelection'
 
@@ -27,11 +27,11 @@ describe('StageSelection', () => {
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue(mockFormData)
 
-        vi.mocked(useGetAllMakeupBagsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
             data: mockMakeupBags,
         })
 
-        vi.mocked(useGetAllStagesQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineStagesQuery as Mock).mockReturnValue({
             data: mockStages,
             isLoading: false,
             error: null,

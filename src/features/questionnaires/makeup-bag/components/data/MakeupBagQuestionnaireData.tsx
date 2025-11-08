@@ -1,24 +1,18 @@
-import { AdvancedImage } from '@cloudinary/react'
-import { scale } from '@cloudinary/url-gen/actions/resize'
-import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import config from '@/app/config/config'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
-import type {
-    MakeupBagQuestionnaire,
-    QuestionnaireOption,
-} from '@/features/questionnaires/types'
-
-import { Link } from '@/shared/components/ui/link/Link'
-import cloudinary from '@/shared/lib/cloudinary/cloudinary'
-import { NotSpecified } from '../../../ui/NotSpecified'
+import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
+import { ImageField } from '@/features/questionnaires/ui/ImageField'
+import { InstagramField } from '@/features/questionnaires/ui/InstagramField'
+import { MuaField } from '@/features/questionnaires/ui/MuaField'
+import { TextField } from '@/features/questionnaires/ui/TextField'
 
 export interface MakeupBagQuestionnaireDataProps {
     data: MakeupBagQuestionnaire
 }
 
 const fields: (keyof MakeupBagQuestionnaire)[] = [
+    'mua',
     'name',
     'instagram',
     'city',
@@ -43,78 +37,35 @@ const fields: (keyof MakeupBagQuestionnaire)[] = [
 export const MakeupBagQuestionnaireData = ({
     data,
 }: MakeupBagQuestionnaireDataProps) => {
-    const { t } = useTranslation(['questionnaire'])
-
-    const renderImage = (value?: string): ReactNode => {
-        const publicID = value || config.cloudinary.defaultThumbnailName
-        const cldImg = cloudinary
-            .image(publicID)
-            .resize(scale().width(800))
-            .format('auto')
-            .quality('auto')
-        return <AdvancedImage cldImg={cldImg} />
-    }
-
-    const renderText = (
-        value: MakeupBagQuestionnaire[keyof MakeupBagQuestionnaire],
-        options?: QuestionnaireOption<MakeupBagQuestionnaire>[]
-    ): ReactNode => {
-        let result = [value]
-
-        if (
-            typeof value === 'object' &&
-            !Array.isArray(value) &&
-            value !== null
-        ) {
-            result = Object.entries(value)
-                .filter(([_, value]) => value)
-                .map(([key]) => key)
-        }
-
-        const text =
-            result
-                .map((r) => t(options?.find((o) => o.value === r)?.label || ''))
-                .join(' • ') ||
-            value?.toString() ||
-            t('notSpecified')
-
-        const isNotSpecified = text === t('notSpecified')
-
-        return isNotSpecified ? <NotSpecified /> : text
-    }
-
-    const renderInstagramLink = (username?: string): ReactNode => {
-        if (!username) return <NotSpecified />
-
-        const cleanUsername = username.startsWith('@')
-            ? username.slice(1)
-            : username
-        const url = `https://instagram.com/${cleanUsername}`
-
-        return <Link url={url} text={`@${cleanUsername}`} />
-    }
+    const { t } = useTranslation('questionnaire')
 
     return (
-        <div className="sm:rounded-2.5xl pb-4 sm:border sm:border-neutral-200 sm:pb-0 dark:sm:border-neutral-700">
+        <div className="md:rounded-2.5xl pb-4 md:border md:border-neutral-200 md:pb-0 dark:md:border-neutral-700">
             <dl className="divide-y divide-neutral-100 dark:divide-neutral-800">
                 {fields.map((f) => (
                     <div
                         key={f}
-                        className="px-3 py-3 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-4"
+                        className="px-3 py-3 md:grid md:grid-cols-3 md:gap-2 md:px-4"
                     >
-                        <dt className="text-xs font-medium text-neutral-600 sm:text-xs/6 dark:text-neutral-400">
+                        <dt className="text-xs font-medium text-neutral-600 md:text-xs/6 dark:text-neutral-400">
                             {t(makeupBagQuestionnaireQuestions[f]?.label)}
                         </dt>
-                        <dd className="pt-1 sm:col-span-2 sm:pt-0">
-                            {f === 'makeupBagPhotoId'
-                                ? renderImage(data?.[f])
-                                : f === 'instagram'
-                                  ? renderInstagramLink(data?.[f] as string)
-                                  : renderText(
-                                        data?.[f],
+                        <dd className="pt-1 md:col-span-2 md:pt-0">
+                            {f === 'mua' ? (
+                                <MuaField mua={data.mua} />
+                            ) : f === 'instagram' ? (
+                                <InstagramField username={data.instagram} />
+                            ) : f === 'makeupBagPhotoId' ? (
+                                <ImageField value={data.makeupBagPhotoId} />
+                            ) : (
+                                <TextField
+                                    value={data?.[f]}
+                                    options={
                                         makeupBagQuestionnaireQuestions[f]
                                             ?.options
-                                    )}
+                                    }
+                                />
+                            )}
                         </dd>
                     </div>
                 ))}

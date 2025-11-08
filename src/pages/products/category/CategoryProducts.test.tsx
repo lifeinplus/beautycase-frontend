@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
-import { useGetProductsByCategoryQuery } from '@/features/products/api/productsApi'
+import { useGetMineProductsByCategoryQuery } from '@/features/products/api/productsApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
@@ -14,7 +14,7 @@ vi.mock('@/features/products/api/productsApi')
 
 describe('CategoryProducts', () => {
     beforeEach(() => {
-        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsByCategoryQuery as Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             error: null,
@@ -42,7 +42,7 @@ describe('CategoryProducts', () => {
     })
 
     it('shows loading state', () => {
-        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsByCategoryQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -54,7 +54,7 @@ describe('CategoryProducts', () => {
     })
 
     it('shows error state', () => {
-        vi.mocked(useGetProductsByCategoryQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsByCategoryQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,

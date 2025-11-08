@@ -1,19 +1,11 @@
 import { act, renderHook } from '@testing-library/react'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useLogoutUserMutation } from '@/features/auth/api/authApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { logout } from '../../slice/authSlice'
 import { useAuthLogout } from './useAuthLogout'
 
@@ -24,22 +16,12 @@ describe('useAuthLogout', () => {
     const mockLogoutUser = vi.fn()
     const mockLogoutUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
-
     beforeEach(() => {
         vi.mocked(useLogoutUserMutation as Mock).mockReturnValue([
             mockLogoutUser,
         ])
 
         mockLogoutUser.mockReturnValue({ unwrap: mockLogoutUnwrap })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('logs out user, dispatches logout, and navigates to the redirect path', async () => {

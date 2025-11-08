@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react'
+import { spyConsoleError } from '@/tests/setup'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
@@ -6,11 +7,15 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockMakeupBagQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { useCreateMakeupBagQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
+import { mockMuas } from '@/features/users/api/__mocks__/usersApi'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { MakeupBagQuestionnaireCreate } from './MakeupBagQuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
+vi.mock('@/features/users/api/usersApi')
 vi.mock('@/shared/components/forms/image/text-section/ImageTextSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 vi.mock('@/shared/components/layout/header/Header')
@@ -27,10 +32,14 @@ describe('MakeupBagQuestionnaireCreate', () => {
 
         mockCreate.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
+
+        vi.mocked(useGetAllMuasQuery as Mock).mockReturnValue({
+            data: mockMuas,
+        })
     })
 
     it('renders all required form fields', () => {
-        render(<MakeupBagQuestionnaireCreate />)
+        renderWithProviders(<MakeupBagQuestionnaireCreate />)
 
         const placeholders = [
             'makeupBag.fields.name.label',
@@ -94,7 +103,9 @@ describe('MakeupBagQuestionnaireCreate', () => {
     it('calls addQuestionnaire and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagQuestionnaireCreate />)
+        renderWithProviders(<MakeupBagQuestionnaireCreate />)
+
+        await user.selectOptions(screen.getByRole('combobox'), 'mua-1')
 
         await user.type(
             screen.getByPlaceholderText(
@@ -113,6 +124,7 @@ describe('MakeupBagQuestionnaireCreate', () => {
         await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockCreate).toHaveBeenCalledWith({
+            muaId: mockMakeupBagQuestionnaire1.muaId,
             name: mockMakeupBagQuestionnaire1.name,
             makeupBag: mockMakeupBagQuestionnaire1.makeupBag,
         })
@@ -124,7 +136,7 @@ describe('MakeupBagQuestionnaireCreate', () => {
     it('calls navigate when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<MakeupBagQuestionnaireCreate />)
+        renderWithProviders(<MakeupBagQuestionnaireCreate />)
 
         await user.click(
             screen.getAllByRole('navigation')[0].querySelector('button')!
@@ -136,13 +148,11 @@ describe('MakeupBagQuestionnaireCreate', () => {
     it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<MakeupBagQuestionnaireCreate />)
+        renderWithProviders(<MakeupBagQuestionnaireCreate />)
+
+        await user.selectOptions(screen.getByRole('combobox'), 'mua-1')
 
         await user.type(
             screen.getByPlaceholderText(
@@ -161,11 +171,9 @@ describe('MakeupBagQuestionnaireCreate', () => {
         await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockCreate).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
-
-        mockConsoleError.mockRestore()
     })
 })

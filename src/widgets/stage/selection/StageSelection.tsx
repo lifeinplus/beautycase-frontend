@@ -1,13 +1,12 @@
 import classNames from 'classnames'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
-import { useGetAllMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
-import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
-import type { Stage } from '@/features/stages/types'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { useGetMineStagesQuery } from '@/features/stages/api/stagesApi'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
@@ -21,22 +20,20 @@ export const StageSelection = () => {
     const dispatch = useAppDispatch()
     const formData = useAppSelector(selectFormData)
 
-    const { data: makeupBags = [] } = useGetAllMakeupBagsQuery()
-    const { data: stages = [], isLoading, error } = useGetAllStagesQuery()
+    const { data: makeupBags = [] } = useGetMineMakeupBagsQuery()
+    const { data: stages = [], isLoading, error } = useGetMineStagesQuery()
 
-    const [filteredStages, setFilteredStages] = useState<Stage[]>([])
-
-    useEffect(() => {
+    const filteredStages = useMemo(() => {
         const otherMakeupBags = makeupBags.filter(
-            (b) => b._id !== formData.makeupBagId
+            (bag) => bag._id !== formData.makeupBagId
         )
 
-        const otherStageIds = otherMakeupBags.flatMap((b) =>
-            b.stages?.map((s) => s._id)
+        const otherStageIds = otherMakeupBags.flatMap((bag) =>
+            bag.stages?.map((s) => s._id)
         )
 
-        setFilteredStages(stages.filter((s) => !otherStageIds.includes(s._id)))
-    }, [formData.makeupBagId, makeupBags, stages, setFilteredStages])
+        return stages.filter((s) => !otherStageIds.includes(s._id))
+    }, [formData.makeupBagId, makeupBags, stages])
 
     const [orderedIds, setOrderedIds] = useState<Map<string, number>>(() => {
         const initialIds = formData.stageIds || []
@@ -81,8 +78,8 @@ export const StageSelection = () => {
         <article>
             <TopPanel title={t('titles.selection')} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
                     <DataWrapper isLoading={isLoading} error={error}>
@@ -100,18 +97,10 @@ export const StageSelection = () => {
                                                 toggleOrderedIds(_id!)
                                             }
                                         >
-                                            <div
-                                                className={classNames(
-                                                    'relative mx-auto w-full overflow-hidden',
-                                                    'aspect-square'
-                                                )}
-                                            >
+                                            <div className="relative mx-auto aspect-square w-full overflow-hidden">
                                                 <Image
                                                     alt={title}
-                                                    className={classNames(
-                                                        'h-full w-full object-cover sm:rounded',
-                                                        'rounded-sm'
-                                                    )}
+                                                    className="h-full w-full rounded-sm object-cover md:rounded"
                                                     src={imageUrl}
                                                 />
 
@@ -139,13 +128,7 @@ export const StageSelection = () => {
                             )}
                         </article>
 
-                        <section
-                            className={classNames(
-                                'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
-                                'dark:border-gray-700'
-                            )}
-                        >
+                        <section className="border-t border-gray-300 px-3 pt-6 md:flex md:justify-end md:border-0 md:pt-0 dark:border-gray-700">
                             <ButtonSubmit
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}

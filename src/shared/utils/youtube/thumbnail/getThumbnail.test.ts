@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { getThumbnail } from './getThumbnail'
 
@@ -11,14 +11,8 @@ describe('getYouTubeThumbnail', () => {
     })
 
     it('returns default thumbnail for invalid URL', () => {
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         expect(getThumbnail('invalid-url')).toBe(
             import.meta.env.VITE_DEFAULT_THUMBNAIL_URL
         )
-
-        mockConsoleError.mockRestore()
     })
 })

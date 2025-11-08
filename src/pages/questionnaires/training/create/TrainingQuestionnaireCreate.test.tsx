@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
@@ -6,11 +6,16 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 import { mockTrainingQuestionnaire1 } from '@/features/questionnaires/api/__mocks__/questionnairesApi'
 import { useCreateTrainingQuestionnaireMutation } from '@/features/questionnaires/api/questionnairesApi'
 import { trainingQuestionnaireQuestions } from '@/features/questionnaires/training/questions/trainingQuestionnaireQuestions'
+import { mockMuas } from '@/features/users/api/__mocks__/usersApi'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { TrainingQuestionnaireCreate } from './TrainingQuestionnaireCreate'
 
 vi.mock('@/features/questionnaires/api/questionnairesApi')
+vi.mock('@/features/users/api/usersApi')
 vi.mock('@/shared/components/hero/Hero')
 
 describe('TrainingQuestionnaireCreate', () => {
@@ -24,10 +29,14 @@ describe('TrainingQuestionnaireCreate', () => {
 
         mockCreate.mockReturnValue({ unwrap: mockUnwrap })
         mockUnwrap.mockResolvedValue({})
+
+        vi.mocked(useGetAllMuasQuery as Mock).mockReturnValue({
+            data: mockMuas,
+        })
     })
 
     it('renders all required form fields', () => {
-        render(<TrainingQuestionnaireCreate />)
+        renderWithProviders(<TrainingQuestionnaireCreate />)
 
         const placeholders = [
             'training.fields.name.label',
@@ -48,7 +57,9 @@ describe('TrainingQuestionnaireCreate', () => {
     it('calls addQuestionnaire and navigates on successful submission', async () => {
         const user = userEvent.setup()
 
-        render(<TrainingQuestionnaireCreate />)
+        renderWithProviders(<TrainingQuestionnaireCreate />)
+
+        await user.selectOptions(screen.getByRole('combobox'), 'mua-1')
 
         await user.type(
             screen.getByPlaceholderText(
@@ -74,6 +85,7 @@ describe('TrainingQuestionnaireCreate', () => {
         await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockCreate).toHaveBeenCalledWith({
+            muaId: mockTrainingQuestionnaire1.muaId,
             name: mockTrainingQuestionnaire1.name,
             contact: mockTrainingQuestionnaire1.contact,
             expectations: mockTrainingQuestionnaire1.expectations,
@@ -86,7 +98,7 @@ describe('TrainingQuestionnaireCreate', () => {
     it('calls navigate when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<TrainingQuestionnaireCreate />)
+        renderWithProviders(<TrainingQuestionnaireCreate />)
 
         await user.click(
             screen.getAllByRole('navigation')[0].querySelector('button')!
@@ -98,13 +110,11 @@ describe('TrainingQuestionnaireCreate', () => {
     it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
-        render(<TrainingQuestionnaireCreate />)
+        renderWithProviders(<TrainingQuestionnaireCreate />)
+
+        await user.selectOptions(screen.getByRole('combobox'), 'mua-1')
 
         await user.type(
             screen.getByPlaceholderText(
@@ -130,11 +140,9 @@ describe('TrainingQuestionnaireCreate', () => {
         await user.click(screen.getByRole('button', { name: 'send' }))
 
         expect(mockCreate).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
-
-        mockConsoleError.mockRestore()
     })
 })

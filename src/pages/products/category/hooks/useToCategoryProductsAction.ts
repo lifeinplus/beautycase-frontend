@@ -25,7 +25,7 @@ export const useToCategoryProductsAction = () => {
     return {
         key: 'back',
         auth: true,
-        className: 'hidden sm:flex',
+        className: 'hidden md:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
         onClick: () =>

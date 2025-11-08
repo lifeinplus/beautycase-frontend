@@ -1,14 +1,6 @@
 import { pdf } from '@react-pdf/renderer'
 import { act, renderHook } from '@testing-library/react'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockCategory1 } from '@/features/categories/api/__mocks__/categoriesApi.ts'
 import { mockMakeupBagPDFData } from '../../api/__mocks__/makeupBagsApi.ts'
@@ -38,20 +30,10 @@ describe('usePDFExport', () => {
         toBlob: vi.fn(),
     }
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
-
     beforeEach(() => {
         mockPdfFunction.mockImplementation(() => mockPdfInstance)
         vi.mocked(pdf).mockImplementation(mockPdfFunction)
         mockPdfInstance.toBlob.mockResolvedValue(mockBlob)
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     describe('exportToPDF', () => {

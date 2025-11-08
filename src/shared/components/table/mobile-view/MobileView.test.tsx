@@ -59,7 +59,7 @@ describe('MobileView', () => {
         )
 
         const containerDiv = container.querySelector('.space-y-5')
-        expect(containerDiv).toHaveClass('sm:hidden')
+        expect(containerDiv).toHaveClass('md:hidden')
     })
 
     it('renders all items with title', () => {

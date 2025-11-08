@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next'
 
+import { useAppSelector } from '@/app/hooks/hooks'
+import { selectRole } from '@/features/auth/slice/authSlice'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
 import { TableRow } from '@/shared/components/table/table-row/TableRow'
 import { Table } from '@/shared/components/table/table/Table'
 import type { Header } from '@/shared/components/table/table/types'
+import { Role } from '@/shared/model/role'
 import { formatDate } from '@/shared/utils/date/formatDate'
+import { fullName } from '@/shared/utils/ui/fullName'
 
 export interface MakeupBagQuestionnaireTableProps {
     questionnaires?: MakeupBagQuestionnaire[]
@@ -15,12 +19,17 @@ export const MakeupBagQuestionnaireTable = ({
 }: MakeupBagQuestionnaireTableProps) => {
     const { t } = useTranslation('questionnaire')
 
+    const role = useAppSelector(selectRole)
+    const isAdmin = role === Role.ADMIN
+
     const headers: Header[] = [
         { label: t('makeupBag.table.date'), className: 'text-center' },
         { label: t('makeupBag.table.time'), className: 'text-center' },
         { label: t('makeupBag.table.clientName'), className: 'text-left' },
         { label: t('makeupBag.table.age'), className: 'text-right' },
-        { label: t('makeupBag.table.city'), className: 'text-left' },
+        isAdmin
+            ? { label: t('makeupBag.table.muaName'), className: 'text-left' }
+            : { label: t('makeupBag.table.city'), className: 'text-left' },
     ]
 
     const cellClasses = headers.map((h) => h.className)
@@ -38,7 +47,9 @@ export const MakeupBagQuestionnaireTable = ({
                         formatDate(item.createdAt, 'HH:mm'),
                         item.name,
                         item.age || '—',
-                        item.city || '—',
+                        isAdmin
+                            ? fullName(item.mua?.firstName, item.mua?.lastName)
+                            : item.city || '—',
                     ]}
                     redirectPath={`/questionnaires/makeup-bags/${item._id}`}
                 />

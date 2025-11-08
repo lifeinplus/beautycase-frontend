@@ -48,8 +48,9 @@ export const mockProductIds: string[] = ['product1', 'product2']
 export const useCreateProductMutation = vi.fn()
 export const useDuplicateProductByIdMutation = vi.fn()
 export const useGetAllProductsQuery = vi.fn()
+export const useGetMineProductsQuery = vi.fn()
+export const useGetMineProductsByCategoryQuery = vi.fn()
 export const useGetProductByIdQuery = vi.fn()
-export const useGetProductsByCategoryQuery = vi.fn()
 export const useUpdateProductByIdMutation = vi.fn()
 export const useUpdateProductStoreLinksMutation = vi.fn()
 export const useDeleteProductByIdMutation = vi.fn()
@@ -63,19 +64,17 @@ const productsHandlers = [
 
     http.get('api/products', () => HttpResponse.json(mockProducts)),
 
+    http.get('api/products/mine', () => HttpResponse.json(mockProducts)),
+
+    http.get('api/products/mine/category/:category', ({}) => {
+        return HttpResponse.json(mockProducts)
+    }),
+
     http.get('api/products/:id', ({ params }) => {
         const product = mockProducts.find((p) => p._id === params.id)
         return product
             ? HttpResponse.json(product)
             : HttpResponse.json({ success: false }, { status: 404 })
-    }),
-
-    http.get('api/products/category/:category', ({}) => {
-        return HttpResponse.json(mockProducts)
-    }),
-
-    http.get('api/products/without-category', ({}) => {
-        return HttpResponse.json(mockProducts)
     }),
 
     http.put('api/products/:id', async ({ params }) =>

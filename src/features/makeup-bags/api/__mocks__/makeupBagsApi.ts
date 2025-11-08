@@ -25,7 +25,7 @@ export const mockMakeupBag1: MakeupBag = {
     createdAt: '2025-04-10T10:00:00Z',
     category: mockCategory1,
     categoryId: 'category1',
-    client: { _id: 'client1', username: 'Test Client 1' },
+    client: { _id: 'client1', firstName: 'Jane', lastName: 'Doe' },
     clientId: 'client1',
     stages: [mockStage1],
     stageIds: ['stage1', 'stage2'],
@@ -46,6 +46,7 @@ export const mockMakeupBags: MakeupBag[] = [mockMakeupBag1, mockMakeupBag2]
 
 export const useCreateMakeupBagMutation = vi.fn()
 export const useGetAllMakeupBagsQuery = vi.fn()
+export const useGetMineMakeupBagsQuery = vi.fn()
 export const useGetMakeupBagByIdQuery = vi.fn()
 export const useUpdateMakeupBagByIdMutation = vi.fn()
 export const useDeleteMakeupBagByIdMutation = vi.fn()
@@ -54,6 +55,8 @@ const makeupBagsHandlers = [
     http.post('api/makeup-bags', () => HttpResponse.json(mockMakeupBagCreate)),
 
     http.get('api/makeup-bags', () => HttpResponse.json(mockMakeupBags)),
+
+    http.get('api/makeup-bags/mine', () => HttpResponse.json(mockMakeupBags)),
 
     http.get('api/makeup-bags/:id', ({ params }) => {
         const makeupBag = mockMakeupBags.find((p) => p._id === params.id)

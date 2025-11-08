@@ -4,8 +4,10 @@
     },
     "table": {
         "createdAt": "Creation Date",
+        "updatedAt": "Update Date",
+        "firstName": "First Name",
+        "lastName": "Last Name",
         "username": "Username",
-        "role": "Role",
-        "updatedAt": "Update Date"
+        "role": "Role"
     }
 }

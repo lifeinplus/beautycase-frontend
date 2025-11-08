@@ -23,7 +23,10 @@ Object.defineProperty(window, 'localStorage', {
     writable: true,
 })
 
+export const spyConsoleError = vi.spyOn(console, 'error')
+
 beforeAll(() => {
+    spyConsoleError.mockImplementation(() => {})
     server.listen()
 })
 
@@ -37,5 +40,6 @@ afterEach(() => {
 })
 
 afterAll(() => {
+    spyConsoleError.mockRestore()
     server.close()
 })

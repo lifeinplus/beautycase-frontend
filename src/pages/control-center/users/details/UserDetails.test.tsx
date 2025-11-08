@@ -25,9 +25,9 @@ describe('UserDetails', () => {
         renderWithRouter(<UserDetails />)
 
         expect(screen.getByRole('navigation')).toBeInTheDocument()
-        expect(screen.getAllByText(mockUserResult.user.username)).toHaveLength(
-            2
-        )
+        expect(
+            screen.getByText(mockUserResult.user.username)
+        ).toBeInTheDocument()
     })
 
     it('renders the page with no data', () => {
@@ -39,6 +39,6 @@ describe('UserDetails', () => {
 
         renderWithRouter(<UserDetails />)
 
-        expect(screen.getAllByText('titles.details')).toHaveLength(2)
+        expect(screen.getAllByText('— —')).toHaveLength(2)
     })
 })

@@ -1,15 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import type { Product } from '@/features/products/types'
 import { mockUploadResult } from '@/features/uploads/api/__mocks__/uploadsApi'
@@ -46,12 +37,6 @@ describe('ImageUrlSection', () => {
     const mockUploadTempImageByUrl = vi.fn()
     const mockUnwrapByUrl = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
-
     beforeEach(() => {
         vi.mocked(useUploadTempImageByFileMutation as Mock).mockReturnValue([
             mockUploadTempImageByFile,
@@ -66,10 +51,6 @@ describe('ImageUrlSection', () => {
 
         mockUploadTempImageByUrl.mockReturnValue({ unwrap: mockUnwrapByUrl })
         mockUnwrapByUrl.mockResolvedValue(mockUploadResult)
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('renders with required props', () => {

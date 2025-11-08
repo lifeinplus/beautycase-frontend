@@ -1,16 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
 import {
@@ -33,15 +24,9 @@ describe('useDuplicateStageAction', () => {
     const mockDuplicate = vi.fn()
     const mockDuplicateUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
         pathname: ROUTES.backstage.stages.details('123456789012345678901234'),
-    })
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -63,10 +48,6 @@ describe('useDuplicateStageAction', () => {
         ])
 
         mockDuplicate.mockReturnValue({ unwrap: mockDuplicateUnwrap })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('handles duplicate action', async () => {

@@ -14,6 +14,7 @@ import {
     mockRegister,
     mockSetValue,
 } from '@/tests/mocks/form'
+import { spyConsoleError } from '@/tests/setup'
 import {
     ImageTextSection,
     type ImageTextSectionProps,
@@ -104,10 +105,6 @@ describe('ImageTextSection', () => {
     })
 
     it('handles upload error', async () => {
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ImageTextSection {...mockProps} />)
@@ -125,13 +122,11 @@ describe('ImageTextSection', () => {
         expect(mockSetValue).not.toHaveBeenCalled()
         expect(mockClearErrors).not.toHaveBeenCalled()
 
-        expect(mockConsoleError).toHaveBeenCalledWith(
+        expect(spyConsoleError).toHaveBeenCalledWith(
             'Image upload failed',
             mockError
         )
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('does nothing when no file is selected', async () => {

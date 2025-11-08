@@ -36,6 +36,20 @@ const stagesApi = api.injectEndpoints({
                     : [{ type: 'Stage', id: 'LIST' }],
         }),
 
+        getMineStages: builder.query<Stage[], void>({
+            query: () => '/stages/mine',
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map(({ _id }) => ({
+                              type: 'Stage' as const,
+                              id: _id,
+                          })),
+                          { type: 'Stage', id: 'LIST' },
+                      ]
+                    : [{ type: 'Stage', id: 'LIST' }],
+        }),
+
         getStageById: builder.query<Stage, string>({
             query: (id) => `/stages/${id}`,
             providesTags: (_result, _error, id) => [{ type: 'Stage', id }],
@@ -82,6 +96,7 @@ export const {
     useCreateStageMutation,
     useDuplicateStageByIdMutation,
     useGetAllStagesQuery,
+    useGetMineStagesQuery,
     useGetStageByIdQuery,
     useUpdateStageByIdMutation,
     useUpdateStageProductsMutation,

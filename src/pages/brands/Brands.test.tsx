@@ -12,6 +12,7 @@ import type { Brand } from '@/features/brands/types'
 import { clearFormData, setFormData } from '@/features/form/slice/formSlice'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { Brands } from './Brands'
 
 vi.mock('@/app/hooks/hooks')
@@ -124,10 +125,6 @@ describe('Brands', () => {
     it('shows error toast if delete fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<Brands />)
@@ -136,9 +133,7 @@ describe('Brands', () => {
         await user.click(screen.getByTestId('mocked-modal-delete-confirm'))
 
         expect(mockDeleteBrandById).toHaveBeenCalledWith('brand1')
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 })

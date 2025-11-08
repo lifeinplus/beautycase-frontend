@@ -47,14 +47,14 @@ export const NavBar = ({ children }: NavBarProps) => {
         <aside
             className={classNames(
                 'pb-safe-bottom fixed bottom-0 left-0 z-20 w-full overflow-y-auto bg-white',
-                'border-t border-neutral-200 sm:border-e sm:border-t-0',
-                'sm:h-full sm:w-auto sm:flex-col sm:px-3 sm:pt-2 sm:pb-5',
+                'border-t border-neutral-200 md:border-e md:border-t-0',
+                'md:h-full md:w-auto md:flex-col md:px-3 md:pt-2 md:pb-5',
                 'lg:w-navbar-open',
                 'dark:border-neutral-700 dark:bg-black',
                 childrenArray.length ? 'flex' : 'hidden md:flex'
             )}
         >
-            <div className="mt-3 hidden flex-col ps-4 pe-3 pt-3 pb-10 sm:flex">
+            <div className="mt-3 hidden flex-col ps-4 pe-3 pt-3 pb-10 md:flex">
                 <h2 className="font-logo text-2xl">
                     <LogoLink>
                         <span className="lg:hidden">B</span>
@@ -63,7 +63,7 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
+            <div className="hidden w-full flex-row justify-evenly md:flex md:flex-col md:justify-start">
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
@@ -82,13 +82,13 @@ export const NavBar = ({ children }: NavBarProps) => {
 
             <div
                 className={classNames(
-                    'flex w-full grow flex-row justify-evenly sm:my-10 sm:flex sm:flex-col sm:justify-start'
+                    'flex w-full grow flex-row justify-evenly md:my-10 md:flex md:flex-col md:justify-start'
                 )}
             >
                 {children}
             </div>
 
-            <div className="hidden w-full flex-row justify-evenly sm:flex sm:flex-col sm:justify-start">
+            <div className="hidden w-full flex-row justify-evenly md:flex md:flex-col md:justify-start">
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />

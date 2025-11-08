@@ -40,7 +40,7 @@ export const mockLesson2: Lesson = {
 export const mockLessons: Lesson[] = [mockLesson1, mockLesson2]
 
 export const useCreateLessonMutation = vi.fn()
-export const useGetAllLessonsQuery = vi.fn()
+export const useGetMineLessonsQuery = vi.fn()
 export const useGetLessonByIdQuery = vi.fn()
 export const useUpdateLessonByIdMutation = vi.fn()
 export const useUpdateLessonProductsMutation = vi.fn()
@@ -51,7 +51,7 @@ const lessonsHandlers = [
         return HttpResponse.json(mockLessonCreate)
     }),
 
-    http.get('api/lessons', () => HttpResponse.json(mockLessons)),
+    http.get('api/lessons/mine', () => HttpResponse.json(mockLessons)),
 
     http.get('api/lessons/:id', ({ params }) => {
         const lesson = mockLessons.find((p) => p._id === params.id)
@@ -61,6 +61,10 @@ const lessonsHandlers = [
     }),
 
     http.put('api/lessons/:id', async ({ params }) =>
+        HttpResponse.json({ id: params.id })
+    ),
+
+    http.patch('api/lessons/:id/products', async ({ params }) =>
         HttpResponse.json({ id: params.id })
     ),
 

@@ -1,7 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { mockMakeupBags } from '../../api/__mocks__/makeupBagsApi'
+import { fullName } from '@/shared/utils/ui/fullName'
+import {
+    mockMakeupBag1,
+    mockMakeupBags,
+} from '../../api/__mocks__/makeupBagsApi'
 import { MakeupBagTable } from './MakeupBagTable'
 
 vi.mock('@/shared/utils/date/formatDate')
@@ -25,8 +29,15 @@ describe('MakeupBagTable', () => {
 
         expect(screen.getAllByText('2025.04.10')).toHaveLength(2)
         expect(screen.getAllByText('14:30')).toHaveLength(2)
-
         expect(screen.getByText('categories.basic.short')).toBeInTheDocument()
-        expect(screen.getByText('Test Client 1')).toBeInTheDocument()
+
+        expect(
+            screen.getByText(
+                fullName(
+                    mockMakeupBag1.client?.firstName,
+                    mockMakeupBag1.client?.lastName
+                )
+            )
+        ).toBeInTheDocument()
     })
 })

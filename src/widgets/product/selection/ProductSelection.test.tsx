@@ -8,9 +8,10 @@ import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import { mockProducts } from '@/features/products/api/__mocks__/productsApi'
-import { useGetAllProductsQuery } from '@/features/products/api/productsApi'
+import { useGetMineProductsQuery } from '@/features/products/api/productsApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { ProductSelection } from './ProductSelection'
 
 vi.mock('@/app/hooks/hooks')
@@ -26,7 +27,7 @@ describe('ProductSelection', () => {
     const mockOnSave = vi.fn().mockResolvedValue(undefined)
 
     beforeEach(() => {
-        vi.mocked(useGetAllProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsQuery as Mock).mockReturnValue({
             data: mockProducts,
             isLoading: false,
             error: null,
@@ -36,7 +37,7 @@ describe('ProductSelection', () => {
     })
 
     it('renders loading state when data is loading', () => {
-        vi.mocked(useGetAllProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: true,
             error: null,
@@ -48,7 +49,7 @@ describe('ProductSelection', () => {
     })
 
     it('renders error state', () => {
-        vi.mocked(useGetAllProductsQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineProductsQuery as Mock).mockReturnValue({
             data: undefined,
             isLoading: false,
             error: mockError,
@@ -114,10 +115,6 @@ describe('ProductSelection', () => {
     it('handles errors correctly when save fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockOnSave.mockRejectedValue(mockError)
 
         render(<ProductSelection onSave={mockOnSave} />)
@@ -127,10 +124,8 @@ describe('ProductSelection', () => {
         )
 
         expect(mockOnSave).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('does nothing if id is undefined in handleSave', async () => {

@@ -26,12 +26,12 @@ export const QuestionnaireGallery = () => {
     const title = t('headlineList')
 
     return (
-        <article className="pb-13 sm:pb-0">
+        <article className="pb-13 md:pb-0">
             <Header />
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} />
-                    <section className="space-y-8 px-7 sm:px-0">
+                    <section className="space-y-10 px-7 md:px-0">
                         {data?.map((item, i) => (
                             <QuestionnaireCard
                                 key={i}

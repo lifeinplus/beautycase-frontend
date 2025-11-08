@@ -28,8 +28,8 @@ describe('Footer', () => {
             'flex',
             'flex-col',
             'gap-4',
-            'sm:flex-row',
-            'sm:justify-between'
+            'md:flex-row',
+            'md:justify-between'
         )
     })
 

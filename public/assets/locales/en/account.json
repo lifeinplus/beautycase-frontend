@@ -4,6 +4,12 @@
         "byline": "Information about you and available content"
     },
     "fields": {
+        "firstName": {
+            "label": "First Name"
+        },
+        "lastName": {
+            "label": "Last Name"
+        },
         "username": {
             "label": "Username"
         },

@@ -29,10 +29,10 @@ export const MakeupBagQuestionnaireResult = () => {
     return (
         <article>
             <TopPanel title={title} onBack={handleBack} />
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} subtitle={createdAt} hideOnMobile />
-                    <div className="sm:hidden">
+                    <div className="md:hidden">
                         <Hero subtitle={createdAt} />
                     </div>
                     <DataWrapper isLoading={isLoading} error={error}>

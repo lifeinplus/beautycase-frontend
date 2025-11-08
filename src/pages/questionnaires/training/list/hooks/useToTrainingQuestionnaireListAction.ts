@@ -11,7 +11,7 @@ export const useToTrainingQuestionnaireListAction = () => {
     return {
         key: 'back',
         auth: true,
-        className: 'hidden sm:flex',
+        className: 'hidden md:flex',
         icon: ArrowLeftIcon,
         label: t('actions.back'),
         onClick: () => navigate(ROUTES.questionnaires.trainings.root),

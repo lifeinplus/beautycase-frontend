@@ -13,6 +13,7 @@ import {
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { ProductEdit } from './ProductEdit'
 
 vi.mock('@/app/hooks/hooks')
@@ -66,21 +67,15 @@ describe('ProductEdit', () => {
     it('shows error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ProductEdit />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockNavigate).not.toHaveBeenCalled()
-
-        mockConsoleError.mockRestore()
     })
 })

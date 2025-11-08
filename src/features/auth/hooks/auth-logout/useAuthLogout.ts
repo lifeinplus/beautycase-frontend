@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
+import { api } from '@/shared/api/api'
+import { ROUTES } from '@/shared/config/routes'
 import { useLogoutUserMutation } from '../../api/authApi'
 import { logout } from '../../slice/authSlice'
 
-export const useAuthLogout = (redirectPath: string = '/') => {
+export const useAuthLogout = (redirectPath: string = ROUTES.home) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const [logoutUser] = useLogoutUserMutation()
@@ -16,6 +18,7 @@ export const useAuthLogout = (redirectPath: string = '/') => {
             console.error('Logout request failed', error)
         } finally {
             dispatch(logout())
+            dispatch(api.util.resetApiState())
             navigate(redirectPath)
         }
     }

@@ -32,7 +32,7 @@ describe('MakeupBagQuestionnaireData', () => {
         )
 
         const notSpecifiedElements = screen.getAllByText('notSpecified')
-        expect(notSpecifiedElements.length).toBe(19 - 6)
+        expect(notSpecifiedElements.length).toBe(20 - 6)
     })
 
     it('renders an image when makeupBagPhotoId is provided', () => {

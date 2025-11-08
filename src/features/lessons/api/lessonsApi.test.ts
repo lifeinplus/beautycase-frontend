@@ -12,8 +12,8 @@ import {
 import {
     useCreateLessonMutation,
     useDeleteLessonByIdMutation,
-    useGetAllLessonsQuery,
     useGetLessonByIdQuery,
+    useGetMineLessonsQuery,
     useUpdateLessonByIdMutation,
 } from './lessonsApi'
 
@@ -63,7 +63,7 @@ describe('lessonsApi', () => {
     describe('getAllLessons', () => {
         it('gets all lessons', async () => {
             const { result } = renderHookWithProvider(() =>
-                useGetAllLessonsQuery()
+                useGetMineLessonsQuery()
             )
 
             expect(result.current.isLoading).toBe(true)

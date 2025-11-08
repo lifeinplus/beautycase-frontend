@@ -26,7 +26,7 @@ export const Hero = ({
     >
         <div className="mx-auto w-11/12 space-y-3">
             {title && (
-                <h2 className="font-heading mx-auto text-center text-2xl font-bold md:text-3xl lg:text-4xl">
+                <h2 className="font-heading mx-auto text-center text-2xl font-bold md:text-3xl">
                     {title}
                 </h2>
             )}

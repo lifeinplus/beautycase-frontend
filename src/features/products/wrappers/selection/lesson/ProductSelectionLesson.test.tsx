@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { useUpdateLessonProductsMutation } from '@/features/lessons/api/lessonsApi'
 import { mockError } from '@/tests/mocks'
+import { spyConsoleError } from '@/tests/setup'
 import { ProductSelectionLesson } from './ProductSelectionLesson'
 
 vi.mock('@/features/lessons/api/lessonsApi')
@@ -49,19 +50,13 @@ describe('ProductSelectionLesson', () => {
     it('shows error toast on failure', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<ProductSelectionLesson />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockUpdate).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 })

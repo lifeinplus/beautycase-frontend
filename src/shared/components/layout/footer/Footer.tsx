@@ -12,7 +12,7 @@ export const Footer = () => {
             id="footer"
             className={classNames(
                 'pb-safe-bottom mb-2 border-t border-gray-300',
-                'sm:ms-navbar lg:ms-navbar-open',
+                'md:ms-navbar lg:ms-navbar-open',
                 'dark:border-gray-700'
             )}
         >
@@ -20,7 +20,7 @@ export const Footer = () => {
                 <h4 className="font-heading text-lg">{t('footer.thanks')}</h4>
             </section>
 
-            <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 sm:flex-row sm:justify-between">
+            <section className="mx-auto flex max-w-4xl flex-col gap-4 p-4 md:flex-row md:justify-between">
                 <p>
                     <span>{t('footer.questions')}:</span>{' '}
                     <Link

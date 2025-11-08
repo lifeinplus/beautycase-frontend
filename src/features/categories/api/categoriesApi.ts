@@ -40,6 +40,14 @@ const categoriesApi = api.injectEndpoints({
             providesTags: ['Category'],
         }),
 
+        getMineProductCategoriesWithCounts: builder.query<
+            CategoryWithCount[],
+            void
+        >({
+            query: () => '/categories/products/mine/with-counts',
+            providesTags: ['Category'],
+        }),
+
         updateCategoryById: builder.mutation<
             Category,
             { id: string; category: Category }
@@ -68,6 +76,7 @@ export const {
     useGetMakeupBagCategoriesQuery,
     useGetProductCategoriesQuery,
     useGetProductCategoriesWithCountsQuery,
+    useGetMineProductCategoriesWithCountsQuery,
     useUpdateCategoryByIdMutation,
     useDeleteCategoryByIdMutation,
 } = categoriesApi

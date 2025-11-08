@@ -11,14 +11,18 @@ import { trainingQuestionnaireQuestions } from '@/features/questionnaires/traini
 import { trainingQuestionnaireSchema } from '@/features/questionnaires/training/validations/trainingQuestionnaireSchema'
 import type { TrainingQuestionnaire } from '@/features/questionnaires/types'
 
+import { SelectOption } from '@/features/form/types'
+import { useGetAllMuasQuery } from '@/features/users/api/usersApi'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { RadioButtonSection } from '@/shared/components/forms/radio-button/section/RadioButtonSection'
+import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { ROUTES } from '@/shared/config/routes'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 
 export const TrainingQuestionnaireCreate = () => {
     const navigate = useNavigate()
@@ -27,6 +31,7 @@ export const TrainingQuestionnaireCreate = () => {
     const {
         register,
         reset,
+        watch,
         handleSubmit,
         formState: { errors },
     } = useForm<TrainingQuestionnaire>({
@@ -35,6 +40,13 @@ export const TrainingQuestionnaireCreate = () => {
 
     const [createTrainingQuestionnaire, { isLoading }] =
         useCreateTrainingQuestionnaireMutation()
+
+    const { data: muas } = useGetAllMuasQuery()
+
+    const muaOptions: SelectOption[] | undefined = muas?.map((m) => ({
+        text: fullNameWithUsername(m.firstName, m.lastName, m.username),
+        value: m._id!,
+    }))
 
     const onSubmit = async (data: TrainingQuestionnaire) => {
         try {
@@ -58,8 +70,8 @@ export const TrainingQuestionnaireCreate = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero
                         title={title}
                         subtitle={subtitle}
@@ -68,7 +80,7 @@ export const TrainingQuestionnaireCreate = () => {
                         hideOnMobile
                     />
 
-                    <div className="sm:hidden">
+                    <div className="md:hidden">
                         <Hero
                             subtitle={subtitle}
                             imgUrl={config.cloudinary.questionnaireTrainingHero}
@@ -82,14 +94,20 @@ export const TrainingQuestionnaireCreate = () => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <article className="px-3">
-                            <p
-                                className={classNames(
-                                    'text-rose-500 dark:text-rose-400',
-                                    'text-sm'
-                                )}
-                            >
+                            <p className="text-sm text-rose-500 dark:text-rose-400">
                                 {t('requiredField')}
                             </p>
+
+                            <SelectSection
+                                error={t(errors.muaId?.message || '')}
+                                label={t(
+                                    trainingQuestionnaireQuestions.mua.label
+                                )}
+                                options={muaOptions}
+                                register={register('muaId')}
+                                required={true}
+                                value={watch('muaId')}
+                            />
 
                             <InputSection
                                 error={t(errors.name?.message || '')}
@@ -129,6 +147,7 @@ export const TrainingQuestionnaireCreate = () => {
                                         .options
                                 }
                                 register={register('experience')}
+                                t={t}
                             />
 
                             <TextareaSection
@@ -163,7 +182,7 @@ export const TrainingQuestionnaireCreate = () => {
                         <section
                             className={classNames(
                                 'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'md:flex md:justify-end md:border-0 md:pt-0',
                                 'dark:border-gray-700'
                             )}
                         >

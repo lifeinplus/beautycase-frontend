@@ -8,7 +8,7 @@ export interface MakeupBag {
     createdAt?: string
     category?: Pick<Category, '_id' | 'name'>
     categoryId: string
-    client?: Pick<User, '_id' | 'username'>
+    client?: Pick<User, '_id' | 'firstName' | 'lastName'>
     clientId: string
     stages?: Stage[]
     stageIds: string[]

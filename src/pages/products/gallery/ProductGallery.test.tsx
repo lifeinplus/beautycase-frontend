@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
-import { useGetProductCategoriesWithCountsQuery } from '@/features/categories/api/categoriesApi'
+import { useGetMineProductCategoriesWithCountsQuery } from '@/features/categories/api/categoriesApi'
 import { ProductGallery } from './ProductGallery'
 
 vi.mock('@/features/categories/api/categoriesApi')
@@ -14,7 +14,7 @@ vi.mock('@/widgets/product/categories/table/ProductCategoriesTable')
 describe('ProductGallery', () => {
     beforeEach(() => {
         vi.mocked(
-            useGetProductCategoriesWithCountsQuery as Mock
+            useGetMineProductCategoriesWithCountsQuery as Mock
         ).mockReturnValue({
             data: mockCategories,
             isLoading: false,

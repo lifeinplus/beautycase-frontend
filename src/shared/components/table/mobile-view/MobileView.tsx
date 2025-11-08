@@ -16,11 +16,11 @@ export const MobileView = <T,>({
     getRightText,
     getLink,
 }: MobileViewProps<T>) => (
-    <div className="space-y-5 sm:hidden">
+    <div className="space-y-5 md:hidden">
         {items?.map((item) => (
             <Link
                 key={getLink(item)}
-                className="flex items-center justify-between pe-5 ps-4"
+                className="flex items-center justify-between ps-4 pe-5"
                 to={getLink(item)}
             >
                 <div>

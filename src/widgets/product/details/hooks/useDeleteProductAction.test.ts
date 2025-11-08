@@ -1,15 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { useLocation, useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockProduct1 } from '@/features/products/api/__mocks__/productsApi'
 import {
@@ -32,15 +23,9 @@ describe('useDeleteProductAction', () => {
     const mockDeleteProductById = vi.fn()
     const mockDeleteUnwrap = vi.fn()
 
-    const spyConsoleError = vi.spyOn(console, 'error')
-
     vi.mocked(useLocation).mockReturnValue({
         ...mockLocation,
         pathname: ROUTES.backstage.products.details('123456789012345678901234'),
-    })
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
     })
 
     beforeEach(() => {
@@ -56,10 +41,6 @@ describe('useDeleteProductAction', () => {
             isLoading: false,
             error: null,
         })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('handles delete action', async () => {

@@ -4,11 +4,13 @@ import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectRole, selectUsername } from '@/features/auth/slice/authSlice'
+import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
+import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import {
     mockStage1,
     mockStages,
 } from '@/features/stages/api/__mocks__/stagesApi'
-import { useGetAllStagesQuery } from '@/features/stages/api/stagesApi'
+import { useGetMineStagesQuery } from '@/features/stages/api/stagesApi'
 import { StageList } from './StageList'
 
 vi.mock('@/app/hooks/hooks')
@@ -17,6 +19,7 @@ vi.mock('@/features/stages/components/filter/StageFilter')
 vi.mock('@/features/stages/components/mobile-view/StageMobileView')
 vi.mock('@/features/stages/components/table/StageTable')
 vi.mock('@/features/stages/api/stagesApi')
+vi.mock('@/features/makeup-bags/api/makeupBagsApi')
 vi.mock('@/shared/components/layout/header/Header')
 
 describe('StageList', () => {
@@ -27,8 +30,14 @@ describe('StageList', () => {
             return null
         })
 
-        vi.mocked(useGetAllStagesQuery as Mock).mockReturnValue({
+        vi.mocked(useGetMineStagesQuery as Mock).mockReturnValue({
             data: mockStages,
+            isLoading: false,
+            error: null,
+        })
+
+        vi.mocked(useGetMineMakeupBagsQuery as Mock).mockReturnValue({
+            data: mockMakeupBags,
             isLoading: false,
             error: null,
         })

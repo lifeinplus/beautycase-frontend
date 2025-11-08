@@ -6,7 +6,7 @@ import { mockTool1, mockToolCreate, mockTools } from './__mocks__/toolsApi'
 import {
     useCreateToolMutation,
     useDeleteToolByIdMutation,
-    useGetAllToolsQuery,
+    useGetMineToolsQuery,
     useGetToolByIdQuery,
     useUpdateToolByIdMutation,
 } from './toolsApi'
@@ -30,7 +30,7 @@ describe('toolsApi', () => {
     describe('getAllTools', () => {
         it('fetches all tools successfully', async () => {
             const { result } = renderHookWithProvider(() =>
-                useGetAllToolsQuery()
+                useGetMineToolsQuery()
             )
 
             expect(result.current.isLoading).toBe(true)

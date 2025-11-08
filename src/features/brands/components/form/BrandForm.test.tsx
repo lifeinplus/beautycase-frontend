@@ -9,6 +9,7 @@ import { clearFormData } from '@/features/form/slice/formSlice'
 import type { FormRef } from '@/features/form/types'
 import { mockError } from '@/tests/mocks'
 import { renderWithProviders } from '@/tests/mocks/wrappers'
+import { spyConsoleError } from '@/tests/setup'
 import { mockBrand1 } from '../../api/__mocks__/brandsApi'
 import {
     useCreateBrandMutation,
@@ -118,10 +119,6 @@ describe('BrandForm', () => {
     it('handles createBrand error', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockCreateUnwrap.mockRejectedValue(mockError)
 
         render(<BrandForm ref={mockRef} />)
@@ -134,18 +131,12 @@ describe('BrandForm', () => {
         await user.click(screen.getByRole('button'))
 
         expect(mockCreateBrand).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('handles updateBrand error', async () => {
         const user = userEvent.setup()
-
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
 
         mockUpdateUnwrap.mockRejectedValue(mockError)
 
@@ -164,10 +155,8 @@ describe('BrandForm', () => {
         await user.click(screen.getByRole('button'))
 
         expect(mockUpdateBrandById).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-
-        mockConsoleError.mockRestore()
     })
 
     it('renders error message', async () => {

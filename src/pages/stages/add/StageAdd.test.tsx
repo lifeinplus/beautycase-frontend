@@ -13,6 +13,7 @@ import { useCreateStageMutation } from '@/features/stages/api/stagesApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { StageAdd } from './StageAdd'
 
 vi.mock('@/app/hooks/hooks')
@@ -59,22 +60,16 @@ describe('StageAdd', () => {
     it('displays an error toast if submission fails', async () => {
         const user = userEvent.setup()
 
-        const mockConsoleError = vi
-            .spyOn(console, 'error')
-            .mockImplementation(() => {})
-
         mockUnwrap.mockRejectedValue(mockError)
 
         render(<StageAdd />)
         await user.click(screen.getByTestId('mocked-submit-button'))
 
         expect(mockAddStage).toHaveBeenCalled()
-        expect(mockConsoleError).toHaveBeenCalledWith(mockError)
+        expect(spyConsoleError).toHaveBeenCalledWith(mockError)
         expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
 
         expect(mockDispatch).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()
-
-        mockConsoleError.mockRestore()
     })
 })

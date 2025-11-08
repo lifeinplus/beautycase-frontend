@@ -4,8 +4,10 @@
     },
     "table": {
         "createdAt": "Дата создания",
-        "username": "Имя пользователя",
-        "role": "Роль",
-        "updatedAt": "Дата обновления"
+        "updatedAt": "Дата обновления",
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "username": "Логин",
+        "role": "Роль"
     }
 }

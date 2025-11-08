@@ -2,16 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import toast from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
-import {
-    afterAll,
-    beforeAll,
-    beforeEach,
-    describe,
-    expect,
-    it,
-    Mock,
-    vi,
-} from 'vitest'
+import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
@@ -24,6 +15,7 @@ import {
 import { useGetAllStoresQuery } from '@/features/stores/api/storesApi'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
+import { spyConsoleError } from '@/tests/setup'
 import { StoreLinksAdd } from './StoreLinksAdd'
 
 vi.mock('@/app/hooks/hooks')
@@ -37,11 +29,6 @@ describe('StoreLinksAdd', () => {
     }
 
     const mockOnSave = vi.fn().mockResolvedValue(undefined)
-    const spyConsoleError = vi.spyOn(console, 'error')
-
-    beforeAll(() => {
-        spyConsoleError.mockImplementation(() => {})
-    })
 
     beforeEach(() => {
         vi.mocked(useAppSelector).mockReturnValue({
@@ -51,10 +38,6 @@ describe('StoreLinksAdd', () => {
         vi.mocked(useGetAllStoresQuery as Mock).mockReturnValue({
             data: mockStores,
         })
-    })
-
-    afterAll(() => {
-        spyConsoleError.mockRestore()
     })
 
     it('renders the page with correct title', () => {

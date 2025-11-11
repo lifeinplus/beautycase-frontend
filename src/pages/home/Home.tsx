@@ -49,11 +49,8 @@ export const Home = () => {
                             </div>
                             <button
                                 className={classNames(
-                                    'flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors md:w-67',
-                                    'bg-rose-500 hover:bg-rose-600',
-                                    'dark:bg-rose-600 dark:hover:bg-rose-700',
-                                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                                    'dark:focus-visible:outline-rose-700'
+                                    'flex w-full justify-center gap-4 rounded-lg bg-rose-500 px-4 py-2 text-base font-semibold text-white transition-colors hover:bg-rose-600 md:w-67 dark:bg-rose-600 dark:hover:bg-rose-700',
+                                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
                                 )}
                                 onClick={handleLogout}
                             >
@@ -68,10 +65,8 @@ export const Home = () => {
                             <div className="flex flex-col gap-3">
                                 <Link
                                     className={classNames(
-                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                                        'dark:focus-visible:outline-rose-700',
-                                        'rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600',
-                                        'dark:bg-rose-600 dark:hover:bg-rose-700'
+                                        'rounded-lg bg-rose-500 px-4 py-2 text-center font-semibold text-white transition-colors hover:bg-rose-600 dark:bg-rose-600 dark:hover:bg-rose-700',
+                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
                                     )}
                                     to={ROUTES.login}
                                 >
@@ -79,11 +74,8 @@ export const Home = () => {
                                 </Link>
                                 <Link
                                     className={classNames(
-                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                                        'dark:focus-visible:outline-rose-700',
-                                        'bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100',
-                                        'rounded-lg border border-rose-500',
-                                        'dark:border-rose-600 dark:bg-black dark:hover:bg-neutral-800'
+                                        'rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-semibold text-rose-500 transition-colors hover:bg-neutral-100 dark:border-rose-600 dark:bg-black dark:hover:bg-neutral-800',
+                                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
                                     )}
                                     to={ROUTES.register}
                                 >

@@ -21,7 +21,7 @@ export const StartupProgress = () => {
         <div className="flex min-h-screen items-center justify-center bg-white dark:bg-black">
             <div className="mx-4 flex max-w-md flex-col items-center space-y-8 p-8">
                 <div className="flex items-center justify-center">
-                    <h1 className="font-logo mt-4 mb-10 text-5xl sm:text-6xl lg:text-7xl">
+                    <h1 className="font-logo mt-4 mb-10 text-5xl md:text-6xl lg:text-7xl">
                         Beautycase
                     </h1>
                 </div>

@@ -20,7 +20,7 @@ export const StoreLinks = ({
     return (
         <section className="my-3 px-4 text-base">
             <p className="mb-3 font-bold">{t(`titles.links.${type}`)}</p>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 md:flex-row">
                 {storeLinks?.map((link, i) => (
                     <ItemLink key={i} item={link} />
                 ))}

@@ -20,8 +20,8 @@ export const UsersList = () => {
     return (
         <article>
             <TopPanel title={title} onBack={backAction.onClick} />
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto my-6 w-full pb-6 sm:my-0 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto my-6 w-full pb-6 md:my-0 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} hideOnMobile />
                     <DataWrapper isLoading={isLoading} error={error}>
                         <UsersMobileView data={data} />

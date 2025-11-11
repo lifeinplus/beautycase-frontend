@@ -35,8 +35,8 @@ export const SelectTile = ({ products }: SelectTileProps) => {
                 'relative mx-auto w-full overflow-hidden',
                 'aspect-square',
                 'group flex items-center justify-center bg-white hover:bg-rose-500',
-                'hover:border-white sm:rounded-md sm:border sm:border-gray-200',
-                'dark:bg-black dark:text-white dark:hover:border-white dark:hover:bg-rose-600 dark:sm:border-neutral-700'
+                'hover:border-white md:rounded-md md:border md:border-gray-200',
+                'dark:bg-black dark:text-white dark:hover:border-white dark:hover:bg-rose-600 dark:md:border-neutral-700'
             )}
             onClick={handleClick}
         >

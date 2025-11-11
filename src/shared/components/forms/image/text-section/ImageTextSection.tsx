@@ -12,7 +12,7 @@ import type {
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
-import { useUploadTempImageByFileMutation } from '@/features/uploads/api/uploadsApi'
+import { useUploadTempImageMutation } from '@/features/uploads/api/uploadsApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { Label } from '../../label/Label'
 import { ImagePreview } from '../preview/ImagePreview'
@@ -54,9 +54,9 @@ export const ImageTextSection = <T extends FieldValues>({
     const { t } = useTranslation('form')
     const [isUploading, setIsUploading] = useState(false)
 
-    const [uploadTempImageByFile] = useUploadTempImageByFileMutation()
+    const [uploadTempImage] = useUploadTempImageMutation()
 
-    const handleUploadByFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
 
         if (!file) return
@@ -73,7 +73,7 @@ export const ImageTextSection = <T extends FieldValues>({
             formData.append('folder', folder)
             formData.append('imageFile', file)
 
-            const response = await uploadTempImageByFile(formData).unwrap()
+            const response = await uploadTempImage(formData).unwrap()
 
             setValue(name, fallbackText(value) as PathValue<T, Path<T>>)
             setValue(nameUrl, response.imageUrl as PathValue<T, Path<T>>)
@@ -109,7 +109,7 @@ export const ImageTextSection = <T extends FieldValues>({
                         accept="image/*,.heic"
                         className="hidden"
                         disabled={isUploading}
-                        onChange={handleUploadByFile}
+                        onChange={handleUpload}
                         type="file"
                     />
                 </label>
@@ -120,7 +120,7 @@ export const ImageTextSection = <T extends FieldValues>({
                     {...register}
                     className={classNames(
                         'peer block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                        'bg-white placeholder-neutral-500',
+                        'bg-white placeholder-neutral-400',
                         'border border-neutral-200 focus:border-black',
                         'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
                         error && 'border-rose-500 dark:border-rose-400',
@@ -155,7 +155,7 @@ export const ImageTextSection = <T extends FieldValues>({
                     </p>
                 )}
 
-                {valueUrl && <ImagePreview url={valueUrl} />}
+                {valueUrl && <ImagePreview imageId={valueUrl} />}
             </div>
         </div>
     )

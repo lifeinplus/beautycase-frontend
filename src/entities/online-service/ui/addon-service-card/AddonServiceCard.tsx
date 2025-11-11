@@ -17,7 +17,7 @@ export const AddonServiceCard = ({ name, blurb }: AddonServiceCardProps) => {
             <h4 className="text-base/7 font-semibold text-pretty text-black dark:text-white">
                 {name}
             </h4>
-            <p className="my-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7 dark:text-gray-300">
+            <p className="my-6 text-base/7 text-pretty text-neutral-700 md:text-sm/7 dark:text-gray-300">
                 {blurb}
             </p>
             <a

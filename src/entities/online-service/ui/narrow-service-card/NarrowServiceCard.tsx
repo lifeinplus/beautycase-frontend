@@ -52,13 +52,13 @@ export const NarrowServiceCard = ({
                 <span className="text-base text-neutral-500 dark:text-gray-400">{`/ ${time}`}</span>
             </p>
 
-            <p className="mt-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7 dark:text-gray-300">
+            <p className="mt-6 text-base/7 text-pretty text-neutral-700 md:text-sm/7 dark:text-gray-300">
                 {blurb}
             </p>
 
             <ul
                 role="list"
-                className="my-8 space-y-3 text-base text-pretty text-neutral-700 sm:my-10 sm:text-sm dark:text-gray-300"
+                className="my-8 space-y-3 text-base text-pretty text-neutral-700 md:my-10 md:text-sm dark:text-gray-300"
             >
                 {features.map((f) => (
                     <li key={f} className="flex gap-x-3">

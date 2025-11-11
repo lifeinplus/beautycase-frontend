@@ -23,7 +23,7 @@ export const OnlineServices = () => {
 
     return (
         <div className="space-y-8">
-            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 sm:px-0 md:grid-cols-2">
+            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 md:grid-cols-2 md:px-0">
                 {services.map((s) => (
                     <NarrowServiceCard
                         key={s.key}
@@ -45,7 +45,7 @@ export const OnlineServices = () => {
             <p className="font-heading mx-auto w-11/12 pt-4 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
                 {t('workshops.title')}
             </p>
-            <div className="mx-auto grid max-w-2xl items-stretch gap-7 px-7 sm:px-0">
+            <div className="mx-auto grid max-w-2xl items-stretch gap-7 px-7 md:px-0">
                 {workshops.map((w) => (
                     <WideServiceCard
                         key={w.key}
@@ -65,7 +65,7 @@ export const OnlineServices = () => {
             <p className="font-heading mx-auto w-11/12 pt-4 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
                 {t('addons.title')}
             </p>
-            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 sm:grid-cols-2 sm:px-0">
+            <div className="mx-auto grid max-w-2xl grid-cols-1 items-stretch gap-7 px-7 md:grid-cols-2 md:px-0">
                 {addons.map((a) => (
                     <AddonServiceCard
                         key={a.key}

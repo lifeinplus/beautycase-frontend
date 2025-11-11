@@ -6,15 +6,10 @@ import { type UploadImageResponse } from '../uploadsApi'
 
 export const mockUploadResult: UploadImageResponse = { imageUrl: mockImageUrl1 }
 
-export const useUploadTempImageByFileMutation = vi.fn()
-export const useUploadTempImageByUrlMutation = vi.fn()
+export const useUploadTempImageMutation = vi.fn()
 
 const uploadsHandlers = [
-    http.post('api/uploads/temp-image-file', async () => {
-        return HttpResponse.json({ imageUrl: mockImageUrl1 })
-    }),
-
-    http.post('api/uploads/temp-image-url', async () => {
+    http.post('api/uploads/temp-image', async () => {
         return HttpResponse.json({ imageUrl: mockImageUrl1 })
     }),
 ]

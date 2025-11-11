@@ -42,11 +42,11 @@ export const ModalDuplicate = ({
 
     return (
         <div
-            className="sm:ps-navbar lg:ps-navbar-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            className="md:ps-navbar lg:ps-navbar-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
             onClick={handleClickOutside}
         >
             <div
-                className="m-5 flex w-3/4 max-w-96 flex-col space-y-10 rounded-xl bg-white shadow-lg sm:w-1/2 dark:bg-neutral-800"
+                className="m-5 flex w-3/4 max-w-96 flex-col space-y-10 rounded-xl bg-white shadow-lg md:w-1/2 dark:bg-neutral-800"
                 ref={modalRef}
             >
                 <div className="mt-8 space-y-3 px-5 text-center">

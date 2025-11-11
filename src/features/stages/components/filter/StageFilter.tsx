@@ -29,7 +29,7 @@ export const StageFilter = ({ onSelectMakeupBag }: StageFilterProps) => {
             <select
                 className={classNames(
                     'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',
-                    'bg-white placeholder-neutral-500',
+                    'bg-white placeholder-neutral-400',
                     'border border-neutral-200 focus:border-black',
                     'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
                 )}

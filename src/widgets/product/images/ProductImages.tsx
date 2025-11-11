@@ -27,7 +27,7 @@ export const ProductImages = ({
     }
 
     return (
-        <div className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 sm:gap-7">
+        <div className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
             {products?.map((p) => (
                 <div
                     key={p._id}

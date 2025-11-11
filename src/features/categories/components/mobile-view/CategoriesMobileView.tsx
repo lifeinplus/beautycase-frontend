@@ -21,7 +21,7 @@ export const CategoriesMobileView = ({
     const { t } = useTranslation('category')
 
     return (
-        <div className="space-y-5 sm:hidden">
+        <div className="space-y-5 md:hidden">
             {items?.map((item) => (
                 <div
                     key={item._id}

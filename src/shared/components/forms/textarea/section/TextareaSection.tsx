@@ -31,11 +31,10 @@ export const TextareaSection = ({
             <textarea
                 {...register}
                 className={classNames(
-                    'peer block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                    'bg-white placeholder-neutral-500',
-                    'border border-neutral-200 focus:border-black',
-                    'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
-                    error && 'border-rose-500 dark:border-rose-400'
+                    'peer block w-full rounded-xl border bg-white px-4 py-2.5 placeholder-neutral-400 focus:border-black focus:outline-none dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
+                    error
+                        ? 'border-rose-500 dark:border-rose-400'
+                        : 'border-neutral-200 dark:border-neutral-700'
                 )}
                 placeholder={label}
                 rows={rows}
@@ -43,7 +42,7 @@ export const TextareaSection = ({
 
             {preview && value && (
                 <ImagePreview
-                    url={
+                    imageId={
                         register.name === 'videoUrl'
                             ? getThumbnail(value)
                             : value
@@ -59,12 +58,7 @@ export const TextareaSection = ({
         )}
 
         {error && (
-            <p
-                className={classNames(
-                    'text-rose-500 dark:text-rose-400',
-                    'mt-2 text-sm'
-                )}
-            >
+            <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
                 {error}
             </p>
         )}

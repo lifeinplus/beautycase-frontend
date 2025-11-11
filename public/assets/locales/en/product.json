@@ -19,11 +19,11 @@
                 "required": "Enter the product name"
             }
         },
-        "imageUrl": {
-            "label": "Image URL",
+        "imageIds": {
+            "label": "Images",
             "errors": {
-                "required": "Enter the image URL",
-                "url": "Enter a valid URL"
+                "required": "Select images",
+                "min": "At least 1 image"
             }
         },
         "shade": {

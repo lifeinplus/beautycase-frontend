@@ -5,13 +5,16 @@ import { ImagePreview, type ImagePreviewProps } from './ImagePreview'
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {
-        url: 'https://example.com/image.jpg',
+        imageId: 'https://example.com/image.jpg',
     }
 
     it('renders with the correct URL', () => {
         render(<ImagePreview {...mockProps} />)
 
-        expect(screen.getByRole('img')).toHaveAttribute('src', mockProps.url)
+        expect(screen.getByRole('img')).toHaveAttribute(
+            'src',
+            mockProps.imageId
+        )
     })
 
     it('renders with the correct alt text', () => {

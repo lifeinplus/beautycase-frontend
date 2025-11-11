@@ -21,11 +21,11 @@ export const StoresMobileView = ({
     const { t } = useTranslation('store')
 
     return (
-        <div className="space-y-5 sm:hidden">
+        <div className="space-y-5 md:hidden">
             {items?.map((item) => (
                 <div
                     key={item._id}
-                    className="flex items-center justify-between pe-4 ps-4"
+                    className="flex items-center justify-between ps-4 pe-4"
                 >
                     <div>
                         <p className="text-black dark:text-white">

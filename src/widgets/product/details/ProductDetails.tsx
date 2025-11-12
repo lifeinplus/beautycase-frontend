@@ -42,7 +42,7 @@ export const ProductDetails = ({
                             </h2>
                         </section>
 
-                        <ImageSection name={data?.name} url={data?.imageUrl} />
+                        <ImageSection imageIds={data?.imageIds} />
 
                         {data?.shade && (
                             <section className="my-3 px-4 text-base">

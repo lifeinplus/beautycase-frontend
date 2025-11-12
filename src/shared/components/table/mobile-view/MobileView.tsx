@@ -1,4 +1,5 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
 export interface MobileViewProps<T> {
@@ -20,7 +21,10 @@ export const MobileView = <T,>({
         {items?.map((item) => (
             <Link
                 key={getLink(item)}
-                className="flex items-center justify-between ps-4 pe-5"
+                className={classNames(
+                    'flex items-center justify-between ps-4 pe-5 transition-all',
+                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed'
+                )}
                 to={getLink(item)}
             >
                 <div>

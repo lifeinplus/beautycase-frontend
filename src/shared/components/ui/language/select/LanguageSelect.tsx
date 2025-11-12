@@ -17,9 +17,8 @@ export const LanguageSelect = () => {
     return (
         <select
             className={classNames(
-                'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                'dark:focus-visible:outline-rose-700',
-                'bg-white py-2 pe-1 text-right text-sm text-gray-700 dark:bg-black dark:text-gray-400'
+                'bg-white py-2 pe-1 text-right text-sm text-gray-700 transition-all dark:bg-black dark:text-gray-400 dark:focus-visible:outline-rose-700',
+                'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed'
             )}
             onChange={handleLanguageChange}
             value={i18n.language}

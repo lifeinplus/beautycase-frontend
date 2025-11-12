@@ -15,18 +15,12 @@ export const TopPanel = ({ title, onBack }: TopPanelProps) => {
     }
 
     return (
-        <nav
-            className={classNames(
-                'pt-safe-top sticky top-0 left-0 z-10 w-full border-b border-neutral-300 bg-white md:hidden',
-                'dark:border-neutral-700 dark:bg-black'
-            )}
-        >
+        <nav className="pt-safe-top sticky top-0 left-0 z-10 w-full border-b border-neutral-300 bg-white md:hidden dark:border-neutral-700 dark:bg-black">
             <div className="flex items-center justify-between px-4 py-2.5">
                 <button
                     className={classNames(
-                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                        'dark:focus-visible:outline-rose-700',
-                        'me-2 flex items-center pe-0.5'
+                        'me-2 flex items-center pe-0.5 transition-all dark:focus-visible:outline-rose-700',
+                        'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed'
                     )}
                     onClick={onBack || handleBack}
                 >

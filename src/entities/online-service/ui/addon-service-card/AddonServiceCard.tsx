@@ -27,7 +27,7 @@ export const AddonServiceCard = ({ name, blurb }: AddonServiceCardProps) => {
                 className={classNames(
                     'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
                     'dark:focus-visible:outline-rose-700',
-                    'mt-auto flex justify-between rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-light text-rose-500 font-stretch-75% transition-colors hover:border-rose-700 hover:text-rose-700',
+                    'mt-auto flex justify-between rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-light text-rose-500 font-stretch-75% transition-all hover:border-rose-700 hover:text-rose-700',
                     'dark:border-rose-500 dark:bg-black dark:text-rose-500 dark:hover:border-rose-400 dark:hover:text-rose-400'
                 )}
             >

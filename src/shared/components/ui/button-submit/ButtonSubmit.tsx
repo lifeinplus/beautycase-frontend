@@ -18,7 +18,7 @@ export const ButtonSubmit = ({
     <button
         {...props}
         className={classNames(
-            'md:max-w-submit flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white',
+            'md:max-w-submit flex w-full justify-center gap-4 rounded-lg px-4 py-2 text-base font-semibold text-white transition-all',
             'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',
             className,
             isLoading

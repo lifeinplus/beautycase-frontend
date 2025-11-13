@@ -13,9 +13,10 @@ export interface ImageSectionProps {
 }
 
 export const ImageSection = ({ imageIds }: ImageSectionProps) => {
-    if (!imageIds?.length) return null
-
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [error, setError] = useState(false)
+
+    if (!imageIds?.length) return null
 
     const handlePrev = () => {
         if (currentIndex > 0) {
@@ -30,7 +31,9 @@ export const ImageSection = ({ imageIds }: ImageSectionProps) => {
     }
 
     const publicId =
-        imageIds[currentIndex] || config.cloudinary.defaultThumbnailName
+        !error && imageIds[currentIndex]
+            ? imageIds[currentIndex]
+            : config.cloudinary.defaultThumbnailName
 
     const cldImg = cloudinary
         .image(publicId)
@@ -44,6 +47,9 @@ export const ImageSection = ({ imageIds }: ImageSectionProps) => {
                 <AdvancedImage
                     cldImg={cldImg}
                     className="h-full w-full object-cover transition-all duration-500"
+                    onError={() => {
+                        setError(true)
+                    }}
                 />
 
                 {imageIds.length > 1 && (
@@ -51,17 +57,17 @@ export const ImageSection = ({ imageIds }: ImageSectionProps) => {
                         {currentIndex > 0 && (
                             <ArrowButton
                                 aria-label="Previous image"
+                                className="left-3"
                                 icon={ChevronLeftIcon}
                                 onClick={handlePrev}
-                                side="left"
                             />
                         )}
                         {currentIndex < imageIds.length - 1 && (
                             <ArrowButton
                                 aria-label="Next image"
+                                className="right-3"
                                 icon={ChevronRightIcon}
                                 onClick={handleNext}
-                                side="right"
                             />
                         )}
                     </>

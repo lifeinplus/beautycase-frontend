@@ -5,7 +5,6 @@ import type {
     Path,
     PathValue,
     UseFormClearErrors,
-    UseFormRegisterReturn,
     UseFormSetValue,
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -25,7 +24,6 @@ export interface ImageFilesSectionProps<T extends FieldValues> {
     folder: 'products' | 'stages' | 'tools'
     label: string
     name: Path<T>
-    register: UseFormRegisterReturn
     setValue: UseFormSetValue<T>
     error?: string
     required?: boolean
@@ -37,7 +35,6 @@ export const ImageFilesSection = <T extends FieldValues>({
     folder,
     label,
     name,
-    register,
     setValue,
     error,
     required = false,

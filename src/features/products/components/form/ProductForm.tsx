@@ -121,7 +121,6 @@ export const ProductForm = ({
                                 error={t(errors.imageIds?.message || '')}
                                 label={t('fields.imageIds.label')}
                                 name={'imageIds'}
-                                register={register('imageIds')}
                                 required={true}
                                 setValue={setValue}
                                 value={watch('imageIds')}

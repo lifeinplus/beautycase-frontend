@@ -1,11 +1,9 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
@@ -20,8 +18,6 @@ export const useDeleteLessonAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-
     const lessonsRoot = ROUTES.backstage.lessons.root
     const isLessonDetailsPage = pathname.match(
         new RegExp(`^${lessonsRoot}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDeleteLessonAction = () => {
     const { data } = useGetLessonByIdQuery(id!, {
         skip: !id || !isLessonDetailsPage,
     })
-
-    useEffect(() => {
-        if (isLessonDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isLessonDetailsPage])
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 

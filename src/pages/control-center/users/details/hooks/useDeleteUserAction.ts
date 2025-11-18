@@ -1,11 +1,9 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteUserByIdMutation,
     useGetUserByIdQuery,
@@ -20,7 +18,6 @@ export const useDeleteUserAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 
     const isUserDetailsPage = pathname.match(
@@ -33,12 +30,6 @@ export const useDeleteUserAction = () => {
 
     const [deleteUserById, { isLoading: isDeleting }] =
         useDeleteUserByIdMutation()
-
-    useEffect(() => {
-        if (isUserDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isUserDetailsPage])
 
     const handleDelete = async () => {
         try {

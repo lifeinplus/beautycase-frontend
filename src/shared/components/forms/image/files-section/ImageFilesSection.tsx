@@ -15,7 +15,7 @@ import {
 } from '@/features/uploads/api/uploadsApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { Label } from '../../label/Label'
-import { ImagePreview } from '../preview/ImagePreview'
+import { ImagePreview } from '../../preview/image/ImagePreview'
 import { ImageUploadButton } from '../ui/ImageUploadButton'
 import { ImageUploadPlaceholder } from '../ui/ImageUploadPlaceholder'
 

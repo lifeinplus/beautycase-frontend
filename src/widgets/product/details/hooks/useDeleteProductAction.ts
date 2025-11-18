@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,
@@ -20,8 +18,6 @@ export const useDeleteProductAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-
     const productsRoot = ROUTES.backstage.products.root
     const isProductDetailsPage = pathname.match(
         new RegExp(`^${productsRoot}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDeleteProductAction = () => {
     const { data } = useGetProductByIdQuery(id!, {
         skip: !id || !isProductDetailsPage,
     })
-
-    useEffect(() => {
-        if (isProductDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isProductDetailsPage])
 
     const [modalDeleteProps, setModalDeleteProps] = useState<ModalDeleteProps>(
         {}

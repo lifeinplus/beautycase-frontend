@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineLessonsQuery } from '@/features/lessons/api/lessonsApi'
 import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { VideoCard } from '@/shared/components/gallery/video-card/VideoCard'
@@ -11,9 +14,14 @@ import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const LessonGallery = () => {
     const { t } = useTranslation('lesson')
+    const dispatch = useAppDispatch()
     const backAction = useToBackstageGalleryAction()
 
     const { data = [], isLoading, error } = useGetMineLessonsQuery()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const title = titleWithCount(t('titles.gallery'), data.length)
 

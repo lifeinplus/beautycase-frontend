@@ -1,6 +1,9 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineProductsByCategoryQuery } from '@/features/products/api/productsApi'
 import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
@@ -13,6 +16,7 @@ import { useToProductGalleryAction } from '../gallery/hooks/useToProductGalleryA
 export const CategoryProducts = () => {
     const { category } = useParams()
     const { t } = useTranslation('product')
+    const dispatch = useAppDispatch()
     const backAction = useToProductGalleryAction()
 
     const {
@@ -20,6 +24,10 @@ export const CategoryProducts = () => {
         isLoading,
         error,
     } = useGetMineProductsByCategoryQuery(category!)
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const title = titleWithCount(t(`categories.${category}`), data.length)
 

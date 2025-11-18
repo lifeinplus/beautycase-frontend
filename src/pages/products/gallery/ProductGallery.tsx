@@ -1,6 +1,9 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
 import { useGetMineProductCategoriesWithCountsQuery } from '@/features/categories/api/categoriesApi'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
@@ -10,10 +13,15 @@ import { ProductCategoriesTable } from '@/widgets/product/categories/table/Produ
 
 export const ProductGallery = () => {
     const { t } = useTranslation(['product', 'category'])
+    const dispatch = useAppDispatch()
+    const backAction = useToBackstageGalleryAction()
+
     const { data, isLoading, error } =
         useGetMineProductCategoriesWithCountsQuery()
 
-    const backAction = useToBackstageGalleryAction()
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const title = t('titles.gallery')
 

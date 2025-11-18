@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteTrainingQuestionnaireByIdMutation,
     useGetTrainingQuestionnaireByIdQuery,
@@ -20,8 +18,6 @@ export const useDeleteTrainingQuestionnaireAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-
     const questionnairesPath = ROUTES.questionnaires.trainings.root
     const isQuestionnaireResultPage = pathname.match(
         new RegExp(`^${questionnairesPath}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDeleteTrainingQuestionnaireAction = () => {
     const { data } = useGetTrainingQuestionnaireByIdQuery(id!, {
         skip: !id || !isQuestionnaireResultPage,
     })
-
-    useEffect(() => {
-        if (isQuestionnaireResultPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isQuestionnaireResultPage])
 
     const [modalDeleteProps, setModalDeleteProps] = useState<ModalDeleteProps>(
         {}

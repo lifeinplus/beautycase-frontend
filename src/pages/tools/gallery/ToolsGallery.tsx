@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
 import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
@@ -11,9 +14,14 @@ import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
+    const dispatch = useAppDispatch()
     const backAction = useToBackstageGalleryAction()
 
     const { data = [], isLoading, error } = useGetMineToolsQuery()
+
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const title = titleWithCount(t('titles.gallery'), data.length)
     const subtitle = t('titles.gallerySubtitle')

@@ -68,6 +68,7 @@ export const ToolSelection = () => {
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
+                    {/* TODO: imageUrl -> imageId */}
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 px-3 md:gap-7">
                             {tools?.map(({ _id, name, imageUrl }) => {

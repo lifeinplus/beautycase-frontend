@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteToolByIdMutation,
     useGetToolByIdQuery,
@@ -20,8 +18,6 @@ export const useDeleteToolAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-
     const toolsRoot = ROUTES.backstage.tools.root
     const isToolDetailsPage = pathname.match(
         new RegExp(`^${toolsRoot}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDeleteToolAction = () => {
     const { data } = useGetToolByIdQuery(id!, {
         skip: !id || !isToolDetailsPage,
     })
-
-    useEffect(() => {
-        if (isToolDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isToolDetailsPage])
 
     const [modalDeleteProps, setModalDeleteProps] = useState<ModalDeleteProps>(
         {}

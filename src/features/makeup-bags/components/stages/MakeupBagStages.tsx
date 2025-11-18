@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { ImageSection } from '@/shared/components/forms/image-section/ImageSection'
+import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { GoodsGrid } from '@/shared/components/gallery/goods-grid/GoodsGrid'
 import { ROUTES } from '@/shared/config/routes'
 import type { Stage } from '../../../stages/types'

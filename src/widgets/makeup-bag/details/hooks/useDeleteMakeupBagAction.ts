@@ -1,11 +1,9 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDeleteMakeupBagByIdMutation,
     useGetMakeupBagByIdQuery,
@@ -20,8 +18,6 @@ export const useDeleteMakeupBagAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal', 'makeupBag'])
 
-    const dispatch = useAppDispatch()
-
     const makeupBagsRoot = ROUTES.backstage.makeupBags.root
     const isMakeupBagDetailsPage = pathname.match(
         new RegExp(`^${makeupBagsRoot}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDeleteMakeupBagAction = () => {
     const { data } = useGetMakeupBagByIdQuery(id!, {
         skip: !id || !isMakeupBagDetailsPage,
     })
-
-    useEffect(() => {
-        if (isMakeupBagDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isMakeupBagDetailsPage])
 
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
 

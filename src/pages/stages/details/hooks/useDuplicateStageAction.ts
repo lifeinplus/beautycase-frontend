@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
@@ -20,8 +18,6 @@ export const useDuplicateStageAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-
     const stagesRoot = ROUTES.backstage.stages.root
     const isStageDetailsPage = pathname.match(
         new RegExp(`^${stagesRoot}/[a-f0-9]{24}$`)
@@ -30,12 +26,6 @@ export const useDuplicateStageAction = () => {
     const { data } = useGetStageByIdQuery(id!, {
         skip: !id || !isStageDetailsPage,
     })
-
-    useEffect(() => {
-        if (isStageDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isStageDetailsPage])
 
     const [modalDuplicateProps, setModalDuplicateProps] =
         useState<ModalDuplicateProps>({})

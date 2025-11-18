@@ -2,8 +2,8 @@ import classNames from 'classnames'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
 import { getThumbnail } from '@/shared/utils/youtube/thumbnail/getThumbnail'
-import { ImagePreview } from '../../image/preview/ImagePreview'
 import { Label } from '../../label/Label'
+import { VideoPreview } from '../../preview/video/VideoPreview'
 
 export interface TextareaSectionProps {
     label: string
@@ -41,8 +41,8 @@ export const TextareaSection = ({
             />
 
             {preview && value && (
-                <ImagePreview
-                    imageId={
+                <VideoPreview
+                    url={
                         register.name === 'videoUrl'
                             ? getThumbnail(value)
                             : value

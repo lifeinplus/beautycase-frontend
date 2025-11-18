@@ -1,11 +1,11 @@
 import { AdvancedImage } from '@cloudinary/react'
 import { scale } from '@cloudinary/url-gen/actions/resize'
+import { MinusCircleIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
+import { useState } from 'react'
 
 import config from '@/app/config/config'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
-import { MinusCircleIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
 
 export interface ImagePreviewProps {
     imageId: string

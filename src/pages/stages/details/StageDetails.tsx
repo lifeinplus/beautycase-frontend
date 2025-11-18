@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { useGetStageByIdQuery } from '@/features/stages/api/stagesApi'
-import { ImageSection } from '@/shared/components/forms/image-section/ImageSection'
+import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'

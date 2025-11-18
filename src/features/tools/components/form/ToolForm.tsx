@@ -100,13 +100,12 @@ export const ToolForm = ({
                             <ImageFilesSection
                                 clearErrors={clearErrors}
                                 folder="tools"
-                                error={t(errors.imageUrl?.message || '')}
-                                label={t('fields.imageUrl.label')}
-                                name="imageUrl"
-                                register={register('imageUrl')}
+                                error={t(errors.imageIds?.message || '')}
+                                label={t('fields.imageIds.label')}
+                                name="imageIds"
                                 required={true}
                                 setValue={setValue}
-                                value={watch('imageUrl')}
+                                value={watch('imageIds')}
                             />
 
                             <InputSection

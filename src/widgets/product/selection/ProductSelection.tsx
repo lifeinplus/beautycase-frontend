@@ -10,9 +10,9 @@ import { useGetMineProductsQuery } from '@/features/products/api/productsApi'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import { Image } from '@/shared/components/ui/image/Image'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
+import { ProductSelectionCard } from './ui/ProductSelectionCard'
 
 export interface ProductSelectionProps {
     onSave: (id: string, productIds: string[]) => Promise<void>
@@ -84,33 +84,16 @@ export const ProductSelection = ({
 
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
-                            {products?.map(({ _id, name, imageUrl }) => {
-                                const isSelected = orderedIds.has(_id!)
-                                const order = orderedIds.get(_id!)
-
-                                return (
-                                    <div
-                                        key={_id}
-                                        className={classNames(
-                                            'relative mx-auto w-full overflow-hidden',
-                                            'aspect-square'
-                                        )}
-                                        onClick={() => toggleOrderedIds(_id!)}
-                                    >
-                                        <Image alt={name} src={imageUrl} />
-                                        <span
-                                            className={classNames(
-                                                'absolute top-1 right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
-                                                isSelected
-                                                    ? 'bg-rose-500 text-white'
-                                                    : 'bg-transparent text-gray-400'
-                                            )}
-                                        >
-                                            {order ?? ''}
-                                        </span>
-                                    </div>
-                                )
-                            })}
+                            {products?.map(({ _id, imageIds }) => (
+                                <ProductSelectionCard
+                                    key={_id}
+                                    id={_id!}
+                                    imageIds={imageIds}
+                                    isSelected={orderedIds.has(_id!)}
+                                    order={orderedIds.get(_id!)}
+                                    onToggle={toggleOrderedIds}
+                                />
+                            ))}
                         </article>
 
                         <section

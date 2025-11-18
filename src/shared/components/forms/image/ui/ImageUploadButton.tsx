@@ -5,11 +5,13 @@ import { ChangeEvent, useRef } from 'react'
 export interface ImageUploadButtonProps {
     isUploading: boolean
     onUpload: (e: ChangeEvent<HTMLInputElement>) => void
+    multiple?: boolean
 }
 
 export const ImageUploadButton = ({
     isUploading,
     onUpload,
+    multiple = false,
 }: ImageUploadButtonProps) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null)
 
@@ -47,7 +49,7 @@ export const ImageUploadButton = ({
                 disabled={isUploading}
                 onChange={onUpload}
                 type="file"
-                multiple
+                multiple={multiple}
             />
         </button>
     )

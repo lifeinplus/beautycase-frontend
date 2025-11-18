@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import config from '@/app/config/config'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 import { MinusCircleIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
 
 export interface ImagePreviewProps {
     imageId: string
@@ -17,7 +18,10 @@ export const ImagePreview = ({
     onDelete,
     isLoading,
 }: ImagePreviewProps) => {
-    const publicId = imageId || config.cloudinary.defaultThumbnailName
+    const [error, setError] = useState(false)
+
+    const publicId =
+        !error && imageId ? imageId : config.cloudinary.defaultThumbnailName
 
     const cldImg = cloudinary
         .image(publicId)
@@ -46,7 +50,12 @@ export const ImagePreview = ({
                     )}
                 />
             </button>
-            <AdvancedImage cldImg={cldImg} />
+            <AdvancedImage
+                cldImg={cldImg}
+                onError={() => {
+                    setError(true)
+                }}
+            />
         </div>
     )
 }

@@ -6,12 +6,14 @@ export interface ImageUploadPlaceholderProps {
     isUploading: boolean
     onUpload: (e: ChangeEvent<HTMLInputElement>) => void
     error?: string
+    multiple?: boolean
 }
 
 export const ImageUploadPlaceholder = ({
     isUploading,
     onUpload,
     error,
+    multiple = false,
 }: ImageUploadPlaceholderProps) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null)
 
@@ -52,7 +54,7 @@ export const ImageUploadPlaceholder = ({
                 disabled={isUploading}
                 onChange={onUpload}
                 type="file"
-                multiple
+                multiple={multiple}
             />
         </button>
     )

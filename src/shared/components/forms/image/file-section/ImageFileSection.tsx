@@ -16,10 +16,9 @@ import {
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { Label } from '../../label/Label'
 import { ImagePreview } from '../preview/ImagePreview'
-import { ImageUploadButton } from '../ui/ImageUploadButton'
 import { ImageUploadPlaceholder } from '../ui/ImageUploadPlaceholder'
 
-export interface ImageFilesSectionProps<T extends FieldValues> {
+export interface ImageFileSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
     folder: 'products' | 'stages' | 'tools'
     label: string
@@ -27,10 +26,10 @@ export interface ImageFilesSectionProps<T extends FieldValues> {
     setValue: UseFormSetValue<T>
     error?: string
     required?: boolean
-    value?: string[]
+    value?: string
 }
 
-export const ImageFilesSection = <T extends FieldValues>({
+export const ImageFileSection = <T extends FieldValues>({
     clearErrors,
     folder,
     label,
@@ -38,20 +37,13 @@ export const ImageFilesSection = <T extends FieldValues>({
     setValue,
     error,
     required = false,
-    value = [],
-}: ImageFilesSectionProps<T>) => {
-    const [imageIds, setImageIds] = useState<string[]>([])
+    value,
+}: ImageFileSectionProps<T>) => {
+    const [imageId, setImageId] = useState<string | null>(null)
 
     useEffect(() => {
-        if (!value) return
-
-        const newIds = Array.isArray(value) ? value : [value]
-        const isSame =
-            newIds.length === imageIds.length &&
-            newIds.every((id, i) => id === imageIds[i])
-
-        if (!isSame) {
-            setImageIds(newIds)
+        if (value) {
+            setImageId(value)
         }
     }, [value])
 
@@ -61,25 +53,19 @@ export const ImageFilesSection = <T extends FieldValues>({
     const [deleteImage, { isLoading: isDeleting }] = useDeleteImageMutation()
 
     const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files
+        const file = e.target.files?.[0]
 
-        if (!files?.length) return
+        if (!file) return
 
         try {
-            const uploadedIds: string[] = []
+            const formData = new FormData()
+            formData.append('folder', folder)
+            formData.append('imageFile', file)
 
-            for (const file of files) {
-                const formData = new FormData()
-                formData.append('folder', folder)
-                formData.append('imageFile', file)
+            const response = await uploadTempImage(formData).unwrap()
 
-                const response = await uploadTempImage(formData).unwrap()
-                uploadedIds.push(response.imageId)
-            }
-
-            const updated = [...imageIds, ...uploadedIds]
-            setImageIds(updated)
-            setValue(name, updated as PathValue<T, Path<T>>)
+            setImageId(response.imageId)
+            setValue(name, response.imageId as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
             console.error('Image upload failed', error)
@@ -90,10 +76,8 @@ export const ImageFilesSection = <T extends FieldValues>({
     const handleDelete = async (imageId: string) => {
         try {
             await deleteImage(imageId).unwrap()
-
-            const updated = imageIds.filter((id) => id !== imageId)
-            setImageIds(updated)
-            setValue(name, updated as PathValue<T, Path<T>>)
+            setImageId(null)
+            setValue(name, null as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
             console.error('Image upload failed', error)
@@ -106,23 +90,16 @@ export const ImageFilesSection = <T extends FieldValues>({
             <div
                 className={classNames(
                     'flex justify-between',
-                    imageIds.length ? 'flex-row items-center' : 'flex-col'
+                    imageId ? 'flex-row items-center' : 'flex-col'
                 )}
             >
                 <Label required={required} text={label} />
 
-                {imageIds.length ? (
-                    <ImageUploadButton
-                        isUploading={isUploading}
-                        onUpload={handleUpload}
-                        multiple={true}
-                    />
-                ) : (
+                {!imageId && (
                     <ImageUploadPlaceholder
                         isUploading={isUploading}
                         onUpload={handleUpload}
                         error={error}
-                        multiple={true}
                     />
                 )}
             </div>
@@ -134,14 +111,14 @@ export const ImageFilesSection = <T extends FieldValues>({
                     </p>
                 )}
 
-                {imageIds.map((imageId) => (
+                {imageId && (
                     <ImagePreview
                         key={imageId}
                         imageId={imageId}
                         onDelete={() => handleDelete(imageId)}
                         isLoading={isDeleting}
                     />
-                ))}
+                )}
             </div>
         </div>
     )

@@ -26,7 +26,7 @@ export const StageEdit = () => {
     const dispatch = useAppDispatch()
     const isDirty = useAppSelector(selectIsDirty)
 
-    const [updateStageById] = useUpdateStageByIdMutation()
+    const [updateStageById, { isLoading }] = useUpdateStageByIdMutation()
     const { data } = useGetStageByIdQuery(id!)
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export const StageEdit = () => {
                 setFormData({
                     title: data.title,
                     subtitle: data.subtitle,
-                    imageUrl: data.imageUrl,
+                    imageId: data.imageId,
                     comment: data.comment,
                     steps: data.steps,
                     stepsText: data.steps?.join('\n\n'),
@@ -45,7 +45,7 @@ export const StageEdit = () => {
         }
     }, [data, dispatch, isDirty])
 
-    const handleUpdateStage = async (stage: Stage) => {
+    const handleEditStage = async (stage: Stage) => {
         const { stepsText, ...newStage } = stage
         const steps = stepsText ? stepsText?.split('\n\n') : undefined
 
@@ -63,5 +63,11 @@ export const StageEdit = () => {
         }
     }
 
-    return <StageForm title={t('titles.edit')} onSubmit={handleUpdateStage} />
+    return (
+        <StageForm
+            title={t('titles.edit')}
+            onSubmit={handleEditStage}
+            isSaving={isLoading}
+        />
+    )
 }

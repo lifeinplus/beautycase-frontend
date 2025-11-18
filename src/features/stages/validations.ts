@@ -7,5 +7,5 @@ export const stageSchema = object({
     subtitle: string()
         .required('fields.subtitle.errors.required')
         .min(10, 'fields.subtitle.errors.min'),
-    imageUrl: string().required('fields.imageUrl.errors.required'),
+    imageId: string().required('fields.imageId.errors.required'),
 })

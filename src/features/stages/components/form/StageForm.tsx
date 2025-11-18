@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData } from '@/features/form/slice/formSlice'
-import { ImageFilesSection } from '@/shared/components/forms/image/files-section/ImageFilesSection'
+import { ImageFileSection } from '@/shared/components/forms/image/file-section/ImageFileSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
@@ -81,16 +81,15 @@ export const StageForm = ({
                                 value={watch('subtitle')}
                             />
 
-                            <ImageFilesSection
+                            <ImageFileSection
                                 clearErrors={clearErrors}
                                 folder="stages"
-                                error={t(errors.imageUrl?.message || '')}
-                                label={t('fields.imageUrl.label')}
-                                name="imageUrl"
-                                register={register('imageUrl')}
+                                error={t(errors.imageId?.message || '')}
+                                label={t('fields.imageId.label')}
+                                name="imageId"
                                 required={true}
                                 setValue={setValue}
-                                value={watch('imageUrl')}
+                                value={watch('imageId')}
                             />
 
                             <TextareaSection

@@ -39,7 +39,7 @@ export const ToolDetails = ({ viewMode = false, onBack }: ToolDetailsProps) => {
                             </h2>
                         </section>
 
-                        <ImageSection name={data?.name} url={data?.imageUrl} />
+                        <ImageSection imageIds={data?.imageIds} />
 
                         {data?.number && (
                             <section className="my-3 px-4 text-base">

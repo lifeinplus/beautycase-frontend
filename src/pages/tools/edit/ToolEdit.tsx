@@ -35,7 +35,7 @@ export const ToolEdit = () => {
                 setFormData({
                     brandId: data.brand?._id,
                     name: data.name,
-                    imageUrl: data.imageUrl,
+                    imageIds: data.imageIds,
                     number: data.number,
                     comment: data.comment,
                     storeLinks: data.storeLinks,

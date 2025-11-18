@@ -14,10 +14,10 @@ export const StageDetails = () => {
     const { t } = useTranslation('stage')
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
-
     const backAction = useToStageListAction()
 
     const title = data?.title || t('titles.details')
+    const imageIds = data?.imageId ? [data.imageId] : []
 
     return (
         <article className="pb-13 md:pb-0">
@@ -38,7 +38,7 @@ export const StageDetails = () => {
                             </h2>
                         </section>
 
-                        <ImageSection name={title} url={data?.imageUrl} />
+                        <ImageSection imageIds={imageIds} />
 
                         {data?.comment && (
                             <section className="my-3 px-4 text-base">

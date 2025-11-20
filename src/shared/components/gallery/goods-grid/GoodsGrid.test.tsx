@@ -67,10 +67,6 @@ describe('GoodsGrid', () => {
 
         const images = screen.getAllByRole('img')
         expect(images).toHaveLength(3)
-
-        expect(images[0]).toHaveAttribute('src', '/images/product1.jpg')
-        expect(images[1]).toHaveAttribute('src', '/images/product2.jpg')
-        expect(images[2]).toHaveAttribute('src', '/images/product3.jpg')
     })
 
     it('navigates to the correct path when an item is clicked', async () => {

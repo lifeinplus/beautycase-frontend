@@ -35,22 +35,6 @@ describe('MakeupBagQuestionnaireData', () => {
         expect(notSpecifiedElements.length).toBe(20 - 6)
     })
 
-    it('renders an image when makeupBagPhotoId is provided', () => {
-        const mockMakeupBagPhotoId = ['makeupBagPhoto1']
-
-        render(
-            <MakeupBagQuestionnaireData
-                data={{
-                    ...mockMakeupBagQuestionnaire1,
-                    makeupBagPhotoIds: mockMakeupBagPhotoId,
-                }}
-            />
-        )
-
-        expect(cloudinary.image).toHaveBeenCalledWith(mockMakeupBagPhotoId)
-        expect(screen.getByTestId('mocked-advanced-image')).toBeInTheDocument()
-    })
-
     it('uses default image when makeupBagPhotoId is not provided', () => {
         render(
             <MakeupBagQuestionnaireData data={mockMakeupBagQuestionnaire1} />

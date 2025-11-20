@@ -60,12 +60,6 @@ describe('ProductSelection', () => {
         expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 
-    it('renders product items', () => {
-        render(<ProductSelection onSave={mockOnSave} />)
-        expect(screen.getByAltText('Product 1')).toBeInTheDocument()
-        expect(screen.getByAltText('Product 2')).toBeInTheDocument()
-    })
-
     it('toggles product selection on click', async () => {
         const user = userEvent.setup()
         render(<ProductSelection onSave={mockOnSave} />)

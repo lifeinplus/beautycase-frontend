@@ -156,7 +156,8 @@ describe('Login', () => {
             { isLoading: true },
         ])
 
-        renderWithRouter(<MockRoutes />, initialEntries)
+        const { debug } = renderWithRouter(<MockRoutes />, initialEntries)
+        debug()
 
         expect(screen.getByRole('button')).toBeDisabled()
     })

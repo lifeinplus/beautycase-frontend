@@ -19,7 +19,7 @@ const uploadsApi = api.injectEndpoints({
             }),
         }),
 
-        deleteImage: builder.mutation<UploadImageResponse, string>({
+        deleteImage: builder.mutation<void, string>({
             query: (imageId) => ({
                 url: '/uploads/image',
                 method: 'DELETE',

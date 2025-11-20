@@ -23,10 +23,10 @@ describe('stageSchema validation', () => {
         )
     })
 
-    it('should fail when imageUrl is missing', async () => {
-        const data = { ...mockStage1, imageUrl: undefined }
+    it('should fail when imageId is missing', async () => {
+        const data = { ...mockStage1, imageId: undefined }
         await expect(stageSchema.validate(data)).rejects.toThrow(
-            'fields.imageUrl.errors.required'
+            'fields.imageId.errors.required'
         )
     })
 })

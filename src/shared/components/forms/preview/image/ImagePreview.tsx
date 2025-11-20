@@ -23,6 +23,7 @@ export const ImagePreview = ({
         )}
     >
         <button
+            aria-label="Delete image"
             className={classNames(
                 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2',
                 'focus-visible:rounded-full focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',

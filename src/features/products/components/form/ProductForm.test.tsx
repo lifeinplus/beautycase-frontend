@@ -17,7 +17,7 @@ vi.mock('@/features/brands/api/brandsApi')
 vi.mock('@/features/categories/api/categoriesApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/shared/components/common/title-section/TitleSection')
-vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
+vi.mock('@/shared/components/forms/image/files-section/ImageFilesSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 
 describe('ProductForm', () => {
@@ -52,7 +52,7 @@ describe('ProductForm', () => {
             expect(screen.getByPlaceholderText(p)).toBeInTheDocument()
         )
 
-        const image = screen.getByTestId('mocked-image-url-section')
+        const image = screen.getByTestId('mocked-image-files-section')
         expect(image).toBeInTheDocument()
     })
 

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockLessons } from '@/features/lessons/api/__mocks__/lessonsApi'
 import { useGetMineLessonsQuery } from '@/features/lessons/api/lessonsApi'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { LessonGallery } from './LessonGallery'
 
 vi.mock('@/features/lessons/api/lessonsApi')
@@ -20,7 +20,7 @@ describe('LessonGallery', () => {
     })
 
     it('renders list of lessons when data is available', () => {
-        renderWithRouter(<LessonGallery />)
+        renderWithProviderAndRouter(<LessonGallery />)
         expect(screen.getAllByText(/titles.gallery/i)).toHaveLength(2)
         expect(screen.getAllByRole('img')).toHaveLength(2)
     })

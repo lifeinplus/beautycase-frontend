@@ -4,13 +4,16 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
 import { mockUploadResult } from '@/features/uploads/api/__mocks__/uploadsApi'
-import { useUploadTempImageMutation } from '@/features/uploads/api/uploadsApi'
+import {
+    useDeleteImageMutation,
+    useUploadTempImageMutation,
+} from '@/features/uploads/api/uploadsApi'
 import { mockError } from '@/tests/mocks'
 import {
     mockClearErrors,
     mockFieldError,
     mockFile,
-    mockImageUrl1,
+    mockImageId,
     mockRegister,
     mockSetValue,
 } from '@/tests/mocks/form'
@@ -33,16 +36,27 @@ describe('ImageTextSection', () => {
         setValue: mockSetValue,
     }
 
-    const mockUploadTempImage = vi.fn()
-    const mockUnwrap = vi.fn()
+    const mockUpload = vi.fn()
+    const mockUploadUnwrap = vi.fn()
+
+    const mockDelete = vi.fn()
+    const mockDeleteUnwrap = vi.fn()
 
     beforeEach(() => {
         vi.mocked(useUploadTempImageMutation as Mock).mockReturnValue([
-            mockUploadTempImage,
+            mockUpload,
+            { isLoading: false },
         ])
 
-        mockUploadTempImage.mockReturnValue({ unwrap: mockUnwrap })
-        mockUnwrap.mockResolvedValue(mockUploadResult)
+        mockUpload.mockReturnValue({ unwrap: mockUploadUnwrap })
+        mockUploadUnwrap.mockResolvedValue(mockUploadResult)
+
+        vi.mocked(useDeleteImageMutation as Mock).mockReturnValue([
+            mockDelete,
+            { isLoading: false },
+        ])
+
+        mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
     })
 
     it('renders with required props', () => {
@@ -70,80 +84,170 @@ describe('ImageTextSection', () => {
         expect(error).toBeInTheDocument()
     })
 
-    it('handles file upload successfully', async () => {
-        render(<ImageTextSection {...mockProps} />)
+    describe('File Upload', () => {
+        it('handles file upload successfully', async () => {
+            render(<ImageTextSection {...mockProps} />)
 
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
+
+            const input = uploadButton.querySelector('input[type="file"]')
+
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [mockFile] } })
+            )
+
+            expect(mockUpload).toHaveBeenCalledTimes(1)
+            expect(mockSetValue).toHaveBeenCalledWith(
+                'makeupBag',
+                '[photoAttached]'
+            )
+            expect(mockClearErrors).toHaveBeenCalledWith('makeupBag')
         })
 
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
+        it('handles upload error', async () => {
+            mockUploadUnwrap.mockRejectedValue(mockError)
 
-        expect(mockUploadTempImage).toHaveBeenCalledTimes(1)
-        expect(mockSetValue).toHaveBeenCalledWith(
-            'makeupBag',
-            '[photoAttached]'
-        )
-        expect(mockSetValue).toHaveBeenCalledWith(
-            'makeupBagPhotoUrl',
-            mockImageUrl1
-        )
-        expect(mockClearErrors).toHaveBeenCalledWith('makeupBag')
+            render(<ImageTextSection {...mockProps} />)
+
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
+
+            const input = uploadButton.querySelector('input[type="file"]')
+
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [mockFile] } })
+            )
+
+            expect(mockUpload).toHaveBeenCalledTimes(1)
+
+            expect(mockSetValue).not.toHaveBeenCalled()
+            expect(mockClearErrors).not.toHaveBeenCalled()
+
+            expect(spyConsoleError).toHaveBeenCalledWith(
+                'Image upload failed',
+                mockError
+            )
+            expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
+        })
+
+        it('does nothing when no file is selected', async () => {
+            render(<ImageTextSection {...mockProps} />)
+
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
+
+            const input = uploadButton.querySelector('input[type="file"]')
+
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [] } })
+            )
+
+            expect(mockUpload).not.toHaveBeenCalled()
+            expect(mockSetValue).not.toHaveBeenCalled()
+        })
+
+        it('uses existing text value when uploading file', async () => {
+            const mockText = 'Custom Text'
+
+            render(<ImageTextSection {...mockProps} value={mockText} />)
+
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
+
+            const input = uploadButton.querySelector('input[type="file"]')
+
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [mockFile] } })
+            )
+
+            expect(mockSetValue).toHaveBeenCalledWith('makeupBag', mockText)
+        })
     })
 
-    it('handles upload error', async () => {
-        mockUnwrap.mockRejectedValue(mockError)
-
-        render(<ImageTextSection {...mockProps} />)
-
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+    describe('Delete Image', () => {
+        beforeEach(() => {
+            mockDeleteUnwrap.mockResolvedValue({})
         })
 
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
+        it('deletes image successfully', async () => {
+            render(<ImageTextSection {...mockProps} />)
 
-        expect(mockUploadTempImage).toHaveBeenCalledTimes(1)
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
 
-        expect(mockSetValue).not.toHaveBeenCalled()
-        expect(mockClearErrors).not.toHaveBeenCalled()
+            const input = uploadButton.querySelector('input[type="file"]')
 
-        expect(spyConsoleError).toHaveBeenCalledWith(
-            'Image upload failed',
-            mockError
-        )
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
-    })
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [mockFile] } })
+            )
 
-    it('does nothing when no file is selected', async () => {
-        render(<ImageTextSection {...mockProps} />)
+            const deleteButton = screen.getByRole('button', {
+                name: 'Delete image',
+            })
 
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            fireEvent.click(deleteButton)
+
+            await waitFor(() => {
+                expect(mockDelete).toHaveBeenCalledTimes(1)
+                expect(mockDelete).toHaveBeenCalledWith(mockImageId)
+                expect(mockSetValue).toHaveBeenCalledWith(
+                    'makeupBag',
+                    '[photoAttached]'
+                )
+                expect(mockClearErrors).toHaveBeenCalledWith('makeupBag')
+            })
         })
 
-        await waitFor(() => fireEvent.change(input, { target: { files: [] } }))
+        it('handles delete error', async () => {
+            mockDeleteUnwrap.mockRejectedValue(mockError)
 
-        expect(mockUploadTempImage).not.toHaveBeenCalled()
-        expect(mockSetValue).not.toHaveBeenCalled()
-    })
+            render(<ImageTextSection {...mockProps} value={mockImageId} />)
 
-    it('uses existing text value when uploading file', async () => {
-        const mockText = 'Custom Text'
+            const uploadButton = screen.getByRole('button', {
+                name: 'Upload images',
+            })
 
-        render(<ImageTextSection {...mockProps} value={mockText} />)
+            const input = uploadButton.querySelector('input[type="file"]')
 
-        const input = screen.getByLabelText('', {
-            selector: 'input[type="file"]',
+            await waitFor(() =>
+                fireEvent.change(input!, { target: { files: [mockFile] } })
+            )
+
+            mockSetValue.mockReset()
+            mockClearErrors.mockReset()
+
+            const deleteButton = screen.getByRole('button', {
+                name: 'Delete image',
+            })
+
+            fireEvent.click(deleteButton)
+
+            await waitFor(() => {
+                expect(mockDelete).toHaveBeenCalledTimes(1)
+
+                expect(mockSetValue).not.toHaveBeenCalled()
+                expect(mockClearErrors).not.toHaveBeenCalled()
+
+                expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
+            })
         })
 
-        await waitFor(() =>
-            fireEvent.change(input, { target: { files: [mockFile] } })
-        )
+        it('does nothing when no imageId', async () => {
+            render(<ImageTextSection {...mockProps} value={undefined} />)
 
-        expect(mockSetValue).toHaveBeenCalledWith('makeupBag', mockText)
+            const deleteButtons = screen.queryByRole('button', {
+                name: 'Delete image',
+            })
+
+            expect(deleteButtons).toBeNull()
+
+            expect(mockDelete).not.toHaveBeenCalled()
+        })
     })
 })

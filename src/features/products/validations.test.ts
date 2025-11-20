@@ -48,17 +48,10 @@ describe('productSchema validation', () => {
         )
     })
 
-    it('should reject when imageUrl is missing', async () => {
-        const data = { ...mockProduct1, imageUrl: undefined }
+    it('should reject when imageIds is missing', async () => {
+        const data = { ...mockProduct1, imageIds: undefined }
         await expect(productSchema.validate(data)).rejects.toThrowError(
-            'fields.imageUrl.errors.required'
-        )
-    })
-
-    it('should reject when imageUrl is not a valid URL', async () => {
-        const data = { ...mockProduct1, imageUrl: 'not-a-url' }
-        await expect(productSchema.validate(data)).rejects.toThrowError(
-            'fields.imageUrl.errors.url'
+            'fields.imageIds.errors.required'
         )
     })
 
@@ -91,7 +84,7 @@ describe('productSchema validation', () => {
                 'fields.name.errors.required'
             )
             expect(validationError.errors).toContain(
-                'fields.imageUrl.errors.required'
+                'fields.imageIds.errors.required'
             )
             expect(validationError.errors).toContain(
                 'fields.comment.errors.required'

@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi, type Mock } from 'vitest'
 
 import { mockMakeupBags } from '@/features/makeup-bags/api/__mocks__/makeupBagsApi'
 import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { MakeupBagList } from './MakeupBagList'
 
 vi.mock('@/features/makeup-bags/api/makeupBagsApi')
@@ -20,13 +21,13 @@ describe('MakeupBagList', () => {
     })
 
     it('renders the component with correct structure', () => {
-        render(<MakeupBagList />)
+        renderWithProviders(<MakeupBagList />)
         expect(screen.getByRole('navigation')).toBeInTheDocument()
         expect(screen.getAllByText(/hero.headline/)).toHaveLength(2)
     })
 
     it('renders page components and list views', () => {
-        render(<MakeupBagList />)
+        renderWithProviders(<MakeupBagList />)
 
         expect(
             screen.getByTestId('mocked-makeup-bag-mobile-view')

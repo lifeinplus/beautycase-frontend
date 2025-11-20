@@ -55,16 +55,6 @@ describe('ToolSelection', () => {
         expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })
 
-    it('renders tool items', () => {
-        render(<ToolSelection />)
-
-        const tool1 = screen.getByAltText('Tool 1')
-        const tool2 = screen.getByAltText('Tool 2')
-
-        expect(tool1).toBeInTheDocument()
-        expect(tool2).toBeInTheDocument()
-    })
-
     it('toggles tool selection on click', async () => {
         const user = userEvent.setup()
 

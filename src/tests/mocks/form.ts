@@ -8,6 +8,9 @@ export const mockFieldError: FieldError = {
 
 export const mockFile = new File(['image'], 'image.png', { type: 'image/png' })
 
+export const mockImageId =
+    'products/691c27584e28a506f9bdaebc/mijmxrn4ivqfbmdzwt5m'
+
 export const mockImageUrl1 = 'https://example.com/image1.jpg'
 export const mockImageUrl2 = 'https://example.com/image2.jpg'
 export const mockYouTubeUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'

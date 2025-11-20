@@ -23,17 +23,10 @@ describe('toolSchema validation', () => {
         )
     })
 
-    it('should fail when imageUrl is missing', async () => {
-        const data = { ...mockTool1, imageUrl: undefined }
+    it('should fail when imageIds is missing', async () => {
+        const data = { ...mockTool1, imageIds: undefined }
         await expect(toolSchema.validate(data)).rejects.toThrow(
-            'fields.imageUrl.errors.required'
-        )
-    })
-
-    it('should fail when imageUrl is not a valid URL', async () => {
-        const data = { ...mockTool1, imageUrl: 'invalid-url' }
-        await expect(toolSchema.validate(data)).rejects.toThrow(
-            'fields.imageUrl.errors.url'
+            'fields.imageIds.errors.required'
         )
     })
 

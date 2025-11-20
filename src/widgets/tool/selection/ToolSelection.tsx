@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -6,10 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
+import { SelectableImageCard } from '@/shared/components/cards/selectable-image/SelectableImageCard'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import { Image } from '@/shared/components/ui/image/Image'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
 export const ToolSelection = () => {
@@ -68,46 +67,21 @@ export const ToolSelection = () => {
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={t('titles.selection')} hideOnMobile />
 
-                    {/* TODO: imageUrl -> imageId */}
                     <DataWrapper isLoading={isLoading} error={error}>
-                        <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 px-3 md:gap-7">
-                            {tools?.map(({ _id, name, imageUrl }) => {
-                                const isSelected = orderedIds.has(_id!)
-                                const order = orderedIds.get(_id!)
-
-                                return (
-                                    <div
-                                        key={_id}
-                                        onClick={() => toggleOrderedIds(_id!)}
-                                        className={classNames(
-                                            'relative mx-auto w-full overflow-hidden',
-                                            'aspect-square'
-                                        )}
-                                    >
-                                        <Image alt={name} src={imageUrl} />
-
-                                        <span
-                                            className={classNames(
-                                                'absolute top-1 right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
-                                                isSelected
-                                                    ? 'bg-rose-500 text-white'
-                                                    : 'bg-transparent text-gray-400'
-                                            )}
-                                        >
-                                            {order ?? ''}
-                                        </span>
-                                    </div>
-                                )
-                            })}
+                        <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
+                            {tools?.map(({ _id, imageIds }) => (
+                                <SelectableImageCard
+                                    key={_id}
+                                    id={_id!}
+                                    imageId={imageIds[0]}
+                                    isSelected={orderedIds.has(_id!)}
+                                    order={orderedIds.get(_id!)}
+                                    onToggle={toggleOrderedIds}
+                                />
+                            ))}
                         </article>
 
-                        <section
-                            className={classNames(
-                                'border-t border-gray-300 px-3 pt-6',
-                                'md:flex md:justify-end md:border-0 md:pt-0',
-                                'dark:border-gray-700'
-                            )}
-                        >
+                        <section className="border-t border-gray-300 px-3 pt-6 md:flex md:justify-end md:border-0 md:pt-0 dark:border-gray-700">
                             <ButtonSubmit
                                 label={t('navigation:actions.save')}
                                 onClick={handleSave}

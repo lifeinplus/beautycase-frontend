@@ -10,10 +10,10 @@ export const mockToolCreate: MutationResult = {
 
 export const mockTool1: Tool = {
     _id: 'tool1',
-    name: 'Tool 1',
     brand: { _id: 'brand1', name: 'Brand 1' },
     brandId: 'brand1',
-    imageUrl: 'https://example.com/1.webp',
+    name: 'Tool 1',
+    imageIds: ['tools/691c27584e28a506f9bdaebc/mijmxrn4ivqfbmdzwt5m'],
     number: '123',
     comment: 'Perfect',
     storeLinks: [
@@ -27,10 +27,10 @@ export const mockTool1: Tool = {
 
 export const mockTool2: Tool = {
     _id: 'tool2',
-    name: 'Tool 2',
     brand: { _id: 'brand2', name: 'Brand 2' },
     brandId: 'brand2',
-    imageUrl: 'https://example.com/2.webp',
+    name: 'Tool 2',
+    imageIds: ['tools/691c27584e28a506f9bdaebc/qsese5jgbrzcjoivnt1p'],
     comment: 'Best',
     storeLinks: [
         {
@@ -43,10 +43,10 @@ export const mockTool2: Tool = {
 
 export const mockTool3: Tool = {
     _id: 'tool3',
-    name: 'Tool 3',
     brand: { _id: 'brand3', name: 'Brand 3' },
     brandId: 'brand3',
-    imageUrl: 'https://example.com/3.webp',
+    name: 'Tool 3',
+    imageIds: ['tools/691c27584e28a506f9bdaebc/s4qc4sqbf0e4ihwixw5o'],
     comment: 'Best',
     storeLinks: [
         {

@@ -9,19 +9,19 @@ const mockGoods: Good[] = [
     {
         _id: '1',
         name: 'Product 1',
-        imageUrl: '/images/product1.jpg',
+        imageIds: ['products/691c27584e28a506f9bdaebc/mijmxrn4ivqfbmdzwt5m'],
         brand: { name: 'Brand A' },
     },
     {
         _id: '2',
         name: 'Product 2',
-        imageUrl: '/images/product2.jpg',
+        imageIds: ['products/691c27584e28a506f9bdaebc/qsese5jgbrzcjoivnt1p'],
         brand: { name: 'Brand B' },
     },
     {
         _id: '3',
         name: 'Product 3',
-        imageUrl: '/images/product3.jpg',
+        imageIds: ['products/691c27584e28a506f9bdaebc/s4qc4sqbf0e4ihwixw5o'],
         brand: { name: 'Brand C' },
     },
 ]

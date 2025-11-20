@@ -157,8 +157,8 @@ describe('MakeupBagPDF', () => {
 
             const stageImages = images.filter(
                 (img) =>
-                    img.getAttribute('src')?.includes(mockStage1.imageUrl) ||
-                    img.getAttribute('src')?.includes(mockStage2.imageUrl)
+                    img.getAttribute('src')?.includes(mockStage1.imageId) ||
+                    img.getAttribute('src')?.includes(mockStage2.imageId)
             )
 
             expect(stageImages).toHaveLength(

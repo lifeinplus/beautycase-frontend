@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -10,8 +9,8 @@ import { useGetMineStagesQuery } from '@/features/stages/api/stagesApi'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import { Image } from '@/shared/components/ui/image/Image'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
+import { SelectableStageCard } from './ui/SelectableStageCard'
 
 export const StageSelection = () => {
     const navigate = useNavigate()
@@ -85,46 +84,18 @@ export const StageSelection = () => {
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-1 gap-3 px-3 md:grid-cols-2">
                             {filteredStages.map(
-                                ({ _id, title, subtitle, imageUrl }) => {
-                                    const isSelected = orderedIds.has(_id!)
-                                    const order = orderedIds.get(_id!)
-
-                                    return (
-                                        <div
-                                            key={_id}
-                                            className="grid grid-cols-3 gap-3"
-                                            onClick={() =>
-                                                toggleOrderedIds(_id!)
-                                            }
-                                        >
-                                            <div className="relative mx-auto aspect-square w-full overflow-hidden">
-                                                <Image
-                                                    alt={title}
-                                                    className="h-full w-full rounded-sm object-cover md:rounded"
-                                                    src={imageUrl}
-                                                />
-
-                                                <span
-                                                    className={classNames(
-                                                        'absolute top-1 left-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
-                                                        isSelected
-                                                            ? 'bg-rose-500 text-white'
-                                                            : 'bg-transparent text-gray-400'
-                                                    )}
-                                                >
-                                                    {order ?? ''}
-                                                </span>
-                                            </div>
-
-                                            <div className="col-span-2">
-                                                <h2>{title}</h2>
-                                                <h3 className="text-sm text-neutral-500 dark:text-neutral-400">
-                                                    {subtitle}
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    )
-                                }
+                                ({ _id, title, subtitle, imageId }) => (
+                                    <SelectableStageCard
+                                        key={_id}
+                                        id={_id!}
+                                        title={title}
+                                        subtitle={subtitle}
+                                        imageId={imageId}
+                                        isSelected={orderedIds.has(_id!)}
+                                        order={orderedIds.get(_id!)}
+                                        onToggle={toggleOrderedIds}
+                                    />
+                                )
                             )}
                         </article>
 

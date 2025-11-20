@@ -1,5 +1,5 @@
 import type { Product } from '@/features/products/types'
-import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
+import { ImageCard } from '@/shared/components/cards/image/ImageCard'
 import { ROUTES } from '@/shared/config/routes'
 import { SelectTile } from './ui/SelectTile'
 
@@ -16,7 +16,7 @@ export const ProductImages = ({
         {products?.map((p) => (
             <ImageCard
                 key={p._id}
-                data={p}
+                imageId={p.imageIds[0]}
                 to={ROUTES.products.details(p._id!)}
             />
         ))}

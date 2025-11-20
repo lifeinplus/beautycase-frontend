@@ -4,7 +4,7 @@ import { vi } from 'vitest'
 import { mockImageUrl1 } from '@/tests/mocks/form'
 import { type UploadImageResponse } from '../uploadsApi'
 
-export const mockUploadResult: UploadImageResponse = { imageUrl: mockImageUrl1 }
+export const mockUploadResult: UploadImageResponse = { imageId: mockImageUrl1 }
 
 export const useUploadTempImageMutation = vi.fn()
 

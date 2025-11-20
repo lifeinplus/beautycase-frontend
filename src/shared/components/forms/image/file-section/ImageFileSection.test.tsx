@@ -11,7 +11,6 @@ import {
     mockFieldError,
     mockFile,
     mockImageUrl1,
-    mockRegister,
     mockSetValue,
 } from '@/tests/mocks/form'
 import {
@@ -26,8 +25,7 @@ describe('ImageFileSection', () => {
         clearErrors: mockClearErrors,
         folder: 'products',
         label: 'Image Url',
-        name: 'imageUrl',
-        register: mockRegister,
+        name: 'imageIds',
         setValue: mockSetValue,
     }
 

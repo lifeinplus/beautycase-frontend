@@ -17,7 +17,7 @@ export const mockStage1: Stage = {
     _id: 'stage1',
     title: 'Base Makeup',
     subtitle: 'Applying foundation and concealer',
-    imageUrl: 'https://example.com/image1.jpg',
+    imageId: 'stages/691c27584e28a506f9bdaebc/mijmxrn4ivqfbmdzwt5m',
     comment: 'Test Comment 1',
     steps: ['Step 1.1', 'Step 1.2', 'Step 1.3'],
     stepsText: 'Step 1.1\n\nStep 1.2\n\nStep 1.3',
@@ -29,7 +29,7 @@ export const mockStage2: Stage = {
     _id: 'stage2',
     title: 'Eye Makeup',
     subtitle: 'Applying eyeshadow and eyeliner',
-    imageUrl: 'https://example.com/image2.jpg',
+    imageId: 'stages/691c27584e28a506f9bdaebc/qsese5jgbrzcjoivnt1p',
     steps: ['Step 2.1', 'Step 2.2'],
     productIds: ['product3', 'product4'],
 }

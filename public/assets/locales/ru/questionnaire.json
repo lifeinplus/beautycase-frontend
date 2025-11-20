@@ -42,11 +42,8 @@
                     "required": "Укажите, что сейчас есть в косметичке"
                 }
             },
-            "makeupBagPhotoId": {
+            "makeupBagPhotoIds": {
                 "label": "Фото косметички"
-            },
-            "makeupBagPhotoUrl": {
-                "label": "Ссылка на изображение косметички"
             },
             "procedures": {
                 "label": "Процедуры",

@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -7,12 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { clearFormData, selectFormData } from '@/features/form/slice/formSlice'
 import { useGetMineProductsQuery } from '@/features/products/api/productsApi'
+import { SelectableImageCard } from '@/shared/components/cards/selectable-image/SelectableImageCard'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
-import { ProductSelectionCard } from './ui/ProductSelectionCard'
 
 export interface ProductSelectionProps {
     onSave: (id: string, productIds: string[]) => Promise<void>
@@ -85,10 +84,10 @@ export const ProductSelection = ({
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
                             {products?.map(({ _id, imageIds }) => (
-                                <ProductSelectionCard
+                                <SelectableImageCard
                                     key={_id}
                                     id={_id!}
-                                    imageIds={imageIds}
+                                    imageId={imageIds[0]}
                                     isSelected={orderedIds.has(_id!)}
                                     order={orderedIds.get(_id!)}
                                     onToggle={toggleOrderedIds}
@@ -96,13 +95,7 @@ export const ProductSelection = ({
                             ))}
                         </article>
 
-                        <section
-                            className={classNames(
-                                'border-t border-gray-300 px-3 pt-6',
-                                'md:flex md:justify-end md:border-0 md:pt-0',
-                                'dark:border-gray-700'
-                            )}
-                        >
+                        <section className="border-t border-gray-300 px-3 pt-6 md:flex md:justify-end md:border-0 md:pt-0 dark:border-gray-700">
                             <ButtonSubmit
                                 isLoading={isSaving}
                                 label={

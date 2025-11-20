@@ -36,13 +36,13 @@ describe('MakeupBagQuestionnaireData', () => {
     })
 
     it('renders an image when makeupBagPhotoId is provided', () => {
-        const mockMakeupBagPhotoId = 'makeupBagPhoto1'
+        const mockMakeupBagPhotoId = ['makeupBagPhoto1']
 
         render(
             <MakeupBagQuestionnaireData
                 data={{
                     ...mockMakeupBagQuestionnaire1,
-                    makeupBagPhotoId: mockMakeupBagPhotoId,
+                    makeupBagPhotoIds: mockMakeupBagPhotoId,
                 }}
             />
         )

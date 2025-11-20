@@ -11,7 +11,6 @@ import {
     mockFieldError,
     mockFile,
     mockImageUrl1,
-    mockRegister,
     mockSetValue,
 } from '@/tests/mocks/form'
 import {
@@ -25,9 +24,8 @@ describe('ImageFilesSection', () => {
     const mockProps: ImageFilesSectionProps<Product> = {
         clearErrors: mockClearErrors,
         folder: 'products',
-        label: 'Image Url',
-        name: 'imageUrl',
-        register: mockRegister,
+        label: 'Image',
+        name: 'imageIds',
         setValue: mockSetValue,
     }
 
@@ -60,7 +58,7 @@ describe('ImageFilesSection', () => {
     })
 
     it('renders image preview if value is provided', () => {
-        render(<ImageFilesSection {...mockProps} value={mockImageUrl1} />)
+        render(<ImageFilesSection {...mockProps} value={[mockImageUrl1]} />)
 
         const image = screen.getByRole('img') as HTMLImageElement
 

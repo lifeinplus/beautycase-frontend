@@ -21,7 +21,7 @@ export const mockLesson1: Lesson = {
             brandId: 'brand-1',
             categoryId: 'category-1',
             name: 'Product 1',
-            imageUrl: 'https://example.com/product-1.jpg',
+            imageIds: ['img1', 'img2'],
             comment: 'Comment 1',
             storeLinks: [],
         },

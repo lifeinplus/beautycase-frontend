@@ -5,7 +5,8 @@ import { ImagePreview, type ImagePreviewProps } from './ImagePreview'
 
 describe('ImagePreview', () => {
     const mockProps: ImagePreviewProps = {
-        imageId: 'https://example.com/image.jpg',
+        imageId: 'products/691c27584e28a506f9bdaebc/mijmxrn4ivqfbmdzwt5m',
+        onDelete: () => {},
     }
 
     it('renders with the correct URL', () => {

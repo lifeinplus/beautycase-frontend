@@ -5,16 +5,13 @@ import { VideoPreview, type VideoPreviewProps } from './VideoPreview'
 
 describe('VideoPreview', () => {
     const mockProps: VideoPreviewProps = {
-        imageId: 'https://example.com/image.jpg',
+        url: 'https://example.com/image.jpg',
     }
 
     it('renders with the correct URL', () => {
         render(<VideoPreview {...mockProps} />)
 
-        expect(screen.getByRole('img')).toHaveAttribute(
-            'src',
-            mockProps.imageId
-        )
+        expect(screen.getByRole('img')).toHaveAttribute('src', mockProps.url)
     })
 
     it('renders with the correct alt text', () => {

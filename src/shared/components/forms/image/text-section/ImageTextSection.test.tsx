@@ -27,11 +27,9 @@ describe('ImageTextSection', () => {
         clearErrors: mockClearErrors,
         folder: 'questionnaires',
         label: 'Makeup Bag',
-        labelUrl: 'Makeup Bag Photo Url',
         name: 'makeupBag',
-        nameUrl: 'makeupBagPhotoUrl',
+        nameIds: 'makeupBagPhotoIds',
         register: mockRegister,
-        registerUrl: mockRegister,
         setValue: mockSetValue,
     }
 
@@ -70,15 +68,6 @@ describe('ImageTextSection', () => {
 
         const error = screen.getByText(mockFieldError.message!)
         expect(error).toBeInTheDocument()
-    })
-
-    it('renders image preview if valueUrl is present', () => {
-        render(<ImageTextSection {...mockProps} valueUrl={mockImageUrl1} />)
-
-        const image = screen.getByRole('img') as HTMLImageElement
-
-        expect(image).toBeInTheDocument()
-        expect(image.src).toBe(mockImageUrl1)
     })
 
     it('handles file upload successfully', async () => {

@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 
 import { makeupBagQuestionnaireQuestions } from '@/features/questionnaires/makeup-bag/questions/makeupBagQuestionnaireQuestions'
 import type { MakeupBagQuestionnaire } from '@/features/questionnaires/types'
-import { ImageField } from '@/features/questionnaires/ui/ImageField'
 import { InstagramField } from '@/features/questionnaires/ui/InstagramField'
 import { MuaField } from '@/features/questionnaires/ui/MuaField'
 import { TextField } from '@/features/questionnaires/ui/TextField'
+import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 
 export interface MakeupBagQuestionnaireDataProps {
     data: MakeupBagQuestionnaire
@@ -18,7 +18,7 @@ const fields: (keyof MakeupBagQuestionnaire)[] = [
     'city',
     'age',
     'makeupBag',
-    'makeupBagPhotoId',
+    'makeupBagPhotoIds',
     'procedures',
     'skinType',
     'allergies',
@@ -55,8 +55,10 @@ export const MakeupBagQuestionnaireData = ({
                                 <MuaField mua={data.mua} />
                             ) : f === 'instagram' ? (
                                 <InstagramField username={data.instagram} />
-                            ) : f === 'makeupBagPhotoId' ? (
-                                <ImageField value={data.makeupBagPhotoId} />
+                            ) : f === 'makeupBagPhotoIds' ? (
+                                <ImageSection
+                                    imageIds={data.makeupBagPhotoIds}
+                                />
                             ) : (
                                 <TextField
                                     value={data?.[f]}

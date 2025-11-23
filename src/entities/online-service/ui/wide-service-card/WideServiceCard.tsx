@@ -27,7 +27,7 @@ export const WideServiceCard = ({
                 <h4 className="text-2xl font-semibold text-pretty text-black dark:text-white">
                     {name}
                 </h4>
-                <p className="mt-6 text-base/7 text-pretty text-neutral-700 sm:text-sm/7 dark:text-gray-300">
+                <p className="mt-6 text-base/7 text-pretty text-neutral-700 md:text-sm/7 dark:text-gray-300">
                     {blurb}
                 </p>
                 <div className="mt-10 flex items-center gap-4">
@@ -38,7 +38,7 @@ export const WideServiceCard = ({
                 </div>
                 <ul
                     role="list"
-                    className="mt-8 grid grid-cols-1 gap-5 text-base text-pretty text-neutral-700 sm:mt-10 sm:grid-cols-2 sm:text-sm dark:text-gray-300"
+                    className="mt-8 grid grid-cols-1 gap-5 text-base text-pretty text-neutral-700 md:mt-10 md:grid-cols-2 md:text-sm dark:text-gray-300"
                 >
                     {features.map((f) => (
                         <li key={f} className="flex gap-x-3">
@@ -67,7 +67,7 @@ export const WideServiceCard = ({
                         className={classNames(
                             'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
                             'dark:focus-visible:outline-rose-700',
-                            'mt-8 block rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-light text-rose-500 font-stretch-75% transition-colors hover:border-rose-700 hover:text-rose-700 sm:mt-10',
+                            'mt-8 block rounded-lg border border-rose-500 bg-white px-4 py-2 text-center font-light text-rose-500 font-stretch-75% transition-all hover:border-rose-700 hover:text-rose-700 md:mt-10',
                             'dark:border-rose-500 dark:bg-black dark:text-rose-500 dark:hover:border-rose-400 dark:hover:text-rose-400'
                         )}
                     >

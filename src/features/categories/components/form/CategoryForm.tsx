@@ -84,14 +84,14 @@ export const CategoryForm = forwardRef<FormRef | null>(({}, ref) => {
     const { ref: refName, ...restName } = register('name')
 
     return (
-        <form className="my-6 px-4 sm:px-0">
+        <form className="my-6 px-4 md:px-0">
             <div className="flex gap-3">
                 <div className="flex grow flex-col">
                     <input
                         {...register('type')}
                         className={classNames(
                             'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                            'bg-white placeholder-neutral-500',
+                            'bg-white placeholder-neutral-400',
                             'border border-neutral-200 focus:border-black',
                             'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
                         )}
@@ -115,7 +115,7 @@ export const CategoryForm = forwardRef<FormRef | null>(({}, ref) => {
                         {...restName}
                         className={classNames(
                             'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                            'bg-white placeholder-neutral-500',
+                            'bg-white placeholder-neutral-400',
                             'border border-neutral-200 focus:border-black',
                             'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
                         )}

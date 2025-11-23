@@ -19,7 +19,7 @@ export const mockProduct1: Product = {
     category: { _id: 'category1', name: 'category-1' },
     categoryId: 'category1',
     name: 'Product 1',
-    imageUrl: 'https://example.com/foundation.jpg',
+    imageIds: ['image1', 'image2'],
     shade: 'Natural Beige',
     comment: 'Long-lasting, natural finish',
     storeLinks: [
@@ -36,7 +36,7 @@ export const mockProduct2: Product = {
     brandId: 'brand2',
     categoryId: 'category2',
     name: 'Product 2',
-    imageUrl: 'https://example.com/lipstick.jpg',
+    imageIds: ['image3'],
     comment: '',
     storeLinks: [],
 }

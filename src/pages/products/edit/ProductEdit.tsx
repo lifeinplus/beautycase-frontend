@@ -36,7 +36,7 @@ export const ProductEdit = () => {
                     brandId: data.brand?._id,
                     categoryId: data.category?._id,
                     name: data.name,
-                    imageUrl: data.imageUrl,
+                    imageIds: data.imageIds,
                     shade: data.shade,
                     comment: data.comment,
                     storeLinks: data.storeLinks,

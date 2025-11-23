@@ -1,11 +1,9 @@
 import { act, renderHook } from '@testing-library/react'
-import toast from 'react-hot-toast'
 import { useLocation, useParams } from 'react-router-dom'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockStage1 } from '@/features/stages/api/__mocks__/stagesApi'
 import {
-    useDeleteStageByIdMutation,
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
@@ -19,8 +17,6 @@ vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/features/stages/api/stagesApi')
 
 describe('useDuplicateStageAction', () => {
-    const mockDelete = vi.fn()
-    const mockDeleteUnwrap = vi.fn()
     const mockDuplicate = vi.fn()
     const mockDuplicateUnwrap = vi.fn()
 
@@ -36,15 +32,9 @@ describe('useDuplicateStageAction', () => {
             error: null,
         })
 
-        vi.mocked(useDeleteStageByIdMutation as Mock).mockReturnValue([
-            mockDelete,
-            { isLoading: false },
-        ])
-
-        mockDelete.mockReturnValue({ unwrap: mockDeleteUnwrap })
-
         vi.mocked(useDuplicateStageByIdMutation as Mock).mockReturnValue([
             mockDuplicate,
+            { isLoading: false },
         ])
 
         mockDuplicate.mockReturnValue({ unwrap: mockDuplicateUnwrap })
@@ -53,8 +43,13 @@ describe('useDuplicateStageAction', () => {
     it('handles duplicate action', async () => {
         const { result } = renderHook(() => useDuplicateStageAction())
 
-        const duplicateAction = result.current
+        let duplicateAction = result.current
 
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current
         const { onConfirm } = duplicateAction?.modalProps || {}
 
         await act(async () => {
@@ -69,8 +64,13 @@ describe('useDuplicateStageAction', () => {
 
         const { result } = renderHook(() => useDuplicateStageAction())
 
-        const duplicateAction = result.current
+        let duplicateAction = result.current
 
+        act(() => {
+            duplicateAction?.onClick()
+        })
+
+        duplicateAction = result.current
         const { onConfirm } = duplicateAction?.modalProps || {}
 
         await act(async () => {
@@ -78,7 +78,6 @@ describe('useDuplicateStageAction', () => {
         })
 
         expect(mockDuplicate).toHaveBeenCalledWith('123')
-        expect(toast.error).toHaveBeenCalledWith('UNKNOWN_ERROR')
     })
 
     it('returns null if no id is provided', () => {

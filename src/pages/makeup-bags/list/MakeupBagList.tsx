@@ -1,5 +1,8 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineMakeupBagsQuery } from '@/features/makeup-bags/api/makeupBagsApi'
 import { MakeupBagMobileView } from '@/features/makeup-bags/components/mobile-view/MakeupBagMobileView'
 import { MakeupBagTable } from '@/features/makeup-bags/components/table/MakeupBagTable'
@@ -11,9 +14,14 @@ import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const MakeupBagList = () => {
     const { t } = useTranslation(['makeupBag'])
+    const dispatch = useAppDispatch()
+    const backAction = useToBackstageGalleryAction()
+
     const { data = [], isLoading, error } = useGetMineMakeupBagsQuery()
 
-    const backAction = useToBackstageGalleryAction()
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
 
     const title = titleWithCount(t('hero.headline'), data.length)
 

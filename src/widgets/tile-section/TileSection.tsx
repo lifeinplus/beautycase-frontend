@@ -18,7 +18,7 @@ export const TileSection = ({ items }: TileSectionProps) => {
                 'mx-auto grid gap-x-4 gap-y-3',
                 tileCount === 1
                     ? 'max-w-36 grid-cols-1'
-                    : tileCount === 2
+                    : tileCount === 2 || tileCount === 4
                       ? 'max-w-xs grid-cols-2 md:px-2'
                       : 'max-w-4xl grid-cols-2 md:grid-cols-3'
             )}

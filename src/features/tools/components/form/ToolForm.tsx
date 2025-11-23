@@ -9,7 +9,7 @@ import { useAppSelector } from '@/app/hooks/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
 import { selectFormData } from '@/features/form/slice/formSlice'
 import type { SelectOption } from '@/features/form/types'
-import { ImageUrlSection } from '@/shared/components/forms/image/url-section/ImageUrlSection'
+import { ImageFilesSection } from '@/shared/components/forms/image/files-section/ImageFilesSection'
 import { InputSection } from '@/shared/components/forms/input/section/InputSection'
 import { SelectSection } from '@/shared/components/forms/select/section/SelectSection'
 import { TextareaSection } from '@/shared/components/forms/textarea/section/TextareaSection'
@@ -71,8 +71,8 @@ export const ToolForm = ({
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={title} hideOnMobile />
 
                     <form
@@ -97,16 +97,15 @@ export const ToolForm = ({
                                 value={watch('name')}
                             />
 
-                            <ImageUrlSection
+                            <ImageFilesSection
                                 clearErrors={clearErrors}
                                 folder="tools"
-                                error={t(errors.imageUrl?.message || '')}
-                                label={t('fields.imageUrl.label')}
-                                name="imageUrl"
-                                register={register('imageUrl')}
+                                error={t(errors.imageIds?.message || '')}
+                                label={t('fields.imageIds.label')}
+                                name="imageIds"
                                 required={true}
                                 setValue={setValue}
-                                value={watch('imageUrl')}
+                                value={watch('imageIds')}
                             />
 
                             <InputSection
@@ -127,7 +126,7 @@ export const ToolForm = ({
                         <section
                             className={classNames(
                                 'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'md:flex md:justify-end md:border-0 md:pt-0',
                                 'dark:border-gray-700'
                             )}
                         >

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockTools } from '@/features/tools/api/__mocks__/toolsApi'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { ToolsGallery } from './ToolsGallery'
 
 vi.mock('@/features/tools/api/toolsApi')
@@ -20,7 +20,7 @@ describe('ToolsGallery', () => {
     })
 
     it('renders list of tools when data is available', () => {
-        renderWithRouter(<ToolsGallery />)
+        renderWithProviderAndRouter(<ToolsGallery />)
         expect(screen.getAllByText(/titles.gallery\b/i)).toHaveLength(2)
         expect(screen.getAllByRole('img')).toHaveLength(3)
     })

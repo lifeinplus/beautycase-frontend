@@ -102,8 +102,8 @@ export const StoreLinksAdd = ({
         <article>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
-            <main className="pb-safe-bottom sm:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
-                <article className="mx-auto w-full pb-6 sm:max-w-lg sm:pt-6 md:max-w-2xl md:px-4">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+                <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={t('titles.add')} hideOnMobile />
 
                     <form className="space-y-6 px-0" onSubmit={handleSave}>
@@ -116,16 +116,16 @@ export const StoreLinksAdd = ({
                                         key={index}
                                         className={classNames(
                                             'space-y-4 border-b border-neutral-100 px-3 py-4',
-                                            'sm:grid sm:grid-cols-12 sm:gap-4 sm:space-y-0 sm:border-b-0 sm:pt-0',
+                                            'md:grid md:grid-cols-12 md:gap-4 md:space-y-0 md:border-b-0 md:pt-0',
                                             'dark:border-neutral-800'
                                         )}
                                     >
-                                        <div className="grid sm:col-span-3">
+                                        <div className="grid md:col-span-3">
                                             <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
                                             <select
                                                 className={classNames(
                                                     'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',
-                                                    'bg-white placeholder-neutral-500',
+                                                    'bg-white placeholder-neutral-400',
                                                     'border border-neutral-200 focus:border-black',
                                                     'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white'
                                                 )}
@@ -148,17 +148,17 @@ export const StoreLinksAdd = ({
                                                 ))}
                                             </select>
                                         </div>
-                                        <div className="sm:col-span-7">
+                                        <div className="md:col-span-7">
                                             <textarea
                                                 aria-label={t(
                                                     'fields.link.ariaLabel'
                                                 )}
                                                 className={classNames(
                                                     'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                                                    'bg-white placeholder-neutral-500',
+                                                    'bg-white placeholder-neutral-400',
                                                     'border border-neutral-200 focus:border-black',
                                                     'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
-                                                    'sm:hidden'
+                                                    'md:hidden'
                                                 )}
                                                 name="links"
                                                 onChange={(e) =>
@@ -176,10 +176,10 @@ export const StoreLinksAdd = ({
                                                 )}
                                                 className={classNames(
                                                     'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                                                    'bg-white placeholder-neutral-500',
+                                                    'bg-white placeholder-neutral-400',
                                                     'border border-neutral-200 focus:border-black',
                                                     'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
-                                                    'hidden sm:block'
+                                                    'hidden md:block'
                                                 )}
                                                 onChange={(e) =>
                                                     handleChangeLink(e, index)
@@ -195,7 +195,7 @@ export const StoreLinksAdd = ({
                                             aria-label={t(
                                                 'buttons.linkDelete.ariaLabel'
                                             )}
-                                            className="w-full sm:col-span-2"
+                                            className="w-full md:col-span-2"
                                             onClick={() => handleDelete(index)}
                                             type="button"
                                             variant="danger"
@@ -206,7 +206,7 @@ export const StoreLinksAdd = ({
                                 )
                             })}
 
-                            <div className="mx-3 mt-4 sm:mt-0">
+                            <div className="mx-3 mt-4 md:mt-0">
                                 <Button
                                     aria-label={t('buttons.linkAdd.ariaLabel')}
                                     className="w-full"
@@ -222,7 +222,7 @@ export const StoreLinksAdd = ({
                         <section
                             className={classNames(
                                 'border-t border-gray-300 px-3 pt-6',
-                                'sm:flex sm:justify-end sm:border-0 sm:pt-0',
+                                'md:flex md:justify-end md:border-0 md:pt-0',
                                 'dark:border-gray-700'
                             )}
                         >

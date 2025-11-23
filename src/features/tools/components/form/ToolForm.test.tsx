@@ -8,6 +8,7 @@ import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { mockTool1 } from '../../api/__mocks__/toolsApi'
 import { ToolForm } from './ToolForm'
 
@@ -15,7 +16,7 @@ vi.mock('@/app/hooks/hooks')
 vi.mock('@/features/brands/api/brandsApi')
 vi.mock('@/features/form/slice/formSlice')
 vi.mock('@/shared/components/common/title-section/TitleSection')
-vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
+vi.mock('@/shared/components/forms/image/files-section/ImageFilesSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 
 describe('ToolForm', () => {
@@ -30,12 +31,14 @@ describe('ToolForm', () => {
     })
 
     it('renders all required form fields', () => {
-        render(<ToolForm title={mockTitle} onSubmit={mockOnSubmit} />)
+        renderWithProviders(
+            <ToolForm title={mockTitle} onSubmit={mockOnSubmit} />
+        )
 
         expect(screen.getByRole('navigation')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('mocked-image-url-section')
+            screen.getByTestId('mocked-image-files-section')
         ).toBeInTheDocument()
 
         expect(screen.getByRole('combobox')).toBeInTheDocument()

@@ -14,10 +14,10 @@
                 "min": "At least 10 characters"
             }
         },
-        "imageUrl": {
-            "label": "Image URL",
+        "imageId": {
+            "label": "Image",
             "errors": {
-                "required": "Please provide an image URL"
+                "required": "Select an image"
             }
         },
         "comment": {

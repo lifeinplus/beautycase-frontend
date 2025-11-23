@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockCategories } from '@/features/categories/api/__mocks__/categoriesApi'
 import { useGetMineProductCategoriesWithCountsQuery } from '@/features/categories/api/categoriesApi'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { ProductGallery } from './ProductGallery'
 
 vi.mock('@/features/categories/api/categoriesApi')
@@ -23,7 +24,7 @@ describe('ProductGallery', () => {
     })
 
     it('renders mobile-view and table when data is available', () => {
-        render(<ProductGallery />)
+        renderWithProviders(<ProductGallery />)
 
         expect(screen.getAllByText('titles.gallery')).toHaveLength(2)
 

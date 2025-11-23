@@ -49,7 +49,7 @@ describe('MobileView', () => {
         expect(container.querySelectorAll('a').length).toBe(0)
     })
 
-    it('renders the component with sm:hidden class', () => {
+    it('renders the component with md:hidden class', () => {
         const { container } = renderWithRouter(
             <MobileView
                 items={mockItems}

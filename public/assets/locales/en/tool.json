@@ -12,11 +12,11 @@
                 "required": "Enter the tool name"
             }
         },
-        "imageUrl": {
-            "label": "Image URL",
+        "imageIds": {
+            "label": "Images",
             "errors": {
-                "url": "Enter a valid URL",
-                "required": "Enter the image URL"
+                "required": "Select images",
+                "min": "At least 1 image"
             }
         },
         "number": {

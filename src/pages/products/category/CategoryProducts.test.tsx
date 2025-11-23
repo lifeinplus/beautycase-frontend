@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
@@ -7,7 +7,10 @@ import { useGetMineProductsByCategoryQuery } from '@/features/products/api/produ
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
 import { mockNavigate } from '@/tests/mocks/router'
-import { renderWithRouter } from '@/tests/mocks/wrappers'
+import {
+    renderWithProviderAndRouter,
+    renderWithProviders,
+} from '@/tests/mocks/wrappers'
 import { CategoryProducts } from './CategoryProducts'
 
 vi.mock('@/features/products/api/productsApi')
@@ -22,7 +25,7 @@ describe('CategoryProducts', () => {
     })
 
     it('renders products with title and subtitle', () => {
-        renderWithRouter(<CategoryProducts />)
+        renderWithProviderAndRouter(<CategoryProducts />)
         expect(screen.getAllByText(/categories.product/i)).toHaveLength(2)
         expect(screen.getAllByRole('img')).toHaveLength(2)
     })
@@ -30,7 +33,7 @@ describe('CategoryProducts', () => {
     it('navigates back when back button is clicked', async () => {
         const user = userEvent.setup()
 
-        renderWithRouter(<CategoryProducts />)
+        renderWithProviderAndRouter(<CategoryProducts />)
 
         await user.click(
             screen.getByRole('navigation').querySelector('button')!
@@ -48,7 +51,7 @@ describe('CategoryProducts', () => {
             error: null,
         })
 
-        render(<CategoryProducts />)
+        renderWithProviders(<CategoryProducts />)
 
         expect(screen.getByText(/loading/i)).toBeInTheDocument()
     })
@@ -60,7 +63,7 @@ describe('CategoryProducts', () => {
             error: mockError,
         })
 
-        render(<CategoryProducts />)
+        renderWithProviders(<CategoryProducts />)
 
         expect(screen.getByText('UNKNOWN_ERROR')).toBeInTheDocument()
     })

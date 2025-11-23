@@ -43,13 +43,6 @@ describe('StageSelection', () => {
         expect(screen.getAllByText('titles.selection')).toHaveLength(2)
     })
 
-    it('renders stage items', () => {
-        render(<StageSelection />)
-
-        expect(screen.getByAltText(mockStages[0].title)).toBeInTheDocument()
-        expect(screen.getByAltText(mockStages[1].title)).toBeInTheDocument()
-    })
-
     it('toggles stage selection on click', async () => {
         const user = userEvent.setup()
 

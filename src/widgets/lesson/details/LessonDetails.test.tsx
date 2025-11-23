@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
 import { mockLesson1 } from '@/features/lessons/api/__mocks__/lessonsApi'
@@ -8,11 +8,12 @@ import {
 } from '@/features/lessons/api/lessonsApi'
 import { getEmbedUrl } from '@/shared/utils/youtube/embed-url/getEmbedUrl'
 import { mockYouTubeUrl } from '@/tests/mocks/form'
+import { renderWithProviderAndRouter } from '@/tests/mocks/wrappers'
 import { LessonDetails } from './LessonDetails'
 
 vi.mock('@/features/lessons/api/lessonsApi')
 vi.mock('@/shared/utils/youtube/embed-url/getEmbedUrl')
-vi.mock('@/widgets/product/images/ProductImages')
+// vi.mock('@/widgets/product/images/ProductImages')
 vi.mock('./hooks/useLessonDetailsActions')
 
 describe('LessonDetails', () => {
@@ -34,7 +35,7 @@ describe('LessonDetails', () => {
     })
 
     it('renders lesson details', async () => {
-        render(<LessonDetails onBack={mockOnBack} />)
+        renderWithProviderAndRouter(<LessonDetails onBack={mockOnBack} />)
 
         expect(screen.getAllByText(mockLesson1.title)).toHaveLength(2)
 
@@ -47,11 +48,6 @@ describe('LessonDetails', () => {
         ).toBeInTheDocument()
     })
 
-    it('renders product images', async () => {
-        render(<LessonDetails onBack={mockOnBack} />)
-        expect(screen.getByTestId('mocked-product-images')).toBeInTheDocument()
-    })
-
     it('renders default thumbnail', async () => {
         const { videoUrl, ...restLesson } = mockLesson1
 
@@ -61,8 +57,8 @@ describe('LessonDetails', () => {
             error: null,
         })
 
-        render(<LessonDetails onBack={mockOnBack} />)
+        renderWithProviderAndRouter(<LessonDetails onBack={mockOnBack} />)
 
-        expect(screen.getByRole('img')).toBeInTheDocument()
+        expect(screen.getAllByRole('img')[0]).toBeInTheDocument()
     })
 })

@@ -42,11 +42,8 @@
                     "required": "Please specify what is currently in your makeup bag"
                 }
             },
-            "makeupBagPhotoId": {
+            "makeupBagPhotoIds": {
                 "label": "Makeup Bag Photo"
-            },
-            "makeupBagPhotoUrl": {
-                "label": "Makeup Bag Image URL"
             },
             "procedures": {
                 "label": "Procedures",

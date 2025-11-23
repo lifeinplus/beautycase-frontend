@@ -1,15 +1,13 @@
 import { DocumentDuplicateIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { useAppDispatch } from '@/app/hooks/hooks'
-import { clearFormData } from '@/features/form/slice/formSlice'
 import {
     useDuplicateStageByIdMutation,
     useGetStageByIdQuery,
 } from '@/features/stages/api/stagesApi'
+import { ModalDuplicateProps } from '@/shared/components/modals/duplicate/ModalDuplicate'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
@@ -20,11 +18,7 @@ export const useDuplicateStageAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['navigation', 'modal'])
 
-    const dispatch = useAppDispatch()
-    const [isModalDuplicateOpen, setIsModalDuplicateOpen] = useState(false)
-
     const stagesRoot = ROUTES.backstage.stages.root
-
     const isStageDetailsPage = pathname.match(
         new RegExp(`^${stagesRoot}/[a-f0-9]{24}$`)
     )
@@ -33,24 +27,37 @@ export const useDuplicateStageAction = () => {
         skip: !id || !isStageDetailsPage,
     })
 
-    const [duplicateStageById] = useDuplicateStageByIdMutation()
+    const [modalDuplicateProps, setModalDuplicateProps] =
+        useState<ModalDuplicateProps>({})
+
+    const [duplicateStageById, { isLoading: isDuplicating }] =
+        useDuplicateStageByIdMutation()
 
     useEffect(() => {
-        if (isStageDetailsPage) {
-            dispatch(clearFormData())
-        }
-    }, [dispatch, isStageDetailsPage])
+        setModalDuplicateProps((prev) => ({
+            ...prev,
+            isLoading: isDuplicating,
+        }))
+    }, [isDuplicating])
 
     const handleDuplicate = async () => {
         try {
             await duplicateStageById(id!).unwrap()
+            setModalDuplicateProps({})
             navigate(stagesRoot)
         } catch (err) {
             console.error(err)
-            toast.error(getErrorMessage(err))
-        } finally {
-            setIsModalDuplicateOpen(false)
+            setModalDuplicateProps((prev) => ({
+                ...prev,
+                title: t('modal:duplicate.titleError'),
+                description: getErrorMessage(err),
+                isBlocked: true,
+            }))
         }
+    }
+
+    const handleCancel = () => {
+        setModalDuplicateProps((prev) => ({ ...prev, isOpen: false }))
     }
 
     if (!id || !isStageDetailsPage) return null
@@ -61,15 +68,16 @@ export const useDuplicateStageAction = () => {
         icon: DocumentDuplicateIcon,
         label: t('actions.duplicate'),
         roles: [Role.ADMIN, Role.MUA],
-        onClick: () => setIsModalDuplicateOpen(true),
-        modalProps: {
-            isOpen: isModalDuplicateOpen,
-            title: t('modal:duplicate.title'),
-            description: t('modal:duplicate.description', {
-                name: data?.title,
+        onClick: () =>
+            setModalDuplicateProps({
+                title: t('modal:duplicate.title'),
+                description: t('modal:duplicate.description', {
+                    name: data?.title,
+                }),
+                onConfirm: handleDuplicate,
+                onCancel: handleCancel,
+                isOpen: true,
             }),
-            onConfirm: handleDuplicate,
-            onCancel: () => setIsModalDuplicateOpen(false),
-        },
+        modalProps: modalDuplicateProps,
     }
 }

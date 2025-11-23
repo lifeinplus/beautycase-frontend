@@ -9,7 +9,7 @@ export interface Product {
     category?: Pick<Category, '_id' | 'name'>
     categoryId: string
     name: string
-    imageUrl: string
+    imageIds: string[]
     shade?: string
     comment: string
     storeLinks?: StoreLink[]

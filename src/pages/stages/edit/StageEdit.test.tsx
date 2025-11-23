@@ -28,6 +28,7 @@ describe('StageEdit', () => {
     beforeEach(() => {
         vi.mocked(useUpdateStageByIdMutation as Mock).mockReturnValue([
             mockUpdateStageById,
+            { isLoading: false },
         ])
 
         mockUpdateStageById.mockReturnValue({ unwrap: mockUnwrap })

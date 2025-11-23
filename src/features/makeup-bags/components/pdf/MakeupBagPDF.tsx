@@ -10,6 +10,7 @@ import {
 import { TFunction } from 'i18next'
 
 import config from '@/app/config/config'
+import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 import type { MakeupBagData } from '../../types'
 
 Font.register({
@@ -207,13 +208,20 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
     const stages = data?.stages || []
     const tools = data?.tools || []
 
+    const getCloudinaryUrl = (publicId: string) => {
+        return cloudinary.image(publicId).toURL()
+    }
+
     const renderStages = () =>
         stages.map((stage, index) => (
             <View key={index}>
                 <View wrap={false}>
                     <Text style={styles.stageTitle}>{stage.title}</Text>
                     <Text style={styles.stageSubtitle}>{stage.subtitle}</Text>
-                    <Image style={styles.stageImage} src={stage.imageUrl} />
+                    <Image
+                        style={styles.stageImage}
+                        src={getCloudinaryUrl(stage.imageId)}
+                    />
                 </View>
 
                 {stage.steps && stage.steps.length > 0 && (
@@ -240,7 +248,7 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
                             >
                                 <Image
                                     style={styles.productImage}
-                                    src={product.imageUrl}
+                                    src={getCloudinaryUrl(product.imageIds[0])}
                                 />
 
                                 <Text style={styles.productName}>
@@ -280,7 +288,7 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
                             >
                                 <Image
                                     style={styles.toolImage}
-                                    src={tool.imageUrl}
+                                    src={getCloudinaryUrl(tool.imageIds[0])}
                                 />
 
                                 <Text style={styles.toolName}>{tool.name}</Text>
@@ -304,7 +312,7 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
                         >
                             <Image
                                 style={styles.toolImage}
-                                src={tool.imageUrl}
+                                src={getCloudinaryUrl(tool.imageIds[0])}
                             />
 
                             <Text style={styles.toolName}>{tool.name}</Text>

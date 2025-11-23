@@ -1,21 +1,21 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { ImagePreview, type ImagePreviewProps } from './ImagePreview'
+import { VideoPreview, type VideoPreviewProps } from './VideoPreview'
 
-describe('ImagePreview', () => {
-    const mockProps: ImagePreviewProps = {
+describe('VideoPreview', () => {
+    const mockProps: VideoPreviewProps = {
         url: 'https://example.com/image.jpg',
     }
 
     it('renders with the correct URL', () => {
-        render(<ImagePreview {...mockProps} />)
+        render(<VideoPreview {...mockProps} />)
 
         expect(screen.getByRole('img')).toHaveAttribute('src', mockProps.url)
     })
 
     it('renders with the correct alt text', () => {
-        render(<ImagePreview {...mockProps} />)
+        render(<VideoPreview {...mockProps} />)
 
         expect(screen.getByRole('img')).toHaveAttribute('alt', 'Preview')
     })

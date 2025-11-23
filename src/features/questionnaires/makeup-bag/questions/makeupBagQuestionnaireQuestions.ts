@@ -23,11 +23,8 @@ export const makeupBagQuestionnaireQuestions: Questions<MakeupBagQuestionnaire> 
             label: 'makeupBag.fields.makeupBag.label',
             description: 'makeupBag.fields.makeupBag.description',
         },
-        makeupBagPhotoId: {
-            label: 'makeupBag.fields.makeupBagPhotoId.label',
-        },
-        makeupBagPhotoUrl: {
-            label: 'makeupBag.fields.makeupBagPhotoUrl.label',
+        makeupBagPhotoIds: {
+            label: 'makeupBag.fields.makeupBagPhotoIds.label',
         },
         procedures: {
             label: 'makeupBag.fields.procedures.label',

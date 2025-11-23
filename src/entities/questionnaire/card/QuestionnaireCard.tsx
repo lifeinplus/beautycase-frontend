@@ -39,9 +39,8 @@ export const QuestionnaireCard = ({
             <Link
                 to={`${questionnairesRoot}/${createPath}`}
                 className={classNames(
-                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                    'dark:focus-visible:outline-rose-700',
-                    'relative block overflow-hidden rounded-xl ring-1 ring-neutral-200 dark:ring-neutral-600'
+                    'relative block overflow-hidden rounded-xl ring-1 ring-neutral-200 transition-all dark:ring-neutral-600 dark:focus-visible:outline-rose-700',
+                    'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed'
                 )}
             >
                 <img
@@ -56,8 +55,8 @@ export const QuestionnaireCard = ({
                         'dark:from-black/50 dark:from-40% dark:via-black/30 dark:via-40% dark:to-transparent dark:to-60%'
                     )}
                 />
-                <div className="absolute bottom-0 px-4 py-3 pr-28 text-white sm:px-5 sm:py-4">
-                    <h2 className="font-heading text-base font-semibold text-pretty text-shadow-xs/100 sm:text-lg">
+                <div className="absolute bottom-0 px-4 py-3 pr-28 text-white md:px-5 md:py-4">
+                    <h2 className="font-heading text-base font-semibold text-pretty text-shadow-xs/100 md:text-lg">
                         {title}
                     </h2>
                 </div>
@@ -67,9 +66,9 @@ export const QuestionnaireCard = ({
                 <div className="my-4 flex justify-end">
                     <Link
                         className={classNames(
-                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700',
+                            'flex gap-1 text-sm/6 font-semibold text-rose-500 transition-all hover:text-rose-600 dark:text-rose-400 hover:dark:text-rose-500',
                             'hover:rounded hover:outline-4 hover:outline-offset-4 hover:outline-rose-400 hover:outline-dashed dark:hover:outline-rose-600',
-                            'flex gap-1 text-sm/6 font-semibold text-rose-500 hover:text-rose-600 dark:text-rose-400 hover:dark:text-rose-500'
+                            'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
                         )}
                         to={`${questionnairesRoot}/${resultsPath}`}
                     >

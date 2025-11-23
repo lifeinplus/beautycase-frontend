@@ -5,11 +5,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { mockOnSubmit } from '@/tests/mocks/form'
 import { mockNavigate } from '@/tests/mocks/router'
+import { renderWithProviders } from '@/tests/mocks/wrappers'
 import { mockStage1 } from '../../api/__mocks__/stagesApi'
 import { StageForm } from './StageForm'
 
 vi.mock('@/app/hooks/hooks')
-vi.mock('@/shared/components/forms/image/url-section/ImageUrlSection')
+vi.mock('@/shared/components/forms/image/file-section/ImageFileSection')
 vi.mock('@/shared/components/navigation/nav-bar/NavBar')
 
 vi.mock('@/features/form/slice/formSlice')
@@ -22,12 +23,14 @@ describe('StageForm', () => {
     })
 
     it('renders all required form fields', () => {
-        render(<StageForm title={mockTitle} onSubmit={mockOnSubmit} />)
+        renderWithProviders(
+            <StageForm title={mockTitle} onSubmit={mockOnSubmit} />
+        )
 
         expect(screen.getByRole('navigation')).toBeInTheDocument()
 
         expect(
-            screen.getByTestId('mocked-image-url-section')
+            screen.getByTestId('mocked-image-file-section')
         ).toBeInTheDocument()
 
         const placeholders = [

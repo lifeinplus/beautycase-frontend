@@ -9,7 +9,7 @@ import {
 } from '@/features/stages/api/stagesApi'
 import { ROUTES } from '@/shared/config/routes'
 import { mockError } from '@/tests/mocks'
-import { mockLocation } from '@/tests/mocks/router'
+import { mockLocation, mockNavigate } from '@/tests/mocks/router'
 import { useDeleteStageAction } from './useDeleteStageAction'
 
 vi.mock('@/app/hooks/hooks')
@@ -46,8 +46,13 @@ describe('useDeleteStageAction', () => {
     it('handles delete action', async () => {
         const { result } = renderHook(() => useDeleteStageAction())
 
-        const deleteAction = result.current
+        let deleteAction = result.current
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         await act(async () => {
@@ -55,6 +60,7 @@ describe('useDeleteStageAction', () => {
         })
 
         expect(mockDeleteUnwrap).toHaveBeenCalled()
+        expect(mockNavigate).toHaveBeenCalledWith(ROUTES.backstage.stages.root)
     })
 
     it('shows error toast if delete fails', async () => {
@@ -62,8 +68,13 @@ describe('useDeleteStageAction', () => {
 
         const { result } = renderHook(() => useDeleteStageAction())
 
-        const deleteAction = result.current
+        let deleteAction = result.current
 
+        act(() => {
+            deleteAction?.onClick()
+        })
+
+        deleteAction = result.current
         const { onConfirm } = deleteAction?.modalProps || {}
 
         act(() => {

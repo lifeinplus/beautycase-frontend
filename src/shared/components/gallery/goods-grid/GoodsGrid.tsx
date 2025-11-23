@@ -1,16 +1,13 @@
-import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 
-import { Image } from '@/shared/components/ui/image/Image'
+import { CloudinaryImage } from '../../image/CloudinaryImage'
 import { useScrollToElement } from './hooks/useScrollToElement'
 
 export interface Good {
     _id?: string
+    brand?: { name: string }
+    imageIds: string[]
     name: string
-    imageUrl: string
-    brand?: {
-        name: string
-    }
 }
 
 export interface GoodsGridProps<T extends Good> {
@@ -22,8 +19,8 @@ export const GoodsGrid = <T extends Good>({
     goods,
     basePath,
 }: GoodsGridProps<T>) => {
-    const { pathname, state, scroll } = useScrollToElement()
     const navigate = useNavigate()
+    const { pathname, state, scroll } = useScrollToElement()
 
     const handleClick = (id?: string) => {
         navigate(`${basePath}/${id}`, {
@@ -44,13 +41,9 @@ export const GoodsGrid = <T extends Good>({
                     ref={g._id === state?.scrollId ? scroll : null}
                 >
                     <div className="relative mx-auto aspect-square w-2/3 overflow-hidden">
-                        <Image
-                            alt={g.name}
-                            className={classNames(
-                                'h-full w-full object-cover md:rounded',
-                                'rounded-sm'
-                            )}
-                            src={g.imageUrl}
+                        <CloudinaryImage
+                            className="h-full w-full rounded-sm object-cover md:rounded"
+                            imageId={g.imageIds[0]}
                         />
                     </div>
                     <h6 className="font-heading mt-4 text-center text-sm">

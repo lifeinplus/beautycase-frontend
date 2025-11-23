@@ -169,18 +169,12 @@ export const MakeupBagQuestionnaireCreate = () => {
                                     makeupBagQuestionnaireQuestions.makeupBag
                                         .label
                                 )}
-                                labelUrl={t(
-                                    makeupBagQuestionnaireQuestions
-                                        .makeupBagPhotoUrl.label
-                                )}
                                 name={'makeupBag'}
-                                nameUrl={'makeupBagPhotoUrl'}
+                                nameIds={'makeupBagPhotoIds'}
                                 register={register('makeupBag')}
-                                registerUrl={register('makeupBagPhotoUrl')}
                                 required={true}
                                 setValue={setValue}
                                 value={watch('makeupBag')}
-                                valueUrl={watch('makeupBagPhotoUrl')}
                             />
 
                             <CheckboxSection

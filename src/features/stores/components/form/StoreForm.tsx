@@ -84,13 +84,13 @@ export const StoreForm = forwardRef<FormRef | null>(({}, ref) => {
     const { ref: refName, ...restName } = register('name')
 
     return (
-        <form className="my-6 ps-4 pe-4 sm:px-0">
+        <form className="my-6 ps-4 pe-4 md:px-0">
             <div className="flex gap-3">
                 <input
                     {...restName}
                     className={classNames(
                         'block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                        'bg-white placeholder-neutral-500',
+                        'bg-white placeholder-neutral-400',
                         'border border-neutral-200 focus:border-black',
                         'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
                         'grow'

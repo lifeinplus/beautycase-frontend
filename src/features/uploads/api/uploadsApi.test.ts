@@ -3,16 +3,13 @@ import { act } from 'react'
 import { describe, expect, it } from 'vitest'
 
 import type { ApiErrorResponse } from '@/shared/utils/error/types'
-import { mockImageUrl1, mockImageUrl2 } from '@/tests/mocks/form'
+import { mockImageId } from '@/tests/mocks/form'
 import server from '@/tests/mocks/server'
 import { renderHookWithProvider } from '@/tests/mocks/wrappers'
-import type {
-    UploadImageResponse,
-    UploadTempImageUrlRequest,
-} from './uploadsApi'
+import type { UploadImageResponse } from './uploadsApi'
 import {
-    useUploadTempImageByFileMutation,
-    useUploadTempImageByUrlMutation,
+    useDeleteImageMutation,
+    useUploadTempImageMutation,
 } from './uploadsApi'
 
 describe('uploadsApi', () => {
@@ -23,31 +20,26 @@ describe('uploadsApi', () => {
         new Blob(['image content'], { type: 'image/jpeg' })
     )
 
-    const mockUrlData: UploadTempImageUrlRequest = {
-        folder: 'products',
-        imageUrl: mockImageUrl2,
-    }
-
-    describe('uploadTempImageByFile', () => {
+    describe('uploadTempImage', () => {
         it('uploads an image file successfully', async () => {
             const { result } = renderHookWithProvider(() =>
-                useUploadTempImageByFileMutation()
+                useUploadTempImageMutation()
             )
 
-            const [uploadTempImageByFile] = result.current
+            const [uploadTempImage] = result.current
 
             let response: UploadImageResponse | undefined
 
             await act(async () => {
-                response = await uploadTempImageByFile(mockFileData).unwrap()
+                response = await uploadTempImage(mockFileData).unwrap()
             })
 
-            expect(response).toEqual({ imageUrl: mockImageUrl1 })
+            expect(response).toEqual({ imageId: mockImageId })
         })
 
         it('handles image file upload API error', async () => {
             server.use(
-                http.post('api/uploads/temp-image-file', async () =>
+                http.post('api/uploads/temp-image', async () =>
                     HttpResponse.json(
                         { message: 'File upload failed' },
                         { status: 500 }
@@ -56,16 +48,16 @@ describe('uploadsApi', () => {
             )
 
             const { result } = renderHookWithProvider(() =>
-                useUploadTempImageByFileMutation()
+                useUploadTempImageMutation()
             )
 
-            const [uploadTempImageByFile] = result.current
+            const [uploadTempImage] = result.current
 
             let error: { status: number; data: ApiErrorResponse } | undefined
 
             try {
                 await act(async () => {
-                    await uploadTempImageByFile(mockFileData).unwrap()
+                    await uploadTempImage(mockFileData).unwrap()
                 })
             } catch (err) {
                 error = err as { status: number; data: ApiErrorResponse }
@@ -77,44 +69,42 @@ describe('uploadsApi', () => {
         })
     })
 
-    describe('uploadTempImageByUrl', () => {
-        it('uploads an image by URL successfully', async () => {
+    describe('deleteImage', () => {
+        it('deletes an image successfully', async () => {
             const { result } = renderHookWithProvider(() =>
-                useUploadTempImageByUrlMutation()
+                useDeleteImageMutation()
             )
 
-            const [uploadTempImageByUrl] = result.current
-
-            let response: UploadImageResponse | undefined
+            const [deleteImage] = result.current
 
             await act(async () => {
-                response = await uploadTempImageByUrl(mockUrlData).unwrap()
+                await expect(
+                    deleteImage(mockImageId).unwrap()
+                ).resolves.not.toThrow()
             })
-
-            expect(response).toEqual({ imageUrl: mockImageUrl1 })
         })
 
-        it('handles image URL upload API error', async () => {
+        it('handles delete image API error', async () => {
             server.use(
-                http.post('api/uploads/temp-image-url', async () =>
+                http.delete('api/uploads/image', async () =>
                     HttpResponse.json(
-                        { message: 'URL upload failed' },
+                        { message: 'Delete failed' },
                         { status: 500 }
                     )
                 )
             )
 
             const { result } = renderHookWithProvider(() =>
-                useUploadTempImageByUrlMutation()
+                useDeleteImageMutation()
             )
 
-            const [uploadTempImageByUrl] = result.current
+            const [deleteImage] = result.current
 
             let error: { status: number; data: ApiErrorResponse } | undefined
 
             try {
                 await act(async () => {
-                    await uploadTempImageByUrl(mockUrlData).unwrap()
+                    await deleteImage(mockImageId).unwrap()
                 })
             } catch (err) {
                 error = err as { status: number; data: ApiErrorResponse }
@@ -122,7 +112,7 @@ describe('uploadsApi', () => {
 
             expect(error).toBeDefined()
             expect(error?.status).toBe(500)
-            expect(error?.data).toEqual({ message: 'URL upload failed' })
+            expect(error?.data).toEqual({ message: 'Delete failed' })
         })
     })
 })

@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineProductsByCategoryQuery } from '@/features/products/api/productsApi'
-import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
+import { ImageCard } from '@/shared/components/cards/image/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
@@ -13,15 +16,20 @@ import { useToProductGalleryAction } from '../gallery/hooks/useToProductGalleryA
 export const CategoryProducts = () => {
     const { category } = useParams()
     const { t } = useTranslation('product')
+    const dispatch = useAppDispatch()
     const backAction = useToProductGalleryAction()
 
     const {
-        data = [],
+        data: producuts = [],
         isLoading,
         error,
     } = useGetMineProductsByCategoryQuery(category!)
 
-    const title = titleWithCount(t(`categories.${category}`), data.length)
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
+
+    const title = titleWithCount(t(`categories.${category}`), producuts.length)
 
     return (
         <article className="pb-13 md:pb-0">
@@ -31,12 +39,12 @@ export const CategoryProducts = () => {
                     <Hero title={title} hideOnMobile />
                     <DataWrapper isLoading={isLoading} error={error}>
                         <article className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
-                            {data.map((d) => (
+                            {producuts.map((p) => (
                                 <ImageCard
-                                    key={d._id}
-                                    data={d}
+                                    key={p._id}
+                                    imageId={p.imageIds[0]}
                                     to={ROUTES.backstage.products.details(
-                                        d._id!
+                                        p._id!
                                     )}
                                 />
                             ))}

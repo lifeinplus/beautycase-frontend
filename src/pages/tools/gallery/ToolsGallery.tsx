@@ -1,8 +1,11 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
 import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
-import { ImageCard } from '@/shared/components/gallery/image-card/ImageCard'
+import { ImageCard } from '@/shared/components/cards/image/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
@@ -11,11 +14,16 @@ import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
+    const dispatch = useAppDispatch()
     const backAction = useToBackstageGalleryAction()
 
-    const { data = [], isLoading, error } = useGetMineToolsQuery()
+    const { data: tools = [], isLoading, error } = useGetMineToolsQuery()
 
-    const title = titleWithCount(t('titles.gallery'), data.length)
+    useEffect(() => {
+        dispatch(clearFormData())
+    }, [dispatch])
+
+    const title = titleWithCount(t('titles.gallery'), tools.length)
     const subtitle = t('titles.gallerySubtitle')
 
     return (
@@ -31,11 +39,11 @@ export const ToolsGallery = () => {
 
                     <DataWrapper isLoading={isLoading} error={error}>
                         <section className="mx-auto my-4 grid max-w-2xl grid-cols-3 gap-1 md:gap-7">
-                            {data?.map((d) => (
+                            {tools?.map((t) => (
                                 <ImageCard
-                                    key={d._id}
-                                    data={d}
-                                    to={ROUTES.backstage.tools.details(d._id!)}
+                                    key={t._id}
+                                    imageId={t.imageIds[0]}
+                                    to={ROUTES.backstage.tools.details(t._id!)}
                                 />
                             ))}
                         </section>

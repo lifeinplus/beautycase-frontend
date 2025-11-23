@@ -137,10 +137,8 @@ export const Register = () => {
                         {t('registerQuestion')}{' '}
                         <Link
                             className={classNames(
-                                'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed',
-                                'dark:focus-visible:outline-rose-700',
-                                'text-rose-500 dark:text-rose-400',
-                                'font-semibold'
+                                'font-semibold text-rose-500 transition-all dark:text-rose-400 dark:focus-visible:outline-rose-700',
+                                'focus-visible:rounded focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed'
                             )}
                             to={ROUTES.login}
                         >

@@ -1,4 +1,3 @@
-import { PhotoIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ChangeEvent, useState } from 'react'
 import type {
@@ -12,56 +11,54 @@ import type {
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 
-import { useUploadTempImageByFileMutation } from '@/features/uploads/api/uploadsApi'
+import {
+    useDeleteImageMutation,
+    useUploadTempImageMutation,
+} from '@/features/uploads/api/uploadsApi'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { Label } from '../../label/Label'
-import { ImagePreview } from '../preview/ImagePreview'
-import { Spinner } from '../ui/Spinner'
+import { ImagePreview } from '../../preview/image/ImagePreview'
+import { ImageUploadButton } from '../ui/ImageUploadButton'
 
 export interface ImageTextSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
     folder: 'products' | 'questionnaires' | 'stages' | 'tools'
     label: string
-    labelUrl: string
     name: Path<T>
-    nameUrl: Path<T>
+    nameIds: Path<T>
     register: UseFormRegisterReturn
-    registerUrl: UseFormRegisterReturn
     setValue: UseFormSetValue<T>
     description?: string
     error?: string
     required?: boolean
     value?: string
-    valueUrl?: string
 }
 
 export const ImageTextSection = <T extends FieldValues>({
     clearErrors,
     folder,
     label,
-    labelUrl,
     name,
-    nameUrl,
+    nameIds,
     register,
-    registerUrl,
     setValue,
     description,
     error,
     required = false,
     value = '',
-    valueUrl = '',
 }: ImageTextSectionProps<T>) => {
     const { t } = useTranslation('form')
-    const [isUploading, setIsUploading] = useState(false)
+    const [imageIds, setImageIds] = useState<string[]>([])
 
-    const [uploadTempImageByFile] = useUploadTempImageByFileMutation()
+    const [uploadTempImage, { isLoading: isUploading }] =
+        useUploadTempImageMutation()
 
-    const handleUploadByFile = async (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]
+    const [deleteImage, { isLoading: isDeleting }] = useDeleteImageMutation()
 
-        if (!file) return
+    const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
 
-        setIsUploading(true)
+        if (!files?.length) return
 
         function fallbackText(value: string) {
             const text = `[${t('photoAttached')}]`
@@ -69,20 +66,39 @@ export const ImageTextSection = <T extends FieldValues>({
         }
 
         try {
-            const formData = new FormData()
-            formData.append('folder', folder)
-            formData.append('imageFile', file)
+            const uploadedIds: string[] = []
 
-            const response = await uploadTempImageByFile(formData).unwrap()
+            for (const file of files) {
+                const formData = new FormData()
+                formData.append('folder', folder)
+                formData.append('imageFile', file)
 
+                const response = await uploadTempImage(formData).unwrap()
+                uploadedIds.push(response.imageId)
+            }
+
+            const updated = [...imageIds, ...uploadedIds]
+            setImageIds(updated)
             setValue(name, fallbackText(value) as PathValue<T, Path<T>>)
-            setValue(nameUrl, response.imageUrl as PathValue<T, Path<T>>)
+            setValue(nameIds, updated as PathValue<T, Path<T>>)
             clearErrors(name)
         } catch (error) {
             console.error('Image upload failed', error)
             toast.error(getErrorMessage(error))
-        } finally {
-            setIsUploading(false)
+        }
+    }
+
+    const handleDelete = async (imageId: string) => {
+        try {
+            await deleteImage(imageId).unwrap()
+
+            const updated = imageIds.filter((id) => id !== imageId)
+            setImageIds(updated)
+            setValue(nameIds, updated as PathValue<T, Path<T>>)
+            clearErrors(name)
+        } catch (error) {
+            console.error('Image upload failed', error)
+            toast.error(getErrorMessage(error))
         }
     }
 
@@ -91,51 +107,25 @@ export const ImageTextSection = <T extends FieldValues>({
             <div className="flex flex-row items-center justify-between">
                 <Label required={required} text={label} />
 
-                <label
-                    className={classNames(
-                        isUploading
-                            ? 'cursor-not-allowed opacity-50'
-                            : 'cursor-pointer'
-                    )}
-                >
-                    <PhotoIcon
-                        className={classNames(
-                            'h-6 w-6',
-                            isUploading && 'animate-pulse'
-                        )}
-                    />
-
-                    <input
-                        accept="image/*,.heic"
-                        className="hidden"
-                        disabled={isUploading}
-                        onChange={handleUploadByFile}
-                        type="file"
-                    />
-                </label>
+                <ImageUploadButton
+                    isUploading={isUploading}
+                    onUpload={handleUpload}
+                    multiple={true}
+                />
             </div>
 
             <div className="relative">
                 <textarea
                     {...register}
                     className={classNames(
-                        'peer block w-full rounded-xl px-4 py-2.5 focus:outline-none',
-                        'bg-white placeholder-neutral-500',
-                        'border border-neutral-200 focus:border-black',
-                        'dark:border-neutral-700 dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
-                        error && 'border-rose-500 dark:border-rose-400',
-                        isUploading && 'opacity-50'
+                        'peer block w-full rounded-xl border bg-white px-4 py-2.5 placeholder-neutral-400 focus:border-black focus:outline-none dark:bg-black dark:placeholder-neutral-600 dark:focus:border-white',
+                        error
+                            ? 'border-rose-500 dark:border-rose-400'
+                            : 'border-neutral-200 dark:border-neutral-700',
+                        isUploading ? 'cursor-not-allowed' : 'cursor-auto'
                     )}
                     disabled={isUploading}
                     placeholder={isUploading ? t('uploading') : label}
-                />
-
-                {isUploading && <Spinner />}
-
-                <textarea
-                    {...registerUrl}
-                    className="hidden"
-                    placeholder={labelUrl}
                 />
 
                 {description && (
@@ -145,17 +135,20 @@ export const ImageTextSection = <T extends FieldValues>({
                 )}
 
                 {error && (
-                    <p
-                        className={classNames(
-                            'text-rose-500 dark:text-rose-400',
-                            'mt-2 text-sm'
-                        )}
-                    >
+                    <p className="mt-2 text-sm text-rose-500 dark:text-rose-400">
                         {error}
                     </p>
                 )}
 
-                {valueUrl && <ImagePreview url={valueUrl} />}
+                {imageIds.map((imageId) => (
+                    <ImagePreview
+                        key={imageId}
+                        className="mt-5"
+                        imageId={imageId}
+                        isLoading={isDeleting}
+                        onDelete={() => handleDelete(imageId)}
+                    />
+                ))}
             </div>
         </div>
     )

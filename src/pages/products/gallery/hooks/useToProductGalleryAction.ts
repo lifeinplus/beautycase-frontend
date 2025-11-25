@@ -6,14 +6,14 @@ import { ROUTES } from '@/shared/config/routes'
 
 export const useToProductGalleryAction = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation('actions')
 
     return {
         key: 'back',
         auth: true,
         className: 'hidden md:flex',
         icon: ArrowLeftIcon,
-        label: t('actions.back'),
+        label: t('back'),
         onClick: () => navigate(ROUTES.backstage.products.root),
     }
 }

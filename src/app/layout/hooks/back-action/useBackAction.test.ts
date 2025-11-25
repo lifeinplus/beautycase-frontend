@@ -11,7 +11,7 @@ describe('useBackAction', () => {
         const action = result.current
 
         expect(action.key).toBe('back')
-        expect(action.label).toBe('actions.back')
+        expect(action.label).toBe('back')
         expect(action.icon).toBeDefined()
         expect(typeof action.onClick).toBe('function')
     })

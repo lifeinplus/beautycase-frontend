@@ -16,7 +16,7 @@ export const useDeleteStageAction = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['navigation', 'modal'])
+    const { t } = useTranslation(['actions', 'modal'])
 
     const stagesRoot = ROUTES.backstage.stages.root
     const isStageDetailsPage = pathname.match(
@@ -64,7 +64,7 @@ export const useDeleteStageAction = () => {
         key: 'delete',
         auth: true,
         icon: TrashIcon,
-        label: t('actions.delete'),
+        label: t('delete'),
         roles: [Role.ADMIN, Role.MUA],
         onClick: () =>
             setModalDeleteProps({

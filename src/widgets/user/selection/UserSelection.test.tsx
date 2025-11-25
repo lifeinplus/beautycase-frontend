@@ -136,9 +136,7 @@ describe('UserSelection', () => {
         const user = userEvent.setup()
         render(<UserSelection />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockDispatch).toHaveBeenCalledWith(
             setFormData({

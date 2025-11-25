@@ -97,9 +97,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockOnSave).toHaveBeenCalledWith('123', ['product2'])
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
@@ -113,9 +111,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(spyConsoleError).toHaveBeenCalledWith(mockError)
@@ -129,9 +125,7 @@ describe('ProductSelection', () => {
 
         render(<ProductSelection onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockOnSave).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
@@ -153,7 +147,7 @@ describe('ProductSelection', () => {
         render(<ProductSelection onSave={mockOnSave} isSaving={true} />)
 
         expect(
-            screen.getByRole('button', { name: 'navigation:actions.saving' })
+            screen.getByRole('button', { name: 'actions:saving' })
         ).toBeInTheDocument()
     })
 })

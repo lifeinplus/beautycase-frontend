@@ -7,14 +7,14 @@ import { Role } from '@/shared/model/role'
 
 export const useToStageAddAction = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation()
 
     return {
         key: 'add',
         auth: true,
         roles: [Role.ADMIN, Role.MUA],
         icon: PlusIcon,
-        label: t('actions.add'),
+        label: t('add'),
         onClick: () => navigate(ROUTES.backstage.stages.add),
     }
 }

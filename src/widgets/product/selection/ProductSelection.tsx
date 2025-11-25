@@ -100,8 +100,8 @@ export const ProductSelection = ({
                                 isLoading={isSaving}
                                 label={
                                     isSaving
-                                        ? t('navigation:actions.saving')
-                                        : t('navigation:actions.save')
+                                        ? t('actions:saving')
+                                        : t('actions:save')
                                 }
                                 onClick={handleSave}
                             />

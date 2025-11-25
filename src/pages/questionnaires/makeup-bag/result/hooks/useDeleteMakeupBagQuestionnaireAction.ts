@@ -16,7 +16,7 @@ export const useDeleteMakeupBagQuestionnaireAction = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['navigation', 'modal'])
+    const { t } = useTranslation(['actions', 'modal'])
 
     const questionnairesPath = ROUTES.questionnaires.makeupBags.root
     const isQuestionnaireResultPage = pathname.match(
@@ -64,7 +64,7 @@ export const useDeleteMakeupBagQuestionnaireAction = () => {
         key: 'delete',
         auth: true,
         icon: TrashIcon,
-        label: t('actions.delete'),
+        label: t('delete'),
         roles: [Role.ADMIN],
         onClick: () =>
             setModalDeleteProps({

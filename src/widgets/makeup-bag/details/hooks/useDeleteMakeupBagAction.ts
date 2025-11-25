@@ -16,7 +16,7 @@ export const useDeleteMakeupBagAction = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['navigation', 'modal', 'makeupBag'])
+    const { t } = useTranslation(['actions', 'modal', 'makeupBag'])
 
     const makeupBagsRoot = ROUTES.backstage.makeupBags.root
     const isMakeupBagDetailsPage = pathname.match(
@@ -52,7 +52,7 @@ export const useDeleteMakeupBagAction = () => {
         key: 'delete',
         auth: true,
         icon: TrashIcon,
-        label: t('actions.delete'),
+        label: t('delete'),
         roles: [Role.ADMIN, Role.MUA],
         onClick: () => setIsModalDeleteOpen(true),
         modalProps: {

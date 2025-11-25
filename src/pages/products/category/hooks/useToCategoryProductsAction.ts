@@ -9,7 +9,7 @@ export const useToCategoryProductsAction = () => {
     const { pathname, state } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation('actions')
 
     const productsRoot = ROUTES.backstage.products.root
     const isProductDetailsPage = pathname.match(
@@ -27,7 +27,7 @@ export const useToCategoryProductsAction = () => {
         auth: true,
         className: 'hidden md:flex',
         icon: ArrowLeftIcon,
-        label: t('actions.back'),
+        label: t('back'),
         onClick: () =>
             navigate(
                 state?.prev ||

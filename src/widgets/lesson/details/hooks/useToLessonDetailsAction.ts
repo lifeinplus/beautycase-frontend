@@ -7,14 +7,14 @@ import { ROUTES } from '@/shared/config/routes'
 export const useToLessonDetailsAction = () => {
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation()
 
     return {
         key: 'back',
         auth: true,
         className: 'hidden md:flex',
         icon: ArrowLeftIcon,
-        label: t('actions.back'),
+        label: t('back'),
         onClick: () =>
             navigate(ROUTES.backstage.lessons.details(id!), {
                 replace: true,

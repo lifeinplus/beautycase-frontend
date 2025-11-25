@@ -1,0 +1,16 @@
+{
+    "add": "Add",
+    "back": "Back",
+    "copyLink": {
+        "label": "Copy Link",
+        "success": "Link copied",
+        "error": "Failed to copy link"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "export": "Export",
+    "exporting": "Exporting...",
+    "save": "Save",
+    "saving": "Saving..."
+}

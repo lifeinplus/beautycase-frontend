@@ -182,9 +182,7 @@ describe('StoreLinksAdd', () => {
         }) as HTMLInputElement[]
 
         await user.type(linkInputs[0], 'https://example.com')
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockDispatch).toHaveBeenCalledWith(clearFormData())
         expect(mockNavigate).toHaveBeenCalledWith(-1)
@@ -196,9 +194,7 @@ describe('StoreLinksAdd', () => {
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockOnSave).toHaveBeenCalled()
         expect(spyConsoleError).toHaveBeenCalledWith(mockError)
@@ -212,9 +208,7 @@ describe('StoreLinksAdd', () => {
 
         render(<StoreLinksAdd onSave={mockOnSave} />)
 
-        await user.click(
-            screen.getByRole('button', { name: 'navigation:actions.save' })
-        )
+        await user.click(screen.getByRole('button', { name: 'actions:save' }))
 
         expect(mockOnSave).not.toHaveBeenCalled()
         expect(mockDispatch).not.toHaveBeenCalled()
@@ -225,7 +219,7 @@ describe('StoreLinksAdd', () => {
         render(<StoreLinksAdd onSave={mockOnSave} isSaving={true} />)
 
         expect(
-            screen.getByRole('button', { name: 'navigation:actions.saving' })
+            screen.getByRole('button', { name: 'actions:saving' })
         ).toBeInTheDocument()
     })
 })

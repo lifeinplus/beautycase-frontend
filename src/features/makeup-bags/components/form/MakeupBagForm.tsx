@@ -151,8 +151,8 @@ export const MakeupBagForm = ({
                                 isLoading={isSaving}
                                 label={
                                     isSaving
-                                        ? t('navigation:actions.saving')
-                                        : t('navigation:actions.save')
+                                        ? t('actions:saving')
+                                        : t('actions:save')
                                 }
                             />
                         </section>

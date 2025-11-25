@@ -15,7 +15,7 @@ import { fullName } from '@/shared/utils/ui/fullName'
 export const useExportMakeupBagAction = () => {
     const { pathname } = useLocation()
     const { id } = useParams()
-    const { t } = useTranslation(['makeupBag', 'navigation'])
+    const { t } = useTranslation(['actions', 'makeupBag'])
 
     const [isExporting, setIsExporting] = useState(false)
 
@@ -31,7 +31,7 @@ export const useExportMakeupBagAction = () => {
         skip: !id || !isMakeupBagDetailsPage,
     })
 
-    const categoryName = t(`categories.${data?.category?.name}.full`)
+    const categoryName = t(`makeupBag:categories.${data?.category?.name}.full`)
 
     useEffect(() => {
         if (exportError && isMakeupBagDetailsPage) {
@@ -43,7 +43,7 @@ export const useExportMakeupBagAction = () => {
 
     const handleExportToPDF = async () => {
         if (!data) {
-            toast.error(t('toast.noExportData'))
+            toast.error(t('makeupBag:toast.noExportData'))
             return
         }
 
@@ -68,7 +68,7 @@ export const useExportMakeupBagAction = () => {
                 filename
             )
 
-            toast.success(t('toast.exportSuccess'))
+            toast.success(t('makeupBag:toast.exportSuccess'))
         } catch (error) {
             console.error('Export failed:', error)
             toast.error(getErrorMessage(error))
@@ -84,9 +84,7 @@ export const useExportMakeupBagAction = () => {
         auth: true,
         className: isExporting ? 'opacity-50 cursor-not-allowed' : '',
         icon: isExporting ? Spinner : DocumentArrowDownIcon,
-        label: isExporting
-            ? t('navigation:actions.exporting')
-            : t('navigation:actions.export'),
+        label: isExporting ? t('exporting') : t('export'),
         onClick: isExporting ? () => {} : handleExportToPDF,
     }
 }

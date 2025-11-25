@@ -1,15 +1,4 @@
 {
-    "actions": {
-        "add": "Add",
-        "back": "Back",
-        "edit": "Edit",
-        "delete": "Delete",
-        "duplicate": "Duplicate",
-        "export": "Export",
-        "exporting": "Exporting...",
-        "save": "Save",
-        "saving": "Saving..."
-    },
     "menu": {
         "questionnaires": "Questionnaires",
         "pricing": "Online Services",

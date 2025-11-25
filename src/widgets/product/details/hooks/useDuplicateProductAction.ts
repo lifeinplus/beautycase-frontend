@@ -16,7 +16,7 @@ export const useDuplicateProductAction = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const { id } = useParams()
-    const { t } = useTranslation(['navigation', 'modal'])
+    const { t } = useTranslation(['actions', 'modal'])
 
     const productsRoot = ROUTES.backstage.products.root
     const isProductDetailsPage = pathname.match(
@@ -66,7 +66,7 @@ export const useDuplicateProductAction = () => {
         key: 'duplicate',
         auth: true,
         icon: DocumentDuplicateIcon,
-        label: t('actions.duplicate'),
+        label: t('duplicate'),
         roles: [Role.ADMIN, Role.MUA],
         onClick: () =>
             setModalDuplicateProps({

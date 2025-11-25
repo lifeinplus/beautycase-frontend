@@ -111,7 +111,7 @@ export const UserSelection = () => {
 
                         <section className="border-t border-gray-300 px-3 pt-6 md:flex md:justify-end md:border-0 md:pt-0 dark:border-gray-700">
                             <ButtonSubmit
-                                label={t('navigation:actions.save')}
+                                label={t('actions:save')}
                                 onClick={handleSave}
                             />
                         </section>

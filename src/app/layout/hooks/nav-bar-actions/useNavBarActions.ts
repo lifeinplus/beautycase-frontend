@@ -41,9 +41,11 @@ import { useToLessonDetailsAction } from '@/widgets/lesson/details/hooks/useToLe
 import { useDeleteMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useDeleteMakeupBagAction'
 import { useExportMakeupBagAction } from '@/widgets/makeup-bag/details/hooks/useExportMakeupBagAction'
 import { useToMakeupBagDetailsAction } from '@/widgets/makeup-bag/details/hooks/useToMakeupBagDetailsAction'
+import { useCopyProductLinkAction } from '@/widgets/product/details/hooks/useCopyProductLinkAction'
 import { useDeleteProductAction } from '@/widgets/product/details/hooks/useDeleteProductAction'
 import { useDuplicateProductAction } from '@/widgets/product/details/hooks/useDuplicateProductAction'
 import { useToProductDetailsAction } from '@/widgets/product/details/hooks/useToProductDetailsAction'
+import { useCopyToolLinkAction } from '@/widgets/tool/details/hooks/useCopyToolLinkAction'
 import { useDeleteToolAction } from '@/widgets/tool/details/hooks/useDeleteToolAction'
 import { useToToolDetailsAction } from '@/widgets/tool/details/hooks/useToToolDetailsAction'
 import type { NavBarAction } from '../types'
@@ -83,6 +85,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const toProductEditAction = useToProductEditAction()
     const toProductGalleryAction = useToProductGalleryAction()
     const toCategoryProductsAction = useToCategoryProductsAction()
+    const copyProductLinkAction = useCopyProductLinkAction()
     const deleteProductAction = useDeleteProductAction()
     const duplicateProductAction = useDuplicateProductAction()
 
@@ -107,6 +110,7 @@ export const useNavBarActions = (): NavBarAction[] => {
     const toToolDetailsAction = useToToolDetailsAction()
     const toToolEditAction = useToToolEditAction()
     const toToolGalleryAction = useToToolGalleryAction()
+    const copyToolLinkAction = useCopyToolLinkAction()
     const deleteToolAction = useDeleteToolAction()
 
     const getActionsForRoute = (): NavBarAction[] => {
@@ -209,6 +213,7 @@ export const useNavBarActions = (): NavBarAction[] => {
                     toCategoryProductsAction,
                     toProductEditAction,
                     duplicateProductAction,
+                    copyProductLinkAction,
                     deleteProductAction,
                 ],
             },
@@ -307,6 +312,7 @@ export const useNavBarActions = (): NavBarAction[] => {
                 actions: [
                     toToolGalleryAction,
                     toToolEditAction,
+                    copyToolLinkAction,
                     deleteToolAction,
                 ],
             },

@@ -7,14 +7,14 @@ import { Role } from '@/shared/model/role'
 
 export const useToProductAddAction = () => {
     const navigate = useNavigate()
-    const { t } = useTranslation('navigation')
+    const { t } = useTranslation('actions')
 
     return {
         key: 'add',
         auth: true,
         roles: [Role.ADMIN, Role.MUA],
         icon: PlusIcon,
-        label: t('actions.add'),
+        label: t('add'),
         onClick: () => navigate(ROUTES.backstage.products.add),
     }
 }

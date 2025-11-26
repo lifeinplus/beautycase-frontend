@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import config from '@/app/config/config'
 import { useAppSelector } from '@/app/hooks/hooks'
 import { useGetAllBrandsQuery } from '@/features/brands/api/brandsApi'
 import { selectFormData } from '@/features/form/slice/formSlice'
@@ -99,6 +100,7 @@ export const ToolForm = ({
 
                             <ImageFilesSection
                                 clearErrors={clearErrors}
+                                defaultImageId={config.cloudinary.defaultToolId}
                                 folder="tools"
                                 error={t(errors.imageIds?.message || '')}
                                 label={t('fields.imageIds.label')}

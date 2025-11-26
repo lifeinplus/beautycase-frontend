@@ -6,20 +6,21 @@ import config from '@/app/config/config'
 import cloudinary from '@/shared/lib/cloudinary/cloudinary'
 
 interface CloudinaryImageProps {
-    imageId?: string
-    width?: number
     className?: string
+    imageId?: string
+    defaultImageId?: string
+    width?: number
 }
 
 export const CloudinaryImage = ({
-    imageId,
-    width = 400,
     className,
+    imageId,
+    defaultImageId = config.cloudinary.defaultProductId,
+    width = 400,
 }: CloudinaryImageProps) => {
     const [error, setError] = useState(false)
 
-    const publicId: string =
-        error || !imageId ? config.cloudinary.defaultThumbnailName : imageId
+    const publicId: string = imageId && !error ? imageId : defaultImageId
 
     const cldImg = useMemo(() => {
         return cloudinary

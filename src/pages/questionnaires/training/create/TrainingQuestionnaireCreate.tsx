@@ -75,7 +75,7 @@ export const TrainingQuestionnaireCreate = () => {
                     <Hero
                         title={title}
                         subtitle={subtitle}
-                        imgUrl={config.cloudinary.questionnaireTrainingHero}
+                        imgUrl={config.cloudinary.questionnaireTraining}
                         content={t('training.hero.content')}
                         hideOnMobile
                     />
@@ -83,7 +83,7 @@ export const TrainingQuestionnaireCreate = () => {
                     <div className="md:hidden">
                         <Hero
                             subtitle={subtitle}
-                            imgUrl={config.cloudinary.questionnaireTrainingHero}
+                            imgUrl={config.cloudinary.questionnaireTraining}
                             content={t('training.hero.content')}
                         />
                     </div>

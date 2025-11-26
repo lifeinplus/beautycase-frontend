@@ -8,5 +8,5 @@ export const getThumbnail = (videoUrl: string): string => {
         console.error(error)
     }
 
-    return import.meta.env.VITE_DEFAULT_THUMBNAIL_URL
+    return import.meta.env.VITE_DEFAULT_PRODUCT_URL
 }

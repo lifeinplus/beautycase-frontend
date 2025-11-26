@@ -41,7 +41,7 @@ describe('MakeupBagQuestionnaireData', () => {
         )
 
         expect(cloudinary.image).toHaveBeenCalledWith(
-            config.cloudinary.defaultThumbnailName
+            config.cloudinary.defaultProductId
         )
         expect(screen.getByTestId('mocked-advanced-image')).toBeInTheDocument()
     })

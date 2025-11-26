@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
+import config from '@/app/config/config'
 import { mockNavigate } from '@/tests/mocks/router'
 import { type Good, GoodsGrid } from './GoodsGrid'
 
@@ -31,7 +32,11 @@ const mockBasePath = '/goods'
 describe('GoodsGrid', () => {
     it('renders the grid with correct structure', () => {
         const { container } = render(
-            <GoodsGrid goods={mockGoods} basePath={mockBasePath} />
+            <GoodsGrid
+                goods={mockGoods}
+                basePath={mockBasePath}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
         )
 
         const articleElement = container.querySelector('article')
@@ -48,14 +53,26 @@ describe('GoodsGrid', () => {
     })
 
     it('renders the correct number of goods', () => {
-        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
+        render(
+            <GoodsGrid
+                goods={mockGoods}
+                basePath={mockBasePath}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         const productItems = screen.getAllByRole('heading', { level: 6 })
         expect(productItems).toHaveLength(3)
     })
 
     it('renders all goods correctly', () => {
-        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
+        render(
+            <GoodsGrid
+                goods={mockGoods}
+                basePath={mockBasePath}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         expect(screen.getByText('Product 1')).toBeInTheDocument()
         expect(screen.getByText('Product 2')).toBeInTheDocument()
@@ -72,7 +89,13 @@ describe('GoodsGrid', () => {
     it('navigates to the correct path when an item is clicked', async () => {
         const user = userEvent.setup()
 
-        render(<GoodsGrid goods={mockGoods} basePath={mockBasePath} />)
+        render(
+            <GoodsGrid
+                goods={mockGoods}
+                basePath={mockBasePath}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         const productItems = screen.getAllByRole('heading', { level: 6 })
 
@@ -98,7 +121,13 @@ describe('GoodsGrid', () => {
     })
 
     it('does not crash when goods list is empty', () => {
-        render(<GoodsGrid goods={[]} basePath="/goods" />)
+        render(
+            <GoodsGrid
+                goods={[]}
+                basePath="/goods"
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         expect(screen.queryByText('Product 1')).not.toBeInTheDocument()
         expect(screen.queryByText('Product 2')).not.toBeInTheDocument()

@@ -354,7 +354,7 @@ const MakeupBagPDF = ({ data, t }: MakeupBagPDFProps) => {
 
                     <Image
                         style={styles.headerImage}
-                        src={config.cloudinary.makeupBagHero}
+                        src={config.cloudinary.makeupBag}
                     />
 
                     <Text style={styles.text}>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
+import config from '@/app/config/config'
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
@@ -73,6 +74,9 @@ export const ToolSelection = () => {
                                 <SelectableImageCard
                                     key={_id}
                                     id={_id!}
+                                    defaultImageId={
+                                        config.cloudinary.defaultToolId
+                                    }
                                     imageId={imageIds[0]}
                                     isSelected={orderedIds.has(_id!)}
                                     order={orderedIds.get(_id!)}

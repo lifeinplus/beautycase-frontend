@@ -38,7 +38,7 @@ export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
                         <Hero
                             title={title}
                             subtitle={t('hero.byline')}
-                            imgUrl={config.cloudinary.makeupBagHero}
+                            imgUrl={config.cloudinary.makeupBag}
                             hideOnMobile
                         />
                         <section className="mt-5 md:hidden">
@@ -48,7 +48,7 @@ export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
                             <Image
                                 alt={title}
                                 className="mt-6"
-                                src={config.cloudinary.makeupBagHero}
+                                src={config.cloudinary.makeupBag}
                             />
                         </section>
                         <MakeupBagStages stages={stages} />

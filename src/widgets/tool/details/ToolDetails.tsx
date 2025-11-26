@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import config from '@/app/config/config'
 import { useGetToolByIdQuery } from '@/features/tools/api/toolsApi'
 import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
@@ -39,7 +40,10 @@ export const ToolDetails = ({ viewMode = false, onBack }: ToolDetailsProps) => {
                             </h2>
                         </section>
 
-                        <ImageSection imageIds={data?.imageIds} />
+                        <ImageSection
+                            imageIds={data?.imageIds}
+                            defaultImageId={config.cloudinary.defaultToolId}
+                        />
 
                         {data?.number && (
                             <section className="my-3 px-4 text-base">

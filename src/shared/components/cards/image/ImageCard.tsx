@@ -1,13 +1,19 @@
 import { Link, useLocation } from 'react-router-dom'
 
+import config from '@/app/config/config'
 import { CloudinaryImage } from '../../image/CloudinaryImage'
 
 export interface ImageCardProps {
     imageId: string
+    defaultImageId?: string
     to: string
 }
 
-export const ImageCard = ({ imageId, to }: ImageCardProps) => {
+export const ImageCard = ({
+    imageId,
+    defaultImageId = config.cloudinary.defaultProductId,
+    to,
+}: ImageCardProps) => {
     const { pathname, state } = useLocation()
 
     return (
@@ -21,9 +27,10 @@ export const ImageCard = ({ imageId, to }: ImageCardProps) => {
                 }}
             >
                 <CloudinaryImage
-                    imageId={imageId}
-                    width={400}
                     className="h-full w-full object-cover"
+                    imageId={imageId}
+                    defaultImageId={defaultImageId}
+                    width={400}
                 />
             </Link>
         </div>

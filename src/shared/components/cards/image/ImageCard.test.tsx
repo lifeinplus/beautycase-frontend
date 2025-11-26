@@ -1,6 +1,7 @@
 import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
+import config from '@/app/config/config'
 import { renderWithRouter } from '@/tests/mocks/wrappers'
 import { ImageCard } from './ImageCard'
 
@@ -9,14 +10,26 @@ describe('ImageCard', () => {
     const mockTo = '/image/1'
 
     it('renders the image correctly', () => {
-        renderWithRouter(<ImageCard imageId={mockImageId} to={mockTo} />)
+        renderWithRouter(
+            <ImageCard
+                imageId={mockImageId}
+                defaultImageId={config.cloudinary.defaultProductId}
+                to={mockTo}
+            />
+        )
 
         const image = screen.getByRole('img')
         expect(image).toBeInTheDocument()
     })
 
     it('renders a link to the correct path', () => {
-        renderWithRouter(<ImageCard imageId={mockImageId} to={mockTo} />)
+        renderWithRouter(
+            <ImageCard
+                imageId={mockImageId}
+                defaultImageId={config.cloudinary.defaultProductId}
+                to={mockTo}
+            />
+        )
         const link = screen.getByRole('link')
         expect(link).toHaveAttribute('href', mockTo)
         expect(link).toHaveClass('relative')

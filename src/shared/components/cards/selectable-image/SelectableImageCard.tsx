@@ -1,10 +1,12 @@
 import classNames from 'classnames'
 
+import config from '@/app/config/config'
 import { CloudinaryImage } from '../../image/CloudinaryImage'
 
 interface SelectableImageCardProps {
     id: string
     imageId: string
+    defaultImageId?: string
     order?: number
     isSelected: boolean
     onToggle: (id: string) => void
@@ -13,6 +15,7 @@ interface SelectableImageCardProps {
 export const SelectableImageCard = ({
     id,
     imageId,
+    defaultImageId = config.cloudinary.defaultProductId,
     order,
     isSelected,
     onToggle,
@@ -22,9 +25,10 @@ export const SelectableImageCard = ({
         onClick={() => onToggle(id)}
     >
         <CloudinaryImage
-            imageId={imageId}
-            width={400}
             className="h-full w-full object-cover"
+            imageId={imageId}
+            defaultImageId={defaultImageId}
+            width={400}
         />
 
         <span

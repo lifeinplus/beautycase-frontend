@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config/config'
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
@@ -42,6 +43,9 @@ export const ToolsGallery = () => {
                             {tools?.map((t) => (
                                 <ImageCard
                                     key={t._id}
+                                    defaultImageId={
+                                        config.cloudinary.defaultToolId
+                                    }
                                     imageId={t.imageIds[0]}
                                     to={ROUTES.backstage.tools.details(t._id!)}
                                 />

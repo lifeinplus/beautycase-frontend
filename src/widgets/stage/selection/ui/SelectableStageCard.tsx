@@ -24,9 +24,9 @@ export const SelectableStageCard = ({
     <div className="grid grid-cols-3 gap-3" onClick={() => onToggle(id)}>
         <div className="relative mx-auto aspect-square w-full overflow-hidden md:rounded">
             <CloudinaryImage
+                className="h-full w-full object-cover"
                 imageId={imageId}
                 width={400}
-                className="h-full w-full object-cover"
             />
 
             <span

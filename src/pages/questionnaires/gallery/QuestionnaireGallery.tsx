@@ -11,13 +11,13 @@ export const QuestionnaireGallery = () => {
     const data = [
         {
             title: t('makeupBag.hero.byline'),
-            imageUrl: config.cloudinary.questionnaireMakeupBagHero,
+            imageUrl: config.cloudinary.questionnaireMakeupBag,
             createPath: 'makeup-bag',
             resultsPath: 'makeup-bags',
         },
         {
             title: t('training.hero.byline'),
-            imageUrl: config.cloudinary.questionnaireTrainingHero,
+            imageUrl: config.cloudinary.questionnaireTraining,
             createPath: 'training',
             resultsPath: 'trainings',
         },

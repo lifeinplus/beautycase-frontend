@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
+import config from '@/app/config/config'
 import { CloudinaryImage } from '../../image/CloudinaryImage'
 import { useScrollToElement } from './hooks/useScrollToElement'
 
@@ -13,11 +14,13 @@ export interface Good {
 export interface GoodsGridProps<T extends Good> {
     goods: T[]
     basePath: string
+    defaultImageId?: string
 }
 
 export const GoodsGrid = <T extends Good>({
     goods,
     basePath,
+    defaultImageId = config.cloudinary.defaultProductId,
 }: GoodsGridProps<T>) => {
     const navigate = useNavigate()
     const { pathname, state, scroll } = useScrollToElement()
@@ -44,6 +47,7 @@ export const GoodsGrid = <T extends Good>({
                         <CloudinaryImage
                             className="h-full w-full rounded-sm object-cover md:rounded"
                             imageId={g.imageIds[0]}
+                            defaultImageId={defaultImageId}
                         />
                     </div>
                     <h6 className="font-heading mt-4 text-center text-sm">

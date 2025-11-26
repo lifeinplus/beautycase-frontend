@@ -1,16 +1,27 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
+import config from '@/app/config/config'
 import { ImageSection } from './ImageSection'
 
 describe('ImageSection', () => {
     it('renders without crashing and shows first image', () => {
-        render(<ImageSection imageIds={['img1']} />)
+        render(
+            <ImageSection
+                imageIds={['img1']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
         expect(screen.getByTestId('mocked-advanced-image')).toBeInTheDocument()
     })
 
     it('does not show arrows when only one image exists', () => {
-        render(<ImageSection imageIds={['img1']} />)
+        render(
+            <ImageSection
+                imageIds={['img1']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         expect(
             screen.queryByRole('button', { name: 'Previous image' })
@@ -21,7 +32,12 @@ describe('ImageSection', () => {
     })
 
     it('shows only Next arrow when on first image', () => {
-        render(<ImageSection imageIds={['img1', 'img2', 'img3']} />)
+        render(
+            <ImageSection
+                imageIds={['img1', 'img2', 'img3']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         expect(
             screen.queryByRole('button', { name: 'Previous image' })
@@ -32,7 +48,12 @@ describe('ImageSection', () => {
     })
 
     it('clicking Next arrow shows next image', () => {
-        render(<ImageSection imageIds={['img1', 'img2', 'img3']} />)
+        render(
+            <ImageSection
+                imageIds={['img1', 'img2', 'img3']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         fireEvent.click(screen.getByRole('button', { name: 'Next image' }))
 
@@ -40,7 +61,12 @@ describe('ImageSection', () => {
     })
 
     it('clicking Prev arrow shows previous image', () => {
-        render(<ImageSection imageIds={['img1', 'img2', 'img3']} />)
+        render(
+            <ImageSection
+                imageIds={['img1', 'img2', 'img3']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         fireEvent.click(screen.getByRole('button', { name: 'Next image' }))
         fireEvent.click(screen.getByRole('button', { name: 'Previous image' }))
@@ -49,7 +75,12 @@ describe('ImageSection', () => {
     })
 
     it('hides Next arrow on last image', () => {
-        render(<ImageSection imageIds={['img1', 'img2']} />)
+        render(
+            <ImageSection
+                imageIds={['img1', 'img2']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         fireEvent.click(screen.getByRole('button', { name: 'Next image' }))
 
@@ -62,7 +93,12 @@ describe('ImageSection', () => {
     })
 
     it('renders dots and clicking a dot switches image', () => {
-        render(<ImageSection imageIds={['img1', 'img2', 'img3']} />)
+        render(
+            <ImageSection
+                imageIds={['img1', 'img2', 'img3']}
+                defaultImageId={config.cloudinary.defaultProductId}
+            />
+        )
 
         const dots = screen
             .getAllByRole('button')

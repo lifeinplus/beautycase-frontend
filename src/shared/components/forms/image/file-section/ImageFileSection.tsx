@@ -9,6 +9,7 @@ import type {
 } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
+import config from '@/app/config/config'
 import {
     useDeleteImageMutation,
     useUploadTempImageMutation,
@@ -20,6 +21,7 @@ import { ImageUploadPlaceholder } from '../ui/ImageUploadPlaceholder'
 
 export interface ImageFileSectionProps<T extends FieldValues> {
     clearErrors: UseFormClearErrors<T>
+    defaultImageId?: string
     folder: 'products' | 'stages' | 'tools'
     label: string
     name: Path<T>
@@ -31,6 +33,7 @@ export interface ImageFileSectionProps<T extends FieldValues> {
 
 export const ImageFileSection = <T extends FieldValues>({
     clearErrors,
+    defaultImageId = config.cloudinary.defaultProductId,
     folder,
     label,
     name,
@@ -115,6 +118,7 @@ export const ImageFileSection = <T extends FieldValues>({
                     <ImagePreview
                         key={imageId}
                         imageId={imageId}
+                        defaultImageId={defaultImageId}
                         onDelete={() => handleDelete(imageId)}
                         isLoading={isDeleting}
                     />

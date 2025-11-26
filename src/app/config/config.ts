@@ -3,13 +3,13 @@ const config = {
     cloudinary: {
         cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
         defaultAvatarUrl: import.meta.env.VITE_DEFAULT_AVATAR_URL,
-        defaultThumbnailName: import.meta.env.VITE_DEFAULT_THUMBNAIL_NAME,
-        defaultThumbnailUrl: import.meta.env.VITE_DEFAULT_THUMBNAIL_URL,
-        makeupBagHero: import.meta.env.VITE_MAKEUP_BAG_HERO,
-        questionnaireMakeupBagHero: import.meta.env
-            .VITE_QUESTIONNAIRE_MAKEUP_BAG_HERO,
-        questionnaireTrainingHero: import.meta.env
-            .VITE_QUESTIONNAIRE_TRAINING_HERO,
+        defaultProductId: import.meta.env.VITE_DEFAULT_PRODUCT_ID,
+        defaultProductUrl: import.meta.env.VITE_DEFAULT_PRODUCT_URL,
+        defaultToolId: import.meta.env.VITE_DEFAULT_TOOL_ID,
+        defaultToolUrl: import.meta.env.VITE_DEFAULT_TOOL_URL,
+        makeupBag: import.meta.env.VITE_MAKEUP_BAG,
+        questionnaireMakeupBag: import.meta.env.VITE_QUESTIONNAIRE_MAKEUP_BAG,
+        questionnaireTraining: import.meta.env.VITE_QUESTIONNAIRE_TRAINING,
     },
     fonts: {
         robotoBold: import.meta.env.VITE_FONT_ROBOTO_BOLD,

@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import toast from 'react-hot-toast'
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
 
+import config from '@/app/config/config'
 import type { Product } from '@/features/products/types'
 import { mockUploadResult } from '@/features/uploads/api/__mocks__/uploadsApi'
 import {
@@ -26,6 +27,7 @@ vi.mock('@/features/uploads/api/uploadsApi')
 describe('ImageFileSection', () => {
     const mockProps: ImageFileSectionProps<Product> = {
         clearErrors: mockClearErrors,
+        defaultImageId: config.cloudinary.defaultProductId,
         folder: 'products',
         label: 'Image',
         name: 'imageIds',

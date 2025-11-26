@@ -16,7 +16,7 @@ export const Image = ({
         className={className}
         onError={(e) => {
             e.currentTarget.alt = 'Default Image'
-            e.currentTarget.src = config.cloudinary.defaultThumbnailUrl
+            e.currentTarget.src = config.cloudinary.defaultProductUrl
         }}
         src={src}
     />

@@ -12,7 +12,7 @@ describe('getYouTubeThumbnail', () => {
 
     it('returns default thumbnail for invalid URL', () => {
         expect(getThumbnail('invalid-url')).toBe(
-            import.meta.env.VITE_DEFAULT_THUMBNAIL_URL
+            import.meta.env.VITE_DEFAULT_PRODUCT_URL
         )
     })
 })

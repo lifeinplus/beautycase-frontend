@@ -25,7 +25,7 @@ export const VideoSection = ({ name, url }: VideoSectionProps) => {
             ) : (
                 <Image
                     alt={`${name} Thumbnail`}
-                    src={import.meta.env.VITE_DEFAULT_THUMBNAIL_URL}
+                    src={import.meta.env.VITE_DEFAULT_PRODUCT_URL}
                 />
             )}
         </section>

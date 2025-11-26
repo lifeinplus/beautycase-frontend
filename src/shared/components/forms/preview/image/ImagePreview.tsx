@@ -1,11 +1,13 @@
 import { MinusCircleIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 
+import config from '@/app/config/config'
 import { CloudinaryImage } from '@/shared/components/image/CloudinaryImage'
 
 export interface ImagePreviewProps {
     className?: string
     imageId: string
+    defaultImageId?: string
     isLoading?: boolean
     onDelete: () => void
 }
@@ -13,6 +15,7 @@ export interface ImagePreviewProps {
 export const ImagePreview = ({
     className,
     imageId,
+    defaultImageId = config.cloudinary.defaultProductId,
     isLoading,
     onDelete,
 }: ImagePreviewProps) => (
@@ -44,9 +47,10 @@ export const ImagePreview = ({
         </button>
 
         <CloudinaryImage
-            imageId={imageId}
-            width={800}
             className="h-full w-full object-cover"
+            imageId={imageId}
+            defaultImageId={defaultImageId}
+            width={800}
         />
     </div>
 )

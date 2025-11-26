@@ -2,14 +2,19 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { useState } from 'react'
 
+import config from '@/app/config/config'
 import { CloudinaryImage } from '@/shared/components/image/CloudinaryImage'
 import { ArrowButton } from './ui/ArrowButton'
 
 export interface ImageSectionProps {
     imageIds?: string[]
+    defaultImageId?: string
 }
 
-export const ImageSection = ({ imageIds = [] }: ImageSectionProps) => {
+export const ImageSection = ({
+    imageIds = [],
+    defaultImageId = config.cloudinary.defaultProductId,
+}: ImageSectionProps) => {
     const [currentIndex, setCurrentIndex] = useState(0)
 
     const handlePrev = () => {
@@ -28,9 +33,10 @@ export const ImageSection = ({ imageIds = [] }: ImageSectionProps) => {
         <section className="relative mx-auto max-w-md space-y-2">
             <div className="relative aspect-4/5 w-full overflow-hidden rounded-md">
                 <CloudinaryImage
-                    imageId={imageIds[currentIndex]}
-                    width={800}
                     className="h-full w-full object-cover transition-all duration-500"
+                    imageId={imageIds[currentIndex]}
+                    defaultImageId={defaultImageId}
+                    width={800}
                 />
 
                 {imageIds.length > 1 && (

@@ -1,7 +1,7 @@
 const config = {
     cloudinary: {
         cloudName: 'test-cloud-name',
-        defaultThumbnailName: 'test-default-thumbnail-name',
+        defaultProductId: 'test-default-product-id',
     },
     prod: true,
 }

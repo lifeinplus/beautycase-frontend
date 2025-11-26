@@ -78,7 +78,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                     <Hero
                         title={title}
                         subtitle={subtitle}
-                        imgUrl={config.cloudinary.questionnaireMakeupBagHero}
+                        imgUrl={config.cloudinary.questionnaireMakeupBag}
                         content={t('makeupBag.hero.content')}
                         hideOnMobile
                     />
@@ -86,9 +86,7 @@ export const MakeupBagQuestionnaireCreate = () => {
                     <div className="md:hidden">
                         <Hero
                             subtitle={subtitle}
-                            imgUrl={
-                                config.cloudinary.questionnaireMakeupBagHero
-                            }
+                            imgUrl={config.cloudinary.questionnaireMakeupBag}
                             content={t('makeupBag.hero.content')}
                         />
                     </div>

@@ -32,7 +32,7 @@ describe('Image', () => {
         expect(imgElement).toHaveAttribute('alt', 'Default Image')
         expect(imgElement).toHaveAttribute(
             'src',
-            config.cloudinary.defaultThumbnailUrl
+            config.cloudinary.defaultProductUrl
         )
     })
 })

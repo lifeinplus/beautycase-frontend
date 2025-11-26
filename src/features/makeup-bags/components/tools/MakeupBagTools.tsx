@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
+import config from '@/app/config/config'
 import type { Tool } from '@/features/tools/types'
 import { GoodsGrid } from '@/shared/components/gallery/goods-grid/GoodsGrid'
+import { ROUTES } from '@/shared/config/routes'
 
 export interface MakeupBagToolsProps {
     tools?: Tool[]
@@ -16,7 +18,13 @@ export const MakeupBagTools = ({ tools }: MakeupBagToolsProps) => {
                 {t('titles.list')}
             </h2>
 
-            {tools && <GoodsGrid basePath="/tools" goods={tools} />}
+            {tools && (
+                <GoodsGrid
+                    goods={tools}
+                    basePath={ROUTES.tools.root}
+                    defaultImageId={config.cloudinary.defaultToolId}
+                />
+            )}
         </section>
     )
 }

@@ -53,7 +53,7 @@ export const UserFields = ({ data }: UserFieldsProps) => {
                     {makeupBags.map((bag) => (
                         <li
                             key={bag._id}
-                            className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6"
+                            className="flex items-center justify-between py-4 ps-4 pe-5 text-sm/6"
                         >
                             <div className="flex w-0 flex-1 items-center">
                                 <ShoppingBagIcon
@@ -101,7 +101,7 @@ export const UserFields = ({ data }: UserFieldsProps) => {
                     {lessons.map((lesson) => (
                         <li
                             key={lesson._id}
-                            className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6"
+                            className="flex items-center justify-between py-4 ps-4 pe-5 text-sm/6"
                         >
                             <div className="flex w-0 flex-1 items-center">
                                 <FilmIcon

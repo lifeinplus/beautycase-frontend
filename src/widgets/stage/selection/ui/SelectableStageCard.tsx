@@ -31,7 +31,7 @@ export const SelectableStageCard = ({
 
             <span
                 className={classNames(
-                    'absolute top-1 right-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
+                    'absolute top-1 right-1 flex size-8 items-center justify-center rounded-full border-2 border-white text-sm font-bold shadow-lg',
                     isSelected
                         ? 'bg-rose-500 text-white'
                         : 'bg-transparent text-gray-400'

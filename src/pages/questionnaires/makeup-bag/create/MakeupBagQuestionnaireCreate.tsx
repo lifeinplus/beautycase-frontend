@@ -73,7 +73,7 @@ export const MakeupBagQuestionnaireCreate = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero
                         title={title}

@@ -58,7 +58,7 @@ export const UserSelection = () => {
         <article>
             <TopPanel title={title} onBack={handleBack} />
 
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={title} hideOnMobile />
 
@@ -98,7 +98,7 @@ export const UserSelection = () => {
                                             </div>
 
                                             <div className="flex items-center justify-center">
-                                                <span className="absolute h-6 w-6 rounded-full border-2 border-white shadow-lg" />
+                                                <span className="absolute size-6 rounded-full border-2 border-white shadow-lg" />
                                                 {isSelected && (
                                                     <span className="absolute h-3.5 w-3.5 rounded-full bg-rose-500 text-white" />
                                                 )}

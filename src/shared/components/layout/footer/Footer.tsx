@@ -12,7 +12,7 @@ export const Footer = () => {
             id="footer"
             className={classNames(
                 'pb-safe-bottom mb-2 border-t border-gray-300',
-                'md:ms-navbar lg:ms-navbar-open',
+                'md:ms-navbar lg:ms-navbar-wide',
                 'dark:border-gray-700'
             )}
         >

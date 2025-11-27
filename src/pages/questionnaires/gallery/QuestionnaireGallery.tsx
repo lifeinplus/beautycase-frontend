@@ -28,7 +28,7 @@ export const QuestionnaireGallery = () => {
     return (
         <article className="pb-13 md:pb-0">
             <Header />
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} />
                     <section className="space-y-10 px-7 md:px-0">

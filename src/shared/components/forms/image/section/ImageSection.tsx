@@ -31,7 +31,7 @@ export const ImageSection = ({
 
     return (
         <section className="relative mx-auto max-w-md space-y-2">
-            <div className="relative aspect-4/5 w-full overflow-hidden rounded-md">
+            <div className="relative aspect-4/5 w-full overflow-hidden md:rounded-md">
                 <CloudinaryImage
                     className="h-full w-full object-cover transition-all duration-500"
                     imageId={imageIds[currentIndex]}
@@ -68,7 +68,7 @@ export const ImageSection = ({
                             key={index}
                             onClick={() => setCurrentIndex(index)}
                             className={classNames(
-                                `h-2 w-2 cursor-pointer rounded-full`,
+                                `size-2 cursor-pointer rounded-full`,
                                 index === currentIndex
                                     ? 'bg-rose-500 dark:bg-rose-400'
                                     : 'bg-neutral-400/50',

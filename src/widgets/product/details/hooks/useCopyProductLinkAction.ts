@@ -3,10 +3,11 @@ import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import { NavBarAction } from '@/app/layout/hooks/types'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 
-export const useCopyProductLinkAction = () => {
+export const useCopyProductLinkAction = (): NavBarAction | null => {
     const { id } = useParams()
     const { t } = useTranslation('actions')
 

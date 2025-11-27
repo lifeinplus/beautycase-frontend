@@ -102,7 +102,7 @@ export const StoreLinksAdd = ({
         <article>
             <TopPanel title={t('titles.add')} onBack={handleBack} />
 
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <TitleSection title={t('titles.add')} hideOnMobile />
 
@@ -121,7 +121,7 @@ export const StoreLinksAdd = ({
                                         )}
                                     >
                                         <div className="grid md:col-span-3">
-                                            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
+                                            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 size-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
                                             <select
                                                 className={classNames(
                                                     'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',
@@ -200,7 +200,7 @@ export const StoreLinksAdd = ({
                                             type="button"
                                             variant="danger"
                                         >
-                                            <MinusCircleIcon className="h-6 w-6" />
+                                            <MinusCircleIcon className="size-6" />
                                         </Button>
                                     </div>
                                 )
@@ -214,7 +214,7 @@ export const StoreLinksAdd = ({
                                     type="button"
                                     variant="success"
                                 >
-                                    <PlusCircleIcon className="h-6 w-6" />
+                                    <PlusCircleIcon className="size-6" />
                                 </Button>
                             </div>
                         </article>

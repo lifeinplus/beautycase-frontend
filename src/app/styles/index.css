@@ -24,12 +24,12 @@
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --margin-navbar: 73px;
-    --margin-navbar-open: 245px;
+    --margin-navbar-wide: 14.5rem /* 232px */;
 
     --padding-13: 3.25rem; /* 52px */
     --padding-18: 4.5rem; /* 72px */
     --padding-navbar: 73px;
-    --padding-navbar-open: 245px;
+    --padding-navbar-wide: 14.5rem /* 232px */;
 
     --scroll-margin-header: 61px;
 
@@ -40,5 +40,5 @@
 
     --width-58: 14.5rem; /* 232px */
     --width-67: 16.75rem; /* 268px */
-    --width-navbar-open: 245px;
+    --width-navbar-wide: 14.5rem /* 232px */;
 }

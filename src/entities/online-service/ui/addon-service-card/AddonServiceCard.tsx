@@ -32,7 +32,7 @@ export const AddonServiceCard = ({ name, blurb }: AddonServiceCardProps) => {
                 )}
             >
                 {t('buttons.download')}
-                <ArrowDownTrayIcon className="h-6 w-6" />
+                <ArrowDownTrayIcon className="size-6" />
             </a>
         </div>
     )

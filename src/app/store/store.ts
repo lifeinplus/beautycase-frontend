@@ -4,12 +4,14 @@ import authReducer from '@/features/auth/slice/authSlice'
 import formReducer from '@/features/form/slice/formSlice'
 import themeReducer from '@/features/theme/slice/themeSlice'
 import { api } from '@/shared/api/api'
-import config from './config/config'
+import config from '../config/config'
+import modalsReducer from '../ui/modalsSlice'
 
 const rootReducer = combineReducers({
     [api.reducerPath]: api.reducer,
     auth: authReducer,
     form: formReducer,
+    modals: modalsReducer,
     theme: themeReducer,
 })
 

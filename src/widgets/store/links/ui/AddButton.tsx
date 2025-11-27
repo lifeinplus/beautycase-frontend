@@ -47,7 +47,7 @@ export const AddButton = ({ storeLinks }: AddButtonProps) => {
                     )}
                 >
                     {t('buttons.storeLinks.text')}
-                    <PlusIcon className="h-4 w-4 stroke-2" />
+                    <PlusIcon className="size-4 stroke-2" />
                 </span>
             </button>
         </div>

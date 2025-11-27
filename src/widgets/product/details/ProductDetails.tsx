@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
+import { useNavBarActions } from '@/app/layout/hooks/nav-bar-actions/useNavBarActions'
 import { useGetProductByIdQuery } from '@/features/products/api/productsApi'
 import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
@@ -23,11 +24,14 @@ export const ProductDetails = ({
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
     const title = data?.brand?.name || t('titles.details')
 
+    const navBarActions = useNavBarActions()
+    const actionItems = navBarActions.filter((a) => !['back'].includes(a.key))
+
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={onBack} />
+            <TopPanel title={title} onBack={onBack} actions={actionItems} />
 
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <DataWrapper isLoading={isLoading} error={error}>
                         <TitleSection

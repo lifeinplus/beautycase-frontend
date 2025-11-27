@@ -47,7 +47,7 @@ export const CategoriesTable = ({
                                 onClick={() => onEdit(item)}
                                 variant="warning"
                             >
-                                <EllipsisHorizontalCircleIcon className="h-5 w-5" />
+                                <EllipsisHorizontalCircleIcon className="size-5" />
                             </Button>
 
                             <Button
@@ -57,7 +57,7 @@ export const CategoriesTable = ({
                                 onClick={() => onDelete(item)}
                                 variant="danger"
                             >
-                                <MinusCircleIcon className="h-5 w-5" />
+                                <MinusCircleIcon className="size-5" />
                             </Button>
                         </div>
                     }

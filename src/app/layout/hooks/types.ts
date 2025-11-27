@@ -1,6 +1,9 @@
 import type { ComponentType, SVGProps } from 'react'
 
-import type { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
+interface ModalProps {
+    onConfirm: () => void | Promise<void>
+    onCancel: () => void | Promise<void>
+}
 
 export interface NavBarAction {
     key: string
@@ -10,5 +13,6 @@ export interface NavBarAction {
     onClick: () => void
     auth?: boolean
     roles?: string[]
-    modalProps?: ModalDeleteProps
+    modalProps?: ModalProps
+    destructive?: boolean
 }

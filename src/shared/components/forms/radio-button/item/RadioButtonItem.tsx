@@ -28,7 +28,7 @@ export const RadioButtonItem = ({
                 >
                     <input
                         id={id}
-                        className="peer border-1.5 h-6 w-6 cursor-pointer appearance-none rounded-full border-black transition-all dark:border-white"
+                        className="peer border-1.5 size-6 cursor-pointer appearance-none rounded-full border-black transition-all dark:border-white"
                         {...register}
                         type="radio"
                         value={value}

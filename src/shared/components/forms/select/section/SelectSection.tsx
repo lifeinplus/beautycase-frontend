@@ -33,7 +33,7 @@ export const SelectSection = ({
                 <div className="grid">
                     <ChevronDownIcon
                         className={classNames(
-                            'pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end forced-colors:hidden',
+                            'pointer-events-none relative right-4 z-10 col-start-1 row-start-1 size-4 self-center justify-self-end forced-colors:hidden',
                             'text-neutral-600',
                             'dark:text-neutral-400'
                         )}

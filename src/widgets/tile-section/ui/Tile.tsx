@@ -17,7 +17,7 @@ export const Tile = ({ label, to, icon: Icon }: TileProps) => (
         )}
     >
         <div className="text-neutral-700 group-hover:text-white dark:text-neutral-200">
-            <Icon className="h-16 w-16 stroke-1" />
+            <Icon className="size-16 stroke-1" />
         </div>
         <span className="font-heading mt-8 text-center text-base leading-tight font-normal text-neutral-600 group-hover:text-white dark:text-neutral-300">
             {label}

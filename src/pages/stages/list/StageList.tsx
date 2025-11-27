@@ -60,7 +60,7 @@ export const StageList = () => {
     return (
         <article>
             <TopPanel title={title} onBack={backAction.onClick} />
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto my-6 w-full pb-6 md:my-0 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} hideOnMobile />
                     <StageFilter onSelectMakeupBag={handleSelectMakeupBag} />

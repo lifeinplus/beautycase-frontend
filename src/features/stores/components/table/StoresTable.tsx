@@ -42,14 +42,14 @@ export const StoresTable = ({ items, onDelete, onEdit }: StoresTableProps) => {
                                 onClick={() => onEdit(item)}
                                 variant="warning"
                             >
-                                <EllipsisHorizontalCircleIcon className="h-5 w-5" />
+                                <EllipsisHorizontalCircleIcon className="size-5" />
                             </Button>
                             <Button
                                 aria-label={t('buttons.delete.ariaLabel')}
                                 onClick={() => onDelete(item)}
                                 variant="danger"
                             >
-                                <MinusCircleIcon className="h-5 w-5" />
+                                <MinusCircleIcon className="size-5" />
                             </Button>
                         </div>
                     }

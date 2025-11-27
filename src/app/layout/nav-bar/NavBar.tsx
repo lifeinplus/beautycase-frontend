@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { Children, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -41,20 +41,9 @@ export const NavBar = ({ children }: NavBarProps) => {
         }
     }
 
-    const childrenArray = Children.toArray(children)
-
     return (
-        <aside
-            className={classNames(
-                'pb-safe-bottom fixed bottom-0 left-0 z-20 w-full overflow-y-auto bg-white',
-                'border-t border-neutral-200 md:border-e md:border-t-0',
-                'md:h-full md:w-auto md:flex-col md:px-3 md:pt-2 md:pb-5',
-                'lg:w-navbar-open',
-                'dark:border-neutral-700 dark:bg-black',
-                childrenArray.length ? 'flex' : 'hidden md:flex'
-            )}
-        >
-            <div className="mt-3 hidden flex-col ps-4 pe-3 pt-3 pb-10 md:flex">
+        <aside className="lg:w-navbar-wide fixed bottom-0 left-0 z-20 hidden h-full w-auto flex-col overflow-y-auto border-e border-neutral-200 bg-white px-3 pt-2 pb-5 text-sm md:flex dark:border-neutral-700 dark:bg-black">
+            <div className="mt-3 flex flex-col ps-4 pe-3 pt-3 pb-10">
                 <h2 className="font-logo text-2xl">
                     <LogoLink>
                         <span className="lg:hidden">B</span>
@@ -63,7 +52,7 @@ export const NavBar = ({ children }: NavBarProps) => {
                 </h2>
             </div>
 
-            <div className="hidden w-full flex-row justify-evenly md:flex md:flex-col md:justify-start">
+            <div className="flex w-full flex-col justify-start">
                 {menuItems
                     .filter((item) => canAccess(item, username, role))
                     .map((item, index) => (
@@ -80,15 +69,11 @@ export const NavBar = ({ children }: NavBarProps) => {
                     ))}
             </div>
 
-            <div
-                className={classNames(
-                    'flex w-full grow flex-row justify-evenly md:my-10 md:flex md:flex-col md:justify-start'
-                )}
-            >
+            <div className="my-8 flex w-full grow flex-col justify-start">
                 {children}
             </div>
 
-            <div className="hidden w-full flex-row justify-evenly md:flex md:flex-col md:justify-start">
+            <div className="flex w-full flex-col justify-start">
                 <LanguageSwitcher />
                 <ThemeToggler />
                 <AuthButton />

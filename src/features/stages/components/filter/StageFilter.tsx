@@ -25,7 +25,7 @@ export const StageFilter = ({ onSelectMakeupBag }: StageFilterProps) => {
 
     return (
         <div className="mb-6 grid ps-4 pe-5 md:p-0">
-            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 h-4 w-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
+            <ChevronDownIcon className="pointer-events-none relative right-4 z-10 col-start-1 row-start-1 size-4 self-center justify-self-end text-neutral-600 dark:text-neutral-400 forced-colors:hidden" />
             <select
                 className={classNames(
                     'col-start-1 row-start-1 block w-full appearance-none rounded-xl py-2.5 ps-4 pe-10 focus:outline-none',

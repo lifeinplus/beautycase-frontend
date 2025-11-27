@@ -38,7 +38,7 @@ export const ImagePreview = ({
         >
             <MinusCircleIcon
                 className={classNames(
-                    'h-14 w-14 stroke-[0.5] text-white',
+                    'size-14 stroke-[0.5] text-white',
                     isLoading
                         ? 'animate-spin opacity-50'
                         : 'animate-none hover:opacity-80'

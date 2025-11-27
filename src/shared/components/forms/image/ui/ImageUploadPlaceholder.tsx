@@ -40,7 +40,7 @@ export const ImageUploadPlaceholder = ({
         >
             <PlusCircleIcon
                 className={classNames(
-                    'h-14 w-14 stroke-[0.5] text-black dark:text-white',
+                    'size-14 stroke-[0.5] text-black dark:text-white',
                     isUploading
                         ? 'animate-spin opacity-50'
                         : 'animate-none hover:opacity-80'

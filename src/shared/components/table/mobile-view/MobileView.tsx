@@ -47,7 +47,7 @@ export const MobileView = <T,>({
                     </div>
 
                     <div>
-                        <ChevronRightIcon className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
+                        <ChevronRightIcon className="size-4 text-neutral-600 dark:text-neutral-400" />
                     </div>
                 </div>
             </Link>

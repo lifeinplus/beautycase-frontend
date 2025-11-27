@@ -1,11 +1,10 @@
+import { render, renderHook, RenderOptions } from '@testing-library/react'
 import type { PropsWithChildren, ReactElement, ReactNode } from 'react'
-import { render, renderHook } from '@testing-library/react'
-import type { RenderOptions } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
 
-import { setupStore } from '@/app/store'
-import type { AppStore, RootState } from '@/app/store'
+import type { AppStore, RootState } from '@/app/store/store'
+import { setupStore } from '@/app/store/store'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
     preloadedState?: Partial<RootState>

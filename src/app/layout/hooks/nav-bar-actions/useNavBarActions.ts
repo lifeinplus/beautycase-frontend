@@ -211,9 +211,9 @@ export const useNavBarActions = (): NavBarAction[] => {
                 pattern: new RegExp(`^${productsRoot}/[a-f0-9]{24}$`),
                 actions: [
                     toCategoryProductsAction,
+                    copyProductLinkAction,
                     toProductEditAction,
                     duplicateProductAction,
-                    copyProductLinkAction,
                     deleteProductAction,
                 ],
             },

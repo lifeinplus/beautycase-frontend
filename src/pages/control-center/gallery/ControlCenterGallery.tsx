@@ -25,7 +25,7 @@ export const ControlCenterGallery = () => {
     return (
         <article className="pb-13 md:pb-0">
             <Header />
-            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-open flex flex-col items-center justify-center">
+            <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full max-w-xs pb-6 md:max-w-md md:pt-6">
                     <Hero title={t('title')} />
                     <TileSection items={items} />

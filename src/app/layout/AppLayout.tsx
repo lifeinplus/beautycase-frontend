@@ -5,9 +5,14 @@ import { NavBar } from '@/app/layout/nav-bar/NavBar'
 import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { ModalDuplicate } from '@/shared/components/modals/duplicate/ModalDuplicate'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
+import { useAppSelector } from '../hooks/hooks'
+import { selectDeleteModal, selectDuplicateModal } from '../ui/modalsSlice'
 
 export const AppLayout = () => {
     const navBarActions = useNavBarActions()
+
+    const deleteModal = useAppSelector(selectDeleteModal)
+    const duplicateModal = useAppSelector(selectDuplicateModal)
 
     const deleteAction = navBarActions.find((a) => a.key === 'delete')
     const duplicateAction = navBarActions.find((a) => a.key === 'duplicate')
@@ -30,25 +35,25 @@ export const AppLayout = () => {
 
             {deleteAction?.modalProps && (
                 <ModalDelete
-                    isOpen={deleteAction.modalProps.isOpen}
-                    title={deleteAction.modalProps.title}
-                    description={deleteAction.modalProps.description}
+                    isOpen={deleteModal.isOpen}
+                    title={deleteModal.title}
+                    description={deleteModal.description}
+                    isBlocked={deleteModal.isBlocked}
+                    isLoading={deleteModal.isLoading}
                     onConfirm={deleteAction.modalProps.onConfirm}
                     onCancel={deleteAction.modalProps.onCancel}
-                    isBlocked={deleteAction.modalProps.isBlocked}
-                    isLoading={deleteAction.modalProps.isLoading}
                 />
             )}
 
             {duplicateAction?.modalProps && (
                 <ModalDuplicate
-                    isOpen={duplicateAction.modalProps.isOpen}
-                    title={duplicateAction.modalProps.title}
-                    description={duplicateAction.modalProps.description}
+                    isOpen={duplicateModal.isOpen}
+                    title={duplicateModal.title}
+                    description={duplicateModal.description}
+                    isBlocked={duplicateModal.isBlocked}
+                    isLoading={duplicateModal.isLoading}
                     onConfirm={duplicateAction.modalProps.onConfirm}
                     onCancel={duplicateAction.modalProps.onCancel}
-                    isBlocked={duplicateAction.modalProps.isBlocked}
-                    isLoading={duplicateAction.modalProps.isLoading}
                 />
             )}
 

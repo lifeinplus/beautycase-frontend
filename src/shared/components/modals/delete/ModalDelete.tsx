@@ -5,21 +5,21 @@ import { useTranslation } from 'react-i18next'
 export interface ModalDeleteProps {
     title?: string
     description?: string
-    onConfirm?: () => void
-    onCancel?: () => void
     isOpen?: boolean
     isBlocked?: boolean
     isLoading?: boolean
+    onConfirm?: () => void | Promise<void>
+    onCancel?: () => void | Promise<void>
 }
 
 export const ModalDelete = ({
     title = '',
     description = '',
-    onConfirm = () => {},
-    onCancel = () => {},
     isOpen = false,
     isBlocked = false,
     isLoading = false,
+    onConfirm = () => {},
+    onCancel = () => {},
 }: ModalDeleteProps) => {
     const modalRef = useRef<HTMLDivElement>(null)
     const { t } = useTranslation('modal')
@@ -42,7 +42,7 @@ export const ModalDelete = ({
 
     return (
         <div
-            className="md:ps-navbar lg:ps-navbar-open fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            className="md:ps-navbar lg:ps-navbar-wide fixed inset-0 z-50 flex items-center justify-center bg-black/50"
             onClick={handleClickOutside}
         >
             <div

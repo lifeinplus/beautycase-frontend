@@ -110,7 +110,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                         type="submit"
                         variant="warning"
                     >
-                        <ArrowDownCircleIcon className="h-6 w-6" />
+                        <ArrowDownCircleIcon className="size-6" />
                     </Button>
                 ) : (
                     <Button
@@ -120,7 +120,7 @@ export const BrandForm = forwardRef<FormRef | null>(({}, ref) => {
                         type="submit"
                         variant="success"
                     >
-                        <PlusCircleIcon className="h-6 w-6" />
+                        <PlusCircleIcon className="size-6" />
                     </Button>
                 )}
             </div>

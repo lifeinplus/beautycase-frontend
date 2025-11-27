@@ -30,7 +30,7 @@ export const ItemLink = ({ item }: ItemLinkProps) => {
                     )}
                 >
                     {item.name}
-                    <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+                    <ArrowTopRightOnSquareIcon className="size-4" />
                 </span>
             </a>
         </div>

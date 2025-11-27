@@ -55,7 +55,7 @@ export const QuestionnaireCard = ({
                         'dark:from-black/50 dark:from-40% dark:via-black/30 dark:via-40% dark:to-transparent dark:to-60%'
                     )}
                 />
-                <div className="absolute bottom-0 px-4 py-3 pr-28 text-white md:px-5 md:py-4">
+                <div className="absolute bottom-0 px-4 py-3 pe-28 text-white md:px-5 md:py-4">
                     <h2 className="font-heading text-base font-semibold text-pretty text-shadow-xs/100 md:text-lg">
                         {title}
                     </h2>

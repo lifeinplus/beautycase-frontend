@@ -20,6 +20,6 @@ export const ArrowButton = ({
             'focus-visible:rounded-full focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-rose-600 focus-visible:outline-dashed dark:focus-visible:outline-rose-700'
         )}
     >
-        <Icon className="h-5 w-5 stroke-3" />
+        <Icon className="size-5 stroke-3" />
     </button>
 )

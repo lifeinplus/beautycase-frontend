@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App.tsx'
-import { setupStore } from './app/store.ts'
+import { setupStore } from './app/store/store.ts'
 import './app/styles/index.css'
 import './lib/i18n/index.ts'
 

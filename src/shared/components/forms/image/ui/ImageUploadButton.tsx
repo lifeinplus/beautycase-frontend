@@ -35,7 +35,7 @@ export const ImageUploadButton = ({
         >
             <PlusCircleIcon
                 className={classNames(
-                    'h-7 w-7 text-black dark:text-white',
+                    'size-7 text-black dark:text-white',
                     isUploading
                         ? 'animate-spin opacity-50'
                         : 'animate-none hover:opacity-80'

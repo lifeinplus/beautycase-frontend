@@ -26,7 +26,7 @@ export const MobileActionsDropdown = ({
                 transition
                 anchor="bottom end"
                 className={classNames(
-                    'rounded-2.5xl mt-3.5 w-72 origin-top-right bg-white/90 p-1 text-lg outline-1 -outline-offset-1 outline-black/10 backdrop-blur-xs transition dark:bg-black/80 dark:outline-white/30',
+                    'rounded-2.5xl mt-3.5 w-72 origin-top-right bg-white/80 p-2 text-lg outline-1 -outline-offset-1 outline-black/20 backdrop-blur-xs transition dark:bg-black/80 dark:outline-white/30',
                     'data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in'
                 )}
             >
@@ -34,13 +34,13 @@ export const MobileActionsDropdown = ({
                     ({ key, onClick, icon: Icon, label, destructive }) => (
                         <div key={key}>
                             {destructive && (
-                                <div className="h-px bg-white/30" />
+                                <div className="my-2 h-px bg-black/20 dark:bg-white/30" />
                             )}
                             <MenuItem>
                                 <button
                                     onClick={onClick}
                                     className={classNames(
-                                        'group flex w-full items-center justify-between gap-2 py-3 ps-6 pe-4',
+                                        'group flex w-full items-center justify-between gap-2 rounded-2xl py-3 ps-4 pe-2',
                                         'data-focus:bg-black/5 data-focus:outline-hidden dark:data-focus:bg-white/10',
                                         destructive
                                             ? 'text-rose-500 dark:text-rose-400'

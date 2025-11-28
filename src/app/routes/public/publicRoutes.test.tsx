@@ -81,11 +81,6 @@ describe('publicRoutes', () => {
         ).toBeInTheDocument()
     })
 
-    it('renders the ToolDetailsViewMode page correctly', () => {
-        renderWithProviderAndRouter(<App />, [ROUTES.tools.details('123')])
-        expect(screen.getByTestId('mocked-tool-details')).toBeInTheDocument()
-    })
-
     it('renders the unauthorized page correctly', () => {
         renderWithRouter(<App />, [ROUTES.unauthorized])
         expect(screen.getByTestId('mocked-unauthorized')).toBeInTheDocument()

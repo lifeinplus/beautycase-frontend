@@ -6,15 +6,15 @@ import { useGetToolByIdQuery } from '@/features/tools/api/toolsApi'
 import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { DetailSection } from '@/shared/components/ui/detail-section/DetailSection'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { StoreLinks } from '@/widgets/store/links/StoreLinks'
 
 export interface ToolDetailsProps {
     viewMode?: boolean
-    onBack?: () => void
 }
 
-export const ToolDetails = ({ viewMode = false, onBack }: ToolDetailsProps) => {
+export const ToolDetails = ({ viewMode = false }: ToolDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation(['tool', 'store'])
 
@@ -23,7 +23,7 @@ export const ToolDetails = ({ viewMode = false, onBack }: ToolDetailsProps) => {
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={onBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
@@ -45,17 +45,12 @@ export const ToolDetails = ({ viewMode = false, onBack }: ToolDetailsProps) => {
                             defaultImageId={config.cloudinary.defaultToolId}
                         />
 
-                        {data?.number && (
-                            <section className="my-3 px-4 text-base">
-                                <p>{`${t('number')}: ${data?.number}`}</p>
-                            </section>
-                        )}
+                        <DetailSection
+                            label={t('number')}
+                            value={data?.number}
+                        />
 
-                        {data?.comment && (
-                            <section className="my-3 px-4 text-base">
-                                <p>{data?.comment}</p>
-                            </section>
-                        )}
+                        <DetailSection value={data?.comment} />
 
                         <StoreLinks
                             storeLinks={data?.storeLinks}

@@ -17,7 +17,6 @@ const icons = {
     ClipboardDocumentListIcon: mockIcon,
     ClipboardIcon: mockIcon,
     ComputerDesktopIcon: mockIcon,
-    DocumentArrowDownIcon: mockIcon,
     DocumentDuplicateIcon: mockIcon,
     EllipsisHorizontalCircleIcon: mockIcon,
     ExclamationCircleIcon: mockIcon,

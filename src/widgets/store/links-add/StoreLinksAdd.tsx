@@ -80,10 +80,6 @@ export const StoreLinksAdd = ({
         setStoreLinks(storeLinks.filter((_, i) => i !== index))
     }
 
-    const handleBack = () => {
-        navigate(-1)
-    }
-
     const handleSave = async () => {
         if (!id) return
 
@@ -100,7 +96,7 @@ export const StoreLinksAdd = ({
 
     return (
         <article>
-            <TopPanel title={t('titles.add')} onBack={handleBack} />
+            <TopPanel title={t('titles.add')} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

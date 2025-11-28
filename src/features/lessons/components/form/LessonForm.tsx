@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData, setFormData } from '@/features/form/slice/formSlice'
@@ -12,7 +12,6 @@ import { TextareaSection } from '@/shared/components/forms/textarea/section/Text
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import { ROUTES } from '@/shared/config/routes'
 import type { Lesson } from '../../types'
 import { lessonSchema } from '../../validations'
 
@@ -28,7 +27,6 @@ export const LessonForm = ({
     isSaving = false,
 }: LessonFormProps) => {
     const navigate = useNavigate()
-    const { id } = useParams()
     const { t } = useTranslation('lesson')
 
     const {
@@ -54,13 +52,6 @@ export const LessonForm = ({
         ? `${t('fields.clients.selected')}: ${clientIds.length}`
         : t('fields.clients.select')
 
-    const handleBack = () => {
-        const path = id
-            ? ROUTES.backstage.lessons.details(id)
-            : ROUTES.backstage.lessons.root
-        navigate(path)
-    }
-
     const handleNavigate = (path: string) => {
         dispatch(setFormData(watch()))
         navigate(path)
@@ -68,7 +59,7 @@ export const LessonForm = ({
 
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

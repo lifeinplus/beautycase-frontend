@@ -4,19 +4,16 @@ import { useParams } from 'react-router-dom'
 import { useGetLessonByIdQuery } from '@/features/lessons/api/lessonsApi'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { DetailSection } from '@/shared/components/ui/detail-section/DetailSection'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { VideoSection } from '@/widgets/lesson/details/ui/VideoSection'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
 
 export interface LessonDetailsProps {
     viewMode?: boolean
-    onBack: () => void
 }
 
-export const LessonDetails = ({
-    viewMode = false,
-    onBack,
-}: LessonDetailsProps) => {
+export const LessonDetails = ({ viewMode = false }: LessonDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation('lesson')
 
@@ -26,7 +23,7 @@ export const LessonDetails = ({
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={onBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
@@ -45,9 +42,7 @@ export const LessonDetails = ({
 
                         <VideoSection name={data?.title} url={data?.videoUrl} />
 
-                        <section className="my-3 px-4 text-base">
-                            <p>{data?.fullDescription}</p>
-                        </section>
+                        <DetailSection value={data?.fullDescription} />
 
                         <ProductImages
                             products={data?.products}

@@ -7,7 +7,6 @@ import { TitleSection } from '@/shared/components/forms/title-section/TitleSecti
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { fullName } from '@/shared/utils/ui/fullName'
-import { useToUsersListAction } from '../list/hooks/useToUsersListAction'
 
 export const UserDetails = () => {
     const { id } = useParams()
@@ -15,14 +14,12 @@ export const UserDetails = () => {
 
     const { data, isLoading, error } = useGetUserByIdQuery(id)
 
-    const backAction = useToUsersListAction()
-
     const title = fullName(data?.user.firstName, data?.user.lastName)
     const subtitle = t(`account:fields.role.types.${data?.user.role}`)
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={backAction?.onClick} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

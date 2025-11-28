@@ -311,8 +311,8 @@ export const useNavBarActions = (): NavBarAction[] => {
                 pattern: new RegExp(`^${toolsRoot}/[a-f0-9]{24}$`),
                 actions: [
                     toToolGalleryAction,
-                    toToolEditAction,
                     copyToolLinkAction,
+                    toToolEditAction,
                     deleteToolAction,
                 ],
             },

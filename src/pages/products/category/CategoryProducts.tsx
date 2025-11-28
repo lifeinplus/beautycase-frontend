@@ -11,13 +11,11 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ROUTES } from '@/shared/config/routes'
 import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
-import { useToProductGalleryAction } from '../gallery/hooks/useToProductGalleryAction'
 
 export const CategoryProducts = () => {
     const { category } = useParams()
     const { t } = useTranslation('product')
     const dispatch = useAppDispatch()
-    const backAction = useToProductGalleryAction()
 
     const {
         data: producuts = [],
@@ -33,7 +31,7 @@ export const CategoryProducts = () => {
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={backAction?.onClick} />
+            <TopPanel title={title} />
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} hideOnMobile />

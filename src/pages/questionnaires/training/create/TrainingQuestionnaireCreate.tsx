@@ -59,16 +59,12 @@ export const TrainingQuestionnaireCreate = () => {
         }
     }
 
-    const handleBack = () => {
-        navigate(ROUTES.questionnaires.root)
-    }
-
     const title = t('training.hero.headline')
     const subtitle = t('training.hero.byline')
 
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

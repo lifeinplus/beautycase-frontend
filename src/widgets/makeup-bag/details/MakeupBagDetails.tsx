@@ -11,11 +11,7 @@ import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { Image } from '@/shared/components/ui/image/Image'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 
-export interface MakeupBagDetailsProps {
-    onBack: () => void
-}
-
-export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
+export const MakeupBagDetails = () => {
     const { id } = useParams()
     const { t } = useTranslation(['makeupBag', 'component', 'stage', 'tool'])
 
@@ -30,7 +26,7 @@ export const MakeupBagDetails = ({ onBack }: MakeupBagDetailsProps) => {
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={onBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

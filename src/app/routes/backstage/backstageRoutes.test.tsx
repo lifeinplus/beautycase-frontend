@@ -38,11 +38,4 @@ describe('backstageRoutes', () => {
         ])
         expect(screen.getByTestId('mocked-product-details')).toBeInTheDocument()
     })
-
-    it('renders the ToolDetailsBackstage page correctly', () => {
-        renderWithProviderAndRouter(<App />, [
-            ROUTES.backstage.tools.details('123'),
-        ])
-        expect(screen.getByTestId('mocked-tool-details')).toBeInTheDocument()
-    })
 })

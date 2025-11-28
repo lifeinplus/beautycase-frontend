@@ -1,13 +1,14 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { closeModals, openDelete, setDeleteLoading } from '@/app/ui/modalsSlice'
 import {
     useDeleteTrainingQuestionnaireByIdMutation,
     useGetTrainingQuestionnaireByIdQuery,
 } from '@/features/questionnaires/api/questionnairesApi'
-import { ModalDeleteProps } from '@/shared/components/modals/delete/ModalDelete'
 import { ROUTES } from '@/shared/config/routes'
 import { Role } from '@/shared/model/role'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
@@ -18,6 +19,8 @@ export const useDeleteTrainingQuestionnaireAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['actions', 'modal'])
 
+    const dispatch = useAppDispatch()
+
     const questionnairesPath = ROUTES.questionnaires.trainings.root
     const isQuestionnaireResultPage = pathname.match(
         new RegExp(`^${questionnairesPath}/[a-f0-9]{24}$`)
@@ -27,35 +30,32 @@ export const useDeleteTrainingQuestionnaireAction = () => {
         skip: !id || !isQuestionnaireResultPage,
     })
 
-    const [modalDeleteProps, setModalDeleteProps] = useState<ModalDeleteProps>(
-        {}
-    )
-
     const [deleteTrainingQuestionnaireById, { isLoading: isDeleting }] =
         useDeleteTrainingQuestionnaireByIdMutation()
 
     useEffect(() => {
-        setModalDeleteProps((prev) => ({ ...prev, isLoading: isDeleting }))
+        dispatch(setDeleteLoading(isDeleting))
     }, [isDeleting])
 
     const handleDelete = async () => {
         try {
             await deleteTrainingQuestionnaireById(id!).unwrap()
-            setModalDeleteProps({})
+            dispatch(closeModals())
             navigate(questionnairesPath)
         } catch (err) {
             console.error(err)
-            setModalDeleteProps((prev) => ({
-                ...prev,
-                title: t('modal:delete.titleError'),
-                description: getErrorMessage(err),
-                isBlocked: true,
-            }))
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.titleError'),
+                    description: getErrorMessage(err),
+                    isBlocked: true,
+                })
+            )
         }
     }
 
     const handleCancel = () => {
-        setModalDeleteProps((prev) => ({ ...prev, isOpen: false }))
+        dispatch(closeModals())
     }
 
     if (!id || !isQuestionnaireResultPage) return null
@@ -66,16 +66,20 @@ export const useDeleteTrainingQuestionnaireAction = () => {
         icon: TrashIcon,
         label: t('delete'),
         roles: [Role.ADMIN],
-        onClick: () =>
-            setModalDeleteProps({
-                title: t('modal:delete.title'),
-                description: t('modal:delete.description', {
-                    name: data?.name,
-                }),
-                onConfirm: handleDelete,
-                onCancel: handleCancel,
-                isOpen: true,
-            }),
-        modalProps: modalDeleteProps,
+        onClick: () => {
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.title'),
+                    description: t('modal:delete.description', {
+                        name: data?.name,
+                    }),
+                })
+            )
+        },
+        modalProps: {
+            onConfirm: handleDelete,
+            onCancel: handleCancel,
+        },
+        destructive: true,
     }
 }

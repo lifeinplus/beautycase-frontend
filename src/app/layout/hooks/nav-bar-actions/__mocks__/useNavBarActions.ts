@@ -13,9 +13,6 @@ export const useNavBarActions = vi.fn(() => [
         label: 'Delete',
         onClick: vi.fn(),
         modalProps: {
-            isOpen: true,
-            title: 'Confirm Delete',
-            description: 'Are you sure?',
             onConfirm: vi.fn(),
             onCancel: vi.fn(),
         },
@@ -26,9 +23,6 @@ export const useNavBarActions = vi.fn(() => [
         label: 'Duplicate',
         onClick: vi.fn(),
         modalProps: {
-            isOpen: true,
-            title: 'Confirm Duplicate',
-            description: 'Are you sure?',
             onConfirm: vi.fn(),
             onCancel: vi.fn(),
         },

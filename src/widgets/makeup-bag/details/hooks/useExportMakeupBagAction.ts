@@ -1,4 +1,4 @@
-import { DocumentArrowDownIcon } from '@heroicons/react/24/outline'
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
@@ -83,7 +83,7 @@ export const useExportMakeupBagAction = () => {
         key: 'export',
         auth: true,
         className: isExporting ? 'opacity-50 cursor-not-allowed' : '',
-        icon: isExporting ? Spinner : DocumentArrowDownIcon,
+        icon: isExporting ? Spinner : ArrowDownTrayIcon,
         label: isExporting ? t('exporting') : t('export'),
         onClick: isExporting ? () => {} : handleExportToPDF,
     }

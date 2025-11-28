@@ -38,10 +38,6 @@ export const UserSelection = () => {
         })
     }
 
-    const handleBack = () => {
-        navigate(-1)
-    }
-
     const handleSave = () => {
         dispatch(
             setFormData({
@@ -56,7 +52,7 @@ export const UserSelection = () => {
 
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

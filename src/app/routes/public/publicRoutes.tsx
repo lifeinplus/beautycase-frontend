@@ -1,10 +1,6 @@
 import { Route } from 'react-router-dom'
 
 import { AppLayout } from '@/app/layout/AppLayout'
-import { LessonDetailsViewMode } from '@/features/lessons/wrappers/details/view-mode/LessonDetailsViewMode'
-import { MakeupBagDetailsViewMode } from '@/features/makeup-bags/wrappers/details/view-mode/MakeupBagDetailsViewMode'
-import { ProductDetailsViewMode } from '@/features/products/wrappers/details/view-mode/ProductDetailsViewMode'
-import { ToolDetailsViewMode } from '@/features/tools/wrappers/details/view-mode/ToolDetailsViewMode'
 import { Login } from '@/pages/auth/login/Login'
 import { Register } from '@/pages/auth/register/Register'
 import { Unauthorized } from '@/pages/auth/unauthorized/Unauthorized'
@@ -14,6 +10,10 @@ import { Confirmation } from '@/pages/questionnaires/confirmation/Confirmation'
 import { QuestionnaireGallery } from '@/pages/questionnaires/gallery/QuestionnaireGallery'
 import { MakeupBagQuestionnaireCreate } from '@/pages/questionnaires/makeup-bag/create/MakeupBagQuestionnaireCreate'
 import { TrainingQuestionnaireCreate } from '@/pages/questionnaires/training/create/TrainingQuestionnaireCreate'
+import { LessonDetails } from '@/widgets/lesson/details/LessonDetails'
+import { MakeupBagDetails } from '@/widgets/makeup-bag/details/MakeupBagDetails'
+import { ProductDetails } from '@/widgets/product/details/ProductDetails'
+import { ToolDetails } from '@/widgets/tool/details/ToolDetails'
 
 export const publicRoutes = [
     <Route key="home" path="/" element={<Home />} />,
@@ -21,9 +21,9 @@ export const publicRoutes = [
     <Route key="register" path="/register" element={<Register />} />,
     <Route key="public-layout" element={<AppLayout />}>
         <Route path="/confirmation" element={<Confirmation />} />
-        <Route path="/lessons/:id" element={<LessonDetailsViewMode />} />
-        <Route path="/makeup-bags/:id" element={<MakeupBagDetailsViewMode />} />
-        <Route path="/products/:id" element={<ProductDetailsViewMode />} />
+        <Route path="/lessons/:id" element={<LessonDetails viewMode />} />
+        <Route path="/makeup-bags/:id" element={<MakeupBagDetails />} />
+        <Route path="/products/:id" element={<ProductDetails viewMode />} />
         <Route path="/pricing" element={<Pricing />} />
 
         <Route path="/questionnaires">
@@ -35,7 +35,7 @@ export const publicRoutes = [
             <Route path="training" element={<TrainingQuestionnaireCreate />} />
         </Route>
 
-        <Route path="/tools/:id" element={<ToolDetailsViewMode />} />
+        <Route path="/tools/:id" element={<ToolDetails viewMode />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
     </Route>,
 ]

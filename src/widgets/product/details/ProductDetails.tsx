@@ -1,35 +1,29 @@
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
-import { useNavBarActions } from '@/app/layout/hooks/nav-bar-actions/useNavBarActions'
 import { useGetProductByIdQuery } from '@/features/products/api/productsApi'
 import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { DetailSection } from '@/shared/components/ui/detail-section/DetailSection'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { StoreLinks } from '@/widgets/store/links/StoreLinks'
 
 export interface ProductDetailsProps {
     viewMode?: boolean
-    onBack?: () => void
 }
 
-export const ProductDetails = ({
-    viewMode = false,
-    onBack,
-}: ProductDetailsProps) => {
+// TODO: move to pages back?
+export const ProductDetails = ({ viewMode = false }: ProductDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation(['product', 'store'])
 
     const { data, isLoading, error } = useGetProductByIdQuery(id!)
     const title = data?.brand?.name || t('titles.details')
 
-    const navBarActions = useNavBarActions()
-    const actionItems = navBarActions.filter((a) => !['back'].includes(a.key))
-
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={onBack} actions={actionItems} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
@@ -48,17 +42,9 @@ export const ProductDetails = ({
 
                         <ImageSection imageIds={data?.imageIds} />
 
-                        {data?.shade && (
-                            <section className="my-3 px-4 text-base">
-                                <p>{`${t('shade')}: ${data?.shade}`}</p>
-                            </section>
-                        )}
+                        <DetailSection label={t('shade')} value={data?.shade} />
 
-                        {data?.comment && (
-                            <section className="my-3 px-4 text-base">
-                                <p>{data?.comment}</p>
-                            </section>
-                        )}
+                        <DetailSection value={data?.comment} />
 
                         <StoreLinks
                             storeLinks={data?.storeLinks}

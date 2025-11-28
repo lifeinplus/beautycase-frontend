@@ -5,7 +5,6 @@ import config from '@/app/config/config'
 import { useAppDispatch } from '@/app/hooks/hooks'
 import { clearFormData } from '@/features/form/slice/formSlice'
 import { useGetMineToolsQuery } from '@/features/tools/api/toolsApi'
-import { useToBackstageGalleryAction } from '@/pages/backstage/gallery/hooks/useToBackstageGalleryAction'
 import { ImageCard } from '@/shared/components/cards/image/ImageCard'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
@@ -16,7 +15,6 @@ import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
 export const ToolsGallery = () => {
     const { t } = useTranslation('tool')
     const dispatch = useAppDispatch()
-    const backAction = useToBackstageGalleryAction()
 
     const { data: tools = [], isLoading, error } = useGetMineToolsQuery()
 
@@ -29,7 +27,7 @@ export const ToolsGallery = () => {
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={backAction.onClick} />
+            <TopPanel title={title} />
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} subtitle={subtitle} hideOnMobile />

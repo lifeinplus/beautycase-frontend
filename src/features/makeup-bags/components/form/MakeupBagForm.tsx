@@ -15,7 +15,6 @@ import { SelectSection } from '@/shared/components/forms/select/section/SelectSe
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { ButtonSubmit } from '@/shared/components/ui/button-submit/ButtonSubmit'
-import { ROUTES } from '@/shared/config/routes'
 import { fullNameWithUsername } from '@/shared/utils/ui/fullNameWithUsername'
 import type { MakeupBag } from '../../types'
 import { makeupBagSchema } from '../../validations'
@@ -80,13 +79,6 @@ export const MakeupBagForm = ({
         ? `${t('fields.tools.selected')}: ${toolIds.length}`
         : t('fields.tools.select')
 
-    const handleBack = () => {
-        const path = id
-            ? ROUTES.backstage.makeupBags.details(id)
-            : ROUTES.backstage.makeupBags.root
-        navigate(path)
-    }
-
     const handleNavigate = (path: string) => {
         dispatch(setFormData({ ...watch(), makeupBagId: id }))
         navigate(path)
@@ -94,7 +86,7 @@ export const MakeupBagForm = ({
 
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

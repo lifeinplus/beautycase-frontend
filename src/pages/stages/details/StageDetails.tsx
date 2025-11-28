@@ -5,23 +5,22 @@ import { useGetStageByIdQuery } from '@/features/stages/api/stagesApi'
 import { ImageSection } from '@/shared/components/forms/image/section/ImageSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
+import { DetailSection } from '@/shared/components/ui/detail-section/DetailSection'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
-import { useToStageListAction } from '../list/hooks/useToStageListAction'
 
 export const StageDetails = () => {
     const { id } = useParams()
     const { t } = useTranslation('stage')
 
     const { data, isLoading, error } = useGetStageByIdQuery(id!)
-    const backAction = useToStageListAction()
 
     const title = data?.title || t('titles.details')
     const imageIds = data?.imageId ? [data.imageId] : []
 
     return (
         <article className="pb-13 md:pb-0">
-            <TopPanel title={title} onBack={backAction?.onClick} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">
@@ -40,11 +39,7 @@ export const StageDetails = () => {
 
                         <ImageSection imageIds={imageIds} />
 
-                        {data?.comment && (
-                            <section className="my-3 px-4 text-base">
-                                <p>{data?.comment}</p>
-                            </section>
-                        )}
+                        <DetailSection value={data?.comment} />
 
                         {data?.steps?.length ? (
                             <section className="my-3 px-4 text-base">

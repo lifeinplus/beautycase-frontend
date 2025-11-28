@@ -5,7 +5,6 @@ import { ReferenceListsTable } from '@/features/reference-lists/components/table
 import type { ReferenceList } from '@/features/reference-lists/types'
 import { Hero } from '@/shared/components/hero/Hero'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
-import { useToControlCenterGalleryAction } from '../gallery/hooks/useToControlCenterGalleryAction'
 
 export const ReferenceLists = () => {
     const { t } = useTranslation('referenceList')
@@ -16,13 +15,11 @@ export const ReferenceLists = () => {
         { id: 'stores', name: t('names.stores') },
     ]
 
-    const backAction = useToControlCenterGalleryAction()
-
     const title = t('hero.headline')
 
     return (
         <article>
-            <TopPanel title={title} onBack={backAction.onClick} />
+            <TopPanel title={title} />
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto my-6 w-full pb-6 md:my-0 md:max-w-2xl md:px-4 md:pt-6">
                     <Hero title={title} hideOnMobile />

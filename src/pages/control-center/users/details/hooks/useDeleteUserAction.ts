@@ -1,9 +1,10 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { closeModals, openDelete, setDeleteLoading } from '@/app/ui/modalsSlice'
 import {
     useDeleteUserByIdMutation,
     useGetUserByIdQuery,
@@ -18,7 +19,7 @@ export const useDeleteUserAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['actions', 'modal'])
 
-    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+    const dispatch = useAppDispatch()
 
     const isUserDetailsPage = pathname.match(
         /^\/control-center\/users\/[a-f0-9]{24}$/i
@@ -31,16 +32,29 @@ export const useDeleteUserAction = () => {
     const [deleteUserById, { isLoading: isDeleting }] =
         useDeleteUserByIdMutation()
 
+    useEffect(() => {
+        dispatch(setDeleteLoading(isDeleting))
+    }, [isDeleting])
+
     const handleDelete = async () => {
         try {
             await deleteUserById(id!).unwrap()
+            dispatch(closeModals())
             navigate(ROUTES.controlCenter.users)
         } catch (err) {
             console.error(err)
-            toast.error(getErrorMessage(err))
-        } finally {
-            setIsModalDeleteOpen(false)
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.titleError'),
+                    description: getErrorMessage(err),
+                    isBlocked: true,
+                })
+            )
         }
+    }
+
+    const handleCancel = () => {
+        dispatch(closeModals())
     }
 
     if (!id || !isUserDetailsPage) return null
@@ -51,15 +65,20 @@ export const useDeleteUserAction = () => {
         icon: TrashIcon,
         label: t('delete'),
         roles: [Role.ADMIN, Role.MUA],
-        onClick: () => setIsModalDeleteOpen(true),
-        modalProps: {
-            isOpen: isModalDeleteOpen,
-            title: t('modal:delete.title'),
-            description: t('modal:delete.description', {
-                name: data?.user.username,
-            }),
-            onConfirm: isDeleting ? () => {} : handleDelete,
-            onCancel: () => setIsModalDeleteOpen(false),
+        onClick: () => {
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.title'),
+                    description: t('modal:delete.description', {
+                        name: data?.user.username,
+                    }),
+                })
+            )
         },
+        modalProps: {
+            onConfirm: handleDelete,
+            onCancel: handleCancel,
+        },
+        destructive: true,
     }
 }

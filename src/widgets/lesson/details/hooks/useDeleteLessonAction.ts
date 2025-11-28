@@ -1,9 +1,10 @@
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
+import { useAppDispatch } from '@/app/hooks/hooks'
+import { closeModals, openDelete, setDeleteLoading } from '@/app/ui/modalsSlice'
 import {
     useDeleteLessonByIdMutation,
     useGetLessonByIdQuery,
@@ -18,6 +19,8 @@ export const useDeleteLessonAction = () => {
     const { id } = useParams()
     const { t } = useTranslation(['actions', 'modal'])
 
+    const dispatch = useAppDispatch()
+
     const lessonsRoot = ROUTES.backstage.lessons.root
     const isLessonDetailsPage = pathname.match(
         new RegExp(`^${lessonsRoot}/[a-f0-9]{24}$`)
@@ -27,21 +30,32 @@ export const useDeleteLessonAction = () => {
         skip: !id || !isLessonDetailsPage,
     })
 
-    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
-
     const [deleteLessonById, { isLoading: isDeleting }] =
         useDeleteLessonByIdMutation()
+
+    useEffect(() => {
+        dispatch(setDeleteLoading(isDeleting))
+    }, [isDeleting])
 
     const handleDelete = async () => {
         try {
             await deleteLessonById(id!).unwrap()
+            dispatch(closeModals())
             navigate(lessonsRoot)
         } catch (err) {
             console.error(err)
-            toast.error(getErrorMessage(err))
-        } finally {
-            setIsModalDeleteOpen(false)
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.titleError'),
+                    description: getErrorMessage(err),
+                    isBlocked: true,
+                })
+            )
         }
+    }
+
+    const handleCancel = () => {
+        dispatch(closeModals())
     }
 
     if (!id || !isLessonDetailsPage) return null
@@ -52,15 +66,20 @@ export const useDeleteLessonAction = () => {
         icon: TrashIcon,
         label: t('delete'),
         roles: [Role.ADMIN, Role.MUA],
-        onClick: () => setIsModalDeleteOpen(true),
-        modalProps: {
-            isOpen: isModalDeleteOpen,
-            title: t('modal:delete.title'),
-            description: t('modal:delete.description', {
-                name: data?.title,
-            }),
-            onConfirm: isDeleting ? () => {} : handleDelete,
-            onCancel: () => setIsModalDeleteOpen(false),
+        onClick: () => {
+            dispatch(
+                openDelete({
+                    title: t('modal:delete.title'),
+                    description: t('modal:delete.description', {
+                        name: data?.title,
+                    }),
+                })
+            )
         },
+        modalProps: {
+            onConfirm: handleDelete,
+            onCancel: handleCancel,
+        },
+        destructive: true,
     }
 }

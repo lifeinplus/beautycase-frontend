@@ -19,7 +19,6 @@ import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
 import { getErrorMessage } from '@/shared/utils/error/getErrorMessage'
 import { titleWithCount } from '@/shared/utils/ui/titleWithCount'
-import { useToReferenceListsAction } from '../control-center/reference-lists/hooks/useToReferenceListsAction'
 
 export const Stores = () => {
     const storeFormRef = useRef<FormRef | null>(null)
@@ -31,8 +30,6 @@ export const Stores = () => {
     const dispatch = useAppDispatch()
     const { data = [], isLoading, error } = useGetAllStoresQuery()
     const [deleteStoreById] = useDeleteStoreByIdMutation()
-
-    const backAction = useToReferenceListsAction()
 
     const handleDelete = async (data: Store) => {
         setStore(data)
@@ -62,7 +59,7 @@ export const Stores = () => {
 
     return (
         <article>
-            <TopPanel title={title} onBack={backAction.onClick} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

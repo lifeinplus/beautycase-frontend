@@ -3,7 +3,6 @@ import classNames from 'classnames'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 import { useAppSelector } from '@/app/hooks/hooks'
 import { selectFormData } from '@/features/form/slice/formSlice'
@@ -27,7 +26,6 @@ export const StageForm = ({
     title,
     isSaving = false,
 }: StageFormProps) => {
-    const navigate = useNavigate()
     const { t } = useTranslation('stage')
 
     const {
@@ -48,13 +46,9 @@ export const StageForm = ({
         reset(formData)
     }, [formData])
 
-    const handleBack = () => {
-        navigate(-1)
-    }
-
     return (
         <article>
-            <TopPanel title={title} onBack={handleBack} />
+            <TopPanel title={title} />
 
             <main className="pb-safe-bottom md:ms-navbar lg:ms-navbar-wide flex flex-col items-center justify-center">
                 <article className="mx-auto w-full pb-6 md:max-w-2xl md:px-4 md:pt-6">

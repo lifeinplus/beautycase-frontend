@@ -2,8 +2,8 @@ import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { useTranslation } from 'react-i18next'
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks/hooks'
+import { selectDarkMode, toggleTheme } from '@/app/ui/theme/themeSlice'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
-import { selectDarkMode, toggleTheme } from '../slice/themeSlice'
 
 export function ThemeToggler() {
     const { t } = useTranslation('theme')

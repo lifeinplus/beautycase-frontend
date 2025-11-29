@@ -9,7 +9,7 @@ import {
     closeModals,
     openDuplicate,
     setDuplicateLoading,
-} from '@/app/ui/modalsSlice'
+} from '@/app/ui/modals/modalsSlice'
 import {
     useDuplicateProductByIdMutation,
     useGetProductByIdQuery,

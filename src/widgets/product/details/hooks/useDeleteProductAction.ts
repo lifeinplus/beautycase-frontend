@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import { useAppDispatch } from '@/app/hooks/hooks'
-import { closeModals, openDelete, setDeleteLoading } from '@/app/ui/modalsSlice'
+import {
+    closeModals,
+    openDelete,
+    setDeleteLoading,
+} from '@/app/ui/modals/modalsSlice'
 import {
     useDeleteProductByIdMutation,
     useGetProductByIdQuery,

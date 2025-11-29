@@ -6,7 +6,10 @@ import { ModalDelete } from '@/shared/components/modals/delete/ModalDelete'
 import { ModalDuplicate } from '@/shared/components/modals/duplicate/ModalDuplicate'
 import { NavButton } from '@/shared/components/navigation/nav-button/NavButton'
 import { useAppSelector } from '../hooks/hooks'
-import { selectDeleteModal, selectDuplicateModal } from '../ui/modalsSlice'
+import {
+    selectDeleteModal,
+    selectDuplicateModal,
+} from '../ui/modals/modalsSlice'
 
 export const AppLayout = () => {
     const navBarActions = useNavBarActions()

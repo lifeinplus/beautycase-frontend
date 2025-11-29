@@ -8,7 +8,6 @@ const initialState: ThemeState = {
     darkMode: localStorage.getItem('darkMode') === 'true',
 }
 
-// TODO: move to the app layer
 const themeSlice = createSlice({
     name: 'theme',
     initialState,

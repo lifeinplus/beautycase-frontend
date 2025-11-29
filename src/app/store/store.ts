@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
+import modalsReducer from '@/app/ui/modals/modalsSlice'
+import themeReducer from '@/app/ui/theme/themeSlice'
 import authReducer from '@/features/auth/slice/authSlice'
 import formReducer from '@/features/form/slice/formSlice'
-import themeReducer from '@/features/theme/slice/themeSlice'
 import { api } from '@/shared/api/api'
 import config from '../config/config'
-import modalsReducer from '../ui/modalsSlice'
 
 const rootReducer = combineReducers({
     [api.reducerPath]: api.reducer,

@@ -26,7 +26,7 @@ describe('TopPanel', () => {
         const user = userEvent.setup()
         const mockOnBack = vi.fn()
 
-        render(<TopPanel title={mockTitle} onBack={mockOnBack} />)
+        render(<TopPanel title={mockTitle} />)
         await user.click(screen.getByRole('button'))
 
         expect(mockOnBack).toHaveBeenCalledTimes(1)

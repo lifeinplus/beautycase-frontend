@@ -9,9 +9,9 @@ import { controlCenterRoutes } from './app/routes/control-center/controlCenterRo
 import { publicRoutes } from './app/routes/public/publicRoutes'
 import { questionnaireRoutes } from './app/routes/questionnaires/questionnairesRoutes'
 import { ScrollToTop } from './app/ui/scroll-to-top/ScrollToTop'
+import { selectDarkMode } from './app/ui/theme/themeSlice'
 import { PersistLogin } from './features/auth/components/persist-login/PersistLogin'
 import { RequireAuth } from './features/auth/components/require-auth/RequireAuth'
-import { selectDarkMode } from './features/theme/slice/themeSlice'
 
 const App = () => {
     const darkMode = useAppSelector(selectDarkMode)

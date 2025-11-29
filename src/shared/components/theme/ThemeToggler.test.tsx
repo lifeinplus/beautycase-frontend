@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { mockDispatch } from '@/app/hooks/__mocks__/hooks'
 import { useAppSelector } from '@/app/hooks/hooks'
-import { toggleTheme } from '../slice/themeSlice'
+import { toggleTheme } from '../../../app/ui/theme/themeSlice'
 import { ThemeToggler } from './ThemeToggler'
 
 vi.mock('@/app/hooks/hooks')

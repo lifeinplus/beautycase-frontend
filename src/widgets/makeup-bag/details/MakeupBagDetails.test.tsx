@@ -11,8 +11,6 @@ vi.mock('@/features/makeup-bags/components/tools/MakeupBagTools')
 vi.mock('./hooks/useMakeupBagDetailsActions')
 
 describe('MakeupBagDetails', () => {
-    const mockOnBack = () => {}
-
     beforeEach(() => {
         vi.mocked(useGetMakeupBagByIdQuery as Mock).mockReturnValue({
             data: mockMakeupBag1,
@@ -22,7 +20,7 @@ describe('MakeupBagDetails', () => {
     })
 
     it('renders the page with correct data', () => {
-        render(<MakeupBagDetails onBack={mockOnBack} />)
+        render(<MakeupBagDetails />)
 
         expect(screen.getByRole('navigation')).toBeInTheDocument()
 
@@ -41,7 +39,7 @@ describe('MakeupBagDetails', () => {
             error: null,
         })
 
-        render(<MakeupBagDetails onBack={mockOnBack} />)
+        render(<MakeupBagDetails />)
 
         expect(screen.getByText(/0 stages/)).toBeInTheDocument()
         expect(screen.getByText(/0 tools/)).toBeInTheDocument()

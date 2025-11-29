@@ -13,11 +13,9 @@ import { LessonDetails } from './LessonDetails'
 
 vi.mock('@/features/lessons/api/lessonsApi')
 vi.mock('@/shared/utils/youtube/embed-url/getEmbedUrl')
-// vi.mock('@/widgets/product/images/ProductImages')
 vi.mock('./hooks/useLessonDetailsActions')
 
 describe('LessonDetails', () => {
-    const mockOnBack = () => {}
     const mockDeleteLesson = vi.fn()
 
     beforeEach(() => {
@@ -35,7 +33,7 @@ describe('LessonDetails', () => {
     })
 
     it('renders lesson details', async () => {
-        renderWithProviderAndRouter(<LessonDetails onBack={mockOnBack} />)
+        renderWithProviderAndRouter(<LessonDetails />)
 
         expect(screen.getAllByText(mockLesson1.title)).toHaveLength(2)
 
@@ -57,7 +55,7 @@ describe('LessonDetails', () => {
             error: null,
         })
 
-        renderWithProviderAndRouter(<LessonDetails onBack={mockOnBack} />)
+        renderWithProviderAndRouter(<LessonDetails />)
 
         expect(screen.getAllByRole('img')[0]).toBeInTheDocument()
     })

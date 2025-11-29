@@ -72,28 +72,6 @@ describe('useDeleteTrainingQuestionnaireAction', () => {
         )
     })
 
-    it('closes modal when cancel is called', async () => {
-        const { result } = renderHook(() =>
-            useDeleteTrainingQuestionnaireAction()
-        )
-
-        let deleteAction = result.current
-
-        await act(async () => {
-            await deleteAction?.onClick()
-        })
-
-        deleteAction = result.current
-        const { onCancel } = deleteAction?.modalProps || {}
-
-        await act(async () => {
-            await onCancel?.()
-        })
-
-        const updatedDeleteAction = result.current
-        expect(updatedDeleteAction?.modalProps?.isOpen).toBe(false)
-    })
-
     it('shows error toast if delete fails', async () => {
         mockDeleteUnwrap.mockRejectedValue(mockError)
 

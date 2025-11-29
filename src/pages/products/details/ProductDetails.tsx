@@ -13,7 +13,6 @@ export interface ProductDetailsProps {
     viewMode?: boolean
 }
 
-// TODO: move to pages back?
 export const ProductDetails = ({ viewMode = false }: ProductDetailsProps) => {
     const { id } = useParams()
     const { t } = useTranslation(['product', 'store'])

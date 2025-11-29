@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 
 import { useGetLessonByIdQuery } from '@/features/lessons/api/lessonsApi'
+import { VideoSection } from '@/pages/lessons/details/ui/VideoSection'
 import { TitleSection } from '@/shared/components/forms/title-section/TitleSection'
 import { TopPanel } from '@/shared/components/layout/top-panel/TopPanel'
 import { DetailSection } from '@/shared/components/ui/detail-section/DetailSection'
 import { DataWrapper } from '@/shared/components/wrappers/DataWrapper'
-import { VideoSection } from '@/widgets/lesson/details/ui/VideoSection'
 import { ProductImages } from '@/widgets/product/images/ProductImages'
 
 export interface LessonDetailsProps {
